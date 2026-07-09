@@ -403,50 +403,42 @@ function WinnerOutcomes() {
 
 
 function SubmissionForm() {
-  const navigate = useNavigate({ from: "/" });
-  const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    story: "",
-  });
+  const formContainerRef = useRef<HTMLDivElement>(null);
+  const targetId = "hubspot-form-target";
 
-  const onChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((f) => ({ ...f, [k]: e.target.value }));
+  useEffect(() => {
+    const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.story.trim()) {
-      toast.error("Please fill in your name, email, and story.");
+    const createForm = () => {
+      if (window.hbspt && formContainerRef.current) {
+        formContainerRef.current.innerHTML = "";
+        window.hbspt.forms.create({
+          portalId: "20118879",
+          formId: "f992b0bc-4a99-4024-aa02-fae7270920e6",
+          region: "na1",
+          target: `#${targetId}`,
+        });
+      }
+    };
+
+    const existing = document.querySelector<HTMLScriptElement>(`script[src="${scriptSrc}"]`);
+    if (existing) {
+      if (window.hbspt) {
+        createForm();
+      } else {
+        existing.addEventListener("load", createForm);
+      }
       return;
     }
-    if (form.story.length > 2000) {
-      toast.error("Story must be under 2000 characters.");
-      return;
-    }
-    setSubmitting(true);
-    const { error } = await supabase.from("submissions").insert({
-      name: form.name.trim(),
-      email: form.email.trim(),
-      company: form.company.trim() || null,
-      story: form.story.trim(),
-    });
-    setSubmitting(false);
-    if (error) {
-      toast.error(error.message || "Something went wrong. Please try again.");
-      return;
-    }
-    setForm({ name: "", email: "", company: "", story: "" });
-    toast.success("Submission received. We'll be in touch.");
-    navigate({
-      to: "/thank-you",
-      search: {
-        name: form.name.trim(),
-        company: form.company.trim() || undefined,
-      },
-    });
-  };
+
+    const script = document.createElement("script");
+    script.src = scriptSrc;
+    script.async = true;
+    script.charset = "utf-8";
+    script.type = "text/javascript";
+    script.addEventListener("load", createForm);
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <section id="submit" className="border-t border-border bg-secondary/30 py-24 md:py-32">
@@ -461,61 +453,10 @@ function SubmissionForm() {
           </p>
         </div>
         <Card className="mt-12 p-8 md:p-10">
-          <form onSubmit={onSubmit} className="space-y-6">
-            <div className="grid gap-6 sm:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="name">Your name</Label>
-                <Input
-                  id="name"
-                  value={form.name}
-                  onChange={onChange("name")}
-                  maxLength={100}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={form.email}
-                  onChange={onChange("email")}
-                  maxLength={255}
-                  required
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="company">Company (optional)</Label>
-              <Input
-                id="company"
-                value={form.company}
-                onChange={onChange("company")}
-                maxLength={120}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="story">Your story</Label>
-              <Textarea
-                id="story"
-                value={form.story}
-                onChange={onChange("story")}
-                placeholder="Why did you start? What did it cost you? What did you build? (A few paragraphs is plenty.)"
-                rows={8}
-                maxLength={2000}
-                required
-              />
-              <p className="text-right text-xs text-muted-foreground">
-                {form.story.length}/2000
-              </p>
-            </div>
-            <Button type="submit" size="lg" className="w-full" disabled={submitting}>
-              {submitting ? "Submitting…" : "Submit my entry — it's free to apply"}
-            </Button>
-            <p className="text-center text-xs text-muted-foreground">
-              Free to enter. You only pay if you're selected as a winner. We reply within 14 days.
-            </p>
-          </form>
+          <div id={targetId} ref={formContainerRef} />
+          <p className="mt-6 text-center text-xs text-muted-foreground">
+            Free to enter. You only pay if you're selected as a winner. We reply within 14 days.
+          </p>
         </Card>
       </div>
     </section>
