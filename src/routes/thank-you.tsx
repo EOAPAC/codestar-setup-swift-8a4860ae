@@ -173,17 +173,20 @@ function ThankYouPage() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center"
-              >
-                <Share2 className="mr-2 h-4 w-4" />
-                Share on LinkedIn
-              </a>
+              <Link to="/" hash="outcomes" className="inline-flex items-center">
+                <TrendingUp className="mr-2 h-4 w-4" />
+                See winner outcomes
+              </Link>
             </Button>
           </div>
+
+          <p className="mt-8 text-sm text-muted-foreground">
+            Want more proof?{" "}
+            <Link to="/" hash="testimonials" className="text-primary underline underline-offset-4">
+              Read what past winners say
+            </Link>
+            .
+          </p>
 
           <p className="mt-8 text-sm text-muted-foreground">
             Questions?{" "}
