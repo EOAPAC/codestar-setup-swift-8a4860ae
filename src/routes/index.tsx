@@ -159,12 +159,12 @@ function Tiers() {
     <section id="tiers" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Award Tiers</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Choose your win</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Recognition, at the level you need it.
+            Every entry wins something. You choose how loud.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            One submission. Choose how far you want your story to travel.
+            One story, three ways to amplify it. 30-day money-back guarantee if you're not shortlisted.
           </p>
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-3">
