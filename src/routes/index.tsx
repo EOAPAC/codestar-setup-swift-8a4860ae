@@ -5,7 +5,19 @@ declare global {
   interface Window {
     hbspt?: {
       forms: {
-        create: (options: { portalId: string; formId: string; region?: string; target?: string }) => void;
+        create: (options: {
+          portalId: string;
+          formId: string;
+          region?: string;
+          target?: string;
+          css?: string;
+          cssClass?: string;
+          submitButtonClass?: string;
+          inlineMessage?: string;
+          onFormReady?: (form: unknown) => void;
+          onFormSubmit?: (form: unknown) => void;
+          onFormSubmitted?: (form: unknown) => void;
+        }) => void;
       };
     };
   }
