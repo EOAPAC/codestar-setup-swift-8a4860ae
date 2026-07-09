@@ -429,7 +429,13 @@ function SubmissionForm() {
     }
     setForm({ name: "", email: "", company: "", story: "" });
     toast.success("Submission received. We'll be in touch.");
-    navigate({ to: "/thank-you" });
+    navigate({
+      to: "/thank-you",
+      search: {
+        name: form.name.trim(),
+        company: form.company.trim() || undefined,
+      },
+    });
   };
 
   return (
