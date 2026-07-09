@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 
 declare global {
@@ -413,6 +413,7 @@ function WinnerOutcomes() {
 function SubmissionForm() {
   const formContainerRef = useRef<HTMLDivElement>(null);
   const targetId = "hubspot-form-target";
+  const navigate = useNavigate({ from: "/" });
 
   useEffect(() => {
     const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
@@ -426,6 +427,9 @@ function SubmissionForm() {
           region: "na1",
           target: `#${targetId}`,
           css: "",
+          onFormSubmitted: () => {
+            navigate({ to: "/thank-you" });
+          },
         });
       }
     };
@@ -447,7 +451,7 @@ function SubmissionForm() {
     script.type = "text/javascript";
     script.addEventListener("load", createForm);
     document.body.appendChild(script);
-  }, []);
+  }, [navigate]);
 
   return (
     <section id="submit" className="border-t border-border bg-secondary/30 py-24 md:py-32">
