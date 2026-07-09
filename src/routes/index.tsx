@@ -5,7 +5,19 @@ declare global {
   interface Window {
     hbspt?: {
       forms: {
-        create: (options: { portalId: string; formId: string; region?: string; target?: string }) => void;
+        create: (options: {
+          portalId: string;
+          formId: string;
+          region?: string;
+          target?: string;
+          css?: string;
+          cssClass?: string;
+          submitButtonClass?: string;
+          inlineMessage?: string;
+          onFormReady?: (form: unknown) => void;
+          onFormSubmit?: (form: unknown) => void;
+          onFormSubmitted?: (form: unknown) => void;
+        }) => void;
       };
     };
   }
@@ -408,11 +420,13 @@ function SubmissionForm() {
     const createForm = () => {
       if (window.hbspt && formContainerRef.current) {
         formContainerRef.current.innerHTML = "";
+        const cssUrl = `${window.location.origin}/hubspot-form.css`;
         window.hbspt.forms.create({
           portalId: "20118879",
           formId: "f992b0bc-4a99-4024-aa02-fae7270920e6",
           region: "na1",
           target: `#${targetId}`,
+          css: cssUrl,
         });
       }
     };
