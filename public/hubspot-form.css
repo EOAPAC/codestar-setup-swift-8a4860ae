@@ -1,0 +1,122 @@
+/* HubSpot form embed — match site design system (loaded inside the HubSpot iframe) */
+
+.hs-form,
+.hbspt-form,
+form.hs-form {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  color: #0f172a !important;
+}
+
+.hs-form-field {
+  margin-bottom: 1.25rem !important;
+}
+
+.hs-form-field > label,
+.hs-form-field__label {
+  display: block !important;
+  margin-bottom: 0.375rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.25rem !important;
+  color: #0f172a !important;
+}
+
+.hs-form-required {
+  color: #dc2626 !important;
+}
+
+.hs-input,
+input.hs-input,
+textarea.hs-input {
+  display: flex !important;
+  width: 100% !important;
+  min-height: 2.5rem !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+  line-height: 1.25rem !important;
+  color: #0f172a !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0.375rem !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+textarea.hs-input {
+  min-height: 6rem !important;
+}
+
+.hs-input::placeholder,
+input.hs-input::placeholder,
+textarea.hs-input::placeholder {
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+
+.hs-input:focus,
+input.hs-input:focus,
+textarea.hs-input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 1px #3b82f6 !important;
+}
+
+.hs-button,
+input[type="submit"].hs-button,
+form.hs-form .hs-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  height: 2.5rem !important;
+  padding: 0 1.5rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.25rem !important;
+  color: #ffffff !important;
+  background-color: #3b82f6 !important;
+  border: 1px solid #3b82f6 !important;
+  border-radius: 0.375rem !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+.hs-button:hover,
+input[type="submit"].hs-button:hover,
+form.hs-form .hs-button:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.hs-error-msgs,
+.hs-form-field__error {
+  margin-top: 0.375rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
+  color: #dc2626 !important;
+}
+
+.hs-form-field__hint,
+.hs-field-desc {
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
+  color: #64748b !important;
+}
+
+.hs-error-msgs > li,
+.hs-form-field__error > li {
+  list-style: none !important;
+  padding: 0 !important;
+}
+
+.submitted-message {
+  padding: 1rem !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  color: #0f172a !important;
+  background-color: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0.375rem !important;
+}
