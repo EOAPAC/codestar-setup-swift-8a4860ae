@@ -1,5 +1,15 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+declare global {
+  interface Window {
+    hbspt?: {
+      forms: {
+        create: (options: { portalId: string; formId: string; region?: string; target?: string }) => void;
+      };
+    };
+  }
+}
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
