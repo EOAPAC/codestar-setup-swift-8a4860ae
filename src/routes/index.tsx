@@ -179,7 +179,7 @@ function Tiers() {
             >
               {tier.highlighted && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
-                  Most chosen
+                  Most founders choose this
                 </span>
               )}
               <h3 className="text-xl font-semibold">{tier.name}</h3>
@@ -201,7 +201,7 @@ function Tiers() {
                 className="mt-8"
                 variant={tier.highlighted ? "default" : "outline"}
               >
-                <a href="#submit">Choose {tier.name}</a>
+                <a href="#submit">Enter {tier.name} →</a>
               </Button>
             </Card>
           ))}
