@@ -294,12 +294,12 @@ function SubmissionForm() {
     <section id="submit" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Submit</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Enter now</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            One entry. Tell us your story.
+            Enter in 5 minutes. Judged in 14 days.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            No categories to pick. No forms within forms. Just the founder, and the work.
+            No categories. No 20-page application. Just you and the work — that's all our founder-judges want to read.
           </p>
         </div>
         <Card className="mt-12 p-8 md:p-10">
