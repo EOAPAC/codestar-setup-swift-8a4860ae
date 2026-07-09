@@ -84,6 +84,7 @@ function Index() {
         <Hero />
         <Tiers />
         <Testimonials />
+        <WinnerOutcomes />
         <SubmissionForm />
         <Contact />
       </main>
