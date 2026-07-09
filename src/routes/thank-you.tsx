@@ -1,8 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowLeft, Share2, Calendar, Mail, Trophy } from "lucide-react";
+import { Check, ArrowLeft, Share2, Calendar, Mail, Trophy, User } from "lucide-react";
+
+const thankYouSearchSchema = z.object({
+  id: z.string().optional(),
+  name: z.string().optional(),
+  company: z.string().optional(),
+});
 
 export const Route = createFileRoute("/thank-you")({
+  validateSearch: thankYouSearchSchema,
   head: () => ({
     meta: [
       { title: "Thank You — Entry Received | The Entrepreneur Awards" },
@@ -18,6 +26,11 @@ export const Route = createFileRoute("/thank-you")({
 });
 
 function ThankYouPage() {
+  const search = Route.useSearch();
+  const founderName = search.name?.trim() || "Founder";
+  const companyName = search.company?.trim();
+  const referenceId = search.id?.slice(0, 8) ?? "";
+
   const today = new Date();
   const formatDate = (date: Date) =>
     date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
@@ -80,11 +93,23 @@ function ThankYouPage() {
 
           <p className="mt-6 text-sm font-medium uppercase tracking-widest text-primary">Entry received</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Thank you for entering.
+            Thank you{founderName !== "Founder" ? `, ${founderName}` : ""}.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            Your submission is in. We've sent a confirmation email and our founder-judges will reply with next steps within 14 days.
+            {companyName
+              ? `We've received your entry for ${companyName}.`
+              : "We've received your entry."}{" "}
+            Our founder-judges will reply with next steps within 14 days.
           </p>
+
+          {referenceId && (
+            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm text-muted-foreground">
+              <User className="h-4 w-4 text-primary" />
+              <span>
+                Reference ID: <span className="font-medium text-foreground">{referenceId}</span>
+              </span>
+            </div>
+          )}
 
           <div className="mt-10 rounded-2xl border border-border bg-secondary/30 p-6 text-left md:p-8">
             <h2 className="text-center text-lg font-semibold">What happens next</h2>
