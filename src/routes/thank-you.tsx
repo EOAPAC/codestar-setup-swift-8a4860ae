@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowLeft, Share2, Calendar } from "lucide-react";
+import { Check, ArrowLeft, Share2, Calendar, Mail, Trophy } from "lucide-react";
 
 export const Route = createFileRoute("/thank-you")({
   head: () => ({
@@ -18,6 +18,47 @@ export const Route = createFileRoute("/thank-you")({
 });
 
 function ThankYouPage() {
+  const today = new Date();
+  const formatDate = (date: Date) =>
+    date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+
+  const reviewBy = new Date(today);
+  reviewBy.setDate(today.getDate() + 3);
+
+  const replyBy = new Date(today);
+  replyBy.setDate(today.getDate() + 14);
+
+  const steps = [
+    {
+      icon: Check,
+      label: "Entry received",
+      date: `Today — ${formatDate(today)}`,
+      description: "Your story is saved and assigned to a founder-judge.",
+      status: "done" as const,
+    },
+    {
+      icon: Calendar,
+      label: "Review complete",
+      date: `Within 3 days — by ${formatDate(reviewBy)}`,
+      description: "Every entry is read by a founder who has built a company.",
+      status: "next" as const,
+    },
+    {
+      icon: Mail,
+      label: "You get a reply",
+      date: `Within 14 days — by ${formatDate(replyBy)}`,
+      description: "Shortlisted founders choose their Digital, Signature, or Headline win.",
+      status: "pending" as const,
+    },
+    {
+      icon: Trophy,
+      label: "Winners go live",
+      date: "After you confirm your tier",
+      description: "You receive your badge, trophy, press kit, and founder story feature.",
+      status: "pending" as const,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
@@ -42,25 +83,60 @@ function ThankYouPage() {
             Thank you for entering.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            Our founder-judges will read your story and reply within 14 days.
-            In the meantime, here's what happens next.
+            Your submission is in. We've sent a confirmation email and our founder-judges will reply with next steps within 14 days.
           </p>
 
-          <div className="mt-10 grid gap-4 text-left sm:grid-cols-3">
-            <div className="rounded-xl border border-border bg-secondary/30 p-5">
-              <Calendar className="h-5 w-5 text-primary" />
-              <p className="mt-3 text-sm font-medium">Judging in 14 days</p>
-              <p className="mt-1 text-xs text-muted-foreground">Every entry is reviewed by a founder who has built a company.</p>
-            </div>
-            <div className="rounded-xl border border-border bg-secondary/30 p-5">
-              <Share2 className="h-5 w-5 text-primary" />
-              <p className="mt-3 text-sm font-medium">Shortlist announced</p>
-              <p className="mt-1 text-xs text-muted-foreground">If shortlisted, you'll choose a Digital, Signature, or Headline win.</p>
-            </div>
-            <div className="rounded-xl border border-border bg-secondary/30 p-5">
-              <Check className="h-5 w-5 text-primary" />
-              <p className="mt-3 text-sm font-medium">Winners go live</p>
-              <p className="mt-1 text-xs text-muted-foreground">Winners get a badge, trophy, press coverage, and a founder story.</p>
+          <div className="mt-10 rounded-2xl border border-border bg-secondary/30 p-6 text-left md:p-8">
+            <h2 className="text-center text-lg font-semibold">What happens next</h2>
+            <p className="mt-1 text-center text-sm text-muted-foreground">
+              Here's the timeline from today to your result.
+            </p>
+
+            <div className="mt-8 space-y-6">
+              {steps.map((step, i) => {
+                const Icon = step.icon;
+                const isDone = step.status === "done";
+                const isNext = step.status === "next";
+                return (
+                  <div key={step.label} className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <div
+                        className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                          isDone
+                            ? "bg-primary text-primary-foreground"
+                            : isNext
+                            ? "border-2 border-primary bg-background text-primary"
+                            : "border border-border bg-background text-muted-foreground"
+                        }`}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      {i < steps.length - 1 && (
+                        <div className="mt-2 h-full min-h-[2rem] w-px bg-border" />
+                      )}
+                    </div>
+                    <div className="flex-1 pb-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className={`text-sm font-semibold ${isDone ? "text-primary" : ""}`}>
+                          {step.label}
+                        </p>
+                        {isDone && (
+                          <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                            Done
+                          </span>
+                        )}
+                        {isNext && (
+                          <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                            Next
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-0.5 text-xs font-medium text-muted-foreground">{step.date}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{step.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -78,6 +154,7 @@ function ThankYouPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center"
               >
+                <Share2 className="mr-2 h-4 w-4" />
                 Share on LinkedIn
               </a>
             </Button>
