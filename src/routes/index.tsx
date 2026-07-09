@@ -342,7 +342,7 @@ function SubmissionForm() {
                 id="story"
                 value={form.story}
                 onChange={onChange("story")}
-                placeholder="Why did you start? What did it cost you? What did you build?"
+                placeholder="Why did you start? What did it cost you? What did you build? (A few paragraphs is plenty.)"
                 rows={8}
                 maxLength={2000}
                 required
@@ -352,8 +352,11 @@ function SubmissionForm() {
               </p>
             </div>
             <Button type="submit" size="lg" className="w-full" disabled={submitting}>
-              {submitting ? "Submitting…" : "Submit my entry"}
+              {submitting ? "Submitting…" : "Submit my entry — it's free to apply"}
             </Button>
+            <p className="text-center text-xs text-muted-foreground">
+              Free to enter. You only pay if you're selected as a winner. We reply within 14 days.
+            </p>
           </form>
         </Card>
       </div>
