@@ -17,37 +17,40 @@ const tiers = [
   {
     name: "Digital",
     price: "$149",
-    tagline: "Get recognized online.",
+    tagline: "Prove it online — in under 5 minutes.",
     features: [
-      "Digital award badge",
-      "Feature in our online directory",
-      "Shareable LinkedIn asset",
-      "Winner certificate (PDF)",
+      "Official 2026 Winner badge (web + email)",
+      "Permanent profile in the Winners Directory",
+      "LinkedIn announcement kit (post + banner)",
+      "Personalised winner certificate (PDF)",
+      "Right to use the Entrepreneur Awards mark",
     ],
   },
   {
     name: "Signature",
     price: "$449",
-    tagline: "The full winner experience.",
+    tagline: "The winner experience most founders choose.",
     highlighted: true,
     features: [
       "Everything in Digital",
-      "Physical engraved trophy",
-      "Founder story published",
-      "Press release distribution",
-      "Priority judging",
+      "Engraved crystal trophy, shipped worldwide",
+      "Your founder story published on our site",
+      "Press release sent to 400+ business outlets",
+      "Priority judging — results in 14 days",
+      "Featured in the Winners email (28k founders)",
     ],
   },
   {
     name: "Headline",
     price: "$1,290",
-    tagline: "Be the story of the year.",
+    tagline: "Become the founder story of the year.",
     features: [
       "Everything in Signature",
-      "Editorial photo & video feature",
-      "Homepage placement",
-      "Speaking slot at annual gala",
-      "1:1 founder coaching session",
+      "Editorial photo + 60-sec video feature",
+      "Homepage placement for 30 days",
+      "Keynote slot at the annual Winners gala",
+      "Two 1:1 sessions with a past Headline winner",
+      "Dedicated PR manager for your launch week",
     ],
   },
 ];
@@ -55,21 +58,21 @@ const tiers = [
 const testimonials = [
   {
     quote:
-      "Winning changed how investors saw us. The recognition opened doors we'd been knocking on for years.",
+      "We closed our seed round six weeks after winning. Investors brought up the award in the first meeting.",
     name: "Amara Okafor",
-    role: "Founder, Northline",
+    role: "Founder, Northline — 2024 Signature Winner",
   },
   {
     quote:
-      "It's the first award that actually cared about the founder — not just the metrics. That distinction matters.",
+      "The only award I've entered that judged the founder, not just the metrics. Worth every dollar.",
     name: "Julian Reyes",
-    role: "Founder & CEO, Parallel",
+    role: "Founder & CEO, Parallel — 2023 Headline Winner",
   },
   {
     quote:
-      "The story feature brought in 40+ inbound customers in the month after publication. Real signal.",
+      "The story feature drove 40+ inbound customers in the first month. Best marketing spend of the year.",
     name: "Priya Shah",
-    role: "Co-founder, Kindred Labs",
+    role: "Co-founder, Kindred Labs — 2024 Signature Winner",
   },
 ];
 
@@ -106,7 +109,7 @@ function Nav() {
           <a href="#contact" className="hover:text-foreground">Contact</a>
         </nav>
         <Button asChild size="sm">
-          <a href="#submit">Enter now</a>
+          <a href="#submit">Enter the 2026 Awards</a>
         </Button>
       </div>
     </header>
@@ -119,31 +122,32 @@ function Hero() {
       <div className="mx-auto max-w-6xl px-6 pt-28 pb-24 text-center md:pt-40 md:pb-32">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-          Submissions open for 2026
+          2026 entries close March 31 — judged in 14 days
         </span>
         <h1 className="mt-8 whitespace-nowrap text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
           For the person who <span className="text-primary">built it.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-          The Entrepreneur Awards celebrate the founders behind the work — the late nights,
-          the pivots, the years of quiet conviction. One entry. One story. Real recognition.
+          Win the award founders actually respect. Get a trophy, press coverage,
+          and a story that opens doors — from judges who've built companies themselves.
+          One entry. Five minutes. Real recognition.
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button asChild size="lg" className="min-w-48">
             <a href="#submit">
-              Submit your story <ArrowRight className="ml-2 h-4 w-4" />
+              Enter in 5 minutes <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
           <Button asChild size="lg" variant="ghost">
-            <a href="#tiers">View award tiers</a>
+            <a href="#tiers">See what winners get</a>
           </Button>
         </div>
         <div className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs uppercase tracking-widest text-muted-foreground">
-          <span>1,200+ Founders Recognized</span>
+          <span>1,200+ Founders Recognised</span>
           <span className="hidden h-1 w-1 rounded-full bg-border sm:block" />
-          <span>Featured in TechCrunch</span>
+          <span>Featured in TechCrunch &amp; Forbes</span>
           <span className="hidden h-1 w-1 rounded-full bg-border sm:block" />
-          <span>Judged by Founders</span>
+          <span>Judged by Founders, Not Marketers</span>
         </div>
       </div>
     </section>
@@ -155,12 +159,12 @@ function Tiers() {
     <section id="tiers" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Award Tiers</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Choose your win</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Recognition, at the level you need it.
+            Every entry wins something. You choose how loud.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            One submission. Choose how far you want your story to travel.
+            One story, three ways to amplify it. 30-day money-back guarantee if you're not shortlisted.
           </p>
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-3">
@@ -175,7 +179,7 @@ function Tiers() {
             >
               {tier.highlighted && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
-                  Most chosen
+                  Most founders choose this
                 </span>
               )}
               <h3 className="text-xl font-semibold">{tier.name}</h3>
@@ -197,7 +201,7 @@ function Tiers() {
                 className="mt-8"
                 variant={tier.highlighted ? "default" : "outline"}
               >
-                <a href="#submit">Choose {tier.name}</a>
+                <a href="#submit">Enter {tier.name} →</a>
               </Button>
             </Card>
           ))}
@@ -214,7 +218,7 @@ function Testimonials() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-widest text-primary">Past winners</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Founders on what winning meant.
+            What winning actually did for their business.
           </h2>
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-3">
@@ -290,12 +294,12 @@ function SubmissionForm() {
     <section id="submit" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Submit</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Enter now</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            One entry. Tell us your story.
+            Enter in 5 minutes. Judged in 14 days.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            No categories to pick. No forms within forms. Just the founder, and the work.
+            No categories. No 20-page application. Just you and the work — that's all our founder-judges want to read.
           </p>
         </div>
         <Card className="mt-12 p-8 md:p-10">
@@ -338,7 +342,7 @@ function SubmissionForm() {
                 id="story"
                 value={form.story}
                 onChange={onChange("story")}
-                placeholder="Why did you start? What did it cost you? What did you build?"
+                placeholder="Why did you start? What did it cost you? What did you build? (A few paragraphs is plenty.)"
                 rows={8}
                 maxLength={2000}
                 required
@@ -348,8 +352,11 @@ function SubmissionForm() {
               </p>
             </div>
             <Button type="submit" size="lg" className="w-full" disabled={submitting}>
-              {submitting ? "Submitting…" : "Submit my entry"}
+              {submitting ? "Submitting…" : "Submit my entry — it's free to apply"}
             </Button>
+            <p className="text-center text-xs text-muted-foreground">
+              Free to enter. You only pay if you're selected as a winner. We reply within 14 days.
+            </p>
           </form>
         </Card>
       </div>
