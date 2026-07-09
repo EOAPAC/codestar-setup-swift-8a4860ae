@@ -146,3 +146,128 @@
     color: var(--color-foreground);
   }
 }
+
+/* HubSpot form embed — match site design system */
+#hubspot-form-target,
+#hubspot-form-target .hbspt-form,
+#hubspot-form-target form.hs-form {
+  font-family: var(--font-sans) !important;
+}
+
+#hubspot-form-target .hs-form-field {
+  margin-bottom: 1.25rem !important;
+}
+
+#hubspot-form-target label.hs-form-field__label,
+#hubspot-form-target .hs-form-field > label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: var(--color-foreground);
+}
+
+#hubspot-form-target .hs-form-required {
+  color: var(--color-destructive) !important;
+}
+
+#hubspot-form-target .hs-input,
+#hubspot-form-target input.hs-input,
+#hubspot-form-target textarea.hs-input {
+  display: flex;
+  width: 100% !important;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem;
+  color: var(--color-foreground) !important;
+  background-color: var(--color-background) !important;
+  border: 1px solid var(--color-input) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#hubspot-form-target textarea.hs-input {
+  min-height: 6rem;
+}
+
+#hubspot-form-target .hs-input::placeholder,
+#hubspot-form-target input.hs-input::placeholder,
+#hubspot-form-target textarea.hs-input::placeholder {
+  color: var(--color-muted-foreground) !important;
+  opacity: 1;
+}
+
+#hubspot-form-target .hs-input:focus,
+#hubspot-form-target input.hs-input:focus,
+#hubspot-form-target textarea.hs-input:focus {
+  border-color: var(--color-ring) !important;
+  box-shadow: 0 0 0 1px var(--color-ring) !important;
+}
+
+#hubspot-form-target .hs-button,
+#hubspot-form-target input[type="submit"].hs-button,
+#hubspot-form-target .hs-form .hs-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  height: 2.5rem !important;
+  padding: 0 1.5rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.25rem !important;
+  color: var(--color-primary-foreground) !important;
+  background-color: var(--color-primary) !important;
+  border: 1px solid var(--color-primary) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+#hubspot-form-target .hs-button:hover,
+#hubspot-form-target input[type="submit"].hs-button:hover,
+#hubspot-form-target .hs-form .hs-button:hover {
+  background-color: color-mix(in oklab, var(--color-primary) 90%, transparent) !important;
+  border-color: color-mix(in oklab, var(--color-primary) 90%, transparent) !important;
+}
+
+#hubspot-form-target .hs-error-msgs,
+#hubspot-form-target .hs-form-field__error {
+  margin-top: 0.375rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
+  color: var(--color-destructive) !important;
+}
+
+#hubspot-form-target .hs-form-field__hint,
+#hubspot-form-target .hs-field-desc {
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
+  color: var(--color-muted-foreground) !important;
+}
+
+#hubspot-form-target .hs-form-field__error > li,
+#hubspot-form-target .hs-error-msgs > li {
+  list-style: none !important;
+  padding: 0 !important;
+}
+
+#hubspot-form-target .hs-form-field__error > li::before,
+#hubspot-form-target .hs-error-msgs > li::before {
+  display: none !important;
+}
+
+#hubspot-form-target .submitted-message {
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--color-foreground);
+  background-color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
