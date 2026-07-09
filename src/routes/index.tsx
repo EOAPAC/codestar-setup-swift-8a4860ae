@@ -435,7 +435,7 @@ function SubmissionForm() {
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
           <p className="text-sm font-medium uppercase tracking-widest text-primary">Enter now</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <h2 className="mt-3 whitespace-nowrap text-4xl font-semibold tracking-tight md:text-5xl">
             Enter in 5 minutes. Judged in 14 days.
           </h2>
           <p className="mt-4 text-muted-foreground">
