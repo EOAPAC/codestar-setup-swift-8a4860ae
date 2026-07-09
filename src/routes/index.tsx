@@ -408,11 +408,13 @@ function SubmissionForm() {
     const createForm = () => {
       if (window.hbspt && formContainerRef.current) {
         formContainerRef.current.innerHTML = "";
+        const cssUrl = `${window.location.origin}/hubspot-form.css`;
         window.hbspt.forms.create({
           portalId: "20118879",
           formId: "f992b0bc-4a99-4024-aa02-fae7270920e6",
           region: "na1",
           target: `#${targetId}`,
+          css: cssUrl,
         });
       }
     };
