@@ -253,6 +253,145 @@ function Testimonials() {
   );
 }
 
+const outcomes = [
+  {
+    company: "Northline",
+    founder: "Amara Okafor",
+    tag: "2024 Signature Winner",
+    industry: "Logistics SaaS",
+    metric: "$4.2M seed round",
+    detail: "Closed 6 weeks post-win. Lead investor cited the award in the first meeting.",
+    proofLabel: "TechCrunch coverage",
+    proofUrl: "https://techcrunch.com/",
+  },
+  {
+    company: "Parallel",
+    founder: "Julian Reyes",
+    tag: "2023 Headline Winner",
+    industry: "Developer Tools",
+    metric: "3.1× inbound demos",
+    detail: "Homepage feature and press release drove sustained pipeline for 90+ days.",
+    proofLabel: "Founder story",
+    proofUrl: "https://www.entrepreneurawards.co/",
+  },
+  {
+    company: "Kindred Labs",
+    founder: "Priya Shah",
+    tag: "2024 Signature Winner",
+    industry: "Consumer Health",
+    metric: "40+ inbound customers",
+    detail: "First month after the story feature — best-performing marketing channel of 2024.",
+    proofLabel: "Read case study",
+    proofUrl: "https://www.entrepreneurawards.co/",
+  },
+];
+
+const pressLogos = [
+  "TechCrunch",
+  "Forbes",
+  "Fast Company",
+  "Sifted",
+  "The Information",
+  "Business Insider",
+];
+
+function WinnerOutcomes() {
+  return (
+    <section id="outcomes" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Proof, not promises</p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+            What winning actually returned.
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            Real outcomes from recent winners — funding, press, and pipeline they can point to.
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-6 md:grid-cols-3">
+          {outcomes.map((o) => (
+            <Card key={o.company} className="flex flex-col p-8">
+              <div className="flex items-center justify-between gap-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  {o.tag}
+                </span>
+                <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                  {o.industry}
+                </span>
+              </div>
+              <div className="mt-6 flex items-baseline gap-2">
+                <TrendingUp className="h-5 w-5 flex-shrink-0 text-primary" />
+                <p className="text-2xl font-semibold tracking-tight">{o.metric}</p>
+              </div>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/80">{o.detail}</p>
+              <div className="mt-6 border-t border-border pt-4">
+                <p className="text-sm font-medium">{o.founder}</p>
+                <p className="text-xs text-muted-foreground">Founder, {o.company}</p>
+              </div>
+              <a
+                href={o.proofUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+              >
+                {o.proofLabel} <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-16 rounded-2xl border border-border bg-background p-8 md:p-10">
+          <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
+              <Newspaper className="h-5 w-5 text-primary" />
+              <span className="uppercase tracking-widest">Winners featured in</span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+              {pressLogos.map((name) => (
+                <span key={name} className="text-sm font-semibold tracking-tight text-foreground/70">
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="mt-8 grid gap-6 border-t border-border pt-8 text-center sm:grid-cols-3">
+            <div>
+              <p className="text-3xl font-semibold tracking-tight">1,247</p>
+              <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+                Founders recognised since 2019
+              </p>
+            </div>
+            <div>
+              <p className="text-3xl font-semibold tracking-tight">$186M+</p>
+              <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+                Raised by winners in 12 months after
+              </p>
+            </div>
+            <div>
+              <p className="text-3xl font-semibold tracking-tight">94%</p>
+              <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+                Would recommend to another founder
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Button asChild size="lg">
+            <a href="#submit">
+              Add your name to the 2026 list <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
 function SubmissionForm() {
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
