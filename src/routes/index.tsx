@@ -17,37 +17,40 @@ const tiers = [
   {
     name: "Digital",
     price: "$149",
-    tagline: "Get recognized online.",
+    tagline: "Prove it online — in under 5 minutes.",
     features: [
-      "Digital award badge",
-      "Feature in our online directory",
-      "Shareable LinkedIn asset",
-      "Winner certificate (PDF)",
+      "Official 2026 Winner badge (web + email)",
+      "Permanent profile in the Winners Directory",
+      "LinkedIn announcement kit (post + banner)",
+      "Personalised winner certificate (PDF)",
+      "Right to use the Entrepreneur Awards mark",
     ],
   },
   {
     name: "Signature",
     price: "$449",
-    tagline: "The full winner experience.",
+    tagline: "The winner experience most founders choose.",
     highlighted: true,
     features: [
       "Everything in Digital",
-      "Physical engraved trophy",
-      "Founder story published",
-      "Press release distribution",
-      "Priority judging",
+      "Engraved crystal trophy, shipped worldwide",
+      "Your founder story published on our site",
+      "Press release sent to 400+ business outlets",
+      "Priority judging — results in 14 days",
+      "Featured in the Winners email (28k founders)",
     ],
   },
   {
     name: "Headline",
     price: "$1,290",
-    tagline: "Be the story of the year.",
+    tagline: "Become the founder story of the year.",
     features: [
       "Everything in Signature",
-      "Editorial photo & video feature",
-      "Homepage placement",
-      "Speaking slot at annual gala",
-      "1:1 founder coaching session",
+      "Editorial photo + 60-sec video feature",
+      "Homepage placement for 30 days",
+      "Keynote slot at the annual Winners gala",
+      "Two 1:1 sessions with a past Headline winner",
+      "Dedicated PR manager for your launch week",
     ],
   },
 ];
@@ -55,21 +58,21 @@ const tiers = [
 const testimonials = [
   {
     quote:
-      "Winning changed how investors saw us. The recognition opened doors we'd been knocking on for years.",
+      "We closed our seed round six weeks after winning. Investors brought up the award in the first meeting.",
     name: "Amara Okafor",
-    role: "Founder, Northline",
+    role: "Founder, Northline — 2024 Signature Winner",
   },
   {
     quote:
-      "It's the first award that actually cared about the founder — not just the metrics. That distinction matters.",
+      "The only award I've entered that judged the founder, not just the metrics. Worth every dollar.",
     name: "Julian Reyes",
-    role: "Founder & CEO, Parallel",
+    role: "Founder & CEO, Parallel — 2023 Headline Winner",
   },
   {
     quote:
-      "The story feature brought in 40+ inbound customers in the month after publication. Real signal.",
+      "The story feature drove 40+ inbound customers in the first month. Best marketing spend of the year.",
     name: "Priya Shah",
-    role: "Co-founder, Kindred Labs",
+    role: "Co-founder, Kindred Labs — 2024 Signature Winner",
   },
 ];
 
