@@ -416,20 +416,31 @@ function SubmissionForm() {
       return;
     }
     setSubmitting(true);
-    const { error } = await supabase.from("submissions").insert({
-      name: form.name.trim(),
-      email: form.email.trim(),
-      company: form.company.trim() || null,
-      story: form.story.trim(),
-    });
+    const { data, error } = await supabase
+      .from("submissions")
+      .insert({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        company: form.company.trim() || null,
+        story: form.story.trim(),
+      })
+      .select("id, name, company")
+      .single();
     setSubmitting(false);
-    if (error) {
-      toast.error(error.message || "Something went wrong. Please try again.");
+    if (error || !data) {
+      toast.error(error?.message || "Something went wrong. Please try again.");
       return;
     }
     setForm({ name: "", email: "", company: "", story: "" });
     toast.success("Submission received. We'll be in touch.");
-    navigate({ to: "/thank-you" });
+    navigate({
+      to: "/thank-you",
+      search: {
+        id: data.id,
+        name: data.name ?? "",
+        company: data.company ?? "",
+      },
+    });
   };
 
   return (
