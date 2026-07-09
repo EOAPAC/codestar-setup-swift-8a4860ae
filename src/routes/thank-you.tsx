@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowLeft, Share2, Calendar, Mail, Trophy, User } from "lucide-react";
+import { Check, ArrowLeft, Share2, Calendar, Mail, Trophy, User, TrendingUp } from "lucide-react";
 
 const thankYouSearchSchema = z.object({
   id: z.string().optional(),
@@ -173,17 +173,20 @@ function ThankYouPage() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center"
-              >
-                <Share2 className="mr-2 h-4 w-4" />
-                Share on LinkedIn
-              </a>
+              <Link to="/" hash="outcomes" className="inline-flex items-center">
+                <TrendingUp className="mr-2 h-4 w-4" />
+                See winner outcomes
+              </Link>
             </Button>
           </div>
+
+          <p className="mt-8 text-sm text-muted-foreground">
+            Want more proof?{" "}
+            <Link to="/" hash="testimonials" className="text-primary underline underline-offset-4">
+              Read what past winners say
+            </Link>
+            .
+          </p>
 
           <p className="mt-8 text-sm text-muted-foreground">
             Questions?{" "}
