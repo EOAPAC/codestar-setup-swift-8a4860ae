@@ -271,8 +271,17 @@ function SubmissionForm() {
       return;
     }
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 700));
+    const { error } = await supabase.from("submissions").insert({
+      name: form.name.trim(),
+      email: form.email.trim(),
+      company: form.company.trim() || null,
+      story: form.story.trim(),
+    });
     setSubmitting(false);
+    if (error) {
+      toast.error(error.message || "Something went wrong. Please try again.");
+      return;
+    }
     setForm({ name: "", email: "", company: "", story: "" });
     toast.success("Submission received. We'll be in touch.");
   };
