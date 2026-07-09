@@ -218,7 +218,7 @@ function Testimonials() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-widest text-primary">Past winners</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Founders on what winning meant.
+            What winning actually did for their business.
           </h2>
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-3">
