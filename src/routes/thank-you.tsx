@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowLeft, Share2, Calendar, Mail, Trophy, User } from "lucide-react";
+import { Check, ArrowLeft, Share2, Calendar, Mail, Trophy, User, TrendingUp } from "lucide-react";
 
 const thankYouSearchSchema = z.object({
   id: z.string().optional(),
