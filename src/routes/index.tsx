@@ -109,7 +109,7 @@ function Nav() {
           <a href="#contact" className="hover:text-foreground">Contact</a>
         </nav>
         <Button asChild size="sm">
-          <a href="#submit">Enter now</a>
+          <a href="#submit">Enter the 2026 Awards</a>
         </Button>
       </div>
     </header>
