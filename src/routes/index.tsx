@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -393,6 +393,7 @@ function WinnerOutcomes() {
 
 
 function SubmissionForm() {
+  const navigate = useNavigate({ from: "/" });
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -428,6 +429,7 @@ function SubmissionForm() {
     }
     setForm({ name: "", email: "", company: "", story: "" });
     toast.success("Submission received. We'll be in touch.");
+    navigate({ to: "/thank-you" });
   };
 
   return (
