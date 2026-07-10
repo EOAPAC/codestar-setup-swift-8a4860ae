@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useRef } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -27,6 +28,7 @@ declare global {
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { Check, ArrowRight, Linkedin, Mail, Twitter, Quote, TrendingUp, ExternalLink, Newspaper } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -315,6 +317,84 @@ const pressLogos = [
   "Business Insider",
 ];
 
+type HubSpotSubmissionPayload = {
+  submittedAt: number;
+  fields: Array<{ name: string; value: string }>;
+  context: {
+    hutk?: string;
+    pageUri: string;
+    pageName: string;
+    referrer?: string;
+  };
+};
+
+function readCookie(name: string) {
+  return document.cookie
+    .split(";")
+    .map((cookie) => cookie.trim())
+    .find((cookie) => cookie.startsWith(`${name}=`))
+    ?.slice(name.length + 1);
+}
+
+function buildHubSpotSubmissionPayload(form: HTMLFormElement): HubSpotSubmissionPayload {
+  const excludedNames = new Set(["hs_context", "hsCtaTracking", "g-recaptcha-response"]);
+  const fieldValues = new Map<string, string[]>();
+
+  Array.from(form.elements).forEach((element) => {
+    if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement || element instanceof HTMLSelectElement)) {
+      return;
+    }
+
+    const { name } = element;
+    if (!name || excludedNames.has(name) || element.disabled) {
+      return;
+    }
+
+    if (element instanceof HTMLInputElement) {
+      const inputType = element.type.toLowerCase();
+      if (["submit", "button", "reset", "file"].includes(inputType)) {
+        return;
+      }
+      if (["checkbox", "radio"].includes(inputType) && !element.checked) {
+        return;
+      }
+    }
+
+    const value = element.value.trim();
+    if (!value) {
+      return;
+    }
+
+    fieldValues.set(name, [...(fieldValues.get(name) ?? []), value]);
+  });
+
+  const hsContextInput = form.querySelector<HTMLInputElement>('input[name="hs_context"]');
+  let parsedContext: { hutk?: string } = {};
+  if (hsContextInput?.value) {
+    try {
+      parsedContext = JSON.parse(hsContextInput.value) as { hutk?: string };
+    } catch {
+      parsedContext = {};
+    }
+  }
+
+  const hutk = parsedContext.hutk ?? readCookie("hubspotutk");
+
+  return {
+    submittedAt: Date.now(),
+    fields: Array.from(fieldValues, ([name, values]) => ({
+      name,
+      value: values.join(";"),
+    })),
+    context: {
+      ...(hutk ? { hutk: decodeURIComponent(hutk) } : {}),
+      pageUri: window.location.href.split("#")[0],
+      pageName: document.title,
+      ...(document.referrer ? { referrer: document.referrer } : {}),
+    },
+  };
+}
+
 function WinnerOutcomes() {
   return (
     <section id="outcomes" className="border-t border-border bg-secondary/30 py-24 md:py-32">
@@ -416,13 +496,65 @@ function SubmissionForm() {
   const formContainerRef = useRef<HTMLDivElement>(null);
   const targetId = "hubspot-form-target";
   const navigate = useNavigate({ from: "/" });
+  const submitLead = useServerFn(submitHubSpotLead);
+  const [formError, setFormError] = useState<string | null>(null);
 
   useEffect(() => {
     const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
+    const attachedForms: HTMLFormElement[] = [];
+
+    const setSubmitButtonState = (form: HTMLFormElement, submitting: boolean) => {
+      const button = form.querySelector<HTMLInputElement | HTMLButtonElement>('input[type="submit"], button[type="submit"]');
+      if (!button) return;
+
+      button.disabled = submitting;
+      if (button instanceof HTMLInputElement) {
+        if (!button.dataset.originalValue) button.dataset.originalValue = button.value;
+        button.value = submitting ? "Submitting..." : button.dataset.originalValue;
+      } else {
+        if (!button.dataset.originalText) button.dataset.originalText = button.textContent ?? "Submit";
+        button.textContent = submitting ? "Submitting..." : button.dataset.originalText;
+      }
+    };
+
+    const handleServerSubmit = async (event: SubmitEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+
+      const form = event.currentTarget as HTMLFormElement;
+      if (form.dataset.serverSubmitting === "true") return;
+      if (!form.reportValidity()) return;
+
+      form.dataset.serverSubmitting = "true";
+      setSubmitButtonState(form, true);
+      setFormError(null);
+
+      try {
+        const payload = buildHubSpotSubmissionPayload(form);
+        await submitLead({ data: payload });
+        navigate({ to: "/thank-you" });
+      } catch (error) {
+        console.error("HubSpot server-side submission failed", error);
+        setFormError("Something went wrong submitting your entry. Please try again.");
+        delete form.dataset.serverSubmitting;
+        setSubmitButtonState(form, false);
+      }
+    };
+
+    const attachServerSubmit = () => {
+      const form = formContainerRef.current?.querySelector("form");
+      if (!form || form.dataset.serverSubmitAttached === "true") return;
+
+      form.dataset.serverSubmitAttached = "true";
+      form.addEventListener("submit", handleServerSubmit, true);
+      attachedForms.push(form);
+    };
 
     const createForm = () => {
       if (window.hbspt && formContainerRef.current) {
         formContainerRef.current.innerHTML = "";
+        setFormError(null);
         window.hbspt.forms.create({
           portalId: "20118879",
           formId: "f992b0bc-4a99-4024-aa02-fae7270920e6",
@@ -431,6 +563,7 @@ function SubmissionForm() {
           css: "",
           pageName: document.title,
           pageUrl: window.location.href,
+          onFormReady: attachServerSubmit,
           onFormSubmitted: () => {
             navigate({ to: "/thank-you" });
           },
@@ -439,23 +572,33 @@ function SubmissionForm() {
     };
 
     const existing = document.querySelector<HTMLScriptElement>(`script[src="${scriptSrc}"]`);
+    let loadingScript: HTMLScriptElement | null = null;
     if (existing) {
       if (window.hbspt) {
         createForm();
       } else {
         existing.addEventListener("load", createForm);
       }
-      return;
+      loadingScript = existing;
+    } else {
+      const script = document.createElement("script");
+      script.src = scriptSrc;
+      script.async = true;
+      script.charset = "utf-8";
+      script.type = "text/javascript";
+      script.addEventListener("load", createForm);
+      document.body.appendChild(script);
+      loadingScript = script;
     }
 
-    const script = document.createElement("script");
-    script.src = scriptSrc;
-    script.async = true;
-    script.charset = "utf-8";
-    script.type = "text/javascript";
-    script.addEventListener("load", createForm);
-    document.body.appendChild(script);
-  }, [navigate]);
+    return () => {
+      loadingScript?.removeEventListener("load", createForm);
+      attachedForms.forEach((form) => {
+        form.removeEventListener("submit", handleServerSubmit, true);
+        delete form.dataset.serverSubmitAttached;
+      });
+    };
+  }, [navigate, submitLead]);
 
   return (
     <section id="submit" className="border-t border-border bg-secondary/30 py-24 md:py-32">
@@ -471,6 +614,11 @@ function SubmissionForm() {
         </div>
         <Card className="mt-12 p-8 md:p-10">
           <div id={targetId} ref={formContainerRef} />
+          {formError && (
+            <p className="mt-4 text-center text-sm font-medium text-destructive" role="alert">
+              {formError}
+            </p>
+          )}
           <p className="mt-6 text-center text-xs text-muted-foreground">
             Free to enter. You only pay if you're selected as a winner. We reply within 14 days.
           </p>

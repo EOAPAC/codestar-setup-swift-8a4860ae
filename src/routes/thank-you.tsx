@@ -31,35 +31,25 @@ function ThankYouPage() {
   const companyName = search.company?.trim();
   const referenceId = search.id?.slice(0, 8) ?? "";
 
-  const today = new Date();
-  const formatDate = (date: Date) =>
-    date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-
-  const reviewBy = new Date(today);
-  reviewBy.setDate(today.getDate() + 3);
-
-  const replyBy = new Date(today);
-  replyBy.setDate(today.getDate() + 14);
-
   const steps = [
     {
       icon: Check,
       label: "Entry received",
-      date: `Today — ${formatDate(today)}`,
+      date: "Today",
       description: "Your story is saved and assigned to a founder-judge.",
       status: "done" as const,
     },
     {
       icon: Calendar,
       label: "Review complete",
-      date: `Within 3 days — by ${formatDate(reviewBy)}`,
+      date: "Within 3 days",
       description: "Every entry is read by a founder who has built a company.",
       status: "next" as const,
     },
     {
       icon: Mail,
       label: "You get a reply",
-      date: `Within 14 days — by ${formatDate(replyBy)}`,
+      date: "Within 14 days",
       description: "Shortlisted founders choose their Digital, Signature, or Headline win.",
       status: "pending" as const,
     },
