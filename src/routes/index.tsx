@@ -29,6 +29,7 @@ declare global {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
+import { SAMPLE_SUBMISSION_ERROR, getSampleSubmissionIssue } from "@/lib/submission-quality";
 import { Check, ArrowRight, Linkedin, Mail, Twitter, Quote, TrendingUp, ExternalLink, Newspaper } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -501,7 +502,7 @@ function SubmissionForm() {
 
   useEffect(() => {
     const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
-    const attachedForms: HTMLFormElement[] = [];
+    const formContainer = formContainerRef.current;
 
     const setSubmitButtonState = (form: HTMLFormElement, submitting: boolean) => {
       const button = form.querySelector<HTMLInputElement | HTMLButtonElement>('input[type="submit"], button[type="submit"]');
@@ -522,7 +523,8 @@ function SubmissionForm() {
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      const form = event.currentTarget as HTMLFormElement;
+      const form = event.target instanceof HTMLFormElement ? event.target : null;
+      if (!form) return;
       if (form.dataset.serverSubmitting === "true") return;
       if (!form.reportValidity()) return;
 
@@ -532,11 +534,24 @@ function SubmissionForm() {
 
       try {
         const payload = buildHubSpotSubmissionPayload(form);
+        const sampleSubmissionIssue = getSampleSubmissionIssue(payload.fields);
+        if (sampleSubmissionIssue) {
+          setFormError(sampleSubmissionIssue);
+          delete form.dataset.serverSubmitting;
+          setSubmitButtonState(form, false);
+          return;
+        }
+
         await submitLead({ data: payload });
         navigate({ to: "/thank-you" });
       } catch (error) {
         console.error("HubSpot server-side submission failed", error);
-        setFormError("Something went wrong submitting your entry. Please try again.");
+        const message = error instanceof Error ? error.message : "";
+        setFormError(
+          message.includes("sample_entry_rejected")
+            ? SAMPLE_SUBMISSION_ERROR
+            : "Something went wrong submitting your entry. Please try again.",
+        );
         delete form.dataset.serverSubmitting;
         setSubmitButtonState(form, false);
       }
@@ -547,9 +562,9 @@ function SubmissionForm() {
       if (!form || form.dataset.serverSubmitAttached === "true") return;
 
       form.dataset.serverSubmitAttached = "true";
-      form.addEventListener("submit", handleServerSubmit, true);
-      attachedForms.push(form);
     };
+
+    formContainer?.addEventListener("submit", handleServerSubmit, true);
 
     const createForm = () => {
       if (window.hbspt && formContainerRef.current) {
@@ -593,8 +608,8 @@ function SubmissionForm() {
 
     return () => {
       loadingScript?.removeEventListener("load", createForm);
-      attachedForms.forEach((form) => {
-        form.removeEventListener("submit", handleServerSubmit, true);
+      formContainer?.removeEventListener("submit", handleServerSubmit, true);
+      formContainer?.querySelectorAll<HTMLFormElement>("form").forEach((form) => {
         delete form.dataset.serverSubmitAttached;
       });
     };

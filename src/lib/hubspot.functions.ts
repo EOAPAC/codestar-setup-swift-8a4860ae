@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { getSampleSubmissionIssue } from "./submission-quality";
 
 export const submitHubSpotLead = createServerFn({ method: "POST" })
   .inputValidator((data) =>
@@ -26,6 +27,12 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
       .parse(data),
   )
   .handler(async ({ data }) => {
+    const sampleSubmissionIssue = getSampleSubmissionIssue(data.fields);
+    if (sampleSubmissionIssue) {
+      console.warn("Rejected likely sample HubSpot submission before sending to HubSpot");
+      throw new Error(`sample_entry_rejected: ${sampleSubmissionIssue}`);
+    }
+
     const portalId = "20118879";
     const formId = "f992b0bc-4a99-4024-aa02-fae7270920e6";
     const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
