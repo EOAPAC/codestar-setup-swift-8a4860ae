@@ -534,24 +534,11 @@ function SubmissionForm() {
 
       try {
         const payload = buildHubSpotSubmissionPayload(form);
-        const sampleSubmissionIssue = getSampleSubmissionIssue(payload.fields);
-        if (sampleSubmissionIssue) {
-          setFormError(sampleSubmissionIssue);
-          delete form.dataset.serverSubmitting;
-          setSubmitButtonState(form, false);
-          return;
-        }
-
         await submitLead({ data: payload });
         navigate({ to: "/thank-you" });
       } catch (error) {
         console.error("HubSpot server-side submission failed", error);
-        const message = error instanceof Error ? error.message : "";
-        setFormError(
-          message.includes("sample_entry_rejected")
-            ? SAMPLE_SUBMISSION_ERROR
-            : "Something went wrong submitting your entry. Please try again.",
-        );
+        setFormError("Something went wrong submitting your entry. Please try again.");
         delete form.dataset.serverSubmitting;
         setSubmitButtonState(form, false);
       }
