@@ -38,7 +38,7 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
     let ipAddress: string | undefined;
     let userAgent: string | undefined;
     try {
-      const req = getWebRequest();
+      const req = getRequest();
       if (req) {
         const headers = req.headers;
         const forwarded = headers.get("x-forwarded-for");
