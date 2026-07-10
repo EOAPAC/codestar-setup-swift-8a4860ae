@@ -29,7 +29,7 @@ declare global {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
-import { SAMPLE_SUBMISSION_ERROR, getSampleSubmissionIssue } from "@/lib/submission-quality";
+
 import { Check, ArrowRight, Linkedin, Mail, Twitter, Quote, TrendingUp, ExternalLink, Newspaper } from "lucide-react";
 
 export const Route = createFileRoute("/")({
