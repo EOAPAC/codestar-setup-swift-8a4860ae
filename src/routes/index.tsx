@@ -502,7 +502,7 @@ function SubmissionForm() {
 
   useEffect(() => {
     const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
-    const attachedForms: HTMLFormElement[] = [];
+    const formContainer = formContainerRef.current;
 
     const setSubmitButtonState = (form: HTMLFormElement, submitting: boolean) => {
       const button = form.querySelector<HTMLInputElement | HTMLButtonElement>('input[type="submit"], button[type="submit"]');
@@ -523,7 +523,8 @@ function SubmissionForm() {
       event.stopPropagation();
       event.stopImmediatePropagation();
 
-      const form = event.currentTarget as HTMLFormElement;
+      const form = event.target instanceof HTMLFormElement ? event.target : null;
+      if (!form) return;
       if (form.dataset.serverSubmitting === "true") return;
       if (!form.reportValidity()) return;
 
@@ -561,9 +562,9 @@ function SubmissionForm() {
       if (!form || form.dataset.serverSubmitAttached === "true") return;
 
       form.dataset.serverSubmitAttached = "true";
-      form.addEventListener("submit", handleServerSubmit, true);
-      attachedForms.push(form);
     };
+
+    formContainer?.addEventListener("submit", handleServerSubmit, true);
 
     const createForm = () => {
       if (window.hbspt && formContainerRef.current) {
@@ -607,8 +608,8 @@ function SubmissionForm() {
 
     return () => {
       loadingScript?.removeEventListener("load", createForm);
-      attachedForms.forEach((form) => {
-        form.removeEventListener("submit", handleServerSubmit, true);
+      formContainer?.removeEventListener("submit", handleServerSubmit, true);
+      formContainer?.querySelectorAll<HTMLFormElement>("form").forEach((form) => {
         delete form.dataset.serverSubmitAttached;
       });
     };
