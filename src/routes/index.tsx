@@ -13,6 +13,8 @@ declare global {
           css?: string;
           cssClass?: string;
           submitButtonClass?: string;
+          pageName?: string;
+          pageUrl?: string;
           inlineMessage?: string;
           onFormReady?: (form: unknown) => void;
           onFormSubmit?: (form: unknown) => void;
@@ -427,6 +429,8 @@ function SubmissionForm() {
           region: "na1",
           target: `#${targetId}`,
           css: "",
+          pageName: document.title,
+          pageUrl: window.location.href,
           onFormSubmitted: () => {
             navigate({ to: "/thank-you" });
           },
