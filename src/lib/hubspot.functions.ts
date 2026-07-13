@@ -27,8 +27,8 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
       .parse(data),
   )
   .handler(async ({ data }) => {
-    const portalId = "20118879";
-    const formId = "f992b0bc-4a99-4024-aa02-fae7270920e6";
+    const portalId = "24057088";
+    const formId = "e11dcc5d-8be4-4fe7-86ff-10f733956165";
     const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
 
     // Pull the real end-user IP and User-Agent from the incoming request so
