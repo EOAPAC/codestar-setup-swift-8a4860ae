@@ -114,7 +114,7 @@ function RootShell({ children }: { children: ReactNode }) {
           async
           defer
           id="hs-script-loader"
-          src="//js-na1.hs-scripts.com/20118879.js"
+          src="//js-na1.hs-scripts.com/24057088.js"
           type="text/javascript"
         />
         <Scripts />
