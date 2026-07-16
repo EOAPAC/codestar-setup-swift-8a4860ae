@@ -38,43 +38,14 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const tiers = [
-  {
-    name: "Digital",
-    tagline: "Prove it online — recognition you can share the same day.",
-    features: [
-      "Official 2026 Winner badge (web + email)",
-      "Personalised winner certificate (PDF)",
-      "Permanent profile in the Winners Directory",
-      "LinkedIn announcement kit (post + banner)",
-      "Right to use the Entrepreneur Awards mark",
-    ],
-  },
-  {
-    name: "Signature",
-    tagline: "The winner experience most founders choose.",
-    highlighted: true,
-    features: [
-      "Everything in Digital",
-      "Engraved crystal trophy, shipped worldwide",
-      "Your founder story published on our site",
-      "Press release sent to 400+ business outlets",
-      "Priority judging — results in 14 days",
-      "Featured in the Winners email (28k founders)",
-    ],
-  },
-  {
-    name: "Headline",
-    tagline: "Become the founder story of the year.",
-    features: [
-      "Everything in Signature",
-      "Editorial photo + 60-sec video feature",
-      "Homepage placement for 30 days",
-      "Keynote slot at the annual Winners gala",
-      "Two 1:1 sessions with a past Headline winner",
-      "Dedicated PR manager for your launch week",
-    ],
-  },
+const winnerBenefits = [
+  "Official 2026 Winner badge and personalised certificate",
+  "Permanent profile in the Winners Directory",
+  "LinkedIn announcement kit (post + banner)",
+  "Engraved crystal trophy, shipped worldwide",
+  "Published founder story on our site",
+  "Press release sent to business outlets",
+  "Feature in the Winners email (28k founders)",
 ];
 
 const testimonials = [
