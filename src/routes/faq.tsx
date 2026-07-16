@@ -87,7 +87,7 @@ function FAQPage() {
                     Who can enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Any founder or entrepreneur can enter their own story. No nomination needed — you put yourself forward.
+                    Any founder or entrepreneur can enter their own story. No nomination needed. You put yourself forward.
                   </AccordionContent>
                 </AccordionItem>
 
