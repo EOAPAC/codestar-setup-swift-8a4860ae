@@ -39,19 +39,17 @@ export const Route = createFileRoute("/")({
 const tiers = [
   {
     name: "Digital",
-    price: "$149",
-    tagline: "Prove it online — in under 5 minutes.",
+    tagline: "Prove it online — recognition you can share the same day.",
     features: [
       "Official 2026 Winner badge (web + email)",
+      "Personalised winner certificate (PDF)",
       "Permanent profile in the Winners Directory",
       "LinkedIn announcement kit (post + banner)",
-      "Personalised winner certificate (PDF)",
       "Right to use the Entrepreneur Awards mark",
     ],
   },
   {
     name: "Signature",
-    price: "$449",
     tagline: "The winner experience most founders choose.",
     highlighted: true,
     features: [
@@ -65,7 +63,6 @@ const tiers = [
   },
   {
     name: "Headline",
-    price: "$1,290",
     tagline: "Become the founder story of the year.",
     features: [
       "Everything in Signature",
