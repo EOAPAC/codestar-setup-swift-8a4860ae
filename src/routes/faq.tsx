@@ -39,21 +39,41 @@ function FAQPage() {
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <p className="text-sm font-medium uppercase tracking-widest text-primary">FAQ</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-6xl">
-              Frequently Asked Questions
+        <section className="relative overflow-hidden border-b border-border">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
+          />
+          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
+              <HelpCircle className="h-3.5 w-3.5 text-primary" />
+              FAQ
+            </span>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+              Frequently Asked <span className="text-primary">Questions</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Everything you need to know before putting your story forward.
             </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+              {topics.map((t) => (
+                <a
+                  key={t.target}
+                  href={`#${t.target}`}
+                  className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                >
+                  {t.label}
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="py-24 md:py-32">
           <div className="mx-auto max-w-3xl px-6">
-            <Accordion type="single" collapsible className="w-full">
+            <Card className="p-2 md:p-4">
+              <Accordion type="single" collapsible className="w-full">
+
               <AccordionItem value="q1">
                 <AccordionTrigger className="text-left text-base font-medium">
                   What are the Entrepreneur Awards?
