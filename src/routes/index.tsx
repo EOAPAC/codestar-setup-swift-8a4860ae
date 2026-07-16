@@ -28,6 +28,8 @@ declare global {
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 
 import { Check, ArrowRight, Linkedin, Mail, Twitter, Quote, TrendingUp, ExternalLink, Newspaper } from "lucide-react";
