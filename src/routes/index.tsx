@@ -550,7 +550,7 @@ function SubmissionForm() {
             </p>
           )}
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            Free to enter. You only pay if you're selected as a winner. We reply within 14 days.
+            Free to submit your story. A consideration fee applies for full panel review — waived for standout founders. We reply within 14 days.
           </p>
         </Card>
       </div>
