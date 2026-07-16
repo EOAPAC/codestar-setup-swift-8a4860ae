@@ -82,8 +82,9 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
       },
       body: JSON.stringify({
         submittedAt: data.submittedAt ?? Date.now(),
-        fields: data.fields,
+        fields: filteredFields,
         context,
+
       }),
     });
 
