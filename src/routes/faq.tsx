@@ -96,7 +96,7 @@ function FAQPage() {
                     Is it free to enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Yes — it's free to put your story forward. A fee applies for our panel to review and score your submission in full, and standout founders are selected for complimentary consideration.
+                    Yes. It's free to put your story forward. A fee applies for our panel to review and score your submission in full, and standout founders are selected for complimentary consideration.
                   </AccordionContent>
                 </AccordionItem>
 
