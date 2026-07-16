@@ -20,11 +20,17 @@ export const Route = createFileRoute("/methodology")({
 });
 
 const steps = [
-  { n: "1", title: "Submit your story", desc: "Share who you are, what you're building, and the journey behind it. Takes about 10 minutes." },
-  { n: "2", title: "Initial screening", desc: "Every entry is read and checked for completeness and eligibility." },
-  { n: "3", title: "Shortlisting", desc: "Entries that meet the bar advance to the review panel for deeper consideration." },
-  { n: "4", title: "Panel evaluation", desc: "Our panel scores shortlisted founders against consistent criteria." },
-  { n: "5", title: "Winner selection", desc: "Standout founders are selected and notified with next steps." },
+  { n: "1", icon: FileText, title: "Submit your story", desc: "Share who you are, what you're building, and the journey behind it. Takes about 10 minutes." },
+  { n: "2", icon: ScanLine, title: "Initial screening", desc: "Every entry is read and checked for completeness and eligibility." },
+  { n: "3", icon: ListChecks, title: "Shortlisting", desc: "Entries that meet the bar advance to the review panel for deeper consideration." },
+  { n: "4", icon: Users, title: "Panel evaluation", desc: "Our panel scores shortlisted founders against consistent criteria." },
+  { n: "5", icon: Trophy, title: "Winner selection", desc: "Standout founders are selected and notified with next steps." },
+];
+
+const principles = [
+  { icon: Scale, title: "One rubric for everyone", desc: "The same criteria, in the same order, for every founder we read." },
+  { icon: EyeOff, title: "Story over surface", desc: "Marketing polish isn't scored. Substance, decisions, and outcomes are." },
+  { icon: ShieldCheck, title: "Founder-led panel", desc: "Reviewed by operators who've built companies — not agencies or press." },
 ];
 
 const criteria = [
