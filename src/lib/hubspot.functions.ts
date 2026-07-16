@@ -31,6 +31,19 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
     const formId = "e11dcc5d-8be4-4fe7-86ff-10f733956165";
     const endpoint = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
 
+    // HubSpot returns 400 if any field name isn't defined on the form.
+    // Allowlist the fields the embed actually configures; drop the rest
+    // (e.g. hidden helper inputs like "brand" scraped from the DOM).
+    const ALLOWED_FIELDS = new Set([
+      "firstname",
+      "lastname",
+      "email",
+      "company",
+      "entry_story",
+    ]);
+    const filteredFields = data.fields.filter((f) => ALLOWED_FIELDS.has(f.name));
+
+
     // Pull the real end-user IP and User-Agent from the incoming request so
     // HubSpot's spam scoring sees a real browser, not a datacenter blank.
     // Missing IP + missing hutk is the #1 reason server-side submissions get
@@ -69,8 +82,9 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
       },
       body: JSON.stringify({
         submittedAt: data.submittedAt ?? Date.now(),
-        fields: data.fields,
+        fields: filteredFields,
         context,
+
       }),
     });
 
