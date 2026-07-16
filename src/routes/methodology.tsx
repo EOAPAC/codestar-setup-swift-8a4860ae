@@ -93,10 +93,13 @@ function MethodologyPage() {
             </h1>
             <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
               <p>
-                The Entrepreneur Awards recognize founders based on what they've built and the way they've built it. Every entry is read by our review panel against the same set of criteria, in the same order, so that founders can be assessed on their own merits.
+                The Entrepreneur Awards recognize the work behind the business. Every entry is read against the same four criteria, in the same order, so each founder is judged on their own merits.
               </p>
               <p>
-                Our process is designed to evaluate the person behind the business. Marketing polish is not scored. Substance, judgment, and outcomes are. This page describes the stages an entry moves through, from submission to selection, and the criteria the panel uses along the way.
+                Marketing polish is not part of the rubric. The panel looks for{" "}
+                <span className="font-medium text-foreground">substance</span>,{" "}
+                <span className="font-medium text-foreground">judgment</span>, and{" "}
+                <span className="font-medium text-foreground">real outcomes</span>. This page walks through the stages from submission to selection, and the criteria used at each step.
               </p>
             </div>
           </div>
