@@ -53,19 +53,19 @@ const testimonials = [
     quote:
       "We closed our seed round six weeks after winning. Investors brought up the award in the first meeting.",
     name: "Amara Okafor",
-    role: "Founder, Northline — 2024 Signature Winner",
+    role: "Founder, Northline — 2024 Winner",
   },
   {
     quote:
       "The only award I've entered that judged the founder, not just the metrics. Worth every dollar.",
     name: "Julian Reyes",
-    role: "Founder & CEO, Parallel — 2023 Headline Winner",
+    role: "Founder & CEO, Parallel — 2023 Winner",
   },
   {
     quote:
       "The story feature drove 40+ inbound customers in the first month. Best marketing spend of the year.",
     name: "Priya Shah",
-    role: "Co-founder, Kindred Labs — 2024 Signature Winner",
+    role: "Co-founder, Kindred Labs — 2024 Winner",
   },
 ];
 
@@ -208,7 +208,7 @@ const outcomes = [
   {
     company: "Northline",
     founder: "Amara Okafor",
-    tag: "2024 Signature Winner",
+    tag: "2024 Winner",
     industry: "Logistics SaaS",
     metric: "$4.2M seed round",
     detail: "Closed 6 weeks post-win. Lead investor cited the award in the first meeting.",
@@ -218,7 +218,7 @@ const outcomes = [
   {
     company: "Parallel",
     founder: "Julian Reyes",
-    tag: "2023 Headline Winner",
+    tag: "2023 Winner",
     industry: "Developer Tools",
     metric: "3.1× inbound demos",
     detail: "Homepage feature and press release drove sustained pipeline for 90+ days.",
@@ -228,7 +228,7 @@ const outcomes = [
   {
     company: "Kindred Labs",
     founder: "Priya Shah",
-    tag: "2024 Signature Winner",
+    tag: "2024 Winner",
     industry: "Consumer Health",
     metric: "40+ inbound customers",
     detail: "First month after the story feature — best-performing marketing channel of 2024.",
