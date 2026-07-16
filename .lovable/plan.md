@@ -1,63 +1,86 @@
-## Goal
 
-Prove — with actual evidence, not assumptions — why HubSpot form submissions from `entrepreneurawards.co` aren't visible in the HubSpot portal, and identify the specific fix.
+# Payment provider decision — Stripe vs HubSpot Payments
 
-## Important context from prior work
+You're US-based, want a single HubSpot contact property (`consideration_fee_status`) updated on payment, and have a consideration-fee model with waivable entries. This plan compares both options against those constraints, then proposes the implementation path.
 
-- Form is a HubSpot embed (portal `20118879`, form `f992b0bc-4a99-4024-aa02-fae7270920e6`) but the actual submission was moved to a server function (`src/lib/hubspot.functions.ts`) that POSTs to `api.hsforms.com/submissions/v3/integration/submit/...` from the server, forwarding real client IP, User-Agent, hutk, pageUri, and referrer. The native HubSpot iframe submit is intercepted by a custom `submit` listener in `src/routes/index.tsx` that runs the server function and then navigates to `/thank-you`.
-- Earlier a real test submission from Playwright landed in the portal as a normal contact; a later "sample data" test was flagged as spam. So "no submissions arriving" is likely "submissions arriving but hidden in spam contacts / filtered from views."
+## Side-by-side
 
-The audit below tests all of that, plus everything in Claude's prompt.
+| Dimension | Stripe + HubSpot sync | HubSpot Payments (native) |
+|---|---|---|
+| **Availability (US)** | ✅ Global, US works | ✅ US only — you qualify |
+| **Plan requirement** | Any Stripe account (free to open) | Requires **Commerce Hub** (paid HubSpot add-on / Starter+ with Payments enabled) |
+| **Fees** | 2.9% + $0.30 (cards) | 2.9% + $0.30 (cards), **3.5% ACH** — HubSpot does not mark up |
+| **Checkout UX** | Stripe Checkout — polished, mobile-first, Apple/Google Pay, custom branding | HubSpot payment link page — functional but plainer, less brand control |
+| **Waiver / free-pass flow** | Skip Checkout entirely when `waived=true`; issue $0 session or bypass | Awkward — HubSpot payment links assume a fixed price; waivers need a separate "no payment" path anyway |
+| **Metadata on payment** | Rich `metadata` object (submission ID, founder email, tier) travels with the charge | Limited — mostly tied to the contact/deal record |
+| **Refunds / disputes / receipts** | Full programmatic control, Radar fraud scoring, tax, coupons | Basic; refunds via HubSpot UI |
+| **HubSpot data landing** | Webhook → sets `consideration_fee_status = paid` on the contact via HubSpot API | Automatic — HubSpot writes the payment to the contact/deal timeline natively |
+| **Engineering cost** | ~1 Checkout server fn + 1 webhook route (~80 LOC), reuses your existing HubSpot integration | Near-zero code, but you'd embed a HubSpot payment link and lose control of the flow |
+| **Vendor lock-in** | Low — Stripe is portable | Higher — payments live inside HubSpot |
+| **Best for** | You want flexibility, waivers, Checkout polish, portable data | You want zero code and already pay for Commerce Hub |
 
-## Audit steps
+## Why I recommend Stripe for this project
 
-### 1. End-to-end submission path (live, with Playwright)
+1. **Waivable entries need conditional Checkout.** Your model routes standout founders to complimentary review. Stripe lets you skip Checkout or generate a $0 session cleanly. HubSpot Payments assumes a fixed link.
+2. **You already have the HubSpot writeback pattern.** `src/lib/hubspot.functions.ts` already POSTs to HubSpot's Forms API. Adding a second server-side helper that PATCHes a contact property on payment is trivial and consistent.
+3. **No new HubSpot plan required.** HubSpot Payments needs Commerce Hub. Stripe is free to open.
+4. **Checkout is the reveal.** You want no prices on marketing pages — Stripe Checkout is the industry-standard "click, then see price" flow.
+5. **Contact property > deal.** You picked the simplest sync (one property). That's a 5-line HubSpot API call from a Stripe webhook — no pipeline modeling, no deal stages.
 
-- Open the published site (`https://www.entrepreneurawards.co/` if reachable; otherwise the Lovable preview) headless, viewport 1280×1800.
-- Confirm `//js-na1.hs-scripts.com/20118879.js` loads and `hbspt.forms.create` renders the real HubSpot iframe form (not a static clone).
-- Fill the form with a unique controlled lead: `lovable.debug.<timestamp>@gmail.com`, real-looking name/company/story.
-- Capture every outbound network request during submit. Report exact URL, HTTP method, status, request body, and response body for:
-  - our server function call (`/_serverFn/...`)
-  - the resulting `api.hsforms.com/submissions/v3/integration/submit/20118879/f992b0bc-...` call (from server logs, since the browser doesn't see it)
-  - any residual `forms.hsforms.com` / `js.hsforms.net` calls fired by the embed itself
-- Screenshot the final state and record whether we land on `/thank-you`.
+## Proposed implementation (Stripe path)
 
-### 2. Payload + field-name verification
+### Data flow
+```text
+Submission form (free)
+      │  submitHubSpotLead()  ← already exists
+      ▼
+HubSpot Contact created (status: submitted)
+      │
+      ├─ if waived by admin  →  status: waived  (no payment step)
+      │
+      └─ else  →  "Pay consideration fee" CTA on /thank-you
+                       │
+                       ▼
+                Stripe Checkout Session (mode=payment)
+                       │  metadata: { submissionId, email }
+                       ▼
+                checkout.session.completed webhook
+                       │
+                       ▼
+             PATCH HubSpot contact: consideration_fee_status = paid
+                       │
+                       ▼
+             Redirect to /payment-success
+```
 
-- From the captured server-function request body, list every `fields[].name` being sent and its value.
-- Fetch the HubSpot form definition via `api.hsforms.com/forms/v2/forms/{formId}` (public metadata endpoint) and cross-check that each `name` we send exists on the form. Flag any mismatch — one unrecognized field name is enough to make HubSpot reject or partially drop the submission.
-- Confirm portal ID and form GUID in the server function match the ones in the embed.
-- Confirm `hutk` and `pageUri` are populated (missing hutk is a major spam signal).
+### Files to create/change
+- **`src/lib/stripe.server.ts`** — server-only Stripe client (reads `STRIPE_SECRET_KEY` from `process.env` inside handlers).
+- **`src/lib/checkout.functions.ts`** — `createCheckoutSession` server fn. Takes `submissionId` + email, creates a Stripe Checkout Session with metadata, returns URL. Called from `/thank-you`.
+- **`src/routes/api/public/webhooks/stripe.ts`** — server route. Verifies Stripe signature (raw body + `STRIPE_WEBHOOK_SECRET`), handles `checkout.session.completed`, calls a HubSpot helper to set `consideration_fee_status = paid` on the contact matched by email.
+- **`src/lib/hubspot.functions.ts`** — extend with `setContactConsiderationStatus({ email, status })` using HubSpot CRM API (`/crm/v3/objects/contacts/{id}?idProperty=email`).
+- **`src/routes/thank-you.tsx`** — add a "Pay consideration fee — $X" CTA (price only visible here, not on marketing pages) that calls `createCheckoutSession` and redirects to Stripe.
+- **`src/routes/payment-success.tsx`** (new) and **`src/routes/payment-canceled.tsx`** (new) — post-Checkout landing pages.
 
-### 3. Server logs
+### HubSpot setup (you do)
+1. In HubSpot → Settings → Properties → Contact properties, create:
+   - `consideration_fee_status` — single-line text or dropdown with values: `submitted`, `paid`, `waived`, `refunded`.
+2. Generate a Private App token in HubSpot with scopes: `crm.objects.contacts.read`, `crm.objects.contacts.write`.
 
-- Pull `stack_modern--server-function-logs` filtered for `hubspot` / `HubSpot` around the test submission to see the raw HubSpot response body — including any `errors[]` array, `inlineMessage`, or spam classification hints.
+### Secrets I'll ask for after you approve
+- `STRIPE_SECRET_KEY` (test key first — `sk_test_...`)
+- `STRIPE_WEBHOOK_SECRET` (from the Stripe dashboard after we deploy the webhook URL)
+- `HUBSPOT_PRIVATE_APP_TOKEN`
+- Stripe **Price ID** for the consideration fee (I'll create the product/price via tooling and print the ID, or you paste one you already have)
 
-### 4. Domain authorization (the suspected cause)
+### What I will NOT do
+- No prices anywhere on `/`, `/faq`, `/methodology`. Price appears only inside Stripe Checkout and (optionally) on `/thank-you` as the fee amount on the pay button.
+- No design changes — reuse Button, Card, and existing layout.
+- No changes to the free submission path — it keeps working exactly as it does now, and captures the lead even if the user never pays.
 
-- Check whether `entrepreneurawards.co` is a **connected/tracked domain** in the HubSpot portal that hosts the form. The form was originally set up under `globalrecognitionawards.org`; HubSpot's Forms API does not require the domain to be pre-registered to accept submissions, but the tracking cookie (`hubspotutk`) is set per-domain, so on the new domain most submissions arrive with **no hutk**, which is the #1 driver of the "spam contact" classification. Report exactly what needs to be added in HubSpot → Settings → Website → Domains & URLs → Tracked Domains.
-- Report any CORS / CSP violations from the console related to `hsforms`, `hubspot`, `hs-scripts`, `hs-analytics`, `hs-banner`.
+## If you'd rather go HubSpot Payments
 
-### 5. Client-side interference
+Two-line summary of what that path looks like instead: I embed a HubSpot payment link on `/thank-you`, HubSpot handles the whole payment, and the payment auto-associates to the contact. No code beyond the link. Downsides: requires Commerce Hub, no waiver logic, no Apple/Google Pay branding parity, harder to migrate later.
 
-- Check if any cookie-consent / privacy banner is gating `hs-scripts.com` (would block hutk from ever being set → spam flag).
-- Verify our custom `submit` handler in `src/routes/index.tsx` calls `preventDefault()` and does **not** race the native HubSpot iframe submit (double submission or dropped submission).
-- Check `/thank-you` redirect timing — confirm we `await` the server-fn result before navigating (so a failing submission wouldn't be masked by an early redirect).
+## Recommendation
 
-### 6. Where the submissions actually are in HubSpot (walkthrough)
-
-Regardless of the technical result, give you the exact clicks to check:
-- Contacts → Contacts → filter view → **"All contacts"** vs default "My contacts"
-- Contacts → Contacts → **Actions → View spam contacts**
-- Marketing → Forms → your form → **Submissions tab** (shows all submissions including spam-flagged, unlike Contacts)
-- Automation → Workflows → the workflow you showed earlier → History → check enrollment log for the test email
-
-### 7. Findings report
-
-For each of the six sections: **what was tested → what was observed (with exact status codes / field names / error strings) → pass or likely cause**. If a root cause is identified, name the specific fix and whether it lives in Lovable code or in HubSpot settings.
-
-## Deliverables
-
-- A written findings report in the chat (no assumption-based "the embed is wired correctly").
-- One controlled test lead submitted with a unique `lovable.debug.<timestamp>@gmail.com` email so you can search for it in HubSpot.
-- Only after findings: code changes, if any are needed. No speculative edits before evidence.
+**Go with Stripe + HubSpot contact-property sync.** Approve this plan and I'll implement the files above in build mode, after you confirm you have (or will create) the Stripe account and HubSpot Private App token.
