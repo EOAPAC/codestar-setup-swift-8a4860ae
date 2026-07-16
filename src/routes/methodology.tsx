@@ -45,11 +45,18 @@ function MethodologyPage() {
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <p className="text-sm font-medium uppercase tracking-widest text-primary">Methodology</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-6xl">
-              How Winners Are Chosen
+        <section className="relative overflow-hidden border-b border-border">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
+          />
+          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              Methodology
+            </span>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+              How <span className="text-primary">Winners</span> Are Chosen
             </h1>
             <div className="mx-auto mt-8 max-w-2xl space-y-5 text-left text-lg leading-relaxed text-muted-foreground md:text-xl">
               <p>
@@ -58,6 +65,20 @@ function MethodologyPage() {
               <p>
                 Every entry is reviewed by our panel against the same criteria. We evaluate the person behind the business: your vision, your traction, and the journey that got you here.
               </p>
+            </div>
+            <div className="mx-auto mt-10 grid max-w-2xl grid-cols-3 divide-x divide-border rounded-2xl border border-border bg-background/60 backdrop-blur">
+              <div className="px-4 py-5">
+                <p className="text-2xl font-semibold tracking-tight md:text-3xl">100%</p>
+                <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">Human-reviewed</p>
+              </div>
+              <div className="px-4 py-5">
+                <p className="text-2xl font-semibold tracking-tight md:text-3xl">4</p>
+                <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">Scoring criteria</p>
+              </div>
+              <div className="px-4 py-5">
+                <p className="text-2xl font-semibold tracking-tight md:text-3xl">14 days</p>
+                <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">To a decision</p>
+              </div>
             </div>
           </div>
         </section>
@@ -70,15 +91,27 @@ function MethodologyPage() {
                 Five steps, one standard.
               </h2>
             </div>
-            <ol className="mt-16 space-y-6">
+            <ol className="relative mt-16 space-y-6">
+              <span
+                aria-hidden
+                className="absolute left-6 top-6 bottom-6 hidden w-px bg-gradient-to-b from-primary/40 via-border to-transparent md:block"
+              />
               {steps.map((s) => (
-                <li key={s.n}>
+                <li key={s.n} className="relative">
                   <Card className="flex items-start gap-6 p-6 md:p-8">
-                    <span className="grid h-12 w-12 flex-shrink-0 place-items-center rounded-full bg-primary text-lg font-semibold text-primary-foreground">
-                      {s.n}
-                    </span>
-                    <div>
-                      <h3 className="text-lg font-semibold">{s.title}</h3>
+                    <div className="relative flex-shrink-0">
+                      <span className="grid h-12 w-12 place-items-center rounded-full bg-primary text-lg font-semibold text-primary-foreground shadow-sm ring-4 ring-background">
+                        {s.n}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <s.icon className="h-4 w-4 text-primary" />
+                        <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                          Step {s.n} of 5
+                        </p>
+                      </div>
+                      <h3 className="mt-1 text-lg font-semibold">{s.title}</h3>
                       <p className="mt-1 text-muted-foreground">{s.desc}</p>
                     </div>
                   </Card>
