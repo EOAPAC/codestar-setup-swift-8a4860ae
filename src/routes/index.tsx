@@ -462,7 +462,10 @@ function SubmissionForm() {
 
       try {
         const payload = buildHubSpotSubmissionPayload(form);
-        await submitLead({ data: payload });
+        const result = await submitLead({ data: payload });
+        if (!result.ok) {
+          throw new Error(`HubSpot submission failed [${result.status}]`);
+        }
         navigate({ to: "/thank-you" });
       } catch (error) {
         console.error("HubSpot server-side submission failed", error);
