@@ -131,11 +131,50 @@ function MethodologyPage() {
             </div>
             <div className="mt-16 grid gap-6 md:grid-cols-2">
               {criteria.map((c) => (
-                <Card key={c.title} className="flex flex-col p-8">
-                  <c.icon className="h-6 w-6 text-primary" />
-                  <h3 className="mt-4 text-lg font-semibold">{c.title}</h3>
-                  <p className="mt-2 text-muted-foreground">{c.desc}</p>
+                <Card key={c.title} className="group relative flex flex-col overflow-hidden p-8 transition-colors hover:border-primary/40">
+                  <span
+                    aria-hidden
+                    className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/5 transition-transform group-hover:scale-125"
+                  />
+                  <span className="relative grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
+                    <c.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="relative mt-5 text-lg font-semibold">{c.title}</h3>
+                  <p className="relative mt-2 text-muted-foreground">{c.desc}</p>
                 </Card>
+              ))}
+            </div>
+
+            <figure className="relative mx-auto mt-20 max-w-3xl">
+              <Quote className="absolute -top-4 left-0 h-10 w-10 text-primary/20" aria-hidden />
+              <blockquote className="pl-12 text-xl font-medium leading-relaxed tracking-tight text-foreground md:text-2xl">
+                "We're looking for founders who've made hard calls and can show what came of them. Not the loudest voice — the clearest one."
+              </blockquote>
+              <figcaption className="mt-4 pl-12 text-sm text-muted-foreground">
+                — Review panel note, 2025 cycle
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section className="py-24 md:py-32">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="text-center">
+              <p className="text-sm font-medium uppercase tracking-widest text-primary">Our principles</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                Why founders trust the read.
+              </h2>
+            </div>
+            <div className="mt-16 grid gap-6 md:grid-cols-3">
+              {principles.map((p) => (
+                <div
+                  key={p.title}
+                  className="flex flex-col rounded-2xl border border-border bg-background p-6 md:p-8"
+                >
+                  <p.icon className="h-5 w-5 text-primary" />
+                  <h3 className="mt-4 text-base font-semibold">{p.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
+                </div>
               ))}
             </div>
           </div>
