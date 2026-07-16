@@ -96,7 +96,7 @@ function FAQPage() {
                     Is it free to enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Yes. It's free to put your story forward. A fee applies for our panel to review and score your submission in full, and standout founders are selected for complimentary consideration.
+                    Yes — it's free to put your story forward. A consideration fee applies for our panel to review and score your submission in full, and standout founders are selected for complimentary consideration.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -136,7 +136,7 @@ function FAQPage() {
                     What do winners receive?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Winners receive an official Entrepreneur Awards badge and certificate, a winner profile, and assets to share their recognition. Full details are confirmed with selected winners.
+                    Every winner receives the same credential: an official Entrepreneur Awards badge and certificate, a profile in the Winners Directory, a LinkedIn announcement kit, an engraved trophy, a published founder story, a press release sent to business outlets, and a feature in the Winners email. Full details are confirmed with selected winners.
                   </AccordionContent>
                 </AccordionItem>
 
