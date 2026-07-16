@@ -101,7 +101,7 @@ const testimonials = [
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
-      <Nav />
+      <SiteNav />
       <main>
         <Hero />
         <Tiers />
@@ -110,7 +110,7 @@ function Index() {
         <SubmissionForm />
         <Contact />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }
