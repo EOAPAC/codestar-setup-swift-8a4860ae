@@ -180,12 +180,12 @@ function Tiers() {
     <section id="tiers" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Choose your win</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">What winners receive</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             Every entry wins something. You choose how loud.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            One story, three ways to amplify it. 30-day money-back guarantee if you're not shortlisted.
+            Three recognition packages, each built to amplify a founder's story. Free to enter — you only receive package details if you're selected.
           </p>
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-3">
@@ -205,10 +205,6 @@ function Tiers() {
               )}
               <h3 className="text-xl font-semibold">{tier.name}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{tier.tagline}</p>
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-4xl font-semibold tracking-tight">{tier.price}</span>
-                <span className="text-sm text-muted-foreground">/ entry</span>
-              </div>
               <ul className="mt-8 flex-1 space-y-3 text-sm">
                 {tier.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
@@ -222,11 +218,14 @@ function Tiers() {
                 className="mt-8"
                 variant={tier.highlighted ? "default" : "outline"}
               >
-                <a href="#submit">Enter {tier.name} →</a>
+                <a href="#submit">Start Your Entry →</a>
               </Button>
             </Card>
           ))}
         </div>
+        <p className="mx-auto mt-12 max-w-2xl text-center text-sm text-muted-foreground">
+          Package details are shared with selected entrants after review.
+        </p>
       </div>
     </section>
   );
