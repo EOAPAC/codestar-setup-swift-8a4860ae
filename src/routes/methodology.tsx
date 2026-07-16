@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
-import { Compass, TrendingUp, Mountain, Sparkles } from "lucide-react";
+import { Compass, TrendingUp, Mountain, Sparkles, FileText, ScanLine, ListChecks, Users, Trophy, Quote, ShieldCheck, Scale, EyeOff } from "lucide-react";
 
 export const Route = createFileRoute("/methodology")({
   head: () => ({
