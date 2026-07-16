@@ -5,9 +5,20 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
+import { HelpCircle, Mail, ArrowRight, Sparkles } from "lucide-react";
+
+const topics = [
+  { label: "Getting started", target: "q1" },
+  { label: "Eligibility", target: "q2" },
+  { label: "How to enter", target: "q4" },
+  { label: "Judging", target: "q5" },
+  { label: "Winners", target: "q7" },
+];
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
