@@ -71,98 +71,124 @@ function FAQPage() {
 
         <section className="py-24 md:py-32">
           <div className="mx-auto max-w-3xl px-6">
-            <Card className="p-2 md:p-4">
+            <Card className="px-4 py-2 md:px-6 md:py-4">
               <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="q1" id="q1" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    What are the Entrepreneur Awards?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    A recognition program for founders and entrepreneurs, celebrating the people building standout businesses and the stories behind them.
+                  </AccordionContent>
+                </AccordionItem>
 
-              <AccordionItem value="q1">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  What are the Entrepreneur Awards?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  A recognition program for founders and entrepreneurs, celebrating the people building standout businesses and the stories behind them.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="q2" id="q2" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    Who can enter?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Any founder or entrepreneur can enter their own story. No nomination needed — you put yourself forward.
+                  </AccordionContent>
+                </AccordionItem>
 
-              <AccordionItem value="q2">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  Who can enter?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Any founder or entrepreneur can enter their own story. No nomination needed — you put yourself forward.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="q3" id="q3" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    Is it free to enter?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Yes — it's free to put your story forward. A fee applies for our panel to review and score your submission in full, and standout founders are selected for complimentary consideration.
+                  </AccordionContent>
+                </AccordionItem>
 
-              <AccordionItem value="q3">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  Is it free to enter?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Yes — it's free to put your story forward. A fee applies for our panel to review and score your submission in full, and standout founders are selected for complimentary consideration.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="q4" id="q4" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    How do I enter?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Complete the online entry form with your details and your story. Takes about 10 minutes.
+                  </AccordionContent>
+                </AccordionItem>
 
-              <AccordionItem value="q4">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  How do I enter?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Complete the online entry form with your details and your story. Takes about 10 minutes.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="q5" id="q5" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    What are the judging criteria?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Entries are assessed on vision, traction, resilience, and influence. See our{" "}
+                    <Link to="/methodology" className="font-medium text-primary hover:underline">
+                      Methodology
+                    </Link>{" "}
+                    for the full breakdown.
+                  </AccordionContent>
+                </AccordionItem>
 
-              <AccordionItem value="q5">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  What are the judging criteria?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Entries are assessed on vision, traction, resilience, and influence. See our{" "}
-                  <Link to="/methodology" className="font-medium text-primary hover:underline">
-                    Methodology
-                  </Link>{" "}
-                  for the full breakdown.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="q6" id="q6" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    How are winners chosen?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Every entry is screened, shortlisted, and evaluated by our review panel against consistent criteria.
+                  </AccordionContent>
+                </AccordionItem>
 
-              <AccordionItem value="q6">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  How are winners chosen?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Every entry is screened, shortlisted, and evaluated by our review panel against consistent criteria.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="q7" id="q7" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    What do winners receive?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Winners receive an official Entrepreneur Awards badge and certificate, a winner profile, and assets to share their recognition. Full details are confirmed with selected winners.
+                  </AccordionContent>
+                </AccordionItem>
 
-              <AccordionItem value="q7">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  What do winners receive?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Winners receive an official Entrepreneur Awards badge and certificate, a winner profile, and assets to share their recognition. Full details are confirmed with selected winners.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="q8" id="q8" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    Is there a deadline?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Entries are reviewed on a rolling basis. Enter early to be considered in the current cycle.
+                  </AccordionContent>
+                </AccordionItem>
 
-              <AccordionItem value="q8">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  Is there a deadline?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Entries are reviewed on a rolling basis. Enter early to be considered in the current cycle.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="q9" id="q9" className="scroll-mt-24 border-b-0">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    How can I get in touch?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Reach us anytime through our{" "}
+                    <a href="/#contact" className="font-medium text-primary hover:underline">
+                      contact page
+                    </a>
+                    . We reply within one business day.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </Card>
 
-              <AccordionItem value="q9">
-                <AccordionTrigger className="text-left text-base font-medium">
-                  How can I get in touch?
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
-                  Reach us anytime through our{" "}
-                  <a href="/#contact" className="font-medium text-primary hover:underline">
-                    contact page
+            <Card className="mt-10 flex flex-col items-start gap-6 border-primary/20 bg-primary/5 p-8 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                  <Sparkles className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold">Still have a question?</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Our team usually replies within one business day.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild variant="outline">
+                  <a href="mailto:hello@entrepreneurawards.co">
+                    <Mail className="mr-2 h-4 w-4" /> Email us
                   </a>
-                  . We reply within one business day.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+                </Button>
+                <Button asChild>
+                  <a href="/#submit">
+                    Start Your Entry <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+            </Card>
           </div>
         </section>
 
