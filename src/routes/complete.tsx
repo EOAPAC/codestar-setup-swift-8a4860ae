@@ -1,0 +1,277 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Separator } from "@/components/ui/separator";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
+import { Check, Lock, ShieldCheck } from "lucide-react";
+
+// ------------------------------------------------------------------
+// Easy-edit constants — tweak these without hunting through the file.
+// ------------------------------------------------------------------
+const PAYMENT_URL = "https://payments.entrepreneurawards.co/b/4gMbJ170xbDGgDG8fi8so0e";
+const PRICE = "$129";
+const PRICE_WAS = "$169";
+const SAVINGS = "Save $40";
+const RESULT_DAYS = "14 business days";
+// ------------------------------------------------------------------
+
+export const Route = createFileRoute("/complete")({
+  head: () => ({
+    meta: [
+      { title: "Complete Your Entry — The Entrepreneur Awards" },
+      {
+        name: "description",
+        content:
+          "You're almost done. Secure your application to join recognised founders reviewed by our judging panel.",
+      },
+      { property: "og:title", content: "Complete Your Entry — The Entrepreneur Awards" },
+      {
+        property: "og:description",
+        content:
+          "You're almost done. Secure your application to join recognised founders reviewed by our judging panel.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
+  component: CompletePage,
+});
+
+function CompletePage() {
+  const [agreed, setAgreed] = useState(false);
+
+  const perks = [
+    "Evaluated by our judging panel",
+    "Detailed scoring with written feedback",
+    "A place among recognised founders",
+    "Global exposure and shareable proof",
+    "Boosted credibility and trust",
+  ];
+
+  const faqs = [
+    {
+      q: "When will I get results?",
+      a: `Within ${RESULT_DAYS} of submission.`,
+    },
+    {
+      q: "What if I don't win?",
+      a: "You still receive detailed scoring and written feedback from our judges.",
+    },
+    {
+      q: "Can I get a refund?",
+      a: "Yes — refundable within 48 hours if evaluation hasn't begun. Once scoring starts, the fee is non-refundable.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "[EA testimonial — replace with real] The judging feedback was the most useful outside perspective we've had on the business this year.",
+      attribution: "[EA winner — replace with real]",
+    },
+    {
+      quote:
+        "[EA testimonial — replace with real] Winning gave us a credibility bump we felt immediately in sales conversations.",
+      attribution: "[EA winner — replace with real]",
+    },
+    {
+      quote:
+        "[EA testimonial — replace with real] A serious, founder-run process. Worth every minute of the application.",
+      attribution: "[EA winner — replace with real]",
+    },
+  ];
+
+  return (
+    <div className="ea-complete min-h-screen bg-background font-sans text-foreground antialiased">
+      <SiteNav />
+
+      <main className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+        {/* Top band */}
+        <section className="ea-complete__top text-center">
+          <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
+            Complete Your Entry — You're Almost Done
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
+            Secure your application to join recognised founders.
+          </p>
+
+          <div className="mx-auto mt-8 max-w-2xl">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
+              <span className="inline-flex items-center gap-1.5 text-primary">
+                <Check className="h-4 w-4" />
+                Application Submitted
+              </span>
+              <span className="text-muted-foreground">•</span>
+              <span className="font-medium">Step 2 of 2 — Payment</span>
+            </div>
+            <div
+              className="ea-complete__progress mt-3 h-2 w-full overflow-hidden rounded-full bg-secondary"
+              role="progressbar"
+              aria-valuenow={90}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              <div className="h-full rounded-full bg-primary" style={{ width: "90%" }} />
+            </div>
+          </div>
+        </section>
+
+        {/* Two columns */}
+        <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {/* LEFT */}
+          <div className="ea-complete__left space-y-6">
+            <Card className="ea-complete__summary p-6 md:p-8">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-widest text-primary">
+                    Order summary
+                  </p>
+                  <h2 className="mt-1 text-xl font-semibold">
+                    Application Review — Early Bird
+                  </h2>
+                </div>
+                <span className="ea-complete__savings inline-flex items-center rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-700">
+                  {SAVINGS}
+                </span>
+              </div>
+
+              <div className="mt-6 flex items-baseline gap-3">
+                <span className="ea-complete__price text-4xl font-semibold tracking-tight">
+                  {PRICE}
+                </span>
+                <span className="ea-complete__price-was text-lg text-muted-foreground line-through">
+                  {PRICE_WAS}
+                </span>
+              </div>
+
+              <p className="mt-4 text-sm text-muted-foreground">
+                Expert evaluation of your entry by our judging panel. Detailed scoring,
+                written feedback, and your result within {RESULT_DAYS} — win or not.
+              </p>
+
+              <Separator className="my-6" />
+
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium">Total (USD)</span>
+                <span className="text-2xl font-semibold">{PRICE}</span>
+              </div>
+            </Card>
+
+            {/* Payment CTA */}
+            <Card className="ea-complete__cta p-6 md:p-8">
+              <label className="flex cursor-pointer items-start gap-3">
+                <Checkbox
+                  checked={agreed}
+                  onCheckedChange={(v) => setAgreed(v === true)}
+                  className="mt-0.5"
+                />
+                <span className="text-sm text-muted-foreground">
+                  I agree to the Terms of Service and authorise the charge for this
+                  transaction.
+                </span>
+              </label>
+
+              <Button
+                asChild={agreed}
+                disabled={!agreed}
+                size="lg"
+                className="ea-complete__pay mt-5 h-14 w-full text-base font-medium"
+              >
+                {agreed ? (
+                  <a href={PAYMENT_URL} target="_top" rel="noopener">
+                    <Lock className="mr-2 h-4 w-4" />
+                    Complete Secure Payment →
+                  </a>
+                ) : (
+                  <span>
+                    <Lock className="mr-2 h-4 w-4" />
+                    Complete Secure Payment →
+                  </span>
+                )}
+              </Button>
+
+              <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+                <ShieldCheck className="h-3.5 w-3.5" />
+                Secure payment processed off-site.
+              </div>
+
+              <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                <a href="#terms" className="hover:text-foreground underline underline-offset-4">
+                  Terms
+                </a>
+                <a href="#cancellation" className="hover:text-foreground underline underline-offset-4">
+                  Cancellation policy
+                </a>
+                <a href="#refund" className="hover:text-foreground underline underline-offset-4">
+                  Refund policy
+                </a>
+              </div>
+            </Card>
+
+            {/* FAQ */}
+            <div className="ea-complete__faq">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+                Frequently asked
+              </h3>
+              <Accordion type="single" collapsible className="mt-2">
+                {faqs.map((f, i) => (
+                  <AccordionItem key={i} value={`item-${i}`}>
+                    <AccordionTrigger className="text-left text-sm font-medium">
+                      {f.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm text-muted-foreground">
+                      {f.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div className="ea-complete__right space-y-6">
+            <Card className="ea-complete__perks p-6 md:p-8">
+              <h2 className="text-xl font-semibold">What You Get</h2>
+              <ul className="mt-5 space-y-3">
+                {perks.map((p) => (
+                  <li key={p} className="flex items-start gap-3">
+                    <span className="mt-0.5 grid h-6 w-6 flex-shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                      <Check className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="text-sm">{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+
+            <div className="ea-complete__testimonials space-y-4">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+                What founders say
+              </h3>
+              {testimonials.map((t, i) => (
+                <Card key={i} className="p-5">
+                  <p className="text-sm italic text-foreground">"{t.quote}"</p>
+                  <p className="mt-3 text-xs font-medium text-muted-foreground">
+                    — {t.attribution}
+                  </p>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <SiteFooter />
+    </div>
+  );
+}
