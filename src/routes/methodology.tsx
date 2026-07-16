@@ -84,7 +84,7 @@ function MethodologyPage() {
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/18),transparent_70%)]"
           />
-          <div className="mx-auto max-w-3xl px-6 pt-24 pb-16 md:pt-32 md:pb-20">
+          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
             <span className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
               Methodology
             </span>
