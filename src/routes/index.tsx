@@ -128,53 +128,35 @@ function Hero() {
 function Tiers() {
   return (
     <section id="tiers" className="border-t border-border bg-secondary/30 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-4xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">What winners receive</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Recognition</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Every entry wins something. You choose how loud.
+            What winners receive.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Three recognition packages, each built to amplify a founder's story. Free to enter — you only receive package details if you're selected.
+            One credential. Every winner receives the same recognition package, built to travel further than a line on a résumé.
           </p>
         </div>
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {tiers.map((tier) => (
-            <Card
-              key={tier.name}
-              className={`relative flex flex-col p-8 ${
-                tier.highlighted
-                  ? "border-primary shadow-lg ring-1 ring-primary/20"
-                  : "border-border"
-              }`}
-            >
-              {tier.highlighted && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
-                  Most founders choose this
-                </span>
-              )}
-              <h3 className="text-xl font-semibold">{tier.name}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{tier.tagline}</p>
-              <ul className="mt-8 flex-1 space-y-3 text-sm">
-                {tier.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5">
-                    <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                    <span className="text-foreground/80">{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button
-                asChild
-                className="mt-8"
-                variant={tier.highlighted ? "default" : "outline"}
-              >
-                <a href="#submit">Start Your Entry →</a>
-              </Button>
-            </Card>
-          ))}
-        </div>
-        <p className="mx-auto mt-12 max-w-2xl text-center text-sm text-muted-foreground">
-          Package details are shared with selected entrants after review.
+        <Card className="mt-16 p-8 md:p-12">
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {winnerBenefits.map((f) => (
+              <li key={f} className="flex items-start gap-3 text-sm">
+                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                <span className="text-foreground/85">{f}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 flex justify-center border-t border-border pt-8">
+            <Button asChild size="lg">
+              <a href="#submit">
+                Start Your Entry <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </Card>
+        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
+          Full winner package details are confirmed with selected entrants after review.
         </p>
       </div>
     </section>
