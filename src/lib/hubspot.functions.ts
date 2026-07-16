@@ -74,26 +74,33 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
     if (data.context?.referrer) context.referrer = data.context.referrer;
     if (ipAddress) context.ipAddress = ipAddress;
 
+    const requestBody: {
+      submittedAt?: number;
+      fields: typeof filteredFields;
+      context: typeof context;
+    } = {
+      fields: filteredFields,
+      context,
+    };
+
+    // Do not forward the browser-provided timestamp. Preview/test clocks can be
+    // ahead of HubSpot's clock, which makes HubSpot reject the whole request as
+    // INVALID_TIMESTAMP. Omitting submittedAt lets HubSpot timestamp receipt.
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         ...(userAgent ? { "User-Agent": userAgent } : {}),
       },
-      body: JSON.stringify({
-        submittedAt: data.submittedAt ?? Date.now(),
-        fields: filteredFields,
-        context,
-
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     const body = await response.text();
 
     if (!response.ok) {
       console.error(`HubSpot Forms API submission failed [${response.status}]: ${body}`);
-      throw new Error(`HubSpot submission failed [${response.status}]`);
+      return { ok: false, status: response.status };
     }
 
-    return body ? JSON.parse(body) : { ok: true };
+    return { ok: true, data: body ? JSON.parse(body) : null };
   });
