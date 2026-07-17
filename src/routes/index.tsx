@@ -498,7 +498,7 @@ function SubmissionForm() {
           pageUrl: window.location.href,
           onFormReady: attachServerSubmit,
           onFormSubmitted: () => {
-            navigate({ to: "/thank-you" });
+            navigate({ to: "/complete" });
           },
         });
       }
