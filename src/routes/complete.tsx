@@ -183,43 +183,12 @@ function CompletePage() {
               </div>
             </Card>
 
-            {/* Payment CTA */}
+            {/* Payment embed */}
             <Card className="ea-complete__cta p-6 md:p-8">
-              <label className="flex cursor-pointer items-start gap-3">
-                <Checkbox
-                  checked={agreed}
-                  onCheckedChange={(v) => setAgreed(v === true)}
-                  className="mt-0.5"
-                />
-                <span className="text-sm text-muted-foreground">
-                  I agree to the Terms of Service and authorise the charge for this
-                  transaction.
-                </span>
-              </label>
-
-              <Button
-                asChild={agreed}
-                disabled={!agreed}
-                size="lg"
-                className="ea-complete__pay mt-5 h-14 w-full text-base font-medium"
-              >
-                {agreed ? (
-                  <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer">
-                    <Lock className="mr-2 h-4 w-4" />
-                    Complete Secure Payment →
-                  </a>
-                ) : (
-                  <span>
-                    <Lock className="mr-2 h-4 w-4" />
-                    Complete Secure Payment →
-                  </span>
-                )}
-              </Button>
-
-              <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                Secure payment processed off-site.
-              </div>
+              <div
+                className="payments-iframe-container w-full"
+                data-src={HUBSPOT_PAYMENT_SRC}
+              />
 
               <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
                 <a href="#terms" className="hover:text-foreground underline underline-offset-4">
