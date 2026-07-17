@@ -272,3 +272,16 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
+
+/* HubSpot payment embed — fill column, give enough height so inner scrollbar disappears */
+.payments-iframe-container.ea-complete__embed {
+  width: 100% !important;
+  min-height: 900px;
+}
+.payments-iframe-container.ea-complete__embed iframe {
+  width: 100% !important;
+  min-height: 900px !important;
+  border: 0 !important;
+  display: block;
+}
+
