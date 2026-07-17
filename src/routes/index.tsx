@@ -466,7 +466,7 @@ function SubmissionForm() {
         if (!result.ok) {
           throw new Error(`HubSpot submission failed [${result.status}]`);
         }
-        navigate({ to: "/thank-you" });
+        navigate({ to: "/complete" });
       } catch (error) {
         console.error("HubSpot server-side submission failed", error);
         setFormError("Something went wrong submitting your entry. Please try again.");
@@ -498,7 +498,7 @@ function SubmissionForm() {
           pageUrl: window.location.href,
           onFormReady: attachServerSubmit,
           onFormSubmitted: () => {
-            navigate({ to: "/thank-you" });
+            navigate({ to: "/complete" });
           },
         });
       }
