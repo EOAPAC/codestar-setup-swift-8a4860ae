@@ -1,8 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import {
   Accordion,
@@ -12,12 +10,15 @@ import {
 } from "@/components/ui/accordion";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { Check, Lock, ShieldCheck } from "lucide-react";
+import { Check } from "lucide-react";
 
 // ------------------------------------------------------------------
 // Easy-edit constants — tweak these without hunting through the file.
 // ------------------------------------------------------------------
-const PAYMENT_URL = "https://payments.entrepreneurawards.co/b/4gMbJ170xbDGgDG8fi8so0e";
+const HUBSPOT_PAYMENT_SRC =
+  "https://payments-na1.hubspot.com/payments/gVsrMxrxsqyJTX?referrer=PAYMENT_LINK_EMBED&layout=embed-full";
+const HUBSPOT_EMBED_SCRIPT =
+  "https://static.hsappstatic.net/payments-embed/ex/PaymentsEmbedCode.js";
 const PRICE = "$129";
 const PRICE_WAS = "$169";
 const SAVINGS = "Save $40";
