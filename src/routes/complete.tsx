@@ -144,49 +144,11 @@ function CompletePage() {
 
         {/* Two columns */}
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
-          {/* LEFT */}
-          <div className="ea-complete__left space-y-6">
-            <Card className="ea-complete__summary p-6 md:p-8">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-widest text-primary">
-                    Order summary
-                  </p>
-                  <h2 className="mt-1 text-xl font-semibold">
-                    Application Review — Early Bird
-                  </h2>
-                </div>
-                <span className="ea-complete__savings inline-flex items-center rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-700">
-                  {SAVINGS}
-                </span>
-              </div>
-
-              <div className="mt-6 flex items-baseline gap-3">
-                <span className="ea-complete__price text-4xl font-semibold tracking-tight">
-                  {PRICE}
-                </span>
-                <span className="ea-complete__price-was text-lg text-muted-foreground line-through">
-                  {PRICE_WAS}
-                </span>
-              </div>
-
-              <p className="mt-4 text-sm text-muted-foreground">
-                Expert evaluation of your entry by our judging panel. Detailed scoring,
-                written feedback, and your result within {RESULT_DAYS} — win or not.
-              </p>
-
-              <Separator className="my-6" />
-
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Total (USD)</span>
-                <span className="text-2xl font-semibold">{PRICE}</span>
-              </div>
-            </Card>
-
-            {/* Payment embed */}
+          {/* LEFT — payment embed (HubSpot's own summary + card fields) */}
+          <div className="ea-complete__left space-y-6 order-1">
             <Card className="ea-complete__cta p-6 md:p-8">
               <div
-                className="payments-iframe-container w-full"
+                className="payments-iframe-container ea-complete__embed w-full"
                 data-src={HUBSPOT_PAYMENT_SRC}
               />
 
@@ -202,29 +164,10 @@ function CompletePage() {
                 </a>
               </div>
             </Card>
-
-            {/* FAQ */}
-            <div className="ea-complete__faq">
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-                Frequently asked
-              </h3>
-              <Accordion type="single" collapsible className="mt-2">
-                {faqs.map((f, i) => (
-                  <AccordionItem key={i} value={`item-${i}`}>
-                    <AccordionTrigger className="text-left text-sm font-medium">
-                      {f.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-sm text-muted-foreground">
-                      {f.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="ea-complete__right space-y-6">
+          {/* RIGHT — What You Get, testimonials, FAQ */}
+          <div className="ea-complete__right space-y-6 order-2">
             <Card className="ea-complete__perks p-6 md:p-8">
               <h2 className="text-xl font-semibold">What You Get</h2>
               <ul className="mt-5 space-y-3">
@@ -252,9 +195,28 @@ function CompletePage() {
                 </Card>
               ))}
             </div>
+
+            <div className="ea-complete__faq">
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+                Frequently asked
+              </h3>
+              <Accordion type="single" collapsible className="mt-2">
+                {faqs.map((f, i) => (
+                  <AccordionItem key={i} value={`item-${i}`}>
+                    <AccordionTrigger className="text-left text-sm font-medium">
+                      {f.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm text-muted-foreground">
+                      {f.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </div>
         </div>
       </main>
+
 
       <SiteFooter />
     </div>
