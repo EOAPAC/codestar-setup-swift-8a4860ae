@@ -188,7 +188,7 @@ function CompletePage() {
                 className="ea-complete__pay mt-5 h-14 w-full text-base font-medium"
               >
                 {agreed ? (
-                  <a href={PAYMENT_URL} target="_top" rel="noopener">
+                  <a href={PAYMENT_URL} target="_blank" rel="noopener noreferrer">
                     <Lock className="mr-2 h-4 w-4" />
                     Complete Secure Payment →
                   </a>
