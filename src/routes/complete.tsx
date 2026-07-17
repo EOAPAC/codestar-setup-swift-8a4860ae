@@ -49,7 +49,22 @@ export const Route = createFileRoute("/complete")({
 });
 
 function CompletePage() {
-  const [agreed, setAgreed] = useState(false);
+  useEffect(() => {
+    const existing = document.querySelector(
+      `script[src="${HUBSPOT_EMBED_SCRIPT}"]`
+    );
+    if (existing) {
+      // Re-run init on SPA navigation if HubSpot exposes it
+      const w = window as unknown as { hbspt?: { payments?: { create?: () => void } } };
+      w.hbspt?.payments?.create?.();
+      return;
+    }
+    const s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = HUBSPOT_EMBED_SCRIPT;
+    s.async = true;
+    document.body.appendChild(s);
+  }, []);
 
   const perks = [
     "Evaluated by our judging panel",
