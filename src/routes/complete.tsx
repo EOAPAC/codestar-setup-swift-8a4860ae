@@ -215,9 +215,8 @@ function CompletePage() {
             </div>
           </div>
         </div>
-
-        </div>
       </main>
+
 
       <SiteFooter />
     </div>
