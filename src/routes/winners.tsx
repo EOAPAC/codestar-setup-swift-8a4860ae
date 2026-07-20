@@ -134,9 +134,9 @@ function WinnerCard({ winner }: { winner: Winner }) {
       <div className="flex items-start gap-4">
         <WinnerAvatar initials={winner.initials} color={winner.color} />
         <div className="min-w-0 flex-1 pt-1">
-          <div className="flex items-center gap-2">
-            <h3 className="truncate text-lg font-semibold tracking-tight text-foreground">{winner.name}</h3>
-            <Crown className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+          <div className="flex items-start gap-2">
+            <h3 className="text-lg font-semibold leading-tight tracking-tight text-foreground">{winner.name}</h3>
+            <Crown className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
           </div>
           <p className="text-sm text-muted-foreground">{winner.role}</p>
         </div>
