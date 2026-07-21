@@ -16,9 +16,6 @@ export function SiteNav() {
           <Link to="/pricing" className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
             Pricing
           </Link>
-          <Link to="/winners" className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
-            Winners
-          </Link>
           <Link to="/methodology" className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
             Methodology
           </Link>

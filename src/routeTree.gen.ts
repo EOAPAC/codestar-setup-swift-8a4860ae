@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WinnersRouteImport } from './routes/winners'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MethodologyRouteImport } from './routes/methodology'
@@ -17,11 +16,6 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as IndexRouteImport } from './routes/index'
 
-const WinnersRoute = WinnersRouteImport.update({
-  id: '/winners',
-  path: '/winners',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
@@ -60,7 +54,6 @@ export interface FileRoutesByFullPath {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/thank-you': typeof ThankYouRoute
-  '/winners': typeof WinnersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,7 +62,6 @@ export interface FileRoutesByTo {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/thank-you': typeof ThankYouRoute
-  '/winners': typeof WinnersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,7 +71,6 @@ export interface FileRoutesById {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/thank-you': typeof ThankYouRoute
-  '/winners': typeof WinnersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,16 +81,8 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/pricing'
     | '/thank-you'
-    | '/winners'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/complete'
-    | '/faq'
-    | '/methodology'
-    | '/pricing'
-    | '/thank-you'
-    | '/winners'
+  to: '/' | '/complete' | '/faq' | '/methodology' | '/pricing' | '/thank-you'
   id:
     | '__root__'
     | '/'
@@ -108,7 +91,6 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/pricing'
     | '/thank-you'
-    | '/winners'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,18 +100,10 @@ export interface RootRouteChildren {
   MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRoute
   ThankYouRoute: typeof ThankYouRoute
-  WinnersRoute: typeof WinnersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/winners': {
-      id: '/winners'
-      path: '/winners'
-      fullPath: '/winners'
-      preLoaderRoute: typeof WinnersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/thank-you': {
       id: '/thank-you'
       path: '/thank-you'
@@ -182,7 +156,6 @@ const rootRouteChildren: RootRouteChildren = {
   MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRoute,
   ThankYouRoute: ThankYouRoute,
-  WinnersRoute: WinnersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
