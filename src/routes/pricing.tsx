@@ -8,9 +8,9 @@ import { Check, Award, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Winner package prices. Edit these constants to update every card.
-const RECOGNIZED_PRICE = 195;
-const FEATURED_PRICE = 595;
-const HEADLINE_PRICE = 995;
+const RECOGNIZED_PRICE = 245;
+const FEATURED_PRICE = 495;
+const HEADLINE_PRICE = 895;
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
