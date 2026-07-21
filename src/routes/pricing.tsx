@@ -4,21 +4,21 @@ import { SiteFooter } from "@/components/site-footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Award } from "lucide-react";
+import { Check, Award, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Placeholder prices. Edit these constants to update every card.
-const TIER_1_PRICE = 245;
-const TIER_2_PRICE = 495;
-const TIER_3_PRICE = 895;
+// Winner package prices. Edit these constants to update every card.
+const RECOGNIZED_PRICE = 195;
+const FEATURED_PRICE = 595;
+const HEADLINE_PRICE = 995;
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Winner Packages | The Entrepreneur Awards" },
-      { name: "description", content: "Choose your Winner Package. Turn your Entrepreneur Awards recognition into visibility, credibility, and momentum." },
+      { name: "description", content: "You've been recognized. Choose the Winner Package that turns your Entrepreneur Awards win into visible, credible proof." },
       { property: "og:title", content: "Winner Packages | The Entrepreneur Awards" },
-      { property: "og:description", content: "Choose your Winner Package. Turn your Entrepreneur Awards recognition into visibility, credibility, and momentum." },
+      { property: "og:description", content: "You've been recognized. Choose the Winner Package that turns your Entrepreneur Awards win into visible, credible proof." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -30,54 +30,65 @@ interface Tier {
   id: string;
   name: string;
   price: number;
-  hook: string;
+  tagline: string;
   featured?: boolean;
   ctaLabel: string;
   items: string[];
   plusNote?: string;
+  footer: string;
 }
+
+const freeBaseline = [
+  "Official winner badge and seal",
+  "A digital certificate",
+  "A verified profile in the Winners Directory — a live, checkable link, listed alongside this year's founders",
+  "A winner badge sized for your email signature",
+  "A ready-to-share announcement, designed and captioned",
+];
 
 const tiers: Tier[] = [
   {
     id: "recognized",
     name: "Recognized",
-    price: TIER_1_PRICE,
-    hook: "The essentials to share your win.",
+    price: RECOGNIZED_PRICE,
+    tagline: "On the record.",
     ctaLabel: "Claim Recognized",
     items: [
-      "Official winner badge & seal",
-      "Digital certificate",
-      "Your profile in the Winners Directory with a shareable link",
-      "Email-signature badge",
-      "Ready-to-post announcement graphic + copy",
+      "A published founder profile explaining why you won",
+      "Written to be found when you're Googled",
+      "Featured to the Entrepreneur Awards network",
+      "Your verified Winners Directory listing",
     ],
+    footer: "For the founder who wants their win findable and on the record.",
   },
   {
     id: "featured",
     name: "Featured",
-    price: TIER_2_PRICE,
-    hook: "Press, story, and a plaque you can hold.",
+    price: FEATURED_PRICE,
+    tagline: "Out in the press.",
     featured: true,
     ctaLabel: "Claim Featured",
     plusNote: "Everything in Recognized, plus:",
     items: [
-      "A published founder-story write-up on our site",
-      "A press release announcing your win, distributed to business outlets",
-      "An engraved plaque, shipped to you",
+      "Your story written up and distributed through our press network to business and startup media",
+      "Coverage packaged as shareable proof you can send",
+      "An \"as seen in\" media strip for your website",
     ],
+    footer: "For the founder who wants to be seen where it changes the conversation.",
   },
   {
     id: "headline",
     name: "Headline",
-    price: TIER_3_PRICE,
-    hook: "Maximum visibility for a major milestone.",
+    price: HEADLINE_PRICE,
+    tagline: "The full spotlight.",
     ctaLabel: "Claim Headline",
     plusNote: "Everything in Featured, plus:",
     items: [
-      "Multi-outlet press distribution",
-      "An \"as seen in\" media banner for your site",
-      "A premium crystal trophy, shipped to you",
+      "A flagship long-form founder feature",
+      "Our widest press-network distribution",
+      "Priority placement in the Winners Directory",
     ],
+    footer: "For the founder who wants their win working everywhere, for good.",
   },
 ];
 
@@ -95,7 +106,7 @@ function PricingCard({ tier }: { tier: Tier }) {
       className={cn(
         "relative flex flex-col p-6 md:p-8",
         tier.featured
-          ? "border-primary ring-2 ring-primary/15 bg-primary/[0.03]"
+          ? "border-primary bg-primary/[0.03] ring-2 ring-primary/15"
           : "border-border bg-card"
       )}
     >
@@ -115,7 +126,9 @@ function PricingCard({ tier }: { tier: Tier }) {
         <div className="mt-2 flex items-baseline justify-center gap-1">
           <Price value={tier.price} />
         </div>
-        <p className="mt-2 text-sm text-muted-foreground">{tier.hook}</p>
+        <p className={cn("mt-2 text-sm font-medium", tier.featured ? "text-primary" : "text-muted-foreground")}>
+          {tier.tagline}
+        </p>
       </div>
 
       <div className="flex-1">
@@ -138,7 +151,11 @@ function PricingCard({ tier }: { tier: Tier }) {
         </ul>
       </div>
 
-      <div className="mt-8">
+      <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
+        {tier.footer}
+      </p>
+
+      <div className="mt-6">
         <Button
           asChild
           className={cn(
@@ -162,31 +179,76 @@ function PricingPage() {
       <SiteNav />
 
       <main className="flex-1">
-        <section className="border-b border-border bg-gradient-to-b from-primary/5 to-transparent px-6 py-16 md:py-24">
-          <div className="mx-auto max-w-6xl text-center">
+        <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/5 to-transparent px-6 py-16 md:py-24">
+          <div className="absolute inset-0 -z-10 flex items-start justify-center opacity-60">
+            <div className="h-[28rem] w-[28rem] rounded-full bg-primary/10 blur-3xl md:h-[36rem] md:w-[36rem]" />
+          </div>
+          <div className="relative mx-auto max-w-6xl text-center">
             <Badge variant="outline" className="mb-4 font-medium">
-              <Award className="mr-1.5 h-3.5 w-3.5 text-primary" aria-hidden="true" />
+              <Sparkles className="mr-1.5 h-3.5 w-3.5 text-primary" aria-hidden="true" />
               For Winners
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              Winner Packages
+              You've been recognized. Here's how you make it count.
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Choose how you put your win to work. Physical items are included, not add-ons.
+              Winning is the hard part, and you've done it. Our panel reviewed your work against founders across the field, and you stood out. What comes next is turning that recognition into proof the people evaluating you can actually see.
+            </p>
+          </div>
+        </section>
+
+        <section className="border-b border-border bg-background px-6 py-12 md:py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-6 text-center">
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+                Every winner receives, at no cost:
+              </h2>
+            </div>
+            <div className="mx-auto max-w-4xl">
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {freeBaseline.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-foreground">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary/80" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p className="mt-8 text-center text-sm text-muted-foreground">
+              Your win is official, on the record, and yours to share today.
             </p>
           </div>
         </section>
 
         <section className="px-6 py-12 md:py-20">
           <div className="mx-auto max-w-6xl">
+            <div className="mb-10 text-center">
+              <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+                Put your win to work
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Choose the package that matches the reach you want.
+              </p>
+            </div>
             <div className="grid gap-6 md:grid-cols-3">
               {tiers.map((tier) => (
                 <PricingCard key={tier.id} tier={tier} />
               ))}
             </div>
+          </div>
+        </section>
 
-            <p className="mt-8 text-center text-xs text-muted-foreground">
-              Prices are placeholder values. Final package details will be confirmed with selected entrants.
+        <section className="border-t border-border px-6 py-10">
+          <div className="mx-auto max-w-6xl text-center">
+            <p className="text-sm text-muted-foreground">
+              Every winner is independently reviewed and selected.{" "}
+              <Link to="/methodology" className="underline-offset-2 hover:text-foreground hover:underline">
+                Methodology
+              </Link>
+              {" · "}
+              <Link to="/winners" className="underline-offset-2 hover:text-foreground hover:underline">
+                Past Winners
+              </Link>
             </p>
           </div>
         </section>
