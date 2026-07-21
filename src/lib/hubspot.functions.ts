@@ -40,6 +40,10 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
       "email",
       "company",
       "entry_story",
+      "linkedin_or_profile_url",
+      "what_do_you_do",
+      "standout_achievement",
+      "why_exceptional",
     ]);
     const filteredFields = data.fields.filter((f) => ALLOWED_FIELDS.has(f.name));
 
