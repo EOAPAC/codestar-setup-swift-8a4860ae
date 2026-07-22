@@ -66,7 +66,7 @@ const assets = [
     description:
       "Official badge and seal for your website, email signature, and press kit.",
     image: badgeAsset.url,
-    previewFit: "contain" as const,
+    presentation: "seal" as const,
     filename: "EA-Winner-Badge-Seal.png",
   },
   {
@@ -74,7 +74,7 @@ const assets = [
     description:
       "Instagram, LinkedIn, and X post template designed with space to add your photo.",
     image: squareAsset.url,
-    previewFit: "cover" as const,
+    presentation: "square" as const,
     filename: "EA-Square-Social-Graphic.png",
   },
   {
@@ -82,7 +82,7 @@ const assets = [
     description:
       "Stories and Reels format for sharing your win across mobile-first platforms.",
     image: storyAsset.url,
-    previewFit: "cover" as const,
+    presentation: "story" as const,
     filename: "EA-Story-Vertical-Graphic.png",
   },
   {
@@ -90,7 +90,7 @@ const assets = [
     description:
       "Cover image for LinkedIn and website headers, sized for professional profiles.",
     image: bannerAsset.url,
-    previewFit: "cover" as const,
+    presentation: "banner" as const,
     filename: "EA-LinkedIn-Website-Banner.png",
   },
 ];
@@ -202,6 +202,63 @@ function Confetti() {
           100% { transform: translateY(420px) rotate(540deg); opacity: 0; }
         }
       `}</style>
+    </div>
+  );
+}
+
+function AssetPreview({ asset }: { asset: (typeof assets)[number] }) {
+  const baseShadow = "shadow-xl shadow-primary/10 ring-1 ring-black/5";
+  const img = (
+    <img
+      src={asset.image}
+      alt={asset.title}
+      loading="lazy"
+      className="pointer-events-none h-full w-full select-none object-cover"
+    />
+  );
+
+  if (asset.presentation === "seal") {
+    return (
+      <div
+        className={`relative flex aspect-square h-40 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/5 p-4 transition-transform duration-300 group-hover:scale-[1.03] ${baseShadow}`}
+      >
+        <div className="relative h-full w-full overflow-hidden rounded-full">
+          {img}
+        </div>
+      </div>
+    );
+  }
+
+  if (asset.presentation === "square") {
+    return (
+      <div
+        className={`relative aspect-square h-44 overflow-hidden rounded-2xl bg-background transition-transform duration-300 group-hover:scale-[1.03] ${baseShadow}`}
+      >
+        {img}
+      </div>
+    );
+  }
+
+  if (asset.presentation === "story") {
+    return (
+      <div className="relative h-[200px] w-[112px] shrink-0 overflow-hidden rounded-[1.75rem] border-[5px] border-background bg-background shadow-2xl shadow-primary/10 ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-[1.03]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center pt-1.5">
+          <div className="h-1.5 w-10 rounded-full bg-black/10" />
+        </div>
+        {img}
+      </div>
+    );
+  }
+
+  // banner
+  return (
+    <div className="w-full max-w-[92%] overflow-hidden rounded-xl bg-background shadow-2xl shadow-primary/10 ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-[1.02]">
+      <div className="flex items-center gap-1.5 border-b border-border bg-secondary/60 px-3 py-2">
+        <div className="h-2 w-2 rounded-full bg-red-400" />
+        <div className="h-2 w-2 rounded-full bg-yellow-400" />
+        <div className="h-2 w-2 rounded-full bg-green-400" />
+      </div>
+      <div className="relative aspect-[1920/520] w-full overflow-hidden">{img}</div>
     </div>
   );
 }
@@ -335,13 +392,10 @@ function WinnerResourcesPage() {
                     key={asset.title}
                     className="group flex flex-col overflow-hidden border-border transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/10 to-primary/[0.02]">
-                      <img
-                        src={asset.image}
-                        alt={asset.title}
-                        loading="lazy"
-                        className={`h-full w-full ${asset.previewFit === "contain" ? "object-contain p-4" : "object-cover"}`}
-                      />
+                    <div className="relative h-56 overflow-hidden bg-gradient-to-br from-primary/10 to-primary/[0.02]">
+                      <div className="flex h-full w-full items-center justify-center p-5">
+                        <AssetPreview asset={asset} />
+                      </div>
                     </div>
                     <div className="flex flex-1 flex-col p-5">
                       <h3 className="text-base font-semibold tracking-tight">{asset.title}</h3>
