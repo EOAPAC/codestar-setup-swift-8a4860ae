@@ -45,39 +45,40 @@ const tiers: Tier[] = [
     tagline: "Make it official.",
     ctaLabel: "Claim Recognized",
     items: [
-      "A published, verifiable profile page for your win — a permanent link others can check",
-      "Listed in the Winners Directory, findable when someone searches your name",
+      "Your write-up published on The Entrepreneur Awards site, at a verifiable link",
+      "A digital certificate of your award",
+      "A listing in the Winners Directory",
     ],
-    footer: "For the founder who wants their win on the record and verifiable.",
+    footer: "Digital proof your win is real and on the record.",
   },
   {
     id: "featured",
     name: "Featured",
     price: FEATURED_PRICE,
-    tagline: "Get it in the press.",
+    tagline: "Something to show for it.",
     featured: true,
     ctaLabel: "Claim Featured",
     items: [
       "Everything in Recognized, plus:",
-      "Your story distributed through our press network to business and startup media",
-      "Coverage packaged as proof you can send to prospects and investors",
-      "An \"as seen in\" media strip for your website",
+      "A physical award plaque, ready to display in your office or on screen behind you",
+      "A polished one-page summary of your win, formatted for investor decks, pitches, and press kits",
+      "A press-release announcement of your win",
     ],
-    footer: "For the founder who wants to be seen where it changes the conversation.",
+    footer: "The materials to put your recognition where it counts — in the room, in the deck, in the conversation.",
   },
   {
     id: "headline",
     name: "Headline",
     price: HEADLINE_PRICE,
-    tagline: "The full spotlight.",
+    tagline: "Get it seen everywhere.",
     ctaLabel: "Claim Headline",
     items: [
       "Everything in Featured, plus:",
-      "A flagship, long-form founder feature",
-      "Our widest press-network distribution",
-      "Priority placement in the Winners Directory",
+      "Your story distributed through our press network to business and startup media",
+      "A flagship, long-form feature",
+      "Our widest reach placement",
     ],
-    footer: "For the founder who wants their win working everywhere, for good.",
+    footer: "Maximum visibility — your win, in front of the people who don't know you yet.",
   },
 ];
 
@@ -181,7 +182,7 @@ function FreeBenefitsSection() {
           ))}
         </ul>
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          These are yours the moment you win. The packages below are about taking your recognition further.
+          These are yours the moment you win. The packages below take your recognition further — in three clear steps.
         </p>
       </div>
     </div>
