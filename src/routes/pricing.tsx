@@ -165,6 +165,29 @@ function PricingCard({ tier }: { tier: Tier }) {
   );
 }
 
+function FreeBenefitsSection() {
+  return (
+    <div className="mx-auto max-w-4xl">
+      <div className="rounded-2xl border border-border bg-primary/[0.03] px-6 py-8 md:px-10 md:py-10">
+        <h2 className="text-center text-xl font-semibold tracking-tight text-foreground md:text-2xl">
+          Every winner receives, free
+        </h2>
+        <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+          {freeBenefits.map((benefit, index) => (
+            <li key={index} className="flex items-start gap-3 text-sm text-foreground">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+              <span>{benefit}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-center text-sm text-muted-foreground">
+          These are yours the moment you win. The packages below are about taking your recognition further.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function PricingPage() {
   return (
     <div className="flex min-h-screen flex-col">
