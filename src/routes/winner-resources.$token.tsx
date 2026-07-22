@@ -54,104 +54,47 @@ const SHARE_URL = "https://www.entrepreneurawards.co";
 const SHARE_CAPTION =
   "Honored to share that I've been named a 2026 Entrepreneur Award winner. Grateful for the recognition and for everyone who's been part of the journey. Learn more about the program: https://www.entrepreneurawards.co";
 
-// ---------- Asset previews (inline SVGs, mimic real deliverables) ----------
-function BadgePreview() {
-  return (
-    <svg viewBox="0 0 200 150" className="h-full w-full">
-      <defs>
-        <linearGradient id="bg1" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0%" stopColor={BRAND_BLUE} stopOpacity="0.14" />
-          <stop offset="100%" stopColor={BRAND_BLUE} stopOpacity="0.02" />
-        </linearGradient>
-      </defs>
-      <rect width="200" height="150" fill="url(#bg1)" />
-      <g transform="translate(100 75)">
-        <circle r="42" fill="none" stroke={BRAND_BLUE} strokeWidth="2.5" />
-        <circle r="34" fill={BRAND_BLUE} fillOpacity="0.08" />
-        <text textAnchor="middle" y="-6" fontSize="7.5" fontWeight="700" fill={BRAND_BLUE} letterSpacing="1.5">2026 WINNER</text>
-        <text textAnchor="middle" y="8" fontSize="6" fill={BRAND_BLUE} fillOpacity="0.85" letterSpacing="0.5">ENTREPRENEUR</text>
-        <text textAnchor="middle" y="17" fontSize="6" fill={BRAND_BLUE} fillOpacity="0.85" letterSpacing="0.5">AWARDS</text>
-        <path d="M-14 24 L0 30 L14 24" fill="none" stroke={BRAND_BLUE} strokeWidth="1.5" strokeLinejoin="round" />
-      </g>
-    </svg>
-  );
-}
-
-function SquarePreview() {
-  return (
-    <svg viewBox="0 0 200 150" className="h-full w-full">
-      <rect width="200" height="150" fill={BRAND_BLUE} fillOpacity="0.06" />
-      <rect x="60" y="25" width="80" height="80" rx="6" fill="white" stroke={BRAND_BLUE} strokeOpacity="0.25" />
-      <text x="100" y="55" textAnchor="middle" fontSize="6" fontWeight="700" fill={BRAND_BLUE} letterSpacing="1.2">2026 WINNER</text>
-      <line x1="72" y1="62" x2="128" y2="62" stroke={BRAND_BLUE} strokeOpacity="0.2" />
-      <text x="100" y="76" textAnchor="middle" fontSize="7" fontWeight="600" fill="#0f172a">Your Name</text>
-      <text x="100" y="86" textAnchor="middle" fontSize="5" fill="#64748b">Company</text>
-      <circle cx="100" cy="98" r="3" fill={BRAND_BLUE} />
-      <text x="100" y="120" textAnchor="middle" fontSize="5" fill="#64748b" letterSpacing="0.5">entrepreneurawards.co</text>
-    </svg>
-  );
-}
-
-function StoryPreview() {
-  return (
-    <svg viewBox="0 0 200 150" className="h-full w-full">
-      <rect width="200" height="150" fill={BRAND_BLUE} fillOpacity="0.06" />
-      <rect x="82" y="15" width="36" height="120" rx="4" fill="white" stroke={BRAND_BLUE} strokeOpacity="0.25" />
-      <text x="100" y="32" textAnchor="middle" fontSize="4" fontWeight="700" fill={BRAND_BLUE} letterSpacing="0.8">2026 WINNER</text>
-      <circle cx="100" cy="55" r="9" fill={BRAND_BLUE} fillOpacity="0.15" stroke={BRAND_BLUE} strokeOpacity="0.3" />
-      <text x="100" y="80" textAnchor="middle" fontSize="5" fontWeight="600" fill="#0f172a">Your Name</text>
-      <line x1="90" y1="88" x2="110" y2="88" stroke={BRAND_BLUE} strokeOpacity="0.3" />
-      <text x="100" y="98" textAnchor="middle" fontSize="3.5" fill="#64748b">Entrepreneur Awards</text>
-      <rect x="88" y="115" width="24" height="7" rx="3" fill={BRAND_BLUE} />
-      <text x="100" y="120" textAnchor="middle" fontSize="3.5" fill="white">Read story</text>
-    </svg>
-  );
-}
-
-function BannerPreview() {
-  return (
-    <svg viewBox="0 0 200 150" className="h-full w-full">
-      <rect width="200" height="150" fill={BRAND_BLUE} fillOpacity="0.06" />
-      <rect x="20" y="55" width="160" height="40" rx="4" fill="white" stroke={BRAND_BLUE} strokeOpacity="0.25" />
-      <circle cx="38" cy="75" r="8" fill={BRAND_BLUE} fillOpacity="0.15" stroke={BRAND_BLUE} strokeOpacity="0.3" />
-      <text x="54" y="73" fontSize="6" fontWeight="700" fill="#0f172a">Your Name</text>
-      <text x="54" y="82" fontSize="4.5" fill="#64748b">2026 Entrepreneur Award Winner</text>
-      <rect x="140" y="68" width="30" height="14" rx="3" fill={BRAND_BLUE} fillOpacity="0.1" stroke={BRAND_BLUE} strokeOpacity="0.4" />
-      <text x="155" y="77" textAnchor="middle" fontSize="4.5" fontWeight="600" fill={BRAND_BLUE}>WINNER</text>
-    </svg>
-  );
-}
+// ---------- Real winner asset images ----------
+import badgeAsset from "@/assets/EA_Winner_Seal.png.asset.json";
+import squareAsset from "@/assets/EA_Square_Social_Image.png.asset.json";
+import storyAsset from "@/assets/EA_Portrait_Winner_Image.png.asset.json";
+import bannerAsset from "@/assets/EA_Linkedin_Banner.png.asset.json";
 
 const assets = [
   {
     title: "Winner badge & seal",
     description:
       "Official badge and seal for your website, email signature, and press kit.",
-    Preview: BadgePreview,
-    filename: "EA-Winner-Badge-Seal.svg",
+    image: badgeAsset.url,
+    previewFit: "contain" as const,
+    filename: "EA-Winner-Badge-Seal.png",
   },
   {
     title: "Square social graphic",
     description:
       "Instagram, LinkedIn, and X post template designed with space to add your photo.",
-    Preview: SquarePreview,
-    filename: "EA-Square-Social-Graphic.svg",
+    image: squareAsset.url,
+    previewFit: "cover" as const,
+    filename: "EA-Square-Social-Graphic.png",
   },
   {
     title: "Story / vertical graphic",
     description:
       "Stories and Reels format for sharing your win across mobile-first platforms.",
-    Preview: StoryPreview,
-    filename: "EA-Story-Vertical-Graphic.svg",
+    image: storyAsset.url,
+    previewFit: "cover" as const,
+    filename: "EA-Story-Vertical-Graphic.png",
   },
   {
     title: "LinkedIn / website banner",
     description:
       "Cover image for LinkedIn and website headers, sized for professional profiles.",
-    Preview: BannerPreview,
-    filename: "EA-LinkedIn-Website-Banner.svg",
+    image: bannerAsset.url,
+    previewFit: "cover" as const,
+    filename: "EA-LinkedIn-Website-Banner.png",
   },
 ];
+
 
 const rungs = [
   {
@@ -196,16 +139,32 @@ function generatePlaceholderDownload(filename: string) {
   return URL.createObjectURL(blob);
 }
 
-function triggerDownload(filename: string) {
-  const url = generatePlaceholderDownload(filename);
+async function triggerDownload(filename: string, url?: string) {
+  let href = url;
+  let revoke = false;
+  if (href) {
+    try {
+      const res = await fetch(href);
+      const blob = await res.blob();
+      href = URL.createObjectURL(blob);
+      revoke = true;
+    } catch {
+      href = generatePlaceholderDownload(filename);
+      revoke = true;
+    }
+  } else {
+    href = generatePlaceholderDownload(filename);
+    revoke = true;
+  }
   const a = document.createElement("a");
-  a.href = url;
+  a.href = href;
   a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  if (revoke) URL.revokeObjectURL(href);
 }
+
 
 // ---------- Confetti ----------
 function Confetti() {
@@ -262,9 +221,10 @@ function WinnerResourcesPage() {
   };
 
   const downloadAll = () => {
-    assets.forEach((a, i) => setTimeout(() => triggerDownload(a.filename), i * 250));
+    assets.forEach((a, i) => setTimeout(() => triggerDownload(a.filename, a.image), i * 250));
     toast.success("Downloading all four assets.");
   };
+
 
   const shareLinkedIn = () => {
     window.open(
@@ -370,14 +330,18 @@ function WinnerResourcesPage() {
 
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {assets.map((asset, idx) => {
-                const { Preview } = asset;
                 return (
                   <Card
                     key={asset.title}
                     className="group flex flex-col overflow-hidden border-border transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/10 to-primary/[0.02]">
-                      <Preview />
+                      <img
+                        src={asset.image}
+                        alt={asset.title}
+                        loading="lazy"
+                        className={`h-full w-full ${asset.previewFit === "contain" ? "object-contain p-4" : "object-cover"}`}
+                      />
                     </div>
                     <div className="flex flex-1 flex-col p-5">
                       <h3 className="text-base font-semibold tracking-tight">{asset.title}</h3>
@@ -385,10 +349,11 @@ function WinnerResourcesPage() {
                         {asset.description}
                       </p>
                       <div className="mt-5 flex flex-col gap-2">
-                        <Button size="sm" className="w-full" onClick={() => triggerDownload(asset.filename)}>
+                        <Button size="sm" className="w-full" onClick={() => triggerDownload(asset.filename, asset.image)}>
                           <Download className="mr-2 h-4 w-4" />
                           Download
                         </Button>
+
                         <Button
                           variant="ghost"
                           size="sm"
@@ -413,8 +378,9 @@ function WinnerResourcesPage() {
             </div>
 
             <p className="mt-6 text-center text-xs text-muted-foreground">
-              Designed with space to add your name or photo. Files download as SVG placeholders in this preview.
+              Designed with space to add your name or photo. Files download as high-resolution PNGs.
             </p>
+
             <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
               Sharing your win is a great start. The next step is making it something others can verify ↓
             </p>
