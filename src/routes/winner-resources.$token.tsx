@@ -335,13 +335,10 @@ function WinnerResourcesPage() {
                     key={asset.title}
                     className="group flex flex-col overflow-hidden border-border transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/10 to-primary/[0.02]">
-                      <img
-                        src={asset.image}
-                        alt={asset.title}
-                        loading="lazy"
-                        className={`h-full w-full ${asset.previewFit === "contain" ? "object-contain p-4" : "object-cover"}`}
-                      />
+                    <div className="relative h-56 overflow-hidden bg-gradient-to-br from-primary/10 to-primary/[0.02]">
+                      <div className="flex h-full w-full items-center justify-center p-5">
+                        <AssetPreview asset={asset} />
+                      </div>
                     </div>
                     <div className="flex flex-1 flex-col p-5">
                       <h3 className="text-base font-semibold tracking-tight">{asset.title}</h3>
