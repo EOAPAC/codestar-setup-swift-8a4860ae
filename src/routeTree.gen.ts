@@ -15,6 +15,7 @@ import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resources.$token'
 
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
@@ -46,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WinnerResourcesTokenRoute = WinnerResourcesTokenRouteImport.update({
+  id: '/winner-resources/$token',
+  path: '/winner-resources/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/thank-you': typeof ThankYouRoute
+  '/winner-resources/$token': typeof WinnerResourcesTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/thank-you': typeof ThankYouRoute
+  '/winner-resources/$token': typeof WinnerResourcesTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/thank-you': typeof ThankYouRoute
+  '/winner-resources/$token': typeof WinnerResourcesTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +90,16 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/pricing'
     | '/thank-you'
+    | '/winner-resources/$token'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/complete' | '/faq' | '/methodology' | '/pricing' | '/thank-you'
+  to:
+    | '/'
+    | '/complete'
+    | '/faq'
+    | '/methodology'
+    | '/pricing'
+    | '/thank-you'
+    | '/winner-resources/$token'
   id:
     | '__root__'
     | '/'
@@ -91,6 +108,7 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/pricing'
     | '/thank-you'
+    | '/winner-resources/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,6 +118,7 @@ export interface RootRouteChildren {
   MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRoute
   ThankYouRoute: typeof ThankYouRoute
+  WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -146,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/winner-resources/$token': {
+      id: '/winner-resources/$token'
+      path: '/winner-resources/$token'
+      fullPath: '/winner-resources/$token'
+      preLoaderRoute: typeof WinnerResourcesTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -156,7 +182,18 @@ const rootRouteChildren: RootRouteChildren = {
   MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRoute,
   ThankYouRoute: ThankYouRoute,
+  WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
