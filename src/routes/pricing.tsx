@@ -85,7 +85,6 @@ const tiers: Tier[] = [
 const freeBenefits = [
   "Your official winner badge and shareable graphics",
   "Your written recognition (the write-up) — yours to keep and share",
-  "Confirmation of your win",
 ];
 
 function Price({ value }: { value: number }) {
