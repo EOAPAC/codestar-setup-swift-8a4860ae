@@ -481,42 +481,21 @@ function WinnerResourcesPage() {
                     className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/15),transparent_70%)]"
                   />
                   <div className="relative">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-medium uppercase tracking-widest text-primary">
-                        Recognized · Published Profile
-                      </span>
-                      <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
-                        Recommended
-                      </span>
-                    </div>
+                    <span className="text-xs font-medium uppercase tracking-widest text-primary">
+                      Recognized · Published Profile
+                    </span>
                     <p className="mt-5 text-sm text-muted-foreground">
-                      A permanent, verifiable profile page for your 2026 win, with additional visibility options for winners ready to go further.
+                      A permanent, verifiable profile page for your 2026 win, with options for winners ready to go further.
                     </p>
 
                     <Button asChild size="lg" className="mt-6 w-full">
-                      <a href="/pricing" target="_blank" rel="noopener noreferrer">
+                      <a href="/winner-packages" target="_blank" rel="noopener noreferrer">
                         View winner packages
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
                     <p className="mt-3 text-center text-xs text-muted-foreground">
                       Choose the package that fits how far you want your win to travel.
-                    </p>
-
-                    <div className="mt-6 grid grid-cols-3 gap-2 border-t border-border pt-5">
-                      {reassurance.map((r) => {
-                        const Icon = r.icon;
-                        return (
-                          <div key={r.text} className="flex flex-col items-center gap-1.5 text-center">
-                            <Icon className="h-4 w-4 text-primary" />
-                            <span className="text-[11px] leading-tight text-muted-foreground">{r.text}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <p className="mt-5 text-center text-xs italic text-muted-foreground">
-                      Unclaimed wins fade. Verified wins compound.
                     </p>
                   </div>
                 </Card>
