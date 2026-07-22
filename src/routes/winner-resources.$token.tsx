@@ -460,7 +460,7 @@ function WinnerResourcesPage() {
               Ready to take your win further?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Your badge and write-up are yours to share today. When you're ready, here's how to make your recognition go further:
+              Your badge and write-up are yours to share today. When you're ready, here's how to take your recognition further:
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -491,7 +491,7 @@ function WinnerResourcesPage() {
               </a>
             </Button>
             <p className="mt-3 text-center text-sm text-muted-foreground">
-              Choose how far you want your win to travel.
+              Three clear steps — choose how far you want your win to travel.
             </p>
           </div>
         </section>
