@@ -490,7 +490,7 @@ function WinnerResourcesPage() {
                       Recognized · Published Profile
                     </span>
                     <p className="mt-5 text-sm text-muted-foreground">
-                      A permanent, verifiable profile page for your 2026 win, with options for winners ready to go further.
+                      A published, verifiable profile page for your 2026 win, with options for winners ready to go further.
                     </p>
 
                     <Button asChild size="lg" className="mt-6 w-full">
