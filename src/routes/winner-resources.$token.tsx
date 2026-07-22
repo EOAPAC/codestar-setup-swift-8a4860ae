@@ -139,16 +139,32 @@ function generatePlaceholderDownload(filename: string) {
   return URL.createObjectURL(blob);
 }
 
-function triggerDownload(filename: string) {
-  const url = generatePlaceholderDownload(filename);
+async function triggerDownload(filename: string, url?: string) {
+  let href = url;
+  let revoke = false;
+  if (href) {
+    try {
+      const res = await fetch(href);
+      const blob = await res.blob();
+      href = URL.createObjectURL(blob);
+      revoke = true;
+    } catch {
+      href = generatePlaceholderDownload(filename);
+      revoke = true;
+    }
+  } else {
+    href = generatePlaceholderDownload(filename);
+    revoke = true;
+  }
   const a = document.createElement("a");
-  a.href = url;
+  a.href = href;
   a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  if (revoke) URL.revokeObjectURL(href);
 }
+
 
 // ---------- Confetti ----------
 function Confetti() {
