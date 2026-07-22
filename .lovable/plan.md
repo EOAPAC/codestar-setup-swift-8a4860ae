@@ -1,39 +1,105 @@
-Create a concise, reusable prompt document that captures the design idea and context used to build the Entrepreneur Awards Methodology and FAQ pages. The deliverable is a plain-language prompt template that the user can paste into any other project.
+## Goal
 
-Deliverable (the prompt to use):
+Turn `/winner-resources/[token]` from a quiet download page into a celebration moment that naturally guides the winner to make their win official (paid upgrade). Keep EA brand (blue #1978E5, Inter, clean modern), stay professional (guide, not pressure), stay generic (no personal data), stay `noindex`.
 
-```text
-Build a "Methodology" page and a "FAQ" page for my business website.
+Only edits `src/routes/winner-resources.$token.tsx`. Nav, footer, pricing, and HubSpot flow untouched.
 
-Design direction
-- Match the existing site style: clean, professional, dark-ish background, minimal UI, brand-blue accent.
-- Hero section: a subtle blue radial gradient glow behind the top of the page, text sitting clearly above it (not hidden behind the glow).
-- Use a pill/badge above the headline, not a giant hero illustration.
-- Keep the tone professional and informational, not salesy. Avoid em dashes; use commas or periods instead so the copy does not feel AI-generated.
+---
 
-Methodology page (/methodology)
-- Purpose: explain how the service/program makes decisions or delivers results.
-- Hero: badge label, H1 headline, and 2-3 short paragraphs of calm, authoritative subtext.
-- Process section: numbered vertical timeline (5-6 steps). Each step has a small icon, a step counter, a title, and a paragraph explaining what happens. Add a thin vertical gradient line connecting the steps on desktop.
-- Criteria section: 4-6 criteria cards in a 2-column grid. Each card has a colored icon, a title, and a one-paragraph description. Add a short closing paragraph explaining why the criteria matter.
-- Tone: plain, transparent, and substance-first. No heavy marketing language.
+## Layout (top to bottom)
 
-FAQ page (/faq)
-- Purpose: answer the main questions before someone takes action.
-- Hero: badge label, H1 headline, short subtext, and a row of anchor chips linking to topic sections (Getting started, Eligibility, How it works, Judging, Winners, etc.).
-- FAQ body: an accordion with 8-10 items. Each item is a single collapsible question/answer.
-- Within answers, link naturally to the Methodology page or contact section where relevant.
-- Bottom card: a "Still have a question?" box with an email button and a primary action button (e.g., "Start Your Entry" or equivalent).
-- Add a site-wide CTA section below the FAQ if the site already uses one.
+1. Celebration hero
+   - Confetti/particle burst behind headline (subtle, CSS + a few animated dots, no heavy libs).
+   - Larger badge chip: "2026 Winner · Verified Entry".
+   - Headline: "Congratulations. You made it."
+   - Subline: warm, human, one line.
+   - Two soft trust chips under subline: "Assets ready to download" · "Your recognition is live".
 
-Technical notes
-- Create the route files as separate pages in the framework (e.g., TanStack Start: /methodology and /faq under src/routes/).
-- Use shared nav and footer components so both pages are wired into the site navigation.
-- Set unique page titles, meta descriptions, and Open Graph tags for each page.
-- Use Lucide-style icons for the process and criteria cards.
-- Keep all pricing or sales pressure out of the Methodology page; let the FAQ handle objections.
+2. "At a glance" strip (new — CRO anchoring)
+   - 3 tiny stat cards: "4 assets ready", "Under 2 min to share", "1 step to make it official".
+   - Purpose: primes value + previews the upsell without selling yet.
 
-After building, add links in the main navigation and footer so users can reach both pages from anywhere on the site.
-```
+3. Download your assets (the free value, upgraded)
+   - Same 4 assets, but each card gets:
+     - Real-feel SVG preview (badge shape, square post mock, story mock, banner mock) instead of generic icon tile.
+     - "Download" primary + small "Copy share caption" secondary (copies a pre-written LinkedIn/IG caption to clipboard — a proven share-lift CRO move).
+   - "Download all" button above the grid (bundles the 4 SVGs as sequential downloads).
+   - Micro-line under grid: "Designed with space to add your name or photo."
 
-The plan stops here. No code changes, no implementation. The output above is the requested prompt template.
+4. "Share in one tap" row (new — momentum builder)
+   - Small row of share buttons: LinkedIn, X, Copy link.
+   - Share target is the public EA site (not the token URL), with a pre-written post.
+   - Purpose: gets the winner publicly committed to their win, which increases upgrade intent.
+
+5. Make your win official (the upsell, reworked with CRO)
+   - Visually distinct band, still on-brand and calm.
+   - Left column:
+     - Eyebrow: "The final step".
+     - Headline: "Make your win official".
+     - Body copy (kept measured, close to current wording).
+     - 3-point value list with icons (verified profile · third-party checkable · shows up in search).
+     - Mini "social proof / credibility" line: "Published profiles are indexed and shareable across LinkedIn, press kits, and investor decks." (no fake testimonials).
+   - Right column (sticky on desktop):
+     - Card with a subtle gradient border.
+     - "Recognized · Published Profile" label.
+     - Price + "One-time" (pulled to match `/pricing` Recognized tier so pricing stays consistent).
+     - Primary CTA: "Make my win official →" links to `/pricing#recognized`.
+     - Secondary text link: "See all winner packages".
+     - Reassurance row: "Live within 24h · Permanent link · Editable anytime" (icons).
+   - Loss-aversion micro-line under CTA (soft, not pushy): "Unclaimed wins fade. Verified wins compound."
+
+6. Mini FAQ (new — objection handling, CRO)
+   - 3–4 collapsible items reused from shadcn Accordion:
+     - "Do I have to upgrade to use the assets?" (No.)
+     - "What's on the published profile?"
+     - "Can I edit it later?"
+     - "Who sees it?"
+   - Keeps tone honest; removes friction before the CTA.
+
+7. Footer helper line (kept)
+   - "Questions about your win? Reply to your winner email and we'll help."
+   - `SiteFooter` reused.
+
+---
+
+## CRO + UX principles applied
+
+- Peak-end rule: strong celebratory open, strong reassuring close.
+- Anchoring: "at a glance" strip primes value before ask.
+- Reciprocity: assets + share captions delivered first, upsell second.
+- Commitment/consistency: public share buttons increase upgrade likelihood.
+- Cognitive ease: one primary CTA color, secondary CTAs muted.
+- Loss aversion: single soft line, not repeated.
+- Objection handling: mini FAQ right before final CTA repeat.
+- Visual hierarchy: hero → value → share → upsell → FAQ → footer, one clear next step per section.
+- Motion: restrained (fade/slide-in on scroll, small confetti loop on hero only); respects `prefers-reduced-motion`.
+
+---
+
+## Brand + tone guardrails
+
+- Blue #1978E5 accent only, Inter, existing radial-glow hero pattern reused.
+- No em dashes (use commas/periods) to match existing pages.
+- Professional, classy, celebratory. No "LIMITED TIME", no countdowns, no fake urgency.
+- Generic page: no name, no company, no personal fields anywhere.
+- `robots: noindex` stays.
+
+---
+
+## Technical notes
+
+- Single file edit: `src/routes/winner-resources.$token.tsx`.
+- Reuse: `SiteNav`, `SiteFooter`, `Button`, `Card`, `Accordion` (shadcn, already installed).
+- Confetti: pure CSS keyframes + ~12 absolutely-positioned dots, wrapped in `motion-safe:`.
+- Share captions + share URLs: local constants in the file.
+- Pricing number for Recognized card: hardcode to match current `/pricing` ($245) so the two pages stay consistent; noted so future price changes update both.
+- No new routes, no nav changes, no backend changes, no new deps.
+
+---
+
+## Out of scope
+
+- Real asset artwork (still SVG placeholders).
+- Personalization / per-winner data.
+- Auth or token validation.
+- Changes to `/pricing`, `/complete`, HubSpot flow, or nav visibility.
