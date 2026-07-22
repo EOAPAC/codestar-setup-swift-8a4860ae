@@ -314,16 +314,18 @@ function WinnerResourcesPage() {
                 <Check className="h-3.5 w-3.5 text-primary" /> Your recognition is live
               </span>
             </div>
+            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Your win is yours to share today. You can also make it verifiable — more on that below.
+            </p>
           </div>
         </section>
 
         {/* ============ At a glance strip ============ */}
         <section className="border-b border-border bg-secondary/30">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-3">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-2">
             {[
               { icon: Award, label: "4 assets ready to share" },
               { icon: Timer, label: "Under 2 minutes to post" },
-              { icon: Sparkles, label: "1 step to make it official" },
             ].map((s) => {
               const Icon = s.icon;
               return (
@@ -403,6 +405,9 @@ function WinnerResourcesPage() {
 
             <p className="mt-6 text-center text-xs text-muted-foreground">
               Designed with space to add your name or photo. Files download as SVG placeholders in this preview.
+            </p>
+            <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+              Sharing your win is a great start. The next step is making it something others can verify ↓
             </p>
           </div>
         </section>
