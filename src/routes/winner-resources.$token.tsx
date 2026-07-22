@@ -26,9 +26,6 @@ import {
   Share2,
   PartyPopper,
   Timer,
-  Rocket,
-  Pencil,
-  Globe,
 } from "lucide-react";
 
 export const Route = createFileRoute("/winner-resources/$token")({
