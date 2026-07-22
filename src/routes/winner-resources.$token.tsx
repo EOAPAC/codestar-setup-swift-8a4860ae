@@ -157,17 +157,17 @@ const rungs = [
   {
     icon: LinkIcon,
     title: "Make it official",
-    text: "Published at a verifiable link others can check.",
-  },
-  {
-    icon: Share2,
-    title: "Get it in the press",
-    text: "Your story distributed to business and startup media.",
+    text: "your write-up published at a verifiable link, plus a certificate.",
   },
   {
     icon: Award,
-    title: "Go big",
-    text: "A flagship feature and our widest reach.",
+    title: "Something to show for it",
+    text: "a physical plaque and investor-ready materials.",
+  },
+  {
+    icon: Share2,
+    title: "Get it seen everywhere",
+    text: "your story out through our press network.",
   },
 ];
 
@@ -460,7 +460,7 @@ function WinnerResourcesPage() {
               Ready to take your win further?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Your badge and write-up are yours to share today. When you're ready, here's how to make your recognition go further:
+              Your badge and write-up are yours to share today. When you're ready, here's how to take your recognition further:
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -491,7 +491,7 @@ function WinnerResourcesPage() {
               </a>
             </Button>
             <p className="mt-3 text-center text-sm text-muted-foreground">
-              Choose how far you want your win to travel.
+              Three clear steps — choose how far you want your win to travel.
             </p>
           </div>
         </section>
