@@ -15,10 +15,7 @@ import {
   Award,
   Download,
   Link as LinkIcon,
-  Shield,
-  Search,
   ArrowRight,
-  Sparkles,
   Copy,
   Check,
   Linkedin,
@@ -156,10 +153,22 @@ const assets = [
   },
 ];
 
-const upgradePoints = [
-  { icon: LinkIcon, text: "A verified, published profile at a permanent link." },
-  { icon: Shield, text: "Something others can check, not just a claim you make." },
-  { icon: Search, text: "Recognition that surfaces when someone searches you." },
+const rungs = [
+  {
+    icon: LinkIcon,
+    title: "Make it official",
+    text: "Published at a verifiable link others can check.",
+  },
+  {
+    icon: Share2,
+    title: "Get it in the press",
+    text: "Your story distributed to business and startup media.",
+  },
+  {
+    icon: Award,
+    title: "Go big",
+    text: "A flagship feature and our widest reach.",
+  },
 ];
 
 const faqs = [
@@ -446,66 +455,44 @@ function WinnerResourcesPage() {
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
           />
-          <div className="relative mx-auto max-w-6xl px-6">
-            <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-              {/* Left: message */}
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
-                  <Sparkles className="h-3.5 w-3.5" />
-                  The final step
-                </span>
-                <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-                  Make your win official.
-                </h2>
-                <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                  The assets above are yours to share. The final step is to make your recognition verifiable, published at a permanent link that prospects, investors, and press can find and confirm for themselves, so your win stands as independent proof rather than your own claim.
-                </p>
-                <ul className="mt-8 space-y-4">
-                  {upgradePoints.map((point) => {
-                    const Icon = point.icon;
-                    return (
-                      <li key={point.text} className="flex items-start gap-3">
-                        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <span className="pt-0.5 text-sm text-foreground/85 md:text-base">{point.text}</span>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <p className="mt-8 max-w-xl border-l-2 border-primary/40 pl-4 text-sm italic text-muted-foreground">
-                  Published profiles are indexed and shareable across LinkedIn, press kits, and investor decks.
-                </p>
-              </div>
+          <div className="relative mx-auto max-w-4xl px-6 text-center">
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+              Ready to take your win further?
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              Your badge and write-up are yours to share today. When you're ready, here's how to make your recognition go further:
+            </p>
 
-              {/* Right: offer card */}
-              <div className="lg:sticky lg:top-24">
-                <Card className="relative overflow-hidden border-primary/20 p-7 shadow-xl shadow-primary/5">
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              {rungs.map((rung, idx) => {
+                const Icon = rung.icon;
+                return (
                   <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/15),transparent_70%)]"
-                  />
-                  <div className="relative">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-foreground">
-                      Recognized · Published Profile
-                    </span>
-                    <p className="mt-5 text-sm text-muted-foreground">
-                      A published, verifiable profile page for your 2026 win, with options for winners ready to go further.
-                    </p>
-
-                    <Button asChild size="lg" className="mt-6 w-full">
-                      <a href="/winner-packages">
-                        View winner packages
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                    <p className="mt-3 text-center text-xs text-muted-foreground">
-                      Choose the package that fits how far you want your win to travel.
+                    key={rung.title}
+                    className="flex flex-col items-center rounded-xl border border-border bg-card p-6 text-center transition-all hover:border-primary/30 hover:shadow-sm"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <p className="mt-4 text-sm font-semibold text-foreground">
+                      {rung.title}
+                      <span className="mx-1 text-muted-foreground">—</span>
+                      <span className="font-normal text-muted-foreground">{rung.text}</span>
                     </p>
                   </div>
-                </Card>
-              </div>
+                );
+              })}
             </div>
+
+            <Button asChild size="lg" className="mt-10">
+              <a href="/winner-packages">
+                View winner packages
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <p className="mt-3 text-center text-sm text-muted-foreground">
+              Choose how far you want your win to travel.
+            </p>
           </div>
         </section>
 
