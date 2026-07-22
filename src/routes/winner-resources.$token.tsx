@@ -162,12 +162,6 @@ const upgradePoints = [
   { icon: Search, text: "Recognition that surfaces when someone searches you." },
 ];
 
-const reassurance = [
-  { icon: Rocket, text: "Live within 24h" },
-  { icon: Globe, text: "Permanent link" },
-  { icon: Pencil, text: "Editable anytime" },
-];
-
 const faqs = [
   {
     q: "Do I have to upgrade to use the assets?",
