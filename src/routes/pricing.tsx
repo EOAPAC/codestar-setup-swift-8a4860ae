@@ -45,9 +45,8 @@ const tiers: Tier[] = [
     tagline: "Make it official.",
     ctaLabel: "Claim Recognized",
     items: [
-      "Your recognition published at a permanent, verifiable link — proof others can check, not just a claim you make",
-      "A verified listing in the Winners Directory",
-      "Optimized so it surfaces when someone searches your name",
+      "A published, verifiable profile page for your win — a permanent link others can check",
+      "Listed in the Winners Directory, findable when someone searches your name",
     ],
     footer: "For the founder who wants their win on the record and verifiable.",
   },
@@ -60,8 +59,8 @@ const tiers: Tier[] = [
     ctaLabel: "Claim Featured",
     items: [
       "Everything in Recognized, plus:",
-      "Your story written up and distributed through our press network to business and startup media",
-      "Real coverage, packaged as shareable proof you can send to prospects and investors",
+      "Your story distributed through our press network to business and startup media",
+      "Coverage packaged as proof you can send to prospects and investors",
       "An \"as seen in\" media strip for your website",
     ],
     footer: "For the founder who wants to be seen where it changes the conversation.",
@@ -80,6 +79,12 @@ const tiers: Tier[] = [
     ],
     footer: "For the founder who wants their win working everywhere, for good.",
   },
+];
+
+const freeBenefits = [
+  "Your official winner badge and shareable graphics",
+  "Your written recognition (the write-up) — yours to keep and share",
+  "Confirmation of your win",
 ];
 
 function Price({ value }: { value: number }) {
@@ -160,6 +165,29 @@ function PricingCard({ tier }: { tier: Tier }) {
   );
 }
 
+function FreeBenefitsSection() {
+  return (
+    <div className="mx-auto max-w-4xl">
+      <div className="rounded-2xl border border-border bg-primary/[0.03] px-6 py-8 md:px-10 md:py-10">
+        <h2 className="text-center text-xl font-semibold tracking-tight text-foreground md:text-2xl">
+          Every winner receives, free
+        </h2>
+        <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+          {freeBenefits.map((benefit, index) => (
+            <li key={index} className="flex items-start gap-3 text-sm text-foreground">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+              <span>{benefit}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-center text-sm text-muted-foreground">
+          These are yours the moment you win. The packages below are about taking your recognition further.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function PricingPage() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -183,16 +211,17 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="px-6 py-12 md:py-20">
+        <section className="px-6 py-12 md:py-16">
+          <FreeBenefitsSection />
+        </section>
+
+        <section className="px-6 pb-12 md:pb-20">
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-6 md:grid-cols-3">
               {tiers.map((tier) => (
                 <PricingCard key={tier.id} tier={tier} />
               ))}
             </div>
-            <p className="mt-10 text-center text-sm text-muted-foreground">
-              Every winner keeps their badge, graphics, and write-up for free — these options are about how far you take them.
-            </p>
           </div>
         </section>
 
