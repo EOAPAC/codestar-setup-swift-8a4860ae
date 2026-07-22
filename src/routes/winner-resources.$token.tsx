@@ -55,7 +55,7 @@ export const Route = createFileRoute("/winner-resources/$token")({
 });
 
 const BRAND_BLUE = "#1978E5";
-const RECOGNIZED_PRICE = "$245";
+
 const SHARE_URL = "https://www.entrepreneurawards.co";
 const SHARE_CAPTION =
   "Honored to share that I've been named a 2026 Entrepreneur Award winner. Grateful for the recognition and for everyone who's been part of the journey. Learn more about the program: https://www.entrepreneurawards.co";
