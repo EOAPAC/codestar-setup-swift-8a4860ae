@@ -221,9 +221,10 @@ function WinnerResourcesPage() {
   };
 
   const downloadAll = () => {
-    assets.forEach((a, i) => setTimeout(() => triggerDownload(a.filename), i * 250));
+    assets.forEach((a, i) => setTimeout(() => triggerDownload(a.filename, a.image), i * 250));
     toast.success("Downloading all four assets.");
   };
+
 
   const shareLinkedIn = () => {
     window.open(
