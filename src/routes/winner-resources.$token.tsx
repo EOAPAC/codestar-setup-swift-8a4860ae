@@ -213,7 +213,7 @@ function AssetPreview({ asset }: { asset: (typeof assets)[number] }) {
       src={asset.image}
       alt={asset.title}
       loading="lazy"
-      className="pointer-events-none h-full w-full select-none"
+      className="pointer-events-none h-full w-full select-none object-cover"
     />
   );
 
