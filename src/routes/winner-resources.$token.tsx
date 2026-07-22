@@ -206,6 +206,63 @@ function Confetti() {
   );
 }
 
+function AssetPreview({ asset }: { asset: (typeof assets)[number] }) {
+  const baseShadow = "shadow-xl shadow-primary/10 ring-1 ring-black/5";
+  const img = (
+    <img
+      src={asset.image}
+      alt={asset.title}
+      loading="lazy"
+      className="pointer-events-none h-full w-full select-none"
+    />
+  );
+
+  if (asset.presentation === "seal") {
+    return (
+      <div
+        className={`relative flex aspect-square h-40 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-primary/5 p-4 transition-transform duration-300 group-hover:scale-[1.03] ${baseShadow}`}
+      >
+        <div className="relative h-full w-full overflow-hidden rounded-full">
+          {img}
+        </div>
+      </div>
+    );
+  }
+
+  if (asset.presentation === "square") {
+    return (
+      <div
+        className={`relative aspect-square h-44 overflow-hidden rounded-2xl bg-background transition-transform duration-300 group-hover:scale-[1.03] ${baseShadow}`}
+      >
+        {img}
+      </div>
+    );
+  }
+
+  if (asset.presentation === "story") {
+    return (
+      <div className="relative h-[200px] w-[112px] shrink-0 overflow-hidden rounded-[1.75rem] border-[5px] border-background bg-background shadow-2xl shadow-primary/10 ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-[1.03]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center pt-1.5">
+          <div className="h-1.5 w-10 rounded-full bg-black/10" />
+        </div>
+        {img}
+      </div>
+    );
+  }
+
+  // banner
+  return (
+    <div className="w-full max-w-[92%] overflow-hidden rounded-xl bg-background shadow-2xl shadow-primary/10 ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-[1.02]">
+      <div className="flex items-center gap-1.5 border-b border-border bg-secondary/60 px-3 py-2">
+        <div className="h-2 w-2 rounded-full bg-red-400" />
+        <div className="h-2 w-2 rounded-full bg-yellow-400" />
+        <div className="h-2 w-2 rounded-full bg-green-400" />
+      </div>
+      <div className="relative aspect-[1920/520] w-full overflow-hidden">{img}</div>
+    </div>
+  );
+}
+
 function WinnerResourcesPage() {
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
 
