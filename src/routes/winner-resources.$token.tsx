@@ -292,7 +292,7 @@ function WinnerResourcesPage() {
           />
           <Confetti />
           <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-20 text-center md:pt-32 md:pb-24">
-            <span className="inline-flex animate-fade-in items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+            <span className="inline-flex animate-fade-in items-center gap-2 rounded-full border border-primary bg-primary px-3 py-1 text-xs font-medium text-primary-foreground shadow-sm">
               <PartyPopper className="h-3.5 w-3.5" />
               2026 Winner · Verified Entry
             </span>
