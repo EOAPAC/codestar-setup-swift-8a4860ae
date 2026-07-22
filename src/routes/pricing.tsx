@@ -172,7 +172,7 @@ function FreeBenefitsSection() {
         <h2 className="text-center text-xl font-semibold tracking-tight text-foreground md:text-2xl">
           Every winner receives, free
         </h2>
-        <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+        <ul className="mx-auto mt-6 grid max-w-2xl gap-4 sm:grid-cols-2">
           {freeBenefits.map((benefit, index) => (
             <li key={index} className="flex items-start gap-3 text-sm text-foreground">
               <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
