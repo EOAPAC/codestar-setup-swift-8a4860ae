@@ -182,7 +182,7 @@ function FreeBenefitsSection() {
           ))}
         </ul>
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          These are yours the moment you win. The packages below are about taking your recognition further.
+          These are yours the moment you win. The packages below take your recognition further — in three clear steps.
         </p>
       </div>
     </div>
