@@ -378,8 +378,9 @@ function WinnerResourcesPage() {
             </div>
 
             <p className="mt-6 text-center text-xs text-muted-foreground">
-              Designed with space to add your name or photo. Files download as SVG placeholders in this preview.
+              Designed with space to add your name or photo. Files download as high-resolution PNGs.
             </p>
+
             <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
               Sharing your win is a great start. The next step is making it something others can verify ↓
             </p>
