@@ -66,7 +66,7 @@ const assets = [
     description:
       "Official badge and seal for your website, email signature, and press kit.",
     image: badgeAsset.url,
-    previewFit: "contain" as const,
+    presentation: "seal" as const,
     filename: "EA-Winner-Badge-Seal.png",
   },
   {
@@ -74,7 +74,7 @@ const assets = [
     description:
       "Instagram, LinkedIn, and X post template designed with space to add your photo.",
     image: squareAsset.url,
-    previewFit: "cover" as const,
+    presentation: "square" as const,
     filename: "EA-Square-Social-Graphic.png",
   },
   {
@@ -82,7 +82,7 @@ const assets = [
     description:
       "Stories and Reels format for sharing your win across mobile-first platforms.",
     image: storyAsset.url,
-    previewFit: "cover" as const,
+    presentation: "story" as const,
     filename: "EA-Story-Vertical-Graphic.png",
   },
   {
@@ -90,7 +90,7 @@ const assets = [
     description:
       "Cover image for LinkedIn and website headers, sized for professional profiles.",
     image: bannerAsset.url,
-    previewFit: "cover" as const,
+    presentation: "banner" as const,
     filename: "EA-LinkedIn-Website-Banner.png",
   },
 ];
