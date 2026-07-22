@@ -486,7 +486,7 @@ function WinnerResourcesPage() {
                     className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/15),transparent_70%)]"
                   />
                   <div className="relative">
-                    <span className="text-xs font-medium uppercase tracking-widest text-primary">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-foreground">
                       Recognized · Published Profile
                     </span>
                     <p className="mt-5 text-sm text-muted-foreground">
