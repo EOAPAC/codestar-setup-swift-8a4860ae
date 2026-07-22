@@ -157,17 +157,17 @@ const rungs = [
   {
     icon: LinkIcon,
     title: "Make it official",
-    text: "Published at a verifiable link others can check.",
-  },
-  {
-    icon: Share2,
-    title: "Get it in the press",
-    text: "Your story distributed to business and startup media.",
+    text: "your write-up published at a verifiable link, plus a certificate.",
   },
   {
     icon: Award,
-    title: "Go big",
-    text: "A flagship feature and our widest reach.",
+    title: "Something to show for it",
+    text: "a physical plaque and investor-ready materials.",
+  },
+  {
+    icon: Share2,
+    title: "Get it seen everywhere",
+    text: "your story out through our press network.",
   },
 ];
 
