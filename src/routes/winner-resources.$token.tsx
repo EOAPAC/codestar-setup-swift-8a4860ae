@@ -330,14 +330,18 @@ function WinnerResourcesPage() {
 
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {assets.map((asset, idx) => {
-                const { Preview } = asset;
                 return (
                   <Card
                     key={asset.title}
                     className="group flex flex-col overflow-hidden border-border transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/10 to-primary/[0.02]">
-                      <Preview />
+                      <img
+                        src={asset.image}
+                        alt={asset.title}
+                        loading="lazy"
+                        className={`h-full w-full ${asset.previewFit === "contain" ? "object-contain p-4" : "object-cover"}`}
+                      />
                     </div>
                     <div className="flex flex-1 flex-col p-5">
                       <h3 className="text-base font-semibold tracking-tight">{asset.title}</h3>
@@ -345,10 +349,11 @@ function WinnerResourcesPage() {
                         {asset.description}
                       </p>
                       <div className="mt-5 flex flex-col gap-2">
-                        <Button size="sm" className="w-full" onClick={() => triggerDownload(asset.filename)}>
+                        <Button size="sm" className="w-full" onClick={() => triggerDownload(asset.filename, asset.image)}>
                           <Download className="mr-2 h-4 w-4" />
                           Download
                         </Button>
+
                         <Button
                           variant="ghost"
                           size="sm"
