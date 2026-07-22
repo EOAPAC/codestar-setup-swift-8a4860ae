@@ -55,7 +55,7 @@ export const Route = createFileRoute("/winner-resources/$token")({
 });
 
 const BRAND_BLUE = "#1978E5";
-const RECOGNIZED_PRICE = "$245";
+
 const SHARE_URL = "https://www.entrepreneurawards.co";
 const SHARE_CAPTION =
   "Honored to share that I've been named a 2026 Entrepreneur Award winner. Grateful for the recognition and for everyone who's been part of the journey. Learn more about the program: https://www.entrepreneurawards.co";
@@ -498,28 +498,19 @@ function WinnerResourcesPage() {
                         Recommended
                       </span>
                     </div>
-                    <div className="mt-5 flex items-baseline gap-2">
-                      <span className="text-4xl font-semibold tracking-tight">{RECOGNIZED_PRICE}</span>
-                      <span className="text-sm text-muted-foreground">one time</span>
-                    </div>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      A permanent, verifiable profile page for your 2026 win.
+                    <p className="mt-5 text-sm text-muted-foreground">
+                      A permanent, verifiable profile page for your 2026 win, with additional visibility options for winners ready to go further.
                     </p>
 
                     <Button asChild size="lg" className="mt-6 w-full">
                       <a href="/pricing" target="_blank" rel="noopener noreferrer">
-                        Make my win official
+                        View winner packages
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
-                    <a
-                      href="/pricing"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 block text-center text-xs text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
-                    >
-                      See all winner packages
-                    </a>
+                    <p className="mt-3 text-center text-xs text-muted-foreground">
+                      Choose the package that fits how far you want your win to travel.
+                    </p>
 
                     <div className="mt-6 grid grid-cols-3 gap-2 border-t border-border pt-5">
                       {reassurance.map((r) => {
