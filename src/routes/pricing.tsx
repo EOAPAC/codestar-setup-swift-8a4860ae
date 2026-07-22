@@ -45,9 +45,8 @@ const tiers: Tier[] = [
     tagline: "Make it official.",
     ctaLabel: "Claim Recognized",
     items: [
-      "Your recognition published at a permanent, verifiable link — proof others can check, not just a claim you make",
-      "A verified listing in the Winners Directory",
-      "Optimized so it surfaces when someone searches your name",
+      "A published, verifiable profile page for your win — a permanent link others can check",
+      "Listed in the Winners Directory, findable when someone searches your name",
     ],
     footer: "For the founder who wants their win on the record and verifiable.",
   },
@@ -60,8 +59,8 @@ const tiers: Tier[] = [
     ctaLabel: "Claim Featured",
     items: [
       "Everything in Recognized, plus:",
-      "Your story written up and distributed through our press network to business and startup media",
-      "Real coverage, packaged as shareable proof you can send to prospects and investors",
+      "Your story distributed through our press network to business and startup media",
+      "Coverage packaged as proof you can send to prospects and investors",
       "An \"as seen in\" media strip for your website",
     ],
     footer: "For the founder who wants to be seen where it changes the conversation.",
@@ -80,6 +79,12 @@ const tiers: Tier[] = [
     ],
     footer: "For the founder who wants their win working everywhere, for good.",
   },
+];
+
+const freeBenefits = [
+  "Your official winner badge and shareable graphics",
+  "Your written recognition (the write-up) — yours to keep and share",
+  "Confirmation of your win",
 ];
 
 function Price({ value }: { value: number }) {
