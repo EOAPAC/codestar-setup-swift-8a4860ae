@@ -211,16 +211,17 @@ function PricingPage() {
           </div>
         </section>
 
-        <section className="px-6 py-12 md:py-20">
+        <section className="px-6 py-12 md:py-16">
+          <FreeBenefitsSection />
+        </section>
+
+        <section className="px-6 pb-12 md:pb-20">
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-6 md:grid-cols-3">
               {tiers.map((tier) => (
                 <PricingCard key={tier.id} tier={tier} />
               ))}
             </div>
-            <p className="mt-10 text-center text-sm text-muted-foreground">
-              Every winner keeps their badge, graphics, and write-up for free — these options are about how far you take them.
-            </p>
           </div>
         </section>
 
