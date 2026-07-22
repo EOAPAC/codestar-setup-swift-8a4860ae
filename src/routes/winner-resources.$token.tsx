@@ -494,7 +494,7 @@ function WinnerResourcesPage() {
                     </p>
 
                     <Button asChild size="lg" className="mt-6 w-full">
-                      <a href="/winner-packages" target="_blank" rel="noopener noreferrer">
+                      <a href="/winner-packages">
                         View winner packages
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
