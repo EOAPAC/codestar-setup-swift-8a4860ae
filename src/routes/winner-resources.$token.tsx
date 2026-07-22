@@ -156,10 +156,22 @@ const assets = [
   },
 ];
 
-const upgradePoints = [
-  { icon: LinkIcon, text: "A verified, published profile at a permanent link." },
-  { icon: Shield, text: "Something others can check, not just a claim you make." },
-  { icon: Search, text: "Recognition that surfaces when someone searches you." },
+const rungs = [
+  {
+    icon: LinkIcon,
+    title: "Make it official",
+    text: "Published at a verifiable link others can check.",
+  },
+  {
+    icon: Share2,
+    title: "Get it in the press",
+    text: "Your story distributed to business and startup media.",
+  },
+  {
+    icon: Award,
+    title: "Go big",
+    text: "A flagship feature and our widest reach.",
+  },
 ];
 
 const faqs = [
