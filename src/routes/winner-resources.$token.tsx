@@ -26,9 +26,6 @@ import {
   Share2,
   PartyPopper,
   Timer,
-  Rocket,
-  Pencil,
-  Globe,
 } from "lucide-react";
 
 export const Route = createFileRoute("/winner-resources/$token")({
@@ -163,12 +160,6 @@ const upgradePoints = [
   { icon: LinkIcon, text: "A verified, published profile at a permanent link." },
   { icon: Shield, text: "Something others can check, not just a claim you make." },
   { icon: Search, text: "Recognition that surfaces when someone searches you." },
-];
-
-const reassurance = [
-  { icon: Rocket, text: "Live within 24h" },
-  { icon: Globe, text: "Permanent link" },
-  { icon: Pencil, text: "Editable anytime" },
 ];
 
 const faqs = [
@@ -323,16 +314,18 @@ function WinnerResourcesPage() {
                 <Check className="h-3.5 w-3.5 text-primary" /> Your recognition is live
               </span>
             </div>
+            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Your win is yours to share today. You can also make it verifiable — more on that below.
+            </p>
           </div>
         </section>
 
         {/* ============ At a glance strip ============ */}
         <section className="border-b border-border bg-secondary/30">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-3">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-2">
             {[
               { icon: Award, label: "4 assets ready to share" },
               { icon: Timer, label: "Under 2 minutes to post" },
-              { icon: Sparkles, label: "1 step to make it official" },
             ].map((s) => {
               const Icon = s.icon;
               return (
@@ -413,6 +406,9 @@ function WinnerResourcesPage() {
             <p className="mt-6 text-center text-xs text-muted-foreground">
               Designed with space to add your name or photo. Files download as SVG placeholders in this preview.
             </p>
+            <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+              Sharing your win is a great start. The next step is making it something others can verify ↓
+            </p>
           </div>
         </section>
 
@@ -490,42 +486,21 @@ function WinnerResourcesPage() {
                     className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/15),transparent_70%)]"
                   />
                   <div className="relative">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-medium uppercase tracking-widest text-primary">
-                        Recognized · Published Profile
-                      </span>
-                      <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
-                        Recommended
-                      </span>
-                    </div>
+                    <span className="text-xs font-medium uppercase tracking-widest text-primary">
+                      Recognized · Published Profile
+                    </span>
                     <p className="mt-5 text-sm text-muted-foreground">
-                      A permanent, verifiable profile page for your 2026 win, with additional visibility options for winners ready to go further.
+                      A published, verifiable profile page for your 2026 win, with options for winners ready to go further.
                     </p>
 
                     <Button asChild size="lg" className="mt-6 w-full">
-                      <a href="/pricing" target="_blank" rel="noopener noreferrer">
+                      <a href="/winner-packages">
                         View winner packages
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
                     <p className="mt-3 text-center text-xs text-muted-foreground">
                       Choose the package that fits how far you want your win to travel.
-                    </p>
-
-                    <div className="mt-6 grid grid-cols-3 gap-2 border-t border-border pt-5">
-                      {reassurance.map((r) => {
-                        const Icon = r.icon;
-                        return (
-                          <div key={r.text} className="flex flex-col items-center gap-1.5 text-center">
-                            <Icon className="h-4 w-4 text-primary" />
-                            <span className="text-[11px] leading-tight text-muted-foreground">{r.text}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <p className="mt-5 text-center text-xs italic text-muted-foreground">
-                      Unclaimed wins fade. Verified wins compound.
                     </p>
                   </div>
                 </Card>
