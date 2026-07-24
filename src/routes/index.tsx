@@ -466,7 +466,7 @@ function SubmissionForm() {
         if (!result.ok) {
           throw new Error(`HubSpot submission failed [${result.status}]`);
         }
-        navigate({ to: "/complete" });
+        navigate({ to: "/thank-you" });
       } catch (error) {
         console.error("HubSpot server-side submission failed", error);
         setFormError("Something went wrong submitting your entry. Please try again.");
@@ -498,7 +498,7 @@ function SubmissionForm() {
           pageUrl: window.location.href,
           onFormReady: attachServerSubmit,
           onFormSubmitted: () => {
-            navigate({ to: "/complete" });
+            navigate({ to: "/thank-you" });
           },
         });
       }
@@ -553,7 +553,7 @@ function SubmissionForm() {
             </p>
           )}
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            Free to submit your story. A consideration fee applies for full panel review — waived for standout founders. We reply within 14 days.
+            Free to enter. No fees, no payment required. Our founder-judges reply within 14 days.
           </p>
         </Card>
       </div>
