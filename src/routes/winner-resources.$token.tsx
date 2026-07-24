@@ -101,7 +101,7 @@ const offer = {
   icon: Sparkles,
   title: "The Winner's Feature",
   price: 495,
-  text: "Everything we do to turn your win into visibility and proof — a written feature, a published link, distribution through our founder network, and an engraved keepsake award sent to you.",
+  text: "Everything we do to turn your win into visibility and proof. A written feature, a published link, distribution through our founder network, and an engraved keepsake award sent to you.",
 };
 
 const faqs = [
