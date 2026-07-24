@@ -98,19 +98,14 @@ const assets = [
 
 const rungs = [
   {
-    icon: LinkIcon,
-    title: "Make it official",
-    text: "your write-up published at a verifiable link, plus a certificate.",
+    icon: Share2,
+    title: "The Reach Route",
+    text: "get your win published, verified, and distributed through our founder/press network.",
   },
   {
     icon: Award,
-    title: "Something to show for it",
-    text: "a physical plaque and investor-ready materials.",
-  },
-  {
-    icon: Share2,
-    title: "Get it seen everywhere",
-    text: "your story out through our press network.",
+    title: "The Keepsake Route",
+    text: "hold your win with an engraved award, framed certificate, and display-ready graphics.",
   },
 ];
 
