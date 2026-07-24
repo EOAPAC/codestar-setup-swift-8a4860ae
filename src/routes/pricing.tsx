@@ -217,6 +217,12 @@ function PricingPage() {
                 </FreeTile>
               </Reveal>
             </div>
+
+            <Reveal delay={200}>
+              <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-muted-foreground md:text-lg">
+                These announce your win. The Winner's Feature below is how it gets discovered — a real story, published and shared, that keeps working long after the post.
+              </p>
+            </Reveal>
           </div>
         </section>
 
@@ -234,7 +240,7 @@ function PricingPage() {
                   The Winner's Feature
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                  Turn recognition into a story people read.
+                  Turn your win into a story people read.
                 </h2>
               </div>
             </Reveal>
