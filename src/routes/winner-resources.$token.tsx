@@ -96,18 +96,12 @@ const assets = [
 ];
 
 
-const rungs = [
-  {
-    icon: Share2,
-    title: "The Amplify Route",
-    text: "get your story out there with a published feature and distribution through our founder and press network.",
-  },
-  {
-    icon: Award,
-    title: "The Keepsake Route",
-    text: "hold your win with an engraved award, pen, framed certificate, and display-ready graphics.",
-  },
-];
+const offer = {
+  icon: Sparkles,
+  title: "The Winner's Feature",
+  price: 495,
+  text: "Everything we do to turn your win into visibility and proof — a written feature, a published link, distribution through our founder network, and an engraved keepsake award sent to you.",
+};
 
 const faqs = [
   {
