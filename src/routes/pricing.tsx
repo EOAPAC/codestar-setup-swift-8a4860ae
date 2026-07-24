@@ -359,13 +359,16 @@ function PricingPage() {
   );
 }
 
-function FreeTile({ label, children }: { label: string; children: ReactNode }) {
+function FreeTile({ icon: Icon, label, description }: { icon: LucideIcon; label: string; description: string }) {
   return (
-    <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none">
-      <div className="h-48 overflow-hidden">{children}</div>
-      <div className="border-t border-border px-4 py-3">
+    <div className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none">
+      <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+        <Icon className="h-5 w-5" aria-hidden />
+      </span>
+      <div>
         <p className="text-sm font-medium text-foreground">{label}</p>
-        <p className="text-xs text-muted-foreground">Free · yours to use</p>
+        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{description}</p>
+        <p className="mt-2 text-[11px] font-medium uppercase tracking-wider text-primary">Free · yours to use</p>
       </div>
     </div>
   );
