@@ -80,7 +80,7 @@ function CompletePage() {
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-medium text-foreground">
-                2026 Entrepreneur Awards — Entry
+                2026 Entrepreneur Awards - Entry
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 One-time application fee
