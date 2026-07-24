@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Card } from "@/components/ui/card";
@@ -14,13 +15,11 @@ import {
   FileText,
   Sparkles,
   Star,
+  Share2,
+  LayoutTemplate,
 } from "lucide-react";
-import squareSocialAsset from "@/assets/EA_Square_Social_Image.png.asset.json";
-import linkedinBannerAsset from "@/assets/EA_Linkedin_Banner.png.asset.json";
 
 const BRAND_BLUE = "#1978E5";
-const squareSocial = squareSocialAsset.url;
-const linkedinBanner = linkedinBannerAsset.url;
 
 // The Winner's Feature price. Edit this constant to update the page.
 const WINNERS_FEATURE_PRICE = 495;
@@ -172,7 +171,7 @@ function PricingPage() {
           </div>
         </section>
 
-        {/* ALREADY YOURS — visual tiles */}
+        {/* ALREADY YOURS — simple text tiles */}
         <section className="border-t border-border bg-secondary/30 px-6 py-20">
           <div className="mx-auto max-w-5xl">
             <Reveal>
@@ -189,32 +188,27 @@ function PricingPage() {
               </div>
             </Reveal>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Reveal delay={0}>
-                <FreeTile label="Winner Badge">
-                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/5 to-transparent p-6">
-                    <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 p-4 shadow-[0_12px_40px_-12px_rgba(25,120,229,0.45)] ring-1 ring-primary/20">
-                      <Award className="h-14 w-14 text-primary-foreground" strokeWidth={1.2} aria-hidden />
-                      <span className="absolute bottom-[12%] rounded-full bg-background px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-foreground shadow-sm">
-                        2026 Winner
-                      </span>
-                    </div>
-                  </div>
-                </FreeTile>
+                <FreeTile
+                  icon={Award}
+                  label="Winner badge"
+                  description="Official seal for your website, email signature, and press kit."
+                />
               </Reveal>
               <Reveal delay={80}>
-                <FreeTile label="Social Graphics">
-                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/5 to-transparent p-6">
-                    <img src={squareSocial} alt="Square social graphic" className="max-h-40 rounded-md object-contain shadow-md" />
-                  </div>
-                </FreeTile>
+                <FreeTile
+                  icon={Share2}
+                  label="Social graphics"
+                  description="Square and story-sized posts for Instagram, LinkedIn, and X."
+                />
               </Reveal>
               <Reveal delay={160}>
-                <FreeTile label="LinkedIn Banner">
-                  <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/5 to-transparent p-6">
-                    <img src={linkedinBanner} alt="LinkedIn banner" className="max-h-32 w-full rounded-md object-contain shadow-md" />
-                  </div>
-                </FreeTile>
+                <FreeTile
+                  icon={LayoutTemplate}
+                  label="LinkedIn banner"
+                  description="Cover image sized for LinkedIn and website headers."
+                />
               </Reveal>
             </div>
 
@@ -358,26 +352,6 @@ function PricingPage() {
             </Reveal>
           </div>
         </section>
-
-        {/* CLOSING */}
-        <section className="border-t border-border px-6 py-20">
-          <div className="mx-auto max-w-2xl text-center">
-            <Reveal>
-              <p className="text-xl leading-relaxed text-foreground md:text-2xl">
-                You built something worth recognizing. This makes sure the people who matter actually see it.
-              </p>
-            </Reveal>
-            <Reveal delay={100}>
-              <p className="mt-6 text-sm text-muted-foreground">
-                Every winner is independently reviewed and selected.{" "}
-                <Link to="/methodology" className="text-primary underline-offset-4 hover:underline">
-                  Read the methodology
-                </Link>
-                .
-              </p>
-            </Reveal>
-          </div>
-        </section>
       </main>
 
       <SiteFooter />
@@ -385,13 +359,16 @@ function PricingPage() {
   );
 }
 
-function FreeTile({ label, children }: { label: string; children: ReactNode }) {
+function FreeTile({ icon: Icon, label, description }: { icon: LucideIcon; label: string; description: string }) {
   return (
-    <div className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none">
-      <div className="h-48 overflow-hidden">{children}</div>
-      <div className="border-t border-border px-4 py-3">
+    <div className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none">
+      <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+        <Icon className="h-5 w-5" aria-hidden />
+      </span>
+      <div>
         <p className="text-sm font-medium text-foreground">{label}</p>
-        <p className="text-xs text-muted-foreground">Free · yours to use</p>
+        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{description}</p>
+        <p className="mt-2 text-[11px] font-medium uppercase tracking-wider text-primary">Free · yours to use</p>
       </div>
     </div>
   );
