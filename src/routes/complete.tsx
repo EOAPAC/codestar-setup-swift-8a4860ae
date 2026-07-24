@@ -19,35 +19,36 @@ import {
   Sparkles,
   ShieldCheck,
   Lock,
+  Pen,
+  Truck,
 } from "lucide-react";
 
 // ------------------------------------------------------------------
 // Easy-edit constants — tweak these without hunting through the file.
+// IMPORTANT: update HUBSPOT_PAYMENT_SRC to the Winner's Feature payment.
 // ------------------------------------------------------------------
 const HUBSPOT_PAYMENT_SRC =
   "https://payments-na1.hubspot.com/payments/gVsrMxrxsqyJTX?referrer=PAYMENT_LINK_EMBED&layout=embed-full";
 const HUBSPOT_EMBED_SCRIPT =
   "https://static.hsappstatic.net/payments-embed/ex/PaymentsEmbedCode.js";
-const PRICE = "$129";
-const PRICE_WAS = "$169";
-const SAVINGS = "Save $40";
+const PRICE = "$495";
 const RESULT_DAYS = "14 business days";
 // ------------------------------------------------------------------
 
 export const Route = createFileRoute("/complete")({
   head: () => ({
     meta: [
-      { title: "Secure Your Entry — The Entrepreneur Awards" },
+      { title: "Claim Your Winner's Feature | The Entrepreneur Awards" },
       {
         name: "description",
         content:
-          "Your application is confirmed. Secure your entry fee to start the independent review by our judging panel.",
+          "Your win is confirmed. Claim your Winner's Feature to turn your recognition into a published story, distribution, and a keepsake award.",
       },
-      { property: "og:title", content: "Secure Your Entry — The Entrepreneur Awards" },
+      { property: "og:title", content: "Claim Your Winner's Feature | The Entrepreneur Awards" },
       {
         property: "og:description",
         content:
-          "Your application is confirmed. Secure your entry fee to start the independent review by our judging panel.",
+          "Your win is confirmed. Claim your Winner's Feature to turn your recognition into a published story, distribution, and a keepsake award.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -75,60 +76,65 @@ function CompletePage() {
   }, []);
 
   const perks = [
-    "Independent judging by experienced founders",
-    "Detailed scoring and written feedback",
-    "A verified place among recognised founders",
-    "Shareable proof and exposure to the network",
-    "Boosted credibility in investor and sales conversations",
+    "A professionally written feature about you and your business",
+    "Published on The Entrepreneur Awards site at a permanent link",
+    "Distribution through our founder and press network",
+    "An \"as featured\" media strip for your website and profiles",
+    "A finely crafted, engraved keepsake award sent to you",
   ];
 
   const timeline = [
     {
       icon: CreditCard,
-      title: "Secure your entry",
-      body: "Complete the consideration fee. This confirms your spot and starts the review.",
+      title: "Claim your feature",
+      body: "Complete the one-time payment. This confirms your feature and starts the editorial process.",
+    },
+    {
+      icon: Pen,
+      title: "Editorial interview",
+      body: "Our editorial team schedules a short interview to capture your story.",
     },
     {
       icon: CalendarDays,
-      title: "Independent review",
-      body: `Our judging panel evaluates every entry. Review takes ${RESULT_DAYS}.`,
+      title: "Review and publish",
+      body: `We write, edit, and publish your feature. Review takes ${RESULT_DAYS}.`,
     },
     {
-      icon: Award,
-      title: "Results and recognition",
-      body: "Winners receive official badges, a directory profile, and public proof of the win.",
+      icon: Truck,
+      title: "Keepsake shipped",
+      body: "Your engraved keepsake award is made and sent to you with your certificate.",
     },
   ];
 
   const faqs = [
     {
-      q: "When will I get results?",
-      a: `Within ${RESULT_DAYS} of submission.`,
+      q: "When will my feature be published?",
+      a: `Within ${RESULT_DAYS} of claiming your feature.`,
     },
     {
-      q: "What if I don't win?",
-      a: "You still receive detailed scoring and written feedback from our judges.",
+      q: "What if I want changes to the story?",
+      a: "You get one round of revisions before publication to make sure it reads the way you want.",
     },
     {
       q: "Can I get a refund?",
-      a: "Yes — refundable within 48 hours if evaluation hasn't begun. Once scoring starts, the fee is non-refundable.",
+      a: "Yes — refundable within 48 hours if editorial work hasn't begun. Once writing starts, the feature is non-refundable.",
     },
   ];
 
   const testimonials = [
     {
       quote:
-        "The judging feedback was the most useful outside perspective we've had on the business this year.",
+        "The feature gave us a credibility bump we felt immediately in sales conversations.",
       attribution: "2025 EA winner",
     },
     {
       quote:
-        "Winning gave us a credibility bump we felt immediately in sales conversations.",
+        "Having a real link to send to investors and clients changed how we talked about the award.",
       attribution: "2024 EA winner",
     },
     {
       quote:
-        "A serious, founder-run process. Worth every minute of the application.",
+        "The keepsake sits on my desk as a daily reminder of what we built.",
       attribution: "2025 EA winner",
     },
   ];
@@ -137,7 +143,6 @@ function CompletePage() {
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
 
-      {/* Confirmed-state hero */}
       <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-primary/[0.08] to-background px-6 pb-10 pt-14 md:pb-16 md:pt-20">
         <div className="absolute -left-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-primary/10 blur-3xl md:h-[36rem] md:w-[36rem]" />
         <div className="absolute -right-20 top-40 h-[20rem] w-[20rem] rounded-full bg-primary/10 blur-3xl md:h-[28rem] md:w-[28rem]" />
@@ -151,59 +156,54 @@ function CompletePage() {
             className="mb-4 inline-flex items-center gap-1.5 font-medium"
           >
             <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-            Application confirmed
+            Winner's Feature
           </Badge>
           <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
-            Secure your entry for judging
+            Claim your Winner's Feature
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-            Your application is in. One step left: complete the consideration fee so our panel can begin the independent review.
+            Your 2026 Entrepreneur Award is yours. Complete the one-time feature to publish your story, distribute it, and receive your engraved keepsake.
           </p>
 
           <div className="mx-auto mt-8 max-w-xl">
             <div className="flex items-center justify-center gap-4 text-sm">
               <span className="inline-flex items-center gap-1.5 font-medium text-primary">
                 <Check className="h-4 w-4" />
-                Application submitted
+                Win confirmed
               </span>
               <span className="h-1 w-1 rounded-full bg-muted-foreground" />
-              <span className="font-medium">Payment to begin review</span>
+              <span className="font-medium">Claim your feature</span>
             </div>
             <div
               className="mt-3 h-2 w-full overflow-hidden rounded-full bg-secondary"
               role="progressbar"
-              aria-valuenow={90}
+              aria-valuenow={75}
               aria-valuemin={0}
               aria-valuemax={100}
             >
-              <div className="h-full rounded-full bg-primary" style={{ width: "90%" }} />
+              <div className="h-full rounded-full bg-primary" style={{ width: "75%" }} />
             </div>
           </div>
         </div>
       </section>
 
       <main className="mx-auto max-w-6xl px-6 py-10 md:py-16">
-        {/* Two columns */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          {/* LEFT — payment */}
           <div className="space-y-6">
             <Card className="relative overflow-hidden border-primary/10 p-6 md:p-8">
               <div className="absolute left-0 right-0 top-0 h-1 bg-primary/20" />
               <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <h2 className="text-xl font-semibold">Entry consideration fee</h2>
+                  <h2 className="text-xl font-semibold">The Winner's Feature</h2>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Secures your place in the review queue.
+                    One-time feature and keepsake package.
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-2xl font-bold text-foreground">{PRICE}</span>
-                  <div className="flex flex-col items-start">
-                    <span className="text-sm text-muted-foreground line-through">{PRICE_WAS}</span>
-                    <Badge variant="secondary" className="text-xs font-medium">
-                      {SAVINGS}
-                    </Badge>
-                  </div>
+                  <Badge variant="secondary" className="text-xs font-medium">
+                    One-time
+                  </Badge>
                 </div>
               </div>
 
@@ -236,13 +236,12 @@ function CompletePage() {
               <div>
                 <p className="text-sm font-medium">Your payment is protected</p>
                 <p className="text-xs text-muted-foreground">
-                  Refundable within 48 hours before review begins. No hidden fees.
+                  Refundable within 48 hours before editorial work begins. No hidden fees.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* RIGHT — what happens next + value + proof */}
           <div className="space-y-6">
             <Card className="p-6 md:p-8">
               <h2 className="text-xl font-semibold">What happens next</h2>
@@ -269,7 +268,7 @@ function CompletePage() {
             </Card>
 
             <Card className="p-6 md:p-8">
-              <h2 className="text-xl font-semibold">What your entry includes</h2>
+              <h2 className="text-xl font-semibold">What's included</h2>
               <ul className="mt-5 space-y-3">
                 {perks.map((p) => (
                   <li key={p} className="flex items-start gap-3">
