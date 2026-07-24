@@ -50,7 +50,7 @@ function ThankYouPage() {
       icon: Mail,
       label: "You get a reply",
       date: "Within 14 days",
-      description: "Shortlisted founders choose how they take their win — reach or keepsake.",
+      description: "Shortlisted founders choose how they take their win — amplify or keepsake.",
       status: "pending" as const,
     },
     {
