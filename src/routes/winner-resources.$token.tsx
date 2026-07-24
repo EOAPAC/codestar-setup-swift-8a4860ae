@@ -99,13 +99,13 @@ const assets = [
 const rungs = [
   {
     icon: Share2,
-    title: "The Reach Route",
-    text: "get your win published, verified, and distributed through our founder/press network.",
+    title: "The Amplify Route",
+    text: "get your story out there with a published feature and distribution through our founder and press network.",
   },
   {
     icon: Award,
     title: "The Keepsake Route",
-    text: "hold your win with an engraved award, framed certificate, and display-ready graphics.",
+    text: "hold your win with an engraved award, pen, framed certificate, and display-ready graphics.",
   },
 ];
 
