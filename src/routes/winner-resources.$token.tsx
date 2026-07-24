@@ -99,13 +99,13 @@ const assets = [
 const rungs = [
   {
     icon: Share2,
-    title: "The Reach Route",
-    text: "get your win published, verified, and distributed through our founder/press network.",
+    title: "The Amplify Route",
+    text: "get your story out there with a published feature and distribution through our founder and press network.",
   },
   {
     icon: Award,
     title: "The Keepsake Route",
-    text: "hold your win with an engraved award, framed certificate, and display-ready graphics.",
+    text: "hold your win with an engraved award, pen, framed certificate, and display-ready graphics.",
   },
 ];
 
@@ -475,7 +475,7 @@ function WinnerResourcesPage() {
               Ready to take your win further?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Your badge and write-up are yours to share today. When you're ready, choose how you want to take your recognition:
+              Your badge and write-up are yours to share today. When you're ready, here's how to take your recognition further:
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -506,7 +506,7 @@ function WinnerResourcesPage() {
               </Link>
             </Button>
             <p className="mt-3 text-center text-sm text-muted-foreground">
-              Two equal paths — same recognition, different form.
+              Two equal paths — choose how far you want your win to travel.
             </p>
           </div>
         </section>
