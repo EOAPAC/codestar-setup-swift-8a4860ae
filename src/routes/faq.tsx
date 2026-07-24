@@ -96,7 +96,7 @@ function FAQPage() {
                     Is it free to enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Yes — it's free to put your story forward. A consideration fee applies for our panel to review and score your submission in full, and standout founders are selected for complimentary consideration.
+                    Yes — entering is completely free. There is no submission fee and no payment required to be considered. Every entry is read and scored by our founder-judges.
                   </AccordionContent>
                 </AccordionItem>
 
