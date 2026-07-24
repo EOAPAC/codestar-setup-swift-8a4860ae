@@ -13,12 +13,12 @@ import {
   ImageIcon,
   FileText,
   Sparkles,
+  Star,
 } from "lucide-react";
-import winnerSealAsset from "@/assets/EA_Winner_Seal.png.asset.json";
 import squareSocialAsset from "@/assets/EA_Square_Social_Image.png.asset.json";
 import linkedinBannerAsset from "@/assets/EA_Linkedin_Banner.png.asset.json";
 
-const winnerSeal = winnerSealAsset.url;
+const BRAND_BLUE = "#1978E5";
 const squareSocial = squareSocialAsset.url;
 const linkedinBanner = linkedinBannerAsset.url;
 
@@ -46,6 +46,48 @@ const deliverables = [
   { icon: ImageIcon, title: "An 'as featured' media strip", body: "For your own website, decks, and profiles." },
   { icon: Award, title: "An engraved keepsake award", body: "Finely crafted, sent to you to mark the achievement." },
 ];
+
+// Confetti (same as winner-resources page)
+function Confetti() {
+  const dots = Array.from({ length: 24 });
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden motion-reduce:hidden">
+      {dots.map((_, i) => {
+        const left = (i * 41) % 100;
+        const delay = (i % 8) * 0.5;
+        const duration = 5 + (i % 6);
+        const size = 4 + (i % 5);
+        const colors = [BRAND_BLUE, "#60a5fa", "#93c5fd", "#dbeafe", "#facc15", "#ffffff"];
+        const color = colors[i % colors.length];
+        const rotate = (i * 37) % 360;
+        const drift = (i % 3) - 1;
+        return (
+          <span
+            key={i}
+            className="absolute block rounded-[1px] opacity-80"
+            style={{
+              left: `${left}%`,
+              top: "-10%",
+              width: `${size}px`,
+              height: `${size * 1.6}px`,
+              backgroundColor: color,
+              transform: `rotate(${rotate}deg)`,
+              animation: `ea-confetti-fall ${duration}s linear ${delay}s infinite`,
+              "--ea-drift": `${drift * 40}px`,
+            } as React.CSSProperties}
+          />
+        );
+      })}
+      <style>{`
+        @keyframes ea-confetti-fall {
+          0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+          8% { opacity: 0.95; }
+          100% { transform: translateY(460px) translateX(var(--ea-drift, 0px)) rotate(720deg); opacity: 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
 
 // Fade-in on scroll
 function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
@@ -102,62 +144,32 @@ function PricingPage() {
             />
           </div>
 
+          <Confetti />
+
           <div className="relative mx-auto max-w-4xl text-center">
             <Reveal>
-              <p className="mb-8 text-xs font-medium uppercase tracking-[0.28em] text-primary">
-                The Entrepreneur Awards · 2026
-              </p>
+              <span className="inline-flex animate-fade-in items-center gap-2 rounded-full border border-primary/30 bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20">
+                <Star className="h-4 w-4 fill-current" />
+                2026 Winner · Verified Entry
+              </span>
             </Reveal>
 
             <Reveal delay={80}>
-              <div className="relative mx-auto mb-10 h-40 w-40 md:h-52 md:w-52">
-                <div aria-hidden className="absolute inset-0 -m-6 rounded-full bg-primary/20 blur-2xl animate-pulse motion-reduce:animate-none" />
-                <div className="ea-seal-float motion-reduce:animate-none relative flex h-full w-full flex-col items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 p-4 shadow-[0_12px_40px_-12px_rgba(25,120,229,0.45)] ring-1 ring-primary/20">
-                  <Award className="h-20 w-20 text-primary-foreground md:h-28 md:w-28" strokeWidth={1.2} aria-hidden />
-                  <span className="absolute bottom-[14%] rounded-full bg-background px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground shadow-sm">
-                    2026 Winner
-                  </span>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={140}>
-              <h1 className="text-6xl font-semibold tracking-tight text-foreground md:text-8xl">
-                You won.
+              <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground md:text-7xl lg:text-8xl">
+                Congratulations.
+                <br />
+                <span className="bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
+                  You won.
+                </span>
               </h1>
             </Reveal>
 
-            <Reveal delay={220}>
+            <Reveal delay={160}>
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
                 Your recognition is yours. Here's how to make the world see it.
               </p>
             </Reveal>
           </div>
-
-          <style>{`
-            @keyframes ea-float {
-              0%, 100% { transform: translateY(0); }
-              50% { transform: translateY(-6px); }
-            }
-            .ea-seal-float { animation: ea-float 6s ease-in-out infinite; }
-            @keyframes ea-shine {
-              0% { transform: translateX(-120%) rotate(12deg); }
-              60%, 100% { transform: translateX(220%) rotate(12deg); }
-            }
-            .ea-shine-bar {
-              position: absolute;
-              top: -20%;
-              left: 0;
-              width: 40%;
-              height: 140%;
-              background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-              filter: blur(6px);
-              animation: ea-shine 5.5s ease-in-out infinite;
-            }
-            @media (prefers-reduced-motion: reduce) {
-              .ea-shine-bar { animation: none; display: none; }
-            }
-          `}</style>
         </section>
 
         {/* ALREADY YOURS — visual tiles */}
@@ -179,10 +191,13 @@ function PricingPage() {
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <Reveal delay={0}>
-                <FreeTile label="Winner Seal">
+                <FreeTile label="Winner Badge">
                   <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/5 to-transparent p-6">
-                    <div className="rounded-full bg-background p-2 shadow-md ring-1 ring-primary/10">
-                      <img src={winnerSeal} alt="Winner seal" className="h-28 w-28 rounded-full object-contain" />
+                    <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 p-4 shadow-[0_12px_40px_-12px_rgba(25,120,229,0.45)] ring-1 ring-primary/20">
+                      <Award className="h-14 w-14 text-primary-foreground" strokeWidth={1.2} aria-hidden />
+                      <span className="absolute bottom-[12%] rounded-full bg-background px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-foreground shadow-sm">
+                        2026 Winner
+                      </span>
                     </div>
                   </div>
                 </FreeTile>
