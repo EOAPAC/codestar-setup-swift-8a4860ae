@@ -1,16 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { ArrowRight, Lock, FileCheck } from "lucide-react";
+import { Lock, FileCheck } from "lucide-react";
 
 // ------------------------------------------------------------------
-// Easy-edit constants. Update these to match the entry-fee payment.
+// Easy-edit constants for the HubSpot payment embed.
 // ------------------------------------------------------------------
-const ENTRY_FEE_PRICE = "$99";
-const HUBSPOT_ENTRY_PAYMENT_LINK =
-  "https://payments.entrepreneurawards.co/entry-fee-placeholder";
+const HUBSPOT_PAYMENT_EMBED_SRC =
+  "https://payments-na1.hubspot.com/payments/gVsrMxrxsqyJTX?referrer=PAYMENT_LINK_EMBED&layout=embed-full";
+const HUBSPOT_PAYMENT_EMBED_SCRIPT =
+  "https://static.hsappstatic.net/payments-embed/ex/PaymentsEmbedCode.js";
 // ------------------------------------------------------------------
 
 export const Route = createFileRoute("/complete")({
@@ -40,6 +40,24 @@ export const Route = createFileRoute("/complete")({
 });
 
 function CompletePage() {
+  useEffect(() => {
+    const existing = document.querySelector(
+      `script[src="${HUBSPOT_PAYMENT_EMBED_SCRIPT}"]`,
+    );
+    if (existing) {
+      // Re-trigger the embed script so it picks up the container on client nav
+      existing.remove();
+    }
+    const script = document.createElement("script");
+    script.src = HUBSPOT_PAYMENT_EMBED_SCRIPT;
+    script.type = "text/javascript";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      script.remove();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
@@ -75,43 +93,12 @@ function CompletePage() {
           </div>
         </div>
 
-        <Card className="relative mt-8 overflow-hidden border-primary/10 p-6 md:p-8">
-          <div className="absolute left-0 right-0 top-0 h-1 bg-primary/20" />
-          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm font-medium text-foreground">
-                2026 Entrepreneur Awards - Entry
-              </p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                One-time application fee
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-3xl font-bold text-foreground">
-                {ENTRY_FEE_PRICE}
-              </span>
-              <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-muted-foreground">
-                One-time
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-8 border-t border-border pt-8">
-            <Button
-              asChild
-              size="lg"
-              className="w-full sm:w-auto"
-            >
-              <a
-                href={HUBSPOT_ENTRY_PAYMENT_LINK}
-                className="inline-flex items-center justify-center"
-              >
-                Complete entry
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-          </div>
-        </Card>
+        <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card p-2 md:p-4">
+          <div
+            className="payments-iframe-container ea-complete__embed"
+            data-src={HUBSPOT_PAYMENT_EMBED_SRC}
+          />
+        </div>
 
         <p className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
           <Lock className="h-3 w-3" />
