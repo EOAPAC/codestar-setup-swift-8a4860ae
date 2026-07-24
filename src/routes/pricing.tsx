@@ -186,7 +186,9 @@ function PricingPage() {
               <Reveal delay={0}>
                 <FreeTile label="Winner Seal">
                   <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/5 to-transparent p-6">
-                    <img src={winnerSeal} alt="Winner seal" className="h-32 w-32 object-contain drop-shadow-lg" />
+                    <div className="rounded-full bg-background p-2 shadow-md ring-1 ring-primary/10">
+                      <img src={winnerSeal} alt="Winner seal" className="h-28 w-28 rounded-full object-contain" />
+                    </div>
                   </div>
                 </FreeTile>
               </Reveal>
