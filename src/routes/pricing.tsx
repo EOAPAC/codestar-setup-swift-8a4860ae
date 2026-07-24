@@ -8,16 +8,16 @@ import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Winner package prices. Edit these constants to update every card.
-const REACH_ROUTE_PRICE = 495;
+const AMPLIFY_ROUTE_PRICE = 495;
 const KEEPSAKE_ROUTE_PRICE = 495;
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Winner Packages | The Entrepreneur Awards" },
-      { name: "description", content: "Your 2026 Entrepreneur Award is yours. Choose how you take your recognition — spread the reach, or hold the keepsake." },
+      { name: "description", content: "Your 2026 Entrepreneur Award is yours. Choose how you take your recognition — amplify your story or hold the win." },
       { property: "og:title", content: "Winner Packages | The Entrepreneur Awards" },
-      { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. Choose how you take your recognition — spread the reach, or hold the keepsake." },
+      { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. Choose how you take your recognition — amplify your story or hold the win." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -37,17 +37,18 @@ interface Path {
 
 const paths: Path[] = [
   {
-    id: "reach",
-    name: "The Reach Route",
-    price: REACH_ROUTE_PRICE,
-    tagline: "Get your win seen.",
-    ctaLabel: "Choose the Reach Route",
+    id: "amplify",
+    name: "The Amplify Route",
+    price: AMPLIFY_ROUTE_PRICE,
+    tagline: "Get your story out there.",
+    ctaLabel: "Choose the Amplify Route",
     items: [
-      "Your recognition published at a permanent, verifiable link — proof others can check",
-      "Your profile in the winners directory, optimized to surface when someone searches you",
-      "Distribution of your win through our founder/press network",
+      "A professionally written feature story about you and your business, authored by our editorial team",
+      "Published on The Entrepreneur Awards site at a permanent link you can share with anyone",
+      "Your feature distributed through our founder and press network to reach people who don't know you yet",
+      "A shareable \"as featured in\" media strip for your own website and profiles",
     ],
-    footer: "For the founder who wants their win working online, in front of people who don't know them yet.",
+    footer: "For the founder who wants their win working out loud — seen, read, and shared beyond their own circle.",
   },
   {
     id: "keepsake",
@@ -56,11 +57,12 @@ const paths: Path[] = [
     tagline: "Hold your win.",
     ctaLabel: "Choose the Keepsake Route",
     items: [
-      "A finely crafted, engraved award — a real piece for your desk or office, sent to you",
+      "A finely crafted, engraved award — a real weighted piece for your desk or office, sent to you",
+      "An engraved pen, individually inscribed — a lasting mark of the achievement",
       "A framed certificate of your recognition",
       "Your winner badge and graphics, ready to display",
     ],
-    footer: "For the founder who wants something real to mark the achievement.",
+    footer: "For the founder who wants something real to mark what they built.",
   },
 ];
 
@@ -129,7 +131,7 @@ function FreeBenefitsSection() {
           Free with your win
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-center text-sm text-muted-foreground">
-          Your winner badge, shareable graphics, and your written write-up — yours to post and share today.
+          Your winner badge, shareable graphics, and your write-up — yours to post and share today.
         </p>
       </div>
     </div>
@@ -151,10 +153,10 @@ function PricingPage() {
               Winner Packages
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              You won. Now choose how you take it.
+              You won. Now choose what you do with it.
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Your 2026 Entrepreneur Award is yours. Pick the path that fits how you want to use it — both carry the same recognition.
+              Your 2026 Entrepreneur Award is yours. Get your story out in front of the world, or hold a piece of it in your hands — both carry the same recognition.
             </p>
           </div>
         </section>
@@ -178,7 +180,7 @@ function PricingPage() {
                   to="/complete"
                   className="font-medium text-foreground underline-offset-2 hover:text-primary hover:underline"
                 >
-                  Take both paths →
+                  Take both →
                 </Link>
               </p>
             </div>
