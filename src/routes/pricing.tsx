@@ -112,14 +112,14 @@ function PricingPage() {
             <Reveal delay={80}>
               <div className="relative mx-auto mb-10 h-40 w-40 md:h-52 md:w-52">
                 <div aria-hidden className="absolute inset-0 -m-6 rounded-full bg-primary/20 blur-2xl animate-pulse motion-reduce:animate-none" />
-                <div className="ea-seal-float motion-reduce:animate-none relative h-full w-full">
+                <div className="ea-seal-float motion-reduce:animate-none relative h-full w-full rounded-full bg-background p-3 shadow-[0_12px_40px_-12px_rgba(25,120,229,0.45)] ring-1 ring-primary/10">
                   <img
                     src={winnerSeal}
                     alt="Entrepreneur Awards winner seal"
-                    className="h-full w-full object-contain drop-shadow-[0_10px_30px_rgba(25,120,229,0.35)]"
+                    className="h-full w-full rounded-full object-contain"
                   />
                   {/* soft sheen sweep */}
-                  <div aria-hidden className="ea-seal-shine absolute inset-0 overflow-hidden rounded-full">
+                  <div aria-hidden className="ea-seal-shine absolute inset-3 overflow-hidden rounded-full">
                     <div className="ea-shine-bar" />
                   </div>
                 </div>
@@ -186,7 +186,9 @@ function PricingPage() {
               <Reveal delay={0}>
                 <FreeTile label="Winner Seal">
                   <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/5 to-transparent p-6">
-                    <img src={winnerSeal} alt="Winner seal" className="h-32 w-32 object-contain drop-shadow-lg" />
+                    <div className="rounded-full bg-background p-2 shadow-md ring-1 ring-primary/10">
+                      <img src={winnerSeal} alt="Winner seal" className="h-28 w-28 rounded-full object-contain" />
+                    </div>
                   </div>
                 </FreeTile>
               </Reveal>
