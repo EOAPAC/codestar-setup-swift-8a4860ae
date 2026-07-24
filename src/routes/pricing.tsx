@@ -191,10 +191,13 @@ function PricingPage() {
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <Reveal delay={0}>
-                <FreeTile label="Winner Seal">
+                <FreeTile label="Winner Badge">
                   <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/5 to-transparent p-6">
-                    <div className="rounded-full bg-background p-2 shadow-md ring-1 ring-primary/10">
-                      <img src={winnerSeal} alt="Winner seal" className="h-28 w-28 rounded-full object-contain" />
+                    <div className="relative flex h-28 w-28 flex-col items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 p-4 shadow-[0_12px_40px_-12px_rgba(25,120,229,0.45)] ring-1 ring-primary/20">
+                      <Award className="h-14 w-14 text-primary-foreground" strokeWidth={1.2} aria-hidden />
+                      <span className="absolute bottom-[12%] rounded-full bg-background px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-foreground shadow-sm">
+                        2026 Winner
+                      </span>
                     </div>
                   </div>
                 </FreeTile>
