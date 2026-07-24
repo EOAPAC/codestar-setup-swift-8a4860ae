@@ -24,6 +24,14 @@ import {
   PartyPopper,
   Timer,
   Sparkles,
+  Globe,
+  PenTool,
+  Megaphone,
+  Star,
+  Zap,
+  TrendingUp,
+  Calendar,
+  Truck,
 } from "lucide-react";
 
 export const Route = createFileRoute("/winner-resources/$token")({
@@ -33,13 +41,13 @@ export const Route = createFileRoute("/winner-resources/$token")({
       {
         name: "description",
         content:
-          "Celebrate your 2026 Entrepreneur Award. Download your winner assets and make your recognition official with a verified, published profile.",
+          "Celebrate your 2026 Entrepreneur Award. Download your winner assets and make your recognition official with a published feature and keepsake award.",
       },
       { property: "og:title", content: "Your Winner Resources | The Entrepreneur Awards" },
       {
         property: "og:description",
         content:
-          "Celebrate your 2026 Entrepreneur Award. Download your winner assets and make your recognition official with a verified, published profile.",
+          "Celebrate your 2026 Entrepreneur Award. Download your winner assets and make your recognition official with a published feature and keepsake award.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -96,12 +104,42 @@ const assets = [
   },
 ];
 
-
 const offer = {
-  icon: Sparkles,
   title: "The Winner's Feature",
   price: 495,
-  text: "Everything we do to turn your win into visibility and proof. A written feature, a published link, distribution through our founder network, and an engraved keepsake award sent to you.",
+  intro: "Everything we do to turn your win into visibility and proof.",
+  features: [
+    {
+      icon: PenTool,
+      title: "Professionally written feature",
+      text: "Your story, told well by our editorial team.",
+    },
+    {
+      icon: Globe,
+      title: "Permanent published link",
+      text: "A shareable page on entrepreneurawards.co you can send to anyone.",
+    },
+    {
+      icon: Megaphone,
+      title: "Founder & press network distribution",
+      text: "Your win in front of people who don't know you yet.",
+    },
+    {
+      icon: TrendingUp,
+      title: "\"As featured\" media strip",
+      text: "Ready to add to your website, LinkedIn, and investor materials.",
+    },
+    {
+      icon: Award,
+      title: "Engraved keepsake award",
+      text: "A finely crafted piece sent to you to mark the achievement.",
+    },
+  ],
+  reassurances: [
+    { icon: Zap, text: "Live within 24h" },
+    { icon: LinkIcon, text: "Permanent link" },
+    { icon: Calendar, text: "Editable anytime" },
+  ],
 };
 
 const faqs = [
@@ -155,24 +193,24 @@ async function triggerDownload(filename: string, url?: string) {
   if (revoke) URL.revokeObjectURL(href);
 }
 
-
 // ---------- Confetti ----------
 function Confetti() {
-  const dots = Array.from({ length: 18 });
+  const dots = Array.from({ length: 24 });
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden motion-reduce:hidden">
       {dots.map((_, i) => {
-        const left = (i * 53) % 100;
-        const delay = (i % 6) * 0.6;
-        const duration = 6 + (i % 5);
-        const size = 4 + (i % 4);
-        const colors = [BRAND_BLUE, "#93c5fd", "#dbeafe", "#facc15"];
+        const left = (i * 41) % 100;
+        const delay = (i % 8) * 0.5;
+        const duration = 5 + (i % 6);
+        const size = 4 + (i % 5);
+        const colors = [BRAND_BLUE, "#60a5fa", "#93c5fd", "#dbeafe", "#facc15", "#ffffff"];
         const color = colors[i % colors.length];
         const rotate = (i * 37) % 360;
+        const drift = (i % 3) - 1;
         return (
           <span
             key={i}
-            className="absolute block rounded-[1px] opacity-70"
+            className="absolute block rounded-[1px] opacity-80"
             style={{
               left: `${left}%`,
               top: "-10%",
@@ -181,15 +219,16 @@ function Confetti() {
               backgroundColor: color,
               transform: `rotate(${rotate}deg)`,
               animation: `ea-confetti-fall ${duration}s linear ${delay}s infinite`,
-            }}
+              "--ea-drift": `${drift * 40}px`,
+            } as React.CSSProperties}
           />
         );
       })}
       <style>{`
         @keyframes ea-confetti-fall {
-          0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-          10% { opacity: 0.9; }
-          100% { transform: translateY(420px) rotate(540deg); opacity: 0; }
+          0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+          8% { opacity: 0.95; }
+          100% { transform: translateY(460px) translateX(var(--ea-drift, 0px)) rotate(720deg); opacity: 0; }
         }
       `}</style>
     </div>
@@ -272,7 +311,6 @@ function WinnerResourcesPage() {
     toast.success("Downloading all four assets.");
   };
 
-
   const shareLinkedIn = () => {
     window.open(
       `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SHARE_URL)}`,
@@ -300,35 +338,51 @@ function WinnerResourcesPage() {
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
-        {/* ============ Hero ============ */}
+        {/* ============ Celebration hero ============ */}
         <section className="relative overflow-hidden border-b border-border">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(ellipse_at_top,theme(colors.primary/22),transparent_70%)]"
+            className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(ellipse_at_top,theme(colors.primary/28),transparent_65%)]"
           />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 flex justify-center pt-16"
+          >
+            <div className="h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
+          </div>
           <Confetti />
-          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-20 text-center md:pt-32 md:pb-24">
-            <span className="inline-flex animate-fade-in items-center gap-2 rounded-full border border-primary bg-primary px-3 py-1 text-xs font-medium text-primary-foreground shadow-sm">
-              <PartyPopper className="h-3.5 w-3.5" />
+          <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-20 text-center md:pt-32 md:pb-24">
+            <span className="inline-flex animate-fade-in items-center gap-2 rounded-full border border-primary/30 bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20">
+              <Star className="h-4 w-4 fill-current" />
               2026 Winner · Verified Entry
             </span>
-            <h1 className="mt-6 animate-fade-in text-5xl font-semibold tracking-tight md:text-6xl">
+            <h1 className="mt-7 animate-fade-in text-5xl font-semibold tracking-tight md:text-7xl">
               Congratulations.
               <br />
-              <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
                 You made it.
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl animate-fade-in text-lg leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-6 max-w-2xl animate-fade-in text-lg leading-relaxed text-muted-foreground md:text-xl">
               You've been named a 2026 Entrepreneur Award winner. Your assets are ready, and one more step turns your win into something the world can verify.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 shadow-sm">
                 <Check className="h-3.5 w-3.5 text-primary" /> Assets ready to download
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3 py-1 shadow-sm">
                 <Check className="h-3.5 w-3.5 text-primary" /> Your recognition is live
               </span>
+            </div>
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button asChild size="lg" className="min-w-56 shadow-lg shadow-primary/20">
+                <a href="#upgrade">
+                  Claim your feature <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a href="#assets">Download your assets first</a>
+              </Button>
             </div>
             <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
               Your win is yours to share today. You can also make it verifiable. More on that below.
@@ -338,14 +392,15 @@ function WinnerResourcesPage() {
 
         {/* ============ At a glance strip ============ */}
         <section className="border-b border-border bg-secondary/30">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-2">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-3">
             {[
               { icon: Award, label: "4 assets ready to share" },
               { icon: Timer, label: "Under 2 minutes to post" },
+              { icon: Sparkles, label: "1 step to make it official" },
             ].map((s) => {
               const Icon = s.icon;
               return (
-                <div key={s.label} className="flex items-center justify-center gap-3 bg-background px-6 py-5 text-sm">
+                <div key={s.label} className="flex items-center justify-center gap-3 bg-background px-6 py-5 text-sm transition-colors hover:bg-secondary/50">
                   <Icon className="h-4 w-4 text-primary" />
                   <span className="font-medium text-foreground/85">{s.label}</span>
                 </div>
@@ -355,7 +410,7 @@ function WinnerResourcesPage() {
         </section>
 
         {/* ============ Download assets ============ */}
-        <section className="py-24 md:py-28">
+        <section id="assets" className="py-24 md:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
               <div className="max-w-2xl">
@@ -380,7 +435,7 @@ function WinnerResourcesPage() {
                 return (
                   <Card
                     key={asset.title}
-                    className="group flex flex-col overflow-hidden border-border transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
+                    className="group flex flex-col overflow-hidden border-border transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5"
                   >
                     <div className="relative h-56 overflow-hidden bg-gradient-to-br from-primary/10 to-primary/[0.02]">
                       <div className="flex h-full w-full items-center justify-center p-5">
@@ -424,10 +479,6 @@ function WinnerResourcesPage() {
             <p className="mt-6 text-center text-xs text-muted-foreground">
               Designed with space to add your name or photo. Files download as high-resolution PNGs.
             </p>
-
-            <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
-              Sharing your win is a great start. The next step is making it something others can verify ↓
-            </p>
           </div>
         </section>
 
@@ -459,45 +510,105 @@ function WinnerResourcesPage() {
           </div>
         </section>
 
-        {/* ============ Upgrade guide ============ */}
-        <section className="relative py-24 md:py-32">
+        {/* ============ Make your win official (upsell) ============ */}
+        <section id="upgrade" className="relative overflow-hidden py-24 md:py-32">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary/[0.04] via-transparent to-transparent"
           />
-          <div className="relative mx-auto max-w-4xl px-6 text-center">
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-              Ready to take your win further?
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Your badge and write-up are yours to share today. When you're ready, here's how to make your win impossible to ignore.
-            </p>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-24 right-0 h-[28rem] w-[28rem] rounded-full bg-primary/10 blur-3xl md:right-24"
+          />
+          <div className="relative mx-auto max-w-6xl px-6">
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+              {/* Left: value / proof */}
+              <div className="max-w-xl">
+                <p className="text-sm font-medium uppercase tracking-widest text-primary">
+                  The final step
+                </p>
+                <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+                  Make your win official.
+                </h2>
+                <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+                  Your recognition is already real. The Winner's Feature is how you make it undeniable: a published story, a permanent link, and a keepsake award that shows the world what you built.
+                </p>
 
-            <div className="mt-10 mx-auto max-w-2xl rounded-2xl border border-border bg-card p-8 text-center transition-all hover:border-primary/30 hover:shadow-sm md:p-10">
-              <div className="flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-widest text-primary">
-                <Sparkles className="h-3.5 w-3.5" />
-                {offer.title}
+                <ul className="mt-8 space-y-4">
+                  {offer.features.map((feature) => {
+                    const Icon = feature.icon;
+                    return (
+                      <li key={feature.title} className="flex items-start gap-4">
+                        <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                          <Icon className="h-4 w-4 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground">{feature.title}</p>
+                          <p className="text-sm text-muted-foreground">{feature.text}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
+                  Published profiles are indexed and shareable across LinkedIn, press kits, and investor decks. One decision turns your win into long-term proof.
+                </p>
               </div>
-              <div className="mt-4 flex items-baseline justify-center gap-2">
-                <span className="text-4xl font-bold tracking-tight text-foreground">
-                  ${offer.price.toLocaleString()}
-                </span>
-                <span className="text-sm text-muted-foreground">one-time</span>
+
+              {/* Right: offer card */}
+              <div className="lg:sticky lg:top-28">
+                <Card className="relative overflow-hidden border-border bg-card p-1 shadow-2xl shadow-primary/10">
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-primary/30 via-primary/10 to-transparent p-[1px]">
+                    <div className="h-full w-full rounded-lg bg-card" />
+                  </div>
+                  <div className="relative p-7 md:p-9">
+                    <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-primary">
+                      <Sparkles className="h-3.5 w-3.5" />
+                      Recognized · Published Profile
+                    </div>
+                    <div className="mt-5 flex items-baseline gap-2">
+                      <span className="text-5xl font-bold tracking-tight text-foreground md:text-6xl">
+                        ${offer.price.toLocaleString()}
+                      </span>
+                      <span className="text-sm text-muted-foreground">one-time</span>
+                    </div>
+                    <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                      {offer.intro}
+                    </p>
+
+                    <div className="mt-8">
+                      <Button asChild size="lg" className="w-full text-base shadow-lg shadow-primary/20 transition-all hover:shadow-xl hover:shadow-primary/25">
+                        <Link to="/pricing">
+                          Make my win official <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <p className="mt-3 text-center text-xs text-muted-foreground">
+                        <Link to="/pricing" className="underline decoration-primary/30 underline-offset-4 hover:text-foreground">
+                          See everything included in the Winner's Feature
+                        </Link>
+                      </p>
+                    </div>
+
+                    <div className="mt-8 grid grid-cols-3 gap-3 border-t border-border pt-6 text-center">
+                      {offer.reassurances.map((r) => {
+                        const Icon = r.icon;
+                        return (
+                          <div key={r.text} className="flex flex-col items-center gap-1.5">
+                            <Icon className="h-4 w-4 text-primary" />
+                            <span className="text-xs font-medium text-foreground/85">{r.text}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <p className="mt-6 text-center text-xs italic text-muted-foreground">
+                      Unclaimed wins fade. Verified wins compound.
+                    </p>
+                  </div>
+                </Card>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {offer.text}
-              </p>
             </div>
-
-            <Button asChild size="lg" className="mt-10">
-              <Link to="/pricing">
-                Claim your feature
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <p className="mt-3 text-center text-sm text-muted-foreground">
-              One clear offer. Everything we do to turn your win into visibility and proof.
-            </p>
           </div>
         </section>
 
