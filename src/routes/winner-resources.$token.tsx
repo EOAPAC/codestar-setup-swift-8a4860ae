@@ -23,6 +23,7 @@ import {
   Share2,
   PartyPopper,
   Timer,
+  Sparkles,
 } from "lucide-react";
 
 export const Route = createFileRoute("/winner-resources/$token")({
@@ -96,23 +97,17 @@ const assets = [
 ];
 
 
-const rungs = [
-  {
-    icon: Share2,
-    title: "The Amplify Route",
-    text: "get your story out there with a published feature and distribution through our founder and press network.",
-  },
-  {
-    icon: Award,
-    title: "The Keepsake Route",
-    text: "hold your win with an engraved award, pen, framed certificate, and display-ready graphics.",
-  },
-];
+const offer = {
+  icon: Sparkles,
+  title: "The Winner's Feature",
+  price: 495,
+  text: "Everything we do to turn your win into visibility and proof. A written feature, a published link, distribution through our founder network, and an engraved keepsake award sent to you.",
+};
 
 const faqs = [
   {
     q: "Do I have to upgrade to use the assets?",
-    a: "No. The assets above are yours to download and share, no upgrade required. The published profile is a separate, optional step for winners who want their recognition to be independently verifiable.",
+    a: "No. The assets above are yours to download and share, no upgrade required. The Winner's Feature is a separate, optional step for winners who want to turn their recognition into a published story and a keepsake award.",
   },
   {
     q: "What's on the published profile?",
@@ -336,7 +331,7 @@ function WinnerResourcesPage() {
               </span>
             </div>
             <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              Your win is yours to share today. You can also make it verifiable — more on that below.
+              Your win is yours to share today. You can also make it verifiable. More on that below.
             </p>
           </div>
         </section>
@@ -475,38 +470,33 @@ function WinnerResourcesPage() {
               Ready to take your win further?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Your badge and write-up are yours to share today. When you're ready, here's how to take your recognition further:
+              Your badge and write-up are yours to share today. When you're ready, here's how to make your win impossible to ignore.
             </p>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {rungs.map((rung) => {
-                const Icon = rung.icon;
-                return (
-                  <div
-                    key={rung.title}
-                    className="flex flex-col items-center rounded-xl border border-border bg-card p-6 text-center transition-all hover:border-primary/30 hover:shadow-sm"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <p className="mt-4 text-sm font-semibold text-foreground">
-                      {rung.title}
-                      <span className="mx-1 text-muted-foreground">—</span>
-                      <span className="font-normal text-muted-foreground">{rung.text}</span>
-                    </p>
-                  </div>
-                );
-              })}
+            <div className="mt-10 mx-auto max-w-2xl rounded-2xl border border-border bg-card p-8 text-center transition-all hover:border-primary/30 hover:shadow-sm md:p-10">
+              <div className="flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-widest text-primary">
+                <Sparkles className="h-3.5 w-3.5" />
+                {offer.title}
+              </div>
+              <div className="mt-4 flex items-baseline justify-center gap-2">
+                <span className="text-4xl font-bold tracking-tight text-foreground">
+                  ${offer.price.toLocaleString()}
+                </span>
+                <span className="text-sm text-muted-foreground">one-time</span>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {offer.text}
+              </p>
             </div>
 
             <Button asChild size="lg" className="mt-10">
               <Link to="/pricing">
-                View winner packages
+                Claim your feature
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <p className="mt-3 text-center text-sm text-muted-foreground">
-              Two equal paths — choose how far you want your win to travel.
+              One clear offer. Everything we do to turn your win into visibility and proof.
             </p>
           </div>
         </section>

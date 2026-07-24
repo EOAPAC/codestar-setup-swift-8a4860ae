@@ -50,7 +50,7 @@ function ThankYouPage() {
       icon: Mail,
       label: "You get a reply",
       date: "Within 14 days",
-      description: "Shortlisted founders choose how they take their win — amplify or keepsake.",
+      description: "Shortlisted founders can claim The Winner's Feature to turn their win into a published story and a keepsake award.",
       status: "pending" as const,
     },
     {
