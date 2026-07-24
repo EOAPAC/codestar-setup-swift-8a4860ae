@@ -470,38 +470,33 @@ function WinnerResourcesPage() {
               Ready to take your win further?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Your badge and write-up are yours to share today. When you're ready, here's how to take your recognition further:
+              Your badge and write-up are yours to share today. When you're ready, here's how to make your win impossible to ignore.
             </p>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {rungs.map((rung) => {
-                const Icon = rung.icon;
-                return (
-                  <div
-                    key={rung.title}
-                    className="flex flex-col items-center rounded-xl border border-border bg-card p-6 text-center transition-all hover:border-primary/30 hover:shadow-sm"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <p className="mt-4 text-sm font-semibold text-foreground">
-                      {rung.title}
-                      <span className="mx-1 text-muted-foreground">—</span>
-                      <span className="font-normal text-muted-foreground">{rung.text}</span>
-                    </p>
-                  </div>
-                );
-              })}
+            <div className="mt-10 mx-auto max-w-2xl rounded-2xl border border-border bg-card p-8 text-center transition-all hover:border-primary/30 hover:shadow-sm md:p-10">
+              <div className="flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-widest text-primary">
+                <Sparkles className="h-3.5 w-3.5" />
+                {offer.title}
+              </div>
+              <div className="mt-4 flex items-baseline justify-center gap-2">
+                <span className="text-4xl font-bold tracking-tight text-foreground">
+                  ${offer.price.toLocaleString()}
+                </span>
+                <span className="text-sm text-muted-foreground">one-time</span>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {offer.text}
+              </p>
             </div>
 
             <Button asChild size="lg" className="mt-10">
               <Link to="/pricing">
-                View winner packages
+                Claim your feature
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <p className="mt-3 text-center text-sm text-muted-foreground">
-              Two equal paths — choose how far you want your win to travel.
+              One clear offer — everything we do to turn your win into visibility and proof.
             </p>
           </div>
         </section>
