@@ -13,9 +13,9 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "The Winner's Feature | The Entrepreneur Awards" },
-      { name: "description", content: "Your 2026 Entrepreneur Award is yours. Turn your win into a published feature, distribution, and a keepsake award — all done for you." },
+      { name: "description", content: "Your 2026 Entrepreneur Award is yours. Turn your win into a published feature, distribution, and a keepsake award, all done for you." },
       { property: "og:title", content: "The Winner's Feature | The Entrepreneur Awards" },
-      { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. Turn your win into a published feature, distribution, and a keepsake award — all done for you." },
+      { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. Turn your win into a published feature, distribution, and a keepsake award, all done for you." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -24,11 +24,11 @@ export const Route = createFileRoute("/pricing")({
 });
 
 const features = [
-  "A professionally written feature about you and your business, authored by our editorial team — your story, told well",
-  "Published on The Entrepreneur Awards site at a permanent link you can send to anyone — clients, investors, press",
+  "A professionally written feature about you and your business, authored by our editorial team. Your story, told well.",
+  "Published on The Entrepreneur Awards site at a permanent link you can send to anyone, including clients, investors, and press",
   "Shared through our founder network to put your win in front of people who don't know you yet",
   "An \"as featured\" media strip for your own website and profiles",
-  "A finely crafted, engraved keepsake award to mark the achievement — sent to you",
+  "A finely crafted, engraved keepsake award to mark the achievement, sent to you",
 ];
 
 function PricingPage() {
@@ -49,7 +49,7 @@ function PricingPage() {
               You won. Let's make sure the world sees it.
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Your recognition is yours. This is how you turn it into something people notice — a story worth reading, published where it counts, and a piece to mark what you built.
+              Your recognition is yours. This is how you turn it into something people notice. A story worth reading, published where it counts, and a piece to mark what you built.
             </p>
           </div>
         </section>
@@ -60,7 +60,7 @@ function PricingPage() {
               Already yours, free
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
-              Your winner badge, shareable graphics, and write-up — yours to post today. The below is about taking it further.
+              Your winner badge, shareable graphics, and write-up are yours to post today. The below is about taking it further.
             </p>
           </div>
         </section>
@@ -114,7 +114,7 @@ function PricingPage() {
         <section className="border-t border-border px-6 py-16">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-lg leading-relaxed text-muted-foreground">
-              You built something worth recognizing. This makes sure the people who matter — the ones you want as clients, investors, and believers — actually see it.
+              You built something worth recognizing. This makes sure the people who matter, the ones you want as clients, investors, and believers, actually see it.
             </p>
           </div>
         </section>

@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 
 // ------------------------------------------------------------------
-// Easy-edit constants — tweak these without hunting through the file.
+// Easy-edit constants. Tweak these without hunting through the file.
 // IMPORTANT: update HUBSPOT_PAYMENT_SRC to the Winner's Feature payment.
 // ------------------------------------------------------------------
 const HUBSPOT_PAYMENT_SRC =
@@ -117,7 +117,7 @@ function CompletePage() {
     },
     {
       q: "Can I get a refund?",
-      a: "Yes — refundable within 48 hours if editorial work hasn't begun. Once writing starts, the feature is non-refundable.",
+      a: "Yes. Refundable within 48 hours if editorial work hasn't begun. Once writing starts, the feature is non-refundable.",
     },
   ];
 
@@ -289,7 +289,7 @@ function CompletePage() {
                 <Card key={i} className="p-5">
                   <p className="text-sm italic text-foreground">"{t.quote}"</p>
                   <p className="mt-3 text-xs font-medium text-muted-foreground">
-                    — {t.attribution}
+                    ({t.attribution})
                   </p>
                 </Card>
               ))}
