@@ -466,7 +466,7 @@ function SubmissionForm() {
         if (!result.ok) {
           throw new Error(`HubSpot submission failed [${result.status}]`);
         }
-        navigate({ to: "/complete" });
+        navigate({ to: "/thank-you" });
       } catch (error) {
         console.error("HubSpot server-side submission failed", error);
         setFormError("Something went wrong submitting your entry. Please try again.");
