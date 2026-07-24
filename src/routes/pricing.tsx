@@ -13,12 +13,12 @@ import {
   ImageIcon,
   FileText,
   Sparkles,
+  Star,
 } from "lucide-react";
-import winnerSealAsset from "@/assets/EA_Winner_Seal.png.asset.json";
 import squareSocialAsset from "@/assets/EA_Square_Social_Image.png.asset.json";
 import linkedinBannerAsset from "@/assets/EA_Linkedin_Banner.png.asset.json";
 
-const winnerSeal = winnerSealAsset.url;
+const BRAND_BLUE = "#1978E5";
 const squareSocial = squareSocialAsset.url;
 const linkedinBanner = linkedinBannerAsset.url;
 
