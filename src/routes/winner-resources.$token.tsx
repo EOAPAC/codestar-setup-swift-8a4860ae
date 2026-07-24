@@ -107,7 +107,7 @@ const offer = {
 const faqs = [
   {
     q: "Do I have to upgrade to use the assets?",
-    a: "No. The assets above are yours to download and share, no upgrade required. The published profile is a separate, optional step for winners who want their recognition to be independently verifiable.",
+    a: "No. The assets above are yours to download and share, no upgrade required. The Winner's Feature is a separate, optional step for winners who want to turn their recognition into a published story and a keepsake award.",
   },
   {
     q: "What's on the published profile?",
