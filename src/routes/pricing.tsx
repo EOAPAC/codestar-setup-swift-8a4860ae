@@ -4,21 +4,20 @@ import { SiteFooter } from "@/components/site-footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Award } from "lucide-react";
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Winner package prices. Edit these constants to update every card.
-const RECOGNIZED_PRICE = 245;
-const FEATURED_PRICE = 495;
-const HEADLINE_PRICE = 895;
+const REACH_ROUTE_PRICE = 495;
+const KEEPSAKE_ROUTE_PRICE = 495;
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Winner Packages | The Entrepreneur Awards" },
-      { name: "description", content: "You've won. Now decide how far your recognition travels. Winner packages make your win verifiable, published, and seen." },
+      { name: "description", content: "Your 2026 Entrepreneur Award is yours. Choose how you take your recognition — spread the reach, or hold the keepsake." },
       { property: "og:title", content: "Winner Packages | The Entrepreneur Awards" },
-      { property: "og:description", content: "You've won. Now decide how far your recognition travels. Winner packages make your win verifiable, published, and seen." },
+      { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. Choose how you take your recognition — spread the reach, or hold the keepsake." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -26,65 +25,43 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
 });
 
-interface Tier {
+interface Path {
   id: string;
   name: string;
   price: number;
   tagline: string;
-  featured?: boolean;
   ctaLabel: string;
   items: string[];
   footer: string;
 }
 
-const tiers: Tier[] = [
+const paths: Path[] = [
   {
-    id: "recognized",
-    name: "Recognized",
-    price: RECOGNIZED_PRICE,
-    tagline: "Make it official.",
-    ctaLabel: "Claim Recognized",
+    id: "reach",
+    name: "The Reach Route",
+    price: REACH_ROUTE_PRICE,
+    tagline: "Get your win seen.",
+    ctaLabel: "Choose the Reach Route",
     items: [
-      "Your write-up published on The Entrepreneur Awards site, at a verifiable link",
-      "A digital certificate of your award",
-      "A listing in the Winners Directory",
+      "Your recognition published at a permanent, verifiable link — proof others can check",
+      "Your profile in the winners directory, optimized to surface when someone searches you",
+      "Distribution of your win through our founder/press network",
     ],
-    footer: "Digital proof your win is real and on the record.",
+    footer: "For the founder who wants their win working online, in front of people who don't know them yet.",
   },
   {
-    id: "featured",
-    name: "Featured",
-    price: FEATURED_PRICE,
-    tagline: "Something to show for it.",
-    featured: true,
-    ctaLabel: "Claim Featured",
+    id: "keepsake",
+    name: "The Keepsake Route",
+    price: KEEPSAKE_ROUTE_PRICE,
+    tagline: "Hold your win.",
+    ctaLabel: "Choose the Keepsake Route",
     items: [
-      "Everything in Recognized, plus:",
-      "A physical award plaque, ready to display in your office or on screen behind you",
-      "A polished one-page summary of your win, formatted for investor decks, pitches, and press kits",
-      "A press-release announcement of your win",
+      "A finely crafted, engraved award — a real piece for your desk or office, sent to you",
+      "A framed certificate of your recognition",
+      "Your winner badge and graphics, ready to display",
     ],
-    footer: "The materials to put your recognition where it counts — in the room, in the deck, in the conversation.",
+    footer: "For the founder who wants something real to mark the achievement.",
   },
-  {
-    id: "headline",
-    name: "Headline",
-    price: HEADLINE_PRICE,
-    tagline: "Get it seen everywhere.",
-    ctaLabel: "Claim Headline",
-    items: [
-      "Everything in Featured, plus:",
-      "Your story distributed through our press network to business and startup media",
-      "A flagship, long-form feature",
-      "Our widest reach placement",
-    ],
-    footer: "Maximum visibility — your win, in front of the people who don't know you yet.",
-  },
-];
-
-const freeBenefits = [
-  "Your official winner badge and shareable graphics",
-  "Your written recognition (the write-up) — yours to keep and share",
 ];
 
 function Price({ value }: { value: number }) {
@@ -95,46 +72,30 @@ function Price({ value }: { value: number }) {
   );
 }
 
-function PricingCard({ tier }: { tier: Tier }) {
+function PathCard({ path }: { path: Path }) {
   return (
-    <Card
-      className={cn(
-        "relative flex flex-col p-6 md:p-8",
-        tier.featured
-          ? "border-primary bg-primary/[0.03] ring-2 ring-primary/15"
-          : "border-border bg-card"
-      )}
-    >
-      {tier.featured && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <Badge className="bg-primary text-primary-foreground hover:bg-primary">
-            <Award className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
-            Most Popular
-          </Badge>
-        </div>
-      )}
-
+    <Card className="relative flex flex-col border-border bg-card p-6 md:p-8">
       <div className="mb-4 text-center">
         <h3 className="text-lg font-semibold tracking-tight text-foreground">
-          {tier.name}
+          {path.name}
         </h3>
         <div className="mt-2 flex items-baseline justify-center gap-1">
-          <Price value={tier.price} />
+          <Price value={path.price} />
         </div>
-        <p className={cn("mt-2 text-sm font-medium", tier.featured ? "text-primary" : "text-muted-foreground")}>
-          {tier.tagline}
+        <p className="mt-2 text-sm font-medium text-primary">
+          {path.tagline}
         </p>
       </div>
 
       <div className="flex-1">
         <ul className="space-y-3">
-          {tier.items.map((item, index) => (
-            <li key={`${tier.id}-${index}`} className="flex items-start gap-3 text-sm text-foreground">
+          {path.items.map((item, index) => (
+            <li
+              key={`${path.id}-${index}`}
+              className="flex items-start gap-3 text-sm text-foreground"
+            >
               <Check
-                className={cn(
-                  "mt-0.5 h-4 w-4 shrink-0",
-                  tier.featured ? "text-primary" : "text-primary/80"
-                )}
+                className="mt-0.5 h-4 w-4 shrink-0 text-primary/80"
                 aria-hidden="true"
               />
               <span>{item}</span>
@@ -144,21 +105,16 @@ function PricingCard({ tier }: { tier: Tier }) {
       </div>
 
       <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
-        {tier.footer}
+        {path.footer}
       </p>
 
       <div className="mt-6">
         <Button
           asChild
-          className={cn(
-            "w-full",
-            tier.featured
-              ? "bg-primary text-primary-foreground hover:bg-primary/90"
-              : "border-primary text-primary hover:bg-primary/5"
-          )}
-          variant={tier.featured ? "default" : "outline"}
+          className="w-full border-primary text-primary hover:bg-primary/5"
+          variant="outline"
         >
-          <Link to="/complete">{tier.ctaLabel}</Link>
+          <Link to="/complete">{path.ctaLabel}</Link>
         </Button>
       </div>
     </Card>
@@ -167,21 +123,13 @@ function PricingCard({ tier }: { tier: Tier }) {
 
 function FreeBenefitsSection() {
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className="mx-auto max-w-3xl">
       <div className="rounded-2xl border border-border bg-primary/[0.03] px-6 py-8 md:px-10 md:py-10">
         <h2 className="text-center text-xl font-semibold tracking-tight text-foreground md:text-2xl">
-          Every winner receives, free
+          Free with your win
         </h2>
-        <ul className="mx-auto mt-6 grid max-w-2xl gap-4 sm:grid-cols-2">
-          {freeBenefits.map((benefit, index) => (
-            <li key={index} className="flex items-start gap-3 text-sm text-foreground">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-              <span>{benefit}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          These are yours the moment you win. The packages below take your recognition further — in three clear steps.
+        <p className="mx-auto mt-4 max-w-xl text-center text-sm text-muted-foreground">
+          Your winner badge, shareable graphics, and your written write-up — yours to post and share today.
         </p>
       </div>
     </div>
@@ -203,10 +151,10 @@ function PricingPage() {
               Winner Packages
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              You've won. Now decide how far it travels.
+              You won. Now choose how you take it.
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Your recognition is yours to share today. These options make it verifiable, published, and seen — where the people evaluating you will actually find it.
+              Your 2026 Entrepreneur Award is yours. Pick the path that fits how you want to use it — both carry the same recognition.
             </p>
           </div>
         </section>
@@ -216,11 +164,23 @@ function PricingPage() {
         </section>
 
         <section className="px-6 pb-12 md:pb-20">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid gap-6 md:grid-cols-3">
-              {tiers.map((tier) => (
-                <PricingCard key={tier.id} tier={tier} />
+          <div className="mx-auto max-w-5xl">
+            <div className="grid gap-6 md:grid-cols-2">
+              {paths.map((path) => (
+                <PathCard key={path.id} path={path} />
               ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <p className="text-sm text-muted-foreground">
+                Want both?{" "}
+                <Link
+                  to="/complete"
+                  className="font-medium text-foreground underline-offset-2 hover:text-primary hover:underline"
+                >
+                  Take both paths →
+                </Link>
+              </p>
             </div>
           </div>
         </section>
@@ -229,7 +189,10 @@ function PricingPage() {
           <div className="mx-auto max-w-6xl text-center">
             <p className="text-sm text-muted-foreground">
               Every winner is independently reviewed and selected.{" "}
-              <Link to="/methodology" className="underline-offset-2 hover:text-foreground hover:underline">
+              <Link
+                to="/methodology"
+                className="underline-offset-2 hover:text-foreground hover:underline"
+              >
                 Methodology
               </Link>
             </p>

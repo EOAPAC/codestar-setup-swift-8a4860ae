@@ -50,14 +50,14 @@ function ThankYouPage() {
       icon: Mail,
       label: "You get a reply",
       date: "Within 14 days",
-      description: "Shortlisted founders choose their Digital, Signature, or Headline win.",
+      description: "Shortlisted founders choose how they take their win — reach or keepsake.",
       status: "pending" as const,
     },
     {
       icon: Trophy,
       label: "Winners go live",
-      date: "After you confirm your tier",
-      description: "You receive your badge, trophy, press kit, and founder story feature.",
+      date: "After you confirm your path",
+      description: "You receive your badge, winner materials, and the recognition you chose.",
       status: "pending" as const,
     },
   ];
