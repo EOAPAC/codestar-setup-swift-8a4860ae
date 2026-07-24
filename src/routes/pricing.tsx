@@ -112,16 +112,11 @@ function PricingPage() {
             <Reveal delay={80}>
               <div className="relative mx-auto mb-10 h-40 w-40 md:h-52 md:w-52">
                 <div aria-hidden className="absolute inset-0 -m-6 rounded-full bg-primary/20 blur-2xl animate-pulse motion-reduce:animate-none" />
-                <div className="ea-seal-float motion-reduce:animate-none relative h-full w-full rounded-full bg-background p-3 shadow-[0_12px_40px_-12px_rgba(25,120,229,0.45)] ring-1 ring-primary/10">
-                  <img
-                    src={winnerSeal}
-                    alt="Entrepreneur Awards winner seal"
-                    className="h-full w-full rounded-full object-contain"
-                  />
-                  {/* soft sheen sweep */}
-                  <div aria-hidden className="ea-seal-shine absolute inset-3 overflow-hidden rounded-full">
-                    <div className="ea-shine-bar" />
-                  </div>
+                <div className="ea-seal-float motion-reduce:animate-none relative flex h-full w-full flex-col items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 p-4 shadow-[0_12px_40px_-12px_rgba(25,120,229,0.45)] ring-1 ring-primary/20">
+                  <Award className="h-20 w-20 text-primary-foreground md:h-28 md:w-28" strokeWidth={1.2} aria-hidden />
+                  <span className="absolute bottom-[14%] rounded-full bg-background px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground shadow-sm">
+                    2026 Winner
+                  </span>
                 </div>
               </div>
             </Reveal>
