@@ -14,13 +14,11 @@ import {
   FileText,
   Sparkles,
   Star,
+  Share2,
+  LayoutTemplate,
 } from "lucide-react";
-import squareSocialAsset from "@/assets/EA_Square_Social_Image.png.asset.json";
-import linkedinBannerAsset from "@/assets/EA_Linkedin_Banner.png.asset.json";
 
 const BRAND_BLUE = "#1978E5";
-const squareSocial = squareSocialAsset.url;
-const linkedinBanner = linkedinBannerAsset.url;
 
 // The Winner's Feature price. Edit this constant to update the page.
 const WINNERS_FEATURE_PRICE = 495;
