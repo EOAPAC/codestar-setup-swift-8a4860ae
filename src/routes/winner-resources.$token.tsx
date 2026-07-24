@@ -331,7 +331,7 @@ function WinnerResourcesPage() {
               </span>
             </div>
             <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              Your win is yours to share today. You can also make it verifiable — more on that below.
+              Your win is yours to share today. You can also make it verifiable. More on that below.
             </p>
           </div>
         </section>
@@ -496,7 +496,7 @@ function WinnerResourcesPage() {
               </Link>
             </Button>
             <p className="mt-3 text-center text-sm text-muted-foreground">
-              One clear offer — everything we do to turn your win into visibility and proof.
+              One clear offer. Everything we do to turn your win into visibility and proof.
             </p>
           </div>
         </section>
