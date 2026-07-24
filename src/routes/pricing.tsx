@@ -14,9 +14,13 @@ import {
   FileText,
   Sparkles,
 } from "lucide-react";
-import winnerSeal from "@/assets/EA_Winner_Seal.png";
-import squareSocial from "@/assets/EA_Square_Social_Image.png";
-import linkedinBanner from "@/assets/EA_Linkedin_Banner.png";
+import winnerSealAsset from "@/assets/EA_Winner_Seal.png.asset.json";
+import squareSocialAsset from "@/assets/EA_Square_Social_Image.png.asset.json";
+import linkedinBannerAsset from "@/assets/EA_Linkedin_Banner.png.asset.json";
+
+const winnerSeal = winnerSealAsset.url;
+const squareSocial = squareSocialAsset.url;
+const linkedinBanner = linkedinBannerAsset.url;
 
 // The Winner's Feature price. Edit this constant to update the page.
 const WINNERS_FEATURE_PRICE = 495;
