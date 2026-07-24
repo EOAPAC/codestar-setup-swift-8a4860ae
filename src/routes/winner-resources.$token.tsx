@@ -475,11 +475,11 @@ function WinnerResourcesPage() {
               Ready to take your win further?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Your badge and write-up are yours to share today. When you're ready, here's how to take your recognition further:
+              Your badge and write-up are yours to share today. When you're ready, choose how you want to take your recognition:
             </p>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              {rungs.map((rung, idx) => {
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              {rungs.map((rung) => {
                 const Icon = rung.icon;
                 return (
                   <div
@@ -500,13 +500,13 @@ function WinnerResourcesPage() {
             </div>
 
             <Button asChild size="lg" className="mt-10">
-              <a href="/winner-packages">
+              <Link to="/pricing">
                 View winner packages
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+              </Link>
             </Button>
             <p className="mt-3 text-center text-sm text-muted-foreground">
-              Three clear steps — choose how far you want your win to travel.
+              Two equal paths — same recognition, different form.
             </p>
           </div>
         </section>
