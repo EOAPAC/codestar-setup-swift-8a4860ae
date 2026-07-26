@@ -466,6 +466,10 @@ function SubmissionForm() {
       const form = event.target instanceof HTMLFormElement ? event.target : null;
       if (!form) return;
       if (form.dataset.serverSubmitting === "true") return;
+      if (!agreedRef.current) {
+        setAgreementError(true);
+        return;
+      }
       if (!form.reportValidity()) return;
 
       form.dataset.serverSubmitting = "true";
