@@ -496,6 +496,10 @@ function SubmissionForm() {
       if (!form || form.dataset.serverSubmitAttached === "true") return;
 
       form.dataset.serverSubmitAttached = "true";
+      const btn = form.querySelector<HTMLInputElement | HTMLButtonElement>(
+        'input[type="submit"], button[type="submit"]'
+      );
+      if (btn) btn.disabled = !agreedRef.current;
     };
 
     formContainer?.addEventListener("submit", handleServerSubmit, true);
