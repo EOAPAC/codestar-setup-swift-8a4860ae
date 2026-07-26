@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      entries: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          first_name: string | null
+          form_data: Json
+          hubspot_deal_id: string | null
+          id: string
+          last_name: string | null
+          lookup_token: string
+          payment_provider: string | null
+          payment_provider_id: string | null
+          payment_status: string
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          first_name?: string | null
+          form_data?: Json
+          hubspot_deal_id?: string | null
+          id?: string
+          last_name?: string | null
+          lookup_token?: string
+          payment_provider?: string | null
+          payment_provider_id?: string | null
+          payment_status?: string
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          form_data?: Json
+          hubspot_deal_id?: string | null
+          id?: string
+          last_name?: string | null
+          lookup_token?: string
+          payment_provider?: string | null
+          payment_provider_id?: string | null
+          payment_status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
