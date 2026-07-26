@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import type { LucideIcon } from "lucide-react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Card } from "@/components/ui/card";
@@ -11,26 +10,27 @@ import {
   Link2,
   Users,
   Award,
-  ImageIcon,
-  FileText,
+  BadgeCheck,
   Sparkles,
   Star,
-  Share2,
-  LayoutTemplate,
+  Check,
+  Clock,
+  Zap,
 } from "lucide-react";
 
 const BRAND_BLUE = "#1978E5";
 
-// The Winner's Feature price. Edit this constant to update the page.
+// Prices — edit these to update the page.
 const WINNERS_FEATURE_PRICE = 495;
+const PRIORITY_UPGRADE_PRICE = 95;
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "The Winner's Feature | The Entrepreneur Awards" },
-      { name: "description", content: "Your 2026 Entrepreneur Award is yours. Turn your win into a published feature, distribution, and a keepsake award, all done for you." },
+      { name: "description", content: "Your 2026 Entrepreneur Award is yours. The Winner's Feature turns your win into a professionally written, published story about you and your business." },
       { property: "og:title", content: "The Winner's Feature | The Entrepreneur Awards" },
-      { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. Turn your win into a published feature, distribution, and a keepsake award, all done for you." },
+      { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. The Winner's Feature turns your win into a professionally written, published story about you and your business." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -39,14 +39,34 @@ export const Route = createFileRoute("/pricing")({
 });
 
 const deliverables = [
-  { icon: PenLine, title: "Your story, told well", body: "A professionally written feature by our editorial team." },
-  { icon: Link2, title: "A permanent, sharable link", body: "Published on The Entrepreneur Awards site, yours to send anywhere." },
-  { icon: Users, title: "Seen by new people", body: "Shared through our founder network beyond your existing audience." },
-  { icon: ImageIcon, title: "An 'as featured' media strip", body: "For your own website, decks, and profiles." },
-  { icon: Award, title: "An engraved keepsake award", body: "Finely crafted, sent to you to mark the achievement." },
+  {
+    icon: PenLine,
+    title: "Your story, told well",
+    body: "A professionally written feature about you and what you've built, authored by our editorial team. You'll review it before anything goes live.",
+  },
+  {
+    icon: Link2,
+    title: "Published at a permanent link",
+    body: "Your feature lives on The Entrepreneur Awards site at a link you can send to clients, investors, and press, for as long as you want it there.",
+  },
+  {
+    icon: Users,
+    title: "Shared beyond your own audience",
+    body: "We put your feature in front of people who don't already follow you, through our founder network.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "An 'as featured' mark",
+    body: "For your website, your deck, your profiles. The small signal that says someone else thought your work was worth writing about.",
+  },
+  {
+    icon: Award,
+    title: "A piece to mark it",
+    body: "An engraved keepsake, sent to you, marking the year you were recognized.",
+  },
 ];
 
-// Confetti (same as winner-resources page)
+// Confetti
 function Confetti() {
   const dots = Array.from({ length: 24 });
   return (
@@ -120,23 +140,26 @@ function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; 
   );
 }
 
+type Timing = "standard" | "priority";
+
 function PricingPage() {
+  const [timing, setTiming] = useState<Timing>("standard");
+  const total = WINNERS_FEATURE_PRICE + (timing === "priority" ? PRIORITY_UPGRADE_PRICE : 0);
+
   return (
     <div className="flex min-h-screen flex-col">
       <SiteNav />
 
       <main className="flex-1">
-        {/* HERO — arrival */}
-        <section className="relative overflow-hidden px-6 pt-20 pb-24 md:pt-32 md:pb-32">
-          {/* Ambient background */}
+        {/* HERO */}
+        <section className="relative overflow-hidden px-6 pt-20 pb-20 md:pt-32 md:pb-28">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute left-1/2 top-[-10rem] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" />
             <div className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,_color-mix(in_oklab,var(--color-primary)_10%,transparent),_transparent_60%)]" />
             <div
               className="absolute inset-0 opacity-[0.035]"
               style={{
-                backgroundImage:
-                  "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
                 backgroundSize: "22px 22px",
                 color: "var(--color-foreground)",
               }}
@@ -147,80 +170,45 @@ function PricingPage() {
 
           <div className="relative mx-auto max-w-4xl text-center">
             <Reveal>
-              <span className="inline-flex animate-fade-in items-center gap-2 rounded-full border border-primary/30 bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20">
-                <Star className="h-4 w-4 fill-current" />
-                2026 Winner · Verified Entry
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-lg shadow-primary/20">
+                <Star className="h-3.5 w-3.5 fill-current" />
+                2026 Entrepreneur Award
               </span>
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground md:text-7xl lg:text-8xl">
-                Congratulations.
+              <h1 className="mt-8 text-4xl font-semibold tracking-tight text-foreground md:text-6xl lg:text-7xl">
+                You won.
                 <br />
                 <span className="bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
-                  You won.
+                  Now let's tell the story properly.
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={160}>
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-                Your recognition is yours. Here's how to make the world see it.
+                Your recognition is already yours. What follows is how we turn it into something people read, share, and remember. A professionally written feature about you and your business, published and put in front of an audience beyond your own.
               </p>
             </Reveal>
           </div>
         </section>
 
-        {/* ALREADY YOURS — simple text tiles */}
-        <section className="border-t border-border bg-secondary/30 px-6 py-20">
-          <div className="mx-auto max-w-5xl">
+        {/* ALREADY YOURS */}
+        <section className="border-t border-border bg-secondary/30 px-6 py-16">
+          <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <div className="mb-12 text-center">
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
-                  Already yours
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                  Free, and ready to share today
-                </h2>
-                <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
-                  Your winner assets are in your inbox. What's below is about taking it further.
-                </p>
-              </div>
-            </Reveal>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <Reveal delay={0}>
-                <FreeTile
-                  icon={Award}
-                  label="Winner badge"
-                  description="Official seal for your website, email signature, and press kit."
-                />
-              </Reveal>
-              <Reveal delay={80}>
-                <FreeTile
-                  icon={Share2}
-                  label="Social graphics"
-                  description="Square and story-sized posts for Instagram, LinkedIn, and X."
-                />
-              </Reveal>
-              <Reveal delay={160}>
-                <FreeTile
-                  icon={LayoutTemplate}
-                  label="LinkedIn banner"
-                  description="Cover image sized for LinkedIn and website headers."
-                />
-              </Reveal>
-            </div>
-
-            <Reveal delay={200}>
-              <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-muted-foreground md:text-lg">
-                These announce your win. The Winner's Feature below is how it gets discovered — a real story, published and shared, that keeps working long after the post.
+              <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
+                Already yours, free
+              </p>
+              <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
+                Your winner badge, shareable graphics, and write-up. In your inbox, ready to post today.
               </p>
             </Reveal>
           </div>
         </section>
 
-        {/* THE OFFER — the moment */}
+        {/* THE OFFER */}
         <section className="relative overflow-hidden px-6 py-24 md:py-32">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/8 blur-3xl" />
@@ -234,25 +222,26 @@ function PricingPage() {
                   The Winner's Feature
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                  Turn your win into a story people read.
+                  One story, written and published for you.
                 </h2>
+                <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
+                  Done for you, start to finish.
+                </p>
               </div>
             </Reveal>
 
             <Reveal delay={100}>
               <Card className="relative overflow-hidden border-primary/20 bg-card p-0 shadow-[0_30px_80px_-30px_rgba(25,120,229,0.35)]">
-                {/* accent bar */}
                 <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent" />
 
                 <div className="grid gap-0 lg:grid-cols-[1.05fr_1fr]">
-                  {/* Left — feature preview mockup */}
+                  {/* Left — preview */}
                   <div className="relative border-b border-border bg-gradient-to-br from-secondary/60 to-background p-8 md:p-12 lg:border-b-0 lg:border-r">
                     <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
                       Preview · what gets published
                     </p>
 
                     <div className="relative rounded-lg border border-border bg-background shadow-xl">
-                      {/* browser chrome */}
                       <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
                         <span className="h-2.5 w-2.5 rounded-full bg-muted" />
                         <span className="h-2.5 w-2.5 rounded-full bg-muted" />
@@ -262,7 +251,6 @@ function PricingPage() {
                         </div>
                       </div>
 
-                      {/* article */}
                       <div className="p-6 md:p-8">
                         <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-primary">
                           <Award className="h-3 w-3" aria-hidden /> 2026 Winner Feature
@@ -274,7 +262,6 @@ function PricingPage() {
                           By The Entrepreneur Awards Editorial · 6 min read
                         </p>
 
-                        {/* faux hero image */}
                         <div className="mt-5 h-28 rounded-md bg-gradient-to-br from-primary/25 via-primary/10 to-secondary" />
 
                         <div className="mt-5 space-y-2.5">
@@ -296,13 +283,9 @@ function PricingPage() {
                         </div>
                       </div>
                     </div>
-
-                    <p className="mt-4 text-center text-xs text-muted-foreground">
-                      A permanent link you can send to clients, investors, and press.
-                    </p>
                   </div>
 
-                  {/* Right — offer + deliverables + CTA */}
+                  {/* Right — bundle */}
                   <div className="flex flex-col justify-between p-8 md:p-12">
                     <div>
                       <div className="flex items-baseline gap-2">
@@ -312,7 +295,7 @@ function PricingPage() {
                         <span className="text-sm text-muted-foreground">one-time</span>
                       </div>
                       <p className="mt-3 text-base leading-relaxed text-foreground">
-                        Everything we do to turn your win into visibility and proof. Done for you.
+                        One story, written and published for you. Done for you, start to finish.
                       </p>
 
                       <ul className="mt-8 space-y-5">
@@ -322,33 +305,102 @@ function PricingPage() {
                               <Icon className="h-4 w-4" aria-hidden />
                             </span>
                             <div>
-                              <p className="text-sm font-medium text-foreground">{title}</p>
-                              <p className="mt-0.5 text-sm text-muted-foreground">{body}</p>
+                              <p className="text-sm font-semibold text-foreground">{title}</p>
+                              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
                             </div>
                           </li>
                         ))}
                       </ul>
                     </div>
-
-                    <div className="mt-10">
-                      <Button
-                        asChild
-                        size="lg"
-                        className="group w-full transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg motion-reduce:transform-none"
-                      >
-                        <Link to="/complete">
-                          Claim your feature
-                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                        </Link>
-                      </Button>
-                      <p className="mt-4 flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
-                        <FileText className="h-3 w-3" aria-hidden />
-                        Published within 2 weeks. Keepsake ships after publication.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </Card>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* CONFIGURATION — choose when it lands */}
+        <section className="border-t border-border bg-secondary/30 px-6 py-24">
+          <div className="mx-auto max-w-4xl">
+            <Reveal>
+              <div className="mb-10 text-center">
+                <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+                  Choose when it lands
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
+                  Every feature includes everything above. The one thing you decide is how soon.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div
+                role="radiogroup"
+                aria-label="Publication timing"
+                className="grid gap-4 md:grid-cols-2"
+              >
+                <TimingOption
+                  selected={timing === "standard"}
+                  onSelect={() => setTiming("standard")}
+                  icon={Clock}
+                  name="Standard"
+                  description="Your feature is published within four weeks, alongside the next group of 2026 winners."
+                  addOn={null}
+                />
+                <TimingOption
+                  selected={timing === "priority"}
+                  onSelect={() => setTiming("priority")}
+                  icon={Zap}
+                  name="Priority"
+                  description="Your feature moves to the front of the queue and is published within one week."
+                  addOn={`+$${PRIORITY_UPGRADE_PRICE}`}
+                />
+              </div>
+            </Reveal>
+
+            {/* Total + CTA */}
+            <Reveal delay={160}>
+              <div className="mt-10 rounded-2xl border border-primary/20 bg-card p-6 shadow-[0_20px_60px_-30px_rgba(25,120,229,0.4)] md:p-8">
+                <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                      Your total
+                    </p>
+                    <div className="mt-2 flex items-baseline gap-3">
+                      <span className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+                        ${total.toLocaleString()}
+                      </span>
+                      <span className="text-sm text-muted-foreground">
+                        {timing === "priority" ? "Feature + Priority" : "Feature"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <Button
+                    asChild
+                    size="lg"
+                    className="group w-full transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg motion-reduce:transform-none md:w-auto"
+                  >
+                    <Link to="/complete" search={{ timing }}>
+                      Claim your feature
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </Button>
+                </div>
+
+                <div className="mt-6 space-y-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:text-left">
+                  <p>
+                    Your feature is written, reviewed with you, and published. The keepsake ships after publication.
+                  </p>
+                  <p>
+                    Every winner is independently reviewed and selected.{" "}
+                    <Link to="/methodology" className="text-primary underline-offset-4 hover:underline">
+                      Our methodology
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
             </Reveal>
           </div>
         </section>
@@ -359,17 +411,65 @@ function PricingPage() {
   );
 }
 
-function FreeTile({ icon: Icon, label, description }: { icon: LucideIcon; label: string; description: string }) {
+function TimingOption({
+  selected,
+  onSelect,
+  icon: Icon,
+  name,
+  description,
+  addOn,
+}: {
+  selected: boolean;
+  onSelect: () => void;
+  icon: typeof Clock;
+  name: string;
+  description: string;
+  addOn: string | null;
+}) {
   return (
-    <div className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none">
-      <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
-        <Icon className="h-5 w-5" aria-hidden />
-      </span>
-      <div>
-        <p className="text-sm font-medium text-foreground">{label}</p>
-        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{description}</p>
-        <p className="mt-2 text-[11px] font-medium uppercase tracking-wider text-primary">Free · yours to use</p>
+    <button
+      type="button"
+      role="radio"
+      aria-checked={selected}
+      onClick={onSelect}
+      className={`group relative flex h-full flex-col items-start rounded-2xl border p-6 text-left transition-all duration-200 md:p-7 ${
+        selected
+          ? "border-primary bg-card shadow-[0_20px_50px_-30px_rgba(25,120,229,0.5)] ring-2 ring-primary/40"
+          : "border-border bg-card hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+      } motion-reduce:transform-none`}
+    >
+      <div className="flex w-full items-center justify-between">
+        <span
+          className={`inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 transition-colors ${
+            selected
+              ? "bg-primary text-primary-foreground ring-primary"
+              : "bg-primary/10 text-primary ring-primary/20"
+          }`}
+        >
+          <Icon className="h-4 w-4" aria-hidden />
+        </span>
+
+        <span
+          className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-colors ${
+            selected ? "border-primary bg-primary" : "border-border"
+          }`}
+        >
+          {selected && <Check className="h-3 w-3 text-primary-foreground" strokeWidth={3} />}
+        </span>
       </div>
-    </div>
+
+      <div className="mt-5 flex w-full items-baseline justify-between gap-3">
+        <p className="text-lg font-semibold text-foreground">{name}</p>
+        {addOn ? (
+          <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
+            {addOn}
+          </span>
+        ) : (
+          <span className="text-xs text-muted-foreground">Included</span>
+        )}
+      </div>
+
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+    </button>
   );
 }
