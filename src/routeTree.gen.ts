@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -20,6 +21,11 @@ import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resour
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
+  id: '/terms-and-conditions',
+  path: '/terms-and-conditions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/methodology'
     | '/pricing'
+    | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-resources/$token'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/methodology'
     | '/pricing'
+    | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-resources/$token'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/methodology'
     | '/pricing'
+    | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-resources/$token'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRoute
+  TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
 }
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/thank-you'
       fullPath: '/thank-you'
       preLoaderRoute: typeof ThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-and-conditions': {
+      id: '/terms-and-conditions'
+      path: '/terms-and-conditions'
+      fullPath: '/terms-and-conditions'
+      preLoaderRoute: typeof TermsAndConditionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRoute,
+  TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
 }
