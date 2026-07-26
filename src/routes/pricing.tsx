@@ -381,7 +381,8 @@ function PricingPage() {
                     size="lg"
                     className="group w-full transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg motion-reduce:transform-none md:w-auto"
                   >
-                    <Link to="/complete" search={{ timing }}>
+                    <Link to="/complete">
+
                       Claim your feature
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                     </Link>
