@@ -9,6 +9,7 @@ export function SiteFooter() {
           
           <Link to="/methodology" className="hover:text-foreground">Methodology</Link>
           <Link to="/faq" className="hover:text-foreground">FAQ</Link>
+          <Link to="/terms-and-conditions" className="hover:text-foreground">Terms and Conditions</Link>
           <a href="/#submit" className="hover:text-foreground">Enter</a>
           <a href="/#contact" className="hover:text-foreground">Contact</a>
         </nav>

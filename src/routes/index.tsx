@@ -427,6 +427,18 @@ function SubmissionForm() {
   const navigate = useNavigate({ from: "/" });
   const submitLead = useServerFn(submitHubSpotLead);
   const [formError, setFormError] = useState<string | null>(null);
+  const [agreed, setAgreed] = useState(false);
+  const [agreementError, setAgreementError] = useState(false);
+  const agreedRef = useRef(false);
+
+  useEffect(() => {
+    agreedRef.current = agreed;
+    const btn = formContainerRef.current?.querySelector<HTMLInputElement | HTMLButtonElement>(
+      'input[type="submit"], button[type="submit"]'
+    );
+    if (btn) btn.disabled = !agreed;
+    if (agreed) setAgreementError(false);
+  }, [agreed]);
 
   useEffect(() => {
     const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
@@ -454,6 +466,10 @@ function SubmissionForm() {
       const form = event.target instanceof HTMLFormElement ? event.target : null;
       if (!form) return;
       if (form.dataset.serverSubmitting === "true") return;
+      if (!agreedRef.current) {
+        setAgreementError(true);
+        return;
+      }
       if (!form.reportValidity()) return;
 
       form.dataset.serverSubmitting = "true";
@@ -480,6 +496,10 @@ function SubmissionForm() {
       if (!form || form.dataset.serverSubmitAttached === "true") return;
 
       form.dataset.serverSubmitAttached = "true";
+      const btn = form.querySelector<HTMLInputElement | HTMLButtonElement>(
+        'input[type="submit"], button[type="submit"]'
+      );
+      if (btn) btn.disabled = !agreedRef.current;
     };
 
     formContainer?.addEventListener("submit", handleServerSubmit, true);
@@ -547,6 +567,45 @@ function SubmissionForm() {
         </div>
         <Card className="mt-12 p-8 md:p-10">
           <div id={targetId} ref={formContainerRef} />
+          <div className="mt-6">
+            <label className="flex items-start gap-3 text-sm text-foreground">
+              <input
+                type="checkbox"
+                required
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                className="mt-1 h-4 w-4 shrink-0 rounded border-border text-primary focus:ring-primary"
+                aria-invalid={agreementError || undefined}
+                aria-describedby={agreementError ? "agreement-error" : undefined}
+              />
+              <span>
+                I have read and agree to the{" "}
+                <a
+                  href="/terms-and-conditions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-primary"
+                >
+                  Terms and Conditions
+                </a>{" "}
+                and{" "}
+                <a
+                  href="/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-primary"
+                >
+                  Privacy Policy
+                </a>
+                .
+              </span>
+            </label>
+            {agreementError && (
+              <p id="agreement-error" className="mt-2 text-sm font-medium text-destructive" role="alert">
+                Please agree to the Terms and Conditions and Privacy Policy to continue.
+              </p>
+            )}
+          </div>
           {formError && (
             <p className="mt-4 text-center text-sm font-medium text-destructive" role="alert">
               {formError}
