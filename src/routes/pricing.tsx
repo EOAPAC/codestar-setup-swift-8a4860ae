@@ -146,6 +146,15 @@ function PricingPage() {
   const [timing, setTiming] = useState<Timing>("standard");
   const total = WINNERS_FEATURE_PRICE + (timing === "priority" ? PRIORITY_UPGRADE_PRICE : 0);
 
+  useEffect(() => {
+    const SRC = "https://js.stripe.com/v3/buy-button.js";
+    if (document.querySelector(`script[src="${SRC}"]`)) return;
+    const s = document.createElement("script");
+    s.src = SRC;
+    s.async = true;
+    document.body.appendChild(s);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col">
       <SiteNav />
