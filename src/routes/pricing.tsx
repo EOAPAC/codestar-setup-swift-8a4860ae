@@ -385,17 +385,13 @@ function PricingPage() {
                     </div>
                   </div>
 
-                  <Button
-                    asChild
-                    size="lg"
-                    className="group w-full transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg motion-reduce:transform-none md:w-auto"
-                  >
-                    <Link to="/complete">
-
-                      Claim your feature
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                  </Button>
+                  <div className="w-full md:w-auto">
+                    {/* @ts-expect-error - Stripe web component */}
+                    <stripe-buy-button
+                      buy-button-id="buy_btn_1TxdN0Gd5RmL1wBx7bYpYfn0"
+                      publishable-key="pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4"
+                    />
+                  </div>
                 </div>
 
                 <div className="mt-6 space-y-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:text-left">
