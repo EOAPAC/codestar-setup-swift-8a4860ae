@@ -5,13 +5,27 @@ import { SiteFooter } from "@/components/site-footer";
 import { Lock, FileCheck } from "lucide-react";
 
 // ------------------------------------------------------------------
-// Easy-edit constants for the HubSpot payment embed.
+// Easy-edit constants for the Stripe buy button embed.
 // ------------------------------------------------------------------
-const HUBSPOT_PAYMENT_EMBED_SRC =
-  "https://payments-na1.hubspot.com/payments/gVsrMxrxsqyJTX?referrer=PAYMENT_LINK_EMBED&layout=embed-full";
-const HUBSPOT_PAYMENT_EMBED_SCRIPT =
-  "https://static.hsappstatic.net/payments-embed/ex/PaymentsEmbedCode.js";
+const STRIPE_BUY_BUTTON_SCRIPT = "https://js.stripe.com/v3/buy-button.js";
+const STRIPE_BUY_BUTTON_ID = "buy_btn_1TxtVgGd5RmL1wBxPu6OCfi6";
+const STRIPE_PUBLISHABLE_KEY =
+  "pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4";
 // ------------------------------------------------------------------
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "stripe-buy-button": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & {
+          "buy-button-id": string;
+          "publishable-key": string;
+        },
+        HTMLElement
+      >;
+    }
+  }
+}
 
 export const Route = createFileRoute("/complete")({
   head: () => ({
@@ -41,21 +55,13 @@ export const Route = createFileRoute("/complete")({
 
 function CompletePage() {
   useEffect(() => {
-    const existing = document.querySelector(
-      `script[src="${HUBSPOT_PAYMENT_EMBED_SCRIPT}"]`,
-    );
-    if (existing) {
-      // Re-trigger the embed script so it picks up the container on client nav
-      existing.remove();
+    if (document.querySelector(`script[src="${STRIPE_BUY_BUTTON_SCRIPT}"]`)) {
+      return;
     }
     const script = document.createElement("script");
-    script.src = HUBSPOT_PAYMENT_EMBED_SCRIPT;
-    script.type = "text/javascript";
+    script.src = STRIPE_BUY_BUTTON_SCRIPT;
     script.async = true;
     document.body.appendChild(script);
-    return () => {
-      script.remove();
-    };
   }, []);
 
   return (
@@ -93,10 +99,10 @@ function CompletePage() {
           </div>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card p-2 md:p-4">
-          <div
-            className="payments-iframe-container ea-complete__embed"
-            data-src={HUBSPOT_PAYMENT_EMBED_SRC}
+        <div className="mt-8 flex justify-center rounded-2xl border border-border bg-card p-6 md:p-10">
+          <stripe-buy-button
+            buy-button-id={STRIPE_BUY_BUTTON_ID}
+            publishable-key={STRIPE_PUBLISHABLE_KEY}
           />
         </div>
 
