@@ -13,7 +13,7 @@ const STRIPE_PUBLISHABLE_KEY =
   "pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4";
 // ------------------------------------------------------------------
 
-declare global {
+declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
       "stripe-buy-button": React.DetailedHTMLProps<
