@@ -87,6 +87,7 @@ function CompletePage() {
         </div>
 
         <div className="mt-8 flex justify-center rounded-2xl border border-border bg-card p-6 md:p-10">
+          {/* @ts-expect-error - Stripe web component */}
           <stripe-buy-button
             buy-button-id={STRIPE_BUY_BUTTON_ID}
             publishable-key={STRIPE_PUBLISHABLE_KEY}
