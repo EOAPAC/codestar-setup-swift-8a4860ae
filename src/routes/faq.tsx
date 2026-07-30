@@ -93,10 +93,10 @@ function FAQPage() {
 
                 <AccordionItem value="q3" id="q3" className="scroll-mt-24">
                   <AccordionTrigger className="text-left text-base font-medium">
-                    Is it free to enter?
+                    Is there a cost to enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Yes — entering is completely free. There is no submission fee and no payment required to be considered. Every entry is read and scored by our founder-judges.
+                    Yes. A one-time entry fee applies when you submit. It covers the review and administration of your entry. Every entry is read and scored by our founder-judges. The fee does not purchase an award, and entering does not guarantee selection.
                   </AccordionContent>
                 </AccordionItem>
 
