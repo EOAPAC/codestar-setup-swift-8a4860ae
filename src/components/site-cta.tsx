@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 export function SiteCTA({
   eyebrow = "Ready when you are",
   heading = "Put your story forward.",
-  subheading = "Free to enter. Reviewed by founders, not marketers.",
+  subheading = "Reviewed by founders, not marketers.",
 }: {
   eyebrow?: string;
   heading?: string;

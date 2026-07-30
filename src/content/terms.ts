@@ -38,8 +38,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
     body: [
       "3.1 Entry is open to founders, co-founders and owner-operators of a legally operating business. You enter as an individual, and your entry is your own story.",
       "3.2 One entry per founder per cycle. We may reject duplicate or near-duplicate submissions.",
-      "3.3 **Entering is free. Payment only arises if you are selected and choose a winner package.** Submitting an entry does not guarantee selection.",
-      "EDITORIAL NOTE — DELETE BEFORE LAUNCH: if the model changes to a paid entry, replace clause 3.3 with: \"A non-refundable entry fee of $125 applies at submission. The fee covers review and administration. It does not purchase an award, and submitting an entry does not guarantee selection.\"",
+      "3.3 **A non-refundable entry fee applies at submission.** The fee covers review and administration. It does not purchase an award, and submitting an entry does not guarantee selection.",
       "3.4 You are responsible for everything you submit. You warrant that your entry is your own work, that the facts, numbers and milestones in it are true, that the images you upload are yours to use, and that nothing in it breaches a confidentiality agreement or any third-party right.",
       "3.5 We may ask for evidence supporting any claim in an entry. We may reject an entry, or withdraw an award already granted, where information is inaccurate, misleading, plagiarised or unverifiable, or where a winner's conduct brings the programme into disrepute. No refund is due in those circumstances.",
       "3.6 Selection decisions are made at our discretion and are final. We do not publish scores, share reviewer identities, or provide individual feedback, and we do not enter into correspondence about why a decision was reached.",

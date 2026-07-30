@@ -518,7 +518,7 @@ function SubmissionForm() {
           pageUrl: window.location.href,
           onFormReady: attachServerSubmit,
           onFormSubmitted: () => {
-            navigate({ to: "/thank-you" });
+            navigate({ to: "/complete" });
           },
         });
       }
@@ -612,7 +612,7 @@ function SubmissionForm() {
             </p>
           )}
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            Free to enter. No fees, no payment required. Our founder-judges reply within 14 days.
+            A one-time entry fee completes your application. Our founder-judges reply within 14 days.
           </p>
         </Card>
       </div>
