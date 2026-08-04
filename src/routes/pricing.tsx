@@ -18,6 +18,7 @@ import {
   Zap,
 } from "lucide-react";
 
+const BRAND_BLUE = "#1978E5";
 
 import linkedinBannerAsset from "@/assets/ea-winner-social-Linkedin_Post.png.asset.json";
 import igPostAsset from "@/assets/ea-winner-social-IG_Post.png.asset.json";
