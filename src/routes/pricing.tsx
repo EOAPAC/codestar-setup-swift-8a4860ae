@@ -18,7 +18,64 @@ import {
   Zap,
 } from "lucide-react";
 
-const BRAND_BLUE = "#1978E5";
+
+import linkedinBannerAsset from "@/assets/ea-winner-social-Linkedin_Post.png.asset.json";
+import igPostAsset from "@/assets/ea-winner-social-IG_Post.png.asset.json";
+import igStoryAsset from "@/assets/ea-winner-social-IG_story.png.asset.json";
+import emailSigAsset from "@/assets/ea-winner-emailsig-full-600x200.png.asset.json";
+
+const freeAssets = [
+  {
+    title: "LinkedIn banner",
+    meta: "1200 x 630 PNG",
+    src: linkedinBannerAsset.url,
+    alt: "Entrepreneur Awards 2026 winner LinkedIn banner graphic",
+    frame: "aspect-[1200/630]",
+  },
+  {
+    title: "Square social post",
+    meta: "1080 x 1080 PNG",
+    src: igPostAsset.url,
+    alt: "Entrepreneur Awards 2026 winner square social post graphic",
+    frame: "aspect-square",
+  },
+  {
+    title: "Story graphic",
+    meta: "1080 x 1920 PNG",
+    src: igStoryAsset.url,
+    alt: "Entrepreneur Awards 2026 winner vertical story graphic",
+    frame: "aspect-[1080/1920]",
+  },
+  {
+    title: "Email signature",
+    meta: "600 x 200 PNG",
+    src: emailSigAsset.url,
+    alt: "Entrepreneur Awards 2026 winner email signature strip",
+    frame: "aspect-[600/200]",
+  },
+] as const;
+
+function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
+  return (
+    <figure className="flex h-full flex-col">
+      <div className="grid flex-1 place-items-center rounded-xl border border-border bg-background p-4 shadow-sm">
+        <div className={`w-full ${asset.frame} max-h-56`}>
+          <img
+            src={asset.src}
+            alt={asset.alt}
+            loading="lazy"
+            className="h-full w-full rounded-md object-contain"
+          />
+        </div>
+      </div>
+      <figcaption className="mt-3 text-center">
+        <span className="block text-sm font-medium text-foreground">{asset.title}</span>
+        <span className="mt-0.5 block text-xs text-muted-foreground">{asset.meta}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
 
 // Prices — edit these to update the page.
 const WINNERS_FEATURE_PRICE = 495;
