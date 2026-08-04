@@ -204,18 +204,31 @@ function PricingPage() {
         </section>
 
         {/* ALREADY YOURS */}
-        <section className="border-t border-border bg-secondary/30 px-6 py-16">
-          <div className="mx-auto max-w-3xl text-center">
+        <section className="border-t border-border bg-secondary/30 px-6 py-16 md:py-20">
+          <div className="mx-auto max-w-5xl">
             <Reveal>
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
-                Already yours, free
-              </p>
-              <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
-                Your winner badge, shareable graphics, and write-up. In your inbox, ready to post today.
-              </p>
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
+                  Already yours, free
+                </p>
+                <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
+                  Your winner graphics are in your inbox, ready to post today. No upgrade needed.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {freeAssets.map((a) => (
+                  <li key={a.title}>
+                    <FreeAssetTile asset={a} />
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           </div>
         </section>
+
 
         {/* THE OFFER */}
         <section className="relative overflow-hidden px-6 py-24 md:py-32">
