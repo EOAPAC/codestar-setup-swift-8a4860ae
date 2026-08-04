@@ -67,9 +67,12 @@ function ThankYouPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <Link to="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
-            <span className="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground">
-              E
-            </span>
+            <img
+              src={markAsset.url}
+              alt="Entrepreneur Awards mark"
+              className="h-7 w-7 shrink-0 object-contain"
+            />
+
             Entrepreneur Awards
           </Link>
         </div>
