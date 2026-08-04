@@ -6,17 +6,17 @@ import { Award, Quote } from "lucide-react";
 export const Route = createFileRoute("/winners")({
   head: () => ({
     meta: [
-      { title: "Past Winners | The Entrepreneur Awards" },
+      { title: "Past Winners | Entrepreneur Awards" },
       {
         name: "description",
         content:
-          "Founders recognized by The Entrepreneur Awards. A record of the operators, builders, and category leaders honored in previous cycles.",
+          "Founders recognized by Entrepreneur Awards. A record of the operators, builders, and category leaders honored in previous cycles.",
       },
-      { property: "og:title", content: "Past Winners | The Entrepreneur Awards" },
+      { property: "og:title", content: "Past Winners | Entrepreneur Awards" },
       {
         property: "og:description",
         content:
-          "Founders recognized by The Entrepreneur Awards. A record of the operators, builders, and category leaders honored in previous cycles.",
+          "Founders recognized by Entrepreneur Awards. A record of the operators, builders, and category leaders honored in previous cycles.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

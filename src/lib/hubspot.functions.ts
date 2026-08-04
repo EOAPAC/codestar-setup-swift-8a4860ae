@@ -72,7 +72,7 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
 
     const context: Record<string, string> = {
       pageUri: data.context?.pageUri ?? "https://www.entrepreneurawards.co/",
-      pageName: data.context?.pageName ?? "The Entrepreneur Awards",
+      pageName: data.context?.pageName ?? "Entrepreneur Awards",
     };
     if (data.context?.hutk) context.hutk = data.context.hutk;
     if (data.context?.referrer) context.referrer = data.context.referrer;

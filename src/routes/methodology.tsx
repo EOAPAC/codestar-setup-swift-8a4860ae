@@ -6,9 +6,9 @@ import { FileText, ClipboardCheck, ListChecks, Users, Award, Compass, LineChart,
 export const Route = createFileRoute("/methodology")({
   head: () => ({
     meta: [
-      { title: "Methodology | The Entrepreneur Awards" },
+      { title: "Methodology | Entrepreneur Awards" },
       { name: "description", content: "How winners are chosen. Our review panel evaluates every entry against the same criteria: vision, traction, resilience, and influence." },
-      { property: "og:title", content: "Methodology | The Entrepreneur Awards" },
+      { property: "og:title", content: "Methodology | Entrepreneur Awards" },
       { property: "og:description", content: "How winners are chosen. Our review panel evaluates every entry against the same criteria: vision, traction, resilience, and influence." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -93,7 +93,7 @@ function MethodologyPage() {
             </h1>
             <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
               <p>
-                The Entrepreneur Awards honor founders for the businesses they build and the judgment they show along the way. Every entry is reviewed against the same set of criteria, in the same order, so each founder is assessed on their own merits.
+                Entrepreneur Awards honors founders for the businesses they build and the judgment they show along the way. Every entry is reviewed against the same set of criteria, in the same order, so each founder is assessed on their own merits.
               </p>
               <p>
                 Entries are evaluated on the substance of the business and the outcomes the founder can demonstrate. This page outlines the stages of our review process, from submission through to final selection, and the criteria the panel applies at each step.

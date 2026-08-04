@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowLeft, Share2, Calendar, Mail, Trophy, User, TrendingUp } from "lucide-react";
+import markAsset from "@/assets/ea-mark.png.asset.json";
+
 
 const thankYouSearchSchema = z.object({
   id: z.string().optional(),
@@ -13,9 +15,9 @@ export const Route = createFileRoute("/thank-you")({
   validateSearch: thankYouSearchSchema,
   head: () => ({
     meta: [
-      { title: "Thank You — Entry Received | The Entrepreneur Awards" },
+      { title: "Thank You — Entry Received | Entrepreneur Awards" },
       { name: "description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
-      { property: "og:title", content: "Thank You — Entry Received | The Entrepreneur Awards" },
+      { property: "og:title", content: "Thank You — Entry Received | Entrepreneur Awards" },
       { property: "og:description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -67,10 +69,13 @@ function ThankYouPage() {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <Link to="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
-            <span className="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground">
-              E
-            </span>
-            The Entrepreneur Awards
+            <img
+              src={markAsset.url}
+              alt="Entrepreneur Awards mark"
+              className="h-7 w-7 shrink-0 object-contain"
+            />
+
+            Entrepreneur Awards
           </Link>
         </div>
       </header>
@@ -190,7 +195,7 @@ function ThankYouPage() {
       <footer className="border-t border-border py-8">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-center text-xs text-muted-foreground">
-            © 2026 The Entrepreneur Awards. All rights reserved.
+            © 2026 Entrepreneur Awards. All rights reserved.
           </p>
         </div>
       </footer>
