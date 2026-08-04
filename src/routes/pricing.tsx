@@ -20,6 +20,64 @@ import {
 
 const BRAND_BLUE = "#1978E5";
 
+import linkedinBannerAsset from "@/assets/ea-winner-social-Linkedin_Post.png.asset.json";
+import igPostAsset from "@/assets/ea-winner-social-IG_Post.png.asset.json";
+import igStoryAsset from "@/assets/ea-winner-social-IG_story.png.asset.json";
+import emailSigAsset from "@/assets/ea-winner-emailsig-full-600x200.png.asset.json";
+
+const freeAssets = [
+  {
+    title: "LinkedIn banner",
+    meta: "1200 x 630 PNG",
+    src: linkedinBannerAsset.url,
+    alt: "Entrepreneur Awards 2026 winner LinkedIn banner graphic",
+    frame: "aspect-[1200/630]",
+  },
+  {
+    title: "Square social post",
+    meta: "1080 x 1080 PNG",
+    src: igPostAsset.url,
+    alt: "Entrepreneur Awards 2026 winner square social post graphic",
+    frame: "aspect-square",
+  },
+  {
+    title: "Story graphic",
+    meta: "1080 x 1920 PNG",
+    src: igStoryAsset.url,
+    alt: "Entrepreneur Awards 2026 winner vertical story graphic",
+    frame: "aspect-[1080/1920]",
+  },
+  {
+    title: "Email signature",
+    meta: "600 x 200 PNG",
+    src: emailSigAsset.url,
+    alt: "Entrepreneur Awards 2026 winner email signature strip",
+    frame: "aspect-[600/200]",
+  },
+] as const;
+
+function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
+  return (
+    <figure className="flex h-full flex-col">
+      <div className="grid flex-1 place-items-center rounded-xl border border-border bg-background p-4 shadow-sm">
+        <div className={`w-full ${asset.frame} max-h-56`}>
+          <img
+            src={asset.src}
+            alt={asset.alt}
+            loading="lazy"
+            className="h-full w-full rounded-md object-contain"
+          />
+        </div>
+      </div>
+      <figcaption className="mt-3 text-center">
+        <span className="block text-sm font-medium text-foreground">{asset.title}</span>
+        <span className="mt-0.5 block text-xs text-muted-foreground">{asset.meta}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
+
 // Prices — edit these to update the page.
 const WINNERS_FEATURE_PRICE = 495;
 const PRIORITY_UPGRADE_PRICE = 95;
@@ -204,18 +262,31 @@ function PricingPage() {
         </section>
 
         {/* ALREADY YOURS */}
-        <section className="border-t border-border bg-secondary/30 px-6 py-16">
-          <div className="mx-auto max-w-3xl text-center">
+        <section className="border-t border-border bg-secondary/30 px-6 py-16 md:py-20">
+          <div className="mx-auto max-w-5xl">
             <Reveal>
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
-                Already yours, free
-              </p>
-              <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
-                Your winner badge, shareable graphics, and write-up. In your inbox, ready to post today.
-              </p>
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
+                  Already yours, free
+                </p>
+                <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
+                  Your winner graphics are in your inbox, ready to post today. No upgrade needed.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {freeAssets.map((a) => (
+                  <li key={a.title}>
+                    <FreeAssetTile asset={a} />
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           </div>
         </section>
+
 
         {/* THE OFFER */}
         <section className="relative overflow-hidden px-6 py-24 md:py-32">
