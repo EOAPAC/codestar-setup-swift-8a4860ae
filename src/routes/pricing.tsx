@@ -14,6 +14,8 @@ import {
   Sparkles,
   Star,
   Check,
+  Copy,
+
   Clock,
   Zap,
 } from "lucide-react";
