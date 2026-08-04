@@ -347,6 +347,27 @@ function PricingPage() {
                 ))}
               </ul>
             </Reveal>
+
+            <Reveal delay={140}>
+              <div className="mt-14">
+                <div className="mx-auto max-w-2xl text-center">
+                  <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
+                    Ready to post captions
+                  </p>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    Copy one, pair it with a graphic, and tag {IG_HANDLE} so we can share your win.
+                  </p>
+                </div>
+                <ul className="mt-8 grid gap-5 md:grid-cols-3">
+                  {captions.map((c) => (
+                    <li key={c.platform}>
+                      <CaptionCard caption={c} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+
           </div>
         </section>
 
