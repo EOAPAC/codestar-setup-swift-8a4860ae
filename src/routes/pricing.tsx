@@ -14,6 +14,8 @@ import {
   Sparkles,
   Star,
   Check,
+  Copy,
+
   Clock,
   Zap,
 } from "lucide-react";
@@ -76,6 +78,67 @@ function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
     </figure>
   );
 }
+
+const IG_HANDLE = "@entrepreneurawards.co";
+const LINKEDIN_HANDLE = "Entrepreneur Awards";
+
+const captions = [
+  {
+    platform: "Instagram",
+    tag: IG_HANDLE,
+    text: `Named a 2026 Entrepreneur Award winner by ${IG_HANDLE}.\n\nThank you to everyone who has backed this business, our team, our customers, and the people who said yes early. This one is shared.\n\n#EntrepreneurAwards #2026Winner`,
+  },
+  {
+    platform: "LinkedIn",
+    tag: LINKEDIN_HANDLE,
+    text: `I am proud to share that I have been named a 2026 ${LINKEDIN_HANDLE} winner.\n\nThis recognition reflects the work of a team that shows up every day, and the customers who trusted us to do it. Grateful for both.\n\nThank you to ${LINKEDIN_HANDLE} for the recognition. On to the next chapter.`,
+  },
+  {
+    platform: "Story or short post",
+    tag: IG_HANDLE,
+    text: `2026 Entrepreneur Award winner. Grateful. ${IG_HANDLE}`,
+  },
+] as const;
+
+function CaptionCard({ caption }: { caption: (typeof captions)[number] }) {
+  const [copied, setCopied] = useState(false);
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(caption.text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  return (
+    <Card className="flex h-full flex-col gap-4 p-5">
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-sm font-medium text-foreground">{caption.platform}</span>
+        <span className="text-xs text-muted-foreground">Tag {caption.tag}</span>
+      </div>
+      <p className="flex-1 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+        {caption.text}
+      </p>
+      <Button variant="outline" size="sm" className="self-start" onClick={copy}>
+        {copied ? (
+          <>
+            <Check className="h-4 w-4" aria-hidden />
+            Copied
+          </>
+        ) : (
+          <>
+            <Copy className="h-4 w-4" aria-hidden />
+            Copy caption
+          </>
+        )}
+      </Button>
+    </Card>
+  );
+}
+
 
 
 // Prices — edit these to update the page.
@@ -284,6 +347,27 @@ function PricingPage() {
                 ))}
               </ul>
             </Reveal>
+
+            <Reveal delay={140}>
+              <div className="mt-14">
+                <div className="mx-auto max-w-2xl text-center">
+                  <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
+                    Ready to post captions
+                  </p>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    Copy one, pair it with a graphic, and tag {IG_HANDLE} so we can share your win.
+                  </p>
+                </div>
+                <ul className="mt-8 grid gap-5 md:grid-cols-3">
+                  {captions.map((c) => (
+                    <li key={c.platform}>
+                      <CaptionCard caption={c} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+
           </div>
         </section>
 
