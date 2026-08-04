@@ -105,7 +105,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
     body: [
       "9.1 All content on the Website — text, graphics, logos, badges, images, page design and software — is our property or licensed to us, and is protected by copyright, trade mark and other intellectual property laws.",
       "9.2 You may not reproduce, modify, distribute, sell or display any part of the Website without our prior written consent.",
-      "9.3 The Entrepreneur Awards name, logo and badges may not be used except under a licence granted under section 6 or with our prior written consent.",
+      "9.3 Entrepreneur Awards name, logo and badges may not be used except under a licence granted under section 6 or with our prior written consent.",
       "9.4 You keep ownership of what you submit. You grant us the licence described in section 8 in respect of it.",
     ],
   },

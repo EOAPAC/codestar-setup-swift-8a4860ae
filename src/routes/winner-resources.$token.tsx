@@ -37,13 +37,13 @@ import {
 export const Route = createFileRoute("/winner-resources/$token")({
   head: () => ({
     meta: [
-      { title: "Your Winner Resources | The Entrepreneur Awards" },
+      { title: "Your Winner Resources | Entrepreneur Awards" },
       {
         name: "description",
         content:
           "Celebrate your 2026 Entrepreneur Award. Download your winner assets and make your recognition official with a published feature and keepsake award.",
       },
-      { property: "og:title", content: "Your Winner Resources | The Entrepreneur Awards" },
+      { property: "og:title", content: "Your Winner Resources | Entrepreneur Awards" },
       {
         property: "og:description",
         content:

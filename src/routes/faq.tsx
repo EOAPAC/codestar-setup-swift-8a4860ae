@@ -23,9 +23,9 @@ const topics = [
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — The Entrepreneur Awards" },
+      { title: "FAQ — Entrepreneur Awards" },
       { name: "description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
-      { property: "og:title", content: "FAQ — The Entrepreneur Awards" },
+      { property: "og:title", content: "FAQ — Entrepreneur Awards" },
       { property: "og:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

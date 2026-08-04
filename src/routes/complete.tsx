@@ -17,7 +17,7 @@ const STRIPE_PUBLISHABLE_KEY =
 export const Route = createFileRoute("/complete")({
   head: () => ({
     meta: [
-      { title: "Complete Your Entry | The Entrepreneur Awards" },
+      { title: "Complete Your Entry | Entrepreneur Awards" },
       {
         name: "description",
         content:
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/complete")({
       },
       {
         property: "og:title",
-        content: "Complete Your Entry | The Entrepreneur Awards",
+        content: "Complete Your Entry | Entrepreneur Awards",
       },
       {
         property: "og:description",

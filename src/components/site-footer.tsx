@@ -4,7 +4,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-xs text-muted-foreground md:flex-row">
-        <p>© {new Date().getFullYear()} The Entrepreneur Awards. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Entrepreneur Awards. All rights reserved.</p>
         <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
           
           <Link to="/methodology" className="hover:text-foreground">Methodology</Link>

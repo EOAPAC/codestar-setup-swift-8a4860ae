@@ -9,7 +9,7 @@ export function SiteNav() {
           <span className="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground">
             E
           </span>
-          The Entrepreneur Awards
+          Entrepreneur Awards
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="/#tiers" className="hover:text-foreground">Awards</a>

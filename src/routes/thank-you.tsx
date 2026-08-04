@@ -13,9 +13,9 @@ export const Route = createFileRoute("/thank-you")({
   validateSearch: thankYouSearchSchema,
   head: () => ({
     meta: [
-      { title: "Thank You — Entry Received | The Entrepreneur Awards" },
+      { title: "Thank You — Entry Received | Entrepreneur Awards" },
       { name: "description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
-      { property: "og:title", content: "Thank You — Entry Received | The Entrepreneur Awards" },
+      { property: "og:title", content: "Thank You — Entry Received | Entrepreneur Awards" },
       { property: "og:description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -70,7 +70,7 @@ function ThankYouPage() {
             <span className="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground">
               E
             </span>
-            The Entrepreneur Awards
+            Entrepreneur Awards
           </Link>
         </div>
       </header>
@@ -190,7 +190,7 @@ function ThankYouPage() {
       <footer className="border-t border-border py-8">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-center text-xs text-muted-foreground">
-            © 2026 The Entrepreneur Awards. All rights reserved.
+            © 2026 Entrepreneur Awards. All rights reserved.
           </p>
         </div>
       </footer>

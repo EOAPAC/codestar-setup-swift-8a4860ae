@@ -85,9 +85,9 @@ const PRIORITY_UPGRADE_PRICE = 95;
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "The Winner's Feature | The Entrepreneur Awards" },
+      { title: "The Winner's Feature | Entrepreneur Awards" },
       { name: "description", content: "Your 2026 Entrepreneur Award is yours. The Winner's Feature turns your win into a professionally written, published story about you and your business." },
-      { property: "og:title", content: "The Winner's Feature | The Entrepreneur Awards" },
+      { property: "og:title", content: "The Winner's Feature | Entrepreneur Awards" },
       { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. The Winner's Feature turns your win into a professionally written, published story about you and your business." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -105,7 +105,7 @@ const deliverables = [
   {
     icon: Link2,
     title: "Published at a permanent link",
-    body: "Your feature lives on The Entrepreneur Awards site at a link you can send to clients, investors, and press, for as long as you want it there.",
+    body: "Your feature lives on Entrepreneur Awards site at a link you can send to clients, investors, and press, for as long as you want it there.",
   },
   {
     icon: Users,
@@ -339,7 +339,7 @@ function PricingPage() {
                           How [Your Name] built something worth recognizing.
                         </h3>
                         <p className="mt-2 text-xs text-muted-foreground">
-                          By The Entrepreneur Awards Editorial · 6 min read
+                          By Entrepreneur Awards Editorial · 6 min read
                         </p>
 
                         <div className="mt-5 h-28 rounded-md bg-gradient-to-br from-primary/25 via-primary/10 to-secondary" />
