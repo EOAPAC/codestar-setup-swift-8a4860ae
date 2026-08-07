@@ -148,32 +148,48 @@ const stages = [
   {
     number: 1,
     title: "We write your story properly",
-    body: "Your entry form gave us the outline. Before we write, we'll ask you a handful of questions, the decisions, the near-misses, the parts there wasn't room for. Ten minutes on your side. It's the difference between a summary and a story worth reading.",
-    body2: null as string | null,
+    body: (
+      <>
+        Your entry form gave us the outline. Before we write, we'll ask you a handful of questions,
+        the decisions, the near-misses, the parts there wasn't room for.{" "}
+        <strong className="font-semibold text-foreground">Ten minutes on your side.</strong>
+      </>
+    ),
   },
   {
     number: 2,
     title: "We publish it permanently",
-    body: "You read it first and tell us what to change. Nothing goes live until you're happy. Then it sits at a permanent link on The Entrepreneur Awards.",
-    body2: "When someone searches your name, this is what they find. Not your own site making claims about you.",
+    body: (
+      <>
+        <strong className="font-semibold text-foreground">You read it first.</strong> Nothing goes
+        live until you're happy. Then it sits at{" "}
+        <strong className="font-semibold text-foreground">a permanent link</strong> on The
+        Entrepreneur Awards.
+      </>
+    ),
   },
   {
     number: 3,
     title: "We send the winner's box",
-    body: "Once your feature is live.",
-    body2: null as string | null,
+    body: <>Four pieces, sent once your feature is live.</>,
   },
 ];
 
 const winnersBox = [
-  { lead: "The engraved desk piece", rest: "marking the year you were recognized" },
   {
+    icon: Trophy,
+    lead: "The engraved desk piece",
+    rest: "marking the year you were recognized",
+  },
+  {
+    icon: Newspaper,
     lead: "A printed edition of your feature",
     rest: "a proper offprint, the way publications send authors their own pages",
   },
-  { lead: "Your 2026 winner certificate", rest: null as string | null },
-  { lead: "A card carrying the link to your feature", rest: null as string | null },
+  { icon: ScrollText, lead: "Your 2026 winner certificate", rest: null as string | null },
+  { icon: Link2, lead: "A card carrying the link to your feature", rest: null as string | null },
 ];
+
 
 // Confetti
 function Confetti() {
