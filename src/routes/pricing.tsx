@@ -450,7 +450,7 @@ function PricingPage() {
                   </div>
 
                   {/* Right — stages */}
-                  <div className="flex flex-col justify-between p-8 md:p-12">
+                  <div className="flex flex-col p-8 md:p-12">
                     <div>
                       <div className="flex items-baseline gap-2">
                         <span className="text-5xl font-semibold tracking-tight text-foreground">
@@ -469,9 +469,7 @@ function PricingPage() {
                             className={
                               number === 1
                                 ? "flex items-start gap-4"
-                                : number === 2
-                                  ? "mt-8 flex items-start gap-4 border-t border-border pt-8"
-                                      : "mt-8 flex items-start gap-4"
+                                : "mt-8 flex items-start gap-4 border-t border-border pt-8"
                             }
                           >
                             <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
@@ -480,15 +478,6 @@ function PricingPage() {
                             <div className="min-w-0 flex-1">
                               <p className="text-sm font-semibold text-foreground">{title}</p>
                               <p className="mt-1 text-sm [line-height:1.7] text-muted-foreground">{body}</p>
-
-                              {number === 2 ? (
-                                <div className="-ml-12 mt-8 border-t border-border pt-8"><div className="my-5 rounded-xl bg-primary/10 px-5 py-4 text-[17px] [line-height:1.6] text-foreground">
-                                  <strong className="font-semibold">
-                                    When someone searches your name, this is what they find.
-                                  </strong>{" "}
-                                  Not your own site making claims about you.
-                                </div></div>
-                              ) : null}
 
                               {number === 3 ? (
                                 <div className="mt-4 rounded-lg border border-border p-5">
@@ -516,55 +505,35 @@ function PricingPage() {
                         ))}
                       </ol>
 
+                      <figure className="mt-8 border-l-[3px] border-primary py-1 pl-5" style={{ borderRadius: 0, padding: "4px 0 4px 20px", marginTop: "32px", marginBottom: "24px" }}>
+                        <p className="text-[20px] leading-[1.5] text-foreground">
+                          <strong className="font-semibold">When someone searches your name, this is what they find.</strong>{" "}
+                          Not your own site making claims about you.
+                        </p>
+                      </figure>
+
+                      <div className="w-full">
+                        {/* @ts-expect-error - Stripe web component */}
+                        <stripe-buy-button
+                          buy-button-id="buy_btn_1TxdN0Gd5RmL1wBx7bYpYfn0"
+                          publishable-key="pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4"
+                        />
+                      </div>
+
+                      <div className="mt-4 space-y-0 text-[13px] text-muted-foreground">
+                        <p>Nothing publishes until you've read it.</p>
+                        <p>
+                          Every winner is independently reviewed and selected.{" "}
+                          <Link to="/methodology" className="text-primary underline-offset-4 hover:underline">
+                            Our methodology
+                          </Link>
+                          .
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </Card>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* TOTAL */}
-        <section className="border-t border-border bg-secondary/30 px-6 py-24">
-          <div className="mx-auto max-w-4xl">
-            {/* Total + CTA */}
-            <Reveal>
-              <div className="rounded-2xl border border-primary/20 bg-card p-6 shadow-[0_20px_60px_-30px_rgba(25,120,229,0.4)] md:p-8">
-                <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                      Your total
-                    </p>
-                    <div className="mt-2 flex items-baseline gap-3">
-                      <span className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-                        ${WINNERS_FEATURE_PRICE.toLocaleString()}
-                      </span>
-                      <span className="text-sm text-muted-foreground">one-time</span>
-                    </div>
-                  </div>
-
-                  <div className="w-full md:w-auto">
-                    {/* @ts-expect-error - Stripe web component */}
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1TxdN0Gd5RmL1wBx7bYpYfn0"
-                      publishable-key="pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4"
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6 space-y-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:text-left">
-                  <p>
-                    Nothing publishes until you've read it. Your badge, graphics and citation stay yours whether you take this or not.
-                  </p>
-                  <p>
-                    Every winner is independently reviewed and selected.{" "}
-                    <Link to="/methodology" className="text-primary underline-offset-4 hover:underline">
-                      Our methodology
-                    </Link>
-                    .
-                  </p>
-                </div>
-              </div>
             </Reveal>
           </div>
         </section>
@@ -574,4 +543,5 @@ function PricingPage() {
     </div>
   );
 }
+
 
