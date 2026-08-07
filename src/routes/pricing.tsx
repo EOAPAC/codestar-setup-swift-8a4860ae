@@ -74,15 +74,13 @@ function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
 
   return (
     <figure className="flex h-full flex-col">
-      <div className="grid flex-1 place-items-center rounded-xl border border-border bg-background p-4 shadow-sm">
-        <div className={`w-full ${asset.frame} max-h-56`}>
-          <img
-            src={asset.src}
-            alt={asset.alt}
-            loading="lazy"
-            className="h-full w-full rounded-md object-contain"
-          />
-        </div>
+      <div className="grid h-56 w-full place-items-center rounded-xl border border-border bg-background p-4 shadow-sm">
+        <img
+          src={asset.src}
+          alt={asset.alt}
+          loading="lazy"
+          className="max-h-full max-w-full rounded-md object-contain"
+        />
       </div>
       <figcaption className="mt-3 text-center">
         <span className="block text-sm font-medium text-foreground">{asset.title}</span>
@@ -265,16 +263,6 @@ function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; 
 }
 
 function PricingPage() {
-
-  useEffect(() => {
-    const SRC = "https://js.stripe.com/v3/buy-button.js";
-    if (document.querySelector(`script[src="${SRC}"]`)) return;
-    const s = document.createElement("script");
-    s.src = SRC;
-    s.async = true;
-    document.body.appendChild(s);
-  }, []);
-
   return (
     <div className="flex min-h-screen flex-col">
       <SiteNav />
@@ -332,7 +320,7 @@ function PricingPage() {
                   Already yours, free
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
-                  Your winner badge, your shareable graphics, and your award citation — the formal words that accompany your win. In your inbox, ready to use today.
+                  Yours to keep, free and permanent. Download what you need and post it today.
                 </p>
               </div>
             </Reveal>
@@ -349,7 +337,7 @@ function PricingPage() {
 
             <Reveal delay={140}>
               <p className="mt-10 text-center text-sm text-muted-foreground">
-                Tag {IG_HANDLE} when you post and we'll share it.
+                Tag {IG_HANDLE} when you post.
               </p>
             </Reveal>
 
@@ -443,9 +431,8 @@ function PricingPage() {
                         </span>
                         <span className="text-sm text-muted-foreground">one-time</span>
                       </div>
-                      <p className="mt-3 text-base leading-relaxed text-foreground">
-                        A full feature about you, written and published. Plus the winner's box.
-                      </p>
+                      <p className="mt-3 text-[17px] font-medium text-foreground">A badge says you won. This says why.</p>
+                      <p className="mt-1 text-[15px] text-muted-foreground">A full feature about you, written and published, plus the winner's box.</p>
 
                       <ol className="mt-8 [line-height:1.7]">
                         {stages.map(({ number, title, body }) => (
@@ -493,19 +480,22 @@ function PricingPage() {
                       <figure className="mt-8 border-l-[3px] border-primary py-1 pl-5" style={{ borderRadius: 0, padding: "4px 0 4px 20px", marginTop: "32px", marginBottom: "24px" }}>
                         <p className="text-[20px] leading-[1.5] text-foreground">
                           <strong className="font-semibold">When someone searches your name, this is what they find.</strong>{" "}
-                          Not your own site making claims about you.
+                          Your story, written and published by someone other than you.
                         </p>
                       </figure>
 
                       <div className="w-full">
-                        {/* @ts-expect-error - Stripe web component */}
-                        <stripe-buy-button
-                          buy-button-id="buy_btn_1TxdN0Gd5RmL1wBx7bYpYfn0"
-                          publishable-key="pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4"
-                        />
+                        <a
+                          href="https://payments.entrepreneurawards.co/b/7sY8wPbgN236evy2UY8so0i"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex h-11 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                        >
+                          Claim your feature
+                        </a>
                       </div>
 
-                      <div className="mt-4 space-y-0 text-[13px] text-muted-foreground">
+                      <div className="mt-4 space-y-2.5 text-[13px] text-muted-foreground">
                         <p>Nothing publishes until you've read it.</p>
                         <p>
                           Every winner is independently reviewed and selected.{" "}
