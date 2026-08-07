@@ -4,7 +4,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Award, Sparkles, Star, Check, Copy } from "lucide-react";
+import { Award, Sparkles, Star, Check, Copy, Trophy, Newspaper, ScrollText, Link2 } from "lucide-react";
 
 const BRAND_BLUE = "#1978E5";
 
