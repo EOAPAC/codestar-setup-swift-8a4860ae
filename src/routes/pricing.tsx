@@ -80,7 +80,7 @@ function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
             src={asset.src}
             alt={asset.alt}
             loading="lazy"
-            className="max-h-full max-w-full rounded-md object-contain"
+            className="max-h-full max-w-full min-h-0 rounded-md object-contain"
           />
         </div>
       </div>
