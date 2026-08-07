@@ -20,6 +20,8 @@ const freeAssets = [
     src: linkedinBannerAsset.url,
     alt: "Entrepreneur Awards 2026 winner LinkedIn banner graphic",
     frame: "aspect-[1200/630]",
+    caption:
+      "I am proud to share that I have been named a 2026 Entrepreneur Awards winner.\n\nThis recognition reflects the work of a team that shows up every day, and the customers who trusted us to do it. Grateful for both.\n\nThank you to Entrepreneur Awards for the recognition. On to the next chapter.",
   },
   {
     title: "Square social post",
@@ -27,6 +29,8 @@ const freeAssets = [
     src: igPostAsset.url,
     alt: "Entrepreneur Awards 2026 winner square social post graphic",
     frame: "aspect-square",
+    caption:
+      "Named a 2026 Entrepreneur Award winner by @entrepreneurawards.co.\n\nThank you to everyone who has backed this business, our team, our customers, and the people who said yes early. This one is shared.\n\n#EntrepreneurAwards #2026Winner",
   },
   {
     title: "Story graphic",
@@ -34,6 +38,7 @@ const freeAssets = [
     src: igStoryAsset.url,
     alt: "Entrepreneur Awards 2026 winner vertical story graphic",
     frame: "aspect-[1080/1920]",
+    caption: "2026 Entrepreneur Award winner. Grateful. @entrepreneurawards.co",
   },
   {
     title: "Email signature",
@@ -45,6 +50,19 @@ const freeAssets = [
 ] as const;
 
 function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
+  const [copied, setCopied] = useState(false);
+
+  async function copyCaption() {
+    if (!asset.caption) return;
+    try {
+      await navigator.clipboard.writeText(asset.caption);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  }
+
   return (
     <figure className="flex h-full flex-col">
       <div className="grid flex-1 place-items-center rounded-xl border border-border bg-background p-4 shadow-sm">
@@ -61,69 +79,41 @@ function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
         <span className="block text-sm font-medium text-foreground">{asset.title}</span>
         <span className="mt-0.5 block text-xs text-muted-foreground">{asset.meta}</span>
       </figcaption>
+      <div className="mt-4 flex flex-col gap-2">
+        <a
+          href={asset.src}
+          download
+          className="inline-flex h-9 w-full items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        >
+          Download
+        </a>
+        {asset.caption ? (
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full border-primary text-primary hover:bg-primary/10"
+            onClick={copyCaption}
+          >
+            {copied ? (
+              <>
+                <Check className="h-4 w-4" aria-hidden />
+                Copied
+              </>
+            ) : (
+              <>
+                <Copy className="h-4 w-4" aria-hidden />
+                Copy caption
+              </>
+            )}
+          </Button>
+        ) : null}
+      </div>
     </figure>
   );
 }
 
 const IG_HANDLE = "@entrepreneurawards.co";
 const LINKEDIN_HANDLE = "Entrepreneur Awards";
-
-const captions = [
-  {
-    platform: "Instagram",
-    tag: IG_HANDLE,
-    text: `Named a 2026 Entrepreneur Award winner by ${IG_HANDLE}.\n\nThank you to everyone who has backed this business, our team, our customers, and the people who said yes early. This one is shared.\n\n#EntrepreneurAwards #2026Winner`,
-  },
-  {
-    platform: "LinkedIn",
-    tag: LINKEDIN_HANDLE,
-    text: `I am proud to share that I have been named a 2026 ${LINKEDIN_HANDLE} winner.\n\nThis recognition reflects the work of a team that shows up every day, and the customers who trusted us to do it. Grateful for both.\n\nThank you to ${LINKEDIN_HANDLE} for the recognition. On to the next chapter.`,
-  },
-  {
-    platform: "Story or short post",
-    tag: IG_HANDLE,
-    text: `2026 Entrepreneur Award winner. Grateful. ${IG_HANDLE}`,
-  },
-] as const;
-
-function CaptionCard({ caption }: { caption: (typeof captions)[number] }) {
-  const [copied, setCopied] = useState(false);
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(caption.text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  }
-
-  return (
-    <Card className="flex h-full flex-col gap-4 p-5">
-      <div className="flex items-center justify-between gap-3">
-        <span className="text-sm font-medium text-foreground">{caption.platform}</span>
-        <span className="text-xs text-muted-foreground">Tag {caption.tag}</span>
-      </div>
-      <p className="flex-1 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-        {caption.text}
-      </p>
-      <Button variant="outline" size="sm" className="self-start" onClick={copy}>
-        {copied ? (
-          <>
-            <Check className="h-4 w-4" aria-hidden />
-            Copied
-          </>
-        ) : (
-          <>
-            <Copy className="h-4 w-4" aria-hidden />
-            Copy caption
-          </>
-        )}
-      </Button>
-    </Card>
-  );
-}
 
 
 
