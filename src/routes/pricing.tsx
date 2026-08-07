@@ -13,7 +13,16 @@ import igPostAsset from "@/assets/ea-winner-social-IG_Post.png.asset.json";
 import igStoryAsset from "@/assets/ea-winner-social-IG_story.png.asset.json";
 import emailSigAsset from "@/assets/ea-winner-emailsig-full-600x200.png.asset.json";
 
-const freeAssets = [
+type FreeAsset = {
+  title: string;
+  meta: string;
+  src: string;
+  alt: string;
+  frame: string;
+  caption?: string;
+};
+
+const freeAssets: FreeAsset[] = [
   {
     title: "LinkedIn banner",
     meta: "1200 x 630 PNG",
@@ -47,7 +56,7 @@ const freeAssets = [
     alt: "Entrepreneur Awards 2026 winner email signature strip",
     frame: "aspect-[600/200]",
   },
-] as const;
+];
 
 function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
   const [copied, setCopied] = useState(false);
