@@ -4,7 +4,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Award, Sparkles, Star, Check, Copy } from "lucide-react";
+import { Award, Sparkles, Star, Check, Copy, Trophy, Newspaper, ScrollText, Link2 } from "lucide-react";
 
 const BRAND_BLUE = "#1978E5";
 
@@ -148,32 +148,48 @@ const stages = [
   {
     number: 1,
     title: "We write your story properly",
-    body: "Your entry form gave us the outline. Before we write, we'll ask you a handful of questions, the decisions, the near-misses, the parts there wasn't room for. Ten minutes on your side. It's the difference between a summary and a story worth reading.",
-    body2: null as string | null,
+    body: (
+      <>
+        Your entry form gave us the outline. Before we write, we'll ask you a handful of questions,
+        the decisions, the near-misses, the parts there wasn't room for.{" "}
+        <strong className="font-semibold text-foreground">Ten minutes on your side.</strong>
+      </>
+    ),
   },
   {
     number: 2,
     title: "We publish it permanently",
-    body: "You read it first and tell us what to change. Nothing goes live until you're happy. Then it sits at a permanent link on The Entrepreneur Awards.",
-    body2: "When someone searches your name, this is what they find. Not your own site making claims about you.",
+    body: (
+      <>
+        <strong className="font-semibold text-foreground">You read it first.</strong> Nothing goes
+        live until you're happy. Then it sits at{" "}
+        <strong className="font-semibold text-foreground">a permanent link</strong> on The
+        Entrepreneur Awards.
+      </>
+    ),
   },
   {
     number: 3,
     title: "We send the winner's box",
-    body: "Once your feature is live.",
-    body2: null as string | null,
+    body: <>Four pieces, sent once your feature is live.</>,
   },
 ];
 
 const winnersBox = [
-  { lead: "The engraved desk piece", rest: "marking the year you were recognized" },
   {
+    icon: Trophy,
+    lead: "The engraved desk piece",
+    rest: "marking the year you were recognized",
+  },
+  {
+    icon: Newspaper,
     lead: "A printed edition of your feature",
     rest: "a proper offprint, the way publications send authors their own pages",
   },
-  { lead: "Your 2026 winner certificate", rest: null as string | null },
-  { lead: "A card carrying the link to your feature", rest: null as string | null },
+  { icon: ScrollText, lead: "Your 2026 winner certificate", rest: null as string | null },
+  { icon: Link2, lead: "A card carrying the link to your feature", rest: null as string | null },
 ];
+
 
 // Confetti
 function Confetti() {
@@ -446,32 +462,60 @@ function PricingPage() {
                         A full feature about you, written and published. Plus the winner's box.
                       </p>
 
-                      <ol className="mt-8 space-y-5">
-                        {stages.map(({ number, title, body, body2 }) => (
-                          <li key={number} className="flex items-start gap-4">
-                            <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary ring-1 ring-primary/20">
+                      <ol className="mt-8 [line-height:1.7]">
+                        {stages.map(({ number, title, body }) => (
+                          <li
+                            key={number}
+                            className={
+                              number === 1
+                                ? "flex items-start gap-4"
+                                : number === 2
+                                  ? "mt-8 flex items-start gap-4 border-t border-border pt-8"
+                                      : "mt-8 flex items-start gap-4"
+                            }
+                          >
+                            <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
                               {number}
                             </span>
-                            <div>
+                            <div className="min-w-0 flex-1">
                               <p className="text-sm font-semibold text-foreground">{title}</p>
-                              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
-                              {body2 ? (
-                                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{body2}</p>
+                              <p className="mt-1 text-sm [line-height:1.7] text-muted-foreground">{body}</p>
+
+                              {number === 2 ? (
+                                <div className="-ml-12 mt-8 border-t border-border pt-8"><div className="my-5 rounded-xl bg-primary/10 px-5 py-4 text-[17px] [line-height:1.6] text-foreground">
+                                  <strong className="font-semibold">
+                                    When someone searches your name, this is what they find.
+                                  </strong>{" "}
+                                  Not your own site making claims about you.
+                                </div></div>
                               ) : null}
+
                               {number === 3 ? (
-                                <ul className="mt-4 space-y-2.5 rounded-lg border border-border p-4">
-                                  {winnersBox.map((item) => (
-                                    <li key={item.lead} className="text-sm leading-relaxed text-muted-foreground">
-                                      <span className="font-semibold text-foreground">{item.lead}</span>
-                                      {item.rest ? ` — ${item.rest}` : null}
-                                    </li>
-                                  ))}
-                                </ul>
+                                <div className="mt-4 rounded-lg border border-border p-5">
+                                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">
+                                    The winner's box
+                                  </p>
+                                  <ul className="mt-3 divide-y divide-border">
+                                    {winnersBox.map(({ icon: Icon, lead, rest }) => (
+                                      <li
+                                        key={lead}
+                                        className="flex items-start gap-3 py-3 text-sm [line-height:1.7] text-muted-foreground first:pt-0 last:pb-0"
+                                      >
+                                        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
+                                        <span>
+                                          <span className="font-semibold text-foreground">{lead}</span>
+                                          {rest ? ` — ${rest}` : null}
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
                               ) : null}
                             </div>
                           </li>
                         ))}
                       </ol>
+
                     </div>
                   </div>
                 </div>
