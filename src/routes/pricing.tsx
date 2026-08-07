@@ -74,13 +74,15 @@ function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
 
   return (
     <figure className="flex h-full flex-col">
-      <div className="grid h-56 w-full place-items-center rounded-xl border border-border bg-background p-4 shadow-sm">
-        <img
-          src={asset.src}
-          alt={asset.alt}
-          loading="lazy"
-          className="max-h-full max-w-full rounded-md object-contain"
-        />
+      <div className="h-56 w-full rounded-xl border border-border bg-background p-4 shadow-sm">
+        <div className="flex h-full w-full items-center justify-center">
+          <img
+            src={asset.src}
+            alt={asset.alt}
+            loading="lazy"
+            className="max-h-full max-w-full rounded-md object-contain"
+          />
+        </div>
       </div>
       <figcaption className="mt-3 text-center">
         <span className="block text-sm font-medium text-foreground">{asset.title}</span>
