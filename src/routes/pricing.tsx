@@ -471,7 +471,7 @@ function PricingPage() {
                                 ? "flex items-start gap-4"
                                 : number === 2
                                   ? "mt-8 flex items-start gap-4 border-t border-border pt-8"
-                                  : "flex items-start gap-4"
+                                      : "mt-8 flex items-start gap-4"
                             }
                           >
                             <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
@@ -482,12 +482,12 @@ function PricingPage() {
                               <p className="mt-1 text-sm [line-height:1.7] text-muted-foreground">{body}</p>
 
                               {number === 2 ? (
-                                <div className="my-5 -ml-12 rounded-xl bg-primary/10 px-5 py-4 text-[17px] [line-height:1.6] text-foreground">
+                                <div className="-ml-12 mt-8 border-t border-border pt-8"><div className="my-5 rounded-xl bg-primary/10 px-5 py-4 text-[17px] [line-height:1.6] text-foreground">
                                   <strong className="font-semibold">
                                     When someone searches your name, this is what they find.
                                   </strong>{" "}
                                   Not your own site making claims about you.
-                                </div>
+                                </div></div>
                               ) : null}
 
                               {number === 3 ? (
