@@ -142,8 +142,7 @@ function CaptionCard({ caption }: { caption: (typeof captions)[number] }) {
 
 
 // Prices — edit these to update the page.
-const WINNERS_FEATURE_PRICE = 495;
-const PRIORITY_UPGRADE_PRICE = 95;
+const WINNERS_FEATURE_PRICE = 595;
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -159,32 +158,35 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
 });
 
-const deliverables = [
+const stages = [
   {
-    icon: PenLine,
-    title: "Your story, told well",
-    body: "A professionally written feature about you and what you've built, authored by our editorial team. You'll review it before anything goes live.",
+    number: 1,
+    title: "We write your story properly",
+    body: "Your entry form gave us the outline. Before we write, we'll ask you a handful of questions, the decisions, the near-misses, the parts there wasn't room for. Ten minutes on your side. It's the difference between a summary and a story worth reading.",
+    body2: null as string | null,
   },
   {
-    icon: Link2,
-    title: "Published at a permanent link",
-    body: "Your feature lives on Entrepreneur Awards site at a link you can send to clients, investors, and press, for as long as you want it there.",
+    number: 2,
+    title: "We publish it permanently",
+    body: "You read it first and tell us what to change. Nothing goes live until you're happy. Then it sits at a permanent link on The Entrepreneur Awards.",
+    body2: "When someone searches your name, this is what they find. Not your own site making claims about you.",
   },
   {
-    icon: Users,
-    title: "Shared beyond your own audience",
-    body: "We put your feature in front of people who don't already follow you, through our founder network.",
+    number: 3,
+    title: "We send the winner's box",
+    body: "Once your feature is live.",
+    body2: null as string | null,
   },
+];
+
+const winnersBox = [
+  { lead: "The engraved desk piece", rest: "marking the year you were recognized" },
   {
-    icon: BadgeCheck,
-    title: "An 'as featured' mark",
-    body: "For your website, your deck, your profiles. The small signal that says someone else thought your work was worth writing about.",
+    lead: "A printed edition of your feature",
+    rest: "a proper offprint, the way publications send authors their own pages",
   },
-  {
-    icon: Award,
-    title: "A piece to mark it",
-    body: "An engraved keepsake, sent to you, marking the year you were recognized.",
-  },
+  { lead: "Your 2026 winner certificate", rest: null as string | null },
+  { lead: "A card carrying the link to your feature", rest: null as string | null },
 ];
 
 // Confetti
@@ -261,11 +263,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; 
   );
 }
 
-type Timing = "standard" | "priority";
-
 function PricingPage() {
-  const [timing, setTiming] = useState<Timing>("standard");
-  const total = WINNERS_FEATURE_PRICE + (timing === "priority" ? PRIORITY_UPGRADE_PRICE : 0);
 
   useEffect(() => {
     const SRC = "https://js.stripe.com/v3/buy-button.js";
@@ -311,14 +309,14 @@ function PricingPage() {
                 You won.
                 <br />
                 <span className="bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
-                  Now let's tell the story properly.
+                  Now let's tell it properly.
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={160}>
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-                Your recognition is already yours. What follows is how we turn it into something people read, share, and remember. A professionally written feature about you and your business, published and put in front of an audience beyond your own.
+                Your recognition is already yours. This is how it becomes something people find when they look you up.
               </p>
             </Reveal>
           </div>
@@ -333,7 +331,7 @@ function PricingPage() {
                   Already yours, free
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
-                  Your winner graphics are in your inbox, ready to post today. No upgrade needed.
+                  Your winner badge, your shareable graphics, and your award citation — the formal words that accompany your win. In your inbox, ready to use today.
                 </p>
               </div>
             </Reveal>
@@ -449,7 +447,7 @@ function PricingPage() {
                     </div>
                   </div>
 
-                  {/* Right — bundle */}
+                  {/* Right — stages */}
                   <div className="flex flex-col justify-between p-8 md:p-12">
                     <div>
                       <div className="flex items-baseline gap-2">
@@ -459,22 +457,35 @@ function PricingPage() {
                         <span className="text-sm text-muted-foreground">one-time</span>
                       </div>
                       <p className="mt-3 text-base leading-relaxed text-foreground">
-                        One story, written and published for you. Done for you, start to finish.
+                        A full feature about you, written and published. Plus the winner's box.
                       </p>
 
-                      <ul className="mt-8 space-y-5">
-                        {deliverables.map(({ icon: Icon, title, body }) => (
-                          <li key={title} className="flex items-start gap-4">
-                            <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
-                              <Icon className="h-4 w-4" aria-hidden />
+                      <ol className="mt-8 space-y-5">
+                        {stages.map(({ number, title, body, body2 }) => (
+                          <li key={number} className="flex items-start gap-4">
+                            <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary ring-1 ring-primary/20">
+                              {number}
                             </span>
                             <div>
                               <p className="text-sm font-semibold text-foreground">{title}</p>
                               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
+                              {body2 ? (
+                                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{body2}</p>
+                              ) : null}
+                              {number === 3 ? (
+                                <ul className="mt-4 space-y-2.5 rounded-lg border border-border p-4">
+                                  {winnersBox.map((item) => (
+                                    <li key={item.lead} className="text-sm leading-relaxed text-muted-foreground">
+                                      <span className="font-semibold text-foreground">{item.lead}</span>
+                                      {item.rest ? ` — ${item.rest}` : null}
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
                             </div>
                           </li>
                         ))}
-                      </ul>
+                      </ol>
                     </div>
                   </div>
                 </div>
@@ -483,48 +494,12 @@ function PricingPage() {
           </div>
         </section>
 
-        {/* CONFIGURATION — choose when it lands */}
+        {/* TOTAL */}
         <section className="border-t border-border bg-secondary/30 px-6 py-24">
           <div className="mx-auto max-w-4xl">
-            <Reveal>
-              <div className="mb-10 text-center">
-                <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                  Choose when it lands
-                </h2>
-                <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
-                  Every feature includes everything above. The one thing you decide is how soon.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <div
-                role="radiogroup"
-                aria-label="Publication timing"
-                className="grid gap-4 md:grid-cols-2"
-              >
-                <TimingOption
-                  selected={timing === "standard"}
-                  onSelect={() => setTiming("standard")}
-                  icon={Clock}
-                  name="Standard"
-                  description="Your feature is published within four weeks, alongside the next group of 2026 winners."
-                  addOn={null}
-                />
-                <TimingOption
-                  selected={timing === "priority"}
-                  onSelect={() => setTiming("priority")}
-                  icon={Zap}
-                  name="Priority"
-                  description="Your feature moves to the front of the queue and is published within one week."
-                  addOn={`+$${PRIORITY_UPGRADE_PRICE}`}
-                />
-              </div>
-            </Reveal>
-
             {/* Total + CTA */}
-            <Reveal delay={160}>
-              <div className="mt-10 rounded-2xl border border-primary/20 bg-card p-6 shadow-[0_20px_60px_-30px_rgba(25,120,229,0.4)] md:p-8">
+            <Reveal>
+              <div className="rounded-2xl border border-primary/20 bg-card p-6 shadow-[0_20px_60px_-30px_rgba(25,120,229,0.4)] md:p-8">
                 <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
                   <div>
                     <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
@@ -532,11 +507,9 @@ function PricingPage() {
                     </p>
                     <div className="mt-2 flex items-baseline gap-3">
                       <span className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-                        ${total.toLocaleString()}
+                        ${WINNERS_FEATURE_PRICE.toLocaleString()}
                       </span>
-                      <span className="text-sm text-muted-foreground">
-                        {timing === "priority" ? "Feature + Priority" : "Feature"}
-                      </span>
+                      <span className="text-sm text-muted-foreground">one-time</span>
                     </div>
                   </div>
 
@@ -551,7 +524,7 @@ function PricingPage() {
 
                 <div className="mt-6 space-y-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:text-left">
                   <p>
-                    Your feature is written, reviewed with you, and published. The keepsake ships after publication.
+                    Nothing publishes until you've read it. Your badge, graphics and citation stay yours whether you take this or not.
                   </p>
                   <p>
                     Every winner is independently reviewed and selected.{" "}
@@ -572,65 +545,3 @@ function PricingPage() {
   );
 }
 
-function TimingOption({
-  selected,
-  onSelect,
-  icon: Icon,
-  name,
-  description,
-  addOn,
-}: {
-  selected: boolean;
-  onSelect: () => void;
-  icon: typeof Clock;
-  name: string;
-  description: string;
-  addOn: string | null;
-}) {
-  return (
-    <button
-      type="button"
-      role="radio"
-      aria-checked={selected}
-      onClick={onSelect}
-      className={`group relative flex h-full flex-col items-start rounded-2xl border p-6 text-left transition-all duration-200 md:p-7 ${
-        selected
-          ? "border-primary bg-card shadow-[0_20px_50px_-30px_rgba(25,120,229,0.5)] ring-2 ring-primary/40"
-          : "border-border bg-card hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
-      } motion-reduce:transform-none`}
-    >
-      <div className="flex w-full items-center justify-between">
-        <span
-          className={`inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 transition-colors ${
-            selected
-              ? "bg-primary text-primary-foreground ring-primary"
-              : "bg-primary/10 text-primary ring-primary/20"
-          }`}
-        >
-          <Icon className="h-4 w-4" aria-hidden />
-        </span>
-
-        <span
-          className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-colors ${
-            selected ? "border-primary bg-primary" : "border-border"
-          }`}
-        >
-          {selected && <Check className="h-3 w-3 text-primary-foreground" strokeWidth={3} />}
-        </span>
-      </div>
-
-      <div className="mt-5 flex w-full items-baseline justify-between gap-3">
-        <p className="text-lg font-semibold text-foreground">{name}</p>
-        {addOn ? (
-          <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
-            {addOn}
-          </span>
-        ) : (
-          <span className="text-xs text-muted-foreground">Included</span>
-        )}
-      </div>
-
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
-    </button>
-  );
-}
