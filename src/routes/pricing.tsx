@@ -462,32 +462,60 @@ function PricingPage() {
                         A full feature about you, written and published. Plus the winner's box.
                       </p>
 
-                      <ol className="mt-8 space-y-5">
-                        {stages.map(({ number, title, body, body2 }) => (
-                          <li key={number} className="flex items-start gap-4">
-                            <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary ring-1 ring-primary/20">
+                      <ol className="mt-8 [line-height:1.7]">
+                        {stages.map(({ number, title, body }) => (
+                          <li
+                            key={number}
+                            className={
+                              number === 1
+                                ? "flex items-start gap-4"
+                                : number === 2
+                                  ? "mt-8 flex items-start gap-4 border-t border-border pt-8"
+                                  : "flex items-start gap-4"
+                            }
+                          >
+                            <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
                               {number}
                             </span>
-                            <div>
+                            <div className="min-w-0 flex-1">
                               <p className="text-sm font-semibold text-foreground">{title}</p>
-                              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
-                              {body2 ? (
-                                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{body2}</p>
+                              <p className="mt-1 text-sm [line-height:1.7] text-muted-foreground">{body}</p>
+
+                              {number === 2 ? (
+                                <div className="my-5 -ml-12 rounded-xl bg-primary/10 px-5 py-4 text-[17px] [line-height:1.6] text-foreground">
+                                  <strong className="font-semibold">
+                                    When someone searches your name, this is what they find.
+                                  </strong>{" "}
+                                  Not your own site making claims about you.
+                                </div>
                               ) : null}
+
                               {number === 3 ? (
-                                <ul className="mt-4 space-y-2.5 rounded-lg border border-border p-4">
-                                  {winnersBox.map((item) => (
-                                    <li key={item.lead} className="text-sm leading-relaxed text-muted-foreground">
-                                      <span className="font-semibold text-foreground">{item.lead}</span>
-                                      {item.rest ? ` — ${item.rest}` : null}
-                                    </li>
-                                  ))}
-                                </ul>
+                                <div className="mt-4 rounded-lg border border-border p-5">
+                                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">
+                                    The winner's box
+                                  </p>
+                                  <ul className="mt-3 divide-y divide-border">
+                                    {winnersBox.map(({ icon: Icon, lead, rest }) => (
+                                      <li
+                                        key={lead}
+                                        className="flex items-start gap-3 py-3 text-sm [line-height:1.7] text-muted-foreground first:pt-0 last:pb-0"
+                                      >
+                                        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
+                                        <span>
+                                          <span className="font-semibold text-foreground">{lead}</span>
+                                          {rest ? ` — ${rest}` : null}
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
                               ) : null}
                             </div>
                           </li>
                         ))}
                       </ol>
+
                     </div>
                   </div>
                 </div>
