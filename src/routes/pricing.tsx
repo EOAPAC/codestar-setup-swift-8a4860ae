@@ -355,13 +355,13 @@ function PricingPage() {
 
 
         {/* THE OFFER */}
-        <section className="relative overflow-hidden px-6 py-24 md:py-32">
+        <section className="relative overflow-hidden px-6 py-24 pb-32 md:py-32 md:pb-40">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/8 blur-3xl" />
           </div>
 
           <Reveal>
-            <div className="mb-12 text-center">
+            <div className="mb-16 text-center md:mb-20">
               <p className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-primary">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden />
                 The Winner's Feature
@@ -457,7 +457,7 @@ function PricingPage() {
                       {number}
                     </span>
                     <p className="mt-4 text-sm font-semibold text-foreground">{title}</p>
-                    <p className="mt-1 text-sm [line-height:1.7] text-muted-foreground">{body}</p>
+                    <div className="mt-3 space-y-3 text-sm leading-[1.7] text-muted-foreground">{body}</div>
                   </li>
                 ))}
               </ol>
