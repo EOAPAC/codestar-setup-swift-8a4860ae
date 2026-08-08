@@ -148,29 +148,36 @@ const stages = [
     number: 1,
     title: "We write your story properly",
     body: (
-      <>
-        Your entry form gave us the outline. Before we write, we'll ask you a handful of questions,
-        the decisions, the near-misses, the parts there wasn't room for.{" "}
-        <strong className="font-semibold text-foreground">Ten minutes on your side.</strong>
-      </>
+      <div className="space-y-3">
+        <p>
+          Your entry form gave us the outline. Before we write, we'll ask you a handful of questions:
+          the decisions, the near-misses, and the parts there wasn't room for.
+        </p>
+        <p className="font-semibold text-foreground">Ten minutes on your side.</p>
+      </div>
     ),
   },
   {
     number: 2,
     title: "We publish it permanently",
     body: (
-      <>
-        <strong className="font-semibold text-foreground">You read it first.</strong> Nothing goes
-        live until you're happy. Then it sits at{" "}
-        <strong className="font-semibold text-foreground">a permanent link</strong> on The
-        Entrepreneur Awards.
-      </>
+      <div className="space-y-3">
+        <p>
+          <strong className="font-semibold text-foreground">You read it first.</strong> Nothing goes
+          live until you're happy.
+        </p>
+        <p>
+          Then it sits at{" "}
+          <strong className="font-semibold text-foreground">a permanent link</strong> on Entrepreneur
+          Awards.
+        </p>
+      </div>
     ),
   },
   {
     number: 3,
     title: "We send the winner's box",
-    body: <>Four pieces, sent once your feature is live.</>,
+    body: <p>Four pieces, sent once your feature is live.</p>,
   },
 ];
 
@@ -348,13 +355,13 @@ function PricingPage() {
 
 
         {/* THE OFFER */}
-        <section className="relative overflow-hidden px-6 py-24 md:py-32">
+        <section className="relative overflow-hidden px-6 py-24 pb-32 md:py-32 md:pb-40">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/8 blur-3xl" />
           </div>
 
           <Reveal>
-            <div className="mb-12 text-center">
+            <div className="mb-16 text-center md:mb-20">
               <p className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-primary">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden />
                 The Winner's Feature
@@ -425,7 +432,7 @@ function PricingPage() {
           </Reveal>
 
           {/* OFFER BLOCK */}
-          <div className="mx-auto mt-16 w-full max-w-[900px]">
+          <div className="mx-auto mt-20 w-full max-w-[900px] md:mt-24">
             <Reveal>
               <div className="text-center">
                 <div className="flex items-baseline justify-center gap-2">
@@ -450,7 +457,7 @@ function PricingPage() {
                       {number}
                     </span>
                     <p className="mt-4 text-sm font-semibold text-foreground">{title}</p>
-                    <p className="mt-1 text-sm [line-height:1.7] text-muted-foreground">{body}</p>
+                    <div className="mt-3 space-y-3 text-sm leading-[1.7] text-muted-foreground">{body}</div>
                   </li>
                 ))}
               </ol>
@@ -458,7 +465,7 @@ function PricingPage() {
 
             {/* WINNER'S BOX */}
             <Reveal delay={100}>
-              <div className="mt-14 rounded-lg border border-border p-6 md:p-8">
+              <div className="mt-16 rounded-lg border border-border p-6 md:p-8">
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">The winner's box</p>
                 <ul className="mt-5 grid gap-6 sm:grid-cols-2">
                   {winnersBox.map(({ icon: Icon, lead, rest }) => (
@@ -476,7 +483,7 @@ function PricingPage() {
 
             {/* PULL QUOTE */}
             <Reveal delay={120}>
-              <figure className="mx-auto mt-8 mb-6 max-w-[640px] border-l-[3px] border-primary" style={{ borderRadius: 0, padding: "4px 0 4px 20px" }}>
+              <figure className="mx-auto mt-12 mb-8 max-w-[640px] border-l-[3px] border-primary" style={{ borderRadius: 0, padding: "4px 0 4px 20px" }}>
                 <p className="text-[20px] leading-[1.5] text-foreground">
                   <strong className="font-semibold">When someone searches your name, this is what they find.</strong>{" "}
                   Your story, written and published by someone other than you.
@@ -486,7 +493,7 @@ function PricingPage() {
 
             {/* CTA */}
             <Reveal delay={140}>
-              <div className="text-center">
+              <div className="mt-10 text-center">
                 <a
                   href="https://payments.entrepreneurawards.co/b/7sY8wPbgN236evy2UY8so0i"
                   target="_blank"
