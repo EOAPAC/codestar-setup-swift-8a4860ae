@@ -344,7 +344,7 @@ function PricingPage() {
             </Reveal>
 
             <Reveal delay={80}>
-              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
                 {freeAssets.map((a) => (
                   <li key={a.title}>
                     <FreeAssetTile asset={a} />
