@@ -493,7 +493,7 @@ function PricingPage() {
 
             {/* CTA */}
             <Reveal delay={140}>
-              <div className="text-center">
+              <div className="mt-10 text-center">
                 <a
                   href="https://payments.entrepreneurawards.co/b/7sY8wPbgN236evy2UY8so0i"
                   target="_blank"
