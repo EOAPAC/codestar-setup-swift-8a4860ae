@@ -12,6 +12,7 @@ import linkedinBannerAsset from "@/assets/ea-winner-social-Linkedin_Post.png.ass
 import igPostAsset from "@/assets/ea-winner-social-IG_Post.png.asset.json";
 import igStoryAsset from "@/assets/ea-winner-social-IG_story.png.asset.json";
 import emailSigAsset from "@/assets/ea-winner-emailsig-full-600x200.png.asset.json";
+import winnerSealAsset from "@/assets/winner-seal.png.asset.json";
 
 type FreeAsset = {
   title: string;
