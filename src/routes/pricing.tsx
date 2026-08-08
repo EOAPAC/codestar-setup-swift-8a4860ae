@@ -148,29 +148,36 @@ const stages = [
     number: 1,
     title: "We write your story properly",
     body: (
-      <>
-        Your entry form gave us the outline. Before we write, we'll ask you a handful of questions,
-        the decisions, the near-misses, the parts there wasn't room for.{" "}
-        <strong className="font-semibold text-foreground">Ten minutes on your side.</strong>
-      </>
+      <div className="space-y-3">
+        <p>
+          Your entry form gave us the outline. Before we write, we'll ask you a handful of questions:
+          the decisions, the near-misses, and the parts there wasn't room for.
+        </p>
+        <p className="font-semibold text-foreground">Ten minutes on your side.</p>
+      </div>
     ),
   },
   {
     number: 2,
     title: "We publish it permanently",
     body: (
-      <>
-        <strong className="font-semibold text-foreground">You read it first.</strong> Nothing goes
-        live until you're happy. Then it sits at{" "}
-        <strong className="font-semibold text-foreground">a permanent link</strong> on The
-        Entrepreneur Awards.
-      </>
+      <div className="space-y-3">
+        <p>
+          <strong className="font-semibold text-foreground">You read it first.</strong> Nothing goes
+          live until you're happy.
+        </p>
+        <p>
+          Then it sits at{" "}
+          <strong className="font-semibold text-foreground">a permanent link</strong> on Entrepreneur
+          Awards.
+        </p>
+      </div>
     ),
   },
   {
     number: 3,
     title: "We send the winner's box",
-    body: <>Four pieces, sent once your feature is live.</>,
+    body: <p>Four pieces, sent once your feature is live.</p>,
   },
 ];
 
