@@ -157,13 +157,11 @@ const stages = [
     number: 1,
     title: "We write your story properly",
     body: (
-      <div className="space-y-3">
-        <p>
-          Your entry form gave us the outline. Before we write, we'll ask you a handful of questions:
-          the decisions, the near-misses, and the parts there wasn't room for.
-        </p>
-        <p className="font-semibold text-foreground">Ten minutes on your side.</p>
-      </div>
+      <p>
+        Your entry form gave us the outline. Before we write, we'll ask you a handful of
+        questions: the decisions, the near-misses, and the parts there wasn't room for.{" "}
+        <strong className="font-semibold text-foreground">Ten minutes on your side.</strong>
+      </p>
     ),
   },
   {
@@ -459,16 +457,23 @@ function PricingPage() {
 
             {/* THREE STAGES */}
             <Reveal delay={80}>
-              <ol className="mt-14 grid gap-8 md:grid-cols-3">
-                {stages.map(({ number, title, body }) => (
+              <ol className="mt-14 grid items-start gap-6 md:grid-cols-[1fr_1px_1fr_1px_1fr] md:gap-10">
+                {stages.map(({ number, title, body }, index) => [
                   <li key={number} className="text-left">
                     <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
                       {number}
                     </span>
                     <p className="mt-4 text-sm font-semibold text-foreground">{title}</p>
-                    <div className="mt-3 space-y-3 text-sm leading-[1.7] text-muted-foreground">{body}</div>
-                  </li>
-                ))}
+                    <div className="mt-3 text-sm leading-[1.7] text-muted-foreground">{body}</div>
+                  </li>,
+                  index < stages.length - 1 && (
+                    <li
+                      key={`divider-${number}`}
+                      className="h-px w-full bg-border md:h-auto md:w-px md:self-stretch"
+                      aria-hidden
+                    />
+                  ),
+                ])}
               </ol>
             </Reveal>
 
