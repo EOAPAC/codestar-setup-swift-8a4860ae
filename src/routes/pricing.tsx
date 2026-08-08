@@ -432,7 +432,7 @@ function PricingPage() {
           </Reveal>
 
           {/* OFFER BLOCK */}
-          <div className="mx-auto mt-16 w-full max-w-[900px]">
+          <div className="mx-auto mt-20 w-full max-w-[900px] md:mt-24">
             <Reveal>
               <div className="text-center">
                 <div className="flex items-baseline justify-center gap-2">
@@ -465,7 +465,7 @@ function PricingPage() {
 
             {/* WINNER'S BOX */}
             <Reveal delay={100}>
-              <div className="mt-14 rounded-lg border border-border p-6 md:p-8">
+              <div className="mt-16 rounded-lg border border-border p-6 md:p-8">
                 <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">The winner's box</p>
                 <ul className="mt-5 grid gap-6 sm:grid-cols-2">
                   {winnersBox.map(({ icon: Icon, lead, rest }) => (
@@ -483,7 +483,7 @@ function PricingPage() {
 
             {/* PULL QUOTE */}
             <Reveal delay={120}>
-              <figure className="mx-auto mt-8 mb-6 max-w-[640px] border-l-[3px] border-primary" style={{ borderRadius: 0, padding: "4px 0 4px 20px" }}>
+              <figure className="mx-auto mt-12 mb-8 max-w-[640px] border-l-[3px] border-primary" style={{ borderRadius: 0, padding: "4px 0 4px 20px" }}>
                 <p className="text-[20px] leading-[1.5] text-foreground">
                   <strong className="font-semibold">When someone searches your name, this is what they find.</strong>{" "}
                   Your story, written and published by someone other than you.
