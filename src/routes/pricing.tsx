@@ -12,6 +12,7 @@ import linkedinBannerAsset from "@/assets/ea-winner-social-Linkedin_Post.png.ass
 import igPostAsset from "@/assets/ea-winner-social-IG_Post.png.asset.json";
 import igStoryAsset from "@/assets/ea-winner-social-IG_story.png.asset.json";
 import emailSigAsset from "@/assets/ea-winner-emailsig-full-600x200.png.asset.json";
+import winnerSealAsset from "@/assets/winner-seal.png.asset.json";
 
 type FreeAsset = {
   title: string;
@@ -23,6 +24,14 @@ type FreeAsset = {
 };
 
 const freeAssets: FreeAsset[] = [
+  {
+    title: "Winner seal",
+    meta: "1080 x 1080 PNG",
+    src: winnerSealAsset.url,
+    alt: "Entrepreneur Awards 2026 winner seal badge",
+    frame: "aspect-square",
+    caption: "Honored to be named a 2026 Entrepreneur Award winner. #EntrepreneurAwards #2026Winner",
+  },
   {
     title: "LinkedIn banner",
     meta: "1200 x 630 PNG",
@@ -335,7 +344,7 @@ function PricingPage() {
             </Reveal>
 
             <Reveal delay={80}>
-              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
                 {freeAssets.map((a) => (
                   <li key={a.title}>
                     <FreeAssetTile asset={a} />
