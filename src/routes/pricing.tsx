@@ -157,13 +157,11 @@ const stages = [
     number: 1,
     title: "We write your story properly",
     body: (
-      <div className="space-y-3">
-        <p>
-          Your entry form gave us the outline. Before we write, we'll ask you a handful of questions:
-          the decisions, the near-misses, and the parts there wasn't room for.
-        </p>
-        <p className="font-semibold text-foreground">Ten minutes on your side.</p>
-      </div>
+      <p>
+        Your entry form gave us the outline. Before we write, we'll ask you a handful of
+        questions: the decisions, the near-misses, and the parts there wasn't room for.{" "}
+        <strong className="font-semibold text-foreground">Ten minutes on your side.</strong>
+      </p>
     ),
   },
   {
