@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { Card } from "@/components/ui/card";
+
 import { Button } from "@/components/ui/button";
 import { Award, Sparkles, Star, Check, Copy, Trophy, Newspaper, ScrollText, Link2 } from "lucide-react";
 
@@ -353,164 +353,160 @@ function PricingPage() {
             <div className="absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/8 blur-3xl" />
           </div>
 
-          <div className="mx-auto max-w-5xl">
-            <Reveal>
-              <div className="mb-12 text-center">
-                <p className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-primary">
-                  <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                  The Winner's Feature
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                  One story, written and published for you.
-                </h2>
-                <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
-                  Done for you, start to finish.
-                </p>
-              </div>
-            </Reveal>
+          <Reveal>
+            <div className="mb-12 text-center">
+              <p className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-primary">
+                <Sparkles className="h-3.5 w-3.5" aria-hidden />
+                The Winner's Feature
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+                One story, written and published for you.
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
+                Done for you, start to finish.
+              </p>
+            </div>
+          </Reveal>
 
-            <Reveal delay={100}>
-              <Card className="relative overflow-hidden border-primary/20 bg-card p-0 shadow-[0_30px_80px_-30px_rgba(25,120,229,0.35)]">
-                <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent" />
+          {/* PREVIEW — full width */}
+          <Reveal delay={80}>
+            <div className="mx-auto w-full max-w-[1100px]">
+              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
+                Preview · what gets published
+              </p>
 
-                <div className="grid gap-0 lg:grid-cols-[1.05fr_1fr]">
-                  {/* Left — preview */}
-                  <div className="relative border-b border-border bg-gradient-to-br from-secondary/60 to-background p-8 md:p-12 lg:border-b-0 lg:border-r">
-                    <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
-                      Preview · what gets published
-                    </p>
-
-                    <div className="relative rounded-lg border border-border bg-background shadow-xl">
-                      <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
-                        <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                        <div className="ml-3 flex-1 truncate rounded-md bg-muted/60 px-3 py-1 text-[11px] text-muted-foreground">
-                          entrepreneurawards.co/winners/your-feature
-                        </div>
-                      </div>
-
-                      <div className="p-6 md:p-8">
-                        <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-primary">
-                          <Award className="h-3 w-3" aria-hidden /> 2026 Winner Feature
-                        </div>
-                        <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground md:text-2xl">
-                          How [Your Name] built something worth recognizing.
-                        </h3>
-                        <p className="mt-2 text-xs text-muted-foreground">
-                          By Entrepreneur Awards Editorial · 6 min read
-                        </p>
-
-                        <div className="mt-5 h-28 rounded-md bg-gradient-to-br from-primary/25 via-primary/10 to-secondary" />
-
-                        <div className="mt-5 space-y-2.5">
-                          <div className="h-2 w-full rounded bg-muted" />
-                          <div className="h-2 w-[96%] rounded bg-muted" />
-                          <div className="h-2 w-[88%] rounded bg-muted" />
-                          <div className="h-2 w-[70%] rounded bg-muted" />
-                        </div>
-
-                        <div className="mt-5 border-l-2 border-primary/60 pl-3">
-                          <div className="h-2 w-[80%] rounded bg-muted" />
-                          <div className="mt-2 h-2 w-[55%] rounded bg-muted" />
-                        </div>
-
-                        <div className="mt-6 space-y-2.5">
-                          <div className="h-2 w-full rounded bg-muted" />
-                          <div className="h-2 w-[92%] rounded bg-muted" />
-                          <div className="h-2 w-[60%] rounded bg-muted" />
-                        </div>
-                      </div>
-                    </div>
+              <div className="relative overflow-hidden rounded-lg border border-border bg-background shadow-xl">
+                <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
+                  <div className="ml-3 flex-1 truncate rounded-md bg-muted/60 px-3 py-1 text-[11px] text-muted-foreground">
+                    entrepreneurawards.co/winners/your-feature
                   </div>
+                </div>
 
-                  {/* Right — stages */}
-                  <div className="flex flex-col p-8 md:p-12">
+                <div className="p-6 md:p-10">
+                  <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-primary">
+                    <Award className="h-3 w-3" aria-hidden /> 2026 Winner Feature
+                  </div>
+                  <h3 className="max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
+                    How [Your Name] built something worth recognizing.
+                  </h3>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    By Entrepreneur Awards Editorial · 6 min read
+                  </p>
+
+                  <div className="mt-6 grid gap-8 md:grid-cols-[1.1fr_1fr]">
+                    <div className="h-40 rounded-md bg-gradient-to-br from-primary/25 via-primary/10 to-secondary md:h-56" />
+
                     <div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-5xl font-semibold tracking-tight text-foreground">
-                          ${WINNERS_FEATURE_PRICE.toLocaleString()}
-                        </span>
-                        <span className="text-sm text-muted-foreground">one-time</span>
-                      </div>
-                      <p className="mt-3 text-[17px] font-medium text-foreground">A badge says you won. This says why.</p>
-                      <p className="mt-1 text-[15px] text-muted-foreground">A full feature about you, written and published, plus the winner's box.</p>
-
-                      <ol className="mt-8 [line-height:1.7]">
-                        {stages.map(({ number, title, body }) => (
-                          <li
-                            key={number}
-                            className={
-                              number === 1
-                                ? "flex items-start gap-4"
-                                : "mt-8 flex items-start gap-4 border-t border-border pt-8"
-                            }
-                          >
-                            <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
-                              {number}
-                            </span>
-                            <div className="min-w-0 flex-1">
-                              <p className="text-sm font-semibold text-foreground">{title}</p>
-                              <p className="mt-1 text-sm [line-height:1.7] text-muted-foreground">{body}</p>
-
-                              {number === 3 ? (
-                                <div className="mt-4 rounded-lg border border-border p-5">
-                                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">
-                                    The winner's box
-                                  </p>
-                                  <ul className="mt-3 divide-y divide-border">
-                                    {winnersBox.map(({ icon: Icon, lead, rest }) => (
-                                      <li
-                                        key={lead}
-                                        className="flex items-start gap-3 py-3 text-sm [line-height:1.7] text-muted-foreground first:pt-0 last:pb-0"
-                                      >
-                                        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
-                                        <span>
-                                          <span className="font-semibold text-foreground">{lead}</span>
-                                          {rest ? ` — ${rest}` : null}
-                                        </span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ) : null}
-                            </div>
-                          </li>
-                        ))}
-                      </ol>
-
-                      <figure className="mt-8 border-l-[3px] border-primary py-1 pl-5" style={{ borderRadius: 0, padding: "4px 0 4px 20px", marginTop: "32px", marginBottom: "24px" }}>
-                        <p className="text-[20px] leading-[1.5] text-foreground">
-                          <strong className="font-semibold">When someone searches your name, this is what they find.</strong>{" "}
-                          Your story, written and published by someone other than you.
-                        </p>
-                      </figure>
-
-                      <div className="w-full">
-                        <a
-                          href="https://payments.entrepreneurawards.co/b/7sY8wPbgN236evy2UY8so0i"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex h-11 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-                        >
-                          Claim your feature
-                        </a>
+                      <div className="space-y-2.5">
+                        <div className="h-2 w-full rounded bg-muted" />
+                        <div className="h-2 w-[96%] rounded bg-muted" />
+                        <div className="h-2 w-[88%] rounded bg-muted" />
+                        <div className="h-2 w-[70%] rounded bg-muted" />
                       </div>
 
-                      <div className="mt-4 space-y-2.5 text-[13px] text-muted-foreground">
-                        <p>Nothing publishes until you've read it.</p>
-                        <p>
-                          Every winner is independently reviewed and selected.{" "}
-                          <Link to="/methodology" className="text-primary underline-offset-4 hover:underline">
-                            Our methodology
-                          </Link>
-                          .
-                        </p>
+                      <div className="mt-5 border-l-2 border-primary/60 pl-3">
+                        <div className="h-2 w-[80%] rounded bg-muted" />
+                        <div className="mt-2 h-2 w-[55%] rounded bg-muted" />
+                      </div>
+
+                      <div className="mt-5 space-y-2.5">
+                        <div className="h-2 w-full rounded bg-muted" />
+                        <div className="h-2 w-[92%] rounded bg-muted" />
+                        <div className="h-2 w-[60%] rounded bg-muted" />
                       </div>
                     </div>
                   </div>
                 </div>
-              </Card>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* OFFER BLOCK */}
+          <div className="mx-auto mt-16 w-full max-w-[900px]">
+            <Reveal>
+              <div className="text-center">
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-5xl font-semibold tracking-tight text-foreground">
+                    ${WINNERS_FEATURE_PRICE.toLocaleString()}
+                  </span>
+                  <span className="text-sm text-muted-foreground">one-time</span>
+                </div>
+                <p className="mt-3 text-[17px] font-medium text-foreground">A badge says you won. This says why.</p>
+                <p className="mt-1 text-[15px] text-muted-foreground">
+                  A full feature about you, written and published, plus the winner's box.
+                </p>
+              </div>
+            </Reveal>
+
+            {/* THREE STAGES */}
+            <Reveal delay={80}>
+              <ol className="mt-14 grid gap-8 md:grid-cols-3">
+                {stages.map(({ number, title, body }) => (
+                  <li key={number} className="text-left">
+                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
+                      {number}
+                    </span>
+                    <p className="mt-4 text-sm font-semibold text-foreground">{title}</p>
+                    <p className="mt-1 text-sm [line-height:1.7] text-muted-foreground">{body}</p>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+
+            {/* WINNER'S BOX */}
+            <Reveal delay={100}>
+              <div className="mt-14 rounded-lg border border-border p-6 md:p-8">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">The winner's box</p>
+                <ul className="mt-5 grid gap-6 sm:grid-cols-2">
+                  {winnersBox.map(({ icon: Icon, lead, rest }) => (
+                    <li key={lead} className="flex items-start gap-3 text-sm [line-height:1.7] text-muted-foreground">
+                      <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
+                      <span>
+                        <span className="font-semibold text-foreground">{lead}</span>
+                        {rest ? ` — ${rest}` : null}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+
+            {/* PULL QUOTE */}
+            <Reveal delay={120}>
+              <figure className="mx-auto mt-8 mb-6 max-w-[640px] border-l-[3px] border-primary" style={{ borderRadius: 0, padding: "4px 0 4px 20px" }}>
+                <p className="text-[20px] leading-[1.5] text-foreground">
+                  <strong className="font-semibold">When someone searches your name, this is what they find.</strong>{" "}
+                  Your story, written and published by someone other than you.
+                </p>
+              </figure>
+            </Reveal>
+
+            {/* CTA */}
+            <Reveal delay={140}>
+              <div className="text-center">
+                <a
+                  href="https://payments.entrepreneurawards.co/b/7sY8wPbgN236evy2UY8so0i"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mx-auto inline-flex h-11 w-full max-w-[320px] items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                >
+                  Claim your feature
+                </a>
+
+                <div className="mt-4 space-y-2.5 text-[13px] text-muted-foreground">
+                  <p>Nothing publishes until you've read it.</p>
+                  <p>
+                    Every winner is independently reviewed and selected.{" "}
+                    <Link to="/methodology" className="text-primary underline-offset-4 hover:underline">
+                      Our methodology
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </div>
             </Reveal>
           </div>
         </section>
