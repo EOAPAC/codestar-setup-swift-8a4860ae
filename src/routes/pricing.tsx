@@ -25,6 +25,14 @@ type FreeAsset = {
 
 const freeAssets: FreeAsset[] = [
   {
+    title: "Winner seal",
+    meta: "1080 x 1080 PNG",
+    src: winnerSealAsset.url,
+    alt: "Entrepreneur Awards 2026 winner seal badge",
+    frame: "aspect-square",
+    caption: "Honored to be named a 2026 Entrepreneur Award winner. #EntrepreneurAwards #2026Winner",
+  },
+  {
     title: "LinkedIn banner",
     meta: "1200 x 630 PNG",
     src: linkedinBannerAsset.url,
