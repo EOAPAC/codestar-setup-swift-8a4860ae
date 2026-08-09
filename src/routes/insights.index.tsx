@@ -34,33 +34,39 @@ function InsightsIndexPage() {
           {STANDFIRST}
         </p>
 
-        <div className="mt-14 flex flex-col gap-4">
-          {insights.map((article) => (
+        <div className="mt-14 flex flex-col">
+          {insights.map((article, i) => (
             <Link
               key={article.slug}
               to="/insights/$slug"
               params={{ slug: article.slug }}
-              className="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/40 md:p-8"
+              className="group grid grid-cols-[auto_1fr] gap-x-6 border-t border-border py-8 transition-colors last:border-b hover:bg-secondary/40 md:gap-x-10"
             >
-              <h2 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-primary md:text-2xl">
-                {article.title}
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {article.metaDescription}
-              </p>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {article.tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="rounded-full bg-secondary px-2.5 py-1 text-xs text-muted-foreground"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
+              <span className="pt-1 text-sm tabular-nums text-primary">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h2 className="text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary md:text-2xl">
+                  {article.title}
+                </h2>
+                <p className="mt-3 max-w-[62ch] text-sm leading-relaxed text-muted-foreground">
+                  {article.metaDescription}
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {article.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Link>
           ))}
         </div>
+
       </main>
       <SiteFooter />
     </div>
