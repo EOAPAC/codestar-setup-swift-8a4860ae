@@ -18,7 +18,9 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CriteriaRouteImport } from './routes/criteria'
 import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resources.$token'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 
 const WinnersRoute = WinnersRouteImport.update({
   id: '/winners',
@@ -65,9 +67,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WinnerResourcesTokenRoute = WinnerResourcesTokenRouteImport.update({
   id: '/winner-resources/$token',
   path: '/winner-resources/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/insights/$slug',
+  path: '/insights/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -81,7 +93,9 @@ export interface FileRoutesByFullPath {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winners': typeof WinnersRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
+  '/insights/': typeof InsightsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,7 +107,9 @@ export interface FileRoutesByTo {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winners': typeof WinnersRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
+  '/insights': typeof InsightsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,7 +122,9 @@ export interface FileRoutesById {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winners': typeof WinnersRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
+  '/insights/': typeof InsightsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,7 +138,9 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winners'
+    | '/insights/$slug'
     | '/winner-resources/$token'
+    | '/insights/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -132,7 +152,9 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winners'
+    | '/insights/$slug'
     | '/winner-resources/$token'
+    | '/insights'
   id:
     | '__root__'
     | '/'
@@ -144,7 +166,9 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winners'
+    | '/insights/$slug'
     | '/winner-resources/$token'
+    | '/insights/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -157,7 +181,9 @@ export interface RootRouteChildren {
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
   WinnersRoute: typeof WinnersRoute
+  InsightsSlugRoute: typeof InsightsSlugRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -225,11 +251,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/winner-resources/$token': {
       id: '/winner-resources/$token'
       path: '/winner-resources/$token'
       fullPath: '/winner-resources/$token'
       preLoaderRoute: typeof WinnerResourcesTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/insights/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -245,18 +285,10 @@ const rootRouteChildren: RootRouteChildren = {
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
   WinnersRoute: WinnersRoute,
+  InsightsSlugRoute: InsightsSlugRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
