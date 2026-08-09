@@ -82,13 +82,6 @@ function Hero() {
             <a href="#how-it-works">See how it works</a>
           </Button>
         </div>
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs uppercase tracking-widest text-muted-foreground">
-          <span>Three published criteria</span>
-          <span className="hidden h-1 w-1 rounded-full bg-border sm:block" />
-          <span>Most entries not selected</span>
-          <span className="hidden h-1 w-1 rounded-full bg-border sm:block" />
-          <span>No second payment to win</span>
-        </div>
       </div>
     </section>
   );
