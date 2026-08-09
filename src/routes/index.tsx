@@ -393,6 +393,9 @@ function SubmissionForm() {
         setAgreementError(true);
         return;
       }
+      form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
+        field.dataset.touched = "true";
+      });
       if (!form.reportValidity()) return;
 
       form.dataset.serverSubmitting = "true";
