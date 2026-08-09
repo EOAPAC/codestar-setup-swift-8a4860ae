@@ -505,16 +505,16 @@ function SubmissionForm() {
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
           <p className="text-sm font-medium uppercase tracking-widest text-primary">Enter now</p>
-          <h2 className="mt-3 whitespace-nowrap text-4xl font-semibold tracking-tight md:text-5xl">
-            Enter in 5 minutes. Judged in 14 days.
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+            Enter in five minutes. Decisions within five business days.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            No categories. No 20-page application. Just you and the work — that's all our founder-judges want to read.
+            No categories. No twenty-page application.
           </p>
         </div>
         <Card className="mt-12 p-8 md:p-10">
           <div id={targetId} ref={formContainerRef} />
-          <div className="mt-6">
+          <div className="mt-6" ref={consentRef}>
             <label className="flex items-start gap-3 text-sm text-foreground">
               <input
                 type="checkbox"
