@@ -418,6 +418,27 @@ function SubmissionForm() {
       if (!form || form.dataset.serverSubmitAttached === "true") return;
 
       form.dataset.serverSubmitAttached = "true";
+
+      const firstName = form.querySelector<HTMLInputElement>('input[name="firstname"]');
+      if (firstName) {
+        firstName.placeholder = "Your first name, used to address you";
+      }
+
+      // Errors stay hidden until a field is blurred or the form is submitted.
+      form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
+        field.querySelectorAll<HTMLElement>("input, textarea, select").forEach((input) => {
+          input.addEventListener("blur", () => {
+            field.dataset.touched = "true";
+          });
+        });
+      });
+
+      // Consent must read directly above the submit button.
+      const submitWrapper = form.querySelector(".hs_submit") ?? form.querySelector(".hs-submit");
+      if (submitWrapper && consentRef.current) {
+        submitWrapper.parentElement?.insertBefore(consentRef.current, submitWrapper);
+      }
+
       const btn = form.querySelector<HTMLInputElement | HTMLButtonElement>(
         'input[type="submit"], button[type="submit"]'
       );
