@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -191,16 +191,14 @@ function HowItWorks() {
 
         <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr_1px_1fr]">
           {howItWorks.map((step, index) => (
-            <>
-              {index > 0 && (
-                <div key={`${step.number}-divider`} className="h-px w-full bg-border md:h-full md:w-px" />
-              )}
-              <div key={step.number}>
+            <Fragment key={step.number}>
+              {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
+              <div>
                 <p className="text-sm font-semibold text-primary">{step.number}</p>
                 <h3 className="mt-3 text-base font-semibold">{step.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
               </div>
-            </>
+            </Fragment>
           ))}
         </div>
       </div>
