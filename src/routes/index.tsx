@@ -31,34 +31,13 @@ import { Card } from "@/components/ui/card";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
+import { AWARD_YEAR } from "@/content/award";
 
-import { ArrowRight, Linkedin, Mail, Twitter, Quote, TrendingUp, ExternalLink, Newspaper } from "lucide-react";
+import { ArrowRight, Linkedin, Mail, Twitter } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
-
-
-const testimonials = [
-  {
-    quote:
-      "We closed our seed round six weeks after winning. Investors brought up the award in the first meeting.",
-    name: "Amara Okafor",
-    role: "Founder, Northline — 2024 Winner",
-  },
-  {
-    quote:
-      "The only award I've entered that judged the founder, not just the metrics. Worth every dollar.",
-    name: "Julian Reyes",
-    role: "Founder & CEO, Parallel — 2023 Winner",
-  },
-  {
-    quote:
-      "The story feature drove 40+ inbound customers in the first month. Best marketing spend of the year.",
-    name: "Priya Shah",
-    role: "Co-founder, Kindred Labs — 2024 Winner",
-  },
-];
 
 function Index() {
   return (
@@ -67,8 +46,8 @@ function Index() {
       <main>
         <Hero />
         <Tiers />
-        <Testimonials />
-        <WinnerOutcomes />
+        <HowItWorks />
+        <OurPosition />
         <SubmissionForm />
         <Contact />
       </main>
@@ -84,37 +63,37 @@ function Hero() {
       <div className="mx-auto max-w-6xl px-6 pt-28 pb-24 text-center md:pt-40 md:pb-32">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-          2026 entries close March 31 — judged in 14 days
+          {AWARD_YEAR} entries are open · decisions within five business days
         </span>
         <h1 className="mt-8 whitespace-nowrap text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
           For the person who <span className="text-primary">built it.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-          Win the award founders actually respect. Get a trophy, press coverage,
-          and a story that opens doors — from judges who've built companies themselves.
-          One entry. Five minutes. Real recognition.
+          An independent award for founders. One entry, three published criteria, and a
+          decision within five business days. Most entries are not selected.
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button asChild size="lg" className="min-w-48">
             <a href="#submit">
-              Enter in 5 minutes <ArrowRight className="ml-2 h-4 w-4" />
+              Enter now <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
           <Button asChild size="lg" variant="ghost">
-            <a href="#tiers">See what winners get</a>
+            <a href="#how-it-works">See how it works</a>
           </Button>
         </div>
         <div className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs uppercase tracking-widest text-muted-foreground">
-          <span>1,200+ Founders Recognised</span>
+          <span>Three published criteria</span>
           <span className="hidden h-1 w-1 rounded-full bg-border sm:block" />
-          <span>Featured in TechCrunch &amp; Forbes</span>
+          <span>Most entries not selected</span>
           <span className="hidden h-1 w-1 rounded-full bg-border sm:block" />
-          <span>Judged by Founders, Not Marketers</span>
+          <span>No second payment to win</span>
         </div>
       </div>
     </section>
   );
 }
+
 
 function Tiers() {
   return (
