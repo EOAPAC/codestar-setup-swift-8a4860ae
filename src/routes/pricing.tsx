@@ -521,8 +521,8 @@ function PricingPage() {
                   <p>Nothing publishes until you've read it.</p>
                   <p>
                     Every winner is independently reviewed and selected.{" "}
-                    <Link to="/methodology" className="text-primary underline-offset-4 hover:underline">
-                      Our methodology
+                    <Link to="/criteria" className="text-primary underline-offset-4 hover:underline">
+                      Our criteria
                     </Link>
                     .
                   </p>

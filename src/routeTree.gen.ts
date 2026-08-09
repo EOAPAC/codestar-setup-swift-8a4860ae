@@ -15,6 +15,7 @@ import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-condi
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as CriteriaRouteImport } from './routes/criteria'
 import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resources.$token'
@@ -49,6 +50,11 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CriteriaRoute = CriteriaRouteImport.update({
+  id: '/criteria',
+  path: '/criteria',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CompleteRoute = CompleteRouteImport.update({
   id: '/complete',
   path: '/complete',
@@ -68,6 +74,7 @@ const WinnerResourcesTokenRoute = WinnerResourcesTokenRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/complete': typeof CompleteRoute
+  '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/complete': typeof CompleteRoute
+  '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/complete': typeof CompleteRoute
+  '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/complete'
+    | '/criteria'
     | '/faq'
     | '/methodology'
     | '/pricing'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/complete'
+    | '/criteria'
     | '/faq'
     | '/methodology'
     | '/pricing'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/complete'
+    | '/criteria'
     | '/faq'
     | '/methodology'
     | '/pricing'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompleteRoute: typeof CompleteRoute
+  CriteriaRoute: typeof CriteriaRoute
   FaqRoute: typeof FaqRoute
   MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/criteria': {
+      id: '/criteria'
+      path: '/criteria'
+      fullPath: '/criteria'
+      preLoaderRoute: typeof CriteriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/complete': {
       id: '/complete'
       path: '/complete'
@@ -218,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompleteRoute: CompleteRoute,
+  CriteriaRoute: CriteriaRoute,
   FaqRoute: FaqRoute,
   MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRoute,
@@ -229,13 +250,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

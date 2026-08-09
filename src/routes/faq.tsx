@@ -115,8 +115,8 @@ function FAQPage() {
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
                     Entries are assessed on vision, traction, resilience, and influence. See our{" "}
-                    <Link to="/methodology" className="font-medium text-primary hover:underline">
-                      Methodology
+                    <Link to="/criteria" className="font-medium text-primary hover:underline">
+                      Criteria
                     </Link>{" "}
                     for the full breakdown.
                   </AccordionContent>
