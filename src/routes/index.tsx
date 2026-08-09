@@ -155,88 +155,116 @@ function Tiers() {
   );
 }
 
-function Testimonials() {
+const howItWorks = [
+  {
+    number: "1",
+    title: "You enter",
+    body: "Four fields and three short questions. About five minutes. We are assessing what was built, not how well an application is written.",
+  },
+  {
+    number: "2",
+    title: "We assess it",
+    body: "Read against three published criteria: originality, traction, and a standout achievement. There are no categories, so nothing is selected by default.",
+  },
+  {
+    number: "3",
+    title: "You hear back",
+    body: "Within five business days, either way, with the reason. Most entries are not selected.",
+  },
+  {
+    number: "4",
+    title: "If selected",
+    body: "Your winner badge, your graphics and your award citation arrive by email. No further payment, and they remain yours permanently.",
+  },
+];
+
+function HowItWorks() {
   return (
-    <section id="testimonials" className="py-24 md:py-32">
+    <section id="how-it-works" className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Past winners</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">How it works</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            What winning actually did for their business.
+            Four steps, start to finish.
           </h2>
         </div>
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <Card key={t.name} className="flex flex-col p-8">
-              <Quote className="h-6 w-6 text-primary/40" />
-              <p className="mt-4 flex-1 text-base leading-relaxed text-foreground/90">
-                "{t.quote}"
-              </p>
-              <div className="mt-6 border-t border-border pt-4">
-                <p className="text-sm font-medium">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
+
+        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr_1px_1fr]">
+          {howItWorks.map((step, index) => (
+            <>
+              {index > 0 && (
+                <div key={`${step.number}-divider`} className="h-px w-full bg-border md:h-full md:w-px" />
+              )}
+              <div key={step.number}>
+                <p className="text-sm font-semibold text-primary">{step.number}</p>
+                <h3 className="mt-3 text-base font-semibold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
               </div>
-            </Card>
+            </>
           ))}
-        </div>
-        <div className="mt-12 flex justify-center">
-          <Button variant="outline" size="sm" asChild>
-            <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2"
-            >
-              <Linkedin className="h-4 w-4" /> Share on LinkedIn
-            </a>
-          </Button>
         </div>
       </div>
     </section>
   );
 }
 
-const outcomes = [
+const positions = [
   {
-    company: "Northline",
-    founder: "Amara Okafor",
-    tag: "2024 Winner",
-    industry: "Logistics SaaS",
-    metric: "$4.2M seed round",
-    detail: "Closed 6 weeks post-win. Lead investor cited the award in the first meeting.",
-    proofLabel: "TechCrunch coverage",
-    proofUrl: "https://techcrunch.com/",
+    lead: "No categories.",
+    body: "Many awards create enough subcategories that most entrants win something. We have one award.",
   },
   {
-    company: "Parallel",
-    founder: "Julian Reyes",
-    tag: "2023 Winner",
-    industry: "Developer Tools",
-    metric: "3.1× inbound demos",
-    detail: "Homepage feature and press release drove sustained pipeline for 90+ days.",
-    proofLabel: "Founder story",
-    proofUrl: "https://www.entrepreneurawards.co/",
+    lead: "We decline entries.",
+    body: "Most are not selected. An award that everyone wins holds no value for the people who win it.",
   },
   {
-    company: "Kindred Labs",
-    founder: "Priya Shah",
-    tag: "2024 Winner",
-    industry: "Consumer Health",
-    metric: "40+ inbound customers",
-    detail: "First month after the story feature — best-performing marketing channel of 2024.",
-    proofLabel: "Read case study",
-    proofUrl: "https://www.entrepreneurawards.co/",
+    lead: "A win is never rented back.",
+    body: "The badge, graphics and citation carry no further charge and remain yours permanently. We do not charge for permission to display recognition that was earned.",
+  },
+  {
+    lead: "We do not promise press coverage.",
+    body: "We make no claim to placements in publications we do not control.",
+  },
+  {
+    lead: "Our full pricing is published.",
+    body: "Entry is $129.90. It is the only compulsory cost, and the total is set out in full on our FAQ.",
   },
 ];
 
-const pressLogos = [
-  "TechCrunch",
-  "Forbes",
-  "Fast Company",
-  "Sifted",
-  "The Information",
-  "Business Insider",
-];
+function OurPosition() {
+  return (
+    <section id="our-position" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Our position</p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+            What we do not do.
+          </h2>
+        </div>
+
+        <div className="mt-16 grid gap-x-8 gap-y-10 md:grid-cols-2">
+          {positions.map((item) => (
+            <div key={item.lead} className="border-l-2 border-primary pl-5">
+              <p className="text-base font-semibold">{item.lead}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 border-t border-border pt-10">
+          <div className="flex justify-center">
+            <Button asChild size="lg" className="min-w-48">
+              <a href="#submit">
+                Enter now <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 type HubSpotSubmissionPayload = {
   submittedAt: number;
