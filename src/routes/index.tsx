@@ -128,38 +128,60 @@ function Hero() {
 function Tiers() {
   return (
     <section id="tiers" className="border-t border-border bg-secondary/30 py-24 md:py-32">
-      <div className="mx-auto max-w-4xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Recognition</p>
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-[680px] text-center">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Why it matters</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            What winners receive.
+            Anything a business says about itself is discounted.
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            One credential. Every winner receives the same recognition package, built to travel further than a line on a résumé.
+          <p className="mt-6 text-muted-foreground">
+            That is simply how buyers, investors and journalists read marketing copy, and it applies
+            to yours. Independent recognition is not read the same way, because the business did not
+            issue it. That distinction is the whole of what an award is worth.
           </p>
         </div>
-        <Card className="mt-16 p-8 md:p-12">
-          <ul className="grid gap-4 sm:grid-cols-2">
-            {winnerBenefits.map((f) => (
-              <li key={f} className="flex items-start gap-3 text-sm">
-                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                <span className="text-foreground/85">{f}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10 flex justify-center border-t border-border pt-8">
-            <Button asChild size="lg">
+
+        <div className="mt-16 grid items-start gap-10 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
+          <div>
+            <h3 className="text-base font-semibold">In the conversations that matter</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Proposals, pitches, first meetings, due diligence. An external assessment carries
+              weight that a company's own description cannot.
+            </p>
+          </div>
+          <div className="h-px w-full bg-border md:h-full md:w-px" />
+          <div>
+            <h3 className="text-base font-semibold">On your own channels</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              A legitimate reason to talk about the business, the difference between announcing
+              something and promoting yourself.
+            </p>
+          </div>
+          <div className="h-px w-full bg-border md:h-full md:w-px" />
+          <div>
+            <h3 className="text-base font-semibold">For as long as you want it</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Recognition is dated to the year it was awarded. It does not expire, does not renew,
+              and is never charged for a second time. What a winner receives is theirs permanently.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-16 border-t border-border pt-10">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button asChild size="lg" className="min-w-48">
               <a href="#submit">
-                Start Your Entry <ArrowRight className="ml-2 h-4 w-4" />
+                Enter now <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
+            <Button asChild size="lg" variant="outline" className="min-w-48 border-primary text-primary hover:bg-primary/5 hover:text-primary">
+              <a href="/methodology">How entries are judged</a>
+            </Button>
           </div>
-        </Card>
-        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
-          Full winner package details are confirmed with selected entrants after review.
-        </p>
+        </div>
       </div>
     </section>
+
   );
 }
 
