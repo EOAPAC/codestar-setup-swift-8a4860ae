@@ -611,9 +611,7 @@ function SubmissionForm() {
               {formError}
             </p>
           )}
-          <p className="mt-6 text-center text-xs text-muted-foreground">
-            A one-time entry fee completes your application. Our founder-judges reply within 14 days.
-          </p>
+          <div className="mt-6" />
         </Card>
       </div>
     </section>
