@@ -6,16 +6,17 @@ import { FileText, ClipboardCheck, ListChecks, Users, Award, Compass, LineChart,
 export const Route = createFileRoute("/criteria")({
   head: () => ({
     meta: [
-      { title: "Methodology | Entrepreneur Awards" },
+      { title: "Criteria | Entrepreneur Awards" },
       { name: "description", content: "How winners are chosen. Our review panel evaluates every entry against the same criteria: vision, traction, resilience, and influence." },
-      { property: "og:title", content: "Methodology | Entrepreneur Awards" },
+      { property: "og:title", content: "Criteria | Entrepreneur Awards" },
       { property: "og:description", content: "How winners are chosen. Our review panel evaluates every entry against the same criteria: vision, traction, resilience, and influence." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: MethodologyPage,
+  component: CriteriaPage,
 });
+
 
 const steps = [
   {
