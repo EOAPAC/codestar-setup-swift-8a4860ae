@@ -13,6 +13,7 @@ import { Route as WinnersRouteImport } from './routes/winners'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CriteriaRouteImport } from './routes/criteria'
 import { Route as CompleteRouteImport } from './routes/complete'
@@ -37,6 +38,11 @@ const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
+  '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
+  '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
+  '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/complete'
     | '/criteria'
     | '/faq'
+    | '/methodology'
     | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/complete'
     | '/criteria'
     | '/faq'
+    | '/methodology'
     | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/complete'
     | '/criteria'
     | '/faq'
+    | '/methodology'
     | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   CompleteRoute: typeof CompleteRoute
   CriteriaRoute: typeof CriteriaRoute
   FaqRoute: typeof FaqRoute
+  MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompleteRoute: CompleteRoute,
   CriteriaRoute: CriteriaRoute,
   FaqRoute: FaqRoute,
+  MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
