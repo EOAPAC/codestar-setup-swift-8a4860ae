@@ -134,8 +134,7 @@ function InsightArticlePage() {
   const { article, next } = Route.useLoaderData();
   const minutes = readingMinutes(article.body);
   const headings = sectionHeadings(article.body);
-  // Section counter shared with the markdown renderer below.
-  let sectionIndex = 0;
+
 
   return (
     <ArticleShell>
