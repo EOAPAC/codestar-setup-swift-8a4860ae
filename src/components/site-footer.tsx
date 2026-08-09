@@ -7,7 +7,7 @@ export function SiteFooter() {
         <p>© {new Date().getFullYear()} Entrepreneur Awards. All rights reserved.</p>
         <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
           
-          <Link to="/methodology" className="hover:text-foreground">Methodology</Link>
+          <Link to="/criteria" className="hover:text-foreground">Criteria</Link>
           <Link to="/faq" className="hover:text-foreground">FAQ</Link>
           <Link to="/terms-and-conditions" className="hover:text-foreground">Terms and Conditions</Link>
           <a href="/#submit" className="hover:text-foreground">Enter</a>
