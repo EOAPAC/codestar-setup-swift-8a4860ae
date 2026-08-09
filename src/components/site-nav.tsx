@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import markAsset from "@/assets/ea-mark.png.asset.json";
+import { AWARD_YEAR } from "@/content/award";
 
 export function SiteNav() {
   return (
@@ -29,7 +30,7 @@ export function SiteNav() {
           <a href="/#contact" className="hover:text-foreground">Contact</a>
         </nav>
         <Button asChild size="sm">
-          <a href="/#submit">Enter the 2026 Awards</a>
+          <a href="/#submit">Enter the {AWARD_YEAR} Awards</a>
         </Button>
       </div>
     </header>
