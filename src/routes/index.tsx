@@ -208,39 +208,35 @@ function HowItWorks() {
 
 const positions = [
   {
-    lead: "No categories.",
-    body: "Many awards create enough subcategories that most entrants win something. We have one award.",
+    lead: "One award, one standard.",
+    body: `There are no subcategories. A winner is a ${AWARD_YEAR} Entrepreneur Award winner — not the winner of a narrow category that needs explaining every time it is mentioned.`,
   },
   {
-    lead: "We decline entries.",
-    body: "Most are not selected. An award that everyone wins holds no value for the people who win it.",
+    lead: "Assessed on the work, not the application.",
+    body: "Three short questions, and no twenty-page submission. We are reading what was built, not how well it has been written up.",
   },
   {
-    lead: "A win is never rented back.",
-    body: "The badge, graphics and citation carry no further charge and remain yours permanently. We do not charge for permission to display recognition that was earned.",
+    lead: "A decision either way, with the reason.",
+    body: "Within five business days, whether an entry is selected or not. Most awards never tell you why.",
   },
   {
-    lead: "We do not promise press coverage.",
-    body: "We make no claim to placements in publications we do not control.",
-  },
-  {
-    lead: "Our full pricing is published.",
-    body: "Entry is $129.90. It is the only compulsory cost, and the total is set out in full on our FAQ.",
+    lead: "Priced in full, upfront.",
+    body: "Entry is $129.90 and it is the only compulsory cost. A winner's badge, graphics and citation are never charged for. Winners are separately offered one optional extra, which changes nothing about the award. The complete pricing is set out on our FAQ.",
   },
 ];
 
 function OurPosition() {
   return (
-    <section id="our-position" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+    <section id="plain-terms" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-5xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Our position</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Plain terms</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            What we do not do.
+            What you can rely on.
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-x-8 gap-y-10 md:grid-cols-2">
+        <div className="mt-16 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {positions.map((item) => (
             <div key={item.lead} className="border-l-2 border-primary pl-5">
               <p className="text-base font-semibold">{item.lead}</p>
