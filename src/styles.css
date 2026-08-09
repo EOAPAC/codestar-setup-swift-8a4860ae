@@ -285,3 +285,13 @@
   display: block;
 }
 
+
+/* Entry form: hold back validation messages until a field is blurred or the form is submitted */
+#hubspot-form-target .hs-form-field .hs-error-msgs,
+#hubspot-form-target .hs-form-field .hs-form-field__error {
+  display: none;
+}
+#hubspot-form-target .hs-form-field[data-touched="true"] .hs-error-msgs,
+#hubspot-form-target .hs-form-field[data-touched="true"] .hs-form-field__error {
+  display: block;
+}
