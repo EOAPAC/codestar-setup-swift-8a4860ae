@@ -32,21 +32,12 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 
-import { Check, ArrowRight, Linkedin, Mail, Twitter, Quote, TrendingUp, ExternalLink, Newspaper } from "lucide-react";
+import { ArrowRight, Linkedin, Mail, Twitter, Quote, TrendingUp, ExternalLink, Newspaper } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const winnerBenefits = [
-  "Official 2026 Winner badge and personalised certificate",
-  "Permanent profile in the Winners Directory",
-  "LinkedIn announcement kit (post + banner)",
-  "Engraved crystal trophy, shipped worldwide",
-  "Published founder story on our site",
-  "Press release sent to business outlets",
-  "Feature in the Winners email (28k founders)",
-];
 
 const testimonials = [
   {
