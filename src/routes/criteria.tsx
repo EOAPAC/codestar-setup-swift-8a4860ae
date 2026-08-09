@@ -87,7 +87,7 @@ function CriteriaPage() {
           />
           <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
             <span className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
-              Methodology
+              Criteria
             </span>
             <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">
               How Winners Are Chosen
