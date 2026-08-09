@@ -20,6 +20,7 @@ import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resources.$token'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 
 const WinnersRoute = WinnersRouteImport.update({
   id: '/winners',
@@ -76,6 +77,11 @@ const WinnerResourcesTokenRoute = WinnerResourcesTokenRouteImport.update({
   path: '/winner-resources/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/insights/$slug',
+  path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winners': typeof WinnersRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/insights/': typeof InsightsIndexRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winners': typeof WinnersRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/insights': typeof InsightsIndexRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winners': typeof WinnersRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/insights/': typeof InsightsIndexRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winners'
+    | '/insights/$slug'
     | '/winner-resources/$token'
     | '/insights/'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winners'
+    | '/insights/$slug'
     | '/winner-resources/$token'
     | '/insights'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winners'
+    | '/insights/$slug'
     | '/winner-resources/$token'
     | '/insights/'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
   WinnersRoute: typeof WinnersRoute
+  InsightsSlugRoute: typeof InsightsSlugRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
 }
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WinnerResourcesTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/insights/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
   WinnersRoute: WinnersRoute,
+  InsightsSlugRoute: InsightsSlugRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
   InsightsIndexRoute: InsightsIndexRoute,
 }

@@ -97,7 +97,7 @@ function InsightArticlePage() {
         </h1>
 
         <ul className="mt-6 flex flex-wrap gap-2">
-          {article.tags.map((tag) => (
+          {article.tags.map((tag: string) => (
             <li
               key={tag}
               className="rounded-full bg-secondary px-2.5 py-1 text-xs text-muted-foreground"
