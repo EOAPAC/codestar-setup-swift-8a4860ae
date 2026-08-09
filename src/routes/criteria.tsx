@@ -3,7 +3,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { FileText, ClipboardCheck, ListChecks, Users, Award, Compass, LineChart, Shield, Network } from "lucide-react";
 
-export const Route = createFileRoute("/methodology")({
+export const Route = createFileRoute("/criteria")({
   head: () => ({
     meta: [
       { title: "Methodology | Entrepreneur Awards" },
