@@ -352,6 +352,7 @@ function SubmissionForm() {
   const [agreed, setAgreed] = useState(false);
   const [agreementError, setAgreementError] = useState(false);
   const agreedRef = useRef(false);
+  const consentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     agreedRef.current = agreed;
