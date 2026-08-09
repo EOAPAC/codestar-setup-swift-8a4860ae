@@ -611,7 +611,6 @@ function SubmissionForm() {
               {formError}
             </p>
           )}
-          <div className="mt-6" />
         </Card>
       </div>
     </section>
