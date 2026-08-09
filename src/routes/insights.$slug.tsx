@@ -224,8 +224,10 @@ function InsightArticlePage() {
             <ReactMarkdown
               components={{
                 h3: ({ children }) => {
-                  sectionIndex += 1;
-                  const n = sectionIndex;
+                  // Derive the number from the heading text so it stays stable across renders.
+                  const text = String(children);
+                  const n = Math.max(1, headings.indexOf(text) + 1);
+
                   return (
                     <h2
                       id={`section-${n}`}
