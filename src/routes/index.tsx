@@ -92,7 +92,7 @@ function Hero() {
 function ImageBand() {
   return (
     <section className="relative border-t border-border">
-      <div className="relative h-60 w-full overflow-hidden md:h-80 lg:h-[820px]">
+      <div className="relative h-60 w-full overflow-hidden md:h-80 lg:h-[900px]">
         <img
           src={awardRecipient.url}
           alt="An illustrative image of an award recipient"
@@ -108,6 +108,7 @@ function ImageBand() {
     </section>
   );
 }
+
 
 
 
