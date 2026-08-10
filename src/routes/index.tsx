@@ -308,13 +308,13 @@ function SpecimenCitation() {
             What the award actually says about you.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Every winner receives a short written statement — one paragraph, dated and signed —
-            setting out what was assessed and why it was selected. It is the wording you would
-            quote on your profile, your site or in a note to press.
+            Winners receive a dated, signed record of the assessment. It states what was judged
+            and why the entry was selected, written for that specific business rather than from
+            a template. You can use it as the basis for any quote you choose.
           </p>
           <Card className="mt-8 border border-border bg-background p-8 shadow-none md:p-10">
             <p className="text-xs font-medium uppercase tracking-[0.12em] text-primary">
-              Specimen — the wording a winner receives
+              Specimen — an example of the record
             </p>
             <p className="mt-5 text-lg italic leading-relaxed text-foreground">
               Selected for the {AWARD_YEAR} Entrepreneur Award in recognition of a business built and
@@ -419,8 +419,8 @@ const howItWorks = [
     body: (
       <>
         Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
-        and your written award statement arrive by email. No further payment, and they remain yours
-        permanently.
+        and the written record of your assessment arrive by email. No further payment, and they
+        remain yours permanently.
       </>
     ),
   },
