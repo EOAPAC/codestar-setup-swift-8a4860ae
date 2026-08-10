@@ -303,9 +303,20 @@ function SpecimenCitation() {
           objectPosition="70% 30%"
         />
         <div>
-          <Eyebrow>What a citation looks like</Eyebrow>
-          <Card className="mt-5 border border-border bg-background p-8 shadow-none md:p-10">
-            <p className="text-lg italic leading-relaxed text-foreground">
+          <Eyebrow>The words you receive</Eyebrow>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+            What the award actually says about you.
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            Every winner receives a short written statement — one paragraph, dated and signed —
+            setting out what was assessed and why it was selected. It is the wording you would
+            quote on your profile, your site or in a note to press.
+          </p>
+          <Card className="mt-8 border border-border bg-background p-8 shadow-none md:p-10">
+            <p className="text-xs font-medium uppercase tracking-[0.12em] text-primary">
+              Specimen — the wording a winner receives
+            </p>
+            <p className="mt-5 text-lg italic leading-relaxed text-foreground">
               Selected for the {AWARD_YEAR} Entrepreneur Award in recognition of a business built and
               led by its founder. The entry was assessed against originality, traction and a standout
               achievement. The assessment noted a product taken from concept to a working customer
@@ -401,17 +412,14 @@ const howItWorks = [
         <a href="#criteria" className="text-primary underline underline-offset-4">
           three published criteria
         </a>
-        : originality, traction, and a standout achievement. There are no categories, so nothing is
-        selected by default.
+        : originality, traction, and a standout achievement.
       </>
     ),
   },
   {
     number: "03",
     title: "You hear back",
-    body: (
-      <>Within five business days, either way, with the reason. Most entries are not selected.</>
-    ),
+    body: <>Either way, and with the reason it was reached. Nothing is left unanswered.</>,
   },
   {
     number: "04",
@@ -419,7 +427,7 @@ const howItWorks = [
     body: (
       <>
         Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
-        and your award citation arrive by email. No further payment, and they remain yours
+        and your written award statement arrive by email. No further payment, and they remain yours
         permanently.
       </>
     ),
