@@ -238,10 +238,6 @@ const positions = [
     lead: "A decision either way, with the reason.",
     body: "Within five business days, whether an entry is selected or not. Most awards never tell you why.",
   },
-  {
-    lead: "Priced in full, upfront.",
-    body: "Entry is $129.90 and it is the only compulsory cost. A winner's badge, graphics and citation are never charged for. Winners are separately offered one optional extra, which changes nothing about the award. The complete pricing is set out on our FAQ.",
-  },
 ];
 
 function OurPosition() {
