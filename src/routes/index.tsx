@@ -233,27 +233,31 @@ const positions = [
 
 function OurPosition() {
   return (
-    <section id="plain-terms" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+    <section id="plain-terms" className="bg-deep py-[72px] md:py-[120px]">
       <div className="mx-auto max-w-5xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Plain terms</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-deep-label">Plain terms</p>
+          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight text-white md:text-[40px]">
             What you can rely on.
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-x-12 gap-y-10 md:grid-cols-2">
+        <div className="mt-14 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {positions.map((item) => (
-            <div key={item.lead} className="border-l-2 border-primary pl-5">
-              <p className="text-base font-semibold">{item.lead}</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+            <div key={item.lead} className="border-l-2 border-deep-rule pl-5">
+              <p className="text-[17px] font-semibold text-white">{item.lead}</p>
+              <p className="mt-2 text-[17px] leading-[1.7] text-deep-body">{item.body}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 border-t border-border pt-10">
+        <div className="mt-16 border-t border-white/20 pt-10">
           <div className="flex justify-center">
-            <Button asChild size="lg" className="min-w-48">
+            <Button
+              asChild
+              size="lg"
+              className="min-w-48 bg-white text-deep hover:bg-tint hover:text-deep"
+            >
               <a href="#submit">
                 Enter now <ArrowRight className="ml-2 h-4 w-4" />
               </a>
@@ -262,6 +266,7 @@ function OurPosition() {
         </div>
       </div>
     </section>
+
   );
 }
 
