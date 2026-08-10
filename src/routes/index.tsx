@@ -754,10 +754,10 @@ function SubmissionForm() {
   }, [navigate, submitLead]);
 
   return (
-    <section id="submit" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+    <section id="submit" className="py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Enter now</p>
+          <Eyebrow>Enter now</Eyebrow>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             Enter in five minutes. Decisions within five business days.
           </h2>
