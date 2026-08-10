@@ -368,7 +368,7 @@ function WhatItDoesNotDo() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
           {doesNotDo.map((item, index) => (
             <div key={item.title} className="bg-[#0B1220] p-7 md:p-8">
               <span className="text-sm font-medium tabular-nums text-white/35">
