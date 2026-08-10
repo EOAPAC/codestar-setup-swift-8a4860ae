@@ -50,7 +50,7 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
-        <AwardBand />
+        <HowItWorks />
         <HowItWorks />
         <OurPosition />
         <WinnerPortrait />
