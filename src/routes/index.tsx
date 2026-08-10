@@ -30,7 +30,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteFigure } from "@/components/site-figure";
+
 
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { AWARD_YEAR } from "@/content/award";
@@ -50,7 +50,6 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
-        <HowItWorks />
         <HowItWorks />
         <OurPosition />
         <WinnerPortrait />
