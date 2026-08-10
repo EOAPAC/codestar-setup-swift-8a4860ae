@@ -508,18 +508,19 @@ function SubmissionForm() {
   }, [navigate, submitLead]);
 
   return (
-    <section id="submit" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+    <section id="submit" className="bg-tint py-[72px] md:py-[120px]">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Enter now</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-brand">Enter now</p>
+          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight md:text-[40px]">
             Enter in five minutes. Decisions within five business days.
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-4 text-[17px] leading-[1.7] text-muted-foreground">
             No categories. No twenty-page application.
           </p>
         </div>
-        <Card className="mt-12 p-8 md:p-10">
+        <Card className="mt-14 p-8 md:p-10">
+
           <div id={targetId} ref={formContainerRef} />
           <div className="mt-6" ref={consentRef}>
             <label className="flex items-start gap-3 text-sm text-foreground">
