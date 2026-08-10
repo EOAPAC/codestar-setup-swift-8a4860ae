@@ -21,9 +21,6 @@ export function SiteNav() {
           <Link to="/criteria" className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
             Criteria
           </Link>
-          <Link to="/winners" className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
-            Past Winners
-          </Link>
           <Link to="/insights" className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
             Insights
           </Link>
