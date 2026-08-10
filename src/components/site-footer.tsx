@@ -6,8 +6,10 @@ export function SiteFooter() {
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-xs text-muted-foreground">
         <p className="text-center">
-          The {AWARD_YEAR} awards are assessed by Harry Neto, Awards Director.
+          Every {AWARD_YEAR} entry is read against the same three published criteria.
         </p>
+
+
 
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link to="/winners" className="hover:text-foreground">Winners</Link>
