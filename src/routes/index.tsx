@@ -60,15 +60,23 @@ function Index() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 pt-28 pb-24 text-center md:pt-40 md:pb-32">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 900px 500px at 50% 20%, rgba(25,120,229,0.07), transparent)",
+        }}
+      />
+      <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-16 text-center md:pt-[140px] md:pb-[120px]">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
           {AWARD_YEAR} entries are open · decisions within five business days
         </span>
-        <h1 className="mt-8 whitespace-nowrap text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
+        <h1 className="mt-8 whitespace-nowrap text-[40px] font-semibold leading-[1.1] tracking-tight text-foreground md:text-[64px]">
           For the person who <span className="text-primary">built it.</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+        <p className="mx-auto mt-6 max-w-[620px] text-[19px] leading-[1.7] text-muted-foreground">
           An independent award for founders. One entry, three published criteria, and a
           decision within five business days. Most entries are not selected.
         </p>
@@ -86,6 +94,7 @@ function Hero() {
     </section>
   );
 }
+
 
 
 function Tiers() {
