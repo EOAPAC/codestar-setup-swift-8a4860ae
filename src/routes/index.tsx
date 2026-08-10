@@ -35,6 +35,9 @@ import { SiteFigure } from "@/components/site-figure";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { AWARD_YEAR } from "@/content/award";
 
+import heroTrophy from "@/assets/hero-trophy.webp.asset.json";
+import winnerLady from "@/assets/winner-lady.webp.asset.json";
+
 import { ArrowRight, Linkedin, Mail, Twitter } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -63,27 +66,43 @@ function Index() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 pt-28 pb-24 text-center md:pt-40 md:pb-32">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-          {AWARD_YEAR} entries are open · decisions within five business days
-        </span>
-        <h1 className="mt-8 whitespace-nowrap text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
-          For the person who <span className="text-primary">built it.</span>
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-          An independent award for founders. One entry, three published criteria, and a
-          decision within five business days. Most entries are not selected.
-        </p>
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button asChild size="lg" className="min-w-48">
-            <a href="#submit">
-              Enter now <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="ghost">
-            <a href="#how-it-works">See how it works</a>
-          </Button>
+      <img
+        src={heroTrophy.url}
+        alt=""
+        aria-hidden
+        width={1920}
+        height={823}
+        loading="eager"
+        decoding="async"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover [object-position:78%_50%] opacity-40 md:opacity-100"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/10"
+      />
+      <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-24 md:pt-40 md:pb-32">
+        <div className="max-w-2xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            {AWARD_YEAR} entries are open · decisions within five business days
+          </span>
+          <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
+            For the person who <span className="text-primary">built it.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            An independent award for founders. One entry, three published criteria, and a
+            decision within five business days. Most entries are not selected.
+          </p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <Button asChild size="lg" className="min-w-48">
+              <a href="#submit">
+                Enter now <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="ghost">
+              <a href="#how-it-works">See how it works</a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
@@ -139,11 +158,11 @@ function WinnerPortrait() {
     <section className="py-24 md:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2 md:gap-16">
         <SiteFigure
-          src="/images/ea-winner-portrait.webp"
+          src={winnerLady.url}
           alt={`A ${AWARD_YEAR} Entrepreneur Award winner holding the crystal award.`}
-          ratio="4 / 5"
-          width={1080}
-          height={1350}
+          ratio="16 / 9"
+          width={1920}
+          height={1080}
         />
         <div>
           <p className="text-sm font-medium uppercase tracking-widest text-primary">
