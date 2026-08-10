@@ -69,9 +69,21 @@ function FAQPage() {
           </div>
         </section>
 
-        <section className="py-24 md:py-32">
+        <section className="pt-16 md:pt-20">
+          <div className="mx-auto max-w-3xl px-6">
+            <SiteFigure
+              src="/images/ea-award-detail.webp"
+              alt="Close detail of the 2026 Entrepreneur Award, showing the winner seal etched into the crystal."
+              ratio="21 / 9"
+              caption="The 2026 award, engraved with the winner seal. The award is part of the optional Winner's Feature; the seal, badge, graphics and citation carry no further charge."
+            />
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24">
           <div className="mx-auto max-w-3xl px-6">
             <Card className="px-4 py-2 md:px-6 md:py-4">
+
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="q1" id="q1" className="scroll-mt-24">
                   <AccordionTrigger className="text-left text-base font-medium">
