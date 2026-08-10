@@ -60,23 +60,15 @@ function Index() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 900px 500px at 50% 20%, rgba(25,120,229,0.07), transparent)",
-        }}
-      />
-      <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-16 text-center md:pt-[140px] md:pb-[120px]">
+      <div className="mx-auto max-w-6xl px-6 pt-28 pb-24 text-center md:pt-40 md:pb-32">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
           {AWARD_YEAR} entries are open · decisions within five business days
         </span>
-        <h1 className="mt-8 whitespace-nowrap text-[40px] font-semibold leading-[1.1] tracking-tight text-foreground md:text-[64px]">
+        <h1 className="mt-8 whitespace-nowrap text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
           For the person who <span className="text-primary">built it.</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-[620px] text-[19px] leading-[1.7] text-muted-foreground">
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
           An independent award for founders. One entry, three published criteria, and a
           decision within five business days. Most entries are not selected.
         </p>
@@ -96,49 +88,47 @@ function Hero() {
 }
 
 
-
 function Tiers() {
   return (
-    <section id="tiers" className="bg-tint py-[72px] md:py-[120px]">
+    <section id="tiers" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-5xl px-6">
         <div className="mx-auto max-w-[680px] text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-brand">Why it matters</p>
-          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight md:text-[40px]">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Why it matters</p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             Anything a business says about itself is discounted.
           </h2>
-          <p className="mt-6 text-[17px] leading-[1.7] text-muted-foreground">
+          <p className="mt-6 text-muted-foreground">
             That is simply how buyers, investors and journalists read marketing copy, and it applies
             to yours. Independent recognition is not read the same way, because the business did not
             issue it. That distinction is the whole of what an award is worth.
           </p>
         </div>
 
-        <div className="mt-14 grid items-start gap-x-12 gap-y-10 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
+        <div className="mt-16 grid items-start gap-10 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
           <div>
-            <h3 className="text-[17px] font-semibold">In the conversations that matter</h3>
-            <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">
+            <h3 className="text-base font-semibold">In the conversations that matter</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Proposals, pitches, first meetings, due diligence. An external assessment carries
               weight that a company's own description cannot.
             </p>
           </div>
           <div className="h-px w-full bg-border md:h-full md:w-px" />
           <div>
-            <h3 className="text-[17px] font-semibold">On your own channels</h3>
-            <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">
+            <h3 className="text-base font-semibold">On your own channels</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               A legitimate reason to talk about the business, the difference between announcing
               something and promoting yourself.
             </p>
           </div>
           <div className="h-px w-full bg-border md:h-full md:w-px" />
           <div>
-            <h3 className="text-[17px] font-semibold">For as long as you want it</h3>
-            <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">
+            <h3 className="text-base font-semibold">For as long as you want it</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Recognition is dated to the year it was awarded. It does not expire, does not renew,
               and is never charged for a second time. What a winner receives is theirs permanently.
             </p>
           </div>
         </div>
-
 
         <div className="mt-16 border-t border-border pt-10">
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -183,30 +173,27 @@ const howItWorks = [
 
 function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-background py-[72px] md:py-[120px]">
+    <section id="how-it-works" className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-brand">How it works</p>
-          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight md:text-[40px]">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">How it works</p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             Four steps, start to finish.
           </h2>
         </div>
 
-        <div className="mt-14 grid items-start gap-x-12 gap-y-10 md:grid-cols-[1fr_1px_1fr_1px_1fr_1px_1fr]">
+        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr_1px_1fr]">
           {howItWorks.map((step, index) => (
             <Fragment key={step.number}>
               {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
               <div>
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-[15px] font-medium text-white">
-                  {step.number}
-                </span>
-                <h3 className="mt-4 text-[17px] font-semibold">{step.title}</h3>
-                <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">{step.body}</p>
+                <p className="text-sm font-semibold text-primary">{step.number}</p>
+                <h3 className="mt-3 text-base font-semibold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
               </div>
             </Fragment>
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -233,31 +220,27 @@ const positions = [
 
 function OurPosition() {
   return (
-    <section id="plain-terms" className="bg-deep py-[72px] md:py-[120px]">
+    <section id="plain-terms" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-5xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-deep-label">Plain terms</p>
-          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight text-white md:text-[40px]">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Plain terms</p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             What you can rely on.
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-x-12 gap-y-10 md:grid-cols-2">
+        <div className="mt-16 grid gap-x-12 gap-y-10 md:grid-cols-2">
           {positions.map((item) => (
-            <div key={item.lead} className="border-l-2 border-deep-rule pl-5">
-              <p className="text-[17px] font-semibold text-white">{item.lead}</p>
-              <p className="mt-2 text-[17px] leading-[1.7] text-deep-body">{item.body}</p>
+            <div key={item.lead} className="border-l-2 border-primary pl-5">
+              <p className="text-base font-semibold">{item.lead}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 border-t border-white/20 pt-10">
+        <div className="mt-16 border-t border-border pt-10">
           <div className="flex justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="min-w-48 bg-white text-deep hover:bg-tint hover:text-deep"
-            >
+            <Button asChild size="lg" className="min-w-48">
               <a href="#submit">
                 Enter now <ArrowRight className="ml-2 h-4 w-4" />
               </a>
@@ -266,7 +249,6 @@ function OurPosition() {
         </div>
       </div>
     </section>
-
   );
 }
 
@@ -508,19 +490,18 @@ function SubmissionForm() {
   }, [navigate, submitLead]);
 
   return (
-    <section id="submit" className="bg-tint py-[72px] md:py-[120px]">
+    <section id="submit" className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-brand">Enter now</p>
-          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight md:text-[40px]">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">Enter now</p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             Enter in five minutes. Decisions within five business days.
           </h2>
-          <p className="mt-4 text-[17px] leading-[1.7] text-muted-foreground">
+          <p className="mt-4 text-muted-foreground">
             No categories. No twenty-page application.
           </p>
         </div>
-        <Card className="mt-14 p-8 md:p-10">
-
+        <Card className="mt-12 p-8 md:p-10">
           <div id={targetId} ref={formContainerRef} />
           <div className="mt-6" ref={consentRef}>
             <label className="flex items-start gap-3 text-sm text-foreground">
@@ -574,13 +555,12 @@ function SubmissionForm() {
 
 function Contact() {
   return (
-    <section id="contact" className="bg-background py-[72px] md:py-[120px]">
+    <section id="contact" className="py-24">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-[30px] font-semibold leading-[1.2] tracking-tight md:text-[40px]">Questions? Get in touch.</h2>
-        <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">
+        <h2 className="text-3xl font-semibold tracking-tight">Questions? Get in touch.</h2>
+        <p className="mt-3 text-muted-foreground">
           We reply within one business day.
         </p>
-
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
           <a
             href="mailto:hello@entrepreneurawards.co"
