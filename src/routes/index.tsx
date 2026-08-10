@@ -100,8 +100,8 @@ function Hero() {
             For the person who <span className="text-primary">built it.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            An independent award for founders. One entry, three published criteria, and a
-            decision within five business days. Most entries are not selected.
+            An independent award for founders. One entry, one decision, and most entries are
+            not selected.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="min-w-48">
@@ -121,16 +121,16 @@ const publications = ["Inc.", "Fortune", "Business Insider", "TechCrunch", "News
 
 const proofPoints = [
   {
-    title: "Three published criteria",
-    body: "Every entry is read against the same three, in the same order. Nothing is assessed privately.",
+    title: "Read against a published rubric",
+    body: "The same criteria, in the same order, for every entry. Nothing is assessed privately.",
   },
   {
     title: "Five business days",
     body: "A decision either way, with the reason it was reached, inside one working week.",
   },
   {
-    title: "Most entries are not selected",
-    body: "There are no categories to fill, so nothing is selected simply because a slot exists.",
+    title: "Independently assessed",
+    body: "The judgment is made outside your business, by people with no stake in the outcome.",
   },
 ];
 
@@ -195,7 +195,7 @@ const winWorth = [
   },
   {
     title: "Assessed on what you built",
-    body: "Three short questions, not a twenty-page submission. You don't need an agency or a grant writer to put a strong entry in.",
+    body: "The reading is about the business itself — what you made, what it does and what happened as a result — rather than how polished the writing around it is.",
   },
 ];
 
@@ -280,10 +280,7 @@ function Criteria() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button asChild size="lg">
-            <a href="/criteria">Download the criteria and assessment method</a>
-          </Button>
+        <div className="mt-16 flex justify-center">
           <Button asChild size="lg" variant="outline">
             <a href="/criteria">See the full criteria page →</a>
           </Button>
