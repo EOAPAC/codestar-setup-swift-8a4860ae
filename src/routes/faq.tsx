@@ -82,33 +82,6 @@ function FAQPage() {
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="q-cost" id="q-cost" className="scroll-mt-24">
-                  <AccordionTrigger className="text-left text-base font-medium">
-                    What does it cost in total?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, published at a permanent link, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award citation are provided free and permanently.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="q2" id="q2" className="scroll-mt-24">
-
-                  <AccordionTrigger className="text-left text-base font-medium">
-                    Who can enter?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    Any founder or entrepreneur can enter their own story. No nomination needed. You put yourself forward.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="q3" id="q3" className="scroll-mt-24">
-                  <AccordionTrigger className="text-left text-base font-medium">
-                    Is there a cost to enter?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    Yes. A one-time entry fee applies when you submit. It covers the review and administration of your entry. Every entry is read and scored by our founder-judges. The fee does not purchase an award, and entering does not guarantee selection.
-                  </AccordionContent>
-                </AccordionItem>
 
                 <AccordionItem value="q4" id="q4" className="scroll-mt-24">
                   <AccordionTrigger className="text-left text-base font-medium">
