@@ -36,9 +36,6 @@ import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { AWARD_YEAR } from "@/content/award";
 
 import heroTrophy from "@/assets/hero-trophy.webp.asset.json";
-import winnerLady from "@/assets/winner-lady.webp.asset.json";
-
-import { ArrowRight, Linkedin, Mail, Twitter } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -50,9 +47,13 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
+        <PublicationStrip />
+        <AwardBand />
+        <WhatAWinIsWorth />
         <HowItWorks />
-        <OurPosition />
-        <WinnerPortrait />
+        <Criteria />
+        <SpecimenCitation />
+        <WhatItDoesNotDo />
         <SubmissionForm />
         <Contact />
       </main>
@@ -79,7 +80,7 @@ function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/10"
       />
-      <div className="relative mx-auto max-w-6xl px-6 pt-28 pb-24 md:pt-40 md:pb-32">
+      <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-24 md:pt-12 md:pb-32">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -94,9 +95,7 @@ function Hero() {
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="min-w-48">
-              <a href="#submit">
-                Enter now <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+              <a href="#submit">Enter now →</a>
             </Button>
             <Button asChild size="lg" variant="ghost">
               <a href="#how-it-works">See how it works</a>
@@ -108,75 +107,253 @@ function Hero() {
   );
 }
 
-const portraitPoints = [
-  "Winner badge and social graphics, sent by email.",
-  "A written award citation you can quote anywhere.",
-  "The physical award is part of the optional Winner's Feature.",
-];
+const publications = ["Inc.", "Fortune", "Business Insider", "TechCrunch", "Newsweek", "Sifted"];
 
-function WinnerPortrait() {
+function PublicationStrip() {
   return (
-    <section className="py-24 md:py-32">
-      <img
-        src={winnerLady.url}
-        alt={`A ${AWARD_YEAR} Entrepreneur Award winner holding the crystal award.`}
-        width={1920}
-        height={1080}
-        loading="lazy"
-        decoding="async"
-        className="w-full object-cover [aspect-ratio:16/9] md:[aspect-ratio:21/9]"
-      />
-      <div className="mx-auto mt-14 grid max-w-6xl gap-10 px-6 md:mt-16 md:grid-cols-2 md:gap-16">
-        <div>
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">
-            What selection looks like
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            A credential you can point at.
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            Selected founders receive the same set of materials, in the same form, every cycle.
-            Nothing about the award is held back behind a further payment.
-          </p>
-        </div>
-        <ul className="space-y-4 md:mt-2">
-          {portraitPoints.map((point) => (
-            <li
-              key={point}
-              className="border-l-2 border-primary pl-4 text-sm leading-relaxed text-muted-foreground"
+    <section className="py-10">
+      <div className="mx-auto max-w-6xl px-6">
+        <p className="text-center text-xs uppercase tracking-[0.12em] text-muted-foreground">
+          As seen in
+        </p>
+        <div className="mt-6 grid grid-cols-3 justify-items-center gap-x-8 gap-y-6 md:flex md:flex-wrap md:justify-center md:gap-x-14">
+          {publications.map((name) => (
+            <span
+              key={name}
+              className="text-[20px] font-medium tracking-[0.02em] text-[#8A94A6]"
             >
-              {point}
-            </li>
+              {name}
+            </span>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
-
   );
 }
 
+function AwardBand() {
+  return (
+    <section>
+      <div className="w-full bg-secondary [aspect-ratio:3/2] sm:[aspect-ratio:16/9] md:[aspect-ratio:21/9]">
+        <img
+          src="/images/ea-award-band.webp"
+          alt={`The ${AWARD_YEAR} Entrepreneur Award, a crystal award etched with the winner seal.`}
+          loading="eager"
+          decoding="async"
+          className="h-full w-full object-cover [object-position:72%_50%]"
+        />
+      </div>
+      <div className="mx-auto max-w-6xl px-6">
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+          The {AWARD_YEAR} Entrepreneur Award. The winner seal, badge, graphics and citation carry
+          no further charge; the award itself is part of the optional Winner's Feature.
+        </p>
+      </div>
+    </section>
+  );
+}
 
+const winWorth = [
+  {
+    title: "Recognition in your name",
+    body: "Most business awards go to companies. This one is awarded to the founder, so it travels with you into whatever you build next and reads as a judgment on you rather than on an entity.",
+  },
+  {
+    title: "A reason to be seen",
+    body: "Selection is something that happened, on a date. That gives you a legitimate reason to update your profile, write to your clients and talk to press, without any of it reading as self-promotion.",
+  },
+  {
+    title: "Assessed on what you built",
+    body: "Three short questions, not a twenty-page submission. You don't need an agency or a grant writer to put a strong entry in.",
+  },
+];
+
+function WhatAWinIsWorth() {
+  return (
+    <section className="py-24 md:py-32">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+            What a win is worth to you.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Entrepreneur Awards recognises the founder rather than the company. Selection puts an
+            external assessment of what you built into your own name, issued by someone outside
+            your business, and it stays useful long after the year it was awarded.
+          </p>
+        </div>
+
+        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
+          {winWorth.map((item, index) => (
+            <Fragment key={item.title}>
+              {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
+              <div>
+                <h3 className="text-base font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              </div>
+            </Fragment>
+          ))}
+        </div>
+
+        <div className="mt-16 flex justify-center">
+          <Button asChild size="lg" className="min-w-48">
+            <a href="#submit">Enter now →</a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const criteria = [
+  {
+    number: "1",
+    title: "Originality",
+    body: "What was built, and whether it is meaningfully different from what already existed. We are reading the substance of the thing itself, not how novel it sounds when described.",
+  },
+  {
+    number: "2",
+    title: "Traction",
+    body: "Progress that can be pointed at. Revenue, customers, users, adoption, or another outcome you can evidence. Read in the context of the stage your business is at, not against a fixed threshold.",
+  },
+  {
+    number: "3",
+    title: "A standout achievement",
+    body: "One specific thing you did that a comparable operator would not have. This asks for a single concrete event rather than a general standard, and it is where detail matters most.",
+  },
+];
+
+function Criteria() {
+  return (
+    <section id="criteria" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+      <div className="mx-auto max-w-3xl px-6">
+        <div className="text-center">
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+            The three criteria, in full.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Every entry is read against these, in this order. There are no categories, so nothing is
+            selected by default.
+          </p>
+        </div>
+
+        <div className="mt-16 space-y-14">
+          {criteria.map((item) => (
+            <div key={item.number}>
+              <p className="text-sm font-semibold text-primary">{item.number}</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight">{item.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground">{item.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 flex flex-col justify-center gap-3 sm:flex-row">
+          <Button asChild size="lg">
+            <a href="/criteria">Download the criteria and assessment method</a>
+          </Button>
+          <Button asChild size="lg" variant="outline">
+            <a href="/criteria">See the full criteria page →</a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SpecimenCitation() {
+  return (
+    <section className="py-24 md:py-32">
+      <div className="mx-auto max-w-3xl px-6">
+        <Card className="border border-border bg-background p-10 shadow-none md:p-14">
+          <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-primary">
+            What a citation looks like
+          </p>
+          <p className="mt-6 text-center text-lg italic leading-relaxed text-foreground">
+            Selected for the {AWARD_YEAR} Entrepreneur Award in recognition of a business built and
+            led by its founder. The entry was assessed against originality, traction and a standout
+            achievement. The assessment noted a product taken from concept to a working customer
+            base under the founder's direct execution, and a standard of delivery sustained through
+            the company's growth.
+          </p>
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            Specimen. Not attributed to a recipient.
+          </p>
+        </Card>
+      </div>
+    </section>
+  );
+}
+
+const doesNotDo = [
+  `There are no categories and no subcategories. A winner is a ${AWARD_YEAR} Entrepreneur Award winner.`,
+  "There is no fee to reach a shortlist.",
+  "There is no renewal. Recognition is dated to the year it was awarded and is never charged for a second time.",
+  "There is no ceremony and no ticket to buy. Everything a winner receives arrives by email.",
+  "There is no twenty-page submission, and a longer entry is not a stronger one.",
+  "Nobody is nominated by us. Founders enter their own business.",
+];
+
+function WhatItDoesNotDo() {
+  return (
+    <section className="bg-[#0B1220] py-24 text-white md:py-32">
+      <div className="mx-auto max-w-3xl px-6 text-center">
+        <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+          What this award does not do.
+        </h2>
+        <div className="mt-14 space-y-10">
+          {doesNotDo.map((line) => (
+            <p key={line} className="text-lg leading-relaxed text-white/75 md:text-xl">
+              {line}
+            </p>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const howItWorks = [
   {
     number: "1",
     title: "You enter",
-    body: "Four fields and three short questions. About five minutes. We are assessing what was built, not how well an application is written.",
+    body: (
+      <>
+        Four fields and three short questions. About five minutes. We are assessing what was built,
+        not how well an application is written.
+      </>
+    ),
   },
   {
     number: "2",
     title: "We assess it",
-    body: "Read against three published criteria: originality, traction, and a standout achievement. There are no categories, so nothing is selected by default.",
+    body: (
+      <>
+        Read against{" "}
+        <a href="#criteria" className="text-primary underline underline-offset-4">
+          three published criteria
+        </a>
+        : originality, traction, and a standout achievement. There are no categories, so nothing is
+        selected by default.
+      </>
+    ),
   },
   {
     number: "3",
     title: "You hear back",
-    body: "Within five business days, either way, with the reason. Most entries are not selected.",
+    body: (
+      <>Within five business days, either way, with the reason. Most entries are not selected.</>
+    ),
   },
   {
     number: "4",
     title: "If selected",
-    body: "Your winner badge, your graphics and your award citation arrive by email. No further payment, and they remain yours permanently.",
+    body: (
+      <>
+        Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
+        and your award citation arrive by email. No further payment, and they remain yours
+        permanently.
+      </>
+    ),
   },
 ];
 
@@ -208,58 +385,6 @@ function HowItWorks() {
   );
 }
 
-const positions = [
-  {
-    lead: "One award, one standard.",
-    body: `There are no subcategories. A winner is a ${AWARD_YEAR} Entrepreneur Award winner — not the winner of a narrow category that needs explaining every time it is mentioned.`,
-  },
-  {
-    lead: "Assessed on the work, not the application.",
-    body: "Three short questions, and no twenty-page submission. We are reading what was built, not how well it has been written up.",
-  },
-  {
-    lead: "A decision either way, with the reason.",
-    body: "Within five business days, whether an entry is selected or not. Most awards never tell you why.",
-  },
-  {
-    lead: "Priced in full, upfront.",
-    body: "Entry is $129.90 and it is the only compulsory cost. A winner's badge, graphics and citation are never charged for. Winners are separately offered one optional extra, which changes nothing about the award. The complete pricing is set out on our FAQ.",
-  },
-];
-
-function OurPosition() {
-  return (
-    <section id="plain-terms" className="border-t border-border bg-secondary/30 py-24 md:py-32">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Plain terms</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            What you can rely on.
-          </h2>
-        </div>
-
-        <div className="mt-16 grid gap-x-12 gap-y-10 md:grid-cols-2">
-          {positions.map((item) => (
-            <div key={item.lead} className="border-l-2 border-primary pl-5">
-              <p className="text-base font-semibold">{item.lead}</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 border-t border-border pt-10">
-          <div className="flex justify-center">
-            <Button asChild size="lg" className="min-w-48">
-              <a href="#submit">
-                Enter now <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 
 type HubSpotSubmissionPayload = {
@@ -435,6 +560,64 @@ function SubmissionForm() {
         });
       });
 
+      // Optional example answers under each long-answer question.
+      // TODO: fill in the example copy for each question below.
+      const exampleAnswers: Record<string, string> = {
+        "what do you/your business do?": "",
+        "what's your standout achievement?": "",
+        "why is this exceptional?": "",
+      };
+
+      form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
+        if (!field.querySelector("textarea")) return;
+        const labelText = (field.querySelector("label")?.textContent ?? "")
+          .replace(/\*/g, "")
+          .trim()
+          .toLowerCase();
+        const match = Object.keys(exampleAnswers).find((question) =>
+          labelText.startsWith(question.slice(0, 20))
+        );
+        if (!match || field.querySelector("[data-example-toggle]")) return;
+
+        const details = document.createElement("details");
+        details.dataset.exampleToggle = "true";
+        details.style.marginTop = "0.5rem";
+
+        const summary = document.createElement("summary");
+        summary.textContent = "See an example answer";
+        summary.style.cursor = "pointer";
+        summary.style.fontSize = "0.875rem";
+        summary.style.color = "var(--color-primary)";
+        summary.style.listStyle = "none";
+        details.appendChild(summary);
+
+        const panel = document.createElement("div");
+        panel.style.marginTop = "0.5rem";
+        panel.style.padding = "0.75rem 1rem";
+        panel.style.background = "#F8F9FB";
+        panel.style.borderRadius = "var(--radius-md)";
+
+        const panelLabel = document.createElement("p");
+        panelLabel.textContent = "Example";
+        panelLabel.style.fontSize = "0.75rem";
+        panelLabel.style.fontWeight = "500";
+        panelLabel.style.color = "var(--color-muted-foreground)";
+        panel.appendChild(panelLabel);
+
+        const panelBody = document.createElement("p");
+        panelBody.textContent = exampleAnswers[match];
+        panelBody.style.marginTop = "0.25rem";
+        panelBody.style.fontSize = "0.875rem";
+        panelBody.style.lineHeight = "1.5rem";
+        panelBody.style.color = "var(--color-foreground)";
+        panel.appendChild(panelBody);
+
+        details.appendChild(panel);
+        field.appendChild(details);
+      });
+
+
+
       // Consent must read directly above the submit button.
       const submitWrapper = form.querySelector(".hs_submit") ?? form.querySelector(".hs-submit");
       if (submitWrapper && consentRef.current) {
@@ -550,6 +733,9 @@ function SubmissionForm() {
                 Please agree to the Terms and Conditions and Privacy Policy to continue.
               </p>
             )}
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              We reply to every entry either way, within five business days.
+            </p>
           </div>
           {formError && (
             <p className="mt-4 text-center text-sm font-medium text-destructive" role="alert">
@@ -575,7 +761,7 @@ function Contact() {
             href="mailto:hello@entrepreneurawards.co"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
           >
-            <Mail className="h-4 w-4" /> hello@entrepreneurawards.co
+            hello@entrepreneurawards.co
           </a>
           <a
             href="https://www.linkedin.com/"
@@ -583,7 +769,7 @@ function Contact() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
           >
-            <Linkedin className="h-4 w-4" /> LinkedIn
+            LinkedIn
           </a>
           <a
             href="https://twitter.com/"
@@ -591,7 +777,7 @@ function Contact() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
           >
-            <Twitter className="h-4 w-4" /> Twitter
+            Twitter
           </a>
         </div>
       </div>
