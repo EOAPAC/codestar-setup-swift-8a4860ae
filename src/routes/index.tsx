@@ -47,7 +47,7 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
-        <PublicationStrip />
+        <CredibilityBand />
         <AwardBand />
         <WhatAWinIsWorth />
         <HowItWorks />
@@ -62,6 +62,12 @@ function Index() {
   );
 }
 
+/** One eyebrow treatment for every section, so each announces its role. */
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-xs font-medium uppercase tracking-[0.12em] text-primary">{children}</p>
+  );
+}
 
 function Hero() {
   return (
@@ -109,22 +115,63 @@ function Hero() {
 
 const publications = ["Inc.", "Fortune", "Business Insider", "TechCrunch", "Newsweek", "Sifted"];
 
-function PublicationStrip() {
+const proofPoints = [
+  {
+    title: "Three published criteria",
+    body: "Every entry is read against the same three, in the same order. Nothing is assessed privately.",
+  },
+  {
+    title: "Five business days",
+    body: "A decision either way, with the reason it was reached, inside one working week.",
+  },
+  {
+    title: "Most entries are not selected",
+    body: "There are no categories to fill, so nothing is selected simply because a slot exists.",
+  },
+];
+
+function CredibilityBand() {
   return (
-    <section className="py-10">
+    <section className="border-y border-border bg-surface py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="text-center text-xs uppercase tracking-[0.12em] text-muted-foreground">
+        <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
           As seen in
         </p>
         <div className="mt-6 grid grid-cols-3 justify-items-center gap-x-8 gap-y-6 md:flex md:flex-wrap md:justify-center md:gap-x-14">
           {publications.map((name) => (
-            <span
-              key={name}
-              className="text-[20px] font-medium tracking-[0.02em] text-[#8A94A6]"
-            >
+            <span key={name} className="text-[20px] font-medium tracking-[0.02em] text-[#8A94A6]">
               {name}
             </span>
           ))}
+        </div>
+
+        <div className="mt-16 grid gap-10 md:grid-cols-3">
+          {proofPoints.map((point) => (
+            <div key={point.title} className="border-l-2 border-primary pl-5">
+              <h3 className="text-lg font-semibold">{point.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">{point.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 grid items-center gap-8 md:grid-cols-[1fr_1.1fr]">
+          <SiteFigure
+            src={assessmentPanel.url}
+            alt={`The ${AWARD_YEAR} assessment panel with the Entrepreneur Award.`}
+            ratio="16 / 9"
+            width={1920}
+            height={1080}
+          />
+          <div>
+            <Eyebrow>Who assesses your entry</Eyebrow>
+            <p className="mt-4 text-lg leading-relaxed text-foreground">
+              The {AWARD_YEAR} awards are assessed by Harry Neto, Awards Director, with a panel that
+              reads every entry against the same published criteria.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              No entry is judged by a sponsor, and no place is reserved.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -145,8 +192,7 @@ function AwardBand() {
       </div>
       <div className="mx-auto max-w-6xl px-6">
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-          The {AWARD_YEAR} Entrepreneur Award. The winner seal, badge, graphics and citation carry
-          no further charge; the award itself is part of the optional Winner's Feature.
+          The {AWARD_YEAR} Entrepreneur Award, etched with the winner seal.
         </p>
       </div>
     </section>
@@ -173,10 +219,11 @@ function WhatAWinIsWorth() {
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+          <Eyebrow>What you get out of it</Eyebrow>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             What a win is worth to you.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
             Entrepreneur Awards recognises the founder rather than the company. Selection puts an
             external assessment of what you built into your own name, issued by someone outside
             your business, and it stays useful long after the year it was awarded.
@@ -188,8 +235,8 @@ function WhatAWinIsWorth() {
             <Fragment key={item.title}>
               {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
               <div>
-                <h3 className="text-base font-semibold">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{item.body}</p>
               </div>
             </Fragment>
           ))}
@@ -207,41 +254,42 @@ function WhatAWinIsWorth() {
 
 const criteria = [
   {
-    number: "1",
     title: "Originality",
     body: "What was built, and whether it is meaningfully different from what already existed. We are reading the substance of the thing itself, not how novel it sounds when described.",
   },
   {
-    number: "2",
     title: "Traction",
     body: "Progress that can be pointed at. Revenue, customers, users, adoption, or another outcome you can evidence. Read in the context of the stage your business is at, not against a fixed threshold.",
   },
   {
-    number: "3",
     title: "A standout achievement",
     body: "One specific thing you did that a comparable operator would not have. This asks for a single concrete event rather than a general standard, and it is where detail matters most.",
   },
 ];
 
+/** A rubric, not a sequence: bordered cards with a blue left rule and no numerals. */
 function Criteria() {
   return (
-    <section id="criteria" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+    <section id="criteria" className="py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+          <Eyebrow>How entries are read</Eyebrow>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             The three criteria, in full.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
             Every entry is read against these, in this order. There are no categories, so nothing is
             selected by default.
           </p>
         </div>
 
-        <div className="mt-16 space-y-14">
+        <div className="mt-16 space-y-6">
           {criteria.map((item) => (
-            <div key={item.number}>
-              <p className="text-sm font-semibold text-primary">{item.number}</p>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight">{item.title}</h3>
+            <div
+              key={item.title}
+              className="rounded-lg border border-border border-l-2 border-l-primary bg-background p-6 md:p-8"
+            >
+              <h3 className="text-lg font-semibold">{item.title}</h3>
               <p className="mt-3 text-base leading-relaxed text-muted-foreground">{item.body}</p>
             </div>
           ))}
@@ -262,23 +310,31 @@ function Criteria() {
 
 function SpecimenCitation() {
   return (
-    <section className="py-24 md:py-32">
-      <div className="mx-auto max-w-3xl px-6">
-        <Card className="border border-border bg-background p-10 shadow-none md:p-14">
-          <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-primary">
-            What a citation looks like
-          </p>
-          <p className="mt-6 text-center text-lg italic leading-relaxed text-foreground">
-            Selected for the {AWARD_YEAR} Entrepreneur Award in recognition of a business built and
-            led by its founder. The entry was assessed against originality, traction and a standout
-            achievement. The assessment noted a product taken from concept to a working customer
-            base under the founder's direct execution, and a standard of delivery sustained through
-            the company's growth.
-          </p>
-          <p className="mt-6 text-center text-sm text-muted-foreground">
-            Specimen. Not attributed to a recipient.
-          </p>
-        </Card>
+    <section className="border-y border-border bg-surface py-24 md:py-32">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.8fr_1fr]">
+        <SiteFigure
+          src={winnerLobby.url}
+          alt={`A ${AWARD_YEAR} Entrepreneur Award winner holding the crystal award.`}
+          ratio="4 / 5"
+          width={1600}
+          height={2000}
+          objectPosition="70% 30%"
+        />
+        <div>
+          <Eyebrow>What a citation looks like</Eyebrow>
+          <Card className="mt-5 border border-border bg-background p-8 shadow-none md:p-10">
+            <p className="text-lg italic leading-relaxed text-foreground">
+              Selected for the {AWARD_YEAR} Entrepreneur Award in recognition of a business built and
+              led by its founder. The entry was assessed against originality, traction and a standout
+              achievement. The assessment noted a product taken from concept to a working customer
+              base under the founder's direct execution, and a standard of delivery sustained through
+              the company's growth.
+            </p>
+            <p className="mt-6 text-sm text-muted-foreground">
+              Specimen. Not attributed to a recipient.
+            </p>
+          </Card>
+        </div>
       </div>
     </section>
   );
@@ -297,7 +353,10 @@ function WhatItDoesNotDo() {
   return (
     <section className="bg-[#0B1220] py-24 text-white md:py-32">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+        <p className="text-xs font-medium uppercase tracking-[0.12em] text-white/60">
+          Setting expectations
+        </p>
+        <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
           What this award does not do.
         </h2>
         <div className="mt-14 space-y-10">
@@ -314,7 +373,7 @@ function WhatItDoesNotDo() {
 
 const howItWorks = [
   {
-    number: "1",
+    number: "01",
     title: "You enter",
     body: (
       <>
@@ -324,7 +383,7 @@ const howItWorks = [
     ),
   },
   {
-    number: "2",
+    number: "02",
     title: "We assess it",
     body: (
       <>
@@ -338,14 +397,14 @@ const howItWorks = [
     ),
   },
   {
-    number: "3",
+    number: "03",
     title: "You hear back",
     body: (
       <>Within five business days, either way, with the reason. Most entries are not selected.</>
     ),
   },
   {
-    number: "4",
+    number: "04",
     title: "If selected",
     body: (
       <>
@@ -357,28 +416,37 @@ const howItWorks = [
   },
 ];
 
+/** A sequence in time: large grey numerals on a connecting hairline. */
 function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 md:py-32">
+    <section
+      id="how-it-works"
+      className="border-y border-border bg-surface py-24 md:py-32"
+    >
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">How it works</p>
+          <Eyebrow>How it works</Eyebrow>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             Four steps, start to finish.
           </h2>
         </div>
 
-        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr_1px_1fr]">
-          {howItWorks.map((step, index) => (
-            <Fragment key={step.number}>
-              {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
-              <div>
-                <p className="text-sm font-semibold text-primary">{step.number}</p>
-                <h3 className="mt-3 text-base font-semibold">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-              </div>
-            </Fragment>
-          ))}
+        <div className="relative mt-16">
+          <div
+            aria-hidden
+            className="absolute left-0 right-0 top-6 hidden h-px bg-border md:block"
+          />
+          <ol className="relative grid gap-12 md:grid-cols-4 md:gap-10">
+            {howItWorks.map((step) => (
+              <li key={step.number}>
+                <span className="block bg-surface pr-4 text-4xl font-semibold leading-none tracking-tight text-muted-foreground/40 md:text-5xl">
+                  {step.number}
+                </span>
+                <h3 className="mt-6 text-lg font-semibold">{step.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{step.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
