@@ -91,43 +91,85 @@ function Hero() {
 function AwardBand() {
   return (
     <section className="border-t border-border">
-      <img
-        src="/images/ea-award-band.webp"
-        alt="The 2026 Entrepreneur Award, a crystal award etched with the winner seal."
-        width={1920}
-        height={823}
-        loading="eager"
-        decoding="async"
-        className="w-full object-cover [aspect-ratio:3/2] [object-position:72%_50%] min-[480px]:[aspect-ratio:16/9] md:[aspect-ratio:21/9]"
-      />
+      <div className="relative">
+        <img
+          src="/images/ea-award-band.webp"
+          alt="The 2026 Entrepreneur Award, a crystal award etched with the winner seal."
+          width={1920}
+          height={823}
+          loading="eager"
+          decoding="async"
+          className="w-full object-cover [aspect-ratio:3/2] [object-position:72%_50%] min-[480px]:[aspect-ratio:16/9] md:[aspect-ratio:21/9]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-foreground/70 to-transparent"
+        />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0">
+          <div className="mx-auto max-w-6xl px-6 pb-6 md:pb-8">
+            <p className="text-xs font-medium uppercase tracking-widest text-primary-foreground/80">
+              The {AWARD_YEAR} award
+            </p>
+            <p className="mt-2 max-w-md text-base font-medium text-background md:text-lg">
+              One award. One standard. Awarded on the work.
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="mx-auto max-w-6xl px-6 pt-4">
         <p className="text-sm text-muted-foreground">
-          The 2026 Entrepreneur Award. The winner seal, badge, graphics and citation carry no
-          further charge; the award itself is part of the optional Winner's Feature.
+          The winner seal, badge, graphics and citation carry no further charge; the award itself is
+          part of the optional Winner's Feature.
         </p>
       </div>
     </section>
   );
 }
 
+const portraitPoints = [
+  "Winner badge and social graphics, sent by email.",
+  "A written award citation you can quote anywhere.",
+  "The physical award is part of the optional Winner's Feature.",
+];
+
 function WinnerPortrait() {
   return (
     <section className="py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <img
+      <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2 md:gap-16">
+        <SiteFigure
           src="/images/ea-winner-portrait.webp"
-          alt="The 2026 Entrepreneur Award."
-          width={1920}
-          height={1080}
-          loading="lazy"
-          decoding="async"
-          className="w-full rounded-lg object-cover object-center [aspect-ratio:16/9]"
+          alt="A {AWARD_YEAR} Entrepreneur Award winner holding the crystal award."
+          ratio="4 / 5"
+          width={1080}
+          height={1350}
         />
-        <p className="mt-3 text-sm text-muted-foreground">The 2026 Entrepreneur Award.</p>
+        <div>
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">
+            What selection looks like
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+            A credential you can point at.
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+            Selected founders receive the same set of materials, in the same form, every cycle.
+            Nothing about the award is held back behind a further payment.
+          </p>
+          <ul className="mt-8 space-y-4">
+            {portraitPoints.map((point) => (
+              <li
+                key={point}
+                className="border-l-2 border-primary pl-4 text-sm leading-relaxed text-muted-foreground"
+              >
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
 }
+
 
 
 const howItWorks = [
