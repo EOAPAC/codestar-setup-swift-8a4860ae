@@ -183,27 +183,30 @@ const howItWorks = [
 
 function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 md:py-32">
+    <section id="how-it-works" className="bg-background py-[72px] md:py-[120px]">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">How it works</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-brand">How it works</p>
+          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight md:text-[40px]">
             Four steps, start to finish.
           </h2>
         </div>
 
-        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr_1px_1fr]">
+        <div className="mt-14 grid items-start gap-x-12 gap-y-10 md:grid-cols-[1fr_1px_1fr_1px_1fr_1px_1fr]">
           {howItWorks.map((step, index) => (
             <Fragment key={step.number}>
               {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
               <div>
-                <p className="text-sm font-semibold text-primary">{step.number}</p>
-                <h3 className="mt-3 text-base font-semibold">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-[15px] font-medium text-white">
+                  {step.number}
+                </span>
+                <h3 className="mt-4 text-[17px] font-semibold">{step.title}</h3>
+                <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">{step.body}</p>
               </div>
             </Fragment>
           ))}
         </div>
+
       </div>
     </section>
   );
