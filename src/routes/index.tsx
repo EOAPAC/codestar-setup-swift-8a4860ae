@@ -326,29 +326,57 @@ function SpecimenCitation() {
 }
 
 const doesNotDo = [
-  `There are no categories and no subcategories. A winner is a ${AWARD_YEAR} Entrepreneur Award winner.`,
-  "There is no fee to reach a shortlist.",
-  "There is no renewal. Recognition is dated to the year it was awarded and is never charged for a second time.",
-  "There is no ceremony and no ticket to buy. Everything a winner receives arrives by email.",
-  "There is no twenty-page submission, and a longer entry is not a stronger one.",
-  "Nobody is nominated by us. Founders enter their own business.",
+  {
+    title: "No categories",
+    body: `There are no categories and no subcategories. A winner is a ${AWARD_YEAR} Entrepreneur Award winner.`,
+  },
+  {
+    title: "No shortlist fee",
+    body: "Reaching a shortlist costs nothing. Nothing is asked of you to be read and assessed.",
+  },
+  {
+    title: "No renewal",
+    body: "Recognition is dated to the year it was awarded and is never charged for a second time.",
+  },
+  {
+    title: "No ceremony",
+    body: "There is no ticket to buy and no room to travel to. Everything a winner receives arrives by email.",
+  },
+  {
+    title: "No long submission",
+    body: "There is no twenty-page form, and a longer entry is not a stronger one.",
+  },
+  {
+    title: "No nominations",
+    body: "Nobody is nominated by us. Founders enter their own business, in their own words.",
+  },
 ];
 
 function WhatItDoesNotDo() {
   return (
     <section className="bg-[#0B1220] py-24 text-white md:py-32">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <p className="text-xs font-medium uppercase tracking-[0.12em] text-white/60">
-          Setting expectations
-        </p>
-        <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          What this award does not do.
-        </h2>
-        <div className="mt-14 space-y-10">
-          {doesNotDo.map((line) => (
-            <p key={line} className="text-lg leading-relaxed text-white/75 md:text-xl">
-              {line}
-            </p>
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl">
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-white/50">
+            Setting expectations
+          </p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+            What this award does not do.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-white/60 md:text-xl">
+            Worth knowing before you enter, so nothing about the process comes as a surprise later.
+          </p>
+        </div>
+
+        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+          {doesNotDo.map((item, index) => (
+            <div key={item.title} className="bg-[#0B1220] p-7 md:p-8">
+              <span className="text-sm font-medium tabular-nums text-white/35">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-white/60">{item.body}</p>
+            </div>
           ))}
         </div>
       </div>
