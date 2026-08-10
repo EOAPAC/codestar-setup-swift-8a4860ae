@@ -100,8 +100,8 @@ function Hero() {
             For the person who <span className="text-primary">built it.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            An independent award for founders. One entry, three published criteria, and a
-            decision within five business days. Most entries are not selected.
+            An independent award for founders. One entry, one decision, and most entries are
+            not selected.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="min-w-48">
@@ -121,16 +121,16 @@ const publications = ["Inc.", "Fortune", "Business Insider", "TechCrunch", "News
 
 const proofPoints = [
   {
-    title: "Three published criteria",
-    body: "Every entry is read against the same three, in the same order. Nothing is assessed privately.",
+    title: "Read against a published rubric",
+    body: "The same criteria, in the same order, for every entry. Nothing is assessed privately.",
   },
   {
     title: "Five business days",
     body: "A decision either way, with the reason it was reached, inside one working week.",
   },
   {
-    title: "Most entries are not selected",
-    body: "There are no categories to fill, so nothing is selected simply because a slot exists.",
+    title: "Independently assessed",
+    body: "The judgment is made outside your business, by people with no stake in the outcome.",
   },
 ];
 
@@ -195,7 +195,7 @@ const winWorth = [
   },
   {
     title: "Assessed on what you built",
-    body: "Three short questions, not a twenty-page submission. You don't need an agency or a grant writer to put a strong entry in.",
+    body: "The reading is about the business itself — what you made, what it does and what happened as a result — rather than how polished the writing around it is.",
   },
 ];
 
@@ -280,10 +280,7 @@ function Criteria() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-col justify-center gap-3 sm:flex-row">
-          <Button asChild size="lg">
-            <a href="/criteria">Download the criteria and assessment method</a>
-          </Button>
+        <div className="mt-16 flex justify-center">
           <Button asChild size="lg" variant="outline">
             <a href="/criteria">See the full criteria page →</a>
           </Button>
@@ -306,9 +303,20 @@ function SpecimenCitation() {
           objectPosition="70% 30%"
         />
         <div>
-          <Eyebrow>What a citation looks like</Eyebrow>
-          <Card className="mt-5 border border-border bg-background p-8 shadow-none md:p-10">
-            <p className="text-lg italic leading-relaxed text-foreground">
+          <Eyebrow>The words you receive</Eyebrow>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+            What the award actually says about you.
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            Every winner receives a short written statement — one paragraph, dated and signed —
+            setting out what was assessed and why it was selected. It is the wording you would
+            quote on your profile, your site or in a note to press.
+          </p>
+          <Card className="mt-8 border border-border bg-background p-8 shadow-none md:p-10">
+            <p className="text-xs font-medium uppercase tracking-[0.12em] text-primary">
+              Specimen — the wording a winner receives
+            </p>
+            <p className="mt-5 text-lg italic leading-relaxed text-foreground">
               Selected for the {AWARD_YEAR} Entrepreneur Award in recognition of a business built and
               led by its founder. The entry was assessed against originality, traction and a standout
               achievement. The assessment noted a product taken from concept to a working customer
@@ -327,28 +335,20 @@ function SpecimenCitation() {
 
 const doesNotDo = [
   {
-    title: "No categories",
-    body: `There are no categories and no subcategories. A winner is a ${AWARD_YEAR} Entrepreneur Award winner.`,
+    title: "No nominations",
+    body: "Nobody is put forward by us. Founders enter their own business, in their own words.",
   },
   {
     title: "No shortlist fee",
     body: "Reaching a shortlist costs nothing. Nothing is asked of you to be read and assessed.",
   },
   {
-    title: "No renewal",
-    body: "Recognition is dated to the year it was awarded and is never charged for a second time.",
-  },
-  {
     title: "No ceremony",
     body: "There is no ticket to buy and no room to travel to. Everything a winner receives arrives by email.",
   },
   {
-    title: "No long submission",
-    body: "There is no twenty-page form, and a longer entry is not a stronger one.",
-  },
-  {
-    title: "No nominations",
-    body: "Nobody is nominated by us. Founders enter their own business, in their own words.",
+    title: "No renewal",
+    body: "Recognition is dated to the year it was awarded and is never charged for a second time.",
   },
 ];
 
@@ -368,7 +368,7 @@ function WhatItDoesNotDo() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
           {doesNotDo.map((item, index) => (
             <div key={item.title} className="bg-[#0B1220] p-7 md:p-8">
               <span className="text-sm font-medium tabular-nums text-white/35">
@@ -404,17 +404,14 @@ const howItWorks = [
         <a href="#criteria" className="text-primary underline underline-offset-4">
           three published criteria
         </a>
-        : originality, traction, and a standout achievement. There are no categories, so nothing is
-        selected by default.
+        : originality, traction, and a standout achievement.
       </>
     ),
   },
   {
     number: "03",
     title: "You hear back",
-    body: (
-      <>Within five business days, either way, with the reason. Most entries are not selected.</>
-    ),
+    body: <>Either way, and with the reason it was reached. Nothing is left unanswered.</>,
   },
   {
     number: "04",
@@ -422,7 +419,7 @@ const howItWorks = [
     body: (
       <>
         Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
-        and your award citation arrive by email. No further payment, and they remain yours
+        and your written award statement arrive by email. No further payment, and they remain yours
         permanently.
       </>
     ),
@@ -768,10 +765,10 @@ function SubmissionForm() {
         <div className="text-center">
           <Eyebrow>Enter now</Eyebrow>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Enter in five minutes. Decisions within five business days.
+            Put your entry in.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
-            No categories. No twenty-page application.
+            Everything needed to assess the business is on this one page.
           </p>
         </div>
         <Card className="mt-12 p-8 md:p-10">
@@ -838,7 +835,7 @@ function Contact() {
           Questions? Get in touch.
         </h2>
         <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
-          We reply within one business day.
+          We reply to email within one business day.
         </p>
         <div className="mt-8">
           <a
