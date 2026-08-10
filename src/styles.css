@@ -69,6 +69,8 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
+  /* Tinted band surface used to group alternating homepage sections. */
+  --surface: oklch(0.982 0.004 247.9);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
