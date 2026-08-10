@@ -46,10 +46,10 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
-        <ImageBand />
-        <Tiers />
+        <AwardBand />
         <HowItWorks />
         <OurPosition />
+        <WinnerPortrait />
         <SubmissionForm />
         <Contact />
       </main>
