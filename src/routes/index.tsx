@@ -99,7 +99,7 @@ function ImageBand() {
           loading="lazy"
           width={1920}
           height={1080}
-          className="h-full w-full object-cover object-[center_right] md:object-[center_right] lg:object-[top_center] [filter:saturate(0.35)_contrast(1.05)]"
+          className="h-full w-full object-cover object-[center_right] md:object-[center_right] lg:object-[center_10%] [filter:saturate(0.35)_contrast(1.05)]"
         />
         {/* Brand-blue duotone wash so the photo reads in the site palette */}
         <div className="pointer-events-none absolute inset-0 bg-primary/45 mix-blend-color" />
@@ -108,6 +108,7 @@ function ImageBand() {
     </section>
   );
 }
+
 
 
 
