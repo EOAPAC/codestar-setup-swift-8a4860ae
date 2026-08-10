@@ -761,7 +761,7 @@ function SubmissionForm() {
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             Enter in five minutes. Decisions within five business days.
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
             No categories. No twenty-page application.
           </p>
         </div>
