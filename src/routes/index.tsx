@@ -32,6 +32,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { AWARD_YEAR } from "@/content/award";
+import awardRecipient from "@/assets/award-recipient.png.asset.json";
 
 import { ArrowRight, Linkedin, Mail, Twitter } from "lucide-react";
 
@@ -45,6 +46,7 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
+        <ImageBand />
         <Tiers />
         <HowItWorks />
         <OurPosition />
