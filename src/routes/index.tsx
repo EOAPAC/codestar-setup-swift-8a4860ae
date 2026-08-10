@@ -442,39 +442,18 @@ function HowItWorks() {
           </h2>
         </div>
 
-        <div className="relative mt-16">
-          <div className="hidden items-center gap-10 md:flex">
-            {howItWorks.map((step, index) => (
-              <Fragment key={step.number}>
-                <span className="text-5xl font-semibold leading-none tracking-tight text-muted-foreground/40">
-                  {step.number}
-                </span>
-                {index < howItWorks.length - 1 && (
-                  <div className="h-px flex-1 bg-border" />
-                )}
-              </Fragment>
-            ))}
-          </div>
-          <div className="mt-6 hidden grid-cols-4 gap-10 md:grid">
-            {howItWorks.map((step) => (
-              <div key={step.number}>
-                <h3 className="text-lg font-semibold">{step.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{step.body}</p>
-              </div>
-            ))}
-          </div>
-          <ol className="relative grid gap-12 md:hidden">
-            {howItWorks.map((step) => (
-              <li key={step.number}>
-                <span className="block text-4xl font-semibold leading-none tracking-tight text-muted-foreground/40">
-                  {step.number}
-                </span>
-                <h3 className="mt-6 text-lg font-semibold">{step.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{step.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
+        <ol className="mt-16 grid gap-12 md:grid-cols-4 md:gap-10">
+          {howItWorks.map((step) => (
+            <li key={step.number} className="border-t border-border pt-6">
+              <span className="block text-4xl font-semibold leading-none tracking-tight text-muted-foreground/40 md:text-5xl">
+                {step.number}
+              </span>
+              <h3 className="mt-5 text-lg font-semibold">{step.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+
       </div>
     </section>
   );
