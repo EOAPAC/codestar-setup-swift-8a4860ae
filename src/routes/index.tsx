@@ -560,6 +560,64 @@ function SubmissionForm() {
         });
       });
 
+      // Optional example answers under each long-answer question.
+      // TODO: fill in the example copy for each question below.
+      const exampleAnswers: Record<string, string> = {
+        "what do you/your business do?": "",
+        "what's your standout achievement?": "",
+        "why is this exceptional?": "",
+      };
+
+      form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
+        if (!field.querySelector("textarea")) return;
+        const labelText = (field.querySelector("label")?.textContent ?? "")
+          .replace(/\*/g, "")
+          .trim()
+          .toLowerCase();
+        const match = Object.keys(exampleAnswers).find((question) =>
+          labelText.startsWith(question.slice(0, 20))
+        );
+        if (!match || field.querySelector("[data-example-toggle]")) return;
+
+        const details = document.createElement("details");
+        details.dataset.exampleToggle = "true";
+        details.style.marginTop = "0.5rem";
+
+        const summary = document.createElement("summary");
+        summary.textContent = "See an example answer";
+        summary.style.cursor = "pointer";
+        summary.style.fontSize = "0.875rem";
+        summary.style.color = "var(--color-primary)";
+        summary.style.listStyle = "none";
+        details.appendChild(summary);
+
+        const panel = document.createElement("div");
+        panel.style.marginTop = "0.5rem";
+        panel.style.padding = "0.75rem 1rem";
+        panel.style.background = "#F8F9FB";
+        panel.style.borderRadius = "var(--radius-md)";
+
+        const panelLabel = document.createElement("p");
+        panelLabel.textContent = "Example";
+        panelLabel.style.fontSize = "0.75rem";
+        panelLabel.style.fontWeight = "500";
+        panelLabel.style.color = "var(--color-muted-foreground)";
+        panel.appendChild(panelLabel);
+
+        const panelBody = document.createElement("p");
+        panelBody.textContent = exampleAnswers[match];
+        panelBody.style.marginTop = "0.25rem";
+        panelBody.style.fontSize = "0.875rem";
+        panelBody.style.lineHeight = "1.5rem";
+        panelBody.style.color = "var(--color-foreground)";
+        panel.appendChild(panelBody);
+
+        details.appendChild(panel);
+        field.appendChild(details);
+      });
+
+
+
       // Consent must read directly above the submit button.
       const submitWrapper = form.querySelector(".hs_submit") ?? form.querySelector(".hs-submit");
       if (submitWrapper && consentRef.current) {
