@@ -822,24 +822,29 @@ function SubmissionForm() {
 
 function Contact() {
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="border-t border-border bg-surface py-24">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-3xl font-semibold tracking-tight">Questions? Get in touch.</h2>
-        <p className="mt-3 text-muted-foreground">
+        <Eyebrow>Contact</Eyebrow>
+        <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          Questions? Get in touch.
+        </h2>
+        <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
           We reply within one business day.
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
+        <div className="mt-8">
           <a
             href="mailto:hello@entrepreneurawards.co"
-            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
+            className="text-lg font-medium text-primary underline underline-offset-4"
           >
             hello@entrepreneurawards.co
           </a>
+        </div>
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-base text-muted-foreground">
           <a
             href="https://www.linkedin.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
+            className="hover:text-foreground"
           >
             LinkedIn
           </a>
@@ -847,7 +852,7 @@ function Contact() {
             href="https://twitter.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
+            className="hover:text-foreground"
           >
             Twitter
           </a>
