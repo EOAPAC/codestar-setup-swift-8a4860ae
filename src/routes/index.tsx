@@ -32,7 +32,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { AWARD_YEAR } from "@/content/award";
-import brandIllustration from "@/assets/brand-illustration.jpg.asset.json";
+import awardRecipient from "@/assets/award-recipient.png.asset.json";
 
 import { ArrowRight, Linkedin, Mail, Twitter } from "lucide-react";
 
@@ -91,15 +91,20 @@ function Hero() {
 
 function ImageBand() {
   return (
-    <section className="border-t border-border">
-      <img
-        src={brandIllustration.url}
-        alt=""
-        loading="lazy"
-        width={1920}
-        height={640}
-        className="h-60 w-full object-cover md:h-80 lg:h-[460px]"
-      />
+    <section className="relative border-t border-border">
+      <div className="relative h-60 w-full overflow-hidden md:h-80 lg:h-[460px]">
+        <img
+          src={awardRecipient.url}
+          alt="An illustrative image of an award recipient"
+          loading="lazy"
+          width={1920}
+          height={640}
+          className="h-full w-full object-cover object-[center_right] [filter:saturate(0.35)_contrast(1.05)]"
+        />
+        {/* Brand-blue duotone wash so the photo reads in the site palette */}
+        <div className="pointer-events-none absolute inset-0 bg-primary/45 mix-blend-color" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/70 via-background/10 to-transparent" />
+      </div>
     </section>
   );
 }
