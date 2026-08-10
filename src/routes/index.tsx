@@ -92,14 +92,14 @@ function Hero() {
 function ImageBand() {
   return (
     <section className="relative border-t border-border">
-      <div className="relative h-60 w-full overflow-hidden md:h-80 lg:h-[540px]">
+      <div className="relative h-60 w-full overflow-hidden md:h-80 lg:h-[820px]">
         <img
           src={awardRecipient.url}
           alt="An illustrative image of an award recipient"
           loading="lazy"
           width={1920}
-          height={640}
-          className="h-full w-full object-cover object-[center_right] lg:object-[top_right] [filter:saturate(0.35)_contrast(1.05)]"
+          height={1080}
+          className="h-full w-full object-cover object-[center_right] md:object-[center_right] lg:object-[top_center] [filter:saturate(0.35)_contrast(1.05)]"
         />
         {/* Brand-blue duotone wash so the photo reads in the site palette */}
         <div className="pointer-events-none absolute inset-0 bg-primary/45 mix-blend-color" />
@@ -108,6 +108,7 @@ function ImageBand() {
     </section>
   );
 }
+
 
 
 
