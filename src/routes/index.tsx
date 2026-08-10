@@ -99,45 +99,46 @@ function Hero() {
 
 function Tiers() {
   return (
-    <section id="tiers" className="border-t border-border bg-secondary/30 py-24 md:py-32">
+    <section id="tiers" className="bg-tint py-[72px] md:py-[120px]">
       <div className="mx-auto max-w-5xl px-6">
         <div className="mx-auto max-w-[680px] text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Why it matters</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-brand">Why it matters</p>
+          <h2 className="mt-3 text-[30px] font-semibold leading-[1.2] tracking-tight md:text-[40px]">
             Anything a business says about itself is discounted.
           </h2>
-          <p className="mt-6 text-muted-foreground">
+          <p className="mt-6 text-[17px] leading-[1.7] text-muted-foreground">
             That is simply how buyers, investors and journalists read marketing copy, and it applies
             to yours. Independent recognition is not read the same way, because the business did not
             issue it. That distinction is the whole of what an award is worth.
           </p>
         </div>
 
-        <div className="mt-16 grid items-start gap-10 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
+        <div className="mt-14 grid items-start gap-x-12 gap-y-10 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
           <div>
-            <h3 className="text-base font-semibold">In the conversations that matter</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <h3 className="text-[17px] font-semibold">In the conversations that matter</h3>
+            <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">
               Proposals, pitches, first meetings, due diligence. An external assessment carries
               weight that a company's own description cannot.
             </p>
           </div>
           <div className="h-px w-full bg-border md:h-full md:w-px" />
           <div>
-            <h3 className="text-base font-semibold">On your own channels</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <h3 className="text-[17px] font-semibold">On your own channels</h3>
+            <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">
               A legitimate reason to talk about the business, the difference between announcing
               something and promoting yourself.
             </p>
           </div>
           <div className="h-px w-full bg-border md:h-full md:w-px" />
           <div>
-            <h3 className="text-base font-semibold">For as long as you want it</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <h3 className="text-[17px] font-semibold">For as long as you want it</h3>
+            <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">
               Recognition is dated to the year it was awarded. It does not expire, does not renew,
               and is never charged for a second time. What a winner receives is theirs permanently.
             </p>
           </div>
         </div>
+
 
         <div className="mt-16 border-t border-border pt-10">
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
