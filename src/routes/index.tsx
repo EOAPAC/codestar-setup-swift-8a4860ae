@@ -32,7 +32,6 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { AWARD_YEAR } from "@/content/award";
-import awardRecipient from "@/assets/award-recipient.png.asset.json";
 
 import { ArrowRight, Linkedin, Mail, Twitter } from "lucide-react";
 
@@ -46,10 +45,10 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
-        <ImageBand />
-        <Tiers />
+        <AwardBand />
         <HowItWorks />
         <OurPosition />
+        <WinnerPortrait />
         <SubmissionForm />
         <Contact />
       </main>
@@ -89,90 +88,47 @@ function Hero() {
   );
 }
 
-function ImageBand() {
+function AwardBand() {
   return (
-    <section className="relative border-t border-border">
-      <div className="relative h-60 w-full overflow-hidden md:h-80 lg:h-[900px]">
+    <section className="border-t border-border">
+      <img
+        src="/images/ea-award-band.webp"
+        alt="The 2026 Entrepreneur Award, a crystal award etched with the winner seal."
+        width={1920}
+        height={823}
+        loading="eager"
+        decoding="async"
+        className="w-full object-cover [aspect-ratio:3/2] [object-position:72%_50%] min-[480px]:[aspect-ratio:16/9] md:[aspect-ratio:21/9]"
+      />
+      <div className="mx-auto max-w-6xl px-6 pt-4">
+        <p className="text-sm text-muted-foreground">
+          The 2026 Entrepreneur Award. The winner seal, badge, graphics and citation carry no
+          further charge; the award itself is part of the optional Winner's Feature.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function WinnerPortrait() {
+  return (
+    <section className="py-24 md:py-32">
+      <div className="mx-auto max-w-6xl px-6">
         <img
-          src={awardRecipient.url}
-          alt="An illustrative image of an award recipient"
-          loading="lazy"
+          src="/images/ea-winner-portrait.webp"
+          alt="The 2026 Entrepreneur Award."
           width={1920}
           height={1080}
-          className="h-full w-full object-cover object-[center_right] md:object-[center_right] lg:object-[center_10%] [filter:saturate(0.35)_contrast(1.05)]"
+          loading="lazy"
+          decoding="async"
+          className="w-full rounded-lg object-cover object-center [aspect-ratio:16/9]"
         />
-        {/* Brand-blue duotone wash so the photo reads in the site palette */}
-        <div className="pointer-events-none absolute inset-0 bg-primary/45 mix-blend-color" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/70 via-background/10 to-transparent" />
+        <p className="mt-3 text-sm text-muted-foreground">The 2026 Entrepreneur Award.</p>
       </div>
     </section>
   );
 }
 
-
-
-
-
-
-function Tiers() {
-  return (
-    <section id="tiers" className="border-t border-border bg-secondary/30 py-24 md:py-32">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="mx-auto max-w-[680px] text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">Why it matters</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Anything a business says about itself is discounted.
-          </h2>
-          <p className="mt-6 text-muted-foreground">
-            That is simply how buyers, investors and journalists read marketing copy, and it applies
-            to yours. Independent recognition is not read the same way, because the business did not
-            issue it. That distinction is the whole of what an award is worth.
-          </p>
-        </div>
-
-        <div className="mt-16 grid items-start gap-10 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
-          <div>
-            <h3 className="text-base font-semibold">In the conversations that matter</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Proposals, pitches, first meetings, due diligence. An external assessment carries
-              weight that a company's own description cannot.
-            </p>
-          </div>
-          <div className="h-px w-full bg-border md:h-full md:w-px" />
-          <div>
-            <h3 className="text-base font-semibold">On your own channels</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              A legitimate reason to talk about the business, the difference between announcing
-              something and promoting yourself.
-            </p>
-          </div>
-          <div className="h-px w-full bg-border md:h-full md:w-px" />
-          <div>
-            <h3 className="text-base font-semibold">For as long as you want it</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Recognition is dated to the year it was awarded. It does not expire, does not renew,
-              and is never charged for a second time. What a winner receives is theirs permanently.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-16 border-t border-border pt-10">
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild size="lg" className="min-w-48">
-              <a href="#submit">
-                Enter now <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="min-w-48 border-primary text-primary hover:bg-primary/5 hover:text-primary">
-              <a href="/methodology">How entries are judged</a>
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  );
-}
 
 const howItWorks = [
   {

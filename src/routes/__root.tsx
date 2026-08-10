@@ -86,8 +86,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Entrepreneur Awards — For the person who built it." },
       { name: "twitter:description", content: "Celebrating founders and their journeys. Submit your story for the 2026 Entrepreneur Awards. Winners turn their recognition into a published feature and a keepsake award." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/65c976eb-a464-4c83-a1c1-1bfe99cfa327/id-preview-54c6015f--ff0de7d7-ca53-4497-ba07-4211a29727f7.lovable.app-1783570930958.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/65c976eb-a464-4c83-a1c1-1bfe99cfa327/id-preview-54c6015f--ff0de7d7-ca53-4497-ba07-4211a29727f7.lovable.app-1783570930958.png" },
+      { property: "og:image", content: "https://entrepreneurawards.co/images/ea-og.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "The 2026 Entrepreneur Award." },
+      { name: "twitter:image", content: "https://entrepreneurawards.co/images/ea-og.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
