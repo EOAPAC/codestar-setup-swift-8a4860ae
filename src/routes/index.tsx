@@ -32,6 +32,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { AWARD_YEAR } from "@/content/award";
+import awardRecipient from "@/assets/award-recipient.png.asset.json";
 
 import { ArrowRight, Linkedin, Mail, Twitter } from "lucide-react";
 
@@ -45,6 +46,7 @@ function Index() {
       <SiteNav />
       <main>
         <Hero />
+        <ImageBand />
         <Tiers />
         <HowItWorks />
         <OurPosition />
@@ -82,6 +84,24 @@ function Hero() {
             <a href="#how-it-works">See how it works</a>
           </Button>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function ImageBand() {
+  return (
+    <section className="border-t border-border pb-6">
+      <img
+        src={awardRecipient.url}
+        alt="An illustrative image of an award recipient"
+        loading="lazy"
+        className="h-60 w-full object-cover object-[center_right] md:h-80 lg:h-[460px]"
+      />
+      <div className="mx-auto max-w-6xl px-6">
+        <p className="mb-0 mt-[10px] text-right text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+          Illustrative
+        </p>
       </div>
     </section>
   );
