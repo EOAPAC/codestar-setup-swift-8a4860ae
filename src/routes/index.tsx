@@ -140,7 +140,7 @@ function WinnerPortrait() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2 md:gap-16">
         <SiteFigure
           src="/images/ea-winner-portrait.webp"
-          alt="A {AWARD_YEAR} Entrepreneur Award winner holding the crystal award."
+          alt={`A ${AWARD_YEAR} Entrepreneur Award winner holding the crystal award.`}
           ratio="4 / 5"
           width={1080}
           height={1350}
