@@ -89,6 +89,24 @@ function Hero() {
   );
 }
 
+function ImageBand() {
+  return (
+    <section className="border-t border-border pb-6">
+      <img
+        src={awardRecipient.url}
+        alt="An illustrative image of an award recipient"
+        loading="lazy"
+        className="h-60 w-full object-cover object-[center_right] md:h-80 lg:h-[460px]"
+      />
+      <div className="mx-auto max-w-6xl px-6">
+        <p className="mb-0 mt-[10px] text-right text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+          Illustrative
+        </p>
+      </div>
+    </section>
+  );
+}
+
 
 function Tiers() {
   return (
