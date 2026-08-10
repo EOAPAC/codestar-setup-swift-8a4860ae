@@ -27,7 +27,7 @@ const steps = [
     n: "01",
     icon: FileText,
     title: "Entry",
-    body: "Founders enter their own story through the online form. There are no nominations and no gatekeepers. Entry is $129.90, and it is the only compulsory cost at any point in the process.",
+    body: "Founders enter their own story through the online form. There are no nominations and no gatekeepers. Every entry is read and scored by our founder-judges.",
   },
   {
     n: "02",
@@ -174,22 +174,6 @@ function CriteriaPage() {
           </div>
         </section>
 
-        {/* What it costs */}
-        <section className="border-t border-border py-24 md:py-32">
-          <div className="mx-auto max-w-3xl px-6">
-            <p className="text-sm font-medium uppercase tracking-widest text-primary">Plain terms</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Priced in full, upfront</h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Entry is $129.90 and it is the only compulsory cost. The winner badge, graphics, and award citation are
-              provided free and permanently. Winners are separately offered one optional extra, a written feature about
-              the business, and selection is never conditional on buying it. The full breakdown sits on the{" "}
-              <Link to="/faq" className="font-medium text-primary underline-offset-4 hover:underline">
-                FAQ
-              </Link>
-              .
-            </p>
-          </div>
-        </section>
 
         <SiteCTA
           eyebrow="Read against the same three criteria"
