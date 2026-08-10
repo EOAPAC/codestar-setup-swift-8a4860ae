@@ -84,12 +84,13 @@ function Hero() {
         height={823}
         loading="eager"
         decoding="async"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover [object-position:78%_50%] opacity-40 md:opacity-100"
+        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover [object-position:78%_50%] opacity-100 lg:block"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/10"
+        className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-background from-45% via-background/70 via-55% to-transparent lg:block"
       />
+
       <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-24 md:pt-12 md:pb-32">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
