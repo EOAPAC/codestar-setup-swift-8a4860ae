@@ -343,12 +343,12 @@ const doesNotDo = [
     body: "Reaching a shortlist costs nothing. Nothing is asked of you to be read and assessed.",
   },
   {
-    title: "No ceremony",
-    body: "There is no ticket to buy and no room to travel to. Everything a winner receives arrives by email.",
+    title: "No categories",
+    body: "There are no sector awards, size brackets, or separate categories. Every entry is read against the same three criteria.",
   },
   {
-    title: "No renewal",
-    body: "Recognition is dated to the year it was awarded and is never charged for a second time.",
+    title: "No membership",
+    body: "The award is not a club or network you join. It is a single, dated recognition with no recurring commitment.",
   },
 ];
 
