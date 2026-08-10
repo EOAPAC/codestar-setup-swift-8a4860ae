@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
+import { SiteFigure } from "@/components/site-figure";
+
 import { HelpCircle, Mail, ArrowRight, Sparkles } from "lucide-react";
 
 const topics = [
