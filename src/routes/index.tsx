@@ -700,7 +700,7 @@ function Contact() {
             href="mailto:hello@entrepreneurawards.co"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
           >
-            <Mail className="h-4 w-4" /> hello@entrepreneurawards.co
+            hello@entrepreneurawards.co
           </a>
           <a
             href="https://www.linkedin.com/"
@@ -708,7 +708,7 @@ function Contact() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
           >
-            <Linkedin className="h-4 w-4" /> LinkedIn
+            LinkedIn
           </a>
           <a
             href="https://twitter.com/"
@@ -716,7 +716,7 @@ function Contact() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 hover:border-primary hover:text-primary"
           >
-            <Twitter className="h-4 w-4" /> Twitter
+            Twitter
           </a>
         </div>
       </div>
