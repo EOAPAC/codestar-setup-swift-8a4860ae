@@ -312,6 +312,79 @@ function WhatItDoesNotDo() {
   );
 }
 
+const howItWorks = [
+  {
+    number: "1",
+    title: "You enter",
+    body: (
+      <>
+        Four fields and three short questions. About five minutes. We are assessing what was built,
+        not how well an application is written.
+      </>
+    ),
+  },
+  {
+    number: "2",
+    title: "We assess it",
+    body: (
+      <>
+        Read against{" "}
+        <a href="#criteria" className="text-primary underline underline-offset-4">
+          three published criteria
+        </a>
+        : originality, traction, and a standout achievement. There are no categories, so nothing is
+        selected by default.
+      </>
+    ),
+  },
+  {
+    number: "3",
+    title: "You hear back",
+    body: (
+      <>Within five business days, either way, with the reason. Most entries are not selected.</>
+    ),
+  },
+  {
+    number: "4",
+    title: "If selected",
+    body: (
+      <>
+        Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
+        and your award citation arrive by email. No further payment, and they remain yours
+        permanently.
+      </>
+    ),
+  },
+];
+
+function HowItWorks() {
+  return (
+    <section id="how-it-works" className="py-24 md:py-32">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary">How it works</p>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+            Four steps, start to finish.
+          </h2>
+        </div>
+
+        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr_1px_1fr]">
+          {howItWorks.map((step, index) => (
+            <Fragment key={step.number}>
+              {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
+              <div>
+                <p className="text-sm font-semibold text-primary">{step.number}</p>
+                <h3 className="mt-3 text-base font-semibold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+              </div>
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 
 type HubSpotSubmissionPayload = {
