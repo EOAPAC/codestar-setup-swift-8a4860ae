@@ -158,25 +158,6 @@ function CredibilityBand() {
           ))}
         </div>
 
-        <div className="mt-16 grid items-center gap-8 md:grid-cols-[1fr_1.1fr]">
-          <SiteFigure
-            src={assessmentPanel.url}
-            alt={`The ${AWARD_YEAR} assessment panel with the Entrepreneur Award.`}
-            ratio="16 / 9"
-            width={1920}
-            height={1080}
-          />
-          <div>
-            <Eyebrow>Who assesses your entry</Eyebrow>
-            <p className="mt-4 text-lg leading-relaxed text-foreground">
-              The {AWARD_YEAR} awards are assessed by Harry Neto, Awards Director, with a panel that
-              reads every entry against the same published criteria.
-            </p>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              No entry is judged by a sponsor, and no place is reserved.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -187,11 +168,11 @@ function AwardBand() {
     <section>
       <div className="w-full bg-secondary [aspect-ratio:3/2] sm:[aspect-ratio:16/9] md:[aspect-ratio:21/9]">
         <img
-          src="/images/ea-award-band.webp"
-          alt={`The ${AWARD_YEAR} Entrepreneur Award, a crystal award etched with the winner seal.`}
+          src={awardBand.url}
+          alt={`A winner of the ${AWARD_YEAR} Entrepreneur Award holding the crystal award etched with the winner seal.`}
           loading="eager"
           decoding="async"
-          className="h-full w-full object-cover [object-position:72%_50%]"
+          className="h-full w-full object-cover [object-position:60%_40%]"
         />
       </div>
       <div className="mx-auto max-w-6xl px-6">
