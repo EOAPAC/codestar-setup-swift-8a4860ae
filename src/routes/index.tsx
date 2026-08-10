@@ -733,6 +733,9 @@ function SubmissionForm() {
                 Please agree to the Terms and Conditions and Privacy Policy to continue.
               </p>
             )}
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              We reply to every entry either way, within five business days.
+            </p>
           </div>
           {formError && (
             <p className="mt-4 text-center text-sm font-medium text-destructive" role="alert">
