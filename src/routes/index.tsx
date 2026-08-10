@@ -335,28 +335,20 @@ function SpecimenCitation() {
 
 const doesNotDo = [
   {
-    title: "No categories",
-    body: `There are no categories and no subcategories. A winner is a ${AWARD_YEAR} Entrepreneur Award winner.`,
+    title: "No nominations",
+    body: "Nobody is put forward by us. Founders enter their own business, in their own words.",
   },
   {
     title: "No shortlist fee",
     body: "Reaching a shortlist costs nothing. Nothing is asked of you to be read and assessed.",
   },
   {
-    title: "No renewal",
-    body: "Recognition is dated to the year it was awarded and is never charged for a second time.",
-  },
-  {
     title: "No ceremony",
     body: "There is no ticket to buy and no room to travel to. Everything a winner receives arrives by email.",
   },
   {
-    title: "No long submission",
-    body: "There is no twenty-page form, and a longer entry is not a stronger one.",
-  },
-  {
-    title: "No nominations",
-    body: "Nobody is nominated by us. Founders enter their own business, in their own words.",
+    title: "No renewal",
+    body: "Recognition is dated to the year it was awarded and is never charged for a second time.",
   },
 ];
 
@@ -773,10 +765,10 @@ function SubmissionForm() {
         <div className="text-center">
           <Eyebrow>Enter now</Eyebrow>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Enter in five minutes. Decisions within five business days.
+            Put your entry in.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
-            No categories. No twenty-page application.
+            Everything needed to assess the business is on this one page.
           </p>
         </div>
         <Card className="mt-12 p-8 md:p-10">
@@ -843,7 +835,7 @@ function Contact() {
           Questions? Get in touch.
         </h2>
         <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
-          We reply within one business day.
+          We reply to email within one business day.
         </p>
         <div className="mt-8">
           <a
