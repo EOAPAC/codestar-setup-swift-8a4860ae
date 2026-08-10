@@ -574,12 +574,13 @@ function SubmissionForm() {
 
 function Contact() {
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="bg-background py-[72px] md:py-[120px]">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-3xl font-semibold tracking-tight">Questions? Get in touch.</h2>
-        <p className="mt-3 text-muted-foreground">
+        <h2 className="text-[30px] font-semibold leading-[1.2] tracking-tight md:text-[40px]">Questions? Get in touch.</h2>
+        <p className="mt-3 text-[17px] leading-[1.7] text-muted-foreground">
           We reply within one business day.
         </p>
+
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
           <a
             href="mailto:hello@entrepreneurawards.co"
