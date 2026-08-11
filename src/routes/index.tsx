@@ -81,10 +81,10 @@ function Hero() {
         alt=""
         aria-hidden
         width={1920}
-        height={823}
+        height={815}
         loading="eager"
         decoding="async"
-        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover [object-position:78%_50%] opacity-100 lg:block"
+        className="pointer-events-none absolute top-0 right-0 hidden h-full w-auto max-w-none object-contain object-right lg:block"
       />
       <div
         aria-hidden
