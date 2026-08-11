@@ -291,12 +291,12 @@ function SpecimenCitation() {
     <section className="border-y border-border bg-surface py-24 md:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.8fr_1fr]">
         <SiteFigure
-          src={winnerLobby.url}
+          src={winnerWords.url}
           alt={`A ${AWARD_YEAR} Entrepreneur Award winner holding the crystal award.`}
           ratio="4 / 5"
-          width={1600}
-          height={2000}
-          objectPosition="70% 30%"
+          width={614}
+          height={768}
+          objectPosition="center"
         />
         <div>
           <Eyebrow>The words you receive</Eyebrow>
