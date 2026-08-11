@@ -38,7 +38,7 @@ import { AWARD_YEAR } from "@/content/award";
 import { SiteFigure } from "@/components/site-figure";
 
 import heroTrophy from "@/assets/hero-trophy.webp.asset.json";
-import awardBand from "@/assets/award-band.webp.asset.json";
+import awardBand from "@/assets/award-band-2.jpg.asset.json";
 import winnerWords from "@/assets/winner-words.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
