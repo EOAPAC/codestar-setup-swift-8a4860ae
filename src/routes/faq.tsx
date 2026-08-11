@@ -77,7 +77,6 @@ function FAQPage() {
               src="/images/ea-award-detail.webp"
               alt="Close detail of the 2026 Entrepreneur Award, showing the winner seal etched into the crystal."
               ratio="21 / 9"
-              caption="The 2026 award, engraved with the winner seal. The award is part of the optional Winner's Feature; the seal, badge, graphics and citation carry no further charge."
             />
           </div>
         </section>
