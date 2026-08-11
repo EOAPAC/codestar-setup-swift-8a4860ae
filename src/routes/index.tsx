@@ -176,11 +176,6 @@ function AwardBand() {
           className="h-full w-full object-cover [object-position:60%_40%]"
         />
       </div>
-      <div className="mx-auto max-w-6xl px-6">
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-          The {AWARD_YEAR} Entrepreneur Award, etched with the winner seal.
-        </p>
-      </div>
     </section>
   );
 }
