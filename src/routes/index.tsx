@@ -690,15 +690,6 @@ function SubmissionForm() {
                 className="underline hover:text-primary"
               >
                 Terms and Conditions
-              </a>{" "}
-              and{" "}
-              <a
-                href="/privacy-policy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-primary"
-              >
-                Privacy Policy
               </a>
               .
             </p>
