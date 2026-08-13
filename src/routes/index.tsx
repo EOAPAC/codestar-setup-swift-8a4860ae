@@ -528,19 +528,7 @@ function SubmissionForm() {
   const navigate = useNavigate({ from: "/" });
   const submitLead = useServerFn(submitHubSpotLead);
   const [formError, setFormError] = useState<string | null>(null);
-  const [agreed, setAgreed] = useState(false);
-  const [agreementError, setAgreementError] = useState(false);
-  const agreedRef = useRef(false);
   const consentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    agreedRef.current = agreed;
-    const btn = formContainerRef.current?.querySelector<HTMLInputElement | HTMLButtonElement>(
-      'input[type="submit"], button[type="submit"]'
-    );
-    if (btn) btn.disabled = !agreed;
-    if (agreed) setAgreementError(false);
-  }, [agreed]);
 
   useEffect(() => {
     const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
@@ -568,10 +556,6 @@ function SubmissionForm() {
       const form = event.target instanceof HTMLFormElement ? event.target : null;
       if (!form) return;
       if (form.dataset.serverSubmitting === "true") return;
-      if (!agreedRef.current) {
-        setAgreementError(true);
-        return;
-      }
       form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
         field.dataset.touched = "true";
       });
@@ -616,61 +600,6 @@ function SubmissionForm() {
         });
       });
 
-      // Optional example answers under each long-answer question.
-      // TODO: fill in the example copy for each question below.
-      const exampleAnswers: Record<string, string> = {
-        "what do you/your business do?": "",
-        "what's your standout achievement?": "",
-        "why is this exceptional?": "",
-      };
-
-      form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
-        if (!field.querySelector("textarea")) return;
-        const labelText = (field.querySelector("label")?.textContent ?? "")
-          .replace(/\*/g, "")
-          .trim()
-          .toLowerCase();
-        const match = Object.keys(exampleAnswers).find((question) =>
-          labelText.startsWith(question.slice(0, 20))
-        );
-        if (!match || field.querySelector("[data-example-toggle]")) return;
-
-        const details = document.createElement("details");
-        details.dataset.exampleToggle = "true";
-        details.style.marginTop = "0.5rem";
-
-        const summary = document.createElement("summary");
-        summary.textContent = "See an example answer";
-        summary.style.cursor = "pointer";
-        summary.style.fontSize = "0.875rem";
-        summary.style.color = "var(--color-primary)";
-        summary.style.listStyle = "none";
-        details.appendChild(summary);
-
-        const panel = document.createElement("div");
-        panel.style.marginTop = "0.5rem";
-        panel.style.padding = "0.75rem 1rem";
-        panel.style.background = "#F8F9FB";
-        panel.style.borderRadius = "var(--radius-md)";
-
-        const panelLabel = document.createElement("p");
-        panelLabel.textContent = "Example";
-        panelLabel.style.fontSize = "0.75rem";
-        panelLabel.style.fontWeight = "500";
-        panelLabel.style.color = "var(--color-muted-foreground)";
-        panel.appendChild(panelLabel);
-
-        const panelBody = document.createElement("p");
-        panelBody.textContent = exampleAnswers[match];
-        panelBody.style.marginTop = "0.25rem";
-        panelBody.style.fontSize = "0.875rem";
-        panelBody.style.lineHeight = "1.5rem";
-        panelBody.style.color = "var(--color-foreground)";
-        panel.appendChild(panelBody);
-
-        details.appendChild(panel);
-        field.appendChild(details);
-      });
 
 
 
@@ -683,7 +612,7 @@ function SubmissionForm() {
       const btn = form.querySelector<HTMLInputElement | HTMLButtonElement>(
         'input[type="submit"], button[type="submit"]'
       );
-      if (btn) btn.disabled = !agreedRef.current;
+      if (btn) btn.disabled = false;
     };
 
     formContainer?.addEventListener("submit", handleServerSubmit, true);
@@ -752,43 +681,27 @@ function SubmissionForm() {
         <Card className="mt-12 p-8 md:p-10">
           <div id={targetId} ref={formContainerRef} />
           <div className="mt-6" ref={consentRef}>
-            <label className="flex items-start gap-3 text-sm text-foreground">
-              <input
-                type="checkbox"
-                required
-                checked={agreed}
-                onChange={(e) => setAgreed(e.target.checked)}
-                className="mt-1 h-4 w-4 shrink-0 rounded border-border text-primary focus:ring-primary"
-                aria-invalid={agreementError || undefined}
-                aria-describedby={agreementError ? "agreement-error" : undefined}
-              />
-              <span>
-                I have read and agree to the{" "}
-                <a
-                  href="/terms-and-conditions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-primary"
-                >
-                  Terms and Conditions
-                </a>{" "}
-                and{" "}
-                <a
-                  href="/privacy-policy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-primary"
-                >
-                  Privacy Policy
-                </a>
-                .
-              </span>
-            </label>
-            {agreementError && (
-              <p id="agreement-error" className="mt-2 text-sm font-medium text-destructive" role="alert">
-                Please agree to the Terms and Conditions and Privacy Policy to continue.
-              </p>
-            )}
+            <p className="text-sm text-foreground">
+              By submitting you agree to the{" "}
+              <a
+                href="/terms-and-conditions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-primary"
+              >
+                Terms and Conditions
+              </a>{" "}
+              and{" "}
+              <a
+                href="/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-primary"
+              >
+                Privacy Policy
+              </a>
+              .
+            </p>
             <p className="mt-6 text-center text-sm text-muted-foreground">
               We reply to every entry either way, within five business days.
             </p>
