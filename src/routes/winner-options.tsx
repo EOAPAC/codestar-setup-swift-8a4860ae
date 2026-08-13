@@ -695,10 +695,9 @@ function WinnerOptionsPage() {
         {/* Comparison — white, two columns */}
         <Section>
           <Container>
-            <SectionHeading>Choose how you would like to preserve your recognition</SectionHeading>
+            <SectionHeading>Two ways to take it off the screen</SectionHeading>
             <Body className="mt-4">
-              Each option begins with the same Entrepreneur Award selection. The difference is how
-              you choose to keep and present it.
+              Both begin from the same award. The difference is where it ends up.
             </Body>
 
             <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-2">
