@@ -667,7 +667,7 @@ function SubmissionForm() {
       const btn = form.querySelector<HTMLInputElement | HTMLButtonElement>(
         'input[type="submit"], button[type="submit"]'
       );
-      if (btn) btn.disabled = !agreedRef.current;
+      if (btn) btn.disabled = false;
     };
 
     formContainer?.addEventListener("submit", handleServerSubmit, true);
@@ -736,43 +736,27 @@ function SubmissionForm() {
         <Card className="mt-12 p-8 md:p-10">
           <div id={targetId} ref={formContainerRef} />
           <div className="mt-6" ref={consentRef}>
-            <label className="flex items-start gap-3 text-sm text-foreground">
-              <input
-                type="checkbox"
-                required
-                checked={agreed}
-                onChange={(e) => setAgreed(e.target.checked)}
-                className="mt-1 h-4 w-4 shrink-0 rounded border-border text-primary focus:ring-primary"
-                aria-invalid={agreementError || undefined}
-                aria-describedby={agreementError ? "agreement-error" : undefined}
-              />
-              <span>
-                I have read and agree to the{" "}
-                <a
-                  href="/terms-and-conditions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-primary"
-                >
-                  Terms and Conditions
-                </a>{" "}
-                and{" "}
-                <a
-                  href="/privacy-policy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-primary"
-                >
-                  Privacy Policy
-                </a>
-                .
-              </span>
-            </label>
-            {agreementError && (
-              <p id="agreement-error" className="mt-2 text-sm font-medium text-destructive" role="alert">
-                Please agree to the Terms and Conditions and Privacy Policy to continue.
-              </p>
-            )}
+            <p className="text-sm text-foreground">
+              By submitting you agree to the{" "}
+              <a
+                href="/terms-and-conditions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-primary"
+              >
+                Terms and Conditions
+              </a>{" "}
+              and{" "}
+              <a
+                href="/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-primary"
+              >
+                Privacy Policy
+              </a>
+              .
+            </p>
             <p className="mt-6 text-center text-sm text-muted-foreground">
               We reply to every entry either way, within five business days.
             </p>
