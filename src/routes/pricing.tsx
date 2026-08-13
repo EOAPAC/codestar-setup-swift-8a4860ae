@@ -309,7 +309,7 @@ function PricingPage() {
                 A page with your name on it, at a permanent link.
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
-                Somebody looks you up. Right now they find a badge. This is the page they find instead — your story, written out properly, at a link that doesn't expire. Put it in a bio, a proposal, an email signature, or the reply to "so what do you actually do?"
+                Sooner or later someone looks you up — before a call, after a pitch, halfway through reading a proposal. This is what they find: your story, written out properly, at a link that doesn't expire. Put it in a bio, a proposal, an email signature, or the reply to "so what do you actually do?"
               </p>
             </div>
           </Reveal>
