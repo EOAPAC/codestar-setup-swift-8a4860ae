@@ -837,7 +837,58 @@ function WinnerOptionsPage() {
                   </div>
                 </div>
               </div>
+            {/* Both bar */}
+            <div
+              className="grid gap-6 md:grid-cols-2"
+              style={{
+                marginTop: "32px",
+                backgroundColor: TINT,
+                border: `1px solid ${LINE}`,
+                borderRadius: "12px",
+                padding: "28px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: BLUE,
+                  }}
+                >
+                  Both, together
+                </p>
+                <p
+                  className="mt-2"
+                  style={{ fontSize: "1rem", lineHeight: 1.55, color: INK }}
+                >
+                  The engraved object, the certificate, the feature and its printed edition — sent as one.
+                </p>
+              </div>
+              <div className="flex flex-col items-start md:items-end">
+                <div className="flex items-center gap-3">
+                  <span
+                    style={{ fontSize: "1rem", color: MUTED, textDecoration: "line-through" }}
+                  >
+                    {formatPrice(bothComparePrice)}
+                  </span>
+                  <span style={{ fontSize: "1.5rem", fontWeight: 600, color: INK }}>
+                    {formatPrice(BOTH_PRICE)}
+                  </span>
+                </div>
+                <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
+                  One box instead of two.
+                </p>
+                <div className="mt-4 w-full md:max-w-[320px]">
+                  <SecondaryButton event="both-select-click" onClick={handleSelect}>
+                    Take both
+                  </SecondaryButton>
+                </div>
+              </div>
             </div>
+
           </Container>
         </Section>
 
