@@ -288,7 +288,7 @@ function Criteria() {
 
 function SpecimenCitation() {
   return (
-    <section className="border-y border-border bg-surface py-24 md:py-32">
+    <section className="border-y border-border bg-surface py-16 md:py-24">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.8fr_1fr]">
         <SiteFigure
           src={winnerWords.url}
@@ -303,24 +303,11 @@ function SpecimenCitation() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             What the award actually says about you.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Winners receive a dated, signed record of the assessment. It states what was judged
-            and why the entry was selected, written for that specific business rather than from
-            a template. You can use it as the basis for any quote you choose.
-          </p>
-          <Card className="mt-8 border border-border bg-background p-8 shadow-none md:p-10">
-            <p className="text-xs font-medium uppercase tracking-[0.12em] text-primary">
-              Specimen — an example of the record
-            </p>
-            <p className="mt-5 text-lg italic leading-relaxed text-foreground">
-              Selected for the {AWARD_YEAR} Entrepreneur Award in recognition of a business built and
-              led by its founder. The entry was assessed against originality, traction and a standout
-              achievement. The assessment noted a product taken from concept to a working customer
-              base under the founder's direct execution, and a standard of delivery sustained through
-              the company's growth.
-            </p>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Specimen. Not attributed to a recipient.
+          <Card className="mt-7 border border-border bg-background p-8 shadow-none md:p-10">
+            <p className="text-base leading-relaxed text-foreground">
+              Winners receive a dated, signed record of the assessment. It states what was judged
+              and why the entry was selected, written for that specific business rather than from
+              a template. You can use it as the basis for any quote you choose.
             </p>
           </Card>
         </div>
