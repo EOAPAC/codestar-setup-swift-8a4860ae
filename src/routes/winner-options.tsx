@@ -822,7 +822,7 @@ function WinnerOptionsPage() {
                 </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
                   <p style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}>
-                    $595
+                    {formatPrice(FEATURE_PRICE)}
                   </p>
                   <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
                     One-time payment
