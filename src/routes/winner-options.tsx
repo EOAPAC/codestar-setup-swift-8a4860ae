@@ -742,7 +742,7 @@ function WinnerOptionsPage() {
                     color: MUTED,
                   }}
                 >
-                  A tangible record of an award you have already earned.
+                  The award you already have, in a form you can hand to someone.
                 </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
                   <p style={{ fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
