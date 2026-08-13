@@ -75,16 +75,12 @@ const materials: Material[] = [
 
 const commemorativeIncludes = [
   "Engraved recognition object with your name and award year",
-  "Printed presentation edition of your winner certificate",
-  "Printed card carrying your award statement",
-  "Presentation card carrying your recognition details",
+  "Printed presentation certificate carrying your award statement",
 ];
 
 const commemorativeIncludesDetailed = [
   "Engraved recognition object personalised with your name and award year",
-  "Printed presentation edition of your winner certificate",
-  "Printed card carrying your award statement",
-  "Presentation card carrying your recognition details",
+  "Printed presentation certificate carrying your award statement",
 ];
 
 const featureIncludes = [
