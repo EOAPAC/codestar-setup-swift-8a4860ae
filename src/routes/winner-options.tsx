@@ -799,7 +799,7 @@ function WinnerOptionsPage() {
                     color: MUTED,
                   }}
                 >
-                  A lasting published record of the work behind your selection.
+                  An address you can point people to, for as long as you need it.
                 </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
                   <p style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}>
