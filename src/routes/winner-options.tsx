@@ -775,14 +775,14 @@ function WinnerOptionsPage() {
                     color: INK,
                   }}
                 >
-                  A permanent feature about the business behind your recognition.
+                  Somewhere people can find it.
                 </h3>
                 <p
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
-                  A reviewed feature prepared from your entry and your award statement, published at a
-                  permanent Entrepreneur Awards URL and accompanied by a physical commemorative
-                  edition.
+                  A written feature about your business, prepared from your entry and your award statement,
+                  reviewed by you, and published at a permanent Entrepreneur Awards address you can send to
+                  anyone.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
                 <div style={{ marginTop: "20px" }}>
