@@ -115,7 +115,7 @@ const faqs = [
   },
   {
     q: "Can I choose both?",
-    a: "Yes. They are separate, so either can be chosen on its own or both together. Neither is a level of the other, and neither changes the award you were given.",
+    a: "Yes. They are separate, so either can be chosen on its own, or both together. Taken together they are sent in a single box, which is why the combined price is a little lower than buying them separately. Neither is a level of the other, and neither changes the award you were given.",
   },
   {
     q: "What is the difference between my award statement and the feature?",
