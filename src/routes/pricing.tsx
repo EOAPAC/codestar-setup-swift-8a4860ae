@@ -286,9 +286,6 @@ function PricingPage() {
               <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
                 Your recognition is already yours. This is how it becomes something people find when they look you up.
               </p>
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                Your award email carries your citation — the short, formal statement of what was assessed and why your entry was selected. Those words are yours, free and permanent. What follows is the long version.
-              </p>
             </Reveal>
           </div>
         </section>
@@ -300,10 +297,13 @@ function PricingPage() {
           </div>
 
           <Reveal>
+            <p className="mx-auto mb-8 max-w-2xl text-center text-base text-muted-foreground">
+              Your seal, your graphics and your citation are already yours — free, permanent, and nothing further to pay. This is the one thing you can add.
+            </p>
             <div className="mb-16 text-center md:mb-20">
               <p className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-primary">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                The Winner's Feature
+                Optional · The Winner's Feature
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
                 A page with your name on it, at a permanent link.
@@ -434,6 +434,10 @@ function PricingPage() {
 
                 <p className="mt-4 text-[0.875rem] text-muted-foreground">
                   Nothing publishes until you've read it.
+                </p>
+
+                <p className="mt-2 text-[0.875rem] text-muted-foreground">
+                  Buying it changes nothing about the award you were given. Declining it removes nothing.
                 </p>
 
                 <div className="mt-4 text-[13px] text-muted-foreground">
