@@ -644,9 +644,6 @@ function WinnerOptionsPage() {
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-xs text-muted-foreground">
           <span className="font-medium text-foreground">Entrepreneur Awards</span>
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link to="/privacy" className="hover:text-foreground">
-              Privacy
-            </Link>
             <Link to="/terms-and-conditions" className="hover:text-foreground">
               Terms
             </Link>
