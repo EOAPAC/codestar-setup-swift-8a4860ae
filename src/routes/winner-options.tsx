@@ -530,6 +530,13 @@ function WinnerOptionsPage() {
   const handleDownload = () => toast("Your download will be available here.");
   const handleSelect = () => toast("This selection page will be connected shortly.");
 
+  // Price constants — single source of truth for every price on the page.
+  const COMMEMORATIVE_PRICE = 195;
+  const FEATURE_PRICE = 595;
+  const BOTH_PRICE = 750;
+  const formatPrice = (n: number) => `$${n.toLocaleString()}`;
+  const bothComparePrice = COMMEMORATIVE_PRICE + FEATURE_PRICE;
+
   return (
     <div
       data-event="pricing-page-view"
