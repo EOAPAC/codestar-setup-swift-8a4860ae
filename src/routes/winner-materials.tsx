@@ -126,8 +126,12 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 }
 
 function scrollToFeature() {
-  document.getElementById("winners-feature")?.scrollIntoView({ behavior: "smooth" });
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document
+    .getElementById("winners-feature")
+    ?.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
 }
+
 
 /** Neutral, non-representational preview of the feature layout. */
 function FeatureSpecimen({ large = false }: { large?: boolean }) {
