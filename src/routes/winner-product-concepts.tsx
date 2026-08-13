@@ -37,7 +37,7 @@ export const Route = createFileRoute("/winner-product-concepts")({
 type View = "both" | "a" | "b";
 
 const included = [
-  "Citation",
+  "Award statement",
   "Digital winner certificate",
   "Winner seal",
   "LinkedIn banner",
@@ -180,7 +180,7 @@ function CommemorativeVisual() {
       <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-1 text-xs text-muted-foreground sm:grid-cols-4">
         <span>Engraved recognition object</span>
         <span>Printed winner certificate</span>
-        <span>Citation card</span>
+        <span>Award statement card</span>
         <span>Presentation card</span>
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
@@ -330,7 +330,7 @@ function WinnerProductConceptsPage() {
               Two ways to preserve an Entrepreneur Award recognition.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Both concepts sit after selection. The winner&rsquo;s award, citation, certificate and
+              Both concepts sit after selection. The winner&rsquo;s award, award statement, certificate and
               shareable materials remain included and permanent in either case. This page compares
               the optional product we may offer after a winner is notified.
             </p>
@@ -422,7 +422,7 @@ function WinnerProductConceptsPage() {
                   receives={[
                     "An engraved recognition object with winner name and award year",
                     "A printed presentation edition of the winner certificate",
-                    "A printed citation card",
+                    "A printed award statement card",
                     "A presentation card carrying the winner's recognition details",
                   ]}
                   motivation="A tangible, displayable record of a recognition they have already earned."
@@ -447,7 +447,7 @@ function WinnerProductConceptsPage() {
                   eyebrow="Concept B"
                   heading="The Winner's Feature"
                   subheading="A permanent feature about the business behind the recognition."
-                  body="A reviewed written feature prepared from the winner's entry and citation, published at a permanent Entrepreneur Awards URL and supported by a physical commemorative edition."
+                  body="A reviewed written feature prepared from the winner's entry and award statement, published at a permanent Entrepreneur Awards URL and supported by a physical commemorative edition."
                   visual={<FeatureVisual />}
                   receives={[
                     "A full written feature about their business",
@@ -461,7 +461,7 @@ function WinnerProductConceptsPage() {
                   motivation="A lasting published record that explains the business behind the recognition, alongside a physical commemorative edition."
                   operational={[
                     "Requires research, drafting, review and publication per purchase",
-                    "Can be prepared from the entry and citation using a defined template",
+                    "Can be prepared from the entry and award statement using a defined template",
                     "Needs a clear review process",
                     "Editorial workload grows with every sale",
                   ]}

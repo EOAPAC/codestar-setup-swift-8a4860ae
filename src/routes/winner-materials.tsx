@@ -31,13 +31,13 @@ export const Route = createFileRoute("/winner-materials")({
       {
         name: "description",
         content:
-          "Your citation, certificate and included winner materials, plus the optional Winner's Feature.",
+          "Your award statement, certificate and included winner materials, plus the optional Winner's Feature.",
       },
       { property: "og:title", content: "Your Entrepreneur Award | Winner Materials" },
       {
         property: "og:description",
         content:
-          "Your citation, certificate and included winner materials, plus the optional Winner's Feature.",
+          "Your award statement, certificate and included winner materials, plus the optional Winner's Feature.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -81,7 +81,7 @@ const processSteps = [
   {
     number: "02",
     title: "Review",
-    body: "We prepare the feature from your entry and citation, then send it to you for review and factual corrections.",
+    body: "We prepare the feature from your entry and your award statement, then send it to you for review and factual corrections.",
   },
   {
     number: "03",
@@ -92,12 +92,12 @@ const processSteps = [
 
 const faqs = [
   {
-    q: "What is the difference between the citation and the Winner's Feature?",
-    a: "The citation is the formal statement explaining why your entry was selected. The Winner's Feature is an optional, fuller feature about the business behind that recognition.",
+    q: "What is the difference between my award statement and the Winner's Feature?",
+    a: "Your award statement is the short, formal wording explaining why your entry was selected. The Winner's Feature is an optional, fuller feature about the business behind that recognition.",
   },
   {
     q: "Do I need to purchase the Winner's Feature to keep my award?",
-    a: "No. Your selection, citation, certificate, seal and winner graphics are included with your award and remain yours permanently.",
+    a: "No. Your selection, award statement, certificate, seal and winner graphics are included with your award and remain yours permanently.",
   },
   {
     q: "Will I review the feature before it is published?",
@@ -105,7 +105,7 @@ const faqs = [
   },
   {
     q: "What information is used to prepare the feature?",
-    a: "We begin with the material submitted in your entry and your citation. We may use publicly available information from your official business channels where appropriate.",
+    a: "We begin with the material submitted in your entry and your award statement. We may use publicly available information from your official business channels where appropriate.",
   },
   {
     q: "Where will the feature be published?",
@@ -209,7 +209,9 @@ function WinnerMaterialsPage() {
                   You have been selected for the Entrepreneur Award.
                 </h1>
                 <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-                  Your citation, certificate and winner materials are ready to use.
+                  Your award statement &mdash; the short, formal lines explaining what was
+                  assessed and why your entry was selected &mdash; certificate and winner
+                  materials are ready to use.
                 </p>
               </div>
             </div>
@@ -236,20 +238,20 @@ function WinnerMaterialsPage() {
         {/* 3. Citation */}
         <section className="py-16 md:py-20">
           <div className="mx-auto max-w-3xl px-6">
-            <Eyebrow>Your citation</Eyebrow>
+            <Eyebrow>Your award statement</Eyebrow>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
               The formal statement of your selection
             </h2>
             <Card className="mt-8 border-l-2 border-l-primary p-6 md:p-8">
               <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
-                Citation
+                Award statement
               </p>
               <p className="mt-4 text-lg italic leading-relaxed text-foreground/90">
-                [Your formal 40–70 word citation will appear here.]
+                [Your formal 40–70 word award statement will appear here.]
               </p>
             </Card>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              Your selection, citation, certificate and winner materials are included with
+              Your selection, award statement, certificate and winner materials are included with
               your award and remain yours permanently.
             </p>
           </div>
@@ -260,7 +262,7 @@ function WinnerMaterialsPage() {
           <div className="mx-auto max-w-3xl px-6 py-16 md:py-20">
             <Eyebrow>Optional next step</Eyebrow>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-              Your citation records the recognition. The Winner's Feature documents the
+              Your award statement records the recognition. The Winner's Feature documents the
               business behind it.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -334,7 +336,7 @@ function WinnerMaterialsPage() {
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
               We prepare a full written feature from the material in your entry and your
-              citation, send it to you for review, publish it at a permanent Entrepreneur
+              award statement, send it to you for review, publish it at a permanent Entrepreneur
               Awards URL, and create a physical commemorative edition.
             </p>
 
@@ -439,7 +441,7 @@ function WinnerMaterialsPage() {
                 Order the Winner's Feature
               </Button>
               <p className="mt-3 text-sm text-muted-foreground">
-                Your award, citation, certificate and included winner materials remain
+                Your award, award statement, certificate and included winner materials remain
                 unchanged if you decide not to order.
               </p>
               <Dialog>

@@ -26,13 +26,13 @@ export const Route = createFileRoute("/winner-options")({
       {
         name: "description",
         content:
-          "Your citation, certificate and winner materials, plus two optional ways to preserve your Entrepreneur Award recognition.",
+          "Your award statement, certificate and winner materials, plus two optional ways to preserve your Entrepreneur Award recognition.",
       },
       { property: "og:title", content: "Your Winner Materials | Entrepreneur Awards" },
       {
         property: "og:description",
         content:
-          "Your citation, certificate and winner materials, plus two optional ways to preserve your Entrepreneur Award recognition.",
+          "Your award statement, certificate and winner materials, plus two optional ways to preserve your Entrepreneur Award recognition.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -76,14 +76,14 @@ const materials: Material[] = [
 const commemorativeIncludes = [
   "Engraved recognition object with your name and award year",
   "Printed presentation edition of your winner certificate",
-  "Printed citation card",
+  "Printed card carrying your award statement",
   "Presentation card carrying your recognition details",
 ];
 
 const commemorativeIncludesDetailed = [
   "Engraved recognition object personalised with your name and award year",
   "Printed presentation edition of your winner certificate",
-  "Printed citation card",
+  "Printed card carrying your award statement",
   "Presentation card carrying your recognition details",
 ];
 
@@ -102,7 +102,7 @@ const processSteps = [
   {
     number: "02",
     title: "Review",
-    body: "We prepare the feature from your entry and citation, then send it for your review and factual corrections.",
+    body: "We prepare the feature from your entry and your award statement, then send it for your review and factual corrections.",
   },
   {
     number: "03",
@@ -114,15 +114,15 @@ const processSteps = [
 const faqs = [
   {
     q: "Do I need to choose an edition to keep my Entrepreneur Award?",
-    a: "No. Your selection, citation, certificate, seal and winner graphics are included with your award and remain yours permanently.",
+    a: "No. Your selection, award statement, certificate, seal and winner graphics are included with your award and remain yours permanently.",
   },
   {
     q: "What is the difference between the Commemorative Edition and the Winner's Feature?",
     a: "The Commemorative Edition is a physical presentation of your recognition. The Winner's Feature adds a reviewed, permanent feature about the business behind your recognition, alongside its physical commemorative edition.",
   },
   {
-    q: "What is the difference between the citation and the feature?",
-    a: "The citation is the formal statement explaining why your entry was selected. The feature is a fuller, optional piece about the business behind that recognition.",
+    q: "What is the difference between my award statement and the feature?",
+    a: "Your award statement is the short, formal wording explaining why your entry was selected. The feature is a fuller, optional piece about the business behind that recognition.",
   },
   {
     q: "Will I review the feature before it is published?",
@@ -613,8 +613,9 @@ function WinnerOptionsPage() {
                   maxWidth: "640px",
                 }}
               >
-                Your citation is included in your award email. Your certificate, winner seal and
-                graphics are available below.
+                Your award statement &mdash; the short, formal lines explaining what was
+                assessed and why your entry was selected &mdash; is included in your award email.
+                Your certificate, winner seal and graphics are available below.
               </p>
             </div>
           </Container>
@@ -661,8 +662,8 @@ function WinnerOptionsPage() {
             </div>
 
             <Small className="mt-6">
-              Your citation was included in your award email. Your selection and winner materials
-              remain unchanged whether or not you choose an optional edition below.
+              Your award statement was included in your award email. Your selection and winner
+              materials remain unchanged whether or not you choose an optional edition below.
             </Small>
           </Container>
         </Section>
@@ -782,7 +783,7 @@ function WinnerOptionsPage() {
                 <p
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
-                  A reviewed feature prepared from your entry and citation, published at a
+                  A reviewed feature prepared from your entry and your award statement, published at a
                   permanent Entrepreneur Awards URL and accompanied by a physical commemorative
                   edition.
                 </p>
@@ -880,7 +881,8 @@ function WinnerOptionsPage() {
               A feature that gives the recognition a permanent home.
             </SectionHeading>
             <Body className="mt-5">
-              We prepare a fuller feature from the material in your entry and your citation, send
+              We prepare a fuller feature from the material in your entry and your award
+              statement, send
               it to you for review, publish it at a permanent Entrepreneur Awards URL, and prepare
               a physical commemorative edition.
             </Body>
