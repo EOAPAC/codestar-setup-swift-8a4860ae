@@ -632,7 +632,7 @@ function WinnerOptionsPage() {
               className="mt-10 overflow-hidden rounded-xl"
               style={{ border: `1px solid ${LINE}` }}
             >
-              <ul className="grid grid-cols-1 min-[900px]:grid-cols-2">
+              <ul className="grid grid-cols-1 min-[900px]:grid-flow-col min-[900px]:grid-cols-2 min-[900px]:grid-rows-3">
                 {materials.map((m, i) => {
                   const lastInColumn = i === 2 || i === 5;
                   return (
