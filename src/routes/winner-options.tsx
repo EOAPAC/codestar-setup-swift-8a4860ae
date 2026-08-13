@@ -85,12 +85,9 @@ const commemorativeIncludesDetailed = [
 
 const featureIncludes = [
   "A full written feature about your business",
-  "Review before publication",
-  "Publication at a permanent Entrepreneur Awards URL",
-  "Engraved recognition object with your name and award year",
-  "Printed edition of your feature",
-  "Printed presentation edition of your winner certificate",
-  "Card carrying the permanent URL",
+  "Your review before publication",
+  "Publication at a permanent Entrepreneur Awards address",
+  "A printed edition of your feature, with the address printed on it",
 ];
 
 const processSteps = [
