@@ -556,10 +556,6 @@ function SubmissionForm() {
       const form = event.target instanceof HTMLFormElement ? event.target : null;
       if (!form) return;
       if (form.dataset.serverSubmitting === "true") return;
-      if (!agreedRef.current) {
-        setAgreementError(true);
-        return;
-      }
       form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
         field.dataset.touched = "true";
       });
