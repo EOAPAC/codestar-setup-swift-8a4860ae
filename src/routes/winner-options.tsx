@@ -443,7 +443,7 @@ function CommemorativeVisual() {
         {/* presentation card */}
         <div
           className="flex h-[34%] w-[18%] flex-col gap-[6px] rounded-[4px] p-[8px]"
-          style={{ border: `1.5px solid ${BLUE}59`, backgroundColor: "#fff", height: `${h * 0}px` || undefined }}
+          style={{ border: `1.5px solid ${BLUE}59`, backgroundColor: "#fff" }}
         >
           <span className="h-[4px] w-2/3 rounded-full" style={{ backgroundColor: LINE }} />
           <span className="h-[4px] w-1/2 rounded-full" style={{ backgroundColor: LINE }} />
@@ -838,7 +838,7 @@ function WinnerOptionsPage() {
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
               <div className="md:col-span-6">
-                <CommemorativeVisual scale={1.6} />
+                <CommemorativeVisual />
               </div>
               <div className="md:col-span-5 md:col-start-8">
                 <SubLabel as="h3">What it includes</SubLabel>
