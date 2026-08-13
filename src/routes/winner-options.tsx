@@ -100,7 +100,7 @@ const processSteps = [
   {
     number: "03",
     title: "Publish and present",
-    body: "After approval, the feature is published at its permanent URL and your commemorative edition is prepared.",
+    body: "After approval, the feature is published at its permanent address and your printed edition is prepared.",
   },
 ];
 
