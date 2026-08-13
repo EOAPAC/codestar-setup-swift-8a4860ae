@@ -837,6 +837,8 @@ function WinnerOptionsPage() {
                   </div>
                 </div>
               </div>
+            </div>
+
             {/* Both bar */}
             <div
               className="grid gap-6 md:grid-cols-2"
