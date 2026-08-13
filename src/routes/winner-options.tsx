@@ -926,9 +926,18 @@ function WinnerOptionsPage() {
                   Your digital certificate, winner seal and winner graphics remain included with
                   your selection.
                 </p>
-                <p style={{ marginTop: "32px", fontSize: "0.75rem", color: MUTED }}>
-                  One-time payment
+                <p
+                  style={{
+                    marginTop: "32px",
+                    fontSize: "1.75rem",
+                    fontWeight: 600,
+                    color: INK,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {formatPrice(COMMEMORATIVE_PRICE)}
                 </p>
+                <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
                 <div style={{ marginTop: "20px" }}>
                   <FilledButton event="commemorative-select-click" onClick={handleSelect}>
                     Select the Commemorative Edition
