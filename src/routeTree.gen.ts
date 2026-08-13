@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WinnersRouteImport } from './routes/winners'
+import { Route as WinnerProductConceptsRouteImport } from './routes/winner-product-concepts'
 import { Route as WinnerMaterialsRouteImport } from './routes/winner-materials'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
@@ -26,6 +27,11 @@ import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 const WinnersRoute = WinnersRouteImport.update({
   id: '/winners',
   path: '/winners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WinnerProductConceptsRoute = WinnerProductConceptsRouteImport.update({
+  id: '/winner-product-concepts',
+  path: '/winner-product-concepts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WinnerMaterialsRoute = WinnerMaterialsRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
+  '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/winners': typeof WinnersRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
+  '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/winners': typeof WinnersRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
+  '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/winners': typeof WinnersRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
+    | '/winner-product-concepts'
     | '/winners'
     | '/insights/$slug'
     | '/winner-resources/$token'
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
+    | '/winner-product-concepts'
     | '/winners'
     | '/insights/$slug'
     | '/winner-resources/$token'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
+    | '/winner-product-concepts'
     | '/winners'
     | '/insights/$slug'
     | '/winner-resources/$token'
@@ -193,6 +205,7 @@ export interface RootRouteChildren {
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
   WinnerMaterialsRoute: typeof WinnerMaterialsRoute
+  WinnerProductConceptsRoute: typeof WinnerProductConceptsRoute
   WinnersRoute: typeof WinnersRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
@@ -206,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/winners'
       fullPath: '/winners'
       preLoaderRoute: typeof WinnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/winner-product-concepts': {
+      id: '/winner-product-concepts'
+      path: '/winner-product-concepts'
+      fullPath: '/winner-product-concepts'
+      preLoaderRoute: typeof WinnerProductConceptsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/winner-materials': {
@@ -305,6 +325,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
   WinnerMaterialsRoute: WinnerMaterialsRoute,
+  WinnerProductConceptsRoute: WinnerProductConceptsRoute,
   WinnersRoute: WinnersRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
