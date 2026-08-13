@@ -878,10 +878,9 @@ function WinnerOptionsPage() {
               A feature that gives the recognition a permanent home.
             </SectionHeading>
             <Body className="mt-5">
-              We prepare a fuller feature from the material in your entry and your award
-              statement, send
-              it to you for review, publish it at a permanent Entrepreneur Awards URL, and prepare
-              a physical commemorative edition.
+              We prepare a fuller feature from the material in your entry and your award statement, send it
+              to you for review, publish it at a permanent Entrepreneur Awards address, and print an edition
+              of it for you.
             </Body>
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
