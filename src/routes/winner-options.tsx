@@ -111,7 +111,11 @@ const faqs = [
   },
   {
     q: "What is the difference between the Commemorative Edition and the Winner's Feature?",
-    a: "The Commemorative Edition is a physical presentation of your recognition. The Winner's Feature adds a reviewed, permanent feature about the business behind your recognition, alongside its physical commemorative edition.",
+    a: "The Commemorative Edition is the physical record — an engraved object and a printed certificate. The Winner's Feature is the published one — a written feature about your business at a permanent address, with a printed edition of it. They are separate. Neither includes the other.",
+  },
+  {
+    q: "Can I choose both?",
+    a: "Yes. They are separate, so either can be chosen on its own or both together. Neither is a level of the other, and neither changes the award you were given.",
   },
   {
     q: "What is the difference between my award statement and the feature?",
