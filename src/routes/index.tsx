@@ -528,19 +528,7 @@ function SubmissionForm() {
   const navigate = useNavigate({ from: "/" });
   const submitLead = useServerFn(submitHubSpotLead);
   const [formError, setFormError] = useState<string | null>(null);
-  const [agreed, setAgreed] = useState(false);
-  const [agreementError, setAgreementError] = useState(false);
-  const agreedRef = useRef(false);
   const consentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    agreedRef.current = agreed;
-    const btn = formContainerRef.current?.querySelector<HTMLInputElement | HTMLButtonElement>(
-      'input[type="submit"], button[type="submit"]'
-    );
-    if (btn) btn.disabled = !agreed;
-    if (agreed) setAgreementError(false);
-  }, [agreed]);
 
   useEffect(() => {
     const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
