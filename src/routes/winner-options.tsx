@@ -719,13 +719,13 @@ function WinnerOptionsPage() {
                     color: INK,
                   }}
                 >
-                  A physical presentation of your recognition.
+                  Somewhere you can see it.
                 </h3>
                 <p
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
-                  A considered physical edition designed to keep the Entrepreneur Award visible
-                  long after the announcement.
+                  A designed physical edition of your award, made for a desk, a wall or a shelf — so it is
+                  present in the room rather than filed on a drive.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
                 <div style={{ marginTop: "20px" }}>
