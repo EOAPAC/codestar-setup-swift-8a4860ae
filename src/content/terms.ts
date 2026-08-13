@@ -144,7 +144,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
     id: "privacy-and-data",
     title: "13. Privacy and Data",
     body: [
-      "13.1 How we handle personal data is described in our [Privacy Policy](/privacy-policy), which forms part of these terms.",
+      "13.1 Entries are personal, so they contain personal data. Entry data is shared internally and with reviewers for the purpose of assessing entries. We do not sell entrant data.",
       "13.2 Because entries are personal, they contain personal data. Entry data is shared internally and with reviewers for the purpose of assessing entries. We do not sell entrant data.",
     ],
   },
