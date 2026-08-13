@@ -398,8 +398,7 @@ function AssetThumb({ ratio }: { ratio: number }) {
 }
 
 /** Abstract composition standing in for the physical edition. */
-function CommemorativeVisual({ scale = 1 }: { scale?: number }) {
-  const h = 200 * scale;
+function CommemorativeVisual() {
   return (
     <div
       role="img"
