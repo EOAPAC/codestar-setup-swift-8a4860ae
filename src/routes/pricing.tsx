@@ -131,7 +131,6 @@ function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
 }
 
 const IG_HANDLE = "@entrepreneurawards.co";
-const LINKEDIN_HANDLE = "Entrepreneur Awards";
 
 // Prices — edit these to update the page.
 const WINNERS_FEATURE_PRICE = 595;
