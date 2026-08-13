@@ -4,7 +4,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 
 import { Button } from "@/components/ui/button";
-import { Award, Sparkles, Star, Check, Copy } from "lucide-react";
+import { Award, Sparkles, Star, Check, Copy, Trophy, Newspaper, ScrollText, Link2 } from "lucide-react";
 
 const BRAND_BLUE = "#1978E5";
 
@@ -131,6 +131,9 @@ function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
 }
 
 const IG_HANDLE = "@entrepreneurawards.co";
+const LINKEDIN_HANDLE = "Entrepreneur Awards";
+
+
 
 // Prices — edit these to update the page.
 const WINNERS_FEATURE_PRICE = 595;
@@ -149,23 +152,57 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
 });
 
-const featureStages = [
+const stages = [
   {
     number: 1,
-    title: "We write it",
-    body: "We start from your entry — you've already told us the story. If we need anything else, it's a couple of questions, not a form.",
+    title: "We write your story properly",
+    body: (
+      <p>
+        Your entry form gave us the outline. Before we write, we'll ask you a handful of
+        questions: the decisions, the near-misses, and the parts there wasn't room for.{" "}
+        <strong className="font-semibold text-foreground">Ten minutes on your side.</strong>
+      </p>
+    ),
   },
   {
     number: 2,
-    title: "You read it",
-    body: "You see the whole thing before anyone else does. Nothing goes live until you say so.",
+    title: "We publish it permanently",
+    body: (
+      <div className="space-y-3">
+        <p>
+          <strong className="font-semibold text-foreground">You read it first.</strong> Nothing goes
+          live until you're happy.
+        </p>
+        <p>
+          Then it sits at{" "}
+          <strong className="font-semibold text-foreground">a permanent link</strong> on Entrepreneur
+          Awards.
+        </p>
+      </div>
+    ),
   },
   {
     number: 3,
-    title: "It goes live",
-    body: "Published at your permanent link, and the box ships.",
+    title: "We send the winner's box",
+    body: <p>Four pieces, sent once your feature is live.</p>,
   },
 ];
+
+const winnersBox = [
+  {
+    icon: Trophy,
+    lead: "The engraved desk piece",
+    rest: "marking the year you were recognized",
+  },
+  {
+    icon: Newspaper,
+    lead: "A printed edition of your feature",
+    rest: "a proper offprint, the way publications send authors their own pages",
+  },
+  { icon: ScrollText, lead: "Your 2026 winner certificate", rest: null as string | null },
+  { icon: Link2, lead: "A card carrying the link to your feature", rest: null as string | null },
+];
+
 
 // Confetti
 function Confetti() {
@@ -290,6 +327,40 @@ function PricingPage() {
           </div>
         </section>
 
+        {/* ALREADY YOURS */}
+        <section className="border-t border-border bg-secondary/30 px-6 py-16 md:py-20">
+          <div className="mx-auto max-w-5xl">
+            <Reveal>
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
+                  Already yours, free
+                </p>
+                <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
+                  Yours to keep, free and permanent. Download what you need and post it today.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+                {freeAssets.map((a) => (
+                  <li key={a.title}>
+                    <FreeAssetTile asset={a} />
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={140}>
+              <p className="mt-10 text-center text-sm text-muted-foreground">
+                Tag {IG_HANDLE} when you post.
+              </p>
+            </Reveal>
+
+          </div>
+        </section>
+
+
         {/* THE OFFER */}
         <section className="relative overflow-hidden px-6 py-24 pb-32 md:py-32 md:pb-40">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
@@ -297,19 +368,16 @@ function PricingPage() {
           </div>
 
           <Reveal>
-            <p className="mx-auto mb-8 max-w-2xl text-center text-base text-muted-foreground">
-              Your seal, your graphics and your citation are already yours — free, permanent, and nothing further to pay. This is the one thing you can add.
-            </p>
             <div className="mb-16 text-center md:mb-20">
               <p className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-primary">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                Optional · The Winner's Feature
+                The Winner's Feature
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                A page with your name on it, at a permanent link.
+                One story, written and published for you.
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
-                Sooner or later someone looks you up — before a call, after a pitch, halfway through reading a proposal. This is what they find: your story, written out properly, at a link that doesn't expire. Put it in a bio, a proposal, an email signature, or the reply to "so what do you actually do?"
+                Done for you, start to finish.
               </p>
             </div>
           </Reveal>
@@ -317,6 +385,10 @@ function PricingPage() {
           {/* PREVIEW — full width */}
           <Reveal delay={80}>
             <div className="mx-auto w-full max-w-[1100px]">
+              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
+                Preview · what gets published
+              </p>
+
               <div className="relative overflow-hidden rounded-lg border border-border bg-background shadow-xl">
                 <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
                   <span className="h-2.5 w-2.5 rounded-full bg-muted" />
@@ -370,15 +442,6 @@ function PricingPage() {
           <div className="mx-auto mt-20 w-full max-w-[900px] md:mt-24">
             <Reveal>
               <div className="text-center">
-                <div className="py-12">
-                  <p className="font-mono text-base tracking-wide text-muted-foreground">
-                    entrepreneurawards.co/winners/your-feature
-                  </p>
-                  <p className="mt-2 text-[0.8125rem] text-muted-foreground">
-                    Your name, your business. Permanent.
-                  </p>
-                </div>
-
                 <div className="flex items-baseline justify-center gap-2">
                   <span className="text-5xl font-semibold tracking-tight text-foreground">
                     ${WINNERS_FEATURE_PRICE.toLocaleString()}
@@ -386,13 +449,16 @@ function PricingPage() {
                   <span className="text-sm text-muted-foreground">one-time</span>
                 </div>
                 <p className="mt-3 text-[17px] font-medium text-foreground">A badge says you won. This says why.</p>
+                <p className="mt-1 text-[15px] text-muted-foreground">
+                  A full feature about you, written and published, plus the winner's box.
+                </p>
               </div>
             </Reveal>
 
-            {/* THREE STEPS */}
+            {/* THREE STAGES */}
             <Reveal delay={80}>
               <ol className="mt-14 grid items-start gap-6 md:grid-cols-[1fr_1px_1fr_1px_1fr] md:gap-10">
-                {featureStages.map(({ number, title, body }, index) => [
+                {stages.map(({ number, title, body }, index) => [
                   <li key={number} className="text-left">
                     <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
                       {number}
@@ -400,7 +466,7 @@ function PricingPage() {
                     <p className="mt-4 text-sm font-semibold text-foreground">{title}</p>
                     <div className="mt-3 text-sm leading-[1.7] text-muted-foreground">{body}</div>
                   </li>,
-                  index < featureStages.length - 1 && (
+                  index < stages.length - 1 && (
                     <li
                       key={`divider-${number}`}
                       className="h-px w-full bg-border md:h-auto md:w-px md:self-stretch"
@@ -411,17 +477,36 @@ function PricingPage() {
               </ol>
             </Reveal>
 
-            {/* THE BOX */}
+            {/* WINNER'S BOX */}
             <Reveal delay={100}>
               <div className="mt-16 rounded-lg border border-border p-6 md:p-8">
-                <p className="text-sm leading-[1.7] text-muted-foreground">
-                  One box arrives: the engraved award with your name and the year, a printed edition of your feature, your 2026 certificate, and a card with the link on it.
-                </p>
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">The winner's box</p>
+                <ul className="mt-5 grid gap-6 sm:grid-cols-2">
+                  {winnersBox.map(({ icon: Icon, lead, rest }) => (
+                    <li key={lead} className="flex items-start gap-3 text-sm [line-height:1.7] text-muted-foreground">
+                      <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
+                      <span>
+                        <span className="font-semibold text-foreground">{lead}</span>
+                        {rest ? ` — ${rest}` : null}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
 
-            {/* CTA */}
+            {/* PULL QUOTE */}
             <Reveal delay={120}>
+              <figure className="mx-auto mt-12 mb-8 max-w-[640px] border-l-[3px] border-primary" style={{ borderRadius: 0, padding: "4px 0 4px 20px" }}>
+                <p className="text-[20px] leading-[1.5] text-foreground">
+                  <strong className="font-semibold">When someone searches your name, this is what they find.</strong>{" "}
+                  Your story, written and published by someone other than you.
+                </p>
+              </figure>
+            </Reveal>
+
+            {/* CTA */}
+            <Reveal delay={140}>
               <div className="mt-10 text-center">
                 <a
                   href="https://payments.entrepreneurawards.co/b/7sY8wPbgN236evy2UY8so0i"
@@ -429,18 +514,11 @@ function PricingPage() {
                   rel="noreferrer"
                   className="mx-auto inline-flex h-11 w-full max-w-[320px] items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
                 >
-                  Start my feature
+                  Claim your feature
                 </a>
 
-                <p className="mt-4 text-[0.875rem] text-muted-foreground">
-                  Nothing publishes until you've read it.
-                </p>
-
-                <p className="mt-2 text-[0.875rem] text-muted-foreground">
-                  Buying it changes nothing about the award you were given. Declining it removes nothing.
-                </p>
-
-                <div className="mt-4 text-[13px] text-muted-foreground">
+                <div className="mt-4 space-y-2.5 text-[13px] text-muted-foreground">
+                  <p>Nothing publishes until you've read it.</p>
                   <p>
                     Every winner is independently reviewed and selected.{" "}
                     <Link to="/criteria" className="text-primary underline-offset-4 hover:underline">
@@ -453,42 +531,11 @@ function PricingPage() {
             </Reveal>
           </div>
         </section>
-
-        {/* ALREADY YOURS */}
-        <section className="border-t border-border bg-secondary/30 px-6 py-16 md:py-20">
-          <div className="mx-auto max-w-5xl">
-            <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
-                  Already yours, free
-                </p>
-                <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
-                  Yours to keep, free and permanent. Download what you need and post it today.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-                {freeAssets.map((a) => (
-                  <li key={a.title}>
-                    <FreeAssetTile asset={a} />
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
-            <Reveal delay={140}>
-              <p className="mt-10 text-center text-sm text-muted-foreground">
-                Tag {IG_HANDLE} when you post.
-              </p>
-            </Reveal>
-
-          </div>
-        </section>
       </main>
 
       <SiteFooter />
     </div>
   );
 }
+
+
