@@ -74,13 +74,13 @@ const materials: Material[] = [
 ];
 
 const commemorativeIncludes = [
-  "Engraved recognition object with your name and award year",
-  "Printed presentation certificate carrying your award statement",
+  "Engraved recognition object carrying your name, your award year and the wording of your award statement",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
 ];
 
 const commemorativeIncludesDetailed = [
-  "Engraved recognition object personalised with your name and award year",
-  "Printed presentation certificate carrying your award statement",
+  "Engraved recognition object carrying your name, your award year and the wording of your award statement",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
 ];
 
 const featureIncludes = [
@@ -115,7 +115,7 @@ const faqs = [
   },
   {
     q: "Can I choose both?",
-    a: "Yes. They are separate, so either can be chosen on its own or both together. Neither is a level of the other, and neither changes the award you were given.",
+    a: "Yes. They are separate, so either can be chosen on its own, or both together. Taken together they are sent in a single box, which is why the combined price is a little lower than buying them separately. Neither is a level of the other, and neither changes the award you were given.",
   },
   {
     q: "What is the difference between my award statement and the feature?",
@@ -530,6 +530,13 @@ function WinnerOptionsPage() {
   const handleDownload = () => toast("Your download will be available here.");
   const handleSelect = () => toast("This selection page will be connected shortly.");
 
+  // Price constants — single source of truth for every price on the page.
+  const COMMEMORATIVE_PRICE = 195;
+  const FEATURE_PRICE = 595;
+  const BOTH_PRICE = 750;
+  const formatPrice = (n: number) => `$${n.toLocaleString()}`;
+  const bothComparePrice = COMMEMORATIVE_PRICE + FEATURE_PRICE;
+
   return (
     <div
       data-event="pricing-page-view"
@@ -745,7 +752,19 @@ function WinnerOptionsPage() {
                   The award you already have, in a form you can hand to someone.
                 </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
-                  <p style={{ fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
+                  <p
+                    style={{
+                      fontSize: "1.75rem",
+                      fontWeight: 600,
+                      color: INK,
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {formatPrice(COMMEMORATIVE_PRICE)}
+                  </p>
+                  <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
+                    One-time payment
+                  </p>
                   <div style={{ marginTop: "20px" }}>
                     <SecondaryButton
                       event="commemorative-explore"
@@ -803,7 +822,7 @@ function WinnerOptionsPage() {
                 </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
                   <p style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}>
-                    $595
+                    {formatPrice(FEATURE_PRICE)}
                   </p>
                   <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
                     One-time payment
@@ -819,6 +838,59 @@ function WinnerOptionsPage() {
                 </div>
               </div>
             </div>
+
+            {/* Both bar */}
+            <div
+              className="grid gap-6 md:grid-cols-2"
+              style={{
+                marginTop: "32px",
+                backgroundColor: TINT,
+                border: `1px solid ${LINE}`,
+                borderRadius: "12px",
+                padding: "28px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: BLUE,
+                  }}
+                >
+                  Both, together
+                </p>
+                <p
+                  className="mt-2"
+                  style={{ fontSize: "1rem", lineHeight: 1.55, color: INK }}
+                >
+                  The engraved object, the certificate, the feature and its printed edition — sent as one.
+                </p>
+              </div>
+              <div className="flex flex-col items-start md:items-end">
+                <div className="flex items-center gap-3">
+                  <span
+                    style={{ fontSize: "1rem", color: MUTED, textDecoration: "line-through" }}
+                  >
+                    {formatPrice(bothComparePrice)}
+                  </span>
+                  <span style={{ fontSize: "1.5rem", fontWeight: 600, color: INK }}>
+                    {formatPrice(BOTH_PRICE)}
+                  </span>
+                </div>
+                <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
+                  One box instead of two.
+                </p>
+                <div className="mt-4 w-full md:max-w-[320px]">
+                  <SecondaryButton event="both-select-click" onClick={handleSelect}>
+                    Take both
+                  </SecondaryButton>
+                </div>
+              </div>
+            </div>
+
           </Container>
         </Section>
 
@@ -854,9 +926,18 @@ function WinnerOptionsPage() {
                   Your digital certificate, winner seal and winner graphics remain included with
                   your selection.
                 </p>
-                <p style={{ marginTop: "32px", fontSize: "0.75rem", color: MUTED }}>
-                  One-time payment
+                <p
+                  style={{
+                    marginTop: "32px",
+                    fontSize: "1.75rem",
+                    fontWeight: 600,
+                    color: INK,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {formatPrice(COMMEMORATIVE_PRICE)}
                 </p>
+                <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
                 <div style={{ marginTop: "20px" }}>
                   <FilledButton event="commemorative-select-click" onClick={handleSelect}>
                     Select the Commemorative Edition
@@ -966,7 +1047,7 @@ function WinnerOptionsPage() {
                     lineHeight: 1.1,
                   }}
                 >
-                  $595
+                  {formatPrice(FEATURE_PRICE)}
                 </p>
                 <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
                   One-time payment
