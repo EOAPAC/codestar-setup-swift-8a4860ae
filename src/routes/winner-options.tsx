@@ -985,7 +985,7 @@ function WinnerOptionsPage() {
                     lineHeight: 1.1,
                   }}
                 >
-                  $595
+                  {formatPrice(FEATURE_PRICE)}
                 </p>
                 <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
                   One-time payment
