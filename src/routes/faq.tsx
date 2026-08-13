@@ -100,7 +100,7 @@ function FAQPage() {
                     What does it cost in total?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, published at a permanent link, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award citation are provided free and permanently.
+                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, published at a permanent link, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award statement &mdash; the short, formal lines explaining what was assessed and why the entry was selected &mdash; are provided free and permanently.
                   </AccordionContent>
                 </AccordionItem>
 
