@@ -371,14 +371,16 @@ function PricingPage() {
           <div className="mx-auto mt-20 w-full max-w-[900px] md:mt-24">
             <Reveal>
               <div className="text-center">
-                <p className="font-mono text-base tracking-wide text-muted-foreground">
-                  entrepreneurawards.co/winners/your-feature
-                </p>
-                <p className="mt-2 text-[0.8125rem] text-muted-foreground">
-                  Your name, your business. Permanent.
-                </p>
+                <div className="py-12">
+                  <p className="font-mono text-base tracking-wide text-muted-foreground">
+                    entrepreneurawards.co/winners/your-feature
+                  </p>
+                  <p className="mt-2 text-[0.8125rem] text-muted-foreground">
+                    Your name, your business. Permanent.
+                  </p>
+                </div>
 
-                <div className="mt-8 flex items-baseline justify-center gap-2">
+                <div className="flex items-baseline justify-center gap-2">
                   <span className="text-5xl font-semibold tracking-tight text-foreground">
                     ${WINNERS_FEATURE_PRICE.toLocaleString()}
                   </span>
