@@ -500,8 +500,8 @@ function FeatureSpecimen({ bodyBars = 7 }: { bodyBars?: number }) {
           <span className="h-[10px] w-[44%] rounded-[3px]" style={{ backgroundColor: LINE }} />
         </div>
         <div
-          className="w-full rounded-[6px]"
-          style={{ aspectRatio: "16 / 9", border: `1.5px solid ${BLUE}59` }}
+          className="w-full min-h-0 flex-1 rounded-[6px]"
+          style={{ border: `1.5px solid ${BLUE}59` }}
         />
         <div className="flex flex-col gap-[6px]">
           {Array.from({ length: bodyBars }).map((_, i) => (
