@@ -660,7 +660,7 @@ function WinnerOptionsPage() {
 
             <Small className="mt-6">
               Your award statement was included in your award email. Your selection and winner
-              materials remain unchanged whether or not you choose an optional edition below.
+              materials remain unchanged whether or not you choose an edition below.
             </Small>
           </Container>
         </Section>
