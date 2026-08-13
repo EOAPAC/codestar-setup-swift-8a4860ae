@@ -145,14 +145,13 @@ export const TERMS_SECTIONS: TermsSection[] = [
     title: "13. Privacy and Data",
     body: [
       "13.1 Entries are personal, so they contain personal data. Entry data is shared internally and with reviewers for the purpose of assessing entries. We do not sell entrant data.",
-      "13.2 Because entries are personal, they contain personal data. Entry data is shared internally and with reviewers for the purpose of assessing entries. We do not sell entrant data.",
     ],
   },
   {
     id: "miscellaneous",
     title: "14. Miscellaneous",
     body: [
-      "14.1 These terms, together with our Privacy Policy and any written order confirmation, are the entire agreement between you and us and supersede all prior communications and proposals.",
+      "14.1 These terms, together with any written order confirmation, are the entire agreement between you and us and supersede all prior communications and proposals.",
       "14.2 If any provision is held invalid or unenforceable, it will be severed and the rest will continue in force.",
       "14.3 Our failure to enforce any right or provision is not a waiver of it.",
       "14.4 You may not assign or transfer these terms without our prior written consent. We may assign them without restriction, including as part of a sale or reorganisation of the business.",
