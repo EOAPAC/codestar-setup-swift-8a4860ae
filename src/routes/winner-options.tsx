@@ -59,7 +59,6 @@ type Material = {
 };
 
 const materials: Material[] = [
-  { id: "citation", title: "Citation", fileType: "PDF" },
   { id: "certificate", title: "Digital winner certificate", fileType: "PDF" },
   { id: "seal", title: "Winner seal", fileType: "PNG", image: sealAsset.url },
   { id: "banner", title: "LinkedIn banner", fileType: "PNG", image: bannerAsset.url },
@@ -124,12 +123,12 @@ const faqs = [
     a: "Yes. The feature is sent to you for review and factual corrections before publication.",
   },
   {
-    q: "Where will the feature appear?",
+    q: "Where will the feature be published?",
     a: "It will be published at a permanent Entrepreneur Awards URL in the format entrepreneurawards.co/winners/[name].",
   },
   {
-    q: "Does selecting an edition change my award?",
-    a: "No. Each edition is separate from the award itself. Your Entrepreneur Award remains exactly the same whether you select an edition or not.",
+    q: "Does choosing an edition change my award?",
+    a: "No. Each edition is separate from the award itself. Your Entrepreneur Award remains exactly the same whether you choose an edition or not.",
   },
 ];
 
@@ -268,7 +267,7 @@ function IncludedList({ items }: { items: string[] }) {
 function WinnerOptionsPage() {
   useEffect(() => {
     // analytics-ready page view marker
-    document.body.setAttribute("data-page-event", "winner-options-view");
+    document.body.setAttribute("data-page-event", "pricing-page-view");
     return () => document.body.removeAttribute("data-page-event");
   }, []);
 
@@ -277,7 +276,7 @@ function WinnerOptionsPage() {
 
   return (
     <div
-      data-event="winner-options-view"
+      data-event="pricing-page-view"
       className="min-h-screen bg-background font-sans text-foreground antialiased"
     >
       {/* Header */}
@@ -307,50 +306,11 @@ function WinnerOptionsPage() {
                   Your selection is confirmed.
                 </h1>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                  Your citation, certificate and winner materials are ready to use. You may also
-                  choose an optional way to preserve the recognition.
+                  Your citation is included in your award email. Your certificate, winner seal and
+                  graphics are available below.
                 </p>
               </div>
             </div>
-
-            <div className="mt-10 max-w-md rounded-lg border border-border bg-secondary/40 p-5">
-              <dl className="space-y-2 text-sm">
-                <div className="flex justify-between gap-4">
-                  <dt className="text-muted-foreground">Winner</dt>
-                  <dd className="font-medium">[Winner Name]</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-muted-foreground">Business</dt>
-                  <dd className="font-medium">[Business Name]</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-muted-foreground">Status</dt>
-                  <dd className="font-medium">Selected entrant</dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-        </section>
-
-        {/* Citation */}
-        <section className="py-16 md:py-20">
-          <div className="mx-auto max-w-3xl px-6">
-            <Eyebrow>Your citation</Eyebrow>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-              The formal statement of your selection
-            </h2>
-            <Card className="mt-8 border-l-2 border-l-primary p-6 md:p-8">
-              <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
-                Citation
-              </p>
-              <p className="mt-4 text-lg italic leading-relaxed text-foreground/90">
-                [Your formal 40&ndash;70 word citation will appear here.]
-              </p>
-            </Card>
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              Your selection, citation, certificate and winner materials are included with your
-              award and remain yours permanently.
-            </p>
           </div>
         </section>
 
@@ -358,13 +318,13 @@ function WinnerOptionsPage() {
         <section className="border-t border-border py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-6">
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-              Your winner materials
+              Your included winner materials
             </h2>
             <p className="mt-3 text-base text-muted-foreground">
-              Included with your selection and ready to use.
+              These materials are included with your selection and remain yours permanently.
             </p>
 
-            <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {materials.map((m) => (
                 <li key={m.id}>
                   <Card className="flex h-full flex-col p-5 transition-colors hover:border-primary/40">
@@ -391,7 +351,7 @@ function WinnerOptionsPage() {
                       variant="outline"
                       size="sm"
                       className="mt-4 w-full"
-                      data-event="winner-asset-download"
+                      data-event="asset-download"
                       data-asset={m.id}
                       onClick={handleDownload}
                     >
@@ -402,6 +362,11 @@ function WinnerOptionsPage() {
                 </li>
               ))}
             </ul>
+
+            <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              Your citation was included in your award email. Your selection and winner materials
+              remain unchanged whether or not you choose an optional edition below.
+            </p>
           </div>
         </section>
 
@@ -410,12 +375,12 @@ function WinnerOptionsPage() {
           <div className="mx-auto max-w-3xl px-6 py-16 md:py-20">
             <Eyebrow>Optional</Eyebrow>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-              Two ways to keep the recognition close.
+              Two ways to preserve the recognition.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Your award and winner materials are complete as they are. If you would like a
+              Your award and included materials are complete as they are. If you would like a
               physical presentation of the recognition, or a permanent published feature about the
-              business behind it, explore the two editions below.
+              business behind it, explore the options below.
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
               Both are optional. Your selection remains unchanged.
@@ -427,10 +392,10 @@ function WinnerOptionsPage() {
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-6">
             <h2 className="max-w-3xl text-2xl font-semibold tracking-tight md:text-3xl">
-              Choose how you would like to preserve the recognition
+              Choose how you would like to preserve your recognition
             </h2>
             <p className="mt-3 max-w-2xl text-base text-muted-foreground">
-              Each edition begins with the same Entrepreneur Award selection. The difference is how
+              Each option begins with the same Entrepreneur Award selection. The difference is how
               you choose to keep and present it.
             </p>
 
@@ -540,7 +505,7 @@ function WinnerOptionsPage() {
                   <IncludedList items={commemorativeIncludesDetailed} />
                 </div>
                 <p className="mt-6 text-sm text-muted-foreground">
-                  Your digital citation, certificate, seal and winner graphics remain included with
+                  Your digital certificate, winner seal and winner graphics remain included with
                   your selection.
                 </p>
                 <Button
@@ -552,7 +517,7 @@ function WinnerOptionsPage() {
                   Select the Commemorative Edition
                 </Button>
                 <p className="mt-3 text-sm text-muted-foreground">
-                  Optional. Your award remains unchanged.
+                  Optional. Your selection remains unchanged.
                 </p>
               </div>
             </div>
@@ -580,7 +545,11 @@ function WinnerOptionsPage() {
                 <FeatureSpecimen large caption="Feature format specimen" />
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button variant="link" className="mt-2 px-0" data-event="feature-specimen-view">
+                    <Button
+                      variant="link"
+                      className="mt-2 px-0"
+                      data-event="feature-format-view"
+                    >
                       View the feature format
                     </Button>
                   </DialogTrigger>
@@ -622,7 +591,7 @@ function WinnerOptionsPage() {
                   Order the Winner&rsquo;s Feature
                 </Button>
                 <p className="mt-3 text-sm text-muted-foreground">
-                  Optional. Your award remains unchanged.
+                  Optional. Your selection remains unchanged.
                 </p>
               </div>
             </div>
