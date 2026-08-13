@@ -75,26 +75,19 @@ const materials: Material[] = [
 
 const commemorativeIncludes = [
   "Engraved recognition object with your name and award year",
-  "Printed presentation edition of your winner certificate",
-  "Printed card carrying your award statement",
-  "Presentation card carrying your recognition details",
+  "Printed presentation certificate carrying your award statement",
 ];
 
 const commemorativeIncludesDetailed = [
   "Engraved recognition object personalised with your name and award year",
-  "Printed presentation edition of your winner certificate",
-  "Printed card carrying your award statement",
-  "Presentation card carrying your recognition details",
+  "Printed presentation certificate carrying your award statement",
 ];
 
 const featureIncludes = [
   "A full written feature about your business",
-  "Review before publication",
-  "Publication at a permanent Entrepreneur Awards URL",
-  "Engraved recognition object with your name and award year",
-  "Printed edition of your feature",
-  "Printed presentation edition of your winner certificate",
-  "Card carrying the permanent URL",
+  "Your review before publication",
+  "Publication at a permanent Entrepreneur Awards address",
+  "A printed edition of your feature, with the address printed on it",
 ];
 
 const processSteps = [
@@ -107,7 +100,7 @@ const processSteps = [
   {
     number: "03",
     title: "Publish and present",
-    body: "After approval, the feature is published at its permanent URL and your commemorative edition is prepared.",
+    body: "After approval, the feature is published at its permanent address and your printed edition is prepared.",
   },
 ];
 
@@ -118,7 +111,11 @@ const faqs = [
   },
   {
     q: "What is the difference between the Commemorative Edition and the Winner's Feature?",
-    a: "The Commemorative Edition is a physical presentation of your recognition. The Winner's Feature adds a reviewed, permanent feature about the business behind your recognition, alongside its physical commemorative edition.",
+    a: "The Commemorative Edition is the physical record — an engraved object and a printed certificate. The Winner's Feature is the published one — a written feature about your business at a permanent address, with a printed edition of it. They are separate. Neither includes the other.",
+  },
+  {
+    q: "Can I choose both?",
+    a: "Yes. They are separate, so either can be chosen on its own or both together. Neither is a level of the other, and neither changes the award you were given.",
   },
   {
     q: "What is the difference between my award statement and the feature?",
@@ -663,7 +660,7 @@ function WinnerOptionsPage() {
 
             <Small className="mt-6">
               Your award statement was included in your award email. Your selection and winner
-              materials remain unchanged whether or not you choose an optional edition below.
+              materials remain unchanged whether or not you choose an edition below.
             </Small>
           </Container>
         </Section>
@@ -672,23 +669,24 @@ function WinnerOptionsPage() {
         <Section tint>
           <Container narrow={720}>
             <div className="flex flex-col items-center text-center">
-              <Eyebrow>Optional</Eyebrow>
+              <Eyebrow>From here</Eyebrow>
               <SectionHeading className="mt-4">
-                Two ways to preserve the recognition.
+                Right now, all of it lives on a screen.
               </SectionHeading>
               <p
                 className="mt-5"
                 style={{ fontSize: "1rem", lineHeight: 1.6, color: BODY, maxWidth: "640px" }}
               >
-                Your award and included materials are complete as they are. If you would like a
-                physical presentation of the recognition, or a permanent published feature about
-                the business behind it, explore the options below.
+                Your seal, your graphics and your award statement are yours permanently. They are also, all of
+                them, digital — a folder on your computer and a few lines in your inbox. There are two ways to
+                change that. One puts the award somewhere you can see it. The other puts it somewhere other
+                people can find it.
               </p>
               <p
                 className="mt-4"
                 style={{ fontSize: "0.875rem", lineHeight: 1.55, color: MUTED }}
               >
-                Both are optional. Your selection remains unchanged.
+                Neither changes the award you were given.
               </p>
             </div>
           </Container>
@@ -697,10 +695,9 @@ function WinnerOptionsPage() {
         {/* Comparison — white, two columns */}
         <Section>
           <Container>
-            <SectionHeading>Choose how you would like to preserve your recognition</SectionHeading>
+            <SectionHeading>Two ways to take it off the screen</SectionHeading>
             <Body className="mt-4">
-              Each option begins with the same Entrepreneur Award selection. The difference is how
-              you choose to keep and present it.
+              Both begin from the same award. The difference is where it ends up.
             </Body>
 
             <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-2">
@@ -722,13 +719,13 @@ function WinnerOptionsPage() {
                     color: INK,
                   }}
                 >
-                  A physical presentation of your recognition.
+                  Somewhere you can see it.
                 </h3>
                 <p
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
-                  A considered physical edition designed to keep the Entrepreneur Award visible
-                  long after the announcement.
+                  A designed physical edition of your award, made for a desk, a wall or a shelf — so it is
+                  present in the room rather than filed on a drive.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
                 <div style={{ marginTop: "20px" }}>
@@ -745,7 +742,7 @@ function WinnerOptionsPage() {
                     color: MUTED,
                   }}
                 >
-                  A tangible record of an award you have already earned.
+                  The award you already have, in a form you can hand to someone.
                 </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
                   <p style={{ fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
@@ -778,14 +775,14 @@ function WinnerOptionsPage() {
                     color: INK,
                   }}
                 >
-                  A permanent feature about the business behind your recognition.
+                  Somewhere people can find it.
                 </h3>
                 <p
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
-                  A reviewed feature prepared from your entry and your award statement, published at a
-                  permanent Entrepreneur Awards URL and accompanied by a physical commemorative
-                  edition.
+                  A written feature about your business, prepared from your entry and your award statement,
+                  reviewed by you, and published at a permanent Entrepreneur Awards address you can send to
+                  anyone.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
                 <div style={{ marginTop: "20px" }}>
@@ -802,7 +799,7 @@ function WinnerOptionsPage() {
                     color: MUTED,
                   }}
                 >
-                  A lasting published record of the work behind your selection.
+                  An address you can point people to, for as long as you need it.
                 </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
                   <p style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}>
@@ -881,10 +878,9 @@ function WinnerOptionsPage() {
               A feature that gives the recognition a permanent home.
             </SectionHeading>
             <Body className="mt-5">
-              We prepare a fuller feature from the material in your entry and your award
-              statement, send
-              it to you for review, publish it at a permanent Entrepreneur Awards URL, and prepare
-              a physical commemorative edition.
+              We prepare a fuller feature from the material in your entry and your award statement, send it
+              to you for review, publish it at a permanent Entrepreneur Awards address, and print an edition
+              of it for you.
             </Body>
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
