@@ -669,23 +669,24 @@ function WinnerOptionsPage() {
         <Section tint>
           <Container narrow={720}>
             <div className="flex flex-col items-center text-center">
-              <Eyebrow>Optional</Eyebrow>
+              <Eyebrow>From here</Eyebrow>
               <SectionHeading className="mt-4">
-                Two ways to preserve the recognition.
+                Right now, all of it lives on a screen.
               </SectionHeading>
               <p
                 className="mt-5"
                 style={{ fontSize: "1rem", lineHeight: 1.6, color: BODY, maxWidth: "640px" }}
               >
-                Your award and included materials are complete as they are. If you would like a
-                physical presentation of the recognition, or a permanent published feature about
-                the business behind it, explore the options below.
+                Your seal, your graphics and your award statement are yours permanently. They are also, all of
+                them, digital — a folder on your computer and a few lines in your inbox. There are two ways to
+                change that. One puts the award somewhere you can see it. The other puts it somewhere other
+                people can find it.
               </p>
               <p
                 className="mt-4"
                 style={{ fontSize: "0.875rem", lineHeight: 1.55, color: MUTED }}
               >
-                Both are optional. Your selection remains unchanged.
+                Neither changes the award you were given.
               </p>
             </div>
           </Container>
