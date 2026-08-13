@@ -752,7 +752,19 @@ function WinnerOptionsPage() {
                   The award you already have, in a form you can hand to someone.
                 </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
-                  <p style={{ fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
+                  <p
+                    style={{
+                      fontSize: "1.75rem",
+                      fontWeight: 600,
+                      color: INK,
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {formatPrice(COMMEMORATIVE_PRICE)}
+                  </p>
+                  <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
+                    One-time payment
+                  </p>
                   <div style={{ marginTop: "20px" }}>
                     <SecondaryButton
                       event="commemorative-explore"
