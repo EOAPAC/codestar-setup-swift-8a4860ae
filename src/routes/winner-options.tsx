@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect } from "react";
-import { Download } from "lucide-react";
+import { useEffect, type CSSProperties } from "react";
+import { Download, Star } from "lucide-react";
 import { toast } from "sonner";
 import {
   Accordion,
@@ -168,16 +168,18 @@ function Section({
   tint,
   id,
   hero,
+  className,
 }: {
   children: React.ReactNode;
   tint?: boolean;
   id?: string;
   hero?: boolean;
+  className?: string;
 }) {
   return (
     <section
       id={id}
-      className={hero ? "ea-hero-pad" : "ea-section-pad"}
+      className={`${hero ? "ea-hero-pad" : "ea-section-pad"} ${className ?? ""}`}
       style={{ backgroundColor: tint ? TINT : "#FFFFFF", scrollMarginTop: "24px" }}
     >
       {children}
@@ -185,7 +187,7 @@ function Section({
   );
 }
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <p
       style={{
@@ -194,6 +196,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
         textTransform: "uppercase",
         letterSpacing: "0.14em",
         color: BLUE,
+        ...style,
       }}
     >
       {children}
@@ -517,6 +520,49 @@ function FeatureSpecimen({ bodyBars = 7 }: { bodyBars?: number }) {
   );
 }
 
+// ---------------------------------------------------------------- confetti
+
+function Confetti() {
+  const dots = Array.from({ length: 24 });
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden motion-reduce:hidden">
+      {dots.map((_, i) => {
+        const left = (i * 41) % 100;
+        const delay = (i % 8) * 0.5;
+        const duration = 5 + (i % 6);
+        const size = 4 + (i % 5);
+        const colors = [BLUE, "#60a5fa", "#93c5fd", "#dbeafe", "#facc15", "#ffffff"];
+        const color = colors[i % colors.length];
+        const rotate = (i * 37) % 360;
+        const drift = (i % 3) - 1;
+        return (
+          <span
+            key={i}
+            className="absolute block rounded-[1px] opacity-80"
+            style={{
+              left: `${left}%`,
+              top: "-10%",
+              width: `${size}px`,
+              height: `${size * 1.6}px`,
+              backgroundColor: color,
+              transform: `rotate(${rotate}deg)`,
+              animation: `ea-confetti-fall ${duration}s linear ${delay}s infinite`,
+              "--ea-drift": `${drift * 40}px`,
+            } as CSSProperties}
+          />
+        );
+      })}
+      <style>{`
+        @keyframes ea-confetti-fall {
+          0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+          8% { opacity: 0.95; }
+          100% { transform: translateY(460px) translateX(var(--ea-drift, 0px)) rotate(720deg); opacity: 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // ---------------------------------------------------------------- page
 
 function WinnerOptionsPage() {
@@ -583,18 +629,41 @@ function WinnerOptionsPage() {
       </header>
 
       <main>
-        {/* Hero — white, centred, very generous */}
-        <Section hero>
+        {/* Hero — celebratory, with confetti and blue glow */}
+        <Section hero className="relative overflow-hidden">
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+            <div
+              className="absolute left-1/2 top-[-10rem] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full blur-3xl"
+              style={{ backgroundColor: `${BLUE}26` }}
+            />
+            <div
+              className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2"
+              style={{
+                background: `radial-gradient(ellipse_at_top, ${BLUE}1A, transparent 60%)`,
+              }}
+            />
+            <div
+              className="absolute inset-0 opacity-[0.035]"
+              style={{
+                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+                backgroundSize: "22px 22px",
+                color: INK,
+              }}
+            />
+          </div>
+
+          <Confetti />
+
           <Container narrow={768}>
             <div className="mx-auto flex flex-col items-center text-center" style={{ maxWidth: "720px" }}>
-              <span aria-hidden="true" style={{ marginBottom: "40px" }}>
-                <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-                  <circle cx="36" cy="36" r="35" stroke={BLUE} strokeOpacity="0.3" />
-                  <circle cx="36" cy="36" r="20" stroke={BLUE} strokeOpacity="0.55" />
-                  <circle cx="36" cy="36" r="6" fill={BLUE} />
-                </svg>
+              <span
+                className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] shadow-lg"
+                style={{ borderColor: `${BLUE}4D`, backgroundColor: BLUE, color: "#fff" }}
+              >
+                <Star className="h-3.5 w-3.5 fill-current" aria-hidden />
+                2026 Entrepreneur Award
               </span>
-              <Eyebrow>Entrepreneur Awards</Eyebrow>
+              <Eyebrow style={{ marginTop: "24px" }}>Entrepreneur Awards</Eyebrow>
               <h1
                 style={{
                   marginTop: "24px",
