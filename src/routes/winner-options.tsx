@@ -20,6 +20,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { AWARD_YEAR } from "@/content/award";
+import {
+  SPECIMEN_BUSINESS_TOKEN,
+  SPECIMEN_BYLINE,
+  SPECIMEN_HEADLINE,
+  SPECIMEN_OPENING_PARAGRAPHS,
+  splitOnBusinessToken,
+} from "@/content/specimen";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
 import commemorativeAsset from "@/assets/commemorative-edition.jpg.asset.json";
@@ -399,23 +406,54 @@ function FilledButton({
   );
 }
 
-/** Three-item reassurance row under a primary button. */
+/** Secondary button: white fill, blue outline. */
+function OutlineButton({
+  children,
+  onClick,
+  event,
+  full,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+  event: string;
+  full?: boolean;
+}) {
+  return (
+    <button
+      type="button"
+      data-event={event}
+      onClick={onClick}
+      className={`rounded-lg bg-white transition-colors hover:bg-[#1978E5]/[0.08] ${
+        full ? "w-full" : "w-full sm:w-auto"
+      } ${focusRing}`}
+      style={{
+        height: "48px",
+        padding: "0 24px",
+        border: `1px solid ${BLUE}`,
+        color: BLUE,
+        fontSize: "0.9375rem",
+        fontWeight: 500,
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
+/** Three-item reassurance list under a buy button. Never wraps one-then-two. */
 function Reassurance({ items }: { items: string[] }) {
   return (
     <ul
-      className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center"
+      className="mt-3 grid grid-cols-1 gap-2 lg:grid-cols-3"
       style={{ fontSize: "0.8125rem", color: MUTED }}
     >
-      {items.map((item, i) => (
-        <li key={item} className="flex items-center gap-2">
-          {i > 0 && (
-            <span
-              aria-hidden
-              className="hidden sm:block"
-              style={{ width: "1px", height: "12px", backgroundColor: LINE, marginRight: "4px" }}
-            />
-          )}
-          <Check aria-hidden style={{ width: "13px", height: "13px", color: BLUE }} />
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-2">
+          <Check
+            aria-hidden
+            className="mt-[3px] shrink-0"
+            style={{ width: "13px", height: "13px", color: BLUE }}
+          />
           <span>{item}</span>
         </li>
       ))}
@@ -424,17 +462,18 @@ function Reassurance({ items }: { items: string[] }) {
 }
 
 
-function CommemorativeVisual() {
+function CommemorativeVisual({ ratio = "4 / 3" }: { ratio?: string }) {
   return (
     <div
-      className="w-full overflow-hidden rounded-xl bg-[#F7F9FC]"
-      style={{ aspectRatio: "4 / 3", border: `1px solid ${LINE}` }}
+      className="w-full overflow-hidden rounded-xl"
+      style={{ aspectRatio: ratio, border: `1px solid ${LINE}`, backgroundColor: "#0B2545" }}
     >
       <img
         src={commemorativeAsset.url}
         alt="Engraved glass recognition object from the Commemorative Edition"
         loading="lazy"
-        className="h-full w-full object-cover"
+        className="h-full w-full object-contain"
+        style={{ padding: "18px" }}
       />
     </div>
   );
@@ -626,7 +665,7 @@ function ArticleTexture() {
         borderRadius: "12px",
         border: `1px solid ${LINE}`,
         backgroundColor: "#fff",
-        height: "360px",
+        height: "640px",
       }}
     >
       <div
@@ -768,23 +807,19 @@ function Confetti() {
 // ---------------------------------------------------------------- sticky bar
 
 function useStickyCtaVisible() {
-  const [visible, setVisible] = useState(false);
+  const [pastCards, setPastCards] = useState(false);
+  const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
     const update = () => {
       if (window.innerHeight < 480) {
-        setVisible(false);
+        setPastCards(false);
         return;
       }
       const comparison = document.getElementById("offer-cards");
-      const footer = document.getElementById("page-footer");
-      const finalCta = document.getElementById("final-cta");
-      const pastComparison = comparison
-        ? comparison.getBoundingClientRect().bottom < window.innerHeight * 0.9
-        : false;
-      const blockers = [footer, finalCta].filter(Boolean) as HTMLElement[];
-      const blocked = blockers.some((el) => el.getBoundingClientRect().top < window.innerHeight);
-      setVisible(pastComparison && !blocked);
+      setPastCards(
+        comparison ? comparison.getBoundingClientRect().bottom < window.innerHeight * 0.9 : false,
+      );
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -795,7 +830,29 @@ function useStickyCtaVisible() {
     };
   }, []);
 
-  return visible;
+  // Hide the bar as soon as the footer or the final CTA enters the viewport.
+  useEffect(() => {
+    const targets = ["page-footer", "final-cta"]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+    if (targets.length === 0) return;
+
+    const intersecting = new Set<Element>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) intersecting.add(entry.target);
+          else intersecting.delete(entry.target);
+        }
+        setBlocked(intersecting.size > 0);
+      },
+      { threshold: 0 },
+    );
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return pastCards && !blocked;
 }
 
 // ---------------------------------------------------------------- page
@@ -874,7 +931,7 @@ function WinnerOptionsPage() {
         </Container>
       </header>
 
-      <main ref={mainRef} style={{ paddingBottom: stickyVisible ? "0" : undefined }}>
+      <main ref={mainRef} className="max-[479px]:!pb-0" style={{ paddingBottom: "88px" }}>
         {/* Hero */}
         <Section hero className="relative overflow-hidden">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
@@ -1141,7 +1198,7 @@ function WinnerOptionsPage() {
                 className="flex h-full flex-col rounded-2xl bg-white"
                 style={{ border: `1px solid ${LINE}`, padding: "32px" }}
               >
-                <CommemorativeVisual />
+                <CommemorativeVisual ratio="16 / 9" />
                 <div style={{ marginTop: "24px" }}>
                   <Eyebrow>Commemorative Edition</Eyebrow>
                 </div>
@@ -1177,9 +1234,9 @@ function WinnerOptionsPage() {
                     One-time payment
                   </p>
                   <div style={{ marginTop: "20px" }}>
-                    <FilledButton full event="commemorative-select-click" onClick={handleSelect}>
+                    <OutlineButton full event="commemorative-select-click" onClick={handleSelect}>
                       Order the Commemorative Edition
-                    </FilledButton>
+                    </OutlineButton>
                   </div>
                   <Reassurance
                     items={[
@@ -1348,9 +1405,9 @@ function WinnerOptionsPage() {
                   One-time payment
                 </p>
                 <div style={{ marginTop: "20px" }}>
-                  <FilledButton event="commemorative-select-click" onClick={handleSelect}>
+                  <OutlineButton event="commemorative-select-click" onClick={handleSelect}>
                     Order the Commemorative Edition
-                  </FilledButton>
+                  </OutlineButton>
                 </div>
                 <Reassurance
                   items={[
