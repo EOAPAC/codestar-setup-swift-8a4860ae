@@ -15,6 +15,8 @@ import linkedinAsset from "@/assets/ea-winner-social-Linkedin_Post-2.png.asset.j
 import squareAsset from "@/assets/ea-winner-social-IG_Post-2.png.asset.json";
 import storyAsset from "@/assets/ea-winner-social-IG_story-2.png.asset.json";
 import signatureAsset from "@/assets/ea-winner-emailsig-full-600x200-2.png.asset.json";
+import commemorativeAsset from "@/assets/commemorative-edition.jpg.asset.json";
+
 
 export const Route = createFileRoute("/winner-options")({
   head: () => ({
