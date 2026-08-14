@@ -118,7 +118,40 @@ function Hero() {
   );
 }
 
-const publications = ["Inc.", "Fortune", "Business Insider", "TechCrunch", "Newsweek", "Sifted"];
+const SERIF = "Georgia, 'Times New Roman', serif";
+
+/** Publication wordmarks, each linking to the article about the award. */
+const publications: {
+  name: string;
+  href: string;
+  className: string;
+  style?: React.CSSProperties;
+}[] = [
+  {
+    name: "Vanity Fair",
+    href: "https://vanityfairgermany.com/entrepreneur-awards-is-quietly-rewiring-how-founders-earn-status/",
+    className: "text-[20px] uppercase tracking-[0.18em]",
+    style: { fontFamily: SERIF, fontWeight: 400 },
+  },
+  {
+    name: "VARIETY",
+    href: "https://variety.com.se/why-entrepreneur-awards-treats-founders-like-talent-not-studios/",
+    className: "text-[21px] tracking-[0.02em]",
+    style: { fontFamily: SERIF, fontWeight: 700 },
+  },
+  {
+    name: "FAST COMPANY",
+    href: "https://fastcompany.ph/entrepreneur-awards-has-taken-the-category-apart-and-rebuilt-it/",
+    className: "text-[19px] font-extrabold tracking-[-0.02em]",
+  },
+  {
+    name: "L'OFFICIEL",
+    href: "https://lofficiel-england.co.uk/entrepreneur-awards-makes-the-case-for-recognition-you-actually-keep/",
+    className: "text-[20px] tracking-[0.28em]",
+    style: { fontFamily: SERIF, fontWeight: 400 },
+  },
+];
+
 
 const proofPoints = [
   {
