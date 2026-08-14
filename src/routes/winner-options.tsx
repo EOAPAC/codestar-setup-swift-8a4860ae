@@ -440,24 +440,35 @@ function CommemorativeVisual() {
   );
 }
 
-/** A browser frame previewing the published feature format. */
-function FeaturePreview({ scale = 1 }: { scale?: number }) {
-  const s = (n: number) => `${Math.round(n * scale)}px`;
-  const barH = scale > 1 ? 4 : 3;
-  const topBars = [100, 94, 88, 97, 72];
-  const bottomBars = [100, 91, 84];
-
-  const Bar = ({ w }: { w: number }) => (
+/** Inline slot chip standing in for the winner's business name. */
+function SpecimenSlot() {
+  return (
     <span
       style={{
-        display: "block",
-        width: `${w}%`,
-        height: `${barH}px`,
-        borderRadius: "2px",
-        backgroundColor: "#EDF0F4",
+        backgroundColor: "rgba(25,120,229,0.10)",
+        borderRadius: "4px",
+        padding: "0 2px",
       }}
-    />
+    >
+      {SPECIMEN_BUSINESS_TOKEN}
+    </span>
   );
+}
+
+function withSpecimenSlot(text: string) {
+  return splitOnBusinessToken(text).map((part, i) => (
+    <span key={i}>
+      {i > 0 ? <SpecimenSlot /> : null}
+      {part}
+    </span>
+  ));
+}
+
+/** A browser frame previewing the opening of a published feature. */
+function FeaturePreview({ scale = 1 }: { scale?: number }) {
+  const s = (n: number) => `${Math.round(n * scale)}px`;
+  // The article is rendered at full size and scaled down inside the frame.
+  const zoom = 0.45 * scale;
 
   return (
     <div className="w-full">
@@ -477,7 +488,7 @@ function FeaturePreview({ scale = 1 }: { scale?: number }) {
       <div
         role="img"
         aria-label="Preview of a published Winner's Feature page at entrepreneurawards.co/winners/your-business"
-        className="w-full overflow-hidden"
+        className="relative w-full overflow-hidden"
         style={{
           aspectRatio: "16 / 10",
           borderRadius: "12px",
@@ -536,115 +547,53 @@ function FeaturePreview({ scale = 1 }: { scale?: number }) {
           </span>
         </div>
 
-        <div style={{ padding: s(20) }}>
-          <span
-            className="inline-flex items-center"
-            style={{
-              backgroundColor: "#EAF2FD",
-              borderRadius: "999px",
-              padding: `${s(5)} ${s(10)}`,
-            }}
-          >
-            <svg
-              width={s(9)}
-              height={s(9)}
-              viewBox="0 0 12 12"
-              fill="none"
-              aria-hidden
-              style={{ marginRight: s(6) }}
-            >
-              <path
-                d="M6 0.5 L7.6 4 L11.5 4.5 L8.6 7.1 L9.4 11 L6 9.1 L2.6 11 L3.4 7.1 L0.5 4.5 L4.4 4 Z"
-                fill={BLUE}
-              />
-            </svg>
-            <span
-              style={{
-                fontSize: scale > 1 ? "0.75rem" : "0.5625rem",
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                color: BLUE,
-                lineHeight: 1.2,
-              }}
-            >
-              {AWARD_YEAR} Winner Feature
-            </span>
-          </span>
-
-          <h4
-            style={{
-              marginTop: s(12),
-              fontSize: scale > 1 ? "1.5rem" : "1.0625rem",
-              fontWeight: 600,
-              lineHeight: 1.25,
-              color: INK,
-              maxWidth: "22ch",
-            }}
-          >
-            How your business built something worth recognizing.
-          </h4>
-
+        <div
+          aria-hidden
+          style={{
+            transform: `scale(${zoom})`,
+            transformOrigin: "top left",
+            width: `${100 / zoom}%`,
+            padding: "32px 36px 0",
+          }}
+        >
           <p
             style={{
-              marginTop: s(6),
-              fontSize: scale > 1 ? "0.75rem" : "0.625rem",
-              color: MUTED,
+              fontSize: "12px",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.14em",
+              color: BLUE,
             }}
           >
-            By Entrepreneur Awards Editorial
+            {AWARD_YEAR} Winner Feature
           </p>
-
-          <div
-            className="feature-preview-split"
-            style={{ marginTop: s(16), display: "flex", gap: "4%" }}
+          <h4
+            style={{
+              marginTop: "14px",
+              fontSize: "38px",
+              fontWeight: 600,
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
+              color: INK,
+            }}
           >
-            <div
-              className="feature-preview-image"
-              style={{
-                width: "42%",
-                aspectRatio: "4 / 3",
-                borderRadius: "6px",
-                backgroundColor: "#F0F3F7",
-                flexShrink: 0,
-              }}
-            />
-            <div
-              className="feature-preview-bars"
-              style={{ width: "54%", display: "flex", flexDirection: "column", gap: s(9) }}
-            >
-              {topBars.map((w, i) => (
-                <Bar key={`t${i}`} w={w} />
-              ))}
-              <div style={{ display: "flex", alignItems: "stretch" }}>
-                <span
-                  style={{
-                    display: "block",
-                    width: "2px",
-                    borderRadius: "1px",
-                    backgroundColor: BLUE,
-                    flexShrink: 0,
-                  }}
-                />
-                <div
-                  style={{
-                    marginLeft: s(10),
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: s(9),
-                  }}
-                >
-                  <Bar w={86} />
-                  <Bar w={64} />
-                </div>
-              </div>
-              {bottomBars.map((w, i) => (
-                <Bar key={`b${i}`} w={w} />
-              ))}
-            </div>
+            {withSpecimenSlot(SPECIMEN_HEADLINE)}
+          </h4>
+          <p style={{ marginTop: "16px", fontSize: "15px", color: MUTED }}>{SPECIMEN_BYLINE}</p>
+          <div style={{ marginTop: "26px", display: "grid", gap: "22px" }}>
+            {SPECIMEN_OPENING_PARAGRAPHS.map((text) => (
+              <p key={text} style={{ fontSize: "19px", lineHeight: 1.7, color: "#1a1a1a" }}>
+                {withSpecimenSlot(text)}
+              </p>
+            ))}
           </div>
         </div>
+
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{ height: "33%", background: "linear-gradient(to bottom, #ffffff00, #ffffff)" }}
+        />
       </div>
 
       <p
