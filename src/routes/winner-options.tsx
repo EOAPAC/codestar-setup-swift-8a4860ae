@@ -856,8 +856,20 @@ function WinnerOptionsPage() {
                 >
                   The Winner&rsquo;s Feature &middot; {formatPrice(FEATURE_PRICE)}
                 </p>
-                <div className="mt-3">
-                  <ArticleTexture />
+                <div className="mt-3 rounded-xl" style={{ border: `1px solid ${LINE}`, padding: "24px", backgroundColor: "#fff" }}>
+                  <p style={{ fontSize: "16px", lineHeight: 1.65, color: "#1a1a1a" }}>
+                    A full written feature about your business, published at a permanent Entrepreneur Awards address. Sent to you for review before it goes live.
+                  </p>
+                  <a
+                    href="/winners/specimen"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-event="feature-format-view"
+                    className={`mt-4 inline-flex items-center gap-1 rounded-sm underline underline-offset-4 ${focusRing}`}
+                    style={{ color: BLUE, fontSize: "0.9375rem", fontWeight: 500 }}
+                  >
+                    Read a full example &rarr;
+                  </a>
                 </div>
               </div>
             </div>
