@@ -118,7 +118,40 @@ function Hero() {
   );
 }
 
-const publications = ["Inc.", "Fortune", "Business Insider", "TechCrunch", "Newsweek", "Sifted"];
+const SERIF = "Georgia, 'Times New Roman', serif";
+
+/** Publication wordmarks, each linking to the article about the award. */
+const publications: {
+  name: string;
+  href: string;
+  className: string;
+  style?: React.CSSProperties;
+}[] = [
+  {
+    name: "Vanity Fair",
+    href: "https://vanityfairgermany.com/entrepreneur-awards-is-quietly-rewiring-how-founders-earn-status/",
+    className: "text-[20px] uppercase tracking-[0.18em]",
+    style: { fontFamily: SERIF, fontWeight: 400 },
+  },
+  {
+    name: "VARIETY",
+    href: "https://variety.com.se/why-entrepreneur-awards-treats-founders-like-talent-not-studios/",
+    className: "text-[21px] tracking-[0.02em]",
+    style: { fontFamily: SERIF, fontWeight: 700 },
+  },
+  {
+    name: "FAST COMPANY",
+    href: "https://fastcompany.ph/entrepreneur-awards-has-taken-the-category-apart-and-rebuilt-it/",
+    className: "text-[19px] font-extrabold tracking-[-0.02em]",
+  },
+  {
+    name: "L'OFFICIEL",
+    href: "https://lofficiel-england.co.uk/entrepreneur-awards-makes-the-case-for-recognition-you-actually-keep/",
+    className: "text-[20px] tracking-[0.28em]",
+    style: { fontFamily: SERIF, fontWeight: 400 },
+  },
+];
+
 
 const proofPoints = [
   {
@@ -142,13 +175,21 @@ function CredibilityBand() {
         <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
           As seen in
         </p>
-        <div className="mt-6 grid grid-cols-3 justify-items-center gap-x-8 gap-y-6 md:flex md:flex-wrap md:justify-center md:gap-x-14">
-          {publications.map((name) => (
-            <span key={name} className="text-[20px] font-medium tracking-[0.02em] text-[#8A94A6]">
-              {name}
-            </span>
+        <div className="mt-6 grid grid-cols-2 justify-items-center gap-x-8 gap-y-6 md:flex md:flex-wrap md:items-center md:justify-center md:gap-x-14">
+          {publications.map((pub) => (
+            <a
+              key={pub.name}
+              href={pub.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-[#8A94A6] transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring ${pub.className}`}
+              style={pub.style}
+            >
+              {pub.name}
+            </a>
           ))}
         </div>
+
 
         <div className="mt-16 grid gap-10 md:grid-cols-3">
           {proofPoints.map((point) => (
