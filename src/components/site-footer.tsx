@@ -12,7 +12,6 @@ export function SiteFooter() {
 
 
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <Link to="/winners" className="hover:text-foreground">Winners</Link>
           <Link to="/criteria" className="hover:text-foreground">Criteria</Link>
           <Link to="/faq" className="hover:text-foreground">FAQ</Link>
           <Link to="/terms-and-conditions" className="hover:text-foreground">Terms and Conditions</Link>
