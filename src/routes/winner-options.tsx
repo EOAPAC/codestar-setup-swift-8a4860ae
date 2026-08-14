@@ -655,6 +655,10 @@ const specimenParagraphs = [
   "Faced with more work than its team could absorb, the founder declined to hire. The reasoning was not financial. It was that the quality customers were paying for lived in a small number of judgment calls made early in each engagement, and that those calls did not survive being handed to someone new.",
   "What followed was not a growth plan. It was an attempt to find out where the time was actually going. The founder rebuilt the intake process, the part of the work that happens before anything visible is produced.",
   "None of this is glamorous, and none of it is the kind of thing that gets written about. It is also, on the evidence submitted, what produced the result. Delivery time fell, and the judgment calls that mattered stayed with the person who made them best.",
+  "The distinction is worth sitting with. Plenty of businesses systematize the wrong half. They automate the judgment and keep the admin, and then wonder why the work stopped feeling like theirs.",
+  "The assessment does not reward intentions, and the entry was not selected because the story is appealing. What the panel could read was a documented change to a process, a measured reduction in delivery time that followed it, and client retention sustained across three consecutive years.",
+  "The scale of the business is modest and that is not incidental. Judged against sector, size and stage, the outcome is a stronger signal than the same figures would be from an operation with a service delivery team and a quality function.",
+  "Every feature like this carries a temptation to extract a lesson, and the honest answer is that the lesson does not generalize cleanly. What made it right here was a specific and correctly identified fact about where the value sat.",
 ];
 
 function ArticleTexture() {
