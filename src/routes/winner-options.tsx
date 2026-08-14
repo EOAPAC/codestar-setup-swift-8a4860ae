@@ -20,6 +20,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { AWARD_YEAR } from "@/content/award";
+import {
+  SPECIMEN_BUSINESS_TOKEN,
+  SPECIMEN_BYLINE,
+  SPECIMEN_HEADLINE,
+  SPECIMEN_OPENING_PARAGRAPHS,
+  splitOnBusinessToken,
+} from "@/content/specimen";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
 import commemorativeAsset from "@/assets/commemorative-edition.jpg.asset.json";
@@ -399,23 +406,54 @@ function FilledButton({
   );
 }
 
-/** Three-item reassurance row under a primary button. */
+/** Secondary button: white fill, blue outline. */
+function OutlineButton({
+  children,
+  onClick,
+  event,
+  full,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+  event: string;
+  full?: boolean;
+}) {
+  return (
+    <button
+      type="button"
+      data-event={event}
+      onClick={onClick}
+      className={`rounded-lg bg-white transition-colors hover:bg-[#1978E5]/[0.08] ${
+        full ? "w-full" : "w-full sm:w-auto"
+      } ${focusRing}`}
+      style={{
+        height: "48px",
+        padding: "0 24px",
+        border: `1px solid ${BLUE}`,
+        color: BLUE,
+        fontSize: "0.9375rem",
+        fontWeight: 500,
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
+/** Three-item reassurance list under a buy button. Never wraps one-then-two. */
 function Reassurance({ items }: { items: string[] }) {
   return (
     <ul
-      className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center"
+      className="mt-3 grid grid-cols-1 gap-2 lg:grid-cols-3"
       style={{ fontSize: "0.8125rem", color: MUTED }}
     >
-      {items.map((item, i) => (
-        <li key={item} className="flex items-center gap-2">
-          {i > 0 && (
-            <span
-              aria-hidden
-              className="hidden sm:block"
-              style={{ width: "1px", height: "12px", backgroundColor: LINE, marginRight: "4px" }}
-            />
-          )}
-          <Check aria-hidden style={{ width: "13px", height: "13px", color: BLUE }} />
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-2">
+          <Check
+            aria-hidden
+            className="mt-[3px] shrink-0"
+            style={{ width: "13px", height: "13px", color: BLUE }}
+          />
           <span>{item}</span>
         </li>
       ))}
@@ -424,40 +462,52 @@ function Reassurance({ items }: { items: string[] }) {
 }
 
 
-function CommemorativeVisual() {
+function CommemorativeVisual({ ratio = "4 / 3" }: { ratio?: string }) {
   return (
     <div
-      className="w-full overflow-hidden rounded-xl bg-[#F7F9FC]"
-      style={{ aspectRatio: "4 / 3", border: `1px solid ${LINE}` }}
+      className="w-full overflow-hidden rounded-xl"
+      style={{ aspectRatio: ratio, border: `1px solid ${LINE}`, backgroundColor: "#0B2545" }}
     >
       <img
         src={commemorativeAsset.url}
         alt="Engraved glass recognition object from the Commemorative Edition"
         loading="lazy"
-        className="h-full w-full object-cover"
+        className="h-full w-full object-contain"
+        style={{ padding: "18px" }}
       />
     </div>
   );
 }
 
-/** A browser frame previewing the published feature format. */
-function FeaturePreview({ scale = 1 }: { scale?: number }) {
-  const s = (n: number) => `${Math.round(n * scale)}px`;
-  const barH = scale > 1 ? 4 : 3;
-  const topBars = [100, 94, 88, 97, 72];
-  const bottomBars = [100, 91, 84];
-
-  const Bar = ({ w }: { w: number }) => (
+/** Inline slot chip standing in for the winner's business name. */
+function SpecimenSlot() {
+  return (
     <span
       style={{
-        display: "block",
-        width: `${w}%`,
-        height: `${barH}px`,
-        borderRadius: "2px",
-        backgroundColor: "#EDF0F4",
+        backgroundColor: "rgba(25,120,229,0.10)",
+        borderRadius: "4px",
+        padding: "0 2px",
       }}
-    />
+    >
+      {SPECIMEN_BUSINESS_TOKEN}
+    </span>
   );
+}
+
+function withSpecimenSlot(text: string) {
+  return splitOnBusinessToken(text).map((part, i) => (
+    <span key={i}>
+      {i > 0 ? <SpecimenSlot /> : null}
+      {part}
+    </span>
+  ));
+}
+
+/** A browser frame previewing the opening of a published feature. */
+function FeaturePreview({ scale = 1 }: { scale?: number }) {
+  const s = (n: number) => `${Math.round(n * scale)}px`;
+  // The article is rendered at full size and scaled down inside the frame.
+  const zoom = 0.45 * scale;
 
   return (
     <div className="w-full">
@@ -477,7 +527,7 @@ function FeaturePreview({ scale = 1 }: { scale?: number }) {
       <div
         role="img"
         aria-label="Preview of a published Winner's Feature page at entrepreneurawards.co/winners/your-business"
-        className="w-full overflow-hidden"
+        className="relative w-full overflow-hidden"
         style={{
           aspectRatio: "16 / 10",
           borderRadius: "12px",
@@ -536,115 +586,53 @@ function FeaturePreview({ scale = 1 }: { scale?: number }) {
           </span>
         </div>
 
-        <div style={{ padding: s(20) }}>
-          <span
-            className="inline-flex items-center"
-            style={{
-              backgroundColor: "#EAF2FD",
-              borderRadius: "999px",
-              padding: `${s(5)} ${s(10)}`,
-            }}
-          >
-            <svg
-              width={s(9)}
-              height={s(9)}
-              viewBox="0 0 12 12"
-              fill="none"
-              aria-hidden
-              style={{ marginRight: s(6) }}
-            >
-              <path
-                d="M6 0.5 L7.6 4 L11.5 4.5 L8.6 7.1 L9.4 11 L6 9.1 L2.6 11 L3.4 7.1 L0.5 4.5 L4.4 4 Z"
-                fill={BLUE}
-              />
-            </svg>
-            <span
-              style={{
-                fontSize: scale > 1 ? "0.75rem" : "0.5625rem",
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                color: BLUE,
-                lineHeight: 1.2,
-              }}
-            >
-              {AWARD_YEAR} Winner Feature
-            </span>
-          </span>
-
-          <h4
-            style={{
-              marginTop: s(12),
-              fontSize: scale > 1 ? "1.5rem" : "1.0625rem",
-              fontWeight: 600,
-              lineHeight: 1.25,
-              color: INK,
-              maxWidth: "22ch",
-            }}
-          >
-            How your business built something worth recognizing.
-          </h4>
-
+        <div
+          aria-hidden
+          style={{
+            transform: `scale(${zoom})`,
+            transformOrigin: "top left",
+            width: `${100 / zoom}%`,
+            padding: "32px 36px 0",
+          }}
+        >
           <p
             style={{
-              marginTop: s(6),
-              fontSize: scale > 1 ? "0.75rem" : "0.625rem",
-              color: MUTED,
+              fontSize: "12px",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.14em",
+              color: BLUE,
             }}
           >
-            By Entrepreneur Awards Editorial
+            {AWARD_YEAR} Winner Feature
           </p>
-
-          <div
-            className="feature-preview-split"
-            style={{ marginTop: s(16), display: "flex", gap: "4%" }}
+          <h4
+            style={{
+              marginTop: "14px",
+              fontSize: "38px",
+              fontWeight: 600,
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
+              color: INK,
+            }}
           >
-            <div
-              className="feature-preview-image"
-              style={{
-                width: "42%",
-                aspectRatio: "4 / 3",
-                borderRadius: "6px",
-                backgroundColor: "#F0F3F7",
-                flexShrink: 0,
-              }}
-            />
-            <div
-              className="feature-preview-bars"
-              style={{ width: "54%", display: "flex", flexDirection: "column", gap: s(9) }}
-            >
-              {topBars.map((w, i) => (
-                <Bar key={`t${i}`} w={w} />
-              ))}
-              <div style={{ display: "flex", alignItems: "stretch" }}>
-                <span
-                  style={{
-                    display: "block",
-                    width: "2px",
-                    borderRadius: "1px",
-                    backgroundColor: BLUE,
-                    flexShrink: 0,
-                  }}
-                />
-                <div
-                  style={{
-                    marginLeft: s(10),
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: s(9),
-                  }}
-                >
-                  <Bar w={86} />
-                  <Bar w={64} />
-                </div>
-              </div>
-              {bottomBars.map((w, i) => (
-                <Bar key={`b${i}`} w={w} />
-              ))}
-            </div>
+            {withSpecimenSlot(SPECIMEN_HEADLINE)}
+          </h4>
+          <p style={{ marginTop: "16px", fontSize: "15px", color: MUTED }}>{SPECIMEN_BYLINE}</p>
+          <div style={{ marginTop: "26px", display: "grid", gap: "22px" }}>
+            {SPECIMEN_OPENING_PARAGRAPHS.map((text) => (
+              <p key={text} style={{ fontSize: "19px", lineHeight: 1.7, color: "#1a1a1a" }}>
+                {withSpecimenSlot(text)}
+              </p>
+            ))}
           </div>
         </div>
+
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{ height: "33%", background: "linear-gradient(to bottom, #ffffff00, #ffffff)" }}
+        />
       </div>
 
       <p
@@ -667,6 +655,10 @@ const specimenParagraphs = [
   "Faced with more work than its team could absorb, the founder declined to hire. The reasoning was not financial. It was that the quality customers were paying for lived in a small number of judgment calls made early in each engagement, and that those calls did not survive being handed to someone new.",
   "What followed was not a growth plan. It was an attempt to find out where the time was actually going. The founder rebuilt the intake process, the part of the work that happens before anything visible is produced.",
   "None of this is glamorous, and none of it is the kind of thing that gets written about. It is also, on the evidence submitted, what produced the result. Delivery time fell, and the judgment calls that mattered stayed with the person who made them best.",
+  "The distinction is worth sitting with. Plenty of businesses systematize the wrong half. They automate the judgment and keep the admin, and then wonder why the work stopped feeling like theirs.",
+  "The assessment does not reward intentions, and the entry was not selected because the story is appealing. What the panel could read was a documented change to a process, a measured reduction in delivery time that followed it, and client retention sustained across three consecutive years.",
+  "The scale of the business is modest and that is not incidental. Judged against sector, size and stage, the outcome is a stronger signal than the same figures would be from an operation with a service delivery team and a quality function.",
+  "Every feature like this carries a temptation to extract a lesson, and the honest answer is that the lesson does not generalize cleanly. What made it right here was a specific and correctly identified fact about where the value sat.",
 ];
 
 function ArticleTexture() {
@@ -677,7 +669,7 @@ function ArticleTexture() {
         borderRadius: "12px",
         border: `1px solid ${LINE}`,
         backgroundColor: "#fff",
-        height: "360px",
+        height: "640px",
       }}
     >
       <div
@@ -762,7 +754,11 @@ function ArticleTexture() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0"
-        style={{ height: "33%", background: "linear-gradient(to bottom, #ffffff00, #ffffff)" }}
+        style={{
+          height: "45%",
+          background:
+            "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 45%, rgba(255,255,255,0.92) 78%, #ffffff 100%)",
+        }}
       />
     </div>
   );
@@ -819,23 +815,19 @@ function Confetti() {
 // ---------------------------------------------------------------- sticky bar
 
 function useStickyCtaVisible() {
-  const [visible, setVisible] = useState(false);
+  const [pastCards, setPastCards] = useState(false);
+  const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
     const update = () => {
       if (window.innerHeight < 480) {
-        setVisible(false);
+        setPastCards(false);
         return;
       }
       const comparison = document.getElementById("offer-cards");
-      const footer = document.getElementById("page-footer");
-      const finalCta = document.getElementById("final-cta");
-      const pastComparison = comparison
-        ? comparison.getBoundingClientRect().bottom < window.innerHeight * 0.9
-        : false;
-      const blockers = [footer, finalCta].filter(Boolean) as HTMLElement[];
-      const blocked = blockers.some((el) => el.getBoundingClientRect().top < window.innerHeight);
-      setVisible(pastComparison && !blocked);
+      setPastCards(
+        comparison ? comparison.getBoundingClientRect().bottom < window.innerHeight * 0.9 : false,
+      );
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -846,7 +838,29 @@ function useStickyCtaVisible() {
     };
   }, []);
 
-  return visible;
+  // Hide the bar as soon as the footer or the final CTA enters the viewport.
+  useEffect(() => {
+    const targets = ["page-footer", "final-cta"]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+    if (targets.length === 0) return;
+
+    const intersecting = new Set<Element>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) intersecting.add(entry.target);
+          else intersecting.delete(entry.target);
+        }
+        setBlocked(intersecting.size > 0);
+      },
+      { threshold: 0 },
+    );
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return pastCards && !blocked;
 }
 
 // ---------------------------------------------------------------- page
@@ -888,6 +902,16 @@ function WinnerOptionsPage() {
           background: ${LINE};
         }
         @media (max-width: 767px) { .ea-rule-behind::before { display: none; } }
+        .ea-half-bottom { padding-bottom: 28px !important; }
+        .ea-half-top { padding-top: 28px !important; }
+        @media (min-width: 768px) {
+          .ea-half-bottom { padding-bottom: 40px !important; }
+          .ea-half-top { padding-top: 40px !important; }
+        }
+        @media (min-width: 1024px) {
+          .ea-half-bottom { padding-bottom: 52px !important; }
+          .ea-half-top { padding-top: 52px !important; }
+        }
         .feature-preview-url { white-space: nowrap; }
         @media (max-width: 639px) {
           .feature-preview-url { white-space: normal; word-break: break-word; }
@@ -925,7 +949,7 @@ function WinnerOptionsPage() {
         </Container>
       </header>
 
-      <main ref={mainRef} style={{ paddingBottom: stickyVisible ? "0" : undefined }}>
+      <main ref={mainRef} className="max-[479px]:!pb-0" style={{ paddingBottom: "88px" }}>
         {/* Hero */}
         <Section hero className="relative overflow-hidden">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
@@ -1051,7 +1075,7 @@ function WinnerOptionsPage() {
         </Section>
 
         {/* Statement vs Feature */}
-        <Section>
+        <Section className="ea-half-bottom">
           <Container>
             <SectionHeading>What you already have, and what the Feature adds</SectionHeading>
 
@@ -1119,7 +1143,7 @@ function WinnerOptionsPage() {
         </Section>
 
         {/* Two-card comparison */}
-        <Section id="offer-cards">
+        <Section id="offer-cards" className="ea-half-top">
           <Container>
             <SectionHeading>One you can send. One you can hold.</SectionHeading>
             <Body className="mt-4">
@@ -1192,7 +1216,7 @@ function WinnerOptionsPage() {
                 className="flex h-full flex-col rounded-2xl bg-white"
                 style={{ border: `1px solid ${LINE}`, padding: "32px" }}
               >
-                <CommemorativeVisual />
+                <CommemorativeVisual ratio="16 / 9" />
                 <div style={{ marginTop: "24px" }}>
                   <Eyebrow>Commemorative Edition</Eyebrow>
                 </div>
@@ -1228,9 +1252,9 @@ function WinnerOptionsPage() {
                     One-time payment
                   </p>
                   <div style={{ marginTop: "20px" }}>
-                    <FilledButton full event="commemorative-select-click" onClick={handleSelect}>
+                    <OutlineButton full event="commemorative-select-click" onClick={handleSelect}>
                       Order the Commemorative Edition
-                    </FilledButton>
+                    </OutlineButton>
                   </div>
                   <Reassurance
                     items={[
@@ -1399,9 +1423,9 @@ function WinnerOptionsPage() {
                   One-time payment
                 </p>
                 <div style={{ marginTop: "20px" }}>
-                  <FilledButton event="commemorative-select-click" onClick={handleSelect}>
+                  <OutlineButton event="commemorative-select-click" onClick={handleSelect}>
                     Order the Commemorative Edition
-                  </FilledButton>
+                  </OutlineButton>
                 </div>
                 <Reassurance
                   items={[

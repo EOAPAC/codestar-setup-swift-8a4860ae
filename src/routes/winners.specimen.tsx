@@ -1,6 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { AWARD_YEAR } from "@/content/award";
+import {
+  SPECIMEN_BYLINE,
+  SPECIMEN_HEADLINE,
+  SPECIMEN_OPENING_PARAGRAPHS,
+  splitOnBusinessToken,
+} from "@/content/specimen";
 import markAsset from "@/assets/ea-mark.png.asset.json";
 
 export const Route = createFileRoute("/winners/specimen")({
@@ -52,27 +58,24 @@ function Slot() {
   );
 }
 
+/** Render text containing the business-name token with inline slot chips. */
+function withSlot(text: string): React.ReactNode {
+  const parts = splitOnBusinessToken(text);
+  return parts.map((part, i) => (
+    <span key={i}>
+      {i > 0 ? <Slot /> : null}
+      {part}
+    </span>
+  ));
+}
+
 type Block =
   | { kind: "p"; text: React.ReactNode }
   | { kind: "h"; text: string };
 
 const article: Block[] = [
-  {
-    kind: "p",
-    text: "Most companies at this stage solve a capacity problem the same way. Demand rises, the team strains, and the answer is more people. It is the fix every advisor recommends and the one most founders reach for, because it is the only lever that visibly moves.",
-  },
-  {
-    kind: "p",
-    text: (
-      <>
-        <Slot /> did the opposite, and the decision is the reason it was selected.
-      </>
-    ),
-  },
-  {
-    kind: "p",
-    text: "Faced with more work than its team could absorb, the founder declined to hire. The reasoning was not financial. It was that the quality customers were paying for lived in a small number of judgment calls made early in each engagement, and that those calls did not survive being handed to someone new. Adding people would have protected the revenue and quietly damaged the thing the revenue was for.",
-  },
+  ...SPECIMEN_OPENING_PARAGRAPHS.map((text) => ({ kind: "p" as const, text: withSlot(text) })),
+
   { kind: "h", text: "The constraint became the design brief" },
   {
     kind: "p",
@@ -205,7 +208,7 @@ function SpecimenPage() {
             color: INK,
           }}
         >
-          How <Slot /> Made Its Smallest Constraint The Reason Customers Stay
+          {withSlot(SPECIMEN_HEADLINE)}
         </h1>
 
         <p style={{ marginTop: "20px", fontSize: "1.125rem", lineHeight: 1.6, color: MUTED }}>
@@ -214,7 +217,7 @@ function SpecimenPage() {
         </p>
 
         <p style={{ marginTop: "24px", fontSize: "0.875rem", color: MUTED }}>
-          By Entrepreneur Awards Editorial
+          {SPECIMEN_BYLINE}
         </p>
 
         <div style={{ marginTop: "40px", height: "1px", backgroundColor: LINE }} />
