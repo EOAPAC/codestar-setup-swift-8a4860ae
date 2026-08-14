@@ -75,19 +75,18 @@ const materials: Material[] = [
 
 const commemorativeIncludes = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display — the printed counterpart to the digital certificate above",
 ];
 
 const commemorativeIncludesDetailed = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display — the printed counterpart to the digital certificate above",
 ];
 
 const featureIncludes = [
   "A full written feature about your business",
   "Your review before publication",
   "Publication at a permanent Entrepreneur Awards address",
-  "A printed edition of your feature, with the address printed on it",
 ];
 
 const processSteps = [
@@ -100,7 +99,7 @@ const processSteps = [
   {
     number: "03",
     title: "Publish and present",
-    body: "After approval, the feature is published at its permanent address and your printed edition is prepared.",
+    body: "After approval, the feature is published at its permanent address and the link is yours to use.",
   },
 ];
 
@@ -111,11 +110,11 @@ const faqs = [
   },
   {
     q: "What is the difference between the Commemorative Edition and the Winner's Feature?",
-    a: "The Commemorative Edition is the physical record — an engraved object and a printed certificate. The Winner's Feature is the published one — a written feature about your business at a permanent address, with a printed edition of it. They are separate. Neither includes the other.",
+    a: "The Commemorative Edition is the physical record — an engraved object and a printed certificate. The Winner's Feature is the published one — a written feature about your business at a permanent address. They are separate. Neither includes the other.",
   },
   {
     q: "Can I choose both?",
-    a: "Yes. They are separate, so either can be chosen on its own, or both together. Taken together they are sent in a single box, which is why the combined price is a little lower than buying them separately. Neither is a level of the other, and neither changes the award you were given.",
+    a: "Yes. They are separate, so either can be chosen on its own, or both together. The Commemorative Edition is a physical record; the Winner's Feature is a published one. Neither is a level of the other, and neither changes the award you were given.",
   },
   {
     q: "What is the difference between my award statement and the feature?",
