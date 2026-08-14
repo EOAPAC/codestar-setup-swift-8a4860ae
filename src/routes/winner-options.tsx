@@ -731,7 +731,8 @@ function WinnerOptionsPage() {
               >
                 Your award statement &mdash; the short, formal lines explaining what was
                 assessed and why your entry was selected &mdash; is included in your award email.
-                Your certificate, winner seal and graphics are available below.
+                Your certificate is sent with that email. Your winner seal and graphics are
+                available below.
               </p>
             </div>
           </Container>
