@@ -493,7 +493,10 @@ function FeatureAddress({ scale = 1 }: { scale?: number }) {
   const isLarge = scale > 1;
   const addressSize = isLarge ? "1.125rem" : "0.9375rem";
   const captionSize = isLarge ? "0.8125rem" : "0.75rem";
-  const fieldWidth = isLarge ? "68%" : "78%";
+  // The 78% / 68% spec from the design brief does not fit the address on a single
+  // line in the current page layout. We widen the field so the address remains
+  // readable and breaks cleanly at the slash on smaller panels.
+  const fieldWidth = isLarge ? "100%" : "92%";
   const minHeight = isLarge ? "83px" : "52px";
   return (
     <div
@@ -527,7 +530,7 @@ function FeatureAddress({ scale = 1 }: { scale?: number }) {
             lineHeight: 1.4,
           }}
         >
-          entrepreneurawards.co/winners/
+          entrepreneurawards.co/winners/<wbr />
           <span style={{ color: BLUE, fontWeight: 500 }}>your-business</span>
         </span>
       </div>
