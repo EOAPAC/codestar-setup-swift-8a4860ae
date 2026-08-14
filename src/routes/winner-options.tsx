@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect } from "react";
-import { Download } from "lucide-react";
+import { useEffect, type CSSProperties } from "react";
+import { Download, Star } from "lucide-react";
 import { toast } from "sonner";
 import {
   Accordion,
