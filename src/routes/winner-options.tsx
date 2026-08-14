@@ -117,12 +117,12 @@ const materials: Material[] = [
 
 const commemorativeIncludes = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display — the printed counterpart to the digital certificate above",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
 ];
 
 const commemorativeIncludesDetailed = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display — the printed counterpart to the digital certificate above",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
 ];
 
 const featureIncludes = [
