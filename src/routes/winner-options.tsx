@@ -1481,18 +1481,23 @@ function WinnerOptionsPage() {
               className="mt-10 overflow-hidden rounded-xl bg-white"
               style={{ border: `1px solid ${LINE}` }}
             >
-              <ul className="grid grid-cols-1 min-[900px]:grid-flow-col min-[900px]:grid-cols-2 min-[900px]:grid-rows-3">
+              <ul
+                className="grid grid-cols-1"
+                style={{
+                  borderColor: LINE,
+                }}
+              >
                 {materials.map((m, i) => {
-                  const lastInColumn = i === 2 || i === materials.length - 1;
+                  const isLast = i === materials.length - 1;
                   return (
                     <li
                       key={m.id}
-                      className={`flex items-center gap-4 ${
-                        i < materials.length - 1 ? "border-b" : ""
-                      } ${i < 3 ? "min-[900px]:border-r" : ""} ${
-                        lastInColumn ? "min-[900px]:border-b-0" : ""
-                      }`}
-                      style={{ height: "72px", padding: "0 20px", borderColor: LINE }}
+                      className={`flex items-center gap-4 ${isLast ? "" : "border-b"}`}
+                      style={{
+                        minHeight: "72px",
+                        padding: "16px 20px",
+                        borderColor: LINE,
+                      }}
                     >
                       <span
                         style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
