@@ -754,7 +754,11 @@ function ArticleTexture() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0"
-        style={{ height: "33%", background: "linear-gradient(to bottom, #ffffff00, #ffffff)" }}
+        style={{
+          height: "45%",
+          background:
+            "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 45%, rgba(255,255,255,0.92) 78%, #ffffff 100%)",
+        }}
       />
     </div>
   );
