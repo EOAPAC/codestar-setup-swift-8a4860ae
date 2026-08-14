@@ -168,16 +168,18 @@ function Section({
   tint,
   id,
   hero,
+  className,
 }: {
   children: React.ReactNode;
   tint?: boolean;
   id?: string;
   hero?: boolean;
+  className?: string;
 }) {
   return (
     <section
       id={id}
-      className={hero ? "ea-hero-pad" : "ea-section-pad"}
+      className={`${hero ? "ea-hero-pad" : "ea-section-pad"} ${className ?? ""}`}
       style={{ backgroundColor: tint ? TINT : "#FFFFFF", scrollMarginTop: "24px" }}
     >
       {children}
