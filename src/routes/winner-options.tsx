@@ -421,22 +421,24 @@ function FilledButton({
   );
 }
 
-/** Outline thumbnail drawn in the asset's own aspect ratio. */
-function AssetThumb({ ratio }: { ratio: number }) {
+/** Thumbnail of the actual asset, drawn in its own aspect ratio. */
+function AssetThumb({ ratio, src, alt }: { ratio: number; src: string; alt: string }) {
   const height = 44;
   return (
     <span
-      aria-hidden="true"
-      className="block shrink-0 rounded-[6px]"
+      className="flex shrink-0 items-center justify-center overflow-hidden rounded-[6px]"
       style={{
         height: `${height}px`,
         width: `${Math.round(height * ratio)}px`,
         border: `1.5px solid ${BLUE}59`,
         backgroundColor: TINT,
       }}
-    />
+    >
+      <img src={src} alt={alt} loading="lazy" className="h-full w-full object-contain" />
+    </span>
   );
 }
+
 
 /** Abstract composition standing in for the physical edition. */
 function CommemorativeVisual() {
