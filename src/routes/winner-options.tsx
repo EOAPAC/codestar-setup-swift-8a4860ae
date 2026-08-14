@@ -8,14 +8,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
 import sealAsset from "@/assets/ea-winner-seal-full-1200.png.asset.json";
