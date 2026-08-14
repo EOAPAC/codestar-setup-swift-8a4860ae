@@ -1,6 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { AWARD_YEAR } from "@/content/award";
+import {
+  SPECIMEN_BYLINE,
+  SPECIMEN_HEADLINE,
+  SPECIMEN_OPENING_PARAGRAPHS,
+  splitOnBusinessToken,
+} from "@/content/specimen";
 import markAsset from "@/assets/ea-mark.png.asset.json";
 
 export const Route = createFileRoute("/winners/specimen")({
@@ -202,7 +208,7 @@ function SpecimenPage() {
             color: INK,
           }}
         >
-          How <Slot /> Made Its Smallest Constraint The Reason Customers Stay
+          {withSlot(SPECIMEN_HEADLINE)}
         </h1>
 
         <p style={{ marginTop: "20px", fontSize: "1.125rem", lineHeight: 1.6, color: MUTED }}>
@@ -211,7 +217,7 @@ function SpecimenPage() {
         </p>
 
         <p style={{ marginTop: "24px", fontSize: "0.875rem", color: MUTED }}>
-          By Entrepreneur Awards Editorial
+          {SPECIMEN_BYLINE}
         </p>
 
         <div style={{ marginTop: "40px", height: "1px", backgroundColor: LINE }} />
