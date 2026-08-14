@@ -1,6 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, type CSSProperties } from "react";
-import { Download, Star } from "lucide-react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  Check,
+  ChevronDown,
+  Download,
+  FileText,
+  Handshake,
+  Linkedin,
+  Mail,
+  MessageCircle,
+  Mic,
+  Star,
+} from "lucide-react";
 import { toast } from "sonner";
 import {
   Accordion,
@@ -8,6 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AWARD_YEAR } from "@/content/award";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
 import sealAsset from "@/assets/ea-winner-seal-full-1200.png.asset.json";
@@ -16,7 +28,6 @@ import squareAsset from "@/assets/ea-winner-social-IG_Post-2.png.asset.json";
 import storyAsset from "@/assets/ea-winner-social-IG_story-2.png.asset.json";
 import signatureAsset from "@/assets/ea-winner-emailsig-full-600x200-2.png.asset.json";
 import commemorativeAsset from "@/assets/commemorative-edition.jpg.asset.json";
-
 
 export const Route = createFileRoute("/winner-options")({
   head: () => ({
@@ -42,16 +53,20 @@ export const Route = createFileRoute("/winner-options")({
 });
 
 // ------------------------------------------------------------- tokens
-// Exact values from the design pass. Kept local to this page.
 const INK = "#0F172A";
 const BODY = "#52606D";
-const MUTED = "#7A8794";
+const MUTED = "#6B7785";
 const BLUE = "#1978E5";
-const LINE = "#E6EAF0";
+const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
+
+// Price constants — single source of truth for every price on the page.
+const COMMEMORATIVE_PRICE = 195;
+const FEATURE_PRICE = 595;
+const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 
 // ---------------------------------------------------------------- data
 
@@ -59,7 +74,6 @@ type Material = {
   id: string;
   title: string;
   fileType: string;
-  /** width / height of the asset itself, used to size the thumbnail */
   ratio: number;
   src: string;
   alt: string;
@@ -72,7 +86,7 @@ const materials: Material[] = [
     fileType: "PNG",
     ratio: 1,
     src: sealAsset.url,
-    alt: "Entrepreneur Awards 2026 winner seal",
+    alt: `Entrepreneur Awards ${AWARD_YEAR} winner seal`,
   },
   {
     id: "banner",
@@ -80,7 +94,7 @@ const materials: Material[] = [
     fileType: "PNG",
     ratio: 1200 / 630,
     src: linkedinAsset.url,
-    alt: "Entrepreneur Awards 2026 winner LinkedIn banner",
+    alt: `Entrepreneur Awards ${AWARD_YEAR} winner LinkedIn banner`,
   },
   {
     id: "square",
@@ -88,7 +102,7 @@ const materials: Material[] = [
     fileType: "PNG",
     ratio: 1,
     src: squareAsset.url,
-    alt: "Entrepreneur Awards 2026 winner square social post",
+    alt: `Entrepreneur Awards ${AWARD_YEAR} winner square social post`,
   },
   {
     id: "story",
@@ -96,7 +110,7 @@ const materials: Material[] = [
     fileType: "PNG",
     ratio: 9 / 16,
     src: storyAsset.url,
-    alt: "Entrepreneur Awards 2026 winner story graphic",
+    alt: `Entrepreneur Awards ${AWARD_YEAR} winner story graphic`,
   },
   {
     id: "signature",
@@ -104,17 +118,11 @@ const materials: Material[] = [
     fileType: "PNG",
     ratio: 3,
     src: signatureAsset.url,
-    alt: "Entrepreneur Awards 2026 winner email signature",
+    alt: `Entrepreneur Awards ${AWARD_YEAR} winner email signature`,
   },
 ];
 
-
 const commemorativeIncludes = [
-  "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
-];
-
-const commemorativeIncludesDetailed = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
   "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
 ];
@@ -126,20 +134,70 @@ const featureIncludes = [
 ];
 
 const processSteps = [
-  { number: "01", title: "Order", body: "Choose the Winner's Feature." },
+  {
+    number: "01",
+    title: "Order",
+    body: "Choose the Winner's Feature. Nothing else is needed from you yet.",
+  },
   {
     number: "02",
-    title: "Review",
-    body: "We prepare the feature from your entry and your award statement, then share it for your review and factual corrections.",
+    title: "We write it",
+    body: "We prepare the feature from your entry and your award statement. Your draft reaches you within 5 business days.",
   },
   {
     number: "03",
-    title: "Publish and present",
-    body: "After approval, the feature is published at its permanent address and the link is yours to use.",
+    title: "You review",
+    body: "You read it, correct anything factual, and approve. Nothing is published without that approval.",
+  },
+  {
+    number: "04",
+    title: "Published",
+    body: "Live at its permanent address within 3 business days of your approval. The link is yours from that moment.",
+  },
+];
+
+const linkUses = [
+  {
+    icon: Mail,
+    label: "Your email signature",
+    body: "One line under your name, for every email you send.",
+  },
+  {
+    icon: FileText,
+    label: "A proposal or pitch deck",
+    body: "A third-party page you can point to instead of describing yourself.",
+  },
+  {
+    icon: Linkedin,
+    label: "Your LinkedIn featured section",
+    body: "Pinned to the top of your profile, permanently.",
+  },
+  {
+    icon: Handshake,
+    label: "An investor or board update",
+    body: "Something written by someone other than you.",
+  },
+  {
+    icon: Mic,
+    label: "A speaker or contributor bio",
+    body: "The link organizers and editors ask for.",
+  },
+  {
+    icon: MessageCircle,
+    label: 'The "so what do you do?" reply',
+    body: "One URL that answers it properly.",
   },
 ];
 
 const faqs = [
+  {
+    q: "What is the difference between my award statement and the feature?",
+    a: "Your award statement is the short, formal wording explaining why your entry was selected. The feature is a fuller, optional piece about the business behind that recognition.",
+  },
+  {
+    q: "Will I review the feature before it is published?",
+    a: "Yes. The feature is shared with you for review and factual corrections before publication.",
+  },
   {
     q: "Do I need to choose an edition to keep my Entrepreneur Award?",
     a: "No. Your selection, award statement, certificate, seal and winner graphics are included with your award and remain yours permanently.",
@@ -150,15 +208,7 @@ const faqs = [
   },
   {
     q: "Can I choose both?",
-    a: "Yes. They are separate, so either can be chosen on its own, or both together. The Commemorative Edition is a physical record; the Winner's Feature is a published one. Neither is a level of the other, and neither changes the award you were given.",
-  },
-  {
-    q: "What is the difference between my award statement and the feature?",
-    a: "Your award statement is the short, formal wording explaining why your entry was selected. The feature is a fuller, optional piece about the business behind that recognition.",
-  },
-  {
-    q: "Will I review the feature before it is published?",
-    a: "Yes. The feature is shared with you for review and factual corrections before publication.",
+    a: "Yes. They are separate, so either can be chosen on its own, or both together. Neither is a level of the other, and neither changes the award you were given.",
   },
   {
     q: "Where will the feature be published?",
@@ -169,6 +219,8 @@ const faqs = [
     a: "No. Each edition is separate from the award itself. Your Entrepreneur Award remains exactly the same whether you choose an edition or not.",
   },
 ];
+
+export const AWARD_STATEMENT_SPECIMEN = `The ${AWARD_YEAR} Entrepreneur Award recognizes ‹Your Business› for building a service operation that grew without adding headcount, evidenced by client retention sustained across three consecutive years and a documented reduction in delivery time following the redesign of its intake process. Assessed on the measurable outcome, its consistency over time, and the founder's direct role in producing it.`;
 
 // ------------------------------------------------------------ utilities
 
@@ -198,7 +250,6 @@ function Container({
   );
 }
 
-/** Section padding: 128 / 88 / 64 with a hero override. */
 function Section({
   children,
   tint,
@@ -359,49 +410,25 @@ function GhostDownload({ id, onClick }: { id: string; onClick: () => void }) {
   );
 }
 
-function SecondaryButton({
-  children,
-  onClick,
-  event,
-}: {
-  children: React.ReactNode;
-  onClick: () => void;
-  event: string;
-}) {
-  return (
-    <button
-      type="button"
-      data-event={event}
-      onClick={onClick}
-      className={`w-full rounded-lg bg-transparent transition-colors hover:bg-[#1978E5]/[0.06] ${focusRing}`}
-      style={{
-        height: "44px",
-        border: `1px solid ${BLUE}`,
-        color: BLUE,
-        fontSize: "0.9375rem",
-        fontWeight: 500,
-      }}
-    >
-      {children}
-    </button>
-  );
-}
-
 function FilledButton({
   children,
   onClick,
   event,
+  full,
 }: {
   children: React.ReactNode;
   onClick: () => void;
   event: string;
+  full?: boolean;
 }) {
   return (
     <button
       type="button"
       data-event={event}
       onClick={onClick}
-      className={`w-full rounded-lg text-white transition-colors hover:bg-[#1568D0] sm:w-auto ${focusRing}`}
+      className={`rounded-lg text-white transition-colors hover:bg-[#1568D0] ${
+        full ? "w-full" : "w-full sm:w-auto"
+      } ${focusRing}`}
       style={{
         height: "48px",
         padding: "0 24px",
@@ -412,6 +439,30 @@ function FilledButton({
     >
       {children}
     </button>
+  );
+}
+
+/** Three-item reassurance row under a primary button. */
+function Reassurance({ items }: { items: string[] }) {
+  return (
+    <ul
+      className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center"
+      style={{ fontSize: "0.8125rem", color: MUTED }}
+    >
+      {items.map((item, i) => (
+        <li key={item} className="flex items-center gap-2">
+          {i > 0 && (
+            <span
+              aria-hidden
+              className="hidden sm:block"
+              style={{ width: "1px", height: "12px", backgroundColor: LINE, marginRight: "4px" }}
+            />
+          )}
+          <Check aria-hidden style={{ width: "13px", height: "13px", color: BLUE }} />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -433,8 +484,6 @@ function AssetThumb({ ratio, src, alt }: { ratio: number; src: string; alt: stri
   );
 }
 
-
-/** Abstract composition standing in for the physical edition. */
 function CommemorativeVisual() {
   return (
     <div
@@ -451,9 +500,8 @@ function CommemorativeVisual() {
   );
 }
 
-
 /** A browser frame previewing the published feature format. */
-function FeatureAddress({ scale = 1 }: { scale?: number }) {
+function FeaturePreview({ scale = 1 }: { scale?: number }) {
   const s = (n: number) => `${Math.round(n * scale)}px`;
   const barH = scale > 1 ? 4 : 3;
   const topBars = [100, 94, 88, 97, 72];
@@ -497,7 +545,6 @@ function FeatureAddress({ scale = 1 }: { scale?: number }) {
           backgroundColor: "#fff",
         }}
       >
-        {/* chrome bar */}
         <div
           className="flex items-center"
           style={{
@@ -549,7 +596,6 @@ function FeatureAddress({ scale = 1 }: { scale?: number }) {
           </span>
         </div>
 
-        {/* page area */}
         <div style={{ padding: s(20) }}>
           <span
             className="inline-flex items-center"
@@ -567,7 +613,10 @@ function FeatureAddress({ scale = 1 }: { scale?: number }) {
               aria-hidden
               style={{ marginRight: s(6) }}
             >
-              <path d="M6 0.5 L7.6 4 L11.5 4.5 L8.6 7.1 L9.4 11 L6 9.1 L2.6 11 L3.4 7.1 L0.5 4.5 L4.4 4 Z" fill={BLUE} />
+              <path
+                d="M6 0.5 L7.6 4 L11.5 4.5 L8.6 7.1 L9.4 11 L6 9.1 L2.6 11 L3.4 7.1 L0.5 4.5 L4.4 4 Z"
+                fill={BLUE}
+              />
             </svg>
             <span
               style={{
@@ -579,7 +628,7 @@ function FeatureAddress({ scale = 1 }: { scale?: number }) {
                 lineHeight: 1.2,
               }}
             >
-              2026 Winner Feature
+              {AWARD_YEAR} Winner Feature
             </span>
           </span>
 
@@ -593,7 +642,7 @@ function FeatureAddress({ scale = 1 }: { scale?: number }) {
               maxWidth: "22ch",
             }}
           >
-            How your business built something worth recognising.
+            How your business built something worth recognizing.
           </h4>
 
           <p
@@ -672,14 +721,122 @@ function FeatureAddress({ scale = 1 }: { scale?: number }) {
   );
 }
 
+/** Scaled-down full article page, used only to show length as texture. */
+const specimenParagraphs = [
+  "Most companies at this stage solve a capacity problem the same way. Demand rises, the team strains, and the answer is more people. It is the fix every advisor recommends and the one most founders reach for, because it is the only lever that visibly moves.",
+  "Faced with more work than its team could absorb, the founder declined to hire. The reasoning was not financial. It was that the quality customers were paying for lived in a small number of judgment calls made early in each engagement, and that those calls did not survive being handed to someone new.",
+  "What followed was not a growth plan. It was an attempt to find out where the time was actually going. The founder rebuilt the intake process, the part of the work that happens before anything visible is produced.",
+  "None of this is glamorous, and none of it is the kind of thing that gets written about. It is also, on the evidence submitted, what produced the result. Delivery time fell, and the judgment calls that mattered stayed with the person who made them best.",
+];
 
+function ArticleTexture() {
+  return (
+    <div
+      className="relative overflow-hidden"
+      style={{
+        borderRadius: "12px",
+        border: `1px solid ${LINE}`,
+        backgroundColor: "#fff",
+        height: "360px",
+      }}
+    >
+      <div
+        className="flex items-center"
+        style={{
+          height: "28px",
+          backgroundColor: TINT,
+          borderBottom: `1px solid ${LINE}`,
+          padding: "0 12px",
+          gap: "8px",
+        }}
+      >
+        <span className="flex shrink-0 items-center" style={{ gap: "5px" }}>
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              style={{
+                display: "block",
+                width: "6px",
+                height: "6px",
+                borderRadius: "999px",
+                backgroundColor: LINE,
+              }}
+            />
+          ))}
+        </span>
+        <span
+          className="min-w-0 flex-1 truncate"
+          style={{
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+            fontSize: "0.625rem",
+            color: MUTED,
+          }}
+        >
+          entrepreneurawards.co/winners/<span style={{ color: BLUE }}>your-business</span>
+        </span>
+      </div>
+
+      <div
+        aria-hidden
+        style={{
+          transform: "scale(0.4)",
+          transformOrigin: "top left",
+          width: "250%",
+          padding: "36px 40px 0",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "1.375rem",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: BLUE,
+          }}
+        >
+          {AWARD_YEAR} Winner Feature
+        </p>
+        <h4
+          style={{
+            marginTop: "18px",
+            fontSize: "3rem",
+            fontWeight: 600,
+            lineHeight: 1.15,
+            color: INK,
+          }}
+        >
+          How ‹Your Business› Made Its Smallest Constraint The Reason Customers Stay
+        </h4>
+        <p style={{ marginTop: "18px", fontSize: "1.5rem", color: MUTED }}>
+          By Entrepreneur Awards Editorial
+        </p>
+        <div style={{ marginTop: "28px", display: "grid", gap: "24px" }}>
+          {specimenParagraphs.map((p) => (
+            <p key={p} style={{ fontSize: "1.75rem", lineHeight: 1.7, color: "#1a1a1a" }}>
+              {p}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0"
+        style={{ height: "33%", background: "linear-gradient(to bottom, #ffffff00, #ffffff)" }}
+      />
+    </div>
+  );
+}
 
 // ---------------------------------------------------------------- confetti
 
 function Confetti() {
   const dots = Array.from({ length: 24 });
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden motion-reduce:hidden">
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 overflow-hidden motion-reduce:hidden"
+    >
       {dots.map((_, i) => {
         const left = (i * 41) % 100;
         const delay = (i % 8) * 0.5;
@@ -693,16 +850,18 @@ function Confetti() {
           <span
             key={i}
             className="absolute block rounded-[1px] opacity-80"
-            style={{
-              left: `${left}%`,
-              top: "-10%",
-              width: `${size}px`,
-              height: `${size * 1.6}px`,
-              backgroundColor: color,
-              transform: `rotate(${rotate}deg)`,
-              animation: `ea-confetti-fall ${duration}s linear ${delay}s infinite`,
-              "--ea-drift": `${drift * 40}px`,
-            } as CSSProperties}
+            style={
+              {
+                left: `${left}%`,
+                top: "-10%",
+                width: `${size}px`,
+                height: `${size * 1.6}px`,
+                backgroundColor: color,
+                transform: `rotate(${rotate}deg)`,
+                animation: `ea-confetti-fall ${duration}s linear ${delay}s infinite`,
+                "--ea-drift": `${drift * 40}px`,
+              } as CSSProperties
+            }
           />
         );
       })}
@@ -710,31 +869,59 @@ function Confetti() {
         @keyframes ea-confetti-fall {
           0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
           8% { opacity: 0.95; }
-          100% { transform: translateY(460px) translateX(var(--ea-drift, 0px)) rotate(720deg); opacity: 0; }
+          100% { transform: translateY(360px) translateX(var(--ea-drift, 0px)) rotate(720deg); opacity: 0; }
         }
       `}</style>
     </div>
   );
 }
 
+// ---------------------------------------------------------------- sticky bar
+
+function useStickyCtaVisible() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const update = () => {
+      if (window.innerHeight < 480) {
+        setVisible(false);
+        return;
+      }
+      const comparison = document.getElementById("offer-cards");
+      const footer = document.getElementById("page-footer");
+      const finalCta = document.getElementById("final-cta");
+      const pastComparison = comparison
+        ? comparison.getBoundingClientRect().bottom < window.innerHeight * 0.9
+        : false;
+      const blockers = [footer, finalCta].filter(Boolean) as HTMLElement[];
+      const blocked = blockers.some((el) => el.getBoundingClientRect().top < window.innerHeight);
+      setVisible(pastComparison && !blocked);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  return visible;
+}
+
 // ---------------------------------------------------------------- page
 
 function WinnerOptionsPage() {
+  const stickyVisible = useStickyCtaVisible();
+  const mainRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    // analytics-ready page view marker
     document.body.setAttribute("data-page-event", "pricing-page-view");
     return () => document.body.removeAttribute("data-page-event");
   }, []);
 
   const handleDownload = () => toast("Your download will be available here.");
   const handleSelect = () => toast("This selection page will be connected shortly.");
-
-  // Price constants — single source of truth for every price on the page.
-  const COMMEMORATIVE_PRICE = 195;
-  const FEATURE_PRICE = 595;
-  const BOTH_PRICE = 750;
-  const formatPrice = (n: number) => `$${n.toLocaleString()}`;
-  const bothComparePrice = COMMEMORATIVE_PRICE + FEATURE_PRICE;
 
   return (
     <div
@@ -743,15 +930,15 @@ function WinnerOptionsPage() {
       style={{ backgroundColor: "#fff", color: BODY }}
     >
       <style>{`
-        .ea-section-pad { padding-top: 64px; padding-bottom: 64px; }
-        .ea-hero-pad { padding-top: 64px; padding-bottom: 64px; }
+        .ea-section-pad { padding-top: 56px; padding-bottom: 56px; }
+        .ea-hero-pad { padding-top: 48px; padding-bottom: 40px; }
         @media (min-width: 768px) {
-          .ea-section-pad { padding-top: 88px; padding-bottom: 88px; }
-          .ea-hero-pad { padding-top: 104px; padding-bottom: 88px; }
+          .ea-section-pad { padding-top: 80px; padding-bottom: 80px; }
+          .ea-hero-pad { padding-top: 64px; padding-bottom: 48px; }
         }
         @media (min-width: 1024px) {
-          .ea-section-pad { padding-top: 128px; padding-bottom: 128px; }
-          .ea-hero-pad { padding-top: 160px; padding-bottom: 128px; }
+          .ea-section-pad { padding-top: 104px; padding-bottom: 104px; }
+          .ea-hero-pad { padding-top: 80px; padding-bottom: 56px; }
         }
         .ea-rule-behind::before {
           content: "";
@@ -761,23 +948,22 @@ function WinnerOptionsPage() {
           background: ${LINE};
         }
         @media (max-width: 767px) { .ea-rule-behind::before { display: none; } }
-        .feature-preview-url {
-          white-space: nowrap;
-        }
+        .feature-preview-url { white-space: nowrap; }
         @media (max-width: 639px) {
-          .feature-preview-url {
-            white-space: normal;
-            word-break: break-word;
-          }
-          .feature-preview-split {
-            flex-direction: column;
-          }
+          .feature-preview-url { white-space: normal; word-break: break-word; }
+          .feature-preview-split { flex-direction: column; }
           .feature-preview-image,
-          .feature-preview-bars {
-            width: 100% !important;
-          }
+          .feature-preview-bars { width: 100% !important; }
         }
-
+        @keyframes ea-chevron-loop {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(6px); }
+        }
+        .ea-chevron { animation: ea-chevron-loop 2s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) {
+          .ea-chevron { animation: none; }
+          .ea-sticky { transition: none !important; }
+        }
       `}</style>
 
       {/* Header */}
@@ -799,24 +985,19 @@ function WinnerOptionsPage() {
         </Container>
       </header>
 
-      <main>
-        {/* Hero — celebratory, with confetti and blue glow */}
+      <main ref={mainRef} style={{ paddingBottom: stickyVisible ? "0" : undefined }}>
+        {/* Hero */}
         <Section hero className="relative overflow-hidden">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
             <div
-              className="absolute left-1/2 top-[-10rem] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full blur-3xl"
+              className="absolute left-1/2 top-[-14rem] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full blur-3xl"
               style={{ backgroundColor: `${BLUE}26` }}
-            />
-            <div
-              className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2"
-              style={{
-                background: `radial-gradient(ellipse_at_top, ${BLUE}1A, transparent 60%)`,
-              }}
             />
             <div
               className="absolute inset-0 opacity-[0.035]"
               style={{
-                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+                backgroundImage:
+                  "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
                 backgroundSize: "22px 22px",
                 color: INK,
               }}
@@ -826,19 +1007,21 @@ function WinnerOptionsPage() {
           <Confetti />
 
           <Container narrow={768}>
-            <div className="mx-auto flex flex-col items-center text-center" style={{ maxWidth: "720px" }}>
+            <div
+              className="mx-auto flex flex-col items-center text-center"
+              style={{ maxWidth: "720px" }}
+            >
               <span
-                className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] shadow-lg"
+                className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em]"
                 style={{ borderColor: `${BLUE}4D`, backgroundColor: BLUE, color: "#fff" }}
               >
                 <Star className="h-3.5 w-3.5 fill-current" aria-hidden />
-                2026 Entrepreneur Award
+                {AWARD_YEAR} Entrepreneur Award
               </span>
-              <Eyebrow style={{ marginTop: "24px" }}>Entrepreneur Awards</Eyebrow>
               <h1
                 style={{
-                  marginTop: "24px",
-                  fontSize: "clamp(2.75rem, 5vw, 4rem)",
+                  marginTop: "20px",
+                  fontSize: "clamp(2.25rem, 4.2vw, 3.25rem)",
                   fontWeight: 600,
                   lineHeight: 1.05,
                   letterSpacing: "-0.02em",
@@ -849,107 +1032,221 @@ function WinnerOptionsPage() {
               </h1>
               <p
                 style={{
-                  marginTop: "20px",
-                  fontSize: "1.125rem",
+                  marginTop: "16px",
+                  fontSize: "1.0625rem",
                   lineHeight: 1.6,
-                  color: MUTED,
-                  maxWidth: "640px",
+                  color: BODY,
+                  maxWidth: "600px",
                 }}
               >
-                Your award statement &mdash; the short, formal lines explaining what was
-                assessed and why your entry was selected &mdash; is included in your award email.
-                Your certificate is sent with that email. Your winner seal and graphics are
-                available below.
+                Your award statement and certificate are in your award email. Your winner seal and
+                graphics are below, and they are yours permanently.
               </p>
+
+              <a
+                href="#offer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToId("offer");
+                }}
+                className={`mt-8 inline-flex flex-col items-center gap-1 rounded-md px-3 py-2 ${focusRing}`}
+                style={{ color: BLUE }}
+              >
+                <span
+                  style={{
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.14em",
+                  }}
+                >
+                  Two ways to take it further
+                </span>
+                <ChevronDown className="ea-chevron h-4 w-4" aria-hidden />
+              </a>
             </div>
           </Container>
         </Section>
 
-        {/* Included materials — white, compact list, left aligned */}
-        <Section>
-          <Container>
-            <SectionHeading>Your included winner materials</SectionHeading>
-            <Body className="mt-4">
-              These materials are included with your selection and remain yours permanently.
-            </Body>
+        {/* Slim downloads pointer */}
+        <Container>
+          <div
+            className="flex items-center gap-3 rounded-xl"
+            style={{ border: `1px solid ${LINE}`, padding: "14px 18px" }}
+          >
+            <Download aria-hidden style={{ width: "16px", height: "16px", color: BLUE }} />
+            <p style={{ fontSize: "0.9375rem", lineHeight: 1.5, color: BODY }}>
+              Your winner seal and graphics are ready.{" "}
+              <a
+                href="#winner-materials"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToId("winner-materials");
+                }}
+                className={`rounded-sm underline underline-offset-2 ${focusRing}`}
+                style={{ color: BLUE }}
+              >
+                Download the full kit
+              </a>{" "}
+              further down this page.
+            </p>
+          </div>
+        </Container>
 
-            <div
-              className="mt-10 overflow-hidden rounded-xl"
-              style={{ border: `1px solid ${LINE}` }}
-            >
-              <ul className="grid grid-cols-1 min-[900px]:grid-flow-col min-[900px]:grid-cols-2 min-[900px]:grid-rows-3">
-                {materials.map((m, i) => {
-                  const lastInColumn = i === 2 || i === materials.length - 1;
-                  return (
-                    <li
-                      key={m.id}
-                      className={`flex items-center gap-4 ${
-                        i < materials.length - 1 ? "border-b" : ""
-                      } ${i < 3 ? "min-[900px]:border-r" : ""} ${
-                        lastInColumn ? "min-[900px]:border-b-0" : ""
-                      }`}
-                      style={{ height: "72px", padding: "0 20px", borderColor: LINE }}
-                    >
-                      <AssetThumb ratio={m.ratio} src={m.src} alt={m.alt} />
-
-                      <span
-                        style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
-                        className="truncate"
-                      >
-                        {m.title}
-                      </span>
-                      <span style={{ fontSize: "0.75rem", color: MUTED }}>{m.fileType}</span>
-                      <span className="ml-auto">
-                        <GhostDownload id={m.id} onClick={handleDownload} />
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            <Small className="mt-6">
-              Your award statement was included in your award email. Your selection and winner
-              materials remain unchanged whether or not you choose an edition below.
-            </Small>
-          </Container>
-        </Section>
-
-        {/* Transition — tinted, centred, narrow */}
-        <Section tint>
-          <Container narrow={720}>
+        {/* Section intro */}
+        <Section id="offer" tint>
+          <Container narrow={760}>
             <div className="flex flex-col items-center text-center">
               <Eyebrow>From here</Eyebrow>
-              <SectionHeading className="mt-4">
-                Two things the award can become.
-              </SectionHeading>
+              <SectionHeading className="mt-4">Two things the award can become.</SectionHeading>
               <p
                 className="mt-5"
                 style={{ fontSize: "1rem", lineHeight: 1.6, color: BODY, maxWidth: "640px" }}
               >
-                Your seal, your graphics and your award statement are yours permanently, to use wherever you
-                like. Beyond those, the award can take two other forms — one you can hold, and one you can send
-                to anyone who asks what you do.
-              </p>
-              <p
-                className="mt-4"
-                style={{ fontSize: "0.875rem", lineHeight: 1.55, color: MUTED }}
-              >
-                Neither changes the award you were given.
+                Your seal, your graphics and your award statement are yours permanently, whatever
+                you decide here. Neither of the following changes the award you were given.
               </p>
             </div>
           </Container>
         </Section>
 
-        {/* Comparison — white, two columns */}
+        {/* Statement vs Feature */}
         <Section>
           <Container>
-          <SectionHeading>One you can hold. One you can send.</SectionHeading>
+            <SectionHeading>What you already have, and what the Feature adds</SectionHeading>
+
+            <div className="mt-10 grid items-stretch gap-8 lg:grid-cols-2">
+              <div className="flex flex-col">
+                <p
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    color: MUTED,
+                  }}
+                >
+                  Your award statement &middot; Included
+                </p>
+                <div
+                  className="mt-3 rounded-xl"
+                  style={{ border: `1px solid ${LINE}`, padding: "24px", backgroundColor: "#fff" }}
+                >
+                  <p style={{ fontSize: "16px", lineHeight: 1.65, color: "#1a1a1a" }}>
+                    {AWARD_STATEMENT_SPECIMEN}
+                  </p>
+                </div>
+                <p className="mt-3" style={{ fontSize: "0.8125rem", color: MUTED }}>
+                  Specimen wording. Yours is in your award email.
+                </p>
+              </div>
+
+              <div className="flex flex-col">
+                <p
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    color: BLUE,
+                  }}
+                >
+                  The Winner&rsquo;s Feature &middot; {formatPrice(FEATURE_PRICE)}
+                </p>
+                <div className="mt-3">
+                  <ArticleTexture />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-col items-center text-center">
+              <p style={{ fontSize: "15px", lineHeight: 1.6, color: BODY, maxWidth: "640px" }}>
+                You already have the one on the left. The Feature is the one on the right,
+                published at a permanent address you can send to anyone who asks what you do.
+              </p>
+              <a
+                href="/winners/specimen"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-event="feature-format-view"
+                className={`mt-4 inline-flex items-center gap-1 rounded-sm underline underline-offset-4 ${focusRing}`}
+                style={{ color: BLUE, fontSize: "0.9375rem", fontWeight: 500 }}
+              >
+                Read a full example &rarr;
+              </a>
+            </div>
+          </Container>
+        </Section>
+
+        {/* Two-card comparison */}
+        <Section id="offer-cards">
+          <Container>
+            <SectionHeading>One you can send. One you can hold.</SectionHeading>
             <Body className="mt-4">
               Both begin from the same award. The difference is what it becomes.
             </Body>
 
-            <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-2">
+            <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-[1.15fr_1fr]">
+              {/* Winner's Feature */}
+              <div
+                className="flex h-full flex-col rounded-2xl bg-white"
+                style={{
+                  border: `1px solid ${BLUE}`,
+                  padding: "32px",
+                  boxShadow: "0 2px 10px rgba(25,120,229,0.08)",
+                }}
+              >
+                <FeaturePreview />
+                <div style={{ marginTop: "24px" }}>
+                  <Eyebrow>The Winner&rsquo;s Feature</Eyebrow>
+                </div>
+                <h3
+                  style={{
+                    marginTop: "12px",
+                    fontSize: "1.375rem",
+                    fontWeight: 600,
+                    lineHeight: 1.25,
+                    color: INK,
+                  }}
+                >
+                  Somewhere people can find it.
+                </h3>
+                <p style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}>
+                  A written feature about your business, prepared from your entry and your award
+                  statement, reviewed by you, and published at a permanent Entrepreneur Awards
+                  address you can share with anyone.
+                </p>
+                <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
+                <div style={{ marginTop: "20px" }}>
+                  <SubLabel>Included</SubLabel>
+                </div>
+                <div style={{ marginTop: "12px" }}>
+                  <DotList items={featureIncludes} />
+                </div>
+                <div className="mt-auto" style={{ paddingTop: "24px" }}>
+                  <p
+                    style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}
+                  >
+                    {formatPrice(FEATURE_PRICE)}
+                  </p>
+                  <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
+                    One-time payment
+                  </p>
+                  <div style={{ marginTop: "20px" }}>
+                    <FilledButton full event="feature-order-click" onClick={handleSelect}>
+                      Start my feature
+                    </FilledButton>
+                  </div>
+                  <Reassurance
+                    items={[
+                      "Nothing is published until you approve it",
+                      "Permanent address, no renewal fee",
+                      "Secure checkout",
+                    ]}
+                  />
+                </div>
+              </div>
+
               {/* Commemorative Edition */}
               <div
                 className="flex h-full flex-col rounded-2xl bg-white"
@@ -970,11 +1267,9 @@ function WinnerOptionsPage() {
                 >
                   Somewhere you can see it.
                 </h3>
-                <p
-                  style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
-                >
-                  A designed physical edition of your award, made for a desk, a wall or a shelf — so it is
-                  present in the room.
+                <p style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}>
+                  A designed physical edition of your award, made for a desk, a wall or a shelf —
+                  so it is present in the room.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
                 <div style={{ marginTop: "20px" }}>
@@ -983,24 +1278,9 @@ function WinnerOptionsPage() {
                 <div style={{ marginTop: "12px" }}>
                   <DotList items={commemorativeIncludes} />
                 </div>
-                <p
-                  style={{
-                    marginTop: "24px",
-                    fontSize: "0.875rem",
-                    lineHeight: 1.55,
-                    color: MUTED,
-                  }}
-                >
-                  The award you already have, in a form you can hand to someone.
-                </p>
                 <div className="mt-auto" style={{ paddingTop: "24px" }}>
                   <p
-                    style={{
-                      fontSize: "1.75rem",
-                      fontWeight: 600,
-                      color: INK,
-                      lineHeight: 1.1,
-                    }}
+                    style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}
                   >
                     {formatPrice(COMMEMORATIVE_PRICE)}
                   </p>
@@ -1008,193 +1288,24 @@ function WinnerOptionsPage() {
                     One-time payment
                   </p>
                   <div style={{ marginTop: "20px" }}>
-                    <SecondaryButton
-                      event="commemorative-explore"
-                      onClick={() => scrollToId("commemorative-edition")}
-                    >
-                      Explore the Commemorative Edition
-                    </SecondaryButton>
+                    <FilledButton full event="commemorative-select-click" onClick={handleSelect}>
+                      Order the Commemorative Edition
+                    </FilledButton>
                   </div>
+                  <Reassurance
+                    items={[
+                      "Made to order and shipped to you",
+                      "Your selection is already confirmed",
+                      "Secure checkout",
+                    ]}
+                  />
                 </div>
-              </div>
-
-              {/* Winner's Feature */}
-              <div
-                className="flex h-full flex-col rounded-2xl bg-white"
-                style={{ border: `1px solid ${LINE}`, padding: "32px" }}
-              >
-                <FeatureAddress />
-                <div style={{ marginTop: "24px" }}>
-                  <Eyebrow>The Winner&rsquo;s Feature</Eyebrow>
-                </div>
-                <h3
-                  style={{
-                    marginTop: "12px",
-                    fontSize: "1.375rem",
-                    fontWeight: 600,
-                    lineHeight: 1.25,
-                    color: INK,
-                  }}
-                >
-                  Somewhere people can find it.
-                </h3>
-                <p
-                  style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
-                >
-                  A written feature about your business, prepared from your entry and your award statement,
-                  reviewed by you, and published at a permanent Entrepreneur Awards address you can share with
-                  anyone.
-                </p>
-                <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
-                <div style={{ marginTop: "20px" }}>
-                  <SubLabel>Included</SubLabel>
-                </div>
-                <div style={{ marginTop: "12px" }}>
-                  <DotList items={featureIncludes} />
-                </div>
-                <p
-                  style={{
-                    marginTop: "24px",
-                    fontSize: "0.875rem",
-                    lineHeight: 1.55,
-                    color: MUTED,
-                  }}
-                >
-                  An address you can point people to, for as long as you need it.
-                </p>
-                <div className="mt-auto" style={{ paddingTop: "24px" }}>
-                  <p style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}>
-                    {formatPrice(FEATURE_PRICE)}
-                  </p>
-                  <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
-                    One-time payment
-                  </p>
-                  <div style={{ marginTop: "20px" }}>
-                    <SecondaryButton
-                      event="feature-explore"
-                      onClick={() => scrollToId("winners-feature")}
-                    >
-                      Explore the Winner&rsquo;s Feature
-                    </SecondaryButton>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Both bar */}
-            <div
-              className="grid gap-6 md:grid-cols-2"
-              style={{
-                marginTop: "32px",
-                backgroundColor: TINT,
-                border: `1px solid ${LINE}`,
-                borderRadius: "12px",
-                padding: "28px",
-              }}
-            >
-              <div>
-                <p
-                  style={{
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: BLUE,
-                  }}
-                >
-                  Both, together
-                </p>
-                <p
-                  className="mt-2"
-                  style={{ fontSize: "1rem", lineHeight: 1.55, color: INK }}
-                >
-                  One in the room, one at an address. Take both and the award exists in both places.
-                </p>
-              </div>
-              <div className="flex flex-col items-start md:items-end">
-                <div className="flex items-center gap-3">
-                  <span
-                    aria-label="Combined price if chosen separately"
-                    style={{ fontSize: "1rem", color: MUTED, textDecoration: "line-through" }}
-                  >
-                    {formatPrice(bothComparePrice)}
-                  </span>
-                  <span
-                    aria-label="Price for both together"
-                    style={{ fontSize: "1.5rem", fontWeight: 600, color: INK }}
-                  >
-                    {formatPrice(BOTH_PRICE)}
-                  </span>
-                </div>
-                <div className="mt-4 w-full md:max-w-[320px]">
-                  <SecondaryButton event="both-select-click" onClick={handleSelect}>
-                    Take both
-                  </SecondaryButton>
-                </div>
-              </div>
-            </div>
-
-          </Container>
-        </Section>
-
-        {/* Detail: Commemorative Edition — white, visual left */}
-        <Section id="commemorative-edition">
-          <Container>
-            <Eyebrow>Commemorative Edition</Eyebrow>
-            <SectionHeading className="mt-4">
-              A physical way to keep the recognition present.
-            </SectionHeading>
-            <Body className="mt-5">
-              The Commemorative Edition brings your Entrepreneur Award together as a designed
-              physical presentation for your workspace, home or team.
-            </Body>
-
-            <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
-              <div className="md:col-span-6">
-                <CommemorativeVisual />
-              </div>
-              <div className="md:col-span-5 md:col-start-8">
-                <SubLabel as="h3">What it includes</SubLabel>
-                <div style={{ marginTop: "20px" }}>
-                  <DotList items={commemorativeIncludesDetailed} />
-                </div>
-                <p
-                  style={{
-                    marginTop: "28px",
-                    fontSize: "0.875rem",
-                    lineHeight: 1.55,
-                    color: MUTED,
-                  }}
-                >
-                  Your digital certificate, winner seal and winner graphics remain included with
-                  your selection.
-                </p>
-                <p
-                  style={{
-                    marginTop: "32px",
-                    fontSize: "1.75rem",
-                    fontWeight: 600,
-                    color: INK,
-                    lineHeight: 1.1,
-                  }}
-                >
-                  {formatPrice(COMMEMORATIVE_PRICE)}
-                </p>
-                <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
-                <div style={{ marginTop: "20px" }}>
-                  <FilledButton event="commemorative-select-click" onClick={handleSelect}>
-                    Order the Commemorative Edition
-                  </FilledButton>
-                </div>
-                <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
-                  Optional. Your selection remains unchanged.
-                </p>
               </div>
             </div>
           </Container>
         </Section>
 
-        {/* Detail: Winner's Feature — tinted, visual right */}
+        {/* Detail: Winner's Feature */}
         <Section id="winners-feature" tint>
           <Container>
             <Eyebrow>The Winner&rsquo;s Feature</Eyebrow>
@@ -1202,13 +1313,14 @@ function WinnerOptionsPage() {
               A feature that gives the recognition a permanent home.
             </SectionHeading>
             <Body className="mt-5">
-              We prepare a fuller feature from the material in your entry and your award statement, share it
-              with you for review, and publish it at a permanent Entrepreneur Awards address.
+              We prepare a fuller feature from the material in your entry and your award statement,
+              share it with you for review, and publish it at a permanent Entrepreneur Awards
+              address.
             </Body>
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
               <div className="md:order-2 md:col-span-6 md:col-start-7">
-                <FeatureAddress scale={1.6} />
+                <FeaturePreview scale={1.6} />
               </div>
 
               <div className="md:order-1 md:col-span-5">
@@ -1243,23 +1355,132 @@ function WinnerOptionsPage() {
                 </p>
                 <div style={{ marginTop: "20px" }}>
                   <FilledButton event="feature-order-click" onClick={handleSelect}>
-                    Order the Winner's Feature
+                    Start my feature
                   </FilledButton>
                 </div>
-                <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
-                  Optional. Your selection remains unchanged.
-                </p>
+                <Reassurance
+                  items={[
+                    "Nothing is published until you approve it",
+                    "Permanent address, no renewal fee",
+                    "Secure checkout",
+                  ]}
+                />
               </div>
             </div>
           </Container>
         </Section>
 
-        {/* Process — white, three-step row */}
+        {/* Where the link goes */}
+        <Section>
+          <Container>
+            <SubLabel as="h3">What you do with it</SubLabel>
+            <SectionHeading className="mt-4">
+              One link, wherever the question comes up.
+            </SectionHeading>
+
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {linkUses.map(({ icon: Icon, label, body }) => (
+                <li
+                  key={label}
+                  className="rounded-xl"
+                  style={{ border: `1px solid ${LINE}`, padding: "20px" }}
+                >
+                  <Icon aria-hidden style={{ width: "18px", height: "18px", color: BLUE }} />
+                  <p
+                    style={{
+                      marginTop: "12px",
+                      fontSize: "0.9375rem",
+                      fontWeight: 600,
+                      color: INK,
+                    }}
+                  >
+                    {label}
+                  </p>
+                  <p
+                    style={{
+                      marginTop: "6px",
+                      fontSize: "0.875rem",
+                      lineHeight: 1.55,
+                      color: MUTED,
+                    }}
+                  >
+                    {body}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </Section>
+
+        {/* Detail: Commemorative Edition */}
+        <Section id="commemorative-edition" tint>
+          <Container>
+            <Eyebrow>Commemorative Edition</Eyebrow>
+            <SectionHeading className="mt-4">
+              A physical way to keep the recognition present.
+            </SectionHeading>
+            <Body className="mt-5">
+              The Commemorative Edition brings your Entrepreneur Award together as a designed
+              physical presentation for your workspace, home or team.
+            </Body>
+
+            <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
+              <div className="md:col-span-6">
+                <CommemorativeVisual />
+              </div>
+              <div className="md:col-span-5 md:col-start-8">
+                <SubLabel as="h3">What it includes</SubLabel>
+                <div style={{ marginTop: "20px" }}>
+                  <DotList items={commemorativeIncludes} />
+                </div>
+                <p
+                  style={{
+                    marginTop: "28px",
+                    fontSize: "0.875rem",
+                    lineHeight: 1.55,
+                    color: MUTED,
+                  }}
+                >
+                  Your digital certificate, winner seal and winner graphics remain included with
+                  your selection.
+                </p>
+                <p
+                  style={{
+                    marginTop: "32px",
+                    fontSize: "1.75rem",
+                    fontWeight: 600,
+                    color: INK,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {formatPrice(COMMEMORATIVE_PRICE)}
+                </p>
+                <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
+                  One-time payment
+                </p>
+                <div style={{ marginTop: "20px" }}>
+                  <FilledButton event="commemorative-select-click" onClick={handleSelect}>
+                    Order the Commemorative Edition
+                  </FilledButton>
+                </div>
+                <Reassurance
+                  items={[
+                    "Made to order and shipped to you",
+                    "Your selection is already confirmed",
+                    "Secure checkout",
+                  ]}
+                />
+              </div>
+            </div>
+          </Container>
+        </Section>
+
+        {/* Process */}
         <Section>
           <Container>
             <Eyebrow>The process</Eyebrow>
             <SectionHeading className="mt-4">From selection to published feature</SectionHeading>
-            <ol className="ea-rule-behind relative mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+            <ol className="ea-rule-behind relative mt-12 grid gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
               {processSteps.map((step) => (
                 <li key={step.number}>
                   <span
@@ -1299,14 +1520,74 @@ function WinnerOptionsPage() {
                 </li>
               ))}
             </ol>
+            <p
+              className="mt-12 text-center"
+              style={{ fontSize: "14px", color: MUTED }}
+            >
+              The review is the only part that needs your time.
+            </p>
           </Container>
         </Section>
 
-        {/* FAQ — white, single column, centred */}
+        {/* Included materials — relocated */}
+        <Section id="winner-materials" tint>
+          <Container>
+            <SectionHeading>Your included winner materials</SectionHeading>
+            <Body className="mt-4">
+              These materials are included with your selection and remain yours permanently.
+            </Body>
+
+            <div
+              className="mt-10 overflow-hidden rounded-xl bg-white"
+              style={{ border: `1px solid ${LINE}` }}
+            >
+              <ul className="grid grid-cols-1 min-[900px]:grid-flow-col min-[900px]:grid-cols-2 min-[900px]:grid-rows-3">
+                {materials.map((m, i) => {
+                  const lastInColumn = i === 2 || i === materials.length - 1;
+                  return (
+                    <li
+                      key={m.id}
+                      className={`flex items-center gap-4 ${
+                        i < materials.length - 1 ? "border-b" : ""
+                      } ${i < 3 ? "min-[900px]:border-r" : ""} ${
+                        lastInColumn ? "min-[900px]:border-b-0" : ""
+                      }`}
+                      style={{ height: "72px", padding: "0 20px", borderColor: LINE }}
+                    >
+                      <AssetThumb ratio={m.ratio} src={m.src} alt={m.alt} />
+                      <span
+                        style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
+                        className="truncate"
+                      >
+                        {m.title}
+                      </span>
+                      <span style={{ fontSize: "0.75rem", color: MUTED }}>{m.fileType}</span>
+                      <span className="ml-auto">
+                        <GhostDownload id={m.id} onClick={handleDownload} />
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <Small className="mt-6">
+              Your award statement and certificate were included in your award email. Your
+              selection and winner materials remain unchanged whether or not you choose an edition
+              above.
+            </Small>
+          </Container>
+        </Section>
+
+        {/* FAQ */}
         <Section>
           <Container narrow={720}>
             <SectionHeading>Questions about your award</SectionHeading>
-            <Accordion type="single" collapsible className="mt-10 w-full">
+            <Accordion
+              type="multiple"
+              defaultValue={["q0", "q1"]}
+              className="mt-10 w-full"
+            >
               {faqs.map((f, i) => (
                 <AccordionItem
                   key={f.q}
@@ -1315,7 +1596,7 @@ function WinnerOptionsPage() {
                   style={{ borderColor: LINE }}
                 >
                   <AccordionTrigger
-                    className="text-left hover:no-underline [&>svg]:size-4 [&>svg]:text-[#7A8794]"
+                    className="text-left hover:no-underline [&>svg]:size-4 [&>svg]:text-[#6B7785]"
                     style={{
                       paddingTop: "24px",
                       paddingBottom: "24px",
@@ -1342,10 +1623,83 @@ function WinnerOptionsPage() {
             </Accordion>
           </Container>
         </Section>
+
+        {/* Final CTA */}
+        <Section id="final-cta" tint>
+          <Container narrow={640}>
+            <div className="flex flex-col items-center text-center">
+              <SectionHeading>Ready when you are.</SectionHeading>
+              <p
+                className="mt-4"
+                style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}
+              >
+                {formatPrice(FEATURE_PRICE)}
+              </p>
+              <div className="mt-6 w-full sm:w-auto">
+                <FilledButton event="feature-order-click" onClick={handleSelect}>
+                  Start my feature
+                </FilledButton>
+              </div>
+            </div>
+          </Container>
+        </Section>
       </main>
 
+      {/* Sticky CTA bar */}
+      <div
+        className="ea-sticky fixed inset-x-0 bottom-0 z-40 max-[479px]:hidden"
+        style={{
+          height: "64px",
+          backgroundColor: "#fff",
+          borderTop: `1px solid ${LINE}`,
+          boxShadow: "0 -2px 10px rgba(15,23,42,0.06)",
+          transform: stickyVisible ? "translateY(0)" : "translateY(100%)",
+          transition: "transform 200ms ease-out",
+          pointerEvents: stickyVisible ? "auto" : "none",
+        }}
+        aria-hidden={!stickyVisible}
+      >
+        <Container className="flex h-16 items-center justify-between gap-4">
+          <div className="flex min-w-0 items-baseline gap-3">
+            <span style={{ fontSize: "15px", fontWeight: 600, color: INK }}>
+              The Winner&rsquo;s Feature
+            </span>
+            <span style={{ fontSize: "15px", color: MUTED }}>{formatPrice(FEATURE_PRICE)}</span>
+            <span className="hidden truncate sm:inline" style={{ fontSize: "13px", color: MUTED }}>
+              Published at a permanent address.
+            </span>
+          </div>
+          <div className="flex shrink-0 items-center gap-4">
+            <button
+              type="button"
+              data-event="commemorative-select-click"
+              onClick={handleSelect}
+              className={`hidden rounded-sm underline underline-offset-4 sm:inline ${focusRing}`}
+              style={{ fontSize: "13px", color: MUTED }}
+            >
+              Commemorative Edition {formatPrice(COMMEMORATIVE_PRICE)}
+            </button>
+            <button
+              type="button"
+              data-event="feature-order-click"
+              onClick={handleSelect}
+              className={`rounded-lg text-white transition-colors hover:bg-[#1568D0] ${focusRing}`}
+              style={{
+                height: "40px",
+                padding: "0 18px",
+                backgroundColor: BLUE,
+                fontSize: "0.875rem",
+                fontWeight: 500,
+              }}
+            >
+              Start my feature
+            </button>
+          </div>
+        </Container>
+      </div>
+
       {/* Footer */}
-      <footer style={{ borderTop: `1px solid ${LINE}`, padding: "40px 0" }}>
+      <footer id="page-footer" style={{ borderTop: `1px solid ${LINE}`, padding: "40px 0" }}>
         <Container className="flex flex-col items-center gap-4">
           <span style={{ fontSize: "0.75rem", fontWeight: 600, color: INK }}>
             Entrepreneur Awards
