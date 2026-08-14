@@ -865,23 +865,24 @@ function WinnerOptionsPage() {
                   className="mt-2"
                   style={{ fontSize: "1rem", lineHeight: 1.55, color: INK }}
                 >
-                  The engraved object, the certificate, the feature and its printed edition — sent as one.
+                  One in the room, one at an address. Take both and the award exists in both places.
                 </p>
               </div>
               <div className="flex flex-col items-start md:items-end">
                 <div className="flex items-center gap-3">
                   <span
+                    aria-label="Combined price if chosen separately"
                     style={{ fontSize: "1rem", color: MUTED, textDecoration: "line-through" }}
                   >
                     {formatPrice(bothComparePrice)}
                   </span>
-                  <span style={{ fontSize: "1.5rem", fontWeight: 600, color: INK }}>
+                  <span
+                    aria-label="Price for both together"
+                    style={{ fontSize: "1.5rem", fontWeight: 600, color: INK }}
+                  >
                     {formatPrice(BOTH_PRICE)}
                   </span>
                 </div>
-                <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
-                  One box instead of two.
-                </p>
                 <div className="mt-4 w-full md:max-w-[320px]">
                   <SecondaryButton event="both-select-click" onClick={handleSelect}>
                     Take both
@@ -939,7 +940,7 @@ function WinnerOptionsPage() {
                 <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
                 <div style={{ marginTop: "20px" }}>
                   <FilledButton event="commemorative-select-click" onClick={handleSelect}>
-                    Select the Commemorative Edition
+                    Order the Commemorative Edition
                   </FilledButton>
                 </div>
                 <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
@@ -959,8 +960,7 @@ function WinnerOptionsPage() {
             </SectionHeading>
             <Body className="mt-5">
               We prepare a fuller feature from the material in your entry and your award statement, send it
-              to you for review, publish it at a permanent Entrepreneur Awards address, and print an edition
-              of it for you.
+              to you for review, and publish it at a permanent Entrepreneur Awards address.
             </Body>
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
@@ -1053,7 +1053,7 @@ function WinnerOptionsPage() {
                 </p>
                 <div style={{ marginTop: "20px" }}>
                   <FilledButton event="feature-order-click" onClick={handleSelect}>
-                    Order the Winner&rsquo;s Feature
+                    Order the Winner's Feature
                   </FilledButton>
                 </div>
                 <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
