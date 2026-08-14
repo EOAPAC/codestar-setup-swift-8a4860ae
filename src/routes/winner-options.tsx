@@ -911,7 +911,7 @@ function WinnerOptionsPage() {
                   boxShadow: "0 2px 10px rgba(25,120,229,0.08)",
                 }}
               >
-                <FeaturePreview />
+                <FeatureVisual />
                 <div style={{ marginTop: "24px" }}>
                   <Eyebrow>The Winner&rsquo;s Feature</Eyebrow>
                 </div>
