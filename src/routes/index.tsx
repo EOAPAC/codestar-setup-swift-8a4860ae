@@ -183,7 +183,7 @@ function CredibilityBand() {
               href={pub.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-between gap-6 rounded-xl border border-border bg-card p-5 text-center transition-all hover:border-primary hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              className="group flex flex-col items-center justify-between gap-6 rounded-xl border border-border bg-card p-5 text-center transition-all hover:border-primary hover:bg-surface hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               <span
                 className={`block text-muted-foreground transition-colors group-hover:text-foreground ${pub.className}`}
