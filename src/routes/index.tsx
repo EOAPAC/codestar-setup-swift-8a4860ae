@@ -151,6 +151,12 @@ const publications: {
     className: "text-[20px] tracking-[0.28em]",
     style: { fontFamily: SERIF, fontWeight: 400 },
   },
+  {
+    name: "Forbes",
+    href: "https://forbesbahrain.com/why-entrepreneur-awards-leads-the-six-recognitions-founders-chase-in-2026/",
+    className: "text-[22px] uppercase tracking-[0.04em]",
+    style: { fontFamily: SERIF, fontWeight: 700 },
+  },
 ];
 
 
@@ -176,7 +182,7 @@ function CredibilityBand() {
         <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
           As seen in
         </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {publications.map((pub) => (
             <a
               key={pub.name}
