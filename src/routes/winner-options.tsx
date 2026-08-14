@@ -488,65 +488,226 @@ function CommemorativeVisual() {
   );
 }
 
-/** A 16:10 panel showing the feature's permanent address. */
+/** A browser frame previewing the published feature format. */
 function FeatureAddress({ scale = 1 }: { scale?: number }) {
-  const isLarge = scale > 1;
-  const addressSize = isLarge ? "1.125rem" : "0.9375rem";
-  const captionSize = isLarge ? "0.8125rem" : "0.75rem";
-  // The 78% / 68% spec from the design brief does not fit the address on a single
-  // line in the current page layout. We widen the field so the address remains
-  // readable and breaks cleanly at the slash on smaller panels.
-  const fieldWidth = isLarge ? "100%" : "92%";
-  const minHeight = isLarge ? "83px" : "52px";
-  return (
-    <div
-      role="img"
-      aria-label="Permanent address for a Winner's Feature: entrepreneurawards.co/winners/your-business"
-      className="feature-address-panel flex w-full flex-col items-center justify-center"
+  const s = (n: number) => `${Math.round(n * scale)}px`;
+  const barH = scale > 1 ? 4 : 3;
+  const topBars = [100, 94, 88, 97, 72];
+  const bottomBars = [100, 91, 84];
+
+  const Bar = ({ w }: { w: number }) => (
+    <span
       style={{
-        aspectRatio: "16 / 10",
-        borderRadius: "12px",
-        border: `1px solid ${LINE}`,
-        backgroundColor: TINT,
+        display: "block",
+        width: `${w}%`,
+        height: `${barH}px`,
+        borderRadius: "2px",
+        backgroundColor: "#EDF0F4",
       }}
-    >
-      <div
-        className={`feature-address-field flex items-center ${isLarge ? "feature-address-field--wrap" : ""}`}
+    />
+  );
+
+  return (
+    <div className="w-full">
+      <p
         style={{
-          width: fieldWidth,
-          minHeight,
-          padding: "0 20px",
-          borderRadius: "10px",
+          fontSize: "0.6875rem",
+          fontWeight: 600,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: BLUE,
+          marginBottom: "10px",
+        }}
+      >
+        Preview &middot; What gets published
+      </p>
+
+      <div
+        role="img"
+        aria-label="Preview of a published Winner's Feature page at entrepreneurawards.co/winners/your-business"
+        className="w-full overflow-hidden"
+        style={{
+          aspectRatio: "16 / 10",
+          borderRadius: "12px",
           border: `1px solid ${LINE}`,
           backgroundColor: "#fff",
         }}
       >
-        <span
-          className="feature-address-text"
+        {/* chrome bar */}
+        <div
+          className="flex items-center"
           style={{
-            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-            fontSize: addressSize,
-            color: MUTED,
-            lineHeight: 1.4,
+            height: s(32),
+            backgroundColor: TINT,
+            borderBottom: `1px solid ${LINE}`,
+            paddingLeft: s(14),
+            paddingRight: s(14),
+            gap: s(10),
           }}
         >
-          entrepreneurawards.co/winners/<wbr />
-          <span style={{ color: BLUE, fontWeight: 500 }}>your-business</span>
-        </span>
+          <span className="flex shrink-0 items-center" style={{ gap: s(6) }}>
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                style={{
+                  display: "block",
+                  width: s(7),
+                  height: s(7),
+                  borderRadius: "999px",
+                  backgroundColor: LINE,
+                }}
+              />
+            ))}
+          </span>
+          <span
+            className="flex min-w-0 flex-1 items-center"
+            style={{
+              height: s(24),
+              borderRadius: "6px",
+              backgroundColor: "#fff",
+              border: `1px solid ${LINE}`,
+              paddingLeft: s(12),
+              paddingRight: s(8),
+            }}
+          >
+            <span
+              className="feature-preview-url"
+              style={{
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                fontSize: scale > 1 ? "0.8125rem" : "0.6875rem",
+                color: MUTED,
+                lineHeight: 1.2,
+              }}
+            >
+              entrepreneurawards.co/winners/<wbr />
+              <span style={{ color: BLUE }}>your-business</span>
+            </span>
+          </span>
+        </div>
+
+        {/* page area */}
+        <div style={{ padding: s(20) }}>
+          <span
+            className="inline-flex items-center"
+            style={{
+              backgroundColor: "#EAF2FD",
+              borderRadius: "999px",
+              padding: `${s(5)} ${s(10)}`,
+            }}
+          >
+            <svg
+              width={s(9)}
+              height={s(9)}
+              viewBox="0 0 12 12"
+              fill="none"
+              aria-hidden
+              style={{ marginRight: s(6) }}
+            >
+              <path d="M6 0.5 L7.6 4 L11.5 4.5 L8.6 7.1 L9.4 11 L6 9.1 L2.6 11 L3.4 7.1 L0.5 4.5 L4.4 4 Z" fill={BLUE} />
+            </svg>
+            <span
+              style={{
+                fontSize: scale > 1 ? "0.75rem" : "0.5625rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                color: BLUE,
+                lineHeight: 1.2,
+              }}
+            >
+              2026 Winner Feature
+            </span>
+          </span>
+
+          <h4
+            style={{
+              marginTop: s(12),
+              fontSize: scale > 1 ? "1.5rem" : "1.0625rem",
+              fontWeight: 600,
+              lineHeight: 1.25,
+              color: INK,
+              maxWidth: "22ch",
+            }}
+          >
+            How your business built something worth recognising.
+          </h4>
+
+          <p
+            style={{
+              marginTop: s(6),
+              fontSize: scale > 1 ? "0.75rem" : "0.625rem",
+              color: MUTED,
+            }}
+          >
+            By Entrepreneur Awards Editorial
+          </p>
+
+          <div
+            className="feature-preview-split"
+            style={{ marginTop: s(16), display: "flex", gap: "4%" }}
+          >
+            <div
+              className="feature-preview-image"
+              style={{
+                width: "42%",
+                aspectRatio: "4 / 3",
+                borderRadius: "6px",
+                backgroundColor: "#F0F3F7",
+                flexShrink: 0,
+              }}
+            />
+            <div
+              className="feature-preview-bars"
+              style={{ width: "54%", display: "flex", flexDirection: "column", gap: s(9) }}
+            >
+              {topBars.map((w, i) => (
+                <Bar key={`t${i}`} w={w} />
+              ))}
+              <div style={{ display: "flex", alignItems: "stretch" }}>
+                <span
+                  style={{
+                    display: "block",
+                    width: "2px",
+                    borderRadius: "1px",
+                    backgroundColor: BLUE,
+                    flexShrink: 0,
+                  }}
+                />
+                <div
+                  style={{
+                    marginLeft: s(10),
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: s(9),
+                  }}
+                >
+                  <Bar w={86} />
+                  <Bar w={64} />
+                </div>
+              </div>
+              {bottomBars.map((w, i) => (
+                <Bar key={`b${i}`} w={w} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
+
       <p
         style={{
-          marginTop: "20px",
-          fontSize: captionSize,
+          marginTop: "12px",
+          fontSize: "0.75rem",
           color: MUTED,
           textAlign: "center",
         }}
       >
-        Your business in place of the last part.
+        Format preview. Not a real recipient.
       </p>
     </div>
   );
 }
+
 
 
 // ---------------------------------------------------------------- confetti
