@@ -15,6 +15,8 @@ import linkedinAsset from "@/assets/ea-winner-social-Linkedin_Post-2.png.asset.j
 import squareAsset from "@/assets/ea-winner-social-IG_Post-2.png.asset.json";
 import storyAsset from "@/assets/ea-winner-social-IG_story-2.png.asset.json";
 import signatureAsset from "@/assets/ea-winner-emailsig-full-600x200-2.png.asset.json";
+import commemorativeAsset from "@/assets/commemorative-edition.jpg.asset.json";
+
 
 export const Route = createFileRoute("/winner-options")({
   head: () => ({
@@ -436,57 +438,19 @@ function AssetThumb({ ratio, src, alt }: { ratio: number; src: string; alt: stri
 function CommemorativeVisual() {
   return (
     <div
-      role="img"
-      aria-label="Composition representing the Commemorative Edition contents"
-      className="w-full overflow-hidden rounded-xl"
-      style={{ aspectRatio: "4 / 3", border: `1px solid ${LINE}`, backgroundColor: TINT }}
+      className="w-full overflow-hidden rounded-xl bg-[#F7F9FC]"
+      style={{ aspectRatio: "4 / 3", border: `1px solid ${LINE}` }}
     >
-      <div className="flex h-full w-full items-end justify-center gap-[4%] px-[8%] pb-[10%]">
-        {/* engraved recognition object */}
-        <div className="flex h-[62%] w-[16%] flex-col items-center justify-end gap-1">
-          <div
-            className="w-full flex-1 rounded-t-[3px]"
-            style={{ border: `1.5px solid ${BLUE}59`, backgroundColor: "#fff" }}
-          />
-          <div
-            className="h-[8%] w-[125%] rounded-[2px]"
-            style={{ border: `1.5px solid ${BLUE}59`, backgroundColor: "#fff", minHeight: "6px" }}
-          />
-        </div>
-        {/* printed certificate */}
-        <div
-          className="flex h-[80%] w-[22%] flex-col gap-[6px] rounded-[4px] p-[8px]"
-          style={{ border: `1.5px solid ${BLUE}59`, backgroundColor: "#fff" }}
-        >
-          <span className="h-[4px] w-2/3 rounded-full" style={{ backgroundColor: LINE }} />
-          <span className="h-[4px] w-full rounded-full" style={{ backgroundColor: LINE }} />
-          <span className="h-[4px] w-5/6 rounded-full" style={{ backgroundColor: LINE }} />
-          <span
-            className="mt-auto h-[4px] w-1/2 rounded-full"
-            style={{ backgroundColor: LINE }}
-          />
-        </div>
-        {/* citation card */}
-        <div
-          className="flex h-[52%] w-[20%] flex-col gap-[6px] rounded-[4px] p-[8px]"
-          style={{ border: `1.5px solid ${BLUE}59`, backgroundColor: "#fff" }}
-        >
-          <span className="h-[4px] w-1/2 rounded-full" style={{ backgroundColor: LINE }} />
-          <span className="h-[4px] w-full rounded-full" style={{ backgroundColor: LINE }} />
-          <span className="h-[4px] w-3/4 rounded-full" style={{ backgroundColor: LINE }} />
-        </div>
-        {/* presentation card */}
-        <div
-          className="flex h-[34%] w-[18%] flex-col gap-[6px] rounded-[4px] p-[8px]"
-          style={{ border: `1.5px solid ${BLUE}59`, backgroundColor: "#fff" }}
-        >
-          <span className="h-[4px] w-2/3 rounded-full" style={{ backgroundColor: LINE }} />
-          <span className="h-[4px] w-1/2 rounded-full" style={{ backgroundColor: LINE }} />
-        </div>
-      </div>
+      <img
+        src={commemorativeAsset.url}
+        alt="Engraved glass recognition object from the Commemorative Edition"
+        loading="lazy"
+        className="h-full w-full object-cover"
+      />
     </div>
   );
 }
+
 
 /** A browser frame previewing the published feature format. */
 function FeatureAddress({ scale = 1 }: { scale?: number }) {
