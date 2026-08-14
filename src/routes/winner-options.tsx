@@ -75,19 +75,18 @@ const materials: Material[] = [
 
 const commemorativeIncludes = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display — the printed counterpart to the digital certificate above",
 ];
 
 const commemorativeIncludesDetailed = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display — the printed counterpart to the digital certificate above",
 ];
 
 const featureIncludes = [
   "A full written feature about your business",
   "Your review before publication",
   "Publication at a permanent Entrepreneur Awards address",
-  "A printed edition of your feature, with the address printed on it",
 ];
 
 const processSteps = [
@@ -95,12 +94,12 @@ const processSteps = [
   {
     number: "02",
     title: "Review",
-    body: "We prepare the feature from your entry and your award statement, then send it for your review and factual corrections.",
+    body: "We prepare the feature from your entry and your award statement, then share it for your review and factual corrections.",
   },
   {
     number: "03",
     title: "Publish and present",
-    body: "After approval, the feature is published at its permanent address and your printed edition is prepared.",
+    body: "After approval, the feature is published at its permanent address and the link is yours to use.",
   },
 ];
 
@@ -111,11 +110,11 @@ const faqs = [
   },
   {
     q: "What is the difference between the Commemorative Edition and the Winner's Feature?",
-    a: "The Commemorative Edition is the physical record — an engraved object and a printed certificate. The Winner's Feature is the published one — a written feature about your business at a permanent address, with a printed edition of it. They are separate. Neither includes the other.",
+    a: "The Commemorative Edition is the physical record — an engraved object and a printed certificate. The Winner's Feature is the published one — a written feature about your business at a permanent address. They are separate. Neither includes the other.",
   },
   {
     q: "Can I choose both?",
-    a: "Yes. They are separate, so either can be chosen on its own, or both together. Taken together they are sent in a single box, which is why the combined price is a little lower than buying them separately. Neither is a level of the other, and neither changes the award you were given.",
+    a: "Yes. They are separate, so either can be chosen on its own, or both together. The Commemorative Edition is a physical record; the Winner's Feature is a published one. Neither is a level of the other, and neither changes the award you were given.",
   },
   {
     q: "What is the difference between my award statement and the feature?",
@@ -123,7 +122,7 @@ const faqs = [
   },
   {
     q: "Will I review the feature before it is published?",
-    a: "Yes. The feature is sent to you for review and factual corrections before publication.",
+    a: "Yes. The feature is shared with you for review and factual corrections before publication.",
   },
   {
     q: "Where will the feature be published?",
@@ -800,7 +799,7 @@ function WinnerOptionsPage() {
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
                   A written feature about your business, prepared from your entry and your award statement,
-                  reviewed by you, and published at a permanent Entrepreneur Awards address you can send to
+                  reviewed by you, and published at a permanent Entrepreneur Awards address you can share with
                   anyone.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
@@ -866,23 +865,24 @@ function WinnerOptionsPage() {
                   className="mt-2"
                   style={{ fontSize: "1rem", lineHeight: 1.55, color: INK }}
                 >
-                  The engraved object, the certificate, the feature and its printed edition — sent as one.
+                  One in the room, one at an address. Take both and the award exists in both places.
                 </p>
               </div>
               <div className="flex flex-col items-start md:items-end">
                 <div className="flex items-center gap-3">
                   <span
+                    aria-label="Combined price if chosen separately"
                     style={{ fontSize: "1rem", color: MUTED, textDecoration: "line-through" }}
                   >
                     {formatPrice(bothComparePrice)}
                   </span>
-                  <span style={{ fontSize: "1.5rem", fontWeight: 600, color: INK }}>
+                  <span
+                    aria-label="Price for both together"
+                    style={{ fontSize: "1.5rem", fontWeight: 600, color: INK }}
+                  >
                     {formatPrice(BOTH_PRICE)}
                   </span>
                 </div>
-                <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
-                  One box instead of two.
-                </p>
                 <div className="mt-4 w-full md:max-w-[320px]">
                   <SecondaryButton event="both-select-click" onClick={handleSelect}>
                     Take both
@@ -940,7 +940,7 @@ function WinnerOptionsPage() {
                 <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>One-time payment</p>
                 <div style={{ marginTop: "20px" }}>
                   <FilledButton event="commemorative-select-click" onClick={handleSelect}>
-                    Select the Commemorative Edition
+                    Order the Commemorative Edition
                   </FilledButton>
                 </div>
                 <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
@@ -959,9 +959,8 @@ function WinnerOptionsPage() {
               A feature that gives the recognition a permanent home.
             </SectionHeading>
             <Body className="mt-5">
-              We prepare a fuller feature from the material in your entry and your award statement, send it
-              to you for review, publish it at a permanent Entrepreneur Awards address, and print an edition
-              of it for you.
+              We prepare a fuller feature from the material in your entry and your award statement, share it
+              with you for review, and publish it at a permanent Entrepreneur Awards address.
             </Body>
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
@@ -1054,7 +1053,7 @@ function WinnerOptionsPage() {
                 </p>
                 <div style={{ marginTop: "20px" }}>
                   <FilledButton event="feature-order-click" onClick={handleSelect}>
-                    Order the Winner&rsquo;s Feature
+                    Order the Winner's Feature
                   </FilledButton>
                 </div>
                 <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
