@@ -1035,7 +1035,7 @@ function WinnerOptionsPage() {
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
               <div className="md:order-2 md:col-span-6 md:col-start-7">
-                <FeaturePreview scale={1.6} />
+                <FeatureVisual />
               </div>
 
               <div className="md:order-1 md:col-span-5">
