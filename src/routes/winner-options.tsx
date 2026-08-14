@@ -1482,17 +1482,19 @@ function WinnerOptionsPage() {
               style={{ border: `1px solid ${LINE}` }}
             >
               <ul
-                className="grid grid-cols-1"
-                style={{
-                  borderColor: LINE,
-                }}
+                className="grid grid-cols-1 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-3"
+                style={{ borderColor: LINE }}
               >
                 {materials.map((m, i) => {
-                  const isLast = i === materials.length - 1;
+                  const lastInColumn = i === 2 || i === materials.length - 1;
                   return (
                     <li
                       key={m.id}
-                      className={`flex items-center gap-4 ${isLast ? "" : "border-b"}`}
+                      className={`flex items-center gap-4 ${
+                        i < materials.length - 1 ? "border-b" : ""
+                      } ${i < 3 ? "lg:border-r" : ""} ${
+                        lastInColumn ? "lg:border-b-0" : ""
+                      }`}
                       style={{
                         minHeight: "72px",
                         padding: "16px 20px",
