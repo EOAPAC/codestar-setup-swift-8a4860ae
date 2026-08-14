@@ -751,16 +751,19 @@ function WinnerOptionsPage() {
             >
               <ul className="grid grid-cols-1 min-[900px]:grid-flow-col min-[900px]:grid-cols-2 min-[900px]:grid-rows-3">
                 {materials.map((m, i) => {
-                  const lastInColumn = i === 2 || i === 5;
+                  const lastInColumn = i === 2 || i === materials.length - 1;
                   return (
                     <li
                       key={m.id}
-                      className={`flex items-center gap-4 ${i < 5 ? "border-b" : ""} ${
-                        i < 3 ? "min-[900px]:border-r" : ""
-                      } ${lastInColumn ? "min-[900px]:border-b-0" : ""}`}
+                      className={`flex items-center gap-4 ${
+                        i < materials.length - 1 ? "border-b" : ""
+                      } ${i < 3 ? "min-[900px]:border-r" : ""} ${
+                        lastInColumn ? "min-[900px]:border-b-0" : ""
+                      }`}
                       style={{ height: "72px", padding: "0 20px", borderColor: LINE }}
                     >
-                      <AssetThumb ratio={m.ratio} />
+                      <AssetThumb ratio={m.ratio} src={m.src} alt={m.alt} />
+
                       <span
                         style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
                         className="truncate"
