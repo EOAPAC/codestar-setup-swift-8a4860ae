@@ -651,13 +651,6 @@ function WinnerOptionsPage() {
           background: ${LINE};
         }
         @media (max-width: 767px) { .ea-rule-behind::before { display: none; } }
-        .feature-preview-url { white-space: nowrap; }
-        @media (max-width: 639px) {
-          .feature-preview-url { white-space: normal; word-break: break-word; }
-          .feature-preview-split { flex-direction: column; }
-          .feature-preview-image,
-          .feature-preview-bars { width: 100% !important; }
-        }
         @keyframes ea-chevron-loop {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(6px); }
