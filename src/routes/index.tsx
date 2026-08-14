@@ -175,13 +175,21 @@ function CredibilityBand() {
         <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
           As seen in
         </p>
-        <div className="mt-6 grid grid-cols-3 justify-items-center gap-x-8 gap-y-6 md:flex md:flex-wrap md:justify-center md:gap-x-14">
-          {publications.map((name) => (
-            <span key={name} className="text-[20px] font-medium tracking-[0.02em] text-[#8A94A6]">
-              {name}
-            </span>
+        <div className="mt-6 grid grid-cols-2 justify-items-center gap-x-8 gap-y-6 md:flex md:flex-wrap md:items-center md:justify-center md:gap-x-14">
+          {publications.map((pub) => (
+            <a
+              key={pub.name}
+              href={pub.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-[#8A94A6] transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring ${pub.className}`}
+              style={pub.style}
+            >
+              {pub.name}
+            </a>
           ))}
         </div>
+
 
         <div className="mt-16 grid gap-10 md:grid-cols-3">
           {proofPoints.map((point) => (
