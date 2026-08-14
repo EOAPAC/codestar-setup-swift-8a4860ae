@@ -799,7 +799,7 @@ function WinnerOptionsPage() {
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
                   A written feature about your business, prepared from your entry and your award statement,
-                  reviewed by you, and published at a permanent Entrepreneur Awards address you can send to
+                  reviewed by you, and published at a permanent Entrepreneur Awards address you can share with
                   anyone.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
@@ -959,8 +959,8 @@ function WinnerOptionsPage() {
               A feature that gives the recognition a permanent home.
             </SectionHeading>
             <Body className="mt-5">
-              We prepare a fuller feature from the material in your entry and your award statement, send it
-              to you for review, and publish it at a permanent Entrepreneur Awards address.
+              We prepare a fuller feature from the material in your entry and your award statement, share it
+              with you for review, and publish it at a permanent Entrepreneur Awards address.
             </Body>
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
