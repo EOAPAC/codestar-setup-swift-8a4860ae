@@ -187,7 +187,7 @@ function Section({
   );
 }
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <p
       style={{
@@ -196,6 +196,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
         textTransform: "uppercase",
         letterSpacing: "0.14em",
         color: BLUE,
+        ...style,
       }}
     >
       {children}
