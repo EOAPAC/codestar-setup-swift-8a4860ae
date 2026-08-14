@@ -799,7 +799,7 @@ function WinnerOptionsPage() {
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
                   A designed physical edition of your award, made for a desk, a wall or a shelf — so it is
-                  present in the room rather than filed on a drive.
+                  present in the room.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
                 <div style={{ marginTop: "20px" }}>
