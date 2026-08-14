@@ -18,6 +18,11 @@ import {
 } from "@/components/ui/dialog";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
+import sealAsset from "@/assets/ea-winner-seal-full-1200.png.asset.json";
+import linkedinAsset from "@/assets/ea-winner-social-Linkedin_Post-2.png.asset.json";
+import squareAsset from "@/assets/ea-winner-social-IG_Post-2.png.asset.json";
+import storyAsset from "@/assets/ea-winner-social-IG_story-2.png.asset.json";
+import signatureAsset from "@/assets/ea-winner-emailsig-full-600x200-2.png.asset.json";
 
 export const Route = createFileRoute("/winner-options")({
   head: () => ({
