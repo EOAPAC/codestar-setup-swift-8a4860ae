@@ -878,7 +878,7 @@ function WinnerOptionsPage() {
                 className="flex h-full flex-col rounded-2xl bg-white"
                 style={{ border: `1px solid ${LINE}`, padding: "32px" }}
               >
-                <FeatureSpecimen bodyBars={6} />
+                <FeatureAddress />
                 <div style={{ marginTop: "24px" }}>
                   <Eyebrow>The Winner&rsquo;s Feature</Eyebrow>
                 </div>
@@ -1063,60 +1063,7 @@ function WinnerOptionsPage() {
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
               <div className="md:order-2 md:col-span-6 md:col-start-7">
-                <FeatureSpecimen bodyBars={8} />
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <button
-                      type="button"
-                      data-event="feature-format-view"
-                      className={`rounded-sm ${focusRing}`}
-                      style={{
-                        marginTop: "16px",
-                        color: BLUE,
-                        fontSize: "0.875rem",
-                        textDecoration: "underline",
-                        textDecorationColor: `${BLUE}80`,
-                        textUnderlineOffset: "3px",
-                      }}
-                    >
-                      View the feature format
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent
-                    className="max-h-[85vh] overflow-y-auto rounded-2xl bg-white sm:max-w-[880px]"
-                    style={{ padding: "40px", borderColor: LINE }}
-                  >
-                    <DialogHeader>
-                      <DialogTitle style={{ color: INK }}>Feature format specimen</DialogTitle>
-                    </DialogHeader>
-                    <div style={{ marginTop: "8px" }}>
-                      <FeatureSpecimen bodyBars={8} />
-                    </div>
-                    <p
-                      className="text-center"
-                      style={{ fontSize: "0.8125rem", color: MUTED, marginTop: "16px" }}
-                    >
-                      This specimen shows the format and presentation of a Winner&rsquo;s Feature.
-                      It is not presented as a real award winner.
-                    </p>
-                    <DialogClose asChild>
-                      <button
-                        type="button"
-                        className={`mx-auto rounded-lg bg-transparent transition-colors hover:bg-[#F7F9FC] ${focusRing}`}
-                        style={{
-                          marginTop: "16px",
-                          height: "40px",
-                          padding: "0 20px",
-                          border: `1px solid ${LINE}`,
-                          fontSize: "0.875rem",
-                          color: BODY,
-                        }}
-                      >
-                        Close
-                      </button>
-                    </DialogClose>
-                  </DialogContent>
-                </Dialog>
+                <FeatureAddress scale={1.6} />
               </div>
 
               <div className="md:order-1 md:col-span-5">
