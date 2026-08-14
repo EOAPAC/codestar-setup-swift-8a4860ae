@@ -30,6 +30,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { ArrowUpRight } from "lucide-react";
 
 
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
@@ -175,17 +176,25 @@ function CredibilityBand() {
         <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
           As seen in
         </p>
-        <div className="mt-6 grid grid-cols-2 justify-items-center gap-x-8 gap-y-6 md:flex md:flex-wrap md:items-center md:justify-center md:gap-x-14">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {publications.map((pub) => (
             <a
               key={pub.name}
               href={pub.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-[#8A94A6] transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring ${pub.className}`}
-              style={pub.style}
+              className="group flex flex-col items-center justify-between gap-6 rounded-xl border border-border bg-card p-5 text-center transition-all hover:border-primary hover:bg-muted hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
-              {pub.name}
+              <span
+                className={`block text-muted-foreground transition-colors group-hover:text-foreground ${pub.className}`}
+                style={pub.style}
+              >
+                {pub.name}
+              </span>
+              <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors group-hover:text-primary">
+                Read article
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
+              </span>
             </a>
           ))}
         </div>
