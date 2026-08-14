@@ -746,16 +746,15 @@ function WinnerOptionsPage() {
             <div className="flex flex-col items-center text-center">
               <Eyebrow>From here</Eyebrow>
               <SectionHeading className="mt-4">
-                Right now, all of it lives on a screen.
+                Two things the award can become.
               </SectionHeading>
               <p
                 className="mt-5"
                 style={{ fontSize: "1rem", lineHeight: 1.6, color: BODY, maxWidth: "640px" }}
               >
-                Your seal, your graphics and your award statement are yours permanently. They are also, all of
-                them, digital — a folder on your computer and a few lines in your inbox. There are two ways to
-                change that. One puts the award somewhere you can see it. The other puts it somewhere other
-                people can find it.
+                Your seal, your graphics and your award statement are yours permanently, to use wherever you
+                like. Beyond those, the award can take two other forms — one you can hold, and one you can send
+                to anyone who asks what you do.
               </p>
               <p
                 className="mt-4"
