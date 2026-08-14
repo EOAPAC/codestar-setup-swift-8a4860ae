@@ -797,26 +797,23 @@ function WinnerOptionsPage() {
           background: ${LINE};
         }
         @media (max-width: 767px) { .ea-rule-behind::before { display: none; } }
-        .feature-address-field {
-          height: auto;
+        .feature-preview-url {
           white-space: nowrap;
         }
-        .feature-address-field--wrap {
-          white-space: normal;
-        }
-        .feature-address-text {
-          word-break: break-word;
-        }
         @media (max-width: 639px) {
-          .feature-address-field {
-            width: 92% !important;
-            min-height: 76px !important;
+          .feature-preview-url {
             white-space: normal;
+            word-break: break-word;
           }
-          .feature-address-text {
-            font-size: 0.8125rem !important;
+          .feature-preview-split {
+            flex-direction: column;
+          }
+          .feature-preview-image,
+          .feature-preview-bars {
+            width: 100% !important;
           }
         }
+
       `}</style>
 
       {/* Header */}
