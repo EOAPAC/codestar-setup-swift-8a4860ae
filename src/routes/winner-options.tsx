@@ -746,16 +746,15 @@ function WinnerOptionsPage() {
             <div className="flex flex-col items-center text-center">
               <Eyebrow>From here</Eyebrow>
               <SectionHeading className="mt-4">
-                Right now, all of it lives on a screen.
+                Two things the award can become.
               </SectionHeading>
               <p
                 className="mt-5"
                 style={{ fontSize: "1rem", lineHeight: 1.6, color: BODY, maxWidth: "640px" }}
               >
-                Your seal, your graphics and your award statement are yours permanently. They are also, all of
-                them, digital — a folder on your computer and a few lines in your inbox. There are two ways to
-                change that. One puts the award somewhere you can see it. The other puts it somewhere other
-                people can find it.
+                Your seal, your graphics and your award statement are yours permanently, to use wherever you
+                like. Beyond those, the award can take two other forms — one you can hold, and one you can send
+                to anyone who asks what you do.
               </p>
               <p
                 className="mt-4"
@@ -770,9 +769,9 @@ function WinnerOptionsPage() {
         {/* Comparison — white, two columns */}
         <Section>
           <Container>
-            <SectionHeading>Two ways to take it off the screen</SectionHeading>
+          <SectionHeading>One you can hold. One you can send.</SectionHeading>
             <Body className="mt-4">
-              Both begin from the same award. The difference is where it ends up.
+              Both begin from the same award. The difference is what it becomes.
             </Body>
 
             <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-2">
@@ -800,7 +799,7 @@ function WinnerOptionsPage() {
                   style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}
                 >
                   A designed physical edition of your award, made for a desk, a wall or a shelf — so it is
-                  present in the room rather than filed on a drive.
+                  present in the room.
                 </p>
                 <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
                 <div style={{ marginTop: "20px" }}>
