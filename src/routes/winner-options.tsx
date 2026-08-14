@@ -894,6 +894,16 @@ function WinnerOptionsPage() {
           background: ${LINE};
         }
         @media (max-width: 767px) { .ea-rule-behind::before { display: none; } }
+        .ea-half-bottom { padding-bottom: 28px !important; }
+        .ea-half-top { padding-top: 28px !important; }
+        @media (min-width: 768px) {
+          .ea-half-bottom { padding-bottom: 40px !important; }
+          .ea-half-top { padding-top: 40px !important; }
+        }
+        @media (min-width: 1024px) {
+          .ea-half-bottom { padding-bottom: 52px !important; }
+          .ea-half-top { padding-top: 52px !important; }
+        }
         .feature-preview-url { white-space: nowrap; }
         @media (max-width: 639px) {
           .feature-preview-url { white-space: normal; word-break: break-word; }
@@ -1057,7 +1067,7 @@ function WinnerOptionsPage() {
         </Section>
 
         {/* Statement vs Feature */}
-        <Section>
+        <Section className="ea-half-bottom">
           <Container>
             <SectionHeading>What you already have, and what the Feature adds</SectionHeading>
 
@@ -1125,7 +1135,7 @@ function WinnerOptionsPage() {
         </Section>
 
         {/* Two-card comparison */}
-        <Section id="offer-cards">
+        <Section id="offer-cards" className="ea-half-top">
           <Container>
             <SectionHeading>One you can send. One you can hold.</SectionHeading>
             <Body className="mt-4">
