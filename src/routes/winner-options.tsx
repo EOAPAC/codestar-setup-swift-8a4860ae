@@ -648,8 +648,12 @@ function WinnerOptionsPage() {
         }
         @media (max-width: 639px) {
           .feature-address-field {
+            width: 92% !important;
             min-height: 76px !important;
             white-space: normal;
+          }
+          .feature-address-text {
+            font-size: 0.8125rem !important;
           }
         }
       `}</style>
