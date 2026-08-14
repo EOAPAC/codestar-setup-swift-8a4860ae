@@ -514,6 +514,9 @@ function FeatureSpecimen({ bodyBars = 7 }: { bodyBars?: number }) {
         </div>
       </div>
     </div>
+  );
+}
+
 // ---------------------------------------------------------------- confetti
 
 function Confetti() {
