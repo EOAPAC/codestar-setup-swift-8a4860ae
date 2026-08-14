@@ -21,6 +21,7 @@ import { Route as CriteriaRouteImport } from './routes/criteria'
 import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as WinnersSpecimenRouteImport } from './routes/winners.specimen'
 import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resources.$token'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 
@@ -84,6 +85,11 @@ const InsightsIndexRoute = InsightsIndexRouteImport.update({
   path: '/insights/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WinnersSpecimenRoute = WinnersSpecimenRouteImport.update({
+  id: '/winners/specimen',
+  path: '/winners/specimen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WinnerResourcesTokenRoute = WinnerResourcesTokenRouteImport.update({
   id: '/winner-resources/$token',
   path: '/winner-resources/$token',
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
+  '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights/': typeof InsightsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
+  '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights': typeof InsightsIndexRoute
 }
 export interface FileRoutesById {
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
+  '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights/': typeof InsightsIndexRoute
 }
 export interface FileRouteTypes {
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/winner-product-concepts'
     | '/insights/$slug'
     | '/winner-resources/$token'
+    | '/winners/specimen'
     | '/insights/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/winner-product-concepts'
     | '/insights/$slug'
     | '/winner-resources/$token'
+    | '/winners/specimen'
     | '/insights'
   id:
     | '__root__'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/winner-product-concepts'
     | '/insights/$slug'
     | '/winner-resources/$token'
+    | '/winners/specimen'
     | '/insights/'
   fileRoutesById: FileRoutesById
 }
@@ -209,6 +221,7 @@ export interface RootRouteChildren {
   WinnerProductConceptsRoute: typeof WinnerProductConceptsRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
+  WinnersSpecimenRoute: typeof WinnersSpecimenRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
 }
 
@@ -298,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/winners/specimen': {
+      id: '/winners/specimen'
+      path: '/winners/specimen'
+      fullPath: '/winners/specimen'
+      preLoaderRoute: typeof WinnersSpecimenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/winner-resources/$token': {
       id: '/winner-resources/$token'
       path: '/winner-resources/$token'
@@ -329,6 +349,7 @@ const rootRouteChildren: RootRouteChildren = {
   WinnerProductConceptsRoute: WinnerProductConceptsRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
+  WinnersSpecimenRoute: WinnersSpecimenRoute,
   InsightsIndexRoute: InsightsIndexRoute,
 }
 export const routeTree = rootRouteImport
