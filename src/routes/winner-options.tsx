@@ -1554,7 +1554,6 @@ function WinnerOptionsPage() {
                       }`}
                       style={{ height: "72px", padding: "0 20px", borderColor: LINE }}
                     >
-                      <AssetThumb ratio={m.ratio} src={m.src} alt={m.alt} />
                       <span
                         style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
                         className="truncate"
