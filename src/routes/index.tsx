@@ -30,6 +30,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { ArrowUpRight } from "lucide-react";
 
 
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
