@@ -769,9 +769,9 @@ function WinnerOptionsPage() {
         {/* Comparison — white, two columns */}
         <Section>
           <Container>
-            <SectionHeading>Two ways to take it off the screen</SectionHeading>
+          <SectionHeading>One you can hold. One you can send.</SectionHeading>
             <Body className="mt-4">
-              Both begin from the same award. The difference is where it ends up.
+              Both begin from the same award. The difference is what it becomes.
             </Body>
 
             <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-2">
