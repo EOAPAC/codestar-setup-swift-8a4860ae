@@ -633,6 +633,22 @@ function WinnerOptionsPage() {
           background: ${LINE};
         }
         @media (max-width: 767px) { .ea-rule-behind::before { display: none; } }
+        .feature-address-field {
+          height: auto;
+          white-space: nowrap;
+        }
+        .feature-address-field--wrap {
+          white-space: normal;
+        }
+        .feature-address-text {
+          word-break: break-word;
+        }
+        @media (max-width: 639px) {
+          .feature-address-field {
+            min-height: 76px !important;
+            white-space: normal;
+          }
+        }
       `}</style>
 
       {/* Header */}
