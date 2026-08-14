@@ -94,7 +94,7 @@ const processSteps = [
   {
     number: "02",
     title: "Review",
-    body: "We prepare the feature from your entry and your award statement, then send it for your review and factual corrections.",
+    body: "We prepare the feature from your entry and your award statement, then share it for your review and factual corrections.",
   },
   {
     number: "03",
@@ -122,7 +122,7 @@ const faqs = [
   },
   {
     q: "Will I review the feature before it is published?",
-    a: "Yes. The feature is sent to you for review and factual corrections before publication.",
+    a: "Yes. The feature is shared with you for review and factual corrections before publication.",
   },
   {
     q: "Where will the feature be published?",
