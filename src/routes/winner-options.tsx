@@ -60,18 +60,55 @@ type Material = {
   id: string;
   title: string;
   fileType: string;
-  /** width / height of the asset itself, used to draw the outline thumbnail */
+  /** width / height of the asset itself, used to size the thumbnail */
   ratio: number;
+  src: string;
+  alt: string;
 };
 
 const materials: Material[] = [
-  { id: "certificate", title: "Digital winner certificate", fileType: "PDF", ratio: 1 / 1.414 },
-  { id: "seal", title: "Winner seal", fileType: "PNG", ratio: 1 },
-  { id: "banner", title: "LinkedIn banner", fileType: "PNG", ratio: 1200 / 630 },
-  { id: "square", title: "Square social post", fileType: "PNG", ratio: 1 },
-  { id: "story", title: "Story graphic", fileType: "PNG", ratio: 9 / 16 },
-  { id: "signature", title: "Email signature", fileType: "PNG", ratio: 3 },
+  {
+    id: "seal",
+    title: "Winner seal",
+    fileType: "PNG",
+    ratio: 1,
+    src: sealAsset.url,
+    alt: "Entrepreneur Awards 2026 winner seal",
+  },
+  {
+    id: "banner",
+    title: "LinkedIn banner",
+    fileType: "PNG",
+    ratio: 1200 / 630,
+    src: linkedinAsset.url,
+    alt: "Entrepreneur Awards 2026 winner LinkedIn banner",
+  },
+  {
+    id: "square",
+    title: "Square social post",
+    fileType: "PNG",
+    ratio: 1,
+    src: squareAsset.url,
+    alt: "Entrepreneur Awards 2026 winner square social post",
+  },
+  {
+    id: "story",
+    title: "Story graphic",
+    fileType: "PNG",
+    ratio: 9 / 16,
+    src: storyAsset.url,
+    alt: "Entrepreneur Awards 2026 winner story graphic",
+  },
+  {
+    id: "signature",
+    title: "Email signature",
+    fileType: "PNG",
+    ratio: 3,
+    src: signatureAsset.url,
+    alt: "Entrepreneur Awards 2026 winner email signature",
+  },
 ];
+
 
 const commemorativeIncludes = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
