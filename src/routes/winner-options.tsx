@@ -22,11 +22,6 @@ import {
 import { AWARD_YEAR } from "@/content/award";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
-import sealAsset from "@/assets/ea-winner-seal-full-1200.png.asset.json";
-import linkedinAsset from "@/assets/ea-winner-social-Linkedin_Post-2.png.asset.json";
-import squareAsset from "@/assets/ea-winner-social-IG_Post-2.png.asset.json";
-import storyAsset from "@/assets/ea-winner-social-IG_story-2.png.asset.json";
-import signatureAsset from "@/assets/ea-winner-emailsig-full-600x200-2.png.asset.json";
 import commemorativeAsset from "@/assets/commemorative-edition.jpg.asset.json";
 
 export const Route = createFileRoute("/winner-options")({
@@ -74,52 +69,14 @@ type Material = {
   id: string;
   title: string;
   fileType: string;
-  ratio: number;
-  src: string;
-  alt: string;
 };
 
 const materials: Material[] = [
-  {
-    id: "seal",
-    title: "Winner seal",
-    fileType: "PNG",
-    ratio: 1,
-    src: sealAsset.url,
-    alt: `Entrepreneur Awards ${AWARD_YEAR} winner seal`,
-  },
-  {
-    id: "banner",
-    title: "LinkedIn banner",
-    fileType: "PNG",
-    ratio: 1200 / 630,
-    src: linkedinAsset.url,
-    alt: `Entrepreneur Awards ${AWARD_YEAR} winner LinkedIn banner`,
-  },
-  {
-    id: "square",
-    title: "Square social post",
-    fileType: "PNG",
-    ratio: 1,
-    src: squareAsset.url,
-    alt: `Entrepreneur Awards ${AWARD_YEAR} winner square social post`,
-  },
-  {
-    id: "story",
-    title: "Story graphic",
-    fileType: "PNG",
-    ratio: 9 / 16,
-    src: storyAsset.url,
-    alt: `Entrepreneur Awards ${AWARD_YEAR} winner story graphic`,
-  },
-  {
-    id: "signature",
-    title: "Email signature",
-    fileType: "PNG",
-    ratio: 3,
-    src: signatureAsset.url,
-    alt: `Entrepreneur Awards ${AWARD_YEAR} winner email signature`,
-  },
+  { id: "seal", title: "Winner seal", fileType: "PNG" },
+  { id: "banner", title: "LinkedIn banner", fileType: "PNG" },
+  { id: "square", title: "Square social post", fileType: "PNG" },
+  { id: "story", title: "Story graphic", fileType: "PNG" },
+  { id: "signature", title: "Email signature", fileType: "PNG" },
 ];
 
 const commemorativeIncludes = [
@@ -466,23 +423,6 @@ function Reassurance({ items }: { items: string[] }) {
   );
 }
 
-/** Thumbnail of the actual asset, drawn in its own aspect ratio. */
-function AssetThumb({ ratio, src, alt }: { ratio: number; src: string; alt: string }) {
-  const height = 44;
-  return (
-    <span
-      className="flex shrink-0 items-center justify-center overflow-hidden rounded-[6px]"
-      style={{
-        height: `${height}px`,
-        width: `${Math.round(height * ratio)}px`,
-        border: `1.5px solid ${BLUE}59`,
-        backgroundColor: TINT,
-      }}
-    >
-      <img src={src} alt={alt} loading="lazy" className="h-full w-full object-contain" />
-    </span>
-  );
-}
 
 function CommemorativeVisual() {
   return (
@@ -1554,7 +1494,6 @@ function WinnerOptionsPage() {
                       }`}
                       style={{ height: "72px", padding: "0 20px", borderColor: LINE }}
                     >
-                      <AssetThumb ratio={m.ratio} src={m.src} alt={m.alt} />
                       <span
                         style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
                         className="truncate"
