@@ -488,73 +488,63 @@ function CommemorativeVisual() {
   );
 }
 
-/** Miniature browser frame containing the published feature layout. */
-function FeatureSpecimen({ bodyBars = 7 }: { bodyBars?: number }) {
+/** A 16:10 panel showing the feature's permanent address. */
+function FeatureAddress({ scale = 1 }: { scale?: number }) {
+  const isLarge = scale > 1;
+  const addressSize = isLarge ? "1.125rem" : "0.9375rem";
+  const captionSize = isLarge ? "0.8125rem" : "0.75rem";
+  const fieldWidth = isLarge ? "68%" : "78%";
+  const minHeight = isLarge ? "83px" : "52px";
   return (
     <div
       role="img"
-      aria-label="Browser frame showing the layout of a published feature page"
-      className="w-full overflow-hidden rounded-xl"
-      style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
+      aria-label="Permanent address for a Winner's Feature: entrepreneurawards.co/winners/your-business"
+      className="feature-address-panel flex w-full flex-col items-center justify-center"
+      style={{
+        aspectRatio: "16 / 10",
+        borderRadius: "12px",
+        border: `1px solid ${LINE}`,
+        backgroundColor: TINT,
+      }}
     >
-      {/* browser bar */}
       <div
-        className="relative flex items-center px-3"
-        style={{ height: "28px", borderBottom: `1px solid ${LINE}`, backgroundColor: TINT }}
+        className={`feature-address-field flex items-center ${isLarge ? "feature-address-field--wrap" : ""}`}
+        style={{
+          width: fieldWidth,
+          minHeight,
+          padding: "0 20px",
+          borderRadius: "10px",
+          border: `1px solid ${LINE}`,
+          backgroundColor: "#fff",
+        }}
       >
-        <span className="flex gap-[6px]">
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className="block rounded-full"
-              style={{ width: "8px", height: "8px", backgroundColor: LINE }}
-            />
-          ))}
-        </span>
         <span
-          className="absolute left-1/2 -translate-x-1/2 font-mono"
-          style={{ fontSize: "0.6875rem", color: MUTED }}
+          className="feature-address-text"
+          style={{
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+            fontSize: addressSize,
+            color: MUTED,
+            lineHeight: 1.4,
+          }}
         >
-          entrepreneurawards.co/winners/[name]
+          entrepreneurawards.co/winners/
+          <span style={{ color: BLUE, fontWeight: 500 }}>your-business</span>
         </span>
       </div>
-      {/* specimen page */}
-      <div
-        className="flex flex-col gap-[10px] px-[7%] py-[6%]"
-        style={{ aspectRatio: "16 / 10" }}
+      <p
+        style={{
+          marginTop: "20px",
+          fontSize: captionSize,
+          color: MUTED,
+          textAlign: "center",
+        }}
       >
-        <div className="flex items-center justify-between">
-          <span style={{ fontSize: "0.625rem", fontWeight: 600, color: INK }}>
-            Entrepreneur Awards
-          </span>
-          <span className="h-[4px] w-[52px] rounded-full" style={{ backgroundColor: LINE }} />
-        </div>
-        <div className="flex flex-col gap-[6px] pt-[2%]">
-          <span className="h-[10px] w-[88%] rounded-[3px]" style={{ backgroundColor: LINE }} />
-          <span className="h-[10px] w-[70%] rounded-[3px]" style={{ backgroundColor: LINE }} />
-          <span className="h-[10px] w-[44%] rounded-[3px]" style={{ backgroundColor: LINE }} />
-        </div>
-        <div
-          className="w-full min-h-0 flex-1 rounded-[6px]"
-          style={{ border: `1.5px solid ${BLUE}59` }}
-        />
-        <div className="flex flex-col gap-[6px]">
-          {Array.from({ length: bodyBars }).map((_, i) => (
-            <span
-              key={i}
-              className="rounded-full"
-              style={{
-                height: "4px",
-                width: i === bodyBars - 1 ? "58%" : i % 3 === 1 ? "92%" : "100%",
-                backgroundColor: LINE,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+        Your business in place of the last part.
+      </p>
     </div>
   );
 }
+
 
 // ---------------------------------------------------------------- confetti
 
