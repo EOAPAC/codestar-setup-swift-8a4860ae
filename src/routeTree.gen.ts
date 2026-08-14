@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WinnersRouteImport } from './routes/winners'
 import { Route as WinnerProductConceptsRouteImport } from './routes/winner-product-concepts'
 import { Route as WinnerOptionsRouteImport } from './routes/winner-options'
 import { Route as WinnerMaterialsRouteImport } from './routes/winner-materials'
@@ -25,11 +24,6 @@ import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resources.$token'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 
-const WinnersRoute = WinnersRouteImport.update({
-  id: '/winners',
-  path: '/winners',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const WinnerProductConceptsRoute = WinnerProductConceptsRouteImport.update({
   id: '/winner-product-concepts',
   path: '/winner-product-concepts',
@@ -113,7 +107,6 @@ export interface FileRoutesByFullPath {
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
-  '/winners': typeof WinnersRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/insights/': typeof InsightsIndexRoute
@@ -130,7 +123,6 @@ export interface FileRoutesByTo {
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
-  '/winners': typeof WinnersRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/insights': typeof InsightsIndexRoute
@@ -148,7 +140,6 @@ export interface FileRoutesById {
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
-  '/winners': typeof WinnersRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/insights/': typeof InsightsIndexRoute
@@ -167,7 +158,6 @@ export interface FileRouteTypes {
     | '/winner-materials'
     | '/winner-options'
     | '/winner-product-concepts'
-    | '/winners'
     | '/insights/$slug'
     | '/winner-resources/$token'
     | '/insights/'
@@ -184,7 +174,6 @@ export interface FileRouteTypes {
     | '/winner-materials'
     | '/winner-options'
     | '/winner-product-concepts'
-    | '/winners'
     | '/insights/$slug'
     | '/winner-resources/$token'
     | '/insights'
@@ -201,7 +190,6 @@ export interface FileRouteTypes {
     | '/winner-materials'
     | '/winner-options'
     | '/winner-product-concepts'
-    | '/winners'
     | '/insights/$slug'
     | '/winner-resources/$token'
     | '/insights/'
@@ -219,7 +207,6 @@ export interface RootRouteChildren {
   WinnerMaterialsRoute: typeof WinnerMaterialsRoute
   WinnerOptionsRoute: typeof WinnerOptionsRoute
   WinnerProductConceptsRoute: typeof WinnerProductConceptsRoute
-  WinnersRoute: typeof WinnersRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
@@ -227,13 +214,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/winners': {
-      id: '/winners'
-      path: '/winners'
-      fullPath: '/winners'
-      preLoaderRoute: typeof WinnersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/winner-product-concepts': {
       id: '/winner-product-concepts'
       path: '/winner-product-concepts'
@@ -347,7 +327,6 @@ const rootRouteChildren: RootRouteChildren = {
   WinnerMaterialsRoute: WinnerMaterialsRoute,
   WinnerOptionsRoute: WinnerOptionsRoute,
   WinnerProductConceptsRoute: WinnerProductConceptsRoute,
-  WinnersRoute: WinnersRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
   InsightsIndexRoute: InsightsIndexRoute,
