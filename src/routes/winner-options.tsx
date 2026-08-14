@@ -500,33 +500,330 @@ function CommemorativeVisual() {
   );
 }
 
-/** Simple visual placeholder for the Winner's Feature — no browser frame. */
-function FeatureVisual() {
+/** A browser frame previewing the published feature format. */
+function FeaturePreview({ scale = 1 }: { scale?: number }) {
+  const s = (n: number) => `${Math.round(n * scale)}px`;
+  const barH = scale > 1 ? 4 : 3;
+  const topBars = [100, 94, 88, 97, 72];
+  const bottomBars = [100, 91, 84];
+
+  const Bar = ({ w }: { w: number }) => (
+    <span
+      style={{
+        display: "block",
+        width: `${w}%`,
+        height: `${barH}px`,
+        borderRadius: "2px",
+        backgroundColor: "#EDF0F4",
+      }}
+    />
+  );
+
+  return (
+    <div className="w-full">
+      <p
+        style={{
+          fontSize: "0.6875rem",
+          fontWeight: 600,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: BLUE,
+          marginBottom: "10px",
+        }}
+      >
+        Preview &middot; What gets published
+      </p>
+
+      <div
+        role="img"
+        aria-label="Preview of a published Winner's Feature page at entrepreneurawards.co/winners/your-business"
+        className="w-full overflow-hidden"
+        style={{
+          aspectRatio: "16 / 10",
+          borderRadius: "12px",
+          border: `1px solid ${LINE}`,
+          backgroundColor: "#fff",
+        }}
+      >
+        <div
+          className="flex items-center"
+          style={{
+            height: s(32),
+            backgroundColor: TINT,
+            borderBottom: `1px solid ${LINE}`,
+            paddingLeft: s(14),
+            paddingRight: s(14),
+            gap: s(10),
+          }}
+        >
+          <span className="flex shrink-0 items-center" style={{ gap: s(6) }}>
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                style={{
+                  display: "block",
+                  width: s(7),
+                  height: s(7),
+                  borderRadius: "999px",
+                  backgroundColor: LINE,
+                }}
+              />
+            ))}
+          </span>
+          <span
+            className="flex min-w-0 flex-1 items-center"
+            style={{
+              height: s(24),
+              borderRadius: "6px",
+              backgroundColor: "#fff",
+              border: `1px solid ${LINE}`,
+              paddingLeft: s(12),
+              paddingRight: s(8),
+            }}
+          >
+            <span
+              className="feature-preview-url"
+              style={{
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                fontSize: scale > 1 ? "0.8125rem" : "0.6875rem",
+                color: MUTED,
+                lineHeight: 1.2,
+              }}
+            >
+              entrepreneurawards.co/winners/<wbr />
+              <span style={{ color: BLUE }}>your-business</span>
+            </span>
+          </span>
+        </div>
+
+        <div style={{ padding: s(20) }}>
+          <span
+            className="inline-flex items-center"
+            style={{
+              backgroundColor: "#EAF2FD",
+              borderRadius: "999px",
+              padding: `${s(5)} ${s(10)}`,
+            }}
+          >
+            <svg
+              width={s(9)}
+              height={s(9)}
+              viewBox="0 0 12 12"
+              fill="none"
+              aria-hidden
+              style={{ marginRight: s(6) }}
+            >
+              <path
+                d="M6 0.5 L7.6 4 L11.5 4.5 L8.6 7.1 L9.4 11 L6 9.1 L2.6 11 L3.4 7.1 L0.5 4.5 L4.4 4 Z"
+                fill={BLUE}
+              />
+            </svg>
+            <span
+              style={{
+                fontSize: scale > 1 ? "0.75rem" : "0.5625rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                color: BLUE,
+                lineHeight: 1.2,
+              }}
+            >
+              {AWARD_YEAR} Winner Feature
+            </span>
+          </span>
+
+          <h4
+            style={{
+              marginTop: s(12),
+              fontSize: scale > 1 ? "1.5rem" : "1.0625rem",
+              fontWeight: 600,
+              lineHeight: 1.25,
+              color: INK,
+              maxWidth: "22ch",
+            }}
+          >
+            How your business built something worth recognizing.
+          </h4>
+
+          <p
+            style={{
+              marginTop: s(6),
+              fontSize: scale > 1 ? "0.75rem" : "0.625rem",
+              color: MUTED,
+            }}
+          >
+            By Entrepreneur Awards Editorial
+          </p>
+
+          <div
+            className="feature-preview-split"
+            style={{ marginTop: s(16), display: "flex", gap: "4%" }}
+          >
+            <div
+              className="feature-preview-image"
+              style={{
+                width: "42%",
+                aspectRatio: "4 / 3",
+                borderRadius: "6px",
+                backgroundColor: "#F0F3F7",
+                flexShrink: 0,
+              }}
+            />
+            <div
+              className="feature-preview-bars"
+              style={{ width: "54%", display: "flex", flexDirection: "column", gap: s(9) }}
+            >
+              {topBars.map((w, i) => (
+                <Bar key={`t${i}`} w={w} />
+              ))}
+              <div style={{ display: "flex", alignItems: "stretch" }}>
+                <span
+                  style={{
+                    display: "block",
+                    width: "2px",
+                    borderRadius: "1px",
+                    backgroundColor: BLUE,
+                    flexShrink: 0,
+                  }}
+                />
+                <div
+                  style={{
+                    marginLeft: s(10),
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: s(9),
+                  }}
+                >
+                  <Bar w={86} />
+                  <Bar w={64} />
+                </div>
+              </div>
+              {bottomBars.map((w, i) => (
+                <Bar key={`b${i}`} w={w} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p
+        style={{
+          marginTop: "12px",
+          fontSize: "0.75rem",
+          color: MUTED,
+          textAlign: "center",
+        }}
+      >
+        Format preview. Not a real recipient.
+      </p>
+    </div>
+  );
+}
+
+/** Scaled-down full article page, used only to show length as texture. */
+const specimenParagraphs = [
+  "Most companies at this stage solve a capacity problem the same way. Demand rises, the team strains, and the answer is more people. It is the fix every advisor recommends and the one most founders reach for, because it is the only lever that visibly moves.",
+  "Faced with more work than its team could absorb, the founder declined to hire. The reasoning was not financial. It was that the quality customers were paying for lived in a small number of judgment calls made early in each engagement, and that those calls did not survive being handed to someone new.",
+  "What followed was not a growth plan. It was an attempt to find out where the time was actually going. The founder rebuilt the intake process, the part of the work that happens before anything visible is produced.",
+  "None of this is glamorous, and none of it is the kind of thing that gets written about. It is also, on the evidence submitted, what produced the result. Delivery time fell, and the judgment calls that mattered stayed with the person who made them best.",
+];
+
+function ArticleTexture() {
   return (
     <div
-      className="w-full overflow-hidden rounded-xl bg-[#F7F9FC]"
-      style={{ aspectRatio: "4 / 3", border: `1px solid ${LINE}` }}
+      className="relative overflow-hidden"
+      style={{
+        borderRadius: "12px",
+        border: `1px solid ${LINE}`,
+        backgroundColor: "#fff",
+        height: "360px",
+      }}
     >
-      <div className="flex h-full flex-col items-center justify-center p-6 text-center">
-        <span
-          className="inline-flex items-center rounded-full px-3 py-1"
-          style={{ backgroundColor: "#EAF2FD", color: BLUE, fontSize: "0.75rem", fontWeight: 600 }}
-        >
-          {AWARD_YEAR} Winner Feature
+      <div
+        className="flex items-center"
+        style={{
+          height: "28px",
+          backgroundColor: TINT,
+          borderBottom: `1px solid ${LINE}`,
+          padding: "0 12px",
+          gap: "8px",
+        }}
+      >
+        <span className="flex shrink-0 items-center" style={{ gap: "5px" }}>
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              style={{
+                display: "block",
+                width: "6px",
+                height: "6px",
+                borderRadius: "999px",
+                backgroundColor: LINE,
+              }}
+            />
+          ))}
         </span>
-        <p
-          className="mt-4"
-          style={{ fontSize: "1.0625rem", fontWeight: 600, lineHeight: 1.35, color: INK }}
-        >
-          A permanent written feature about your business
-        </p>
-        <p
-          className="mt-2"
-          style={{ fontSize: "0.8125rem", color: MUTED, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
+        <span
+          className="min-w-0 flex-1 truncate"
+          style={{
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+            fontSize: "0.625rem",
+            color: MUTED,
+          }}
         >
           entrepreneurawards.co/winners/<span style={{ color: BLUE }}>your-business</span>
-        </p>
+        </span>
       </div>
+
+      <div
+        aria-hidden
+        style={{
+          transform: "scale(0.4)",
+          transformOrigin: "top left",
+          width: "250%",
+          padding: "36px 40px 0",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "1.375rem",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: BLUE,
+          }}
+        >
+          {AWARD_YEAR} Winner Feature
+        </p>
+        <h4
+          style={{
+            marginTop: "18px",
+            fontSize: "3rem",
+            fontWeight: 600,
+            lineHeight: 1.15,
+            color: INK,
+          }}
+        >
+          How ‹Your Business› Made Its Smallest Constraint The Reason Customers Stay
+        </h4>
+        <p style={{ marginTop: "18px", fontSize: "1.5rem", color: MUTED }}>
+          By Entrepreneur Awards Editorial
+        </p>
+        <div style={{ marginTop: "28px", display: "grid", gap: "24px" }}>
+          {specimenParagraphs.map((p) => (
+            <p key={p} style={{ fontSize: "1.75rem", lineHeight: 1.7, color: "#1a1a1a" }}>
+              {p}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0"
+        style={{ height: "33%", background: "linear-gradient(to bottom, #ffffff00, #ffffff)" }}
+      />
     </div>
   );
 }
@@ -651,6 +948,13 @@ function WinnerOptionsPage() {
           background: ${LINE};
         }
         @media (max-width: 767px) { .ea-rule-behind::before { display: none; } }
+        .feature-preview-url { white-space: nowrap; }
+        @media (max-width: 639px) {
+          .feature-preview-url { white-space: normal; word-break: break-word; }
+          .feature-preview-split { flex-direction: column; }
+          .feature-preview-image,
+          .feature-preview-bars { width: 100% !important; }
+        }
         @keyframes ea-chevron-loop {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(6px); }
@@ -849,20 +1153,8 @@ function WinnerOptionsPage() {
                 >
                   The Winner&rsquo;s Feature &middot; {formatPrice(FEATURE_PRICE)}
                 </p>
-                <div className="mt-3 rounded-xl" style={{ border: `1px solid ${LINE}`, padding: "24px", backgroundColor: "#fff" }}>
-                  <p style={{ fontSize: "16px", lineHeight: 1.65, color: "#1a1a1a" }}>
-                    A full written feature about your business, published at a permanent Entrepreneur Awards address. Sent to you for review before it goes live.
-                  </p>
-                  <a
-                    href="/winners/specimen"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-event="feature-format-view"
-                    className={`mt-4 inline-flex items-center gap-1 rounded-sm underline underline-offset-4 ${focusRing}`}
-                    style={{ color: BLUE, fontSize: "0.9375rem", fontWeight: 500 }}
-                  >
-                    Read a full example &rarr;
-                  </a>
+                <div className="mt-3">
+                  <ArticleTexture />
                 </div>
               </div>
             </div>
@@ -904,7 +1196,7 @@ function WinnerOptionsPage() {
                   boxShadow: "0 2px 10px rgba(25,120,229,0.08)",
                 }}
               >
-                <FeatureVisual />
+                <FeaturePreview />
                 <div style={{ marginTop: "24px" }}>
                   <Eyebrow>The Winner&rsquo;s Feature</Eyebrow>
                 </div>
@@ -1028,7 +1320,7 @@ function WinnerOptionsPage() {
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
               <div className="md:order-2 md:col-span-6 md:col-start-7">
-                <FeatureVisual />
+                <FeaturePreview scale={1.6} />
               </div>
 
               <div className="md:order-1 md:col-span-5">
