@@ -18,6 +18,11 @@ import {
 } from "@/components/ui/dialog";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
+import sealAsset from "@/assets/ea-winner-seal-full-1200.png.asset.json";
+import linkedinAsset from "@/assets/ea-winner-social-Linkedin_Post-2.png.asset.json";
+import squareAsset from "@/assets/ea-winner-social-IG_Post-2.png.asset.json";
+import storyAsset from "@/assets/ea-winner-social-IG_story-2.png.asset.json";
+import signatureAsset from "@/assets/ea-winner-emailsig-full-600x200-2.png.asset.json";
 
 export const Route = createFileRoute("/winner-options")({
   head: () => ({
@@ -60,27 +65,64 @@ type Material = {
   id: string;
   title: string;
   fileType: string;
-  /** width / height of the asset itself, used to draw the outline thumbnail */
+  /** width / height of the asset itself, used to size the thumbnail */
   ratio: number;
+  src: string;
+  alt: string;
 };
 
 const materials: Material[] = [
-  { id: "certificate", title: "Digital winner certificate", fileType: "PDF", ratio: 1 / 1.414 },
-  { id: "seal", title: "Winner seal", fileType: "PNG", ratio: 1 },
-  { id: "banner", title: "LinkedIn banner", fileType: "PNG", ratio: 1200 / 630 },
-  { id: "square", title: "Square social post", fileType: "PNG", ratio: 1 },
-  { id: "story", title: "Story graphic", fileType: "PNG", ratio: 9 / 16 },
-  { id: "signature", title: "Email signature", fileType: "PNG", ratio: 3 },
+  {
+    id: "seal",
+    title: "Winner seal",
+    fileType: "PNG",
+    ratio: 1,
+    src: sealAsset.url,
+    alt: "Entrepreneur Awards 2026 winner seal",
+  },
+  {
+    id: "banner",
+    title: "LinkedIn banner",
+    fileType: "PNG",
+    ratio: 1200 / 630,
+    src: linkedinAsset.url,
+    alt: "Entrepreneur Awards 2026 winner LinkedIn banner",
+  },
+  {
+    id: "square",
+    title: "Square social post",
+    fileType: "PNG",
+    ratio: 1,
+    src: squareAsset.url,
+    alt: "Entrepreneur Awards 2026 winner square social post",
+  },
+  {
+    id: "story",
+    title: "Story graphic",
+    fileType: "PNG",
+    ratio: 9 / 16,
+    src: storyAsset.url,
+    alt: "Entrepreneur Awards 2026 winner story graphic",
+  },
+  {
+    id: "signature",
+    title: "Email signature",
+    fileType: "PNG",
+    ratio: 3,
+    src: signatureAsset.url,
+    alt: "Entrepreneur Awards 2026 winner email signature",
+  },
 ];
+
 
 const commemorativeIncludes = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display — the printed counterpart to the digital certificate above",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
 ];
 
 const commemorativeIncludesDetailed = [
   "Engraved recognition object carrying your name, your award year and the wording of your award statement",
-  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display — the printed counterpart to the digital certificate above",
+  "Printed presentation certificate of your Entrepreneur Award, prepared for framing or display",
 ];
 
 const featureIncludes = [
@@ -379,22 +421,24 @@ function FilledButton({
   );
 }
 
-/** Outline thumbnail drawn in the asset's own aspect ratio. */
-function AssetThumb({ ratio }: { ratio: number }) {
+/** Thumbnail of the actual asset, drawn in its own aspect ratio. */
+function AssetThumb({ ratio, src, alt }: { ratio: number; src: string; alt: string }) {
   const height = 44;
   return (
     <span
-      aria-hidden="true"
-      className="block shrink-0 rounded-[6px]"
+      className="flex shrink-0 items-center justify-center overflow-hidden rounded-[6px]"
       style={{
         height: `${height}px`,
         width: `${Math.round(height * ratio)}px`,
         border: `1.5px solid ${BLUE}59`,
         backgroundColor: TINT,
       }}
-    />
+    >
+      <img src={src} alt={alt} loading="lazy" className="h-full w-full object-contain" />
+    </span>
   );
 }
+
 
 /** Abstract composition standing in for the physical edition. */
 function CommemorativeVisual() {
@@ -687,7 +731,8 @@ function WinnerOptionsPage() {
               >
                 Your award statement &mdash; the short, formal lines explaining what was
                 assessed and why your entry was selected &mdash; is included in your award email.
-                Your certificate, winner seal and graphics are available below.
+                Your certificate is sent with that email. Your winner seal and graphics are
+                available below.
               </p>
             </div>
           </Container>
@@ -707,16 +752,19 @@ function WinnerOptionsPage() {
             >
               <ul className="grid grid-cols-1 min-[900px]:grid-flow-col min-[900px]:grid-cols-2 min-[900px]:grid-rows-3">
                 {materials.map((m, i) => {
-                  const lastInColumn = i === 2 || i === 5;
+                  const lastInColumn = i === 2 || i === materials.length - 1;
                   return (
                     <li
                       key={m.id}
-                      className={`flex items-center gap-4 ${i < 5 ? "border-b" : ""} ${
-                        i < 3 ? "min-[900px]:border-r" : ""
-                      } ${lastInColumn ? "min-[900px]:border-b-0" : ""}`}
+                      className={`flex items-center gap-4 ${
+                        i < materials.length - 1 ? "border-b" : ""
+                      } ${i < 3 ? "min-[900px]:border-r" : ""} ${
+                        lastInColumn ? "min-[900px]:border-b-0" : ""
+                      }`}
                       style={{ height: "72px", padding: "0 20px", borderColor: LINE }}
                     >
-                      <AssetThumb ratio={m.ratio} />
+                      <AssetThumb ratio={m.ratio} src={m.src} alt={m.alt} />
+
                       <span
                         style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
                         className="truncate"
