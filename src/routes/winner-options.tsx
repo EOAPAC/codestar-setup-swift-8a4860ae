@@ -462,22 +462,18 @@ function Reassurance({ items }: { items: string[] }) {
 }
 
 
-function CommemorativeVisual({ ratio = "4 / 3" }: { ratio?: string }) {
+function CommemorativeVisual({ className }: { className?: string }) {
   return (
-    <div
-      className="w-full overflow-hidden rounded-xl"
-      style={{ aspectRatio: ratio, border: `1px solid ${LINE}`, backgroundColor: "#0B2545" }}
-    >
-      <img
-        src={commemorativeAsset.url}
-        alt="Engraved glass recognition object from the Commemorative Edition"
-        loading="lazy"
-        className="h-full w-full object-contain"
-        style={{ padding: "18px" }}
-      />
-    </div>
+    <img
+      src={commemorativeAsset.url}
+      alt="Engraved glass recognition object from the Commemorative Edition"
+      loading="lazy"
+      className={`h-full w-full object-cover object-center ${className ?? ""}`}
+      style={{ aspectRatio: "3 / 2" }}
+    />
   );
 }
+
 
 /** Inline slot chip standing in for the winner's business name. */
 function SpecimenSlot() {
