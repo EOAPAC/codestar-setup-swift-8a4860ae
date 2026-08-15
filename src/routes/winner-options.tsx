@@ -468,11 +468,11 @@ function CommemorativeVisual({ className }: { className?: string }) {
       src={commemorativeAsset.url}
       alt="Engraved glass recognition object from the Commemorative Edition"
       loading="lazy"
-      className={`h-full w-full object-cover object-center ${className ?? ""}`}
-      style={{ aspectRatio: "3 / 2" }}
+      className={`aspect-[3/2] max-sm:aspect-[4/3] w-full object-cover object-center ${className ?? ""}`}
     />
   );
 }
+
 
 
 /** Inline slot chip standing in for the winner's business name. */
