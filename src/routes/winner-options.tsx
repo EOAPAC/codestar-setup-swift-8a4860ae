@@ -1209,58 +1209,59 @@ function WinnerOptionsPage() {
 
               {/* Commemorative Edition */}
               <div
-                className="flex h-full flex-col rounded-2xl bg-white"
-                style={{ border: `1px solid ${LINE}`, padding: "32px" }}
+                className="flex h-full flex-col overflow-hidden rounded-2xl bg-white"
+                style={{ border: `1px solid ${LINE}` }}
               >
-                <CommemorativeVisual ratio="16 / 9" />
-                <div style={{ marginTop: "24px" }}>
+                <CommemorativeVisual className="rounded-t-2xl" />
+                <div className="flex flex-col" style={{ padding: "24px 32px 32px" }}>
                   <Eyebrow>Commemorative Edition</Eyebrow>
-                </div>
-                <h3
-                  style={{
-                    marginTop: "12px",
-                    fontSize: "1.375rem",
-                    fontWeight: 600,
-                    lineHeight: 1.25,
-                    color: INK,
-                  }}
-                >
-                  Somewhere you can see it.
-                </h3>
-                <p style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}>
-                  A designed physical edition of your award, made for a desk, a wall or a shelf —
-                  so it is present in the room.
-                </p>
-                <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
-                <div style={{ marginTop: "20px" }}>
-                  <SubLabel>Included</SubLabel>
-                </div>
-                <div style={{ marginTop: "12px" }}>
-                  <DotList items={commemorativeIncludes} />
-                </div>
-                <div className="mt-auto" style={{ paddingTop: "24px" }}>
-                  <p
-                    style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}
+                  <h3
+                    style={{
+                      marginTop: "12px",
+                      fontSize: "1.375rem",
+                      fontWeight: 600,
+                      lineHeight: 1.25,
+                      color: INK,
+                    }}
                   >
-                    {formatPrice(COMMEMORATIVE_PRICE)}
+                    Somewhere you can see it.
+                  </h3>
+                  <p style={{ marginTop: "12px", fontSize: "1rem", lineHeight: 1.6, color: BODY }}>
+                    A designed physical edition of your award, made for a desk, a wall or a shelf —
+                    so it is present in the room.
                   </p>
-                  <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
-                    One-time payment
-                  </p>
+                  <div style={{ marginTop: "28px", height: "1px", backgroundColor: LINE }} />
                   <div style={{ marginTop: "20px" }}>
-                    <OutlineButton full event="commemorative-select-click" onClick={handleSelect}>
-                      Order the Commemorative Edition
-                    </OutlineButton>
+                    <SubLabel>Included</SubLabel>
                   </div>
-                  <Reassurance
-                    items={[
-                      "Made to order and shipped to you",
-                      "Your selection is already confirmed",
-                      "Secure checkout",
-                    ]}
-                  />
+                  <div style={{ marginTop: "12px" }}>
+                    <DotList items={commemorativeIncludes} />
+                  </div>
+                  <div className="mt-auto" style={{ paddingTop: "24px" }}>
+                    <p
+                      style={{ fontSize: "1.75rem", fontWeight: 600, color: INK, lineHeight: 1.1 }}
+                    >
+                      {formatPrice(COMMEMORATIVE_PRICE)}
+                    </p>
+                    <p style={{ marginTop: "6px", fontSize: "0.75rem", color: MUTED }}>
+                      One-time payment
+                    </p>
+                    <div style={{ marginTop: "20px" }}>
+                      <OutlineButton full event="commemorative-select-click" onClick={handleSelect}>
+                        Order the Commemorative Edition
+                      </OutlineButton>
+                    </div>
+                    <Reassurance
+                      items={[
+                        "Made to order and shipped to you",
+                        "Your selection is already confirmed",
+                        "Secure checkout",
+                      ]}
+                    />
+                  </div>
                 </div>
               </div>
+
             </div>
           </Container>
         </Section>
