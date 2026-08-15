@@ -29,7 +29,7 @@ import {
 } from "@/content/specimen";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
-import commemorativeAsset from "@/assets/commemorative-edition.jpg.asset.json";
+import commemorativeAsset from "@/assets/nano-banana-pro.jpg.asset.json";
 
 export const Route = createFileRoute("/winner-options")({
   head: () => ({
