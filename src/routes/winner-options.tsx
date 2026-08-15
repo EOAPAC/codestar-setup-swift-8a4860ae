@@ -1387,8 +1387,9 @@ function WinnerOptionsPage() {
 
             <div className="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
               <div className="md:col-span-6">
-                <CommemorativeVisual />
+                <CommemorativeVisual className="rounded-xl" />
               </div>
+
               <div className="md:col-span-5 md:col-start-8">
                 <SubLabel as="h3">What it includes</SubLabel>
                 <div style={{ marginTop: "20px" }}>
