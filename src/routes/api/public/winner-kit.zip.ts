@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { zipSync } from "fflate";
 
-import { winnerKitFiles } from "@/content/winner-kit";
+import { winnerKitFiles, type WinnerKitFile } from "@/content/winner-kit";
 
 export const Route = createFileRoute("/api/public/winner-kit/zip")({
   server: {
