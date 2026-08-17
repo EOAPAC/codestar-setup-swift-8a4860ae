@@ -50,7 +50,7 @@ const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
-const processChips = ["You answer a few questions", "We write it", "You approve it", "It's live"];
+const processChips = ["You answer a few questions", "We write it", "You approve it", "It goes live"];
 
 // ---------------------------------------------------------------- pieces
 
@@ -321,7 +321,7 @@ function WinnerOptionsPage() {
               You won.
             </h1>
             <p style={{ marginTop: "18px", fontSize: "1.0625rem", color: BODY }}>
-              A {AWARD_YEAR} Entrepreneur Award. Everything below is yours.
+              Congratulations on your {AWARD_YEAR} Entrepreneur Award. Everything that comes with it is below.
             </p>
           </Container>
         </section>
@@ -329,7 +329,7 @@ function WinnerOptionsPage() {
         {/* 2 — Downloads */}
         <section id="downloads" style={{ backgroundColor: TINT, padding: "56px 0" }}>
           <Container>
-            <div className="flex items-center justify-center gap-3">
+            <div className="text-center">
               <h2
                 style={{
                   fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
@@ -338,14 +338,11 @@ function WinnerOptionsPage() {
                   color: INK,
                 }}
               >
-                Post it today.
+                Your award, ready to use.
               </h2>
-              <span
-                className="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em]"
-                style={{ backgroundColor: BLUE, color: "#fff" }}
-              >
-                Free
-              </span>
+              <p style={{ marginTop: "6px", fontSize: "0.8125rem", color: MUTED }}>
+                Yours to keep, at no further cost.
+              </p>
             </div>
 
             <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -396,11 +393,8 @@ function WinnerOptionsPage() {
                   fontWeight: 500,
                 }}
               >
-                Download all of it
+                Download everything
               </a>
-              <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
-                Yours to keep. Nothing more to pay.
-              </p>
             </div>
           </Container>
         </section>
