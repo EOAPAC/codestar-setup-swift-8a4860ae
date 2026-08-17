@@ -25,6 +25,7 @@ import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as WinnersSpecimenRouteImport } from './routes/winners.specimen'
 import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resources.$token'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as ApiPublicWinnerKitZipRouteImport } from './routes/api/public/winner-kit.zip'
 
 const WinnerProductConceptsRoute = WinnerProductConceptsRouteImport.update({
   id: '/winner-product-concepts',
@@ -106,6 +107,11 @@ const InsightsSlugRoute = InsightsSlugRouteImport.update({
   path: '/insights/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicWinnerKitZipRoute = ApiPublicWinnerKitZipRouteImport.update({
+  id: '/api/public/winner-kit/zip',
+  path: '/api/public/winner-kit/zip',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights/': typeof InsightsIndexRoute
+  '/api/public/winner-kit/zip': typeof ApiPublicWinnerKitZipRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights': typeof InsightsIndexRoute
+  '/api/public/winner-kit/zip': typeof ApiPublicWinnerKitZipRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,6 +169,7 @@ export interface FileRoutesById {
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights/': typeof InsightsIndexRoute
+  '/api/public/winner-kit/zip': typeof ApiPublicWinnerKitZipRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
     | '/winner-resources/$token'
     | '/winners/specimen'
     | '/insights/'
+    | '/api/public/winner-kit/zip'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/winner-resources/$token'
     | '/winners/specimen'
     | '/insights'
+    | '/api/public/winner-kit/zip'
   id:
     | '__root__'
     | '/'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/winner-resources/$token'
     | '/winners/specimen'
     | '/insights/'
+    | '/api/public/winner-kit/zip'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -236,6 +248,7 @@ export interface RootRouteChildren {
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
   WinnersSpecimenRoute: typeof WinnersSpecimenRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
+  ApiPublicWinnerKitZipRoute: typeof ApiPublicWinnerKitZipRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -352,6 +365,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/winner-kit/zip': {
+      id: '/api/public/winner-kit/zip'
+      path: '/api/public/winner-kit/zip'
+      fullPath: '/api/public/winner-kit/zip'
+      preLoaderRoute: typeof ApiPublicWinnerKitZipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -372,6 +392,7 @@ const rootRouteChildren: RootRouteChildren = {
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
   WinnersSpecimenRoute: WinnersSpecimenRoute,
   InsightsIndexRoute: InsightsIndexRoute,
+  ApiPublicWinnerKitZipRoute: ApiPublicWinnerKitZipRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
