@@ -424,8 +424,11 @@ function WinnerOptionsPage() {
                   color: INK,
                 }}
               >
-                Want an article written about your business?
+                A full article about your business.
               </h2>
+              <p style={{ marginTop: "14px", fontSize: "0.9375rem", color: BODY }}>
+                Written by our editors and published on our site, at a link that's yours to keep.
+              </p>
             </div>
 
             <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -495,7 +498,7 @@ function WinnerOptionsPage() {
             </ol>
 
             <p className="mt-5 text-center" style={{ fontSize: "0.9375rem", color: BODY }}>
-              Draft in 5 working days. Live 3 days after you approve it.
+              You'll have a draft within five working days, and it goes live three days after you approve it.
             </p>
 
             <div className="mt-8 flex flex-col items-center">
