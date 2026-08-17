@@ -10,7 +10,7 @@ export const Route = createFileRoute("/api/public/winner-kit/zip")({
         const origin = new URL(request.url).origin;
 
         const entries = await Promise.all(
-          winnerKitFiles.map(async (file) => {
+          winnerKitFiles.map(async (file: WinnerKitFile) => {
             const res = await fetch(`${origin}${file.url}`);
             if (!res.ok) throw new Error(`Could not read ${file.filename}`);
             const buf = new Uint8Array(await res.arrayBuffer());
