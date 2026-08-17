@@ -685,7 +685,7 @@ function WinnerOptionsV2Page() {
             </div>
             <Small className="mt-3">Example wording. Yours is in your award email.</Small>
           </Container>
-        </section>
+        </Section>
 
         {/* 4. Winner's Feature */}
         <Section id="feature">
