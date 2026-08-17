@@ -204,7 +204,7 @@ function BrowserMockup() {
           {withSlots(SPECIMEN_HEADLINE)}
         </h3>
         <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>{SPECIMEN_BYLINE}</p>
-        {SPECIMEN_OPENING_PARAGRAPHS.slice(0, 2).map((p, i) => (
+        {[SPECIMEN_OPENING_PARAGRAPHS[0], SPECIMEN_OPENING_PARAGRAPHS[2]].map((p, i) => (
           <p
             key={i}
             style={{ marginTop: "12px", fontSize: "12.5px", lineHeight: 1.7, color: BODY }}
