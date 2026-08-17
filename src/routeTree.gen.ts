@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WinnerProductConceptsRouteImport } from './routes/winner-product-concepts'
+import { Route as WinnerOptionsV2RouteImport } from './routes/winner-options-v2'
 import { Route as WinnerOptionsRouteImport } from './routes/winner-options'
 import { Route as WinnerMaterialsRouteImport } from './routes/winner-materials'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
@@ -28,6 +29,11 @@ import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 const WinnerProductConceptsRoute = WinnerProductConceptsRouteImport.update({
   id: '/winner-product-concepts',
   path: '/winner-product-concepts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WinnerOptionsV2Route = WinnerOptionsV2RouteImport.update({
+  id: '/winner-options-v2',
+  path: '/winner-options-v2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WinnerOptionsRoute = WinnerOptionsRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
+  '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByTo {
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
+  '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
@@ -147,6 +155,7 @@ export interface FileRoutesById {
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
+  '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
@@ -166,6 +175,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/winner-materials'
     | '/winner-options'
+    | '/winner-options-v2'
     | '/winner-product-concepts'
     | '/insights/$slug'
     | '/winner-resources/$token'
@@ -183,6 +193,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/winner-materials'
     | '/winner-options'
+    | '/winner-options-v2'
     | '/winner-product-concepts'
     | '/insights/$slug'
     | '/winner-resources/$token'
@@ -200,6 +211,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/winner-materials'
     | '/winner-options'
+    | '/winner-options-v2'
     | '/winner-product-concepts'
     | '/insights/$slug'
     | '/winner-resources/$token'
@@ -218,6 +230,7 @@ export interface RootRouteChildren {
   ThankYouRoute: typeof ThankYouRoute
   WinnerMaterialsRoute: typeof WinnerMaterialsRoute
   WinnerOptionsRoute: typeof WinnerOptionsRoute
+  WinnerOptionsV2Route: typeof WinnerOptionsV2Route
   WinnerProductConceptsRoute: typeof WinnerProductConceptsRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       path: '/winner-product-concepts'
       fullPath: '/winner-product-concepts'
       preLoaderRoute: typeof WinnerProductConceptsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/winner-options-v2': {
+      id: '/winner-options-v2'
+      path: '/winner-options-v2'
+      fullPath: '/winner-options-v2'
+      preLoaderRoute: typeof WinnerOptionsV2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/winner-options': {
@@ -346,6 +366,7 @@ const rootRouteChildren: RootRouteChildren = {
   ThankYouRoute: ThankYouRoute,
   WinnerMaterialsRoute: WinnerMaterialsRoute,
   WinnerOptionsRoute: WinnerOptionsRoute,
+  WinnerOptionsV2Route: WinnerOptionsV2Route,
   WinnerProductConceptsRoute: WinnerProductConceptsRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
