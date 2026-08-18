@@ -454,6 +454,16 @@ function WinnerOptionsPage() {
               </figure>
 
               <figure>
+                <PressMockup />
+                <figcaption
+                  className="mt-3 text-center"
+                  style={{ fontSize: "0.8125rem", color: MUTED }}
+                >
+                  Published on USA Today.
+                </figcaption>
+              </figure>
+
+              <figure>
                 <img
                   src={awardPhotoAsset.url}
                   alt="Engraved glass Entrepreneur Award beside a printed certificate card"
