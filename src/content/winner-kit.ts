@@ -3,7 +3,7 @@ import bannerAsset from "@/assets/ea-winner-social-Linkedin_Post-2.png.asset.jso
 import squareAsset from "@/assets/ea-winner-social-IG_Post-2.png.asset.json";
 import storyAsset from "@/assets/ea-winner-social-IG_story-2.png.asset.json";
 import signatureAsset from "@/assets/ea-winner-emailsig-full-600x200-2.png.asset.json";
-import certificateUrl from "@/assets/ea-winner-certificate.png";
+
 
 export type WinnerKitFile = {
   id: string;
@@ -64,13 +64,5 @@ export const winnerKitFiles: WinnerKitFile[] = [
     fit: "contain",
     description: "Add this under your name in every email you send.",
   },
-  {
-    id: "certificate",
-    name: "Certificate",
-    url: certificateUrl,
-    filename: "entrepreneur-awards-certificate.png",
-    alt: "Entrepreneur Awards certificate",
-    fit: "contain",
-    description: "Print it, frame it, or send it to anyone who asks.",
-  },
 ];
+
