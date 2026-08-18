@@ -38,7 +38,7 @@ import { AWARD_YEAR } from "@/content/award";
 
 import { SiteFigure } from "@/components/site-figure";
 
-import heroTrophy from "@/assets/hero-trophy.webp.asset.json";
+import heroTrophy from "@/assets/hero-trophy.jpg.asset.json";
 import awardBand from "@/assets/award-band-2.jpg.asset.json";
 import winnerWords from "@/assets/winner-words.jpg.asset.json";
 
@@ -81,8 +81,8 @@ function Hero() {
         src={heroTrophy.url}
         alt=""
         aria-hidden
-        width={1920}
-        height={815}
+        width={1376}
+        height={768}
         loading="eager"
         decoding="async"
         className="pointer-events-none absolute top-0 right-0 hidden h-full w-auto max-w-none object-contain object-right lg:block"
