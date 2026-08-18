@@ -225,6 +225,89 @@ function BrowserMockup() {
   );
 }
 
+/** Browser-frame mockup of the press release as published on USA Today. */
+function PressMockup() {
+  return (
+    <div
+      className="overflow-hidden rounded-xl"
+      style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
+    >
+      <div
+        className="flex items-center gap-2 px-3 py-2"
+        style={{ borderBottom: `1px solid ${LINE}`, backgroundColor: TINT }}
+      >
+        <span className="flex gap-1.5" aria-hidden>
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="block h-2.5 w-2.5 rounded-full"
+              style={{ backgroundColor: "#E2E6ED" }}
+            />
+          ))}
+        </span>
+        <span
+          className="ml-1 flex-1 truncate rounded-md px-2.5 py-1"
+          style={{
+            backgroundColor: "#fff",
+            border: `1px solid ${LINE}`,
+            fontSize: "11px",
+            color: MUTED,
+          }}
+        >
+          usatoday.com
+        </span>
+      </div>
+
+      <div className="relative px-5 pb-6 pt-5" style={{ height: "300px", overflow: "hidden" }}>
+        <img
+          src="/usa-today-logo.svg"
+          alt="USA Today"
+          width={160}
+          height={24}
+          loading="lazy"
+          decoding="async"
+          style={{ height: "20px", width: "auto" }}
+        />
+        <div style={{ marginTop: "14px", borderTop: `1px solid ${LINE}` }} />
+        <h3
+          style={{
+            marginTop: "14px",
+            fontSize: "17px",
+            lineHeight: 1.3,
+            fontWeight: 600,
+            letterSpacing: "-0.015em",
+            color: INK,
+          }}
+        >
+          {withSlots(`${SPECIMEN_BUSINESS_TOKEN} Named a Winner of the ${AWARD_YEAR} Entrepreneur Awards`)}
+        </h3>
+        <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>
+          NEW YORK — Entrepreneur Awards
+        </p>
+        {[
+          `${SPECIMEN_BUSINESS_TOKEN} has been named a winner of the ${AWARD_YEAR} Entrepreneur Awards, an annual program recognizing owner-led businesses for measurable operating results.`,
+          "The award is given on the basis of a documented outcome, its consistency over time, and the founder's direct role in producing it.",
+        ].map((p, i) => (
+          <p
+            key={i}
+            style={{ marginTop: "12px", fontSize: "12.5px", lineHeight: 1.7, color: BODY }}
+          >
+            {withSlots(p)}
+          </p>
+        ))}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{
+            height: "110px",
+            background: "linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%)",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 function useStickyVisible() {
   const [visible, setVisible] = useState(false);
 
