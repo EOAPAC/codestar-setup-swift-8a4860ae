@@ -424,14 +424,14 @@ function WinnerOptionsPage() {
                   color: INK,
                 }}
               >
-                A full article about your business.
+                Want an article about your business and a press release in USA Today?
               </h2>
               <p style={{ marginTop: "14px", fontSize: "0.9375rem", color: BODY }}>
-                Written by our editors and published on our site, at a link that's yours to keep.
+                Both written by our editors. One lives on our site, one goes out on USA Today.
               </p>
             </div>
 
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
               <figure>
                 <Link
                   to="/winners/specimen"
