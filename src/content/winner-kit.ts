@@ -14,6 +14,8 @@ export type WinnerKitFile = {
   alt: string;
   /** object-fit for the tile preview. */
   fit: "contain" | "cover";
+  /** One-line guidance on where to use the asset. */
+  description: string;
 };
 
 export const winnerKitFiles: WinnerKitFile[] = [
@@ -24,6 +26,7 @@ export const winnerKitFiles: WinnerKitFile[] = [
     filename: "entrepreneur-awards-winner-badge.png",
     alt: "Entrepreneur Awards winner badge",
     fit: "contain",
+    description: "Put this in your website footer or on your homepage.",
   },
   {
     id: "banner",
@@ -32,6 +35,7 @@ export const winnerKitFiles: WinnerKitFile[] = [
     filename: "entrepreneur-awards-linkedin-banner.png",
     alt: "LinkedIn banner graphic",
     fit: "cover",
+    description: "The header image across the top of your LinkedIn profile.",
   },
   {
     id: "square",
@@ -40,6 +44,7 @@ export const winnerKitFiles: WinnerKitFile[] = [
     filename: "entrepreneur-awards-square-post.png",
     alt: "Square social post graphic",
     fit: "contain",
+    description: "Post this to Instagram, LinkedIn or Facebook.",
   },
   {
     id: "story",
@@ -48,6 +53,7 @@ export const winnerKitFiles: WinnerKitFile[] = [
     filename: "entrepreneur-awards-story.png",
     alt: "Vertical story graphic",
     fit: "contain",
+    description: "For Instagram and LinkedIn stories.",
   },
   {
     id: "signature",
@@ -56,6 +62,7 @@ export const winnerKitFiles: WinnerKitFile[] = [
     filename: "entrepreneur-awards-email-signature.png",
     alt: "Email signature strip graphic",
     fit: "contain",
+    description: "Add this under your name in every email you send.",
   },
   {
     id: "certificate",
@@ -64,5 +71,6 @@ export const winnerKitFiles: WinnerKitFile[] = [
     filename: "entrepreneur-awards-certificate.png",
     alt: "Entrepreneur Awards certificate",
     fit: "contain",
+    description: "Print it, frame it, or send it to anyone who asks.",
   },
 ];
