@@ -473,6 +473,16 @@ function WinnerOptionsPage() {
               </figure>
             </div>
 
+            {/* What you get */}
+            <ul className="mx-auto mt-10 grid max-w-[680px] gap-3">
+              {whatYouGet.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: BLUE }} aria-hidden />
+                  <span style={{ fontSize: "0.9375rem", color: BODY }}>{item}</span>
+                </li>
+              ))}
+            </ul>
+
             {/* Process chips */}
             <ol className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
               {processChips.map((chip, i) => (
