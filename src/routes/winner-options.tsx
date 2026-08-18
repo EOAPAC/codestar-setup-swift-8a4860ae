@@ -21,12 +21,12 @@ export const Route = createFileRoute("/winner-options")({
       { title: `You won a ${AWARD_YEAR} Entrepreneur Award` },
       {
         name: "description",
-        content: `Download your ${AWARD_YEAR} Entrepreneur Award graphics and certificate, and see The Winner's Feature.`,
+        content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
       },
       { property: "og:title", content: `You won a ${AWARD_YEAR} Entrepreneur Award` },
       {
         property: "og:description",
-        content: `Download your ${AWARD_YEAR} Entrepreneur Award graphics and certificate, and see The Winner's Feature.`,
+        content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
