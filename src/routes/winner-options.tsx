@@ -13,7 +13,7 @@ import {
 } from "@/content/specimen";
 
 import markAsset from "@/assets/ea-mark.png.asset.json";
-import awardPhotoAsset from "@/assets/nano-banana-pro.jpg.asset.json";
+import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 
 export const Route = createFileRoute("/winner-options")({
   head: () => ({
@@ -541,7 +541,7 @@ function WinnerOptionsPage() {
             </div>
 
             <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-              <figure>
+              <figure className="flex h-full flex-col">
                 <Link
                   to="/winners/specimen"
                   data-event="feature-format-view"
@@ -562,7 +562,7 @@ function WinnerOptionsPage() {
                 </figcaption>
               </figure>
 
-              <figure>
+              <figure className="flex h-full flex-col">
                 <PressMockup />
                 <figcaption
                   className="mt-3 text-center"
@@ -572,22 +572,27 @@ function WinnerOptionsPage() {
                 </figcaption>
               </figure>
 
-              <figure>
-                <img
-                  src={awardPhotoAsset.url}
-                  alt="Engraved glass Entrepreneur Award beside a printed certificate card"
-                  width={1264}
-                  height={848}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full rounded-xl object-cover"
-                  style={{ aspectRatio: "1264 / 848", border: `1px solid ${LINE}` }}
-                />
+              <figure className="flex h-full flex-col">
+                <div
+                  className="flex-1 overflow-hidden rounded-xl"
+                  style={{ border: `1px solid ${LINE}` }}
+                >
+                  <img
+                    src={portraitAsset.url}
+                    alt="Founder holding an engraved Entrepreneur Award"
+                    width={1264}
+                    height={848}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full"
+                    style={{ objectFit: "cover", objectPosition: "50% 35%" }}
+                  />
+                </div>
                 <figcaption
                   className="mt-3 text-center"
                   style={{ fontSize: "0.8125rem", color: MUTED }}
                 >
-                  Posted to you.
+                  The engraved award, posted to you.
                 </figcaption>
               </figure>
             </div>
