@@ -231,7 +231,7 @@ function AwardBand() {
           alt={`A winner of the ${AWARD_YEAR} Entrepreneur Award holding the crystal award etched with the winner seal.`}
           loading="eager"
           decoding="async"
-          className="h-full w-full object-cover [object-position:60%_40%]"
+          className="h-full w-full object-cover [object-position:50%_25%]"
         />
       </div>
     </section>
