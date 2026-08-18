@@ -530,6 +530,9 @@ function WinnerOptionsPage() {
               <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
                 Nothing goes live until you approve every word.
               </p>
+              <p style={{ marginTop: "6px", fontSize: "0.8125rem", color: MUTED }}>
+                Your award and the files above are yours either way.
+              </p>
             </div>
           </Container>
         </section>
