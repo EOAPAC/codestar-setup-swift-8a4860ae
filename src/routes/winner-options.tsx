@@ -50,7 +50,15 @@ const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
-const processChips = ["You answer a few questions", "We write it", "You approve it", "It goes live"];
+const processChips = ["You answer a few questions", "We write both", "You approve both", "It goes live"];
+
+const whatYouGet = [
+  "A full article about your business, written by our editors",
+  "Published at a permanent entrepreneurawards.co address that stays up for good",
+  "A press release about your win, written for you and published on USA Today",
+  "An engraved award carrying your name and your award year",
+  "A printed certificate, ready to frame",
+];
 
 // ---------------------------------------------------------------- pieces
 
