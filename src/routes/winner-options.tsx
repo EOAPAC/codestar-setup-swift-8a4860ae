@@ -432,18 +432,18 @@ function WinnerOptionsPage() {
                 Your award, ready to use.
               </h2>
               <p style={{ marginTop: "6px", fontSize: "0.8125rem", color: MUTED }}>
-                Yours to keep, at no further cost.
+                Download them, then add them to your website, your LinkedIn profile and your email signature. They're yours to keep, at no further cost.
               </p>
             </div>
 
             <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {winnerKitFiles.map((file) => (
-                <li key={file.id}>
+                <li key={file.id} className="flex">
                   <a
                     href={file.url}
                     download={file.filename}
                     data-event="asset-download"
-                    className={`block rounded-xl bg-white p-3 transition-shadow hover:shadow-[0_4px_16px_rgba(15,23,42,0.08)] ${focusRing}`}
+                    className={`flex w-full flex-col rounded-xl bg-white p-3 transition-shadow hover:shadow-[0_4px_16px_rgba(15,23,42,0.08)] ${focusRing}`}
                     style={{ border: `1px solid ${LINE}` }}
                   >
                     <div
@@ -459,12 +459,19 @@ function WinnerOptionsPage() {
                         style={{ objectFit: file.fit }}
                       />
                     </div>
-                    <span
-                      className="mt-3 block"
-                      style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
-                    >
-                      {file.name}
-                    </span>
+                    <div className="mt-3 flex flex-1 flex-col">
+                      <span
+                        style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
+                      >
+                        {file.name}
+                      </span>
+                      <span
+                        className="mt-0.5"
+                        style={{ fontSize: "0.75rem", fontWeight: 400, color: MUTED, lineHeight: 1.4 }}
+                      >
+                        {file.description}
+                      </span>
+                    </div>
                   </a>
                 </li>
               ))}
@@ -515,10 +522,10 @@ function WinnerOptionsPage() {
                   color: INK,
                 }}
               >
-                Want an article about your business and a press release in USA Today?
+                Get your business written about in USA Today.
               </h2>
               <p style={{ marginTop: "14px", fontSize: "0.9375rem", color: BODY }}>
-                Both written by our editors. One lives on our site, one goes out on USA Today.
+                A full article about your business on our site, a press release published on USA Today, and an engraved award posted to you.
               </p>
             </div>
 
