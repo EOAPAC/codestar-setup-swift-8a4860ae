@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type CSSProperties } from "react";
-import { Star } from "lucide-react";
+import { Check, Star } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { winnerKitFiles } from "@/content/winner-kit";
@@ -50,7 +50,15 @@ const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
-const processChips = ["You answer a few questions", "We write it", "You approve it", "It goes live"];
+const processChips = ["You answer a few questions", "We write both", "You approve both", "It goes live"];
+
+const whatYouGet = [
+  "A full article about your business, written by our editors",
+  "Published at a permanent entrepreneurawards.co address that stays up for good",
+  "A press release about your win, written for you and published on USA Today",
+  "An engraved award carrying your name and your award year",
+  "A printed certificate, ready to frame",
+];
 
 // ---------------------------------------------------------------- pieces
 
@@ -205,6 +213,89 @@ function BrowserMockup() {
         </h3>
         <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>{SPECIMEN_BYLINE}</p>
         {[SPECIMEN_OPENING_PARAGRAPHS[0], SPECIMEN_OPENING_PARAGRAPHS[2]].map((p, i) => (
+          <p
+            key={i}
+            style={{ marginTop: "12px", fontSize: "12.5px", lineHeight: 1.7, color: BODY }}
+          >
+            {withSlots(p)}
+          </p>
+        ))}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{
+            height: "110px",
+            background: "linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%)",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/** Browser-frame mockup of the press release as published on USA Today. */
+function PressMockup() {
+  return (
+    <div
+      className="overflow-hidden rounded-xl"
+      style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
+    >
+      <div
+        className="flex items-center gap-2 px-3 py-2"
+        style={{ borderBottom: `1px solid ${LINE}`, backgroundColor: TINT }}
+      >
+        <span className="flex gap-1.5" aria-hidden>
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="block h-2.5 w-2.5 rounded-full"
+              style={{ backgroundColor: "#E2E6ED" }}
+            />
+          ))}
+        </span>
+        <span
+          className="ml-1 flex-1 truncate rounded-md px-2.5 py-1"
+          style={{
+            backgroundColor: "#fff",
+            border: `1px solid ${LINE}`,
+            fontSize: "11px",
+            color: MUTED,
+          }}
+        >
+          usatoday.com
+        </span>
+      </div>
+
+      <div className="relative px-5 pb-6 pt-5" style={{ height: "300px", overflow: "hidden" }}>
+        <img
+          src="/usa-today-logo.svg"
+          alt="USA Today"
+          width={160}
+          height={24}
+          loading="lazy"
+          decoding="async"
+          style={{ height: "20px", width: "auto" }}
+        />
+        <div style={{ marginTop: "14px", borderTop: `1px solid ${LINE}` }} />
+        <h3
+          style={{
+            marginTop: "14px",
+            fontSize: "17px",
+            lineHeight: 1.3,
+            fontWeight: 600,
+            letterSpacing: "-0.015em",
+            color: INK,
+          }}
+        >
+          {withSlots(`${SPECIMEN_BUSINESS_TOKEN} Named a Winner of the ${AWARD_YEAR} Entrepreneur Awards`)}
+        </h3>
+        <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>
+          NEW YORK — Entrepreneur Awards
+        </p>
+        {[
+          `${SPECIMEN_BUSINESS_TOKEN} has been named a winner of the ${AWARD_YEAR} Entrepreneur Awards, an annual program recognizing owner-led businesses for measurable operating results.`,
+          "The award is given on the basis of a documented outcome, its consistency over time, and the founder's direct role in producing it.",
+        ].map((p, i) => (
           <p
             key={i}
             style={{ marginTop: "12px", fontSize: "12.5px", lineHeight: 1.7, color: BODY }}
@@ -424,14 +515,14 @@ function WinnerOptionsPage() {
                   color: INK,
                 }}
               >
-                A full article about your business.
+                Want an article about your business and a press release in USA Today?
               </h2>
               <p style={{ marginTop: "14px", fontSize: "0.9375rem", color: BODY }}>
-                Written by our editors and published on our site, at a link that's yours to keep.
+                Both written by our editors. One lives on our site, one goes out on USA Today.
               </p>
             </div>
 
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
               <figure>
                 <Link
                   to="/winners/specimen"
@@ -454,6 +545,16 @@ function WinnerOptionsPage() {
               </figure>
 
               <figure>
+                <PressMockup />
+                <figcaption
+                  className="mt-3 text-center"
+                  style={{ fontSize: "0.8125rem", color: MUTED }}
+                >
+                  Published on USA Today.
+                </figcaption>
+              </figure>
+
+              <figure>
                 <img
                   src={awardPhotoAsset.url}
                   alt="Engraved glass Entrepreneur Award beside a printed certificate card"
@@ -472,6 +573,16 @@ function WinnerOptionsPage() {
                 </figcaption>
               </figure>
             </div>
+
+            {/* What you get */}
+            <ul className="mx-auto mt-10 grid max-w-[680px] gap-3">
+              {whatYouGet.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: BLUE }} aria-hidden />
+                  <span style={{ fontSize: "0.9375rem", color: BODY }}>{item}</span>
+                </li>
+              ))}
+            </ul>
 
             {/* Process chips */}
             <ol className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
@@ -498,7 +609,7 @@ function WinnerOptionsPage() {
             </ol>
 
             <p className="mt-5 text-center" style={{ fontSize: "0.9375rem", color: BODY }}>
-              You'll have a draft within five working days, and it goes live three days after you approve it.
+              You'll have your article draft within five working days, and it goes live three days after you approve it.
             </p>
 
             <div className="mt-8 flex flex-col items-center">
@@ -529,6 +640,9 @@ function WinnerOptionsPage() {
               </button>
               <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
                 Nothing goes live until you approve every word.
+              </p>
+              <p style={{ marginTop: "6px", fontSize: "0.8125rem", color: MUTED }}>
+                Your award and the files above are yours either way.
               </p>
             </div>
           </Container>
