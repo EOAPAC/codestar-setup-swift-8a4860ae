@@ -785,24 +785,6 @@ function Contact() {
             hello@entrepreneurawards.co
           </a>
         </div>
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-base text-muted-foreground">
-          <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://twitter.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground"
-          >
-            Twitter
-          </a>
-        </div>
       </div>
     </section>
   );
