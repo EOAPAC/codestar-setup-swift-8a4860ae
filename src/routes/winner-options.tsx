@@ -493,12 +493,23 @@ function WinnerOptionsPage() {
               >
                 Download everything
               </a>
+              <p
+                style={{
+                  marginTop: "56px",
+                  marginBottom: "64px",
+                  fontSize: "18px",
+                  fontWeight: 500,
+                  color: BODY,
+                }}
+              >
+                That&rsquo;s everything you can post yourself.
+              </p>
             </div>
           </Container>
         </section>
 
         {/* 3 — The Winner's Feature */}
-        <section id="feature" style={{ padding: "72px 0 64px" }}>
+        <section id="feature" style={{ padding: "48px 0 64px" }}>
           <Container>
             <div className="text-center">
               <p
