@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type CSSProperties } from "react";
-import { Star } from "lucide-react";
+import { Check, Star } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { winnerKitFiles } from "@/content/winner-kit";
