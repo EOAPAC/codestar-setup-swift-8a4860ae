@@ -1,150 +1,33 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { SiteNav } from "@/components/site-nav";
-import { SiteFooter } from "@/components/site-footer";
+import { useEffect, useState, type CSSProperties } from "react";
+import { Check, Star } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Award, Sparkles, Star, Check, Copy, Trophy, Newspaper, ScrollText, Link2 } from "lucide-react";
+import { AWARD_YEAR } from "@/content/award";
+import { winnerKitFiles } from "@/content/winner-kit";
+import {
+  SPECIMEN_BYLINE,
+  SPECIMEN_HEADLINE,
+  SPECIMEN_OPENING_PARAGRAPHS,
+  SPECIMEN_BUSINESS_TOKEN,
+  splitOnBusinessToken,
+} from "@/content/specimen";
 
-const BRAND_BLUE = "#1978E5";
-
-import linkedinBannerAsset from "@/assets/ea-winner-social-Linkedin_Post.png.asset.json";
-import igPostAsset from "@/assets/ea-winner-social-IG_Post.png.asset.json";
-import igStoryAsset from "@/assets/ea-winner-social-IG_story.png.asset.json";
-import emailSigAsset from "@/assets/ea-winner-emailsig-full-600x200.png.asset.json";
-import winnerSealAsset from "@/assets/winner-seal.png.asset.json";
-
-type FreeAsset = {
-  title: string;
-  meta: string;
-  src: string;
-  alt: string;
-  frame: string;
-  caption?: string;
-};
-
-const freeAssets: FreeAsset[] = [
-  {
-    title: "Winner seal",
-    meta: "1080 x 1080 PNG",
-    src: winnerSealAsset.url,
-    alt: "Entrepreneur Awards 2026 winner seal badge",
-    frame: "aspect-square",
-    caption: "Honored to be named a 2026 Entrepreneur Award winner. #EntrepreneurAwards #2026Winner",
-  },
-  {
-    title: "LinkedIn banner",
-    meta: "1200 x 630 PNG",
-    src: linkedinBannerAsset.url,
-    alt: "Entrepreneur Awards 2026 winner LinkedIn banner graphic",
-    frame: "aspect-[1200/630]",
-    caption:
-      "I am proud to share that I have been named a 2026 Entrepreneur Awards winner.\n\nThis recognition reflects the work of a team that shows up every day, and the customers who trusted us to do it. Grateful for both.\n\nThank you to Entrepreneur Awards for the recognition. On to the next chapter.",
-  },
-  {
-    title: "Square social post",
-    meta: "1080 x 1080 PNG",
-    src: igPostAsset.url,
-    alt: "Entrepreneur Awards 2026 winner square social post graphic",
-    frame: "aspect-square",
-    caption:
-      "Named a 2026 Entrepreneur Award winner by @entrepreneurawards.co.\n\nThank you to everyone who has backed this business, our team, our customers, and the people who said yes early. This one is shared.\n\n#EntrepreneurAwards #2026Winner",
-  },
-  {
-    title: "Story graphic",
-    meta: "1080 x 1920 PNG",
-    src: igStoryAsset.url,
-    alt: "Entrepreneur Awards 2026 winner vertical story graphic",
-    frame: "aspect-[1080/1920]",
-    caption: "2026 Entrepreneur Award winner. Grateful. @entrepreneurawards.co",
-  },
-  {
-    title: "Email signature",
-    meta: "600 x 200 PNG",
-    src: emailSigAsset.url,
-    alt: "Entrepreneur Awards 2026 winner email signature strip",
-    frame: "aspect-[600/200]",
-  },
-];
-
-function FreeAssetTile({ asset }: { asset: (typeof freeAssets)[number] }) {
-  const [copied, setCopied] = useState(false);
-
-  async function copyCaption() {
-    if (!asset.caption) return;
-    try {
-      await navigator.clipboard.writeText(asset.caption);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  }
-
-  return (
-    <figure className="flex h-full flex-col">
-      <div className="h-56 w-full rounded-xl border border-border bg-background p-4 shadow-sm">
-        <div className="flex h-full w-full items-center justify-center">
-          <img
-            src={asset.src}
-            alt={asset.alt}
-            loading="lazy"
-            className="max-h-full max-w-full min-h-0 rounded-md object-contain"
-          />
-        </div>
-      </div>
-      <figcaption className="mt-3 text-center">
-        <span className="block text-sm font-medium text-foreground">{asset.title}</span>
-        <span className="mt-0.5 block text-xs text-muted-foreground">{asset.meta}</span>
-      </figcaption>
-      <div className="mt-4 flex flex-col gap-2">
-        <a
-          href={asset.src}
-          download
-          className="inline-flex h-9 w-full items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-        >
-          Download
-        </a>
-        {asset.caption ? (
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-full border-primary text-primary hover:bg-primary/10"
-            onClick={copyCaption}
-          >
-            {copied ? (
-              <>
-                <Check className="h-4 w-4" aria-hidden />
-                Copied
-              </>
-            ) : (
-              <>
-                <Copy className="h-4 w-4" aria-hidden />
-                Copy caption
-              </>
-            )}
-          </Button>
-        ) : null}
-      </div>
-    </figure>
-  );
-}
-
-const IG_HANDLE = "@entrepreneurawards.co";
-const LINKEDIN_HANDLE = "Entrepreneur Awards";
-
-
-
-// Prices — edit these to update the page.
-const WINNERS_FEATURE_PRICE = 595;
+import markAsset from "@/assets/ea-mark.png.asset.json";
+import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "The Winner's Feature | Entrepreneur Awards" },
-      { name: "description", content: "Your 2026 Entrepreneur Award is yours. The Winner's Feature turns your win into a professionally written, published story about you and your business." },
-      { property: "og:title", content: "The Winner's Feature | Entrepreneur Awards" },
-      { property: "og:description", content: "Your 2026 Entrepreneur Award is yours. The Winner's Feature turns your win into a professionally written, published story about you and your business." },
+      { title: `The Winner's Feature | Entrepreneur Awards` },
+      {
+        name: "description",
+        content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
+      },
+      { property: "og:title", content: `The Winner's Feature | Entrepreneur Awards` },
+      {
+        property: "og:description",
+        content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -152,69 +35,64 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
 });
 
-const stages = [
-  {
-    number: 1,
-    title: "We write your story properly",
-    body: (
-      <p>
-        Your entry form gave us the outline. Before we write, we'll ask you a handful of
-        questions: the decisions, the near-misses, and the parts there wasn't room for.{" "}
-        <strong className="font-semibold text-foreground">Ten minutes on your side.</strong>
-      </p>
-    ),
-  },
-  {
-    number: 2,
-    title: "We publish it permanently",
-    body: (
-      <div className="space-y-3">
-        <p>
-          <strong className="font-semibold text-foreground">You read it first.</strong> Nothing goes
-          live until you're happy.
-        </p>
-        <p>
-          Then it sits at{" "}
-          <strong className="font-semibold text-foreground">a permanent link</strong> on Entrepreneur
-          Awards.
-        </p>
-      </div>
-    ),
-  },
-  {
-    number: 3,
-    title: "We send the winner's box",
-    body: <p>Four pieces, sent once your feature is live.</p>,
-  },
+// ------------------------------------------------------------- tokens
+const INK = "#0F172A";
+const BODY = "#52606D";
+const MUTED = "#6B7785";
+const BLUE = "#1978E5";
+const LINE = "#E5E9F0";
+const TINT = "#F7F9FC";
+
+const FEATURE_PRICE = 595;
+const formatPrice = (n: number) => `$${n.toLocaleString()}`;
+
+const focusRing =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
+
+const processChips = ["We write both", "You approve both", "It goes live"];
+
+const whatYouGet = [
+  "A full article about your business, written by our editors",
+  "Published at a permanent entrepreneurawards.co address that stays up for good",
+  "A press release about your win, written for you and published on USA Today",
+  "An engraved award carrying your name and your award year",
+  "A printed certificate, ready to frame",
 ];
 
-const winnersBox = [
-  {
-    icon: Trophy,
-    lead: "The engraved desk piece",
-    rest: "marking the year you were recognized",
-  },
-  {
-    icon: Newspaper,
-    lead: "A printed edition of your feature",
-    rest: "a proper offprint, the way publications send authors their own pages",
-  },
-  { icon: ScrollText, lead: "Your 2026 winner certificate", rest: null as string | null },
-  { icon: Link2, lead: "A card carrying the link to your feature", rest: null as string | null },
-];
+// ---------------------------------------------------------------- pieces
 
+function Container({
+  children,
+  className,
+  narrow,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  narrow?: number;
+}) {
+  return (
+    <div
+      className={`mx-auto w-full px-6 ${className ?? ""}`}
+      style={{ maxWidth: narrow ? `${narrow}px` : "1120px" }}
+    >
+      {children}
+    </div>
+  );
+}
 
-// Confetti
 function Confetti() {
   const dots = Array.from({ length: 24 });
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden motion-reduce:hidden">
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 overflow-hidden motion-reduce:hidden"
+    >
       {dots.map((_, i) => {
         const left = (i * 41) % 100;
         const delay = (i % 8) * 0.5;
         const duration = 5 + (i % 6);
         const size = 4 + (i % 5);
-        const colors = [BRAND_BLUE, "#60a5fa", "#93c5fd", "#dbeafe", "#facc15", "#ffffff"];
+        const colors = [BLUE, "#60a5fa", "#93c5fd", "#dbeafe", "#facc15", "#ffffff"];
         const color = colors[i % colors.length];
         const rotate = (i * 37) % 360;
         const drift = (i % 3) - 1;
@@ -222,16 +100,18 @@ function Confetti() {
           <span
             key={i}
             className="absolute block rounded-[1px] opacity-80"
-            style={{
-              left: `${left}%`,
-              top: "-10%",
-              width: `${size}px`,
-              height: `${size * 1.6}px`,
-              backgroundColor: color,
-              transform: `rotate(${rotate}deg)`,
-              animation: `ea-confetti-fall ${duration}s linear ${delay}s infinite`,
-              "--ea-drift": `${drift * 40}px`,
-            } as React.CSSProperties}
+            style={
+              {
+                left: `${left}%`,
+                top: "-10%",
+                width: `${size}px`,
+                height: `${size * 1.6}px`,
+                backgroundColor: color,
+                transform: `rotate(${rotate}deg)`,
+                animation: `ea-confetti-fall ${duration}s linear ${delay}s infinite`,
+                "--ea-drift": `${drift * 40}px`,
+              } as CSSProperties
+            }
           />
         );
       })}
@@ -239,303 +119,617 @@ function Confetti() {
         @keyframes ea-confetti-fall {
           0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
           8% { opacity: 0.95; }
-          100% { transform: translateY(460px) translateX(var(--ea-drift, 0px)) rotate(720deg); opacity: 0; }
+          100% { transform: translateY(320px) translateX(var(--ea-drift, 0px)) rotate(720deg); opacity: 0; }
         }
       `}</style>
     </div>
   );
 }
 
-// Fade-in on scroll
-function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.12 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+/** Inline slot standing in for the winner's business name in the specimen. */
+function SpecimenSlot() {
+  return (
+    <span
+      style={{
+        backgroundColor: `${BLUE}14`,
+        color: BLUE,
+        borderRadius: "4px",
+        padding: "0 4px",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {SPECIMEN_BUSINESS_TOKEN}
+    </span>
+  );
+}
+
+function withSlots(text: string) {
+  const parts = splitOnBusinessToken(text);
+  return parts.map((part, i) => (
+    <span key={i}>
+      {part}
+      {i < parts.length - 1 ? <SpecimenSlot /> : null}
+    </span>
+  ));
+}
+
+/** Browser-frame mockup of the published article. */
+function BrowserMockup() {
   return (
     <div
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      } ${className}`}
+      className="overflow-hidden rounded-xl"
+      style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
     >
-      {children}
+      <div
+        className="flex items-center gap-2 px-3 py-2"
+        style={{ borderBottom: `1px solid ${LINE}`, backgroundColor: TINT }}
+      >
+        <span className="flex gap-1.5" aria-hidden>
+          {["#E2E6ED", "#E2E6ED", "#E2E6ED"].map((c, i) => (
+            <span
+              key={i}
+              className="block h-2.5 w-2.5 rounded-full"
+              style={{ backgroundColor: c }}
+            />
+          ))}
+        </span>
+        <span
+          className="ml-1 flex-1 truncate rounded-md px-2.5 py-1"
+          style={{
+            backgroundColor: "#fff",
+            border: `1px solid ${LINE}`,
+            fontSize: "11px",
+            color: MUTED,
+          }}
+        >
+          entrepreneurawards.co/winners/your-business
+        </span>
+      </div>
+
+      <div className="relative px-5 pb-6 pt-5" style={{ height: "300px", overflow: "hidden" }}>
+        <p
+          style={{
+            fontSize: "10px",
+            fontWeight: 600,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: BLUE,
+          }}
+        >
+          {AWARD_YEAR} Winner Feature
+        </p>
+        <h3
+          style={{
+            marginTop: "10px",
+            fontSize: "19px",
+            lineHeight: 1.25,
+            fontWeight: 600,
+            letterSpacing: "-0.015em",
+            color: INK,
+          }}
+        >
+          {withSlots(SPECIMEN_HEADLINE)}
+        </h3>
+        <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>{SPECIMEN_BYLINE}</p>
+        {[SPECIMEN_OPENING_PARAGRAPHS[0], SPECIMEN_OPENING_PARAGRAPHS[2]].map((p, i) => (
+          <p
+            key={i}
+            style={{ marginTop: "12px", fontSize: "12.5px", lineHeight: 1.7, color: BODY }}
+          >
+            {withSlots(p)}
+          </p>
+        ))}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{
+            height: "110px",
+            background: "linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%)",
+          }}
+        />
+      </div>
     </div>
   );
 }
 
-function PricingPage() {
+/** Browser-frame mockup of the press release as published on USA Today. */
+function PressMockup() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteNav />
+    <div
+      className="overflow-hidden rounded-xl"
+      style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
+    >
+      <div
+        className="flex items-center gap-2 px-3 py-2"
+        style={{ borderBottom: `1px solid ${LINE}`, backgroundColor: TINT }}
+      >
+        <span className="flex gap-1.5" aria-hidden>
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="block h-2.5 w-2.5 rounded-full"
+              style={{ backgroundColor: "#E2E6ED" }}
+            />
+          ))}
+        </span>
+        <span
+          className="ml-1 flex-1 truncate rounded-md px-2.5 py-1"
+          style={{
+            backgroundColor: "#fff",
+            border: `1px solid ${LINE}`,
+            fontSize: "11px",
+            color: MUTED,
+          }}
+        >
+          usatoday.com
+        </span>
+      </div>
 
-      <main className="flex-1">
-        {/* HERO */}
-        <section className="relative overflow-hidden px-6 pt-20 pb-20 md:pt-32 md:pb-28">
+      <div className="relative px-5 pb-6 pt-5" style={{ height: "300px", overflow: "hidden" }}>
+        <img
+          src="/usa-today-logo.svg"
+          alt="USA Today"
+          width={160}
+          height={24}
+          loading="lazy"
+          decoding="async"
+          style={{ height: "20px", width: "auto" }}
+        />
+        <div style={{ marginTop: "14px", borderTop: `1px solid ${LINE}` }} />
+        <h3
+          style={{
+            marginTop: "14px",
+            fontSize: "17px",
+            lineHeight: 1.3,
+            fontWeight: 600,
+            letterSpacing: "-0.015em",
+            color: INK,
+          }}
+        >
+          {withSlots(`${SPECIMEN_BUSINESS_TOKEN} Named a Winner of the ${AWARD_YEAR} Entrepreneur Awards`)}
+        </h3>
+        <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>
+          NEW YORK — Entrepreneur Awards
+        </p>
+        {[
+          `${SPECIMEN_BUSINESS_TOKEN} has been named a winner of the ${AWARD_YEAR} Entrepreneur Awards, an annual program recognizing owner-led businesses for measurable operating results.`,
+          "The award is given on the basis of a documented outcome, its consistency over time, and the founder's direct role in producing it.",
+        ].map((p, i) => (
+          <p
+            key={i}
+            style={{ marginTop: "12px", fontSize: "12.5px", lineHeight: 1.7, color: BODY }}
+          >
+            {withSlots(p)}
+          </p>
+        ))}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{
+            height: "110px",
+            background: "linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%)",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function useStickyVisible() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const update = () => {
+      const footer = document.getElementById("page-footer");
+      const anchor = document.getElementById("feature");
+      const footerIn = footer ? footer.getBoundingClientRect().top < window.innerHeight : false;
+      const started = anchor ? anchor.getBoundingClientRect().top < window.innerHeight * 0.5 : false;
+      setVisible(started && !footerIn);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  return visible;
+}
+
+// ---------------------------------------------------------------- page
+
+function PricingPage() {
+  const stickyVisible = useStickyVisible();
+
+  const buyFeature = () => {
+    window.location.href = "/complete";
+  };
+
+  return (
+    <div
+      data-event="pricing-page-view"
+      className="min-h-screen font-sans antialiased"
+      style={{ backgroundColor: "#fff", color: BODY }}
+    >
+      <style>{`
+        @media (prefers-reduced-motion: reduce) { .ea-sticky { transition: none !important; } }
+      `}</style>
+
+      {/* Header */}
+      <header style={{ borderBottom: `1px solid ${LINE}`, backgroundColor: "#fff" }}>
+        <Container className="flex h-16 items-center justify-between">
+          <Link
+            to="/"
+            className={`flex items-center gap-2 rounded-sm ${focusRing}`}
+            style={{ fontSize: "0.875rem", fontWeight: 600, color: INK }}
+          >
+            <img
+              src={markAsset.url}
+              alt="Entrepreneur Awards mark"
+              className="h-7 w-7 shrink-0 object-contain"
+            />
+            Entrepreneur Awards
+          </Link>
+          <span style={{ fontSize: "0.875rem", color: MUTED }}>Winner downloads</span>
+        </Container>
+      </header>
+
+      <main style={{ paddingBottom: "88px" }}>
+        {/* 1 — Hero */}
+        <section
+          className="relative flex items-center overflow-hidden"
+          style={{ minHeight: "380px" }}
+        >
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute left-1/2 top-[-10rem] h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" />
-            <div className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,_color-mix(in_oklab,var(--color-primary)_10%,transparent),_transparent_60%)]" />
             <div
-              className="absolute inset-0 opacity-[0.035]"
-              style={{
-                backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
-                backgroundSize: "22px 22px",
-                color: "var(--color-foreground)",
-              }}
+              className="absolute left-1/2 top-[-14rem] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full blur-3xl"
+              style={{ backgroundColor: `${BLUE}26` }}
             />
           </div>
-
           <Confetti />
 
-          <div className="relative mx-auto max-w-4xl text-center">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-lg shadow-primary/20">
-                <Star className="h-3.5 w-3.5 fill-current" />
-                2026 Entrepreneur Award
-              </span>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h1 className="mt-8 text-4xl font-semibold tracking-tight text-foreground md:text-6xl lg:text-7xl">
-                You won.
-                <br />
-                <span className="bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
-                  Now let's tell it properly.
-                </span>
-              </h1>
-            </Reveal>
-
-            <Reveal delay={160}>
-              <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-                Your recognition is already yours. This is how it becomes something people find when they look you up.
-              </p>
-            </Reveal>
-          </div>
+          <Container narrow={760} className="py-14 text-center">
+            <span
+              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em]"
+              style={{ backgroundColor: BLUE, color: "#fff" }}
+            >
+              <Star className="h-3.5 w-3.5 fill-current" aria-hidden />
+              {AWARD_YEAR} Entrepreneur Award
+            </span>
+            <h1
+              style={{
+                marginTop: "22px",
+                fontSize: "clamp(3rem, 8vw, 5rem)",
+                fontWeight: 600,
+                lineHeight: 1,
+                letterSpacing: "-0.03em",
+                color: INK,
+              }}
+            >
+              You won.
+            </h1>
+            <p style={{ marginTop: "18px", fontSize: "1.0625rem", color: BODY }}>
+              Congratulations on your {AWARD_YEAR} Entrepreneur Award. Everything that comes with it is below.
+            </p>
+          </Container>
         </section>
 
-        {/* ALREADY YOURS */}
-        <section className="border-t border-border bg-secondary/30 px-6 py-16 md:py-20">
-          <div className="mx-auto max-w-5xl">
-            <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <p className="text-xs font-medium uppercase tracking-[0.24em] text-primary">
-                  Already yours, free
-                </p>
-                <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">
-                  Yours to keep, free and permanent. Download what you need and post it today.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-                {freeAssets.map((a) => (
-                  <li key={a.title}>
-                    <FreeAssetTile asset={a} />
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
-            <Reveal delay={140}>
-              <p className="mt-10 text-center text-sm text-muted-foreground">
-                Tag {IG_HANDLE} when you post.
-              </p>
-            </Reveal>
-
-          </div>
-        </section>
-
-
-        {/* THE OFFER */}
-        <section className="relative overflow-hidden px-6 py-24 pb-32 md:py-32 md:pb-40">
-          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/8 blur-3xl" />
-          </div>
-
-          <Reveal>
-            <div className="mb-16 text-center md:mb-20">
-              <p className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-primary">
-                <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                The Winner's Feature
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                One story, written and published for you.
+        {/* 2 — Downloads */}
+        <section id="downloads" style={{ backgroundColor: TINT, padding: "56px 0" }}>
+          <Container>
+            <div className="text-center">
+              <h2
+                style={{
+                  fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                  color: INK,
+                }}
+              >
+                Your award, ready to use.
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
-                Done for you, start to finish.
+              <p style={{ marginTop: "6px", fontSize: "0.8125rem", color: MUTED }}>
+                Download them, then add them to your website, your LinkedIn profile and your email signature. They're yours to keep, at no further cost.
               </p>
             </div>
-          </Reveal>
 
-          {/* PREVIEW — full width */}
-          <Reveal delay={80}>
-            <div className="mx-auto w-full max-w-[1100px]">
-              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
-                Preview · what gets published
-              </p>
-
-              <div className="relative overflow-hidden rounded-lg border border-border bg-background shadow-xl">
-                <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                  <div className="ml-3 flex-1 truncate rounded-md bg-muted/60 px-3 py-1 text-[11px] text-muted-foreground">
-                    entrepreneurawards.co/winners/your-feature
-                  </div>
-                </div>
-
-                <div className="p-6 md:p-10">
-                  <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-primary">
-                    <Award className="h-3 w-3" aria-hidden /> 2026 Winner Feature
-                  </div>
-                  <h3 className="max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
-                    How [Your Name] built something worth recognizing.
-                  </h3>
-                  <p className="mt-2 text-xs text-muted-foreground">
-                    By Entrepreneur Awards Editorial · 6 min read
-                  </p>
-
-                  <div className="mt-6 grid gap-8 md:grid-cols-[1.1fr_1fr]">
-                    <div className="h-40 rounded-md bg-gradient-to-br from-primary/25 via-primary/10 to-secondary md:h-56" />
-
-                    <div>
-                      <div className="space-y-2.5">
-                        <div className="h-2 w-full rounded bg-muted" />
-                        <div className="h-2 w-[96%] rounded bg-muted" />
-                        <div className="h-2 w-[88%] rounded bg-muted" />
-                        <div className="h-2 w-[70%] rounded bg-muted" />
-                      </div>
-
-                      <div className="mt-5 border-l-2 border-primary/60 pl-3">
-                        <div className="h-2 w-[80%] rounded bg-muted" />
-                        <div className="mt-2 h-2 w-[55%] rounded bg-muted" />
-                      </div>
-
-                      <div className="mt-5 space-y-2.5">
-                        <div className="h-2 w-full rounded bg-muted" />
-                        <div className="h-2 w-[92%] rounded bg-muted" />
-                        <div className="h-2 w-[60%] rounded bg-muted" />
-                      </div>
+            <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {winnerKitFiles.map((file) => (
+                <li key={file.id} className="flex">
+                  <a
+                    href={file.url}
+                    download={file.filename}
+                    data-event="asset-download"
+                    className={`flex w-full flex-col rounded-xl bg-white p-3 transition-shadow hover:shadow-[0_4px_16px_rgba(15,23,42,0.08)] ${focusRing}`}
+                    style={{ border: `1px solid ${LINE}` }}
+                  >
+                    <div
+                      className="flex items-center justify-center overflow-hidden rounded-lg"
+                      style={{ height: "140px", backgroundColor: TINT }}
+                    >
+                      <img
+                        src={file.url}
+                        alt={file.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full"
+                        style={{ objectFit: file.fit }}
+                      />
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* OFFER BLOCK */}
-          <div className="mx-auto mt-20 w-full max-w-[900px] md:mt-24">
-            <Reveal>
-              <div className="text-center">
-                <div className="flex items-baseline justify-center gap-2">
-                  <span className="text-5xl font-semibold tracking-tight text-foreground">
-                    ${WINNERS_FEATURE_PRICE.toLocaleString()}
-                  </span>
-                  <span className="text-sm text-muted-foreground">one-time</span>
-                </div>
-                <p className="mt-3 text-[17px] font-medium text-foreground">A badge says you won. This says why.</p>
-                <p className="mt-1 text-[15px] text-muted-foreground">
-                  A full feature about you, written and published, plus the winner's box.
-                </p>
-              </div>
-            </Reveal>
-
-            {/* THREE STAGES */}
-            <Reveal delay={80}>
-              <ol className="mt-14 grid items-start gap-6 md:grid-cols-[1fr_1px_1fr_1px_1fr] md:gap-10">
-                {stages.map(({ number, title, body }, index) => [
-                  <li key={number} className="text-left">
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-medium text-primary-foreground">
-                      {number}
-                    </span>
-                    <p className="mt-4 text-sm font-semibold text-foreground">{title}</p>
-                    <div className="mt-3 text-sm leading-[1.7] text-muted-foreground">{body}</div>
-                  </li>,
-                  index < stages.length - 1 && (
-                    <li
-                      key={`divider-${number}`}
-                      className="h-px w-full bg-border md:h-auto md:w-px md:self-stretch"
-                      aria-hidden
-                    />
-                  ),
-                ])}
-              </ol>
-            </Reveal>
-
-            {/* WINNER'S BOX */}
-            <Reveal delay={100}>
-              <div className="mt-16 rounded-lg border border-border p-6 md:p-8">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-primary">The winner's box</p>
-                <ul className="mt-5 grid gap-6 sm:grid-cols-2">
-                  {winnersBox.map(({ icon: Icon, lead, rest }) => (
-                    <li key={lead} className="flex items-start gap-3 text-sm [line-height:1.7] text-muted-foreground">
-                      <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
-                      <span>
-                        <span className="font-semibold text-foreground">{lead}</span>
-                        {rest ? ` — ${rest}` : null}
+                    <div className="mt-3 flex flex-1 flex-col">
+                      <span
+                        style={{ fontSize: "0.9375rem", fontWeight: 500, color: INK }}
+                      >
+                        {file.name}
                       </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
+                      <span
+                        className="mt-0.5"
+                        style={{ fontSize: "0.75rem", fontWeight: 400, color: MUTED, lineHeight: 1.4 }}
+                      >
+                        {file.description}
+                      </span>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-            {/* PULL QUOTE */}
-            <Reveal delay={120}>
-              <figure className="mx-auto mt-12 mb-8 max-w-[640px] border-l-[3px] border-primary" style={{ borderRadius: 0, padding: "4px 0 4px 20px" }}>
-                <p className="text-[20px] leading-[1.5] text-foreground">
-                  <strong className="font-semibold">When someone searches your name, this is what they find.</strong>{" "}
-                  Your story, written and published by someone other than you.
-                </p>
-              </figure>
-            </Reveal>
+            <div className="mt-8 flex flex-col items-center">
+              <a
+                href="/api/public/winner-kit/zip"
+                download
+                data-event="asset-download"
+                className={`inline-flex items-center justify-center rounded-lg text-white transition-colors hover:bg-[#1568D0] ${focusRing}`}
+                style={{
+                  height: "52px",
+                  padding: "0 28px",
+                  backgroundColor: BLUE,
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                }}
+              >
+                Download everything
+              </a>
+              <p
+                style={{
+                  marginTop: "56px",
+                  marginBottom: "64px",
+                  fontSize: "18px",
+                  fontWeight: 500,
+                  color: BODY,
+                }}
+              >
+                That&rsquo;s everything you can post yourself.
+              </p>
+            </div>
+          </Container>
+        </section>
 
-            {/* CTA */}
-            <Reveal delay={140}>
-              <div className="mt-10 text-center">
-                <a
-                  href="https://payments.entrepreneurawards.co/b/7sY8wPbgN236evy2UY8so0i"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mx-auto inline-flex h-11 w-full max-w-[320px] items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        {/* 3 — The Winner's Feature */}
+        <section id="feature" style={{ padding: "48px 0 64px" }}>
+          <Container>
+            <div className="text-center">
+              <p
+                style={{
+                  fontSize: "0.6875rem",
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.14em",
+                  color: BLUE,
+                }}
+              >
+                The Winner&rsquo;s Feature
+              </p>
+              <h2
+                style={{
+                  marginTop: "10px",
+                  fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.15,
+                  color: INK,
+                }}
+              >
+                Get your business written about in USA Today.
+              </h2>
+              <p style={{ marginTop: "14px", fontSize: "0.9375rem", color: BODY }}>
+                A full article about your business on our site, a press release published on USA Today, and an engraved award posted to you.
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+              <figure className="flex h-full flex-col">
+                <PressMockup />
+                <figcaption
+                  className="mt-3 text-center"
+                  style={{ fontSize: "0.8125rem", color: MUTED }}
                 >
-                  Claim your feature
-                </a>
+                  Published on USA Today.
+                </figcaption>
+              </figure>
 
-                <div className="mt-4 space-y-2.5 text-[13px] text-muted-foreground">
-                  <p>Nothing publishes until you've read it.</p>
-                  <p>
-                    Every winner is independently reviewed and selected.{" "}
-                    <Link to="/criteria" className="text-primary underline-offset-4 hover:underline">
-                      Our criteria
-                    </Link>
-                    .
-                  </p>
+              <figure className="flex h-full flex-col">
+                <Link
+                  to="/winners/specimen"
+                  data-event="feature-format-view"
+                  className={`block rounded-xl ${focusRing}`}
+                >
+                  <BrowserMockup />
+                </Link>
+                <figcaption
+                  className="mt-3 text-center"
+                  style={{ fontSize: "0.8125rem", color: BLUE }}
+                >
+                  <Link
+                    to="/winners/specimen"
+                    className={`rounded-sm underline underline-offset-4 ${focusRing}`}
+                  >
+                    See a real example →
+                  </Link>
+                </figcaption>
+              </figure>
+
+              <figure className="flex h-full flex-col">
+                <div
+                  className="flex-1 overflow-hidden rounded-xl"
+                  style={{ border: `1px solid ${LINE}` }}
+                >
+                  <img
+                    src={portraitAsset.url}
+                    alt="Founder holding an engraved Entrepreneur Award"
+                    width={1264}
+                    height={848}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full"
+                    style={{ objectFit: "cover", objectPosition: "50% 35%" }}
+                  />
                 </div>
-              </div>
-            </Reveal>
-          </div>
+                <figcaption
+                  className="mt-3 text-center"
+                  style={{ fontSize: "0.8125rem", color: MUTED }}
+                >
+                  The engraved award, posted to you.
+                </figcaption>
+              </figure>
+            </div>
+
+            {/* What you get */}
+            <ul className="mx-auto mt-10 grid max-w-[680px] gap-3">
+              {whatYouGet.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: BLUE }} aria-hidden />
+                  <span style={{ fontSize: "0.9375rem", color: BODY }}>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Process chips */}
+            <ol className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
+              {processChips.map((chip, i) => (
+                <li key={chip} className="flex items-center gap-3">
+                  <span
+                    className="rounded-full px-3.5 py-1.5"
+                    style={{
+                      border: `1px solid ${LINE}`,
+                      backgroundColor: TINT,
+                      fontSize: "0.8125rem",
+                      color: INK,
+                    }}
+                  >
+                    {chip}
+                  </span>
+                  {i < processChips.length - 1 ? (
+                    <span aria-hidden style={{ color: MUTED, fontSize: "0.875rem" }}>
+                      →
+                    </span>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+
+            <p className="mt-5 text-center" style={{ fontSize: "0.9375rem", color: BODY }}>
+              You'll have your article draft within five working days, and it goes live three days after you approve it.
+            </p>
+
+            <div className="mt-8 flex flex-col items-center">
+              <p
+                style={{
+                  fontSize: "clamp(2.25rem, 5vw, 3rem)",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                  color: INK,
+                }}
+              >
+                {formatPrice(FEATURE_PRICE)}
+              </p>
+              <button
+                type="button"
+                onClick={buyFeature}
+                data-event="feature-order-click"
+                className={`mt-5 inline-flex items-center justify-center rounded-lg text-white transition-colors hover:bg-[#1568D0] ${focusRing}`}
+                style={{
+                  height: "52px",
+                  padding: "0 28px",
+                  backgroundColor: BLUE,
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                }}
+              >
+                Get my feature
+              </button>
+              <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
+                Nothing goes live until you approve every word.
+              </p>
+              <p style={{ marginTop: "6px", fontSize: "0.8125rem", color: MUTED }}>
+                Your award and the files above are yours either way.
+              </p>
+            </div>
+          </Container>
         </section>
       </main>
 
-      <SiteFooter />
+      {/* 4 — Sticky bar */}
+      <div
+        className="ea-sticky fixed inset-x-0 bottom-0 z-40"
+        style={{
+          height: "64px",
+          backgroundColor: "#fff",
+          borderTop: `1px solid ${LINE}`,
+          boxShadow: "0 -2px 10px rgba(15,23,42,0.06)",
+          transform: stickyVisible ? "translateY(0)" : "translateY(100%)",
+          transition: "transform 200ms ease-out",
+          pointerEvents: stickyVisible ? "auto" : "none",
+        }}
+        aria-hidden={!stickyVisible}
+      >
+        <Container className="flex h-16 items-center justify-between gap-4">
+          <span style={{ fontSize: "0.9375rem", color: INK }}>
+            <strong style={{ fontWeight: 600 }}>The Winner&rsquo;s Feature</strong>
+            <span style={{ color: MUTED }}> · {formatPrice(FEATURE_PRICE)}</span>
+          </span>
+          <button
+            type="button"
+            onClick={buyFeature}
+            data-event="feature-order-click"
+            className={`rounded-lg text-white transition-colors hover:bg-[#1568D0] ${focusRing}`}
+            style={{
+              height: "40px",
+              padding: "0 18px",
+              backgroundColor: BLUE,
+              fontSize: "0.875rem",
+              fontWeight: 500,
+            }}
+          >
+            Get my feature
+          </button>
+        </Container>
+      </div>
+
+      {/* Footer */}
+      <footer id="page-footer" style={{ borderTop: `1px solid ${LINE}`, padding: "40px 0" }}>
+        <Container className="flex flex-col items-center gap-4">
+          <span style={{ fontSize: "0.75rem", fontWeight: 600, color: INK }}>
+            Entrepreneur Awards
+          </span>
+          <nav
+            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
+            style={{ fontSize: "0.75rem", color: MUTED }}
+          >
+            <Link to="/terms-and-conditions" className={`hover:text-[#0F172A] ${focusRing}`}>
+              Terms
+            </Link>
+            <a href="/#contact" className={`hover:text-[#0F172A] ${focusRing}`}>
+              Contact
+            </a>
+          </nav>
+          <p style={{ fontSize: "0.75rem", color: MUTED }}>
+            Entrepreneur Awards. All rights reserved.
+          </p>
+        </Container>
+      </footer>
     </div>
   );
 }
-
-
