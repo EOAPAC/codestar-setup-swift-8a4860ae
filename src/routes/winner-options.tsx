@@ -542,6 +542,16 @@ function WinnerOptionsPage() {
 
             <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
               <figure className="flex h-full flex-col">
+                <PressMockup />
+                <figcaption
+                  className="mt-3 text-center"
+                  style={{ fontSize: "0.8125rem", color: MUTED }}
+                >
+                  Published on USA Today.
+                </figcaption>
+              </figure>
+
+              <figure className="flex h-full flex-col">
                 <Link
                   to="/winners/specimen"
                   data-event="feature-format-view"
@@ -559,16 +569,6 @@ function WinnerOptionsPage() {
                   >
                     See a real example →
                   </Link>
-                </figcaption>
-              </figure>
-
-              <figure className="flex h-full flex-col">
-                <PressMockup />
-                <figcaption
-                  className="mt-3 text-center"
-                  style={{ fontSize: "0.8125rem", color: MUTED }}
-                >
-                  Published on USA Today.
                 </figcaption>
               </figure>
 
