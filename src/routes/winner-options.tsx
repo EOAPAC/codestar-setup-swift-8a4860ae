@@ -50,7 +50,7 @@ const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
-const processChips = ["You answer a few questions", "We write both", "You approve both", "It goes live"];
+const processChips = ["We write both", "You approve both", "It goes live"];
 
 const whatYouGet = [
   "A full article about your business, written by our editors",
