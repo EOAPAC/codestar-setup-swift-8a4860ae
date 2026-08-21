@@ -26,7 +26,7 @@ export function SiteNav() {
           <a href="/#contact" className="hover:text-foreground">Contact</a>
         </nav>
         <Button asChild size="sm">
-          <a href="/#submit">Enter the {AWARD_YEAR} Awards</a>
+          <a href="/#submit">Enter the {AWARD_YEAR} Awards · $129.90</a>
         </Button>
       </div>
     </header>
