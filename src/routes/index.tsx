@@ -96,7 +96,7 @@ function Hero() {
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            {AWARD_YEAR} entries are open · $129.90 to enter · decisions in five business days
+            {AWARD_YEAR} entries are open · decisions within five business days
           </span>
           <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
             For the person who <span className="text-primary">built it.</span>
@@ -107,7 +107,7 @@ function Hero() {
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="min-w-48">
-              <a href="#submit">Enter now · $129.90</a>
+              <a href="#submit">Enter now →</a>
             </Button>
             <Button asChild size="lg" variant="ghost">
               <a href="#how-it-works">See how it works</a>
@@ -283,7 +283,7 @@ function WhatAWinIsWorth() {
 
         <div className="mt-16 flex justify-center">
           <Button asChild size="lg" className="min-w-48">
-            <a href="#submit">Enter now · $129.90</a>
+            <a href="#submit">Enter now →</a>
           </Button>
         </div>
       </div>
@@ -380,8 +380,8 @@ const doesNotDo = [
     body: "Nobody is put forward by us. Founders enter their own business, in their own words.",
   },
   {
-    title: "One payment only",
-    body: "The $129.90 assessment fee is the only payment required. Selection itself costs nothing, and your winner materials carry no further charge.",
+    title: "No shortlist fee",
+    body: "Reaching a shortlist costs nothing. Nothing is asked of you to be read and assessed.",
   },
   {
     title: "No categories",
@@ -431,8 +431,8 @@ const howItWorks = [
     title: "You enter",
     body: (
       <>
-        Four fields and three short questions. About five minutes. Entry is $129.90, payable after
-        you submit. The fee covers the assessment, not the award.
+        Four fields and three short questions. About five minutes. We are assessing what was built,
+        not how well an application is written.
       </>
     ),
   },
@@ -734,12 +734,6 @@ function SubmissionForm() {
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
             Everything needed to assess the business is on this one page.
-          </p>
-          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-foreground">
-            Entry is $129.90. After you submit this form you will be taken to payment.
-            <br className="hidden sm:block" />
-            The fee covers the assessment. Every entry is read against the three published criteria
-            and answered within five business days, whether or not it is selected.
           </p>
         </div>
         <Card className="mt-12 p-8 md:p-10">
