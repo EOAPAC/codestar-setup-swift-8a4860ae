@@ -43,7 +43,7 @@ const BLUE = "#1978E5";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
 
-const FEATURE_PRICE = 595;
+const FEATURE_PRICE = 1595;
 const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 
 const focusRing =
