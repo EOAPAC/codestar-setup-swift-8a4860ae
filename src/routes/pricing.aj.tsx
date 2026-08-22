@@ -108,7 +108,7 @@ function PricingPage() {
       data-event="pricing-page-view"
       className="min-h-screen bg-background font-sans text-foreground antialiased"
     >
-      <PageHeader />
+      <SiteNav />
 
       <main className="mx-auto max-w-3xl px-6">
         {/* Hero */}
@@ -211,7 +211,7 @@ function PricingPage() {
         </section>
       </main>
 
-      <PageFooter />
+      <SiteFooter />
     </div>
   );
 }
