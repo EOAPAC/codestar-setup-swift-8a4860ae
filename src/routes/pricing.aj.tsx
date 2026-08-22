@@ -15,15 +15,15 @@ import markAsset from "@/assets/ea-mark.png.asset.json";
 export const Route = createFileRoute("/pricing/aj")({
   head: () => ({
     meta: [
-      { title: "Claim your Entrepreneur Award — Entrepreneur Awards" },
+      { title: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
       {
         name: "description",
-        content: `Claim your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
+        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
-      { property: "og:title", content: "Claim your Entrepreneur Award — Entrepreneur Awards" },
+      { property: "og:title", content: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
       {
         property: "og:description",
-        content: `Claim your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
+        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/pricing/aj")({
   component: PricingPage,
 });
 
-const PAYMENT_LINK = "[PAYMENT_LINK]";
+
 
 const includedItems = [
   {
@@ -91,11 +91,11 @@ const faqs = [
   },
 ];
 
-function ClaimButton({ size = "lg" }: { size?: "default" | "lg" }) {
+function ApplyButton({ size = "lg" }: { size?: "default" | "lg" }) {
   return (
     <Button asChild size={size} className="min-w-56">
-      <a href={PAYMENT_LINK} data-event="claim-award-click">
-        Claim your award
+      <a href="/#submit" data-event="apply-award-click">
+        Apply
       </a>
     </Button>
   );
@@ -167,14 +167,14 @@ function PricingPage() {
             {AWARD_YEAR} Winner Claim
           </span>
           <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
-            Claim your Entrepreneur Award
+            Apply for an Entrepreneur Award
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Winners receive the official title, the trophy, published press coverage, and the
             publicity kit to put the win to work.
           </p>
           <div className="mt-10">
-            <ClaimButton />
+            <ApplyButton />
           </div>
         </section>
 
@@ -245,13 +245,13 @@ function PricingPage() {
         {/* Bottom CTA */}
         <section className="py-12 text-center md:py-16">
           <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-            Claim your Entrepreneur Award
+            Apply for an Entrepreneur Award
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
             One payment of $1,250 USD. Select your publications at checkout.
           </p>
           <div className="mt-8">
-            <ClaimButton />
+            <ApplyButton />
           </div>
         </section>
       </main>
