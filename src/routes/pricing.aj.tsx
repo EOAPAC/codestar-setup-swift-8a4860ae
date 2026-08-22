@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Check, Award } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import { AWARD_YEAR } from "@/content/award";
-import markAsset from "@/assets/ea-mark.png.asset.json";
 
 export const Route = createFileRoute("/pricing/aj")({
   head: () => ({
@@ -101,59 +102,13 @@ function ApplyButton({ size = "lg" }: { size?: "default" | "lg" }) {
   );
 }
 
-function PageHeader() {
-  return (
-    <header className="border-b border-border bg-background">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link
-          to="/"
-          className="flex items-center gap-2 rounded-sm text-sm font-semibold tracking-tight text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        >
-          <img
-            src={markAsset.url}
-            alt="Entrepreneur Awards mark"
-            className="h-7 w-7 shrink-0 object-contain"
-          />
-          Entrepreneur Awards
-        </Link>
-      </div>
-    </header>
-  );
-}
-
-function PageFooter() {
-  return (
-    <footer className="border-t border-border py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-xs text-muted-foreground">
-        <Link to="/" className="flex items-center gap-2 text-sm font-semibold text-foreground">
-          <img
-            src={markAsset.url}
-            alt="Entrepreneur Awards mark"
-            className="h-6 w-6 shrink-0 object-contain"
-          />
-          Entrepreneur Awards
-        </Link>
-        <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <Link to="/terms-and-conditions" className="hover:text-foreground">
-            Terms
-          </Link>
-          <a href="mailto:hello@entrepreneurawards.co" className="hover:text-foreground">
-            Contact
-          </a>
-        </nav>
-        <p>Entrepreneur Awards. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}
-
 function PricingPage() {
   return (
     <div
       data-event="pricing-page-view"
       className="min-h-screen bg-background font-sans text-foreground antialiased"
     >
-      <PageHeader />
+      <SiteNav />
 
       <main className="mx-auto max-w-3xl px-6">
         {/* Hero */}
@@ -256,7 +211,7 @@ function PricingPage() {
         </section>
       </main>
 
-      <PageFooter />
+      <SiteFooter />
     </div>
   );
 }
