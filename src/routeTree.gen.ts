@@ -15,7 +15,6 @@ import { Route as WinnerOptionsRouteImport } from './routes/winner-options'
 import { Route as WinnerMaterialsRouteImport } from './routes/winner-materials'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
-import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CriteriaRouteImport } from './routes/criteria'
@@ -24,6 +23,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as WinnersSpecimenRouteImport } from './routes/winners.specimen'
 import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resources.$token'
+import { Route as PricingAjRouteImport } from './routes/pricing.aj'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as ApiPublicWinnerKitZipRouteImport } from './routes/api/public/winner-kit.zip'
 
@@ -55,11 +55,6 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
   path: '/terms-and-conditions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PricingRoute = PricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MethodologyRoute = MethodologyRouteImport.update({
@@ -102,6 +97,11 @@ const WinnerResourcesTokenRoute = WinnerResourcesTokenRouteImport.update({
   path: '/winner-resources/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PricingAjRoute = PricingAjRouteImport.update({
+  id: '/pricing/aj',
+  path: '/pricing/aj',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/insights/$slug',
   path: '/insights/$slug',
@@ -119,7 +119,6 @@ export interface FileRoutesByFullPath {
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
-  '/pricing': typeof PricingRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -127,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/pricing/aj': typeof PricingAjRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights/': typeof InsightsIndexRoute
@@ -138,7 +138,6 @@ export interface FileRoutesByTo {
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
-  '/pricing': typeof PricingRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -146,6 +145,7 @@ export interface FileRoutesByTo {
   '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/pricing/aj': typeof PricingAjRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights': typeof InsightsIndexRoute
@@ -158,7 +158,6 @@ export interface FileRoutesById {
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
-  '/pricing': typeof PricingRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -166,6 +165,7 @@ export interface FileRoutesById {
   '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/pricing/aj': typeof PricingAjRoute
   '/winner-resources/$token': typeof WinnerResourcesTokenRoute
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights/': typeof InsightsIndexRoute
@@ -179,7 +179,6 @@ export interface FileRouteTypes {
     | '/criteria'
     | '/faq'
     | '/methodology'
-    | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -187,6 +186,7 @@ export interface FileRouteTypes {
     | '/winner-options-v2'
     | '/winner-product-concepts'
     | '/insights/$slug'
+    | '/pricing/aj'
     | '/winner-resources/$token'
     | '/winners/specimen'
     | '/insights/'
@@ -198,7 +198,6 @@ export interface FileRouteTypes {
     | '/criteria'
     | '/faq'
     | '/methodology'
-    | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -206,6 +205,7 @@ export interface FileRouteTypes {
     | '/winner-options-v2'
     | '/winner-product-concepts'
     | '/insights/$slug'
+    | '/pricing/aj'
     | '/winner-resources/$token'
     | '/winners/specimen'
     | '/insights'
@@ -217,7 +217,6 @@ export interface FileRouteTypes {
     | '/criteria'
     | '/faq'
     | '/methodology'
-    | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -225,6 +224,7 @@ export interface FileRouteTypes {
     | '/winner-options-v2'
     | '/winner-product-concepts'
     | '/insights/$slug'
+    | '/pricing/aj'
     | '/winner-resources/$token'
     | '/winners/specimen'
     | '/insights/'
@@ -237,7 +237,6 @@ export interface RootRouteChildren {
   CriteriaRoute: typeof CriteriaRoute
   FaqRoute: typeof FaqRoute
   MethodologyRoute: typeof MethodologyRoute
-  PricingRoute: typeof PricingRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
   WinnerMaterialsRoute: typeof WinnerMaterialsRoute
@@ -245,6 +244,7 @@ export interface RootRouteChildren {
   WinnerOptionsV2Route: typeof WinnerOptionsV2Route
   WinnerProductConceptsRoute: typeof WinnerProductConceptsRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
+  PricingAjRoute: typeof PricingAjRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
   WinnersSpecimenRoute: typeof WinnersSpecimenRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
@@ -293,13 +293,6 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pricing': {
-      id: '/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/methodology': {
@@ -358,6 +351,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WinnerResourcesTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pricing/aj': {
+      id: '/pricing/aj'
+      path: '/pricing/aj'
+      fullPath: '/pricing/aj'
+      preLoaderRoute: typeof PricingAjRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/insights/$slug': {
       id: '/insights/$slug'
       path: '/insights/$slug'
@@ -381,7 +381,6 @@ const rootRouteChildren: RootRouteChildren = {
   CriteriaRoute: CriteriaRoute,
   FaqRoute: FaqRoute,
   MethodologyRoute: MethodologyRoute,
-  PricingRoute: PricingRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
   WinnerMaterialsRoute: WinnerMaterialsRoute,
@@ -389,6 +388,7 @@ const rootRouteChildren: RootRouteChildren = {
   WinnerOptionsV2Route: WinnerOptionsV2Route,
   WinnerProductConceptsRoute: WinnerProductConceptsRoute,
   InsightsSlugRoute: InsightsSlugRoute,
+  PricingAjRoute: PricingAjRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
   WinnersSpecimenRoute: WinnersSpecimenRoute,
   InsightsIndexRoute: InsightsIndexRoute,

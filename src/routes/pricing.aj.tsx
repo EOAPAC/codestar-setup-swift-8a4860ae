@@ -12,7 +12,7 @@ import {
 import { AWARD_YEAR } from "@/content/award";
 import markAsset from "@/assets/ea-mark.png.asset.json";
 
-export const Route = createFileRoute("/pricing")({
+export const Route = createFileRoute("/pricing/aj")({
   head: () => ({
     meta: [
       { title: "Claim your Entrepreneur Award — Entrepreneur Awards" },

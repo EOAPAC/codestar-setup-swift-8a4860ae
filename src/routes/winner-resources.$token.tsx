@@ -579,12 +579,12 @@ function WinnerResourcesPage() {
 
                     <div className="mt-8">
                       <Button asChild size="lg" className="w-full text-base shadow-lg shadow-primary/20 transition-all hover:shadow-xl hover:shadow-primary/25">
-                        <Link to="/pricing">
+                        <Link to="/pricing/aj">
                           Make my win official <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
                       <p className="mt-3 text-center text-xs text-muted-foreground">
-                        <Link to="/pricing" className="underline decoration-primary/30 underline-offset-4 hover:text-foreground">
+                        <Link to="/pricing/aj" className="underline decoration-primary/30 underline-offset-4 hover:text-foreground">
                           See everything included in the Winner's Feature
                         </Link>
                       </p>
