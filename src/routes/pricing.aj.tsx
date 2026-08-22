@@ -19,12 +19,12 @@ export const Route = createFileRoute("/pricing/aj")({
       { title: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
       {
         name: "description",
-        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
+        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes a feature story, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
       { property: "og:title", content: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
       {
         property: "og:description",
-        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
+        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes a feature story, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -38,11 +38,18 @@ export const Route = createFileRoute("/pricing/aj")({
 const includedItems = [
   {
     label: "Feature story",
-    detail: "1 guaranteed feature story about your win — your choice of: a regional edition of Forbes, Fast Company, GQ, International Business Times, or MSN",
-  },
-  {
-    label: "Press announcement",
-    detail: "1 press announcement — your choice of: Business Insider, Fortune, USA Today, Associated Press, or Reuters",
+    detail: (
+      <>
+        <p>1 guaranteed feature story about your win, in your choice of:</p>
+        <ul className="mt-2 list-disc pl-5 text-sm leading-relaxed text-muted-foreground">
+          <li>The Forbes network</li>
+          <li>Fast Company</li>
+          <li>GQ</li>
+          <li>International Business Times</li>
+          <li>MSN</li>
+        </ul>
+      </>
+    ),
   },
   {
     label: "Engraved crystal trophy",
@@ -68,27 +75,27 @@ const faqs = [
   {
     question: "Do I have to pay to win?",
     answer:
-      "No. Winning is decided by the judging panel before any payment. The Winner Package is how you claim and publicise the win: the title, trophy, press coverage, certificate, and publicity assets.",
+      "No. Winning is decided by the judging panel before any payment. The Winner Package is how you claim and publicise the win: the title, trophy, feature story, certificate, and publicity assets.",
   },
   {
-    question: "How do I choose my publications?",
+    question: "How do I choose my publication?",
     answer:
-      "At checkout you select one outlet from the feature story list and one from the press announcement list. Your confirmation email states your selections back to you.",
+      "At checkout you select one outlet from the feature story list. Your confirmation email states your selection back to you.",
   },
   {
     question: "What happens if I don't claim?",
     answer:
-      "Your result stands, but the trophy, certificate, winner page, and press coverage are only produced for claimed awards. The claim window for each cohort closes on the date in your notification email.",
+      "Your result stands, but the trophy, certificate, winner page, and feature story are only produced for claimed awards. The claim window for each cohort closes on the date in your notification email.",
   },
   {
-    question: "When is my coverage published?",
+    question: "When is my feature story published?",
     answer:
-      "Within a few weeks of claiming. You approve the feature story draft before it goes live.",
+      "Within a few weeks of claiming. You approve the draft before it goes live.",
   },
   {
     question: "Is the payment refundable?",
     answer:
-      "If a publication included in your package is not published, that deliverable is refunded under the package terms.",
+      "If the feature story in your package is not published, that deliverable is refunded under the package terms.",
   },
 ];
 
@@ -125,7 +132,7 @@ function PricingPage() {
             Apply for an Entrepreneur Award
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Winners receive the official title, the trophy, published press coverage, and the
+            Winners receive the official title, the trophy, feature story, and the
             publicity kit to put the win to work.
           </p>
           <div className="mt-10">
@@ -165,7 +172,7 @@ function PricingPage() {
                   <div>
                     <p className="font-medium text-foreground">{item.label}</p>
                     {item.detail && (
-                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.detail}</p>
+                      <div className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.detail}</div>
                     )}
                   </div>
                 </li>
@@ -174,7 +181,7 @@ function PricingPage() {
           </Card>
 
           <p className="mt-5 text-sm text-muted-foreground">
-            You select your feature story outlet and press announcement outlet at checkout.
+            You select your feature story outlet at checkout.
           </p>
         </section>
 
@@ -203,7 +210,7 @@ function PricingPage() {
             Apply for an Entrepreneur Award
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
-            One payment of $1,250 USD. Select your publications at checkout.
+            One payment of $1,250 USD. Select your feature story outlet at checkout.
           </p>
           <div className="mt-8">
             <ApplyButton />
