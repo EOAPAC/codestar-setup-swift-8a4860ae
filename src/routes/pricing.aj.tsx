@@ -19,12 +19,12 @@ export const Route = createFileRoute("/pricing/aj")({
       { title: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
       {
         name: "description",
-        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
+        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes a feature story, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
       { property: "og:title", content: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
       {
         property: "og:description",
-        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
+        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes a feature story, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -210,7 +210,7 @@ function PricingPage() {
             Apply for an Entrepreneur Award
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
-            One payment of $1,250 USD. Select your publications at checkout.
+            One payment of $1,250 USD. Select your feature story outlet at checkout.
           </p>
           <div className="mt-8">
             <ApplyButton />
