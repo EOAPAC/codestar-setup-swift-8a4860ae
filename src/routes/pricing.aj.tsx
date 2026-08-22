@@ -15,15 +15,15 @@ import markAsset from "@/assets/ea-mark.png.asset.json";
 export const Route = createFileRoute("/pricing/aj")({
   head: () => ({
     meta: [
-      { title: "Claim your Entrepreneur Award — Entrepreneur Awards" },
+      { title: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
       {
         name: "description",
-        content: `Claim your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
+        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
-      { property: "og:title", content: "Claim your Entrepreneur Award — Entrepreneur Awards" },
+      { property: "og:title", content: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
       {
         property: "og:description",
-        content: `Claim your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
+        content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes press coverage, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/pricing/aj")({
   component: PricingPage,
 });
 
-const PAYMENT_LINK = "[PAYMENT_LINK]";
+
 
 const includedItems = [
   {
