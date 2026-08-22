@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Check, Award } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import { AWARD_YEAR } from "@/content/award";
-import markAsset from "@/assets/ea-mark.png.asset.json";
 
 export const Route = createFileRoute("/pricing/aj")({
   head: () => ({
