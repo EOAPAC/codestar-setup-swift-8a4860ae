@@ -75,27 +75,27 @@ const faqs = [
   {
     question: "Do I have to pay to win?",
     answer:
-      "No. Winning is decided by the judging panel before any payment. The Winner Package is how you claim and publicise the win: the title, trophy, press coverage, certificate, and publicity assets.",
+      "No. Winning is decided by the judging panel before any payment. The Winner Package is how you claim and publicise the win: the title, trophy, feature story, certificate, and publicity assets.",
   },
   {
-    question: "How do I choose my publications?",
+    question: "How do I choose my publication?",
     answer:
-      "At checkout you select one outlet from the feature story list and one from the press announcement list. Your confirmation email states your selections back to you.",
+      "At checkout you select one outlet from the feature story list. Your confirmation email states your selection back to you.",
   },
   {
     question: "What happens if I don't claim?",
     answer:
-      "Your result stands, but the trophy, certificate, winner page, and press coverage are only produced for claimed awards. The claim window for each cohort closes on the date in your notification email.",
+      "Your result stands, but the trophy, certificate, winner page, and feature story are only produced for claimed awards. The claim window for each cohort closes on the date in your notification email.",
   },
   {
-    question: "When is my coverage published?",
+    question: "When is my feature story published?",
     answer:
-      "Within a few weeks of claiming. You approve the feature story draft before it goes live.",
+      "Within a few weeks of claiming. You approve the draft before it goes live.",
   },
   {
     question: "Is the payment refundable?",
     answer:
-      "If a publication included in your package is not published, that deliverable is refunded under the package terms.",
+      "If the feature story in your package is not published, that deliverable is refunded under the package terms.",
   },
 ];
 
@@ -132,7 +132,7 @@ function PricingPage() {
             Apply for an Entrepreneur Award
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Winners receive the official title, the trophy, published press coverage, and the
+            Winners receive the official title, the trophy, feature story, and the
             publicity kit to put the win to work.
           </p>
           <div className="mt-10">
@@ -181,7 +181,7 @@ function PricingPage() {
           </Card>
 
           <p className="mt-5 text-sm text-muted-foreground">
-            You select your feature story outlet and press announcement outlet at checkout.
+            You select your feature story outlet at checkout.
           </p>
         </section>
 
