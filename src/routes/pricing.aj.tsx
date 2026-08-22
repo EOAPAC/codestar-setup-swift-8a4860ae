@@ -167,14 +167,14 @@ function PricingPage() {
             {AWARD_YEAR} Winner Claim
           </span>
           <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
-            Claim your Entrepreneur Award
+            Apply for an Entrepreneur Award
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Winners receive the official title, the trophy, published press coverage, and the
             publicity kit to put the win to work.
           </p>
           <div className="mt-10">
-            <ClaimButton />
+            <ApplyButton />
           </div>
         </section>
 
@@ -245,13 +245,13 @@ function PricingPage() {
         {/* Bottom CTA */}
         <section className="py-12 text-center md:py-16">
           <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-            Claim your Entrepreneur Award
+            Apply for an Entrepreneur Award
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
             One payment of $1,250 USD. Select your publications at checkout.
           </p>
           <div className="mt-8">
-            <ClaimButton />
+            <ApplyButton />
           </div>
         </section>
       </main>
