@@ -172,7 +172,7 @@ function PricingPage() {
                   <div>
                     <p className="font-medium text-foreground">{item.label}</p>
                     {item.detail && (
-                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.detail}</p>
+                      <div className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.detail}</div>
                     )}
                   </div>
                 </li>
