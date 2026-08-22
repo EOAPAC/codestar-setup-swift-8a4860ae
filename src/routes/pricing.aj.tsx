@@ -91,11 +91,11 @@ const faqs = [
   },
 ];
 
-function ClaimButton({ size = "lg" }: { size?: "default" | "lg" }) {
+function ApplyButton({ size = "lg" }: { size?: "default" | "lg" }) {
   return (
     <Button asChild size={size} className="min-w-56">
-      <a href={PAYMENT_LINK} data-event="claim-award-click">
-        Claim your award
+      <a href="/#submit" data-event="apply-award-click">
+        Apply
       </a>
     </Button>
   );
