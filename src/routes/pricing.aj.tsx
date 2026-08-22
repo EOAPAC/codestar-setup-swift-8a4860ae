@@ -38,11 +38,18 @@ export const Route = createFileRoute("/pricing/aj")({
 const includedItems = [
   {
     label: "Feature story",
-    detail: "1 guaranteed feature story about your win — your choice of: a regional edition of Forbes, Fast Company, GQ, International Business Times, or MSN",
-  },
-  {
-    label: "Press announcement",
-    detail: "1 press announcement — your choice of: Business Insider, Fortune, USA Today, Associated Press, or Reuters",
+    detail: (
+      <>
+        <p>1 guaranteed feature story about your win, in your choice of:</p>
+        <ul className="mt-2 list-disc pl-5 text-sm leading-relaxed text-muted-foreground">
+          <li>The Forbes network</li>
+          <li>Fast Company</li>
+          <li>GQ</li>
+          <li>International Business Times</li>
+          <li>MSN</li>
+        </ul>
+      </>
+    ),
   },
   {
     label: "Engraved crystal trophy",
