@@ -47,6 +47,11 @@ const TINT = "#F7F9FC";
 const FEATURE_PRICE = 1595;
 const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 
+const STRIPE_BUY_BUTTON_SCRIPT = "https://js.stripe.com/v3/buy-button.js";
+const STRIPE_BUY_BUTTON_ID = "buy_btn_1U8nvNGd5RmL1wBxiBeEk4sC";
+const STRIPE_PUBLISHABLE_KEY =
+  "pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4";
+
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
@@ -344,9 +349,15 @@ function useStickyVisible() {
 function WinnerOptionsPage() {
   const stickyVisible = useStickyVisible();
 
-  const buyFeature = () => {
-    window.location.href = "/complete";
-  };
+  useEffect(() => {
+    if (document.querySelector(`script[src="${STRIPE_BUY_BUTTON_SCRIPT}"]`)) {
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = STRIPE_BUY_BUTTON_SCRIPT;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <div
@@ -646,21 +657,14 @@ function WinnerOptionsPage() {
               >
                 {formatPrice(FEATURE_PRICE)}
               </p>
-              <button
-                type="button"
-                onClick={buyFeature}
-                data-event="feature-order-click"
-                className={`mt-5 inline-flex items-center justify-center rounded-lg text-white transition-colors hover:bg-[#1568D0] ${focusRing}`}
-                style={{
-                  height: "52px",
-                  padding: "0 28px",
-                  backgroundColor: BLUE,
-                  fontSize: "1rem",
-                  fontWeight: 500,
-                }}
-              >
-                Get my feature
-              </button>
+              <div data-event="feature-order-click" className="mt-5">
+                {/* @ts-expect-error - Stripe web component */}
+                <stripe-buy-button
+                  buy-button-id={STRIPE_BUY_BUTTON_ID}
+                  publishable-key={STRIPE_PUBLISHABLE_KEY}
+                  style={{ display: "block", minWidth: "220px" }}
+                />
+              </div>
               <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
                 Nothing goes live until you approve every word.
               </p>
@@ -691,21 +695,14 @@ function WinnerOptionsPage() {
             <strong style={{ fontWeight: 600 }}>The Winner&rsquo;s Feature</strong>
             <span style={{ color: MUTED }}> · {formatPrice(FEATURE_PRICE)}</span>
           </span>
-          <button
-            type="button"
-            onClick={buyFeature}
-            data-event="feature-order-click"
-            className={`rounded-lg text-white transition-colors hover:bg-[#1568D0] ${focusRing}`}
-            style={{
-              height: "40px",
-              padding: "0 18px",
-              backgroundColor: BLUE,
-              fontSize: "0.875rem",
-              fontWeight: 500,
-            }}
-          >
-            Get my feature
-          </button>
+          <div data-event="feature-order-click">
+            {/* @ts-expect-error - Stripe web component */}
+            <stripe-buy-button
+              buy-button-id={STRIPE_BUY_BUTTON_ID}
+              publishable-key={STRIPE_PUBLISHABLE_KEY}
+              style={{ display: "block", minWidth: "180px" }}
+            />
+          </div>
         </Container>
       </div>
 
