@@ -695,21 +695,14 @@ function WinnerOptionsPage() {
             <strong style={{ fontWeight: 600 }}>The Winner&rsquo;s Feature</strong>
             <span style={{ color: MUTED }}> · {formatPrice(FEATURE_PRICE)}</span>
           </span>
-          <button
-            type="button"
-            onClick={buyFeature}
-            data-event="feature-order-click"
-            className={`rounded-lg text-white transition-colors hover:bg-[#1568D0] ${focusRing}`}
-            style={{
-              height: "40px",
-              padding: "0 18px",
-              backgroundColor: BLUE,
-              fontSize: "0.875rem",
-              fontWeight: 500,
-            }}
-          >
-            Get my feature
-          </button>
+          <div data-event="feature-order-click">
+            {/* @ts-expect-error - Stripe web component */}
+            <stripe-buy-button
+              buy-button-id={STRIPE_BUY_BUTTON_ID}
+              publishable-key={STRIPE_PUBLISHABLE_KEY}
+              style={{ display: "block", minWidth: "180px" }}
+            />
+          </div>
         </Container>
       </div>
 
