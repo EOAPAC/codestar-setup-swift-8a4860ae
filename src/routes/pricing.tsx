@@ -657,21 +657,14 @@ function WinnerOptionsPage() {
               >
                 {formatPrice(FEATURE_PRICE)}
               </p>
-              <button
-                type="button"
-                onClick={buyFeature}
-                data-event="feature-order-click"
-                className={`mt-5 inline-flex items-center justify-center rounded-lg text-white transition-colors hover:bg-[#1568D0] ${focusRing}`}
-                style={{
-                  height: "52px",
-                  padding: "0 28px",
-                  backgroundColor: BLUE,
-                  fontSize: "1rem",
-                  fontWeight: 500,
-                }}
-              >
-                Get my feature
-              </button>
+              <div data-event="feature-order-click" className="mt-5">
+                {/* @ts-expect-error - Stripe web component */}
+                <stripe-buy-button
+                  buy-button-id={STRIPE_BUY_BUTTON_ID}
+                  publishable-key={STRIPE_PUBLISHABLE_KEY}
+                  style={{ display: "block", minWidth: "220px" }}
+                />
+              </div>
               <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
                 Nothing goes live until you approve every word.
               </p>
