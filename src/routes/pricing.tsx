@@ -47,6 +47,11 @@ const TINT = "#F7F9FC";
 const FEATURE_PRICE = 1595;
 const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 
+const STRIPE_BUY_BUTTON_SCRIPT = "https://js.stripe.com/v3/buy-button.js";
+const STRIPE_BUY_BUTTON_ID = "buy_btn_1U8nvNGd5RmL1wBxiBeEk4sC";
+const STRIPE_PUBLISHABLE_KEY =
+  "pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4";
+
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
