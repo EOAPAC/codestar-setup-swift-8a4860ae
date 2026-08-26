@@ -15,6 +15,7 @@ import { Route as WinnerOptionsRouteImport } from './routes/winner-options'
 import { Route as WinnerMaterialsRouteImport } from './routes/winner-materials'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CriteriaRouteImport } from './routes/criteria'
@@ -55,6 +56,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
   path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MethodologyRoute = MethodologyRouteImport.update({
@@ -98,9 +104,9 @@ const WinnerResourcesTokenRoute = WinnerResourcesTokenRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingAjRoute = PricingAjRouteImport.update({
-  id: '/pricing/aj',
-  path: '/pricing/aj',
-  getParentRoute: () => rootRouteImport,
+  id: '/aj',
+  path: '/aj',
+  getParentRoute: () => PricingRoute,
 } as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/insights/$slug',
@@ -119,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
+  '/pricing': typeof PricingRouteWithChildren
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
+  '/pricing': typeof PricingRouteWithChildren
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
   '/methodology': typeof MethodologyRoute
+  '/pricing': typeof PricingRouteWithChildren
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/criteria'
     | '/faq'
     | '/methodology'
+    | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/criteria'
     | '/faq'
     | '/methodology'
+    | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/criteria'
     | '/faq'
     | '/methodology'
+    | '/pricing'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -237,6 +249,7 @@ export interface RootRouteChildren {
   CriteriaRoute: typeof CriteriaRoute
   FaqRoute: typeof FaqRoute
   MethodologyRoute: typeof MethodologyRoute
+  PricingRoute: typeof PricingRouteWithChildren
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
   WinnerMaterialsRoute: typeof WinnerMaterialsRoute
@@ -244,7 +257,6 @@ export interface RootRouteChildren {
   WinnerOptionsV2Route: typeof WinnerOptionsV2Route
   WinnerProductConceptsRoute: typeof WinnerProductConceptsRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
-  PricingAjRoute: typeof PricingAjRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
   WinnersSpecimenRoute: typeof WinnersSpecimenRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
@@ -293,6 +305,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/methodology': {
@@ -353,10 +372,10 @@ declare module '@tanstack/react-router' {
     }
     '/pricing/aj': {
       id: '/pricing/aj'
-      path: '/pricing/aj'
+      path: '/aj'
       fullPath: '/pricing/aj'
       preLoaderRoute: typeof PricingAjRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof PricingRoute
     }
     '/insights/$slug': {
       id: '/insights/$slug'
@@ -375,12 +394,24 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface PricingRouteChildren {
+  PricingAjRoute: typeof PricingAjRoute
+}
+
+const PricingRouteChildren: PricingRouteChildren = {
+  PricingAjRoute: PricingAjRoute,
+}
+
+const PricingRouteWithChildren =
+  PricingRoute._addFileChildren(PricingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompleteRoute: CompleteRoute,
   CriteriaRoute: CriteriaRoute,
   FaqRoute: FaqRoute,
   MethodologyRoute: MethodologyRoute,
+  PricingRoute: PricingRouteWithChildren,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
   WinnerMaterialsRoute: WinnerMaterialsRoute,
@@ -388,7 +419,6 @@ const rootRouteChildren: RootRouteChildren = {
   WinnerOptionsV2Route: WinnerOptionsV2Route,
   WinnerProductConceptsRoute: WinnerProductConceptsRoute,
   InsightsSlugRoute: InsightsSlugRoute,
-  PricingAjRoute: PricingAjRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
   WinnersSpecimenRoute: WinnersSpecimenRoute,
   InsightsIndexRoute: InsightsIndexRoute,
