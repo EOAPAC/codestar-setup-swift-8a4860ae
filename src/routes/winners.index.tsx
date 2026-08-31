@@ -48,7 +48,7 @@ function WinnersIndexPage() {
                 {winner.name}
               </Link>
               <p className="mt-1 text-[14px] text-[#5a6572]">
-                {winner.company} · {winner.category}
+                {winner.company} · {winner.category} · {winner.year}
               </p>
             </li>
           ))}

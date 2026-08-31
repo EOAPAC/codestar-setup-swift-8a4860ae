@@ -4,6 +4,7 @@ export type Winner = {
   slug: string;
   name: string;
   company: string;
+  companyUrl: string;
   category: string;
   year: number;
   summary: string[];
@@ -15,6 +16,7 @@ export const WINNERS: Winner[] = [
     slug: "jason-norton",
     name: "Jason Norton",
     company: "Loca-Nation",
+    companyUrl: "https://loca-nation.com",
     category: "Independent Music Platform Innovation",
     year: AWARD_YEAR,
     summary: [

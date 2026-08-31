@@ -5,11 +5,19 @@ import { WINNERS } from "@/data/winners";
 import sealAsset from "@/assets/ea-winner-seal-full-1200.png.asset.json";
 
 const SITE_URL = "https://entrepreneurawards.co";
-const SEAL_OG_URL = `${SITE_URL}${sealAsset.url}`;
+const SEAL_OG_URL = `${SITE_URL}/ea-winner-seal-og-1200x630.png`;
 
 function truncate(str: string, max: number) {
   if (str.length <= max) return str;
   return str.slice(0, max - 1).replace(/\s+\S*$/, "") + "…";
+}
+
+function bareDomain(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
 }
 
 export const Route = createFileRoute("/winners/$slug")({
@@ -52,6 +60,11 @@ export const Route = createFileRoute("/winners/$slug")({
             "@type": "Person",
             name: winner.name,
             award: `${winner.year} Entrepreneur Award`,
+            worksFor: {
+              "@type": "Organization",
+              name: winner.company,
+              url: winner.companyUrl,
+            },
           }),
         },
       ],
@@ -88,10 +101,22 @@ function WinnerPage() {
           ))}
         </div>
 
+        <p className="mt-6 text-[14px] text-[#5a6572]">
+          Website:{" "}
+          <a
+            href={winner.companyUrl}
+            target="_blank"
+            rel="nofollow noopener"
+            className="text-[#5a6572] underline decoration-[#5a6572]/40 underline-offset-2 hover:decoration-[#5a6572]"
+          >
+            {bareDomain(winner.companyUrl)}
+          </a>
+        </p>
+
         {winner.featureUrl && (
           <a
             href={winner.featureUrl}
-            className="mt-6 inline-block text-[16px] text-[#1978E5] hover:underline"
+            className="mt-4 inline-block text-[16px] text-[#1978E5] hover:underline"
           >
             Read the full feature →
           </a>
