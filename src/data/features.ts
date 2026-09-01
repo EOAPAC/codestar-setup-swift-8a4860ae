@@ -1,3 +1,6 @@
+import portraitAsset from "@/assets/jeremy-portrait.jpg.asset.json";
+import awardAsset from "@/assets/feature-award.jpg.asset.json";
+
 export type FeatureBlock =
   | { type: 'p'; text: string }
   | { type: 'h2'; text: string }
@@ -11,6 +14,9 @@ export type Feature = {
   standfirst: string;
   body: FeatureBlock[];
   footnote: string;
+  portrait?: string;
+  portraitCaption?: string;
+  awardImage?: string;
 };
 
 export const FEATURES: Feature[] = [
