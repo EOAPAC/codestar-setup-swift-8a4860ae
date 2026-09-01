@@ -50,6 +50,9 @@ function WinnersIndexPage() {
               <p className="mt-1 text-[14px] text-[#5a6572]">
                 {winner.company} · {winner.category} · {winner.year}
               </p>
+              <p className="mt-1 font-mono text-[12px] text-[#8892a0]">
+                {winner.reference}
+              </p>
             </li>
           ))}
         </ul>
