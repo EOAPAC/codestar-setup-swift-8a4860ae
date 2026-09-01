@@ -1,5 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import { FEATURES, type Feature } from "@/data/features";
+
 
 function getFeature(slug: string): Feature | undefined {
   return FEATURES.find((f) => f.slug === slug);
