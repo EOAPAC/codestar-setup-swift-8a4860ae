@@ -165,9 +165,12 @@ function FeaturePage() {
           View the award record →
         </Link>
       </p>
-    </main>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }
+
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
