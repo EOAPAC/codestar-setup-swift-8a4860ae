@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { WINNERS } from "@/data/winners";
-import winnersHeroAsset from "@/assets/winners-hero-banner-dark.jpg.asset.json";
+import winnersHeroAsset from "@/assets/winners-hero-4000x800.jpg.asset.json";
 
 const TINTS = ["#EEF4FE", "#F1F6FB", "#EFF3F9", "#F4F7FC"];
 
@@ -66,7 +66,7 @@ function WinnersIndexPage() {
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-          backgroundColor: "#000",
+          backgroundColor: "#070707",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
