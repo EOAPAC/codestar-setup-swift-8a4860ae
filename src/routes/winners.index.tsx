@@ -87,6 +87,17 @@ function WinnersIndexPage() {
           aria-hidden="true"
           style={{
             position: "absolute",
+            inset: 0,
+            backgroundColor: "#0A1220",
+            mixBlendMode: "multiply",
+            opacity: 0.22,
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
             top: 0,
             right: 0,
             bottom: 0,
