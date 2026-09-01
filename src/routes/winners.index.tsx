@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { WINNERS } from "@/data/winners";
-import heroTrophyAsset from "@/assets/hero-trophy-dark.jpg.asset.json";
+import winnersHeroAsset from "@/assets/winners-hero-dark.jpg.asset.json";
 
 const TINTS = ["#EEF4FE", "#F1F6FB", "#EFF3F9", "#F4F7FC"];
 
@@ -54,10 +54,10 @@ function WinnersIndexPage() {
     <div className="min-h-screen bg-white font-sans text-[#12161c]">
       <SiteNav />
 
-      <section className="relative h-[260px] w-full overflow-hidden bg-[#0a0c0f] sm:h-[320px] lg:h-[400px]">
-        <div className="absolute inset-0 hidden sm:block sm:right-[6%]">
+      <section className="relative h-[240px] w-full overflow-hidden bg-[#070707] md:h-[340px] lg:h-[440px]">
+        <div className="absolute inset-0 right-0 hidden sm:block lg:right-[4%]">
           <img
-            src={heroTrophyAsset.url}
+            src={winnersHeroAsset.url}
             alt="The 2026 Entrepreneur Awards engraved crystal award"
             className="h-full w-full object-contain object-right"
           />
@@ -66,15 +66,15 @@ function WinnersIndexPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, rgba(10,12,15,0.96) 0%, rgba(10,12,15,0.85) 35%, rgba(10,12,15,0.35) 62%, rgba(10,12,15,0) 80%)",
+              "linear-gradient(to right, rgba(7,7,7,0.97) 0%, rgba(7,7,7,0.9) 30%, rgba(7,7,7,0.4) 58%, rgba(7,7,7,0) 74%)",
           }}
         />
         <div className="relative mx-auto flex h-full max-w-[1120px] items-center px-5">
-          <div className="max-w-[480px]">
+          <div className="max-w-[460px]">
             <h1 className="text-[26px] font-bold leading-[1.15] tracking-[-0.02em] text-white lg:text-[38px]">
               Entrepreneur Awards Winners
             </h1>
-            <p className="mt-[10px] text-[15px] text-white/[65%]">
+            <p className="mt-[10px] text-[15px] leading-[1.5] text-white/[65%]">
               Published records of Entrepreneur Awards winners.
             </p>
           </div>
