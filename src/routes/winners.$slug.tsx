@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { WINNERS } from "@/data/winners";
+import { WINNERS, type Winner } from "@/data/winners";
 import sealAsset from "@/assets/ea-winner-seal-full-1200.png.asset.json";
 
 const SITE_URL = "https://entrepreneurawards.co";
@@ -60,6 +60,7 @@ export const Route = createFileRoute("/winners/$slug")({
             "@type": "Person",
             name: winner.name,
             award: `${winner.year} Entrepreneur Award`,
+            identifier: winner.reference,
             worksFor: {
               "@type": "Organization",
               name: winner.company,
@@ -72,6 +73,50 @@ export const Route = createFileRoute("/winners/$slug")({
   },
   component: WinnerPage,
 });
+
+function RecordDetails({ winner }: { winner: Winner }) {
+  return (
+    <dl className="space-y-4 sm:space-y-3.5">
+      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+        <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0]">Record</dt>
+        <dd className="font-mono text-[15px] tracking-[0.02em] text-[#20262e]">
+          {winner.reference}
+        </dd>
+      </div>
+      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+        <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0]">Award year</dt>
+        <dd className="text-[15px] text-[#20262e]">{winner.year}</dd>
+      </div>
+      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+        <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0]">Category</dt>
+        <dd className="text-[15px] text-[#20262e]">{winner.category}</dd>
+      </div>
+      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+        <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0]">Issued by</dt>
+        <dd className="text-[15px] text-[#20262e]">Entrepreneur Awards</dd>
+      </div>
+      {winner.companyUrl && (
+        <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+          <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0]">Website</dt>
+          <dd className="text-[15px] text-[#20262e]">
+            <a
+              href={winner.companyUrl}
+              target="_blank"
+              rel="nofollow noopener"
+              className="text-[#5a6572] underline decoration-[#5a6572]/40 underline-offset-2 hover:decoration-[#5a6572]"
+            >
+              {bareDomain(winner.companyUrl)}
+            </a>
+          </dd>
+        </div>
+      )}
+      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+        <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0]">Status</dt>
+        <dd className="text-[15px] text-[#20262e]">Permanent record</dd>
+      </div>
+    </dl>
+  );
+}
 
 function WinnerPage() {
   const { winner } = Route.useLoaderData();
@@ -101,17 +146,9 @@ function WinnerPage() {
           ))}
         </div>
 
-        <p className="mt-6 text-[14px] text-[#5a6572]">
-          Website:{" "}
-          <a
-            href={winner.companyUrl}
-            target="_blank"
-            rel="nofollow noopener"
-            className="text-[#5a6572] underline decoration-[#5a6572]/40 underline-offset-2 hover:decoration-[#5a6572]"
-          >
-            {bareDomain(winner.companyUrl)}
-          </a>
-        </p>
+        <hr className="mt-8 mb-7 border-0 border-t border-[#e2e8f0]" />
+        <RecordDetails winner={winner} />
+        <hr className="mt-8 mb-7 border-0 border-t border-[#e2e8f0]" />
 
         {winner.featureUrl && (
           <a
@@ -124,15 +161,38 @@ function WinnerPage() {
 
         <hr className="my-10 border-0 border-t border-[#e2e8f0]" />
 
-        <div className="text-[14px] leading-relaxed text-[#5a6572]">
-          <p>
-            The Entrepreneur Awards recognises founders on the strength of what they have built.
-            Entries are reviewed against published criteria, and selected winners receive the
-            official winner badge, recognition materials and this permanent record.
+        <div className="text-[14px] leading-[1.7] text-[#5a6572]">
+          <h2 className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0]">
+            About this record
+          </h2>
+          <p className="mt-[10px]">
+            This entry confirms that {winner.name} was selected as a winner of the {winner.year}{" "}
+            Entrepreneur Awards under the criteria published on this site. It records that
+            selection and nothing further. It is not an endorsement of the company&apos;s products,
+            services, financial position or conduct, and it does not constitute advice of any kind.
           </p>
-          <Link to="/how-it-works" className="mt-3 inline-block text-[#1978E5] hover:underline">
-            How entry works →
-          </Link>
+          <p className="mt-4">
+            Entries are permanent. Once published, a record is not removed or altered except to
+            correct a factual error.
+          </p>
+          <p className="mt-4">
+            Enquiries and corrections:{" "}
+            <a
+              href="mailto:records@entrepreneurawards.co"
+              className="text-[#1978E5] hover:underline"
+            >
+              records@entrepreneurawards.co
+            </a>
+          </p>
+          <p className="mt-4">
+            <Link to="/criteria" className="text-[#1978E5] hover:underline">
+              Selection criteria
+            </Link>
+            <span className="mx-2 text-[#8892a0]">·</span>
+            <Link to="/how-it-works" className="text-[#1978E5] hover:underline">
+              How entry works
+            </Link>
+          </p>
         </div>
       </main>
       <SiteFooter />
