@@ -66,7 +66,7 @@ function WinnersIndexPage() {
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-          backgroundColor: "#000",
+          backgroundColor: "#070707",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
