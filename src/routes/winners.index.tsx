@@ -58,7 +58,7 @@ function WinnersIndexPage() {
         <img
           src={heroTrophyAsset.url}
           alt="The 2026 Entrepreneur Awards engraved crystal award"
-          className="absolute inset-0 h-full w-full object-cover object-right"
+          className="absolute inset-0 h-full w-full object-contain object-right"
         />
         <div
           className="absolute inset-0"
