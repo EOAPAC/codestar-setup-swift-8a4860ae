@@ -63,7 +63,7 @@ function WinnersIndexPage() {
           width: "100vw",
           marginLeft: "calc(50% - 50vw)",
           backgroundImage: `url('${winnersHeroAsset.url}')`,
-          backgroundSize: "auto 112%",
+          backgroundSize: "auto 130%",
           backgroundPosition: "right 38% center",
           backgroundRepeat: "no-repeat",
           backgroundColor: "#000000",
