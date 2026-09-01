@@ -58,8 +58,7 @@ const focusRing =
 const processChips = ["We write both", "You approve both", "It goes live"];
 
 const whatYouGet = [
-  "A full article about your business, written by our editors",
-  "Published at a permanent entrepreneurawards.co address that stays up for good",
+  "Your winner page on entrepreneurawards.co, carrying a full article about your business written by our editors, published at a permanent address that stays up for good",
   "A press release about your win, written for you and published on USA Today",
   "An engraved award carrying your name and your award year",
   "A printed certificate, ready to frame",
