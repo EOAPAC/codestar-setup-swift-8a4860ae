@@ -87,6 +87,19 @@ function WinnersIndexPage() {
           aria-hidden="true"
           style={{
             position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            width: "28%",
+            background:
+              "linear-gradient(to left, rgba(10,18,32,1) 0%, rgba(10,18,32,0.55) 55%, rgba(10,18,32,0) 100%)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
             inset: 0,
             background:
               "linear-gradient(to right, rgba(10,18,32,0.9) 0%, rgba(10,18,32,0.75) 32%, rgba(10,18,32,0.3) 55%, rgba(10,18,32,0) 72%)",
