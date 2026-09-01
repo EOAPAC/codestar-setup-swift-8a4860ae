@@ -55,32 +55,26 @@ function WinnersIndexPage() {
       <SiteNav />
 
       <section className="relative h-[240px] w-full overflow-hidden bg-[#070707] md:h-[340px] lg:h-[440px]">
-        <div
-          className="absolute inset-0 right-0 hidden sm:block lg:right-[4%]"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent 52%, black 82%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-            maskComposite: "intersect",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 52%, black 82%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-            WebkitMaskComposite: "source-in",
-          }}
-        >
+        <div className="absolute inset-0 right-0 hidden sm:block lg:right-[4%]">
           <img
             src={winnersHeroAsset.url}
             alt="The 2026 Entrepreneur Awards engraved crystal award"
             className="h-full w-full object-contain object-right"
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 18%), linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+              maskComposite: "intersect",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 18%), linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+              WebkitMaskComposite: "source-in",
+            }}
           />
         </div>
         <div
           className="absolute inset-0"
           style={{
-            background: [
+            background:
               "linear-gradient(to right, rgba(7,7,7,0.97) 0%, rgba(7,7,7,0.9) 30%, rgba(7,7,7,0.4) 58%, rgba(7,7,7,0) 74%)",
-              "linear-gradient(to bottom, #070707 0%, rgba(7,7,7,0) 22%)",
-              "linear-gradient(to top, #070707 0%, rgba(7,7,7,0) 22%)",
-              "linear-gradient(to left, #070707 0%, rgba(7,7,7,0) 12%)",
-            ].join(", "),
           }}
         />
         <div className="relative mx-auto flex h-full max-w-[1120px] items-center px-5">
