@@ -54,25 +54,33 @@ function WinnersIndexPage() {
     <div className="min-h-screen bg-white font-sans text-[#12161c]">
       <SiteNav />
 
-      <section className="relative h-[220px] w-full overflow-hidden bg-[#0b0d10] sm:h-[260px] lg:h-[340px]">
+      <section className="relative h-[240px] w-full overflow-hidden bg-[#f5f6f8] md:h-[300px] lg:h-[380px]">
         <img
           src={heroTrophyAsset.url}
           alt="The 2026 Entrepreneur Awards engraved crystal award"
-          className="absolute inset-0 h-full w-full object-contain object-right"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "78% center" }}
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, rgba(11,13,16,0.92), rgba(11,13,16,0.55) 55%, transparent)",
+              "linear-gradient(to right, rgba(245,246,248,0.94) 0%, rgba(245,246,248,0.75) 40%, rgba(245,246,248,0.25) 70%, rgba(245,246,248,0) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to left, rgba(245,246,248,1) 0%, rgba(245,246,248,0) 12%)",
           }}
         />
         <div className="relative mx-auto flex h-full max-w-[1120px] items-center px-5">
-          <div>
-            <h1 className="text-[30px] font-bold tracking-[-0.02em] text-white lg:text-[44px]">
+          <div className="max-w-[560px]">
+            <h1 className="text-[28px] font-bold tracking-[-0.02em] text-[#12161c] lg:text-[40px]">
               Entrepreneur Awards Winners
             </h1>
-            <p className="mt-[10px] text-[16px] text-white/70">
+            <p className="mt-[10px] text-[16px] text-[#5a6572]">
               Published records of Entrepreneur Awards winners.
             </p>
           </div>
