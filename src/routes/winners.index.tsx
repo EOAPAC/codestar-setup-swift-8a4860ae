@@ -156,6 +156,11 @@ function WinnersIndexPage() {
                     <p className="mt-3 truncate text-[11px] uppercase tracking-[0.08em] text-[#8892a0]">
                       {winner.category}
                     </p>
+                    {winner.featureUrl && (
+                      <p className="mt-2 text-[12px] font-medium text-[#1978E5]">
+                        Includes the full feature article →
+                      </p>
+                    )}
                   </div>
                 </div>
               </Link>
