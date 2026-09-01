@@ -157,12 +157,8 @@ function FeaturePage() {
       </section>
 
       <p className="mt-10 text-[15px]">
-        <Link
-          to="/winners/$slug"
-          params={{ slug: feature.winnerSlug }}
-          className="text-[#1978E5]"
-        >
-          View the award record →
+        <Link to="/winners" className="text-[#1978E5]">
+          View all winners →
         </Link>
       </p>
       </main>
