@@ -65,8 +65,12 @@ function WinnersIndexPage() {
         <div
           className="absolute inset-0"
           style={{
-            background:
+            background: [
               "linear-gradient(to right, rgba(7,7,7,0.97) 0%, rgba(7,7,7,0.9) 30%, rgba(7,7,7,0.4) 58%, rgba(7,7,7,0) 74%)",
+              "linear-gradient(to bottom, #070707 0%, rgba(7,7,7,0) 22%)",
+              "linear-gradient(to top, #070707 0%, rgba(7,7,7,0) 22%)",
+              "linear-gradient(to left, #070707 0%, rgba(7,7,7,0) 12%)",
+            ].join(", "),
           }}
         />
         <div className="relative mx-auto flex h-full max-w-[1120px] items-center px-5">
