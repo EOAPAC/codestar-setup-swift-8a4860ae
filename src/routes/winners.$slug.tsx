@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { WINNERS, type Winner } from "@/data/winners";
+import { FEATURES } from "@/data/features";
 import sealAsset from "@/assets/ea-winner-seal-full-1200.png.asset.json";
 
 const SITE_URL = "https://entrepreneurawards.co";
