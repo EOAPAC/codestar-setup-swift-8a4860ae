@@ -53,6 +53,26 @@ function FeaturePage() {
 
       <hr className="mb-10 border-0 border-t border-[#e2e8f0]" />
 
+      {feature.portrait && (
+        <figure className="mb-12">
+          <img
+            src={feature.portrait}
+            alt={feature.portraitCaption || ""}
+            width={900}
+            height={600}
+            loading="lazy"
+            decoding="async"
+            className="w-full object-cover object-center"
+            style={{ aspectRatio: "3 / 2" }}
+          />
+          {feature.portraitCaption ? (
+            <figcaption className="mt-3 text-[13px] leading-[1.5] text-[#5a6572]">
+              {feature.portraitCaption}
+            </figcaption>
+          ) : null}
+        </figure>
+      )}
+
       <div className="max-w-[680px]">
         {feature.body.map((block, i) => {
           if (block.type === "h2") {
