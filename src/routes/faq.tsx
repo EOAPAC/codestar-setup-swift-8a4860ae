@@ -159,9 +159,17 @@ function FAQPage() {
                     What do winners receive?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Every winner receives the same credential by email: the winner seal, the badge, four sized graphics for LinkedIn, social and email signature, and a written record of the assessment. Full details are confirmed with selected winners.
+                    Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature, and the written record of your assessment. Everything arrives by email, at no charge, and is permanently yours.
                   </AccordionContent>
+                </AccordionItem>
 
+                <AccordionItem value="q-feature" id="q-feature" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    What is the Winner&rsquo;s Feature?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    An optional commission available to winners. Our editors write a full article about your business and publish it as your winner page on entrepreneurawards.co, at a permanent address. A press release announcing your win is carried on USA Today, and an engraved award and printed certificate are included. $1,595, and nothing is published until you have approved every word.
+                  </AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="q8" id="q8" className="scroll-mt-24">
