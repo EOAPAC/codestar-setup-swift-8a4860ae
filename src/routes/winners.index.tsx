@@ -59,10 +59,10 @@ function WinnersIndexPage() {
           className="absolute inset-0 right-0 hidden sm:block lg:right-[4%]"
           style={{
             maskImage:
-              "linear-gradient(to right, transparent 0%, black 22%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+              "linear-gradient(to right, transparent 52%, black 82%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
             maskComposite: "intersect",
             WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, black 22%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+              "linear-gradient(to right, transparent 52%, black 82%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
             WebkitMaskComposite: "source-in",
           }}
         >
