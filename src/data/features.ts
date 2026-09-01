@@ -26,6 +26,9 @@ export const FEATURES: Feature[] = [
     kicker: "2026 Entrepreneur Award · Mergers and Acquisitions Advisory",
     headline: "The founder who found out most owners only ever talk to one buyer",
     standfirst: "Jeremy Levitt built Regent Bridge after watching business owners sell to the first person who made an offer. His answer was a matching layer between owners and the advisers who actually specialise in their sector.",
+    portrait: portraitAsset.url,
+    portraitCaption: "Jeremy Levitt, founder of Regent Bridge",
+    awardImage: awardAsset.url,
     body: [
       { type: 'p', text: "Most people sell a business once. They spend twenty years building something, and then, at the moment it matters most, they are asked to negotiate against people who do this every week." },
       { type: 'p', text: "Jeremy Levitt saw the imbalance from the adviser's side. \"You'd get a call from an owner who'd already agreed a number,\" he says. \"Not a bad number. Just the only number anyone had offered them.\"" },
