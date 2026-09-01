@@ -77,8 +77,43 @@ function WinnersIndexPage() {
           style={{
             position: "absolute",
             inset: 0,
+            backgroundColor: "#0A1220",
+            mixBlendMode: "screen",
+            opacity: 1,
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "#0A1220",
+            mixBlendMode: "multiply",
+            opacity: 0.22,
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            width: "28%",
             background:
-              "linear-gradient(to right, rgba(10,18,32,0.95) 0%, rgba(10,18,32,0.8) 32%, rgba(10,18,32,0.35) 55%, rgba(10,18,32,0) 72%)",
+              "linear-gradient(to left, rgba(10,18,32,1) 0%, rgba(10,18,32,0.55) 55%, rgba(10,18,32,0) 100%)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(to right, rgba(10,18,32,0.9) 0%, rgba(10,18,32,0.75) 32%, rgba(10,18,32,0.3) 55%, rgba(10,18,32,0) 72%)",
             pointerEvents: "none",
           }}
         />
