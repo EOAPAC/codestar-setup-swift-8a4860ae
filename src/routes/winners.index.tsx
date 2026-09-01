@@ -78,7 +78,7 @@ function WinnersIndexPage() {
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 32%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0) 72%)",
+              "linear-gradient(to right, rgba(10,18,32,0.95) 0%, rgba(10,18,32,0.8) 32%, rgba(10,18,32,0.35) 55%, rgba(10,18,32,0) 72%)",
             pointerEvents: "none",
           }}
         />
