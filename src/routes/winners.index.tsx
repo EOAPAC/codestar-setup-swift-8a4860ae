@@ -54,22 +54,12 @@ function WinnersIndexPage() {
     <div className="min-h-screen bg-white font-sans text-[#12161c]">
       <SiteNav />
 
-      <section className="relative h-[240px] w-full overflow-hidden bg-[#070707] md:h-[340px] lg:h-[440px]">
-        <div className="absolute inset-y-0 right-0 hidden h-full sm:block lg:right-[4%]">
-          <img
-            src={winnersHeroAsset.url}
-            alt="The 2026 Entrepreneur Awards engraved crystal award"
-            className="h-full w-auto max-w-none object-contain object-right"
-            style={{
-              maskImage:
-                "linear-gradient(to right, transparent 0%, black 18%), linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
-              maskComposite: "intersect",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, black 18%), linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
-              WebkitMaskComposite: "source-in",
-            }}
-          />
-        </div>
+      <section className="relative h-[240px] w-full overflow-hidden bg-[#070707] md:h-[320px] lg:h-[400px]">
+        <img
+          src={winnersHeroAsset.url}
+          alt="The 2026 Entrepreneur Awards engraved crystal award"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
         <div
           className="absolute inset-0"
           style={{
@@ -77,6 +67,7 @@ function WinnersIndexPage() {
               "linear-gradient(to right, rgba(7,7,7,0.97) 0%, rgba(7,7,7,0.9) 30%, rgba(7,7,7,0.4) 58%, rgba(7,7,7,0) 74%)",
           }}
         />
+
         <div className="relative mx-auto flex h-full max-w-[1120px] items-center px-5">
           <div className="max-w-[460px]">
             <h1 className="text-[26px] font-bold leading-[1.15] tracking-[-0.02em] text-white lg:text-[38px]">
