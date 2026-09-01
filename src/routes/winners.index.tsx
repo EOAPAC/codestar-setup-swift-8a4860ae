@@ -57,7 +57,7 @@ function WinnersIndexPage() {
       <section
         role="img"
         aria-label="The 2026 Entrepreneur Awards engraved crystal award"
-        className="winners-hero"
+        className="winners-hero h-[240px] md:h-[320px] lg:h-[400px]"
         style={{
           position: "relative",
           width: "100vw",
