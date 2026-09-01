@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { WINNERS } from "@/data/winners";
-import heroTrophyAsset from "@/assets/hero-trophy.jpg.asset.json";
+import heroTrophyAsset from "@/assets/hero-trophy-dark.jpg.asset.json";
 
 const TINTS = ["#EEF4FE", "#F1F6FB", "#EFF3F9", "#F4F7FC"];
 
