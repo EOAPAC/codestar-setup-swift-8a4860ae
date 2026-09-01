@@ -13,16 +13,14 @@ export type Winner = {
 
 export const WINNERS: Winner[] = [
   {
-    slug: "jason-norton",
-    name: "Jason Norton",
-    company: "Loca-Nation",
-    companyUrl: "https://loca-nation.com",
-    category: "Independent Music Platform Innovation",
+    slug: "jeremy-levitt",
+    name: "Jeremy Levitt",
+    company: "Regent Bridge",
+    companyUrl: "https://www.regentbridge.com",
+    category: "Mergers and Acquisitions Advisory",
     year: AWARD_YEAR,
     summary: [
-      "Jason Norton has been recognized with a 2026 Entrepreneur Award in Independent Music Platform Innovation. Norton founded Loca-Nation, a United Kingdom chart platform built exclusively for unsigned and independent artists, where listener votes rather than label promotion determine position. The platform runs on three account types, each with a distinct role: artists upload music to be discovered, listeners vote for the music they want to hear, and music industry professionals use the resulting rankings to scout talent.",
-      "Voting feeds the official Loca-Nation Top 100. Around the chart Norton built the working tools an independent act would otherwise assemble separately, including a sync library that places music into computer games, television and film, electronic press kit tools, and a generator for digital and physical posters carrying QR codes. Electronic entertainment boards, a knowledge hub and artist forums complete the platform.",
-      "Restricting eligibility to independent and unsigned artists is the decision the platform rests on, and it keeps new releases from competing for attention with major-label catalogues.",
+      "Jeremy Levitt has been recognized with a 2026 Entrepreneur Award in Mergers and Acquisitions Advisory. Levitt founded Regent Bridge, which connects owners of businesses valued at five million dollars and above with mergers and acquisitions professionals working internationally. Owners meeting that threshold can request an assessment of the business at no charge before any engagement begins.",
     ],
   },
 ];
