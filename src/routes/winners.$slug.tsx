@@ -121,6 +121,8 @@ function RecordDetails({ winner }: { winner: Winner }) {
 
 function WinnerPage() {
   const { winner } = Route.useLoaderData();
+  const feature = FEATURES.find((f) => f.winnerSlug === winner.slug);
+
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#12161c]">
