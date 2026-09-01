@@ -299,3 +299,10 @@
 #hubspot-form-target .hs-form-field[data-touched="true"] .hs-form-field__error {
   display: block;
 }
+
+@media (max-width: 639px) {
+  .winners-hero {
+    background-size: auto 78% !important;
+    background-position: right bottom !important;
+  }
+}
