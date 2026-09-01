@@ -159,7 +159,7 @@ function FAQPage() {
                     What do winners receive?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Every winner receives the same credential: an official Entrepreneur Awards badge and certificate, a LinkedIn announcement kit, an engraved trophy, a published founder story, a press release sent to business outlets, and a feature in the Winners email. Full details are confirmed with selected winners.
+                    Every winner receives the same credential by email: the winner seal, the badge, four sized graphics for LinkedIn, social and email signature, and a written record of the assessment. Full details are confirmed with selected winners.
                   </AccordionContent>
 
                 </AccordionItem>
