@@ -79,7 +79,7 @@ function WinnersIndexPage() {
             inset: 0,
             backgroundColor: "#0A1220",
             mixBlendMode: "screen",
-            opacity: 0.72,
+            opacity: 1,
             pointerEvents: "none",
           }}
         />
