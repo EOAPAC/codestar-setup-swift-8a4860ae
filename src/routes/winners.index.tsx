@@ -54,33 +54,27 @@ function WinnersIndexPage() {
     <div className="min-h-screen bg-white font-sans text-[#12161c]">
       <SiteNav />
 
-      <section className="relative h-[240px] w-full overflow-hidden bg-[#f5f6f8] md:h-[300px] lg:h-[380px]">
-        <img
-          src={heroTrophyAsset.url}
-          alt="The 2026 Entrepreneur Awards engraved crystal award"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "78% center" }}
-        />
+      <section className="relative h-[260px] w-full overflow-hidden bg-[#0a0c0f] sm:h-[320px] lg:h-[400px]">
+        <div className="absolute inset-0 hidden sm:block sm:right-[6%]">
+          <img
+            src={heroTrophyAsset.url}
+            alt="The 2026 Entrepreneur Awards engraved crystal award"
+            className="h-full w-full object-contain object-right"
+          />
+        </div>
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, rgba(245,246,248,0.94) 0%, rgba(245,246,248,0.75) 40%, rgba(245,246,248,0.25) 70%, rgba(245,246,248,0) 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to left, rgba(245,246,248,1) 0%, rgba(245,246,248,0) 12%)",
+              "linear-gradient(to right, rgba(10,12,15,0.96) 0%, rgba(10,12,15,0.85) 35%, rgba(10,12,15,0.35) 62%, rgba(10,12,15,0) 80%)",
           }}
         />
         <div className="relative mx-auto flex h-full max-w-[1120px] items-center px-5">
-          <div className="max-w-[560px]">
-            <h1 className="text-[28px] font-bold tracking-[-0.02em] text-[#12161c] lg:text-[40px]">
+          <div className="max-w-[480px]">
+            <h1 className="text-[26px] font-bold leading-[1.15] tracking-[-0.02em] text-white lg:text-[38px]">
               Entrepreneur Awards Winners
             </h1>
-            <p className="mt-[10px] text-[16px] text-[#5a6572]">
+            <p className="mt-[10px] text-[15px] text-white/[65%]">
               Published records of Entrepreneur Awards winners.
             </p>
           </div>
