@@ -1,5 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import { FEATURES, type Feature } from "@/data/features";
+
 
 function getFeature(slug: string): Feature | undefined {
   return FEATURES.find((f) => f.slug === slug);
@@ -40,8 +43,11 @@ function FeaturePage() {
   const { feature } = Route.useLoaderData();
 
   return (
-    <main className="mx-auto max-w-[720px] px-6 pt-[72px] pb-24">
-      <h1 className="mb-3.5 text-[28px] font-bold leading-[1.2] tracking-[-0.025em] text-[#12161c] md:text-[40px]">
+    <div className="min-h-screen bg-white font-sans text-[#12161c]">
+      <SiteNav />
+      <main className="mx-auto max-w-[720px] px-6 pt-[72px] pb-24">
+        <h1 className="mb-3.5 text-[28px] font-bold leading-[1.2] tracking-[-0.025em] text-[#12161c] md:text-[40px]">
+
         {feature.headline}
       </h1>
       <h2 className="mb-8 text-[17px] font-semibold leading-[1.4] text-[#5a6572] md:text-[19px]">
@@ -159,9 +165,12 @@ function FeaturePage() {
           View the award record →
         </Link>
       </p>
-    </main>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }
+
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
