@@ -106,7 +106,29 @@ function FeaturePage() {
         })}
       </div>
 
-      <hr className="mb-6 mt-10 border-0 border-t border-[#e2e8f0]" />
+      {feature.awardImage && (
+        <figure className="mt-14 mb-12">
+          <img
+            src={feature.awardImage}
+            alt="The 2026 Entrepreneur Awards engraved crystal award"
+            width={1152}
+            height={648}
+            loading="lazy"
+            decoding="async"
+            className="w-full object-cover object-center"
+            style={{ aspectRatio: "16 / 9" }}
+          />
+          <figcaption className="mt-3 text-[13px] leading-[1.5] text-[#5a6572]">
+            The 2026 Entrepreneur Awards engraved crystal award.
+          </figcaption>
+        </figure>
+      )}
+
+      <hr
+        className={`mb-6 border-0 border-t border-[#e2e8f0] ${
+          feature.awardImage ? "mt-0" : "mt-10"
+        }`}
+      />
       <p className="text-[15px] text-[#5a6572]">{feature.footnote}</p>
       <p className="mt-2 text-[15px]">
         <Link
