@@ -128,15 +128,15 @@ function FeaturePage() {
         <h2 className="mb-4 mt-11 text-[22px] font-bold tracking-[-0.015em] text-[#12161c]">
           Additional Information
         </h2>
-        <dl className="border-y border-[#e2e8f0]">
+        <dl className="border-y border-[#e2e8f0] py-2 max-sm:py-[9px]">
           <InfoRow label="Industry" value={feature.info.industry} />
           <InfoRow label="Location" value={feature.info.location} />
           <InfoRow label="What They Do" value={feature.info.whatTheyDo} />
-          <div className="flex flex-col gap-1 py-0 sm:flex-row sm:gap-0">
-            <dt className="w-full shrink-0 pt-1 text-[12px] uppercase tracking-[0.08em] text-[#8892a0] sm:w-[160px]">
+          <div className="flex flex-col gap-1 py-2 max-sm:py-[9px] sm:flex-row">
+            <dt className="w-full shrink-0 text-[12px] uppercase tracking-[0.08em] text-[#8892a0] sm:w-[160px] sm:pt-1">
               Website
             </dt>
-            <dd className="pb-[18px] text-[16px] leading-[1.6] text-[#20262e] max-sm:pt-1 sm:pb-0">
+            <dd className="text-[16px] leading-[1.6] text-[#20262e]">
               <a
                 href={feature.info.websiteUrl}
                 target="_blank"
@@ -165,8 +165,8 @@ function FeaturePage() {
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col gap-1 py-[18px] first:pt-[18px] sm:flex-row sm:gap-0">
-      <dt className="w-full shrink-0 pt-1 text-[12px] uppercase tracking-[0.08em] text-[#8892a0] sm:w-[160px]">
+    <div className="flex flex-col gap-1 py-2 max-sm:py-[9px] sm:flex-row">
+      <dt className="w-full shrink-0 text-[12px] uppercase tracking-[0.08em] text-[#8892a0] sm:w-[160px] sm:pt-1">
         {label}
       </dt>
       <dd className="text-[16px] leading-[1.6] text-[#20262e]">{value}</dd>
