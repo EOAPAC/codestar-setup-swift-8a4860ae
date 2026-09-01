@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { WINNERS } from "@/data/winners";
+import heroTrophyAsset from "@/assets/hero-trophy.jpg.asset.json";
 
 const TINTS = ["#EEF4FE", "#F1F6FB", "#EFF3F9", "#F4F7FC"];
 
@@ -52,11 +53,33 @@ function WinnersIndexPage() {
   return (
     <div className="min-h-screen bg-white font-sans text-[#12161c]">
       <SiteNav />
-      <main className="mx-auto max-w-[1120px] px-5 py-16 md:py-20">
-        <h1 className="mb-12 text-[30px] font-bold tracking-[-0.02em] text-[#12161c] md:mb-12 md:text-[40px]">
-          Entrepreneur Awards Winners
-        </h1>
 
+      <section className="relative h-[220px] w-full overflow-hidden bg-[#0b0d10] sm:h-[260px] lg:h-[340px]">
+        <img
+          src={heroTrophyAsset.url}
+          alt="The 2026 Entrepreneur Awards engraved crystal award"
+          className="absolute inset-0 h-full w-full object-cover object-right"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(11,13,16,0.92), rgba(11,13,16,0.55) 55%, transparent)",
+          }}
+        />
+        <div className="relative mx-auto flex h-full max-w-[1120px] items-center px-5">
+          <div>
+            <h1 className="text-[30px] font-bold tracking-[-0.02em] text-white lg:text-[44px]">
+              Entrepreneur Awards Winners
+            </h1>
+            <p className="mt-[10px] text-[16px] text-white/70">
+              Published records of Entrepreneur Awards winners.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <main className="mx-auto max-w-[1120px] px-5 pt-14 pb-16 md:pb-20">
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {winners.map((winner) => (
             <li key={winner.slug} className="flex">
