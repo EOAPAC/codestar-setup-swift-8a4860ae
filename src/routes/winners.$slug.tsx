@@ -153,13 +153,138 @@ function WinnerPage() {
         <RecordDetails winner={winner} />
         <hr className="mt-8 mb-7 border-0 border-t border-[#e2e8f0]" />
 
-        {winner.featureUrl && (
-          <a
-            href={winner.featureUrl}
-            className="mt-4 inline-block text-[16px] text-[#1978E5] hover:underline"
-          >
-            Read the full feature →
-          </a>
+        {feature && (
+          <article className="mt-14">
+            <h2 className="text-[22px] font-bold tracking-[-0.015em] text-[#12161c]">
+              The feature
+            </h2>
+            <h3 className="mt-6 text-[20px] font-semibold leading-[1.3] text-[#5a6572]">
+              {feature.subheadline}
+            </h3>
+
+            {feature.portrait && (
+              <figure className="mt-9">
+                <img
+                  src={feature.portrait}
+                  alt={feature.portraitCaption || ""}
+                  width={900}
+                  height={600}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover object-center"
+                  style={{ aspectRatio: "3 / 2" }}
+                />
+                {feature.portraitCaption ? (
+                  <figcaption className="mt-3 text-[13px] leading-[1.5] text-[#5a6572]">
+                    {feature.portraitCaption}
+                  </figcaption>
+                ) : null}
+              </figure>
+            )}
+
+            <div className="mt-9">
+              {feature.body.map((block, i) => {
+                if (block.type === "h2") {
+                  return (
+                    <h3
+                      key={i}
+                      className="mb-4 mt-11 text-[20px] font-bold tracking-[-0.015em] text-[#12161c]"
+                    >
+                      {block.text}
+                    </h3>
+                  );
+                }
+                if (block.type === "quote") {
+                  return (
+                    <blockquote
+                      key={i}
+                      className="my-9 border-l-[3px] border-[#1978E5] pl-[22px]"
+                    >
+                      <p className="text-[18px] italic leading-[1.6] text-[#12161c]">
+                        {block.text}
+                      </p>
+                      <p className="mt-3 text-[14px] not-italic text-[#5a6572]">
+                        &emsp;{block.attribution}
+                      </p>
+                    </blockquote>
+                  );
+                }
+                return (
+                  <p
+                    key={i}
+                    className="mb-[22px] text-[17px] leading-[1.75] text-[#20262e]"
+                  >
+                    {block.text}
+                  </p>
+                );
+              })}
+            </div>
+
+            {feature.awardImage && (
+              <figure className="mt-12">
+                <img
+                  src={feature.awardImage}
+                  alt="The 2026 Entrepreneur Awards engraved crystal award"
+                  width={1152}
+                  height={648}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover object-center"
+                  style={{ aspectRatio: "16 / 9" }}
+                />
+                <figcaption className="mt-3 text-[13px] leading-[1.5] text-[#5a6572]">
+                  The 2026 Entrepreneur Awards engraved crystal award.
+                </figcaption>
+              </figure>
+            )}
+
+            <section className="mt-12">
+              <h3 className="mb-4 text-[20px] font-bold tracking-[-0.015em] text-[#12161c]">
+                Additional information
+              </h3>
+              <dl className="border-y border-[#e2e8f0] py-2">
+                <div className="flex flex-col gap-1 py-2 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+                  <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0] sm:pt-1">
+                    Industry
+                  </dt>
+                  <dd className="text-[15px] leading-[1.6] text-[#20262e]">
+                    {feature.info.industry}
+                  </dd>
+                </div>
+                <div className="flex flex-col gap-1 py-2 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+                  <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0] sm:pt-1">
+                    Location
+                  </dt>
+                  <dd className="text-[15px] leading-[1.6] text-[#20262e]">
+                    {feature.info.location}
+                  </dd>
+                </div>
+                <div className="flex flex-col gap-1 py-2 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+                  <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0] sm:pt-1">
+                    What they do
+                  </dt>
+                  <dd className="text-[15px] leading-[1.6] text-[#20262e]">
+                    {feature.info.whatTheyDo}
+                  </dd>
+                </div>
+                <div className="flex flex-col gap-1 py-2 sm:grid sm:grid-cols-[160px_1fr] sm:gap-x-6">
+                  <dt className="text-[12px] uppercase tracking-[0.08em] text-[#8892a0] sm:pt-1">
+                    Website
+                  </dt>
+                  <dd className="text-[15px] leading-[1.6] text-[#20262e]">
+                    <a
+                      href={feature.info.websiteUrl}
+                      target="_blank"
+                      rel="nofollow noopener"
+                      className="text-[#5a6572] underline decoration-1 underline-offset-2"
+                    >
+                      {feature.info.website}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </section>
+          </article>
         )}
 
         <hr className="my-10 border-0 border-t border-[#e2e8f0]" />
