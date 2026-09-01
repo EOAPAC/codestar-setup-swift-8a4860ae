@@ -54,29 +54,68 @@ function WinnersIndexPage() {
     <div className="min-h-screen bg-white font-sans text-[#12161c]">
       <SiteNav />
 
-      <section className="relative h-[240px] w-full overflow-hidden bg-[#070707] md:h-[320px] lg:h-[400px]">
-        <img
-          src={winnersHeroAsset.url}
-          alt="The 2026 Entrepreneur Awards engraved crystal award"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
+      <section
+        role="img"
+        aria-label="The 2026 Entrepreneur Awards engraved crystal award"
+        className="winners-hero"
+        style={{
+          position: "relative",
+          width: "100vw",
+          marginLeft: "calc(50% - 50vw)",
+          backgroundImage: `url('${winnersHeroAsset.url}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#000",
+          display: "flex",
+          alignItems: "center",
+          overflow: "hidden",
+        }}
+      >
         <div
-          className="absolute inset-0"
+          aria-hidden="true"
           style={{
+            position: "absolute",
+            inset: 0,
             background:
-              "linear-gradient(to right, rgba(7,7,7,0.97) 0%, rgba(7,7,7,0.9) 30%, rgba(7,7,7,0.4) 58%, rgba(7,7,7,0) 74%)",
+              "linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 32%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0) 72%)",
+            pointerEvents: "none",
           }}
         />
-
-        <div className="relative mx-auto flex h-full max-w-[1120px] items-center px-5">
-          <div className="max-w-[460px]">
-            <h1 className="text-[26px] font-bold leading-[1.15] tracking-[-0.02em] text-white lg:text-[38px]">
-              Entrepreneur Awards Winners
-            </h1>
-            <p className="mt-[10px] text-[15px] leading-[1.5] text-white/[65%]">
-              Published records of Entrepreneur Awards winners.
-            </p>
-          </div>
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            width: "100%",
+            maxWidth: 1120,
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <h1
+            style={{
+              maxWidth: 460,
+              fontWeight: 700,
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
+              color: "#ffffff",
+              margin: 0,
+            }}
+            className="text-[26px] lg:text-[38px]"
+          >
+            Entrepreneur Awards Winners
+          </h1>
+          <p
+            style={{
+              maxWidth: 460,
+              fontSize: 15,
+              lineHeight: 1.5,
+              color: "rgba(255,255,255,0.65)",
+              margin: "10px 0 0",
+            }}
+          >
+            Published records of Entrepreneur Awards winners.
+          </p>
         </div>
       </section>
 
