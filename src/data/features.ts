@@ -1,4 +1,5 @@
 import portraitAsset from "@/assets/jeremy-portrait.jpg.asset.json";
+import andyFunkPortraitAsset from "@/assets/andy-funk.png.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
 
 export type FeatureBlock =
