@@ -99,18 +99,19 @@ export const FEATURES: Feature[] = [
   {
     slug: "adam-pisk",
     winnerSlug: "adam-pisk",
-    headline: "Adam Pisk Wins A 2026 Entrepreneur Award for Remote Workforce Leadership",
-    subheadline: "The recognition focuses on the founder rather than the company, and in this case the judges pointed to the distance between where the business started and where it now operates.",
+    headline: "Adam Pisk, Director of BruntWork, has been recognized with a 2026 Entrepreneur Award for Remote Workforce Leadership, according to a winner record published by the award program.",
+    subheadline: "The recognition is for his work directing an outsourcing and staffing operation. The award centers on his role in leading a company that recruits, vets, and oversees remote staff for small and mid-sized businesses.",
     body: [
-      { type: 'p', text: "Adam Pisk has been awarded a 2026 Entrepreneur Award for Remote Workforce Leadership for his work as Director of BruntWork, an outsourcing business that grew out of the pandemic into a staffing operation spanning several continents. The award centers on his role in leading a company that recruits, vets, and manages remote staff for small and mid-sized businesses." },
-      { type: 'p', text: "The award is designed to recognize entrepreneurial leadership. Under Pisk's direction, BruntWork has expanded rapidly by addressing the primary objection that keeps most small businesses out of offshore hiring: the burden of supervising distributed teams." },
+      { type: 'p', text: "The award program is designed to recognize individual leadership. Under Pisk's direction, BruntWork expanded its operations by offering management oversight alongside standard staffing services for distributed teams." },
       { type: 'h2', text: "The Leadership Journey" },
-      { type: 'p', text: "The judges' attention settled on the length of Pisk's run-up rather than just the speed of the company's recent growth. Pisk initially started in niche manufacturing in Australia, where local talent shortages pushed him to recruit internationally." },
-      { type: 'p', text: "He used this foundational experience to shape a remote workforce model that targets the smaller end of the market, where buyers often lack dedicated procurement teams and where the cost of a bad hire falls directly on the owner. Instead of simply connecting companies with talent, Pisk structured operations to handle the ongoing management burden." },
-      { type: 'quote', text: "We need to be valuable to both our clients and to the staff.", attribution: "Adam Pisk" },
-      { type: 'h2', text: "The Judges' Final Words" },
-      { type: 'quote', text: "Adam Pisk's selection for a 2026 Entrepreneur Award reflects more than growth figures. It reflects two decades of working with distributed teams before scaling a business around them. The company executed under real operational pressure, utilizing a model that removes the management burden rather than moving the cost. In a field crowded with intermediaries, this one carries the responsibility it sells.", attribution: "The judging panel" },
-      { type: 'p', text: "The Entrepreneur Awards recognize the individual leader rather than the company. In this case, the award acknowledges Pisk's role as Director in leading and scaling a remote staffing business that handles recruitment, vetting, and management for clients who cannot carry out those functions themselves." }
+      { type: 'p', text: "The award acknowledges Pisk's foundational background in the sector. Pisk initially worked in manufacturing in Australia, where local talent shortages led him to begin recruiting internationally." },
+      { type: 'p', text: "He used this experience to structure a remote workforce model intended for smaller businesses. Instead of focusing solely on recruitment, Pisk implemented operational models that include the ongoing administration of remote staff." },
+      { type: 'quote', text: "We need to be valuable to both our clients and to the staff,", attribution: "Adam Pisk said" },
+      { type: 'h2', text: "The Judge's Final Words" },
+      { type: 'quote', text: "Adam Pisk's selection for a 2026 Entrepreneur Award reflects more than growth figures. It reflects two decades of working with distributed teams before scaling a business around them. The company executed under real operational pressure, utilizing a model that removes the management burden rather than moving the cost. In a field crowded with intermediaries, this one carries the responsibility it sells,", attribution: "the judging panel noted" },
+      { type: 'h2', text: "About the Entrepreneur Awards" },
+      { type: 'p', text: "The Entrepreneur Awards program recognizes individual leaders. In this case, the award acknowledges Pisk's role as Director in leading a remote staffing business that handles recruitment, vetting, and daily oversight for clients." },
+      { type: 'p', text: "About the company: Entrepreneur Awards is an independent, international awards program recognizing business leadership." }
     ],
     info: {
       industry: "Remote Workforce Leadership",
