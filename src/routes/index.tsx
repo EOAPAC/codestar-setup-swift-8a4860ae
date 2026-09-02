@@ -86,10 +86,18 @@ function Hero() {
         loading="eager"
         decoding="async"
         className="pointer-events-none absolute top-0 right-0 hidden h-full w-auto max-w-none object-contain object-right lg:block"
+        style={{
+          // Feather the image's left edge into the page background so the
+          // photo's own studio-grey backdrop never reads as a second colour.
+          maskImage:
+            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 18%, black 40%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 18%, black 40%)",
+        }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-background from-45% via-background/70 via-55% to-transparent lg:block"
+        className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-background from-30% via-background/60 via-55% to-transparent lg:block"
       />
 
       <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-24 md:pt-12 md:pb-32">
