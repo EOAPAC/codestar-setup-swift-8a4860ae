@@ -77,16 +77,9 @@ function WinnersIndexPage() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: [
-              // left scrim for headline legibility
+            background:
+              // left scrim for headline legibility; image edges are pre-blended to #0A1220
               "linear-gradient(to right, rgba(10,18,32,0.9) 0%, rgba(10,18,32,0.75) 32%, rgba(10,18,32,0.3) 55%, rgba(10,18,32,0) 72%)",
-              // right edge feather into the section color
-              "linear-gradient(to left, rgba(10,18,32,1) 0%, rgba(10,18,32,0.6) 12%, rgba(10,18,32,0) 30%)",
-              // top edge feather
-              "linear-gradient(to bottom, rgba(10,18,32,1) 0%, rgba(10,18,32,0.5) 10%, rgba(10,18,32,0) 26%)",
-              // bottom edge feather
-              "linear-gradient(to top, rgba(10,18,32,1) 0%, rgba(10,18,32,0.5) 10%, rgba(10,18,32,0) 26%)",
-            ].join(", "),
             pointerEvents: "none",
           }}
         />
