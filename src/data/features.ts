@@ -140,7 +140,7 @@ export const FEATURES: Feature[] = [
       { type: 'p', text: "Those findings point to evaluation happening before a sales conversation begins. The judges treated the audit as a response to that shift, testing whether a company's message holds up when nobody is present to explain it." },
       { type: 'quote', text: "It's about seeing where your value gaps are,", attribution: "Bishop said" },
       { type: 'h2', text: "The Judges Final Words" },
-      { type: 'quote', text: "The panel looked for a defined problem, a measurable response, and restraint in how the results were described," Alexandra Dalton said. \"This entry set out a common weakness, put a number on it, and left the findings to speak. In a year when buyers decide more before contacting a supplier, that is useful work.\", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" }
+      { type: 'quote', text: `The panel looked for a defined problem, a measurable response, and restraint in how the results were described," Alexandra Dalton said. "This entry set out a common weakness, put a number on it, and left the findings to speak. In a year when buyers decide more before contacting a supplier, that is useful work.`, attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" }
     ],
     info: {
       industry: "Value Communication™",
