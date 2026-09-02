@@ -15,29 +15,16 @@ export type Winner = {
 
 export const WINNERS: Winner[] = [
   {
-    slug: "jeremy-levitt",
-    name: "Jeremy Levitt",
-    company: "Regent Bridge",
-    companyUrl: "https://www.regentbridge.com",
-    category: "Mergers and Acquisitions Advisory",
-    year: AWARD_YEAR,
-    reference: "EA-2026-0417",
-    featureUrl: "/features/jeremy-levitt",
-    summary: [
-      "Jeremy Levitt has been recognized with a 2026 Entrepreneur Award in Mergers and Acquisitions Advisory. Levitt founded Regent Bridge, which connects owners of businesses valued at five million dollars and above with mergers and acquisitions professionals working internationally. Owners meeting that threshold can request an assessment of the business at no charge before any engagement begins.",
-    ],
-  },
-  {
     slug: "andy-funk",
     name: "Andy Funk",
     company: "Ho'omau Endurance Co.",
-    companyUrl: "https://www.hoomauendurance.com",
-    category: "Endurance Leadership",
+    companyUrl: "https://hoomau.co/",
+    category: "Leadership",
     year: AWARD_YEAR,
     reference: "EA-2026-0518",
     featureUrl: "/features/andy-funk",
     summary: [
-      "Andy Funk has been recognized with a 2026 Entrepreneur Award in Endurance Leadership. Funk founded Ho'omau Endurance Co., which brings training camps, performance testing, coaching, ultra racing, and a member community under one roof, and created Vegas In 24, an ultra race with four long-distance routes finishing at the Welcome to Las Vegas sign under a fixed 24-hour cutoff.",
+      "Andy Funk has been recognized with a 2026 Entrepreneur Award in Leadership. Funk founded Ho'omau Endurance Co., which brings training camps, performance testing, coaching, ultra racing, and a member community under one roof, and created Vegas In 24, an ultra race with four long-distance routes finishing at the Welcome to Las Vegas sign under a fixed 24-hour cutoff.",
     ],
   },
 ];

@@ -60,9 +60,9 @@ export const FEATURES: Feature[] = [
     slug: "andy-funk",
     winnerSlug: "andy-funk",
     headline: "Andy Funk Recognized With a 2026 Entrepreneur Award",
-    subheadline: "Andy Funk Receives a 2026 Entrepreneur Award in Endurance Leadership",
+    subheadline: "Andy Funk Receives a 2026 Entrepreneur Award in Leadership",
     body: [
-      { type: 'p', text: "Andy Funk has been recognized with a 2026 Entrepreneur Award in Endurance Leadership as the founder of Ho'omau Endurance Co., a young venture that has moved quickly to establish a distinct place in the endurance sector. The award centers on Funk's role in building a business that brings training camps, performance testing, racing, and community under one roof, while also advancing an event concept shaped by direct experience in ultra-distance sport." },
+      { type: 'p', text: "Andy Funk has been recognized with a 2026 Entrepreneur Award in Leadership as the founder of Ho'omau Endurance Co., a young venture that has moved quickly to establish a distinct place in the endurance sector. The award centers on Funk's role in building a business that brings training camps, performance testing, racing, and community under one roof, while also advancing an event concept shaped by direct experience in ultra-distance sport." },
       { type: 'p', text: "The recognition focuses on the founder rather than the company, and in this case the judges pointed to a model that links coaching, athlete services, and race creation in a way that is unusually integrated for a business founded in 2024. At the center of that assessment is Vegas In 24, an ultra race with four long-distance routes that finish at the Welcome to Las Vegas sign under a fixed 24-hour cutoff, together with the broader Ho'omau platform designed for swimmers, cyclists, runners, triathletes, and rowers." },
       { type: 'h2', text: "The Endurance Venture" },
       { type: 'p', text: "Ho'omau Endurance Co. was formed in Santa Monica and presents itself as a base for athletes who want a more connected structure for preparation and competition. Its work spans training camps in Tenerife and Nevada, performance testing, coaching, ultra racing, and a member community known as Club Ho'omau. Rather than treating those elements as separate offers, the business combines them into a single operating model. That structure mattered in the award decision because it addresses a familiar weakness in amateur endurance sport, where athletes often move between disconnected providers for coaching, diagnostics, events, and peer support." },
@@ -75,11 +75,11 @@ export const FEATURES: Feature[] = [
       { type: 'quote', text: "Andy Funk's selection for a 2026 Entrepreneur Award reflects more than ambition. It reflects execution under pressure, a coherent endurance model, and a founder willing to test the same standards in competition that the business asks others to meet. In a field where many concepts remain broad, this one is concrete, measurable, and built around a demanding public benchmark.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" }
     ],
     info: {
-      industry: "Endurance Leadership",
+      industry: "Leadership",
       location: "Santa Monica, California",
       whatTheyDo: "Andy Funk is the founder of Ho'omau Endurance Co., a platform bringing training camps, performance testing, coaching, ultra racing, and a member community known as Club Ho'omau under one roof. He also created Vegas In 24, an ultra race with routes from Phoenix, Los Angeles, San Diego, and Reno finishing at the Welcome to Las Vegas sign under a fixed 24-hour cutoff.",
-      website: "hoomauendurance.com",
-      websiteUrl: "https://www.hoomauendurance.com"
+      website: "hoomau.co",
+      websiteUrl: "https://hoomau.co/"
     },
     portrait: andyFunkPortraitAsset.url,
     portraitCaption: "Andy Funk, founder of Ho'omau Endurance Co.",
