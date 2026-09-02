@@ -16,6 +16,7 @@ export type Feature = {
   info: { industry: string; location: string; whatTheyDo: string; website: string; websiteUrl: string };
   portrait?: string;
   portraitCaption?: string;
+  portraitAspect?: string;
   awardImage?: string;
 };
 
@@ -82,6 +83,7 @@ export const FEATURES: Feature[] = [
     },
     portrait: andyFunkPortraitAsset.url,
     portraitCaption: "Andy Funk, founder of Ho'omau Endurance Co.",
+    portraitAspect: "800 / 199",
     awardImage: awardAsset.url
   }
 ];
