@@ -66,7 +66,7 @@ function WinnersIndexPage() {
           backgroundSize: "auto 130%",
           backgroundPosition: "right 38% center",
           backgroundRepeat: "no-repeat",
-          backgroundColor: "#0A1220",
+          backgroundColor: "#0B1521",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
@@ -78,8 +78,8 @@ function WinnersIndexPage() {
             position: "absolute",
             inset: 0,
             background:
-              // left scrim for headline legibility; image edges are pre-blended to #0A1220
-              "linear-gradient(to right, rgba(10,18,32,0.9) 0%, rgba(10,18,32,0.75) 32%, rgba(10,18,32,0.3) 55%, rgba(10,18,32,0) 72%)",
+              // Keep the full band on the same tone as the trophy image's outer edge.
+              "linear-gradient(to right, rgba(11,21,33,0.9) 0%, rgba(11,21,33,0.75) 32%, rgba(11,21,33,0.3) 55%, rgba(11,21,33,0) 72%)",
             pointerEvents: "none",
           }}
         />
