@@ -1,4 +1,5 @@
 import portraitAsset from "@/assets/jeremy-portrait.jpg.asset.json";
+import andyFunkPortraitAsset from "@/assets/andy-funk.png.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
 
 export type FeatureBlock =
@@ -52,6 +53,35 @@ export const FEATURES: Feature[] = [
     },
     portrait: portraitAsset.url,
     portraitCaption: "Jeremy Levitt, founder of Regent Bridge",
+    awardImage: awardAsset.url
+  },
+  {
+    slug: "andy-funk",
+    winnerSlug: "andy-funk",
+    headline: "Andy Funk Recognized With a 2026 Entrepreneur Award",
+    subheadline: "Andy Funk Receives a 2026 Entrepreneur Award in Endurance Leadership",
+    body: [
+      { type: 'p', text: "Andy Funk has been recognized with a 2026 Entrepreneur Award in Endurance Leadership as the founder of Ho'omau Endurance Co., a young venture that has moved quickly to establish a distinct place in the endurance sector. The award centers on Funk's role in building a business that brings training camps, performance testing, racing, and community under one roof, while also advancing an event concept shaped by direct experience in ultra-distance sport." },
+      { type: 'p', text: "The recognition focuses on the founder rather than the company, and in this case the judges pointed to a model that links coaching, athlete services, and race creation in a way that is unusually integrated for a business founded in 2024. At the center of that assessment is Vegas In 24, an ultra race with four long-distance routes that finish at the Welcome to Las Vegas sign under a fixed 24-hour cutoff, together with the broader Ho'omau platform designed for swimmers, cyclists, runners, triathletes, and rowers." },
+      { type: 'h2', text: "The Endurance Venture" },
+      { type: 'p', text: "Ho'omau Endurance Co. was formed in Santa Monica and presents itself as a base for athletes who want a more connected structure for preparation and competition. Its work spans training camps in Tenerife and Nevada, performance testing, coaching, ultra racing, and a member community known as Club Ho'omau. Rather than treating those elements as separate offers, the business combines them into a single operating model. That structure mattered in the award decision because it addresses a familiar weakness in amateur endurance sport, where athletes often move between disconnected providers for coaching, diagnostics, events, and peer support." },
+      { type: 'quote', text: "The point was to build one place for training, testing, racing, and community instead of a dozen services that never talk to each other.", attribution: "Andy Funk" },
+      { type: 'h2', text: "Why the Achievement Stood Out" },
+      { type: 'p', text: "The judges' attention settled on the combination of personal athletic accomplishment and practical event design. In April 2016, Funk completed the ride from Los Angeles to the Welcome to Las Vegas sign in 20 hours, 41 minutes and 25 seconds, a benchmark that the business says has not been surpassed on its own tracking. That effort later became the basis for Vegas In 24, which now offers routes from Phoenix, Los Angeles, San Diego, and Reno, each built around the same absolute time limit. Finishers across all four routes qualify for a Grand Slam prize, giving the series a clear long-range structure. The next start is scheduled for October 24, 2026, at Chase Field in Phoenix." },
+      { type: 'p', text: "The wider market context also helps explain the significance of the award. IRONMAN reported more than 250,000 race registrations across its IRONMAN and IRONMAN 70.3 events in 2025, with participation among athletes under 30 up 35 percent year over year, while early 2026 demand showed dozens of races already sold out. Those figures point to continued appetite for demanding endurance formats and to a younger intake entering long-course competition. Against that backdrop, the judges identified Funk's work as notable because it offers a highly specific objective in a corner of the market where single-day ultra cycling remains relatively scarce. The panel also noted the discipline required to design routes that are measurable, supportable, and credible late into the final hours of an event." },
+      { type: 'quote', text: "Single-day ultra racing is unforgiving to design. The finish is fixed, the clock is absolute, and every route has to be measured, marshalled, and survivable at hour 23.", attribution: "Andy Funk" },
+      { type: 'h2', text: "The Judges' Final Words" },
+      { type: 'quote', text: "Andy Funk's selection for a 2026 Entrepreneur Award reflects more than ambition. It reflects execution under pressure, a coherent endurance model, and a founder willing to test the same standards in competition that the business asks others to meet. In a field where many concepts remain broad, this one is concrete, measurable, and built around a demanding public benchmark.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" }
+    ],
+    info: {
+      industry: "Endurance Leadership",
+      location: "Santa Monica, California",
+      whatTheyDo: "Andy Funk is the founder of Ho'omau Endurance Co., a platform bringing training camps, performance testing, coaching, ultra racing, and a member community known as Club Ho'omau under one roof. He also created Vegas In 24, an ultra race with routes from Phoenix, Los Angeles, San Diego, and Reno finishing at the Welcome to Las Vegas sign under a fixed 24-hour cutoff.",
+      website: "hoomauendurance.com",
+      websiteUrl: "https://www.hoomauendurance.com"
+    },
+    portrait: andyFunkPortraitAsset.url,
+    portraitCaption: "Andy Funk, founder of Ho'omau Endurance Co.",
     awardImage: awardAsset.url
   }
 ];
