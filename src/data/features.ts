@@ -1,6 +1,7 @@
 import portraitAsset from "@/assets/jeremy-portrait.jpg.asset.json";
 import andyFunkPortraitAsset from "@/assets/andy-funk.png.asset.json";
 import adamPiskPortraitAsset from "@/assets/adam-pisk.jpg.asset.json";
+import ashtonBishopPortraitAsset from "@/assets/ashton-bishop.jpg.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
 
 export type FeatureSegment =
@@ -121,6 +122,35 @@ export const FEATURES: Feature[] = [
     },
     portrait: adamPiskPortraitAsset.url,
     portraitCaption: "Adam Pisk, Director of BruntWork",
+    awardImage: awardAsset.url
+  },
+  {
+    slug: "ashton-bishop",
+    winnerSlug: "ashton-bishop",
+    headline: "Ashton Bishop Wins A 2026 Entrepreneur Award For Value Communication™",
+    subheadline: "Ashton Bishop, founder and chief executive of the Sydney consultancy Step Change, has received a 2026 Entrepreneur Award for work on how companies communicate commercial value.",
+    body: [
+      { type: 'p', text: "Ashton Bishop, founder and chief executive of the Sydney consultancy Step Change, has received a 2026 Entrepreneur Award for work on how companies communicate commercial value. The award centers on the Value Gap Audit, a free diagnostic the firm launched in July 2026 that scores a company's website, its competitor set, and one marketing document in about two minutes." },
+      { type: 'p', text: "The award recognizes the founder, not the company. Grit Daily reported on August 31, 2026 that roughly 290 Australian businesses had used the audit since launch. Step Change's published client list includes Commonwealth Bank and Sony Pictures." },
+      { type: 'h2', text: "Why The Win Matters" },
+      { type: 'p', text: "Step Change argues that weak sales performance often reflects a communication problem rather than a weak offer, and that the gap surfaces in websites, proposals, and sales material before a buyer speaks to anyone. The judges pointed to the decision to publish a measurable diagnostic at no charge, and to frame it as an assessment rather than a pitch." },
+      { type: 'quote', text: "Most value propositions do not break. They leak,", attribution: "Bishop wrote in July 2026" },
+      { type: 'h2', text: "Market Context" },
+      { type: 'p', text: "Research cited around the launch describes a buying environment that rewards clarity early. Gartner reported in December 2020 that 64 percent of more than 1,100 business buyers surveyed could not tell one company's digital experience from another's. Forrester's 2025 Buyers' Journey Survey found that 68 percent of B2B buyers begin a purchase with a front-runner in mind, and that the front-runner wins 80 percent of the time. A Gartner survey of 646 B2B buyers, conducted in August and September 2025 and released in March 2026, found 67 percent preferred a rep-free experience and 45 percent had used AI during a recent purchase." },
+      { type: 'p', text: "Those findings point to evaluation happening before a sales conversation begins. The judges treated the audit as a response to that shift, testing whether a company's message holds up when nobody is present to explain it." },
+      { type: 'quote', text: "It's about seeing where your value gaps are,", attribution: "Bishop said" },
+      { type: 'h2', text: "The Judges Final Words" },
+      { type: 'quote', text: `The panel looked for a defined problem, a measurable response, and restraint in how the results were described," Alexandra Dalton said. "This entry set out a common weakness, put a number on it, and left the findings to speak. In a year when buyers decide more before contacting a supplier, that is useful work.`, attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" }
+    ],
+    info: {
+      industry: "Value Communication™",
+      location: "Sydney, Australia",
+      whatTheyDo: "Ashton Bishop is founder and chief executive of Step Change, a Sydney consultancy that helps companies diagnose and close gaps in how they communicate commercial value. Its Value Gap Audit scores a company's website, competitor set and one marketing document in about two minutes.",
+      website: "stepchange.com",
+      websiteUrl: "https://www.stepchange.com/"
+    },
+    portrait: ashtonBishopPortraitAsset.url,
+    portraitCaption: "Ashton Bishop, founder and chief executive of Step Change",
     awardImage: awardAsset.url
   }
 ];
