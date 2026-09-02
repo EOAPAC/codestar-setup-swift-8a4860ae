@@ -99,8 +99,8 @@ export const FEATURES: Feature[] = [
   {
     slug: "adam-pisk",
     winnerSlug: "adam-pisk",
-    headline: "Adam Pisk, Director of BruntWork, has been recognized with a 2026 Entrepreneur Award for Remote Workforce Leadership, according to a winner record published by the award program.",
-    subheadline: "The recognition is for his work directing an outsourcing and staffing operation. The award centers on his role in leading a company that recruits, vets, and oversees remote staff for small and mid-sized businesses.",
+    headline: "Adam Pisk Wins A 2026 Entrepreneur Award for Remote Workforce Leadership",
+    subheadline: "The recognition focuses on individual leadership, acknowledging Pisk's role in directing an international remote staffing operation.",
     body: [
       { type: 'p', text: "The award program is designed to recognize individual leadership. Under Pisk's direction, BruntWork expanded its operations by offering management oversight alongside standard staffing services for distributed teams." },
       { type: 'h2', text: "The Leadership Journey" },
