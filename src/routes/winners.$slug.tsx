@@ -99,6 +99,30 @@ function WinnerPage() {
                 </blockquote>
               );
             }
+            if ("segments" in block && Array.isArray(block.segments)) {
+              return (
+                <p
+                  key={i}
+                  className="mb-[22px] text-[17px] leading-[1.75] text-[#20262e] md:text-[18px]"
+                >
+                  {block.segments.map((segment, j) =>
+                    segment.type === "link" ? (
+                      <a
+                        key={j}
+                        href={segment.href}
+                        target={segment.external ? "_blank" : undefined}
+                        rel={segment.external ? "nofollow noopener" : undefined}
+                        className="text-[#1978E5] underline decoration-1 underline-offset-2"
+                      >
+                        {segment.text}
+                      </a>
+                    ) : (
+                      <span key={j}>{segment.text}</span>
+                    )
+                  )}
+                </p>
+              );
+            }
             return (
               <p
                 key={i}
