@@ -2,8 +2,13 @@ import portraitAsset from "@/assets/jeremy-portrait.jpg.asset.json";
 import andyFunkPortraitAsset from "@/assets/andy-funk.png.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
 
+export type FeatureSegment =
+  | { type: 'text'; text: string }
+  | { type: 'link'; text: string; href: string; external?: boolean };
+
 export type FeatureBlock =
   | { type: 'p'; text: string }
+  | { type: 'p'; segments: FeatureSegment[] }
   | { type: 'h2'; text: string }
   | { type: 'quote'; text: string; attribution: string };
 
