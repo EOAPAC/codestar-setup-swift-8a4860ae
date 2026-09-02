@@ -110,8 +110,7 @@ export const FEATURES: Feature[] = [
       { type: 'h2', text: "The Judge's Final Words" },
       { type: 'quote', text: "Adam Pisk's selection for a 2026 Entrepreneur Award reflects more than growth figures. It reflects two decades of working with distributed teams before scaling a business around them. The company executed under real operational pressure, utilizing a model that removes the management burden rather than moving the cost. In a field crowded with intermediaries, this one carries the responsibility it sells,", attribution: "the judging panel noted" },
       { type: 'h2', text: "About the Entrepreneur Awards" },
-      { type: 'p', text: "The Entrepreneur Awards program recognizes individual leaders. In this case, the award acknowledges Pisk's role as Director in leading a remote staffing business that handles recruitment, vetting, and daily oversight for clients." },
-      
+      { type: 'p', text: "The Entrepreneur Awards program recognizes individual leaders. In this case, the award acknowledges Pisk's role as Director in leading a remote staffing business that handles recruitment, vetting, and daily oversight for clients." }
     ],
     info: {
       industry: "Remote Workforce Leadership",
