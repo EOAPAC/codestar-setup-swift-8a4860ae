@@ -1,6 +1,7 @@
 import portraitAsset from "@/assets/jeremy-portrait.jpg.asset.json";
 import andyFunkPortraitAsset from "@/assets/andy-funk.png.asset.json";
 import adamPiskPortraitAsset from "@/assets/adam-pisk.jpg.asset.json";
+import ashtonBishopPortraitAsset from "@/assets/ashton-bishop.jpg.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
 
 export type FeatureSegment =
