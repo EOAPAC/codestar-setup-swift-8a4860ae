@@ -95,5 +95,32 @@ export const FEATURES: Feature[] = [
     portraitCaption: "Andy Funk, founder of Ho'omau Endurance Co.",
     portraitAspect: "800 / 199",
     awardImage: awardAsset.url
+  },
+  {
+    slug: "adam-pisk",
+    winnerSlug: "adam-pisk",
+    headline: "Adam Pisk Wins A 2026 Entrepreneur Award for Remote Workforce Leadership",
+    subheadline: "The recognition focuses on the founder rather than the company, and in this case the judges pointed to the distance between where the business started and where it now operates.",
+    body: [
+      { type: 'p', text: "Adam Pisk has been awarded a 2026 Entrepreneur Award for Remote Workforce Leadership for his work as Director of BruntWork, an outsourcing business that grew out of the pandemic into a staffing operation spanning several continents. The award centers on his role in leading a company that recruits, vets, and manages remote staff for small and mid-sized businesses." },
+      { type: 'p', text: "The award is designed to recognize entrepreneurial leadership. Under Pisk's direction, BruntWork has expanded rapidly by addressing the primary objection that keeps most small businesses out of offshore hiring: the burden of supervising distributed teams." },
+      { type: 'h2', text: "The Leadership Journey" },
+      { type: 'p', text: "The judges' attention settled on the length of Pisk's run-up rather than just the speed of the company's recent growth. Pisk initially started in niche manufacturing in Australia, where local talent shortages pushed him to recruit internationally." },
+      { type: 'p', text: "He used this foundational experience to shape a remote workforce model that targets the smaller end of the market, where buyers often lack dedicated procurement teams and where the cost of a bad hire falls directly on the owner. Instead of simply connecting companies with talent, Pisk structured operations to handle the ongoing management burden." },
+      { type: 'quote', text: "We need to be valuable to both our clients and to the staff.", attribution: "Adam Pisk" },
+      { type: 'h2', text: "The Judges' Final Words" },
+      { type: 'quote', text: "Adam Pisk's selection for a 2026 Entrepreneur Award reflects more than growth figures. It reflects two decades of working with distributed teams before scaling a business around them. The company executed under real operational pressure, utilizing a model that removes the management burden rather than moving the cost. In a field crowded with intermediaries, this one carries the responsibility it sells.", attribution: "The judging panel" },
+      { type: 'p', text: "The Entrepreneur Awards recognize the individual leader rather than the company. In this case, the award acknowledges Pisk's role as Director in leading and scaling a remote staffing business that handles recruitment, vetting, and management for clients who cannot carry out those functions themselves." }
+    ],
+    info: {
+      industry: "Remote Workforce Leadership",
+      location: "Singapore",
+      whatTheyDo: "Adam Pisk is Director of BruntWork, an outsourcing business that recruits, vets, and manages remote staff for small and mid-sized businesses, operating across several continents.",
+      website: "bruntwork.com",
+      websiteUrl: "https://www.bruntwork.com/"
+    },
+    portrait: adamPiskPortraitAsset.url,
+    portraitCaption: "Adam Pisk, Director of BruntWork",
+    awardImage: awardAsset.url
   }
 ];
