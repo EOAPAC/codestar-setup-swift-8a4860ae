@@ -66,7 +66,7 @@ function FeaturePage() {
             loading="lazy"
             decoding="async"
             className="w-full object-cover object-center"
-            style={{ aspectRatio: "3 / 2" }}
+            style={{ aspectRatio: feature.portraitAspect ?? "3 / 2" }}
           />
           {feature.portraitCaption ? (
             <figcaption className="mt-3 text-[13px] leading-[1.5] text-[#5a6572]">
