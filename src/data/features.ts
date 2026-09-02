@@ -7,8 +7,8 @@ export type FeatureSegment =
   | { type: 'link'; text: string; href: string; external?: boolean };
 
 export type FeatureBlock =
-  | { type: 'p'; text: string }
-  | { type: 'p'; segments: FeatureSegment[] }
+  | { type: 'p'; text: string; segments?: never }
+  | { type: 'p'; segments: FeatureSegment[]; text?: never }
   | { type: 'h2'; text: string }
   | { type: 'quote'; text: string; attribution: string };
 
