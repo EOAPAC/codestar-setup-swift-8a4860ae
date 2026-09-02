@@ -99,7 +99,7 @@ function WinnerPage() {
                 </blockquote>
               );
             }
-            if ("segments" in block) {
+            if ("segments" in block && Array.isArray(block.segments)) {
               return (
                 <p
                   key={i}
