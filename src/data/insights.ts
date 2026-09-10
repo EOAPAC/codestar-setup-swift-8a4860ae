@@ -109,7 +109,7 @@ Consider who never made the lists. The founder in a category nobody writes about
 
 None of those people were rejected. They were never assessed. Gatekept recognition does not produce a judgement about your work, it produces silence, and silence reads to an outsider exactly like an absence of achievement.
 
-Closing that gap means more than widening the gate slightly. It means recognising individual founders on their own account, accepting entries directly rather than by invitation, and assessing everyone against the same written criteria. A founder should not need a nomination from a client or an industry figure to be considered, because that requirement quietly asks people to already be visible in order to become visible. That is the model behind Entrepreneur Awards, and it is where founder recognition is heading more broadly.
+Closing that gap means more than widening the gate slightly. It means recognising individual founders on their own account, accepting entries directly rather than by invitation, and assessing everyone against the same written criteria. A founder should not need to already be well known to be considered, because that requirement quietly asks people to be visible in order to become visible. That is the model behind Entrepreneur Awards, and it is where founder recognition is heading more broadly.
 
 ### How the assessment works
 
@@ -185,7 +185,7 @@ This changes what a founder's reputation needs to be. Not persuasive, because yo
 
 Most of what founders build fails that test, not because it is untrue but because of who is making the claim. A personal website, a bio, a first-person post about lessons learned. All self-issued, and a reader in evaluation mode discounts self-issued material almost automatically. It is not cynicism. It is the correct response to a source with an obvious interest in the conclusion.
 
-Independent recognition survives the same reading because the source and the subject are different people. That is the whole of the mechanism, and it is why founders are treating it as a durable asset rather than a nice moment. The strongest version of it assesses individual founders rather than companies, and accepts entries directly from the founder, written as their own account of what they built: the problem they went after, the conditions they worked under, the decisions that followed, and the results. No third-party nomination is needed, which means a founder does not have to already be well connected to be assessed. That is the model behind Entrepreneur Awards.
+Independent recognition survives the same reading because the source and the subject are different people. That is the whole of the mechanism, and it is why founders are treating it as a durable asset rather than a nice moment. The strongest version of it assesses individual founders rather than companies, and accepts entries directly from the founder, written as their own account of what they built: the problem they went after, the conditions they worked under, the decisions that followed, and the results. A founder does not have to already be well connected to be assessed. That is the model behind Entrepreneur Awards.
 
 ### Where winners put it
 
