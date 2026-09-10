@@ -896,53 +896,36 @@ function WinnerOptionsPage() {
                 >
                   4 Publications · One story
                 </p>
-                {STRIPE_PAYMENT_LINK ? (
-                  <>
-                    <p
-                      className="text-[42px] md:text-[46px]"
-                      style={{
-                        marginTop: "10px",
-                        fontWeight: 700,
-                        letterSpacing: "-1.2px",
-                        lineHeight: 1.05,
-                        color: INK,
-                      }}
-                    >
-                      {formatPrice(FEATURE_PRICE)}
-                    </p>
-                    <p style={{ marginTop: "8px", fontSize: "12.5px", color: MUTED }}>
-                      One payment. Nothing recurring.
-                    </p>
-                    <a
-                      href={STRIPE_PAYMENT_LINK}
-                      data-event="feature-order-click"
-                      className={`flex w-full items-center justify-center rounded-sm text-white transition-opacity hover:opacity-90 ${focusRing}`}
-                      style={{
-                        marginTop: "24px",
-                        minHeight: "44px",
-                        backgroundColor: INK,
-                        fontSize: "15px",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Order the Winner&rsquo;s Feature
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    <p style={{ marginTop: "10px", fontSize: "12.5px", color: MUTED }}>
-                      One payment. Nothing recurring.
-                    </p>
-                    <div data-event="feature-order-click" style={{ marginTop: "24px" }}>
-                      {/* @ts-expect-error - Stripe web component */}
-                      <stripe-buy-button
-                        buy-button-id={STRIPE_BUY_BUTTON_ID}
-                        publishable-key={STRIPE_PUBLISHABLE_KEY}
-                        style={{ display: "block" }}
-                      />
-                    </div>
-                  </>
-                )}
+                <p
+                  className="text-[42px] md:text-[46px]"
+                  style={{
+                    marginTop: "10px",
+                    fontWeight: 700,
+                    letterSpacing: "-1.2px",
+                    lineHeight: 1.05,
+                    color: INK,
+                  }}
+                >
+                  {formatPrice(FEATURE_PRICE)}
+                </p>
+                <p style={{ marginTop: "8px", fontSize: "12.5px", color: MUTED }}>
+                  One payment. Nothing recurring.
+                </p>
+                <a
+                  href={STRIPE_PAYMENT_LINK}
+                  data-event="feature-order-click"
+                  className={`flex w-full items-center justify-center rounded-sm text-white transition-opacity hover:opacity-90 ${focusRing}`}
+                  style={{
+                    marginTop: "24px",
+                    minHeight: "44px",
+                    backgroundColor: INK,
+                    fontSize: "15px",
+                    fontWeight: 600,
+                  }}
+                >
+                  Order the Winner&rsquo;s Feature
+                </a>
+
                 <p
                   style={{
                     marginTop: "14px",
