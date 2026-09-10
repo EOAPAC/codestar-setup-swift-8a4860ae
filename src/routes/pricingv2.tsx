@@ -231,7 +231,7 @@ function BrowserMockup() {
 
       <div
         className="relative flex-1 px-5 pb-6 pt-5"
-        style={{ minHeight: "300px", overflow: "hidden" }}
+        style={{ minHeight: 0, overflow: "hidden" }}
       >
         <p
           style={{
@@ -313,7 +313,7 @@ function PressMockup() {
 
       <div
         className="relative flex-1 px-5 pb-6 pt-5"
-        style={{ minHeight: "300px", overflow: "hidden" }}
+        style={{ minHeight: 0, overflow: "hidden" }}
       >
         <img
           src="/usa-today-logo.svg"
