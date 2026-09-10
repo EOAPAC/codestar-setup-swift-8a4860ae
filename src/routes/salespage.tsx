@@ -884,10 +884,8 @@ function SalesPage() {
           </div>
         </section>
 
-
-
         {/* 5. HOW IT WORKS */}
-        <section style={{ paddingTop: "48px", paddingBottom: "48px" }}>
+        <section style={{ paddingTop: "56px", paddingBottom: "48px" }}>
           <div className="mx-auto max-w-4xl px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               How it works
