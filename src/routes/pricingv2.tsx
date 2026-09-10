@@ -335,15 +335,8 @@ function useStickyVisible() {
 function WinnerOptionsPage() {
   const stickyVisible = useStickyVisible();
 
-  useEffect(() => {
-    if (document.querySelector(`script[src="${STRIPE_BUY_BUTTON_SCRIPT}"]`)) {
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = STRIPE_BUY_BUTTON_SCRIPT;
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
+
+
 
   return (
     <div
