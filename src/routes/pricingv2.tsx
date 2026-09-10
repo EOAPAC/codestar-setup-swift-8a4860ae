@@ -169,7 +169,7 @@ function withSlots(text: string) {
 function BrowserMockup() {
   return (
     <div
-      className="overflow-hidden rounded-xl"
+      className="flex h-full flex-col overflow-hidden rounded-xl"
       style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
     >
       <div
@@ -198,7 +198,10 @@ function BrowserMockup() {
         </span>
       </div>
 
-      <div className="relative px-5 pb-6 pt-5" style={{ height: "300px", overflow: "hidden" }}>
+      <div
+        className="relative flex-1 px-5 pb-6 pt-5"
+        style={{ minHeight: "300px", overflow: "hidden" }}
+      >
         <p
           style={{
             fontSize: "10px",
@@ -248,7 +251,7 @@ function BrowserMockup() {
 function PressMockup() {
   return (
     <div
-      className="overflow-hidden rounded-xl"
+      className="flex h-full flex-col overflow-hidden rounded-xl"
       style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
     >
       <div
@@ -277,7 +280,10 @@ function PressMockup() {
         </span>
       </div>
 
-      <div className="relative px-5 pb-6 pt-5" style={{ height: "300px", overflow: "hidden" }}>
+      <div
+        className="relative flex-1 px-5 pb-6 pt-5"
+        style={{ minHeight: "300px", overflow: "hidden" }}
+      >
         <img
           src="/usa-today-logo.svg"
           alt="USA Today"
@@ -327,51 +333,51 @@ function PressMockup() {
   );
 }
 
-function PublicationsPanel() {
+/** Quiet inline row of the four publications — no panel, no box. */
+function PublicationsRow() {
   return (
-    <div
-      className="mt-10 overflow-hidden rounded-xl"
-      style={{ border: `1px solid ${LINE}` }}
-    >
-      <div
-        className="flex items-center justify-between px-5 py-3"
-        style={{ backgroundColor: INK }}
+    <div className="mt-8">
+      <p
+        className="text-center"
+        style={{
+          fontSize: "0.6875rem",
+          fontWeight: 600,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: MUTED,
+        }}
       >
-        <span
-          className="text-xs font-bold uppercase tracking-[0.14em]"
-          style={{ color: "#fff" }}
-        >
-          Where it&apos;s published
-        </span>
-        <span
-          className="text-xs font-bold uppercase tracking-[0.14em]"
-          style={{ color: "rgba(255,255,255,0.7)" }}
-        >
-          4 Publications
-        </span>
-      </div>
-      <div
-        className="grid grid-cols-2 gap-px md:grid-cols-4"
-        style={{ backgroundColor: LINE }}
-      >
-        {publications.map((pub) => (
-          <div
-            key={pub.name}
-            className="flex flex-col items-center justify-center px-3 py-6 text-center md:px-4"
-            style={{ backgroundColor: "#fff" }}
-          >
+        Published in
+      </p>
+      <div className="mx-auto mt-4 flex max-w-[640px] flex-wrap justify-center">
+        {publications.map((pub, i) => (
+          <span key={pub.name} className="flex w-1/2 items-center md:w-auto">
             <span
-              style={{ fontSize: "0.9375rem", fontWeight: 600, color: INK }}
+              aria-hidden
+              className="hidden md:block"
+              style={{
+                width: i === 0 ? 0 : "1px",
+                alignSelf: "stretch",
+                backgroundColor: i === 0 ? "transparent" : LINE,
+              }}
+            />
+            <span
+              className={`flex-1 px-4 py-1 text-center md:flex-none md:px-6 ${
+                i % 2 === 1 ? "max-md:border-l" : ""
+              }`}
+              style={{
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: INK,
+                borderColor: LINE,
+                whiteSpace: "nowrap",
+              }}
             >
               {pub.name}
             </span>
-            <span
-              className="mt-1 text-[0.625rem] font-semibold uppercase tracking-[0.08em]"
-              style={{ color: MUTED }}
-            >
-              {pub.descriptor}
-            </span>
-          </div>
+          </span>
         ))}
       </div>
     </div>
@@ -604,20 +610,22 @@ function WinnerOptionsPage() {
                 Get your business written about in USA Today, the Associated Press, Business Insider and Fortune.
               </h2>
               <p style={{ marginTop: "14px", fontSize: "0.9375rem", color: BODY }}>
-                A full article about your business on our site, a press release published on USA Today, and an engraved award posted to you.
+                A full article about your business on our site, a press release published in four national publications, and an engraved award posted to you.
               </p>
             </div>
 
-            <PublicationsPanel />
+            <PublicationsRow />
 
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
               <figure className="flex h-full flex-col">
-                <PressMockup />
+                <div className="flex flex-1 flex-col">
+                  <PressMockup />
+                </div>
                 <figcaption
                   className="mt-3 text-center"
                   style={{ fontSize: "0.8125rem", color: MUTED }}
                 >
-                  Published on USA Today.
+                  Example: published on USA Today.
                 </figcaption>
               </figure>
 
@@ -625,7 +633,7 @@ function WinnerOptionsPage() {
                 <Link
                   to="/winners/specimen"
                   data-event="feature-format-view"
-                  className={`block rounded-xl ${focusRing}`}
+                  className={`block flex-1 rounded-xl ${focusRing}`}
                 >
                   <BrowserMockup />
                 </Link>
@@ -668,7 +676,7 @@ function WinnerOptionsPage() {
             </div>
 
             {/* What you get */}
-            <ul className="mx-auto mt-10 grid max-w-[680px] gap-3">
+            <ul className="mx-auto mt-12 grid max-w-[480px] gap-3">
               {v2WhatYouGet.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: BLUE }} aria-hidden />
@@ -678,7 +686,7 @@ function WinnerOptionsPage() {
             </ul>
 
             {/* Process chips */}
-            <ol className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
+            <ol className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
               {processChips.map((chip, i) => (
                 <li key={chip} className="flex items-center gap-3">
                   <span
@@ -701,11 +709,11 @@ function WinnerOptionsPage() {
               ))}
             </ol>
 
-            <p className="mt-5 text-center" style={{ fontSize: "0.9375rem", color: BODY }}>
+            <p className="mt-6 text-center" style={{ fontSize: "0.9375rem", color: BODY }}>
               You'll have your article draft within five working days, and it goes live three days after you approve it.
             </p>
 
-            <div className="mt-8 flex flex-col items-center">
+            <div className="mt-12 flex flex-col items-center">
               <p
                 style={{
                   fontSize: "0.6875rem",
