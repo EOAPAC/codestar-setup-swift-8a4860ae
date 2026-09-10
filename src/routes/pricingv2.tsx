@@ -327,51 +327,51 @@ function PressMockup() {
   );
 }
 
-function PublicationsPanel() {
+/** Quiet inline row of the four publications — no panel, no box. */
+function PublicationsRow() {
   return (
-    <div
-      className="mt-10 overflow-hidden rounded-xl"
-      style={{ border: `1px solid ${LINE}` }}
-    >
-      <div
-        className="flex items-center justify-between px-5 py-3"
-        style={{ backgroundColor: INK }}
+    <div className="mt-8">
+      <p
+        className="text-center"
+        style={{
+          fontSize: "0.6875rem",
+          fontWeight: 600,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: MUTED,
+        }}
       >
-        <span
-          className="text-xs font-bold uppercase tracking-[0.14em]"
-          style={{ color: "#fff" }}
-        >
-          Where it&apos;s published
-        </span>
-        <span
-          className="text-xs font-bold uppercase tracking-[0.14em]"
-          style={{ color: "rgba(255,255,255,0.7)" }}
-        >
-          4 Publications
-        </span>
-      </div>
-      <div
-        className="grid grid-cols-2 gap-px md:grid-cols-4"
-        style={{ backgroundColor: LINE }}
-      >
-        {publications.map((pub) => (
-          <div
-            key={pub.name}
-            className="flex flex-col items-center justify-center px-3 py-6 text-center md:px-4"
-            style={{ backgroundColor: "#fff" }}
-          >
+        Published in
+      </p>
+      <div className="mx-auto mt-4 flex max-w-[640px] flex-wrap justify-center">
+        {publications.map((pub, i) => (
+          <span key={pub.name} className="flex w-1/2 items-center md:w-auto">
             <span
-              style={{ fontSize: "0.9375rem", fontWeight: 600, color: INK }}
+              aria-hidden
+              className="hidden md:block"
+              style={{
+                width: i === 0 ? 0 : "1px",
+                alignSelf: "stretch",
+                backgroundColor: i === 0 ? "transparent" : LINE,
+              }}
+            />
+            <span
+              className={`flex-1 px-4 py-1 text-center md:flex-none md:px-6 ${
+                i % 2 === 1 ? "max-md:border-l" : ""
+              }`}
+              style={{
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: INK,
+                borderColor: LINE,
+                whiteSpace: "nowrap",
+              }}
             >
               {pub.name}
             </span>
-            <span
-              className="mt-1 text-[0.625rem] font-semibold uppercase tracking-[0.08em]"
-              style={{ color: MUTED }}
-            >
-              {pub.descriptor}
-            </span>
-          </div>
+          </span>
         ))}
       </div>
     </div>
