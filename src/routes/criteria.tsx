@@ -27,7 +27,7 @@ const steps = [
     n: "01",
     icon: FileText,
     title: "Entry",
-    body: "Founders enter their own story through the online form. There are no nominations and no gatekeepers. Every entry is read and scored by our founder-judges.",
+    body: "Every entry is read as the founder's own account of what they built, and scored by our founder-judges against the same three criteria.",
   },
   {
     n: "02",
