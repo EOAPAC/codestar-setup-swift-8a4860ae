@@ -786,9 +786,8 @@ function SalesPage() {
                   maxWidth: "60ch",
                 }}
               >
-                Fortune is the most expensive placement we buy, by a wide margin. Rather than put
-                that cost into everyone&rsquo;s price, we&rsquo;ve kept it optional — so you only
-                pay for it if you want it.
+                Four publications instead of three: national, wire, business and corporate. Add
+                Fortune if you want the full spread.
               </p>
               <div
                 style={{
