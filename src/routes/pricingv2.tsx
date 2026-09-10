@@ -604,20 +604,22 @@ function WinnerOptionsPage() {
                 Get your business written about in USA Today, the Associated Press, Business Insider and Fortune.
               </h2>
               <p style={{ marginTop: "14px", fontSize: "0.9375rem", color: BODY }}>
-                A full article about your business on our site, a press release published on USA Today, and an engraved award posted to you.
+                A full article about your business on our site, a press release published in four national publications, and an engraved award posted to you.
               </p>
             </div>
 
-            <PublicationsPanel />
+            <PublicationsRow />
 
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
               <figure className="flex h-full flex-col">
-                <PressMockup />
+                <div className="flex flex-1 flex-col">
+                  <PressMockup />
+                </div>
                 <figcaption
                   className="mt-3 text-center"
                   style={{ fontSize: "0.8125rem", color: MUTED }}
                 >
-                  Published on USA Today.
+                  Example: published on USA Today.
                 </figcaption>
               </figure>
 
