@@ -44,9 +44,12 @@ const BLUE = "#1978E5";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
 const PAGE = "#FAFAF9";
-const GOLD = "#B4903C";
+const BLUE_DARK = "#1565C4";
 
 const FEATURE_PRICE = 1595;
+const FEATURE_PUBLICATIONS = 4;
+/** Kept derived so the "about $X a publication" line stays true if either changes. */
+const PER_PUBLICATION = Math.round(FEATURE_PRICE / FEATURE_PUBLICATIONS / 50) * 50;
 const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 
 /** Stripe Payment Link for the Winner's Feature — sits behind our own navy button. */
@@ -64,11 +67,14 @@ const v2WhatYouGet = [
     rest: " — USA Today, the Associated Press, Business Insider and Fortune",
   },
   {
-    lead: "A full article on your winner page",
-    rest: " at entrepreneurawards.co, with a permanent link",
+    lead: "A permanent link to every article",
+    rest: ", to send to a client or add to your own site",
   },
-  { lead: "The engraved award", rest: " carrying your name and your award year" },
-  { lead: "A printed certificate", rest: ", ready to frame" },
+  { lead: "A full article on your winner page", rest: " at entrepreneurawards.co" },
+  {
+    lead: "The engraved award and a printed certificate",
+    rest: ", posted to you with your name and award year",
+  },
   { lead: "Your approval on every word", rest: " before anything is published" },
 ];
 
@@ -119,7 +125,7 @@ function Tick() {
       aria-hidden
       style={{ marginTop: "5px", flexShrink: 0 }}
     >
-      <path d="M2.5 8.5 6 12l7.5-8" stroke={INK} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M2.5 8.5 6 12l7.5-8" stroke={BLUE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -533,7 +539,8 @@ function WinnerOptionsPage() {
                 style={{ marginTop: "16px", lineHeight: 1.6, maxWidth: "52ch", color: BODY }}
               >
                 We write one story about your win and place it in all four, plus a full article on
-                your winner page and the engraved award, posted to you.
+                your winner page and the engraved award, posted to you. You approve every word before
+                anything goes live.
               </p>
             </div>
 
@@ -560,7 +567,7 @@ function WinnerOptionsPage() {
                 <article
                   key={card.name}
                   className="flex flex-col overflow-hidden bg-white text-left"
-                  style={{ border: `1px solid ${LINE}`, borderRadius: "3px" }}
+                  style={{ border: `1px solid ${LINE}`, borderRadius: "8px" }}
                 >
                   {/* Browser chrome */}
                   <div
@@ -646,7 +653,7 @@ function WinnerOptionsPage() {
               style={{ marginTop: "16px", maxWidth: "60ch", fontSize: "12.5px", color: MUTED }}
             >
               The same story, written to each publication&rsquo;s format and running under your
-              business name.
+              business name — each one with a permanent link.
             </p>
 
             {/* Winner page + award, 2-up */}
@@ -671,7 +678,7 @@ function WinnerOptionsPage() {
                 </p>
                 <div
                   className="aspect-[4/3] w-full overflow-hidden"
-                  style={{ border: `1px solid ${LINE}`, borderRadius: "2px" }}
+                  style={{ border: `1px solid ${LINE}`, borderRadius: "6px" }}
                 >
                   <BrowserMockup />
                 </div>
@@ -702,7 +709,7 @@ function WinnerOptionsPage() {
                     objectFit: "cover",
                     objectPosition: "50% 35%",
                     border: `1px solid ${LINE}`,
-                    borderRadius: "2px",
+                    borderRadius: "6px",
                   }}
                 />
               </div>
@@ -717,7 +724,7 @@ function WinnerOptionsPage() {
                 style={{
                   fontSize: "13.5px",
                   fontWeight: 600,
-                  color: INK,
+                  color: BLUE,
                   textDecoration: "underline",
                   textDecorationThickness: "2px",
                   textUnderlineOffset: "4px",
@@ -769,7 +776,7 @@ function WinnerOptionsPage() {
                         style={{
                           width: "22px",
                           height: "22px",
-                          backgroundColor: INK,
+                          backgroundColor: BLUE,
                           color: "#fff",
                           fontSize: "10.5px",
                           fontWeight: 600,
@@ -924,7 +931,8 @@ function WinnerOptionsPage() {
               minHeight: "44px",
               minWidth: "180px",
               padding: "0 20px",
-              backgroundColor: INK,
+              borderRadius: "8px",
+              backgroundColor: BLUE,
               fontSize: "15px",
               fontWeight: 600,
             }}
