@@ -633,7 +633,7 @@ function WinnerOptionsPage() {
                 <Link
                   to="/winners/specimen"
                   data-event="feature-format-view"
-                  className={`block rounded-xl ${focusRing}`}
+                  className={`block flex-1 rounded-xl ${focusRing}`}
                 >
                   <BrowserMockup />
                 </Link>
@@ -676,7 +676,7 @@ function WinnerOptionsPage() {
             </div>
 
             {/* What you get */}
-            <ul className="mx-auto mt-10 grid max-w-[680px] gap-3">
+            <ul className="mx-auto mt-12 grid max-w-[480px] gap-3">
               {v2WhatYouGet.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: BLUE }} aria-hidden />
