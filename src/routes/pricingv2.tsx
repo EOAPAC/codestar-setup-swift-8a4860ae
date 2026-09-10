@@ -280,7 +280,10 @@ function PressMockup() {
         </span>
       </div>
 
-      <div className="relative px-5 pb-6 pt-5" style={{ height: "300px", overflow: "hidden" }}>
+      <div
+        className="relative flex-1 px-5 pb-6 pt-5"
+        style={{ minHeight: "300px", overflow: "hidden" }}
+      >
         <img
           src="/usa-today-logo.svg"
           alt="USA Today"
