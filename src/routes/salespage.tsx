@@ -461,13 +461,10 @@ function SalesPage() {
         <section style={{ backgroundColor: TINT, paddingTop: "64px", paddingBottom: "64px" }}>
           <div className="mx-auto max-w-6xl px-6">
             <h2
-              className="text-center"
-              style={{ fontSize: "24px", fontWeight: 700, color: INK, letterSpacing: "-0.01em" }}
+              className="text-center text-[24px] md:text-[28px]"
+              style={{ fontWeight: 700, color: INK, letterSpacing: "-0.01em" }}
             >
-              <span className="md:hidden">Everything in the Winner&rsquo;s Feature</span>
-              <span className="hidden md:inline" style={{ fontSize: "28px" }}>
-                Everything in the Winner&rsquo;s Feature
-              </span>
+              Everything in the Winner&rsquo;s Feature
             </h2>
 
             <div
