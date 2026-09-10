@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type CSSProperties } from "react";
-import { Check, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { winnerKitFiles } from "@/content/winner-kit";
@@ -43,6 +43,7 @@ const MUTED = "#6B7785";
 const BLUE = "#1978E5";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
+const GOLD = "#B4903C";
 
 const FEATURE_PRICE = 1595;
 const formatPrice = (n: number) => `$${n.toLocaleString()}`;
@@ -51,17 +52,30 @@ const STRIPE_BUY_BUTTON_SCRIPT = "https://js.stripe.com/v3/buy-button.js";
 const STRIPE_BUY_BUTTON_ID = "buy_btn_1U8nvNGd5RmL1wBxiBeEk4sC";
 const STRIPE_PUBLISHABLE_KEY =
   "pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4";
+/**
+ * Paste a Stripe Payment Link here to swap the embedded buy button for our own
+ * navy button. While empty, the embed carries the price on its own so $1,595
+ * never appears twice.
+ */
+const STRIPE_PAYMENT_LINK = "";
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
-const processChips = ["We write both", "You approve both", "It goes live"];
+const processChips = ["We write it", "You approve it", "It goes live"];
 
 const v2WhatYouGet = [
-  "Your story in 4 publications — USA Today, the Associated Press, Business Insider and Fortune.",
-  "A press release about your win, written for you and published on USA Today",
-  "An engraved award carrying your name and your award year",
-  "A printed certificate, ready to frame",
+  {
+    lead: "Your story in four publications",
+    rest: " — USA Today, the Associated Press, Business Insider and Fortune",
+  },
+  {
+    lead: "A full article on your winner page",
+    rest: " at entrepreneurawards.co, with a permanent link",
+  },
+  { lead: "The engraved award", rest: " carrying your name and your award year" },
+  { lead: "A printed certificate", rest: ", ready to frame" },
+  { lead: "Your approval on every word", rest: " before anything is published" },
 ];
 
 const publications = [
@@ -70,6 +84,23 @@ const publications = [
   { name: "Business Insider", descriptor: "Business & tech" },
   { name: "Fortune", descriptor: "Business" },
 ];
+
+/** Inline tick used by the "what's included" list. */
+function Tick() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden
+      style={{ marginTop: "5px", flexShrink: 0 }}
+    >
+      <path d="M2.5 8.5 6 12l7.5-8" stroke={INK} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 
 // ---------------------------------------------------------------- pieces
 
@@ -169,8 +200,8 @@ function withSlots(text: string) {
 function BrowserMockup() {
   return (
     <div
-      className="flex h-full flex-col overflow-hidden rounded-xl"
-      style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
+      className="flex h-full flex-col overflow-hidden"
+      style={{ backgroundColor: "#fff" }}
     >
       <div
         className="flex items-center gap-2 px-3 py-2"
@@ -200,7 +231,7 @@ function BrowserMockup() {
 
       <div
         className="relative flex-1 px-5 pb-6 pt-5"
-        style={{ minHeight: "300px", overflow: "hidden" }}
+        style={{ minHeight: 0, overflow: "hidden" }}
       >
         <p
           style={{
@@ -251,8 +282,8 @@ function BrowserMockup() {
 function PressMockup() {
   return (
     <div
-      className="flex h-full flex-col overflow-hidden rounded-xl"
-      style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
+      className="flex h-full flex-col overflow-hidden"
+      style={{ backgroundColor: "#fff" }}
     >
       <div
         className="flex items-center gap-2 px-3 py-2"
@@ -282,7 +313,7 @@ function PressMockup() {
 
       <div
         className="relative flex-1 px-5 pb-6 pt-5"
-        style={{ minHeight: "300px", overflow: "hidden" }}
+        style={{ minHeight: 0, overflow: "hidden" }}
       >
         <img
           src="/usa-today-logo.svg"
@@ -333,56 +364,8 @@ function PressMockup() {
   );
 }
 
-/** Quiet inline row of the four publications — no panel, no box. */
-function PublicationsRow() {
-  return (
-    <div className="mt-8">
-      <p
-        className="text-center"
-        style={{
-          fontSize: "0.6875rem",
-          fontWeight: 600,
-          textTransform: "uppercase",
-          letterSpacing: "0.14em",
-          color: MUTED,
-        }}
-      >
-        Published in
-      </p>
-      <div className="mx-auto mt-4 flex max-w-[640px] flex-wrap justify-center">
-        {publications.map((pub, i) => (
-          <span key={pub.name} className="flex w-1/2 items-center md:w-auto">
-            <span
-              aria-hidden
-              className="hidden md:block"
-              style={{
-                width: i === 0 ? 0 : "1px",
-                alignSelf: "stretch",
-                backgroundColor: i === 0 ? "transparent" : LINE,
-              }}
-            />
-            <span
-              className={`flex-1 px-4 py-1 text-center md:flex-none md:px-6 ${
-                i % 2 === 1 ? "max-md:border-l" : ""
-              }`}
-              style={{
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.14em",
-                color: INK,
-                borderColor: LINE,
-                whiteSpace: "nowrap",
-              }}
-            >
-              {pub.name}
-            </span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
+
+
 
 function useStickyVisible() {
   const [visible, setVisible] = useState(false);
@@ -583,176 +566,388 @@ function WinnerOptionsPage() {
         </section>
 
         {/* 3 — The Winner's Feature */}
-        <section id="feature" style={{ padding: "48px 0 64px" }}>
+        <section id="feature" className="py-14 md:py-20">
           <Container>
+            {/* Header */}
             <div className="text-center">
               <p
                 style={{
-                  fontSize: "0.6875rem",
+                  fontSize: "11px",
                   fontWeight: 600,
                   textTransform: "uppercase",
-                  letterSpacing: "0.14em",
-                  color: BLUE,
+                  letterSpacing: "0.16em",
+                  color: MUTED,
                 }}
               >
                 The Winner&rsquo;s Feature
               </p>
               <h2
+                className="mx-auto"
                 style={{
-                  marginTop: "10px",
-                  fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)",
-                  fontWeight: 600,
+                  marginTop: "12px",
+                  fontSize: "clamp(28px, 4.4vw, 40px)",
+                  fontWeight: 700,
+                  lineHeight: 1.1,
                   letterSpacing: "-0.02em",
-                  lineHeight: 1.15,
+                  maxWidth: "22ch",
                   color: INK,
                 }}
               >
-                Get your business written about in USA Today, the Associated Press, Business Insider and Fortune.
+                Get published in four national publications.
               </h2>
-              <p style={{ marginTop: "14px", fontSize: "0.9375rem", color: BODY }}>
-                A full article about your business on our site, a press release published in four national publications, and an engraved award posted to you.
+              <p
+                className="mx-auto text-[15.5px] md:text-[16.5px]"
+                style={{ marginTop: "16px", lineHeight: 1.6, maxWidth: "52ch", color: BODY }}
+              >
+                We write one story about your win and place it in all four, plus a full article on
+                your winner page and the engraved award, posted to you.
               </p>
             </div>
 
-            <PublicationsRow />
-
-            <div className="mt-12 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
-              <figure className="flex h-full flex-col">
-                <div className="flex flex-1 flex-col">
-                  <PressMockup />
-                </div>
-                <figcaption
-                  className="mt-3 text-center"
-                  style={{ fontSize: "0.8125rem", color: MUTED }}
-                >
-                  Example: published on USA Today.
-                </figcaption>
-              </figure>
-
-              <figure className="flex h-full flex-col">
-                <Link
-                  to="/winners/specimen"
-                  data-event="feature-format-view"
-                  className={`block flex-1 rounded-xl ${focusRing}`}
-                >
-                  <BrowserMockup />
-                </Link>
-                <figcaption
-                  className="mt-3 text-center"
-                  style={{ fontSize: "0.8125rem", color: BLUE }}
-                >
-                  <Link
-                    to="/winners/specimen"
-                    className={`rounded-sm underline underline-offset-4 ${focusRing}`}
-                  >
-                    See a real example →
-                  </Link>
-                </figcaption>
-              </figure>
-
-              <figure className="flex h-full flex-col">
-                <div
-                  className="flex-1 overflow-hidden rounded-xl"
-                  style={{ border: `1px solid ${LINE}` }}
-                >
-                  <img
-                    src={portraitAsset.url}
-                    alt="Founder holding an engraved Entrepreneur Award"
-                    width={1264}
-                    height={848}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full"
-                    style={{ objectFit: "cover", objectPosition: "50% 35%" }}
-                  />
-                </div>
-                <figcaption
-                  className="mt-3 text-center"
-                  style={{ fontSize: "0.8125rem", color: MUTED }}
-                >
-                  The engraved award, posted to you.
-                </figcaption>
-              </figure>
-            </div>
-
-            {/* What you get */}
-            <ul className="mx-auto mt-12 grid max-w-[480px] gap-3">
-              {v2WhatYouGet.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: BLUE }} aria-hidden />
-                  <span style={{ fontSize: "0.9375rem", color: BODY }}>{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Process chips */}
-            <ol className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
-              {processChips.map((chip, i) => (
-                <li key={chip} className="flex items-center gap-3">
-                  <span
-                    className="rounded-full px-3.5 py-1.5"
-                    style={{
-                      border: `1px solid ${LINE}`,
-                      backgroundColor: TINT,
-                      fontSize: "0.8125rem",
-                      color: INK,
-                    }}
-                  >
-                    {chip}
-                  </span>
-                  {i < processChips.length - 1 ? (
-                    <span aria-hidden style={{ color: MUTED, fontSize: "0.875rem" }}>
-                      →
-                    </span>
-                  ) : null}
-                </li>
-              ))}
-            </ol>
-
-            <p className="mt-6 text-center" style={{ fontSize: "0.9375rem", color: BODY }}>
-              You'll have your article draft within five working days, and it goes live three days after you approve it.
-            </p>
-
-            <div className="mt-12 flex flex-col items-center">
+            {/* Where your story runs */}
+            <div
+              className="mx-auto max-w-4xl overflow-hidden bg-white"
+              style={{ marginTop: "36px", border: `1px solid ${LINE}`, borderRadius: "3px" }}
+            >
               <p
+                className="text-center"
                 style={{
-                  fontSize: "0.6875rem",
-                  fontWeight: 600,
+                  padding: "12px",
+                  backgroundColor: TINT,
+                  borderBottom: `1px solid ${LINE}`,
+                  fontSize: "10.5px",
+                  fontWeight: 700,
                   textTransform: "uppercase",
                   letterSpacing: "0.14em",
-                  color: BLUE,
+                  color: MUTED,
                 }}
               >
-                4 Publications
+                Where your story runs
               </p>
-              <p
-                style={{
-                  marginTop: "8px",
-                  fontSize: "clamp(2.25rem, 5vw, 3rem)",
-                  fontWeight: 600,
-                  letterSpacing: "-0.02em",
-                  color: INK,
-                }}
-              >
-                {formatPrice(FEATURE_PRICE)}
-              </p>
-              <div data-event="feature-order-click" className="mt-5">
-                {/* @ts-expect-error - Stripe web component */}
-                <stripe-buy-button
-                  buy-button-id={STRIPE_BUY_BUTTON_ID}
-                  publishable-key={STRIPE_PUBLISHABLE_KEY}
-                  style={{ display: "block", minWidth: "220px" }}
-                />
+              <div className="grid grid-cols-2 sm:grid-cols-4">
+                {publications.map((pub, i) => (
+                  <div
+                    key={pub.name}
+                    className={`flex flex-col items-center justify-center px-3 text-center ${
+                      i % 2 === 1 ? "border-l" : ""
+                    } ${i >= 2 ? "border-t sm:border-t-0" : ""} ${i > 0 ? "sm:border-l" : ""}`}
+                    style={{
+                      paddingTop: "28px",
+                      paddingBottom: "28px",
+                      borderColor: LINE,
+                    }}
+                  >
+
+                    {/* Wordmark slot — a logo <img> can replace this span later. */}
+                    <span
+                      className="text-[15px] md:text-[16.5px]"
+                      style={{ fontWeight: 700, letterSpacing: "-0.2px", color: INK }}
+                    >
+                      {pub.name}
+                    </span>
+                    <span
+                      style={{
+                        marginTop: "6px",
+                        fontSize: "10px",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.1em",
+                        color: MUTED,
+                      }}
+                    >
+                      {pub.descriptor}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <p style={{ marginTop: "12px", fontSize: "0.8125rem", color: MUTED }}>
-                Nothing goes live until you approve every word.
+              <p
+                className="text-center"
+                style={{
+                  padding: "14px",
+                  borderTop: `1px solid ${LINE}`,
+                  fontSize: "12.5px",
+                  color: MUTED,
+                }}
+              >
+                The same story, written to each publication&rsquo;s format and running under your
+                business name.
               </p>
-              <p style={{ marginTop: "6px", fontSize: "0.8125rem", color: MUTED }}>
-                Your award and the files above are yours either way.
+            </div>
+
+            {/* Three matched proof cards */}
+            <div
+              className="grid grid-cols-1 gap-5 sm:grid-cols-3"
+              style={{ marginTop: "44px" }}
+            >
+              {[
+                {
+                  label: "The press release",
+                  media: <PressMockup />,
+                  caption: "A recent placement in USA Today.",
+                },
+                {
+                  label: "Your winner page",
+                  media: <BrowserMockup />,
+                  caption: "The full article, on entrepreneurawards.co.",
+                },
+                {
+                  label: "The award",
+                  media: (
+                    <img
+                      src={portraitAsset.url}
+                      alt="Founder holding an engraved Entrepreneur Award"
+                      width={1264}
+                      height={848}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full"
+                      style={{ objectFit: "cover", objectPosition: "50% 35%" }}
+                    />
+                  ),
+                  caption: "Engraved with your name and year.",
+                },
+              ].map((card) => (
+                <figure
+                  key={card.label}
+                  className="bg-white"
+                  style={{ border: `1px solid ${LINE}`, borderRadius: "3px", padding: "14px" }}
+                >
+                  <p
+                    className="text-center"
+                    style={{
+                      marginBottom: "12px",
+                      fontSize: "10px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.13em",
+                      color: MUTED,
+                    }}
+                  >
+                    {card.label}
+                  </p>
+                  <div
+                    className="aspect-[16/11] w-full overflow-hidden"
+                    style={{ border: `1px solid ${LINE}`, borderRadius: "2px" }}
+                  >
+                    {card.media}
+                  </div>
+                  <figcaption
+                    className="text-center"
+                    style={{
+                      marginTop: "12px",
+                      fontSize: "12.5px",
+                      lineHeight: 1.5,
+                      color: BODY,
+                    }}
+                  >
+                    {card.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <div className="text-center" style={{ marginTop: "24px" }}>
+              <Link
+                to="/winners/specimen"
+                data-event="feature-format-view"
+                className={`inline-block rounded-sm ${focusRing}`}
+                style={{
+                  fontSize: "13.5px",
+                  fontWeight: 600,
+                  color: INK,
+                  textDecoration: "underline",
+                  textDecorationThickness: "2px",
+                  textUnderlineOffset: "4px",
+                }}
+              >
+                See a real winner&rsquo;s feature →
+              </Link>
+            </div>
+
+            {/* What's included */}
+            <div style={{ marginTop: "48px", borderTop: `1px solid ${LINE}`, paddingTop: "36px" }}>
+              <p
+                className="text-center"
+                style={{
+                  fontSize: "10.5px",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.14em",
+                  color: MUTED,
+                }}
+              >
+                What&rsquo;s included
+              </p>
+              <ul className="mx-auto max-w-xl" style={{ marginTop: "20px" }}>
+                {v2WhatYouGet.map((item) => (
+                  <li
+                    key={item.lead}
+                    className="flex items-start gap-3 text-left"
+                    style={{ marginBottom: "14px" }}
+                  >
+                    <Tick />
+                    <span style={{ fontSize: "14.5px", lineHeight: 1.6, color: BODY }}>
+                      <strong style={{ fontWeight: 600, color: INK }}>{item.lead}</strong>
+                      {item.rest}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* How it works */}
+            <div style={{ marginTop: "48px", borderTop: `1px solid ${LINE}`, paddingTop: "36px" }}>
+              <ol className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                {processChips.map((chip, i) => (
+                  <li key={chip} className="flex items-center gap-3">
+                    <span className="flex items-center gap-2.5">
+                      <span
+                        className="flex shrink-0 items-center justify-center rounded-full"
+                        style={{
+                          width: "22px",
+                          height: "22px",
+                          backgroundColor: INK,
+                          color: "#fff",
+                          fontSize: "10.5px",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {i + 1}
+                      </span>
+                      <span style={{ fontSize: "14px", fontWeight: 600, color: INK }}>{chip}</span>
+                    </span>
+                    {i < processChips.length - 1 ? (
+                      <span
+                        aria-hidden
+                        className="hidden sm:inline-flex"
+                        style={{ color: LINE, marginLeft: "8px", marginRight: "8px" }}
+                      >
+                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
+                          <path
+                            d="M0 5h15M11.5 1.5 15 5l-3.5 3.5"
+                            stroke={MUTED}
+                            strokeOpacity="0.5"
+                            strokeWidth="1.2"
+                          />
+                        </svg>
+                      </span>
+                    ) : null}
+                  </li>
+                ))}
+              </ol>
+              <p
+                className="mx-auto text-center"
+                style={{
+                  marginTop: "20px",
+                  maxWidth: "54ch",
+                  fontSize: "13.5px",
+                  lineHeight: 1.6,
+                  color: MUTED,
+                }}
+              >
+                Your draft arrives within five working days. It goes live three days after you
+                approve it.
+              </p>
+            </div>
+
+            {/* Price */}
+            <div
+              className="mx-auto max-w-md overflow-hidden bg-white"
+              style={{
+                marginTop: "48px",
+                border: `1px solid ${INK}`,
+                borderRadius: "3px",
+                borderTop: `3px solid ${GOLD}`,
+              }}
+            >
+              <div className="text-center" style={{ padding: "32px 24px" }}>
+                <p
+                  style={{
+                    fontSize: "10.5px",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.14em",
+                    color: MUTED,
+                  }}
+                >
+                  4 Publications · One story
+                </p>
+                {STRIPE_PAYMENT_LINK ? (
+                  <>
+                    <p
+                      className="text-[42px] md:text-[46px]"
+                      style={{
+                        marginTop: "10px",
+                        fontWeight: 700,
+                        letterSpacing: "-1.2px",
+                        lineHeight: 1.05,
+                        color: INK,
+                      }}
+                    >
+                      {formatPrice(FEATURE_PRICE)}
+                    </p>
+                    <p style={{ marginTop: "8px", fontSize: "12.5px", color: MUTED }}>
+                      One payment. Nothing recurring.
+                    </p>
+                    <a
+                      href={STRIPE_PAYMENT_LINK}
+                      data-event="feature-order-click"
+                      className={`flex w-full items-center justify-center rounded-sm text-white transition-opacity hover:opacity-90 ${focusRing}`}
+                      style={{
+                        marginTop: "24px",
+                        minHeight: "44px",
+                        backgroundColor: INK,
+                        fontSize: "15px",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Order the Winner&rsquo;s Feature
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <p style={{ marginTop: "10px", fontSize: "12.5px", color: MUTED }}>
+                      One payment. Nothing recurring.
+                    </p>
+                    <div data-event="feature-order-click" style={{ marginTop: "24px" }}>
+                      {/* @ts-expect-error - Stripe web component */}
+                      <stripe-buy-button
+                        buy-button-id={STRIPE_BUY_BUTTON_ID}
+                        publishable-key={STRIPE_PUBLISHABLE_KEY}
+                        style={{ display: "block" }}
+                      />
+                    </div>
+                  </>
+                )}
+                <p
+                  style={{
+                    marginTop: "14px",
+                    fontSize: "11px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: MUTED,
+                  }}
+                >
+                  Secure checkout by Stripe
+                </p>
+              </div>
+              <p
+                className="text-center"
+                style={{
+                  backgroundColor: TINT,
+                  borderTop: `1px solid ${LINE}`,
+                  padding: "14px 20px",
+                  fontSize: "12.5px",
+                  lineHeight: 1.6,
+                  color: MUTED,
+                }}
+              >
+                Nothing goes live until you approve every word. Your award and the free files are
+                yours either way.
               </p>
             </div>
           </Container>
         </section>
+
       </main>
 
       {/* 4 — Sticky bar */}
