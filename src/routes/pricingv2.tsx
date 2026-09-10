@@ -994,14 +994,22 @@ function WinnerOptionsPage() {
             <strong style={{ fontWeight: 600 }}>The Winner&rsquo;s Feature</strong>
             <span style={{ color: MUTED }}> · {formatPrice(FEATURE_PRICE)}</span>
           </span>
-          <div data-event="feature-order-click">
-            {/* @ts-expect-error - Stripe web component */}
-            <stripe-buy-button
-              buy-button-id={STRIPE_BUY_BUTTON_ID}
-              publishable-key={STRIPE_PUBLISHABLE_KEY}
-              style={{ display: "block", minWidth: "180px" }}
-            />
-          </div>
+          <a
+            href={STRIPE_PAYMENT_LINK}
+            data-event="feature-order-click"
+            className={`inline-flex items-center justify-center rounded-sm text-white transition-opacity hover:opacity-90 ${focusRing}`}
+            style={{
+              minHeight: "44px",
+              minWidth: "180px",
+              padding: "0 20px",
+              backgroundColor: INK,
+              fontSize: "15px",
+              fontWeight: 600,
+            }}
+          >
+            Order the Winner&rsquo;s Feature
+          </a>
+
         </Container>
       </div>
 
