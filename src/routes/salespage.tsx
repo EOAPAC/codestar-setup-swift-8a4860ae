@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Search } from "lucide-react";
+import { Check, Search } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
@@ -12,7 +12,6 @@ import {
   SPECIMEN_BUSINESS_TOKEN,
   splitOnBusinessToken,
 } from "@/content/specimen";
-
 import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 
 export const Route = createFileRoute("/salespage")({
@@ -21,22 +20,22 @@ export const Route = createFileRoute("/salespage")({
       { title: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
       {
         name: "description",
-        content: `We write the story of your ${AWARD_YEAR} Entrepreneur Award win and publish it in USA Today, the Associated Press, Business Insider and Fortune.`,
+        content: `We write the story of your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and announce it in USA Today, the Associated Press and Business Insider.`,
       },
       { property: "og:title", content: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
       {
         property: "og:description",
-        content: `We write the story of your ${AWARD_YEAR} Entrepreneur Award win and publish it in four national publications.`,
+        content: `One story: your Feature on the Entrepreneur Awards winners page, announced in three national publications.`,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "robots", content: "noindex, nofollow" },
+      { name: "robots", content: "noindex" },
     ],
   }),
   component: SalesPage,
 });
 
-// ------------------------------------------------------------------ tokens
+/* ----------------------------------------------------------------- tokens */
 const INK = "#0F172A";
 const BODY = "#52606D";
 const MUTED = "#6B7785";
@@ -45,112 +44,24 @@ const BRAND_DARK = "#1565C4";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
 
-const PRICE = 1595;
-const PUBLICATIONS = 4;
-/** Derived so the per-publication line stays true if either number changes. */
-const PER_PUBLICATION = Math.round(PRICE / PUBLICATIONS / 50) * 50;
+/* Every price on this page derives from these three constants. */
+const BASE_PRICE = 997;
+const FORTUNE_PRICE = 1395;
+const AWARD_PRICE = 197;
+const money = (n: number) => `$${n.toLocaleString()}`;
 
-const STRIPE_PAYMENT_LINK = "https://payments.entrepreneurawards.co/b/28E9ATesZ6jm2MQ8fi8so0k";
-/** A real, published winner feature. */
-const REAL_WINNER_PATH = "/winners/$slug" as const;
-const REAL_WINNER_SLUG = "adam-pisk";
+/* Stripe Payment Links. Base collects email only; the award package collects an address. */
+const BASE_LINK = "https://payments.entrepreneurawards.co/b/28E9ATesZ6jm2MQ8fi8so0k";
+const FORTUNE_LINK = BASE_LINK;
+const AWARD_LINK = BASE_LINK;
 
-const money = (n: number) => `$${n.toLocaleString("en-US")}`;
+const BASE_PUBLICATIONS = "USA Today, the Associated Press and Business Insider";
+const REAL_FEATURE_SLUG = "adam-pisk";
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
-const BIZ = "[Your Business]";
-
-// ------------------------------------------------------------------ offer rows
-/**
- * Standalone catalogue rates. We do not publish separate rates for these items,
- * so every line is honestly "Included" and the discount rows are omitted —
- * see the rule against manufactured savings. Give a row a numeric `value` and
- * the totals below appear automatically.
- */
-type OfferRow = { lead: string; rest?: string; value: number | null };
-
-const OFFER_ROWS: OfferRow[] = [
-  { lead: "Press release", rest: " in USA Today", value: null },
-  { lead: "Press release", rest: " on the Associated Press", value: null },
-  { lead: "Press release", rest: " in Business Insider", value: null },
-  { lead: "Press release", rest: " in Fortune", value: null },
-  { lead: "Story", rest: " written by our editorial team", value: null },
-  { lead: "Your winner page", rest: " on entrepreneurawards.co", value: null },
-  { lead: "Engraved award", rest: " and printed certificate", value: null },
-];
-
-const PRICED_TOTAL = OFFER_ROWS.reduce((sum, r) => sum + (r.value ?? 0), 0);
-const SHOW_SAVING = PRICED_TOTAL > PRICE;
-const SAVING = PRICED_TOTAL - PRICE;
-
-// ------------------------------------------------------------------ search mock
-const SEARCH_RESULTS = [
-  {
-    domain: "usatoday.com",
-    headline: `${BIZ} named a ${AWARD_YEAR} Entrepreneur Awards winner`,
-    snippet: `The ${AWARD_YEAR} Entrepreneur Awards have named ${BIZ} among this year's winners, recognising…`,
-  },
-  {
-    domain: "apnews.com",
-    headline: `${AWARD_YEAR} Entrepreneur Awards names ${BIZ} a winner`,
-    snippet: `${BIZ} has been recognised in the ${AWARD_YEAR} Entrepreneur Awards, an independent award for founders…`,
-  },
-  {
-    domain: "businessinsider.com",
-    headline: `How ${BIZ} won a ${AWARD_YEAR} Entrepreneur Award`,
-    snippet: `Judged against a published rubric, ${BIZ} was selected from this year's entries for…`,
-  },
-  {
-    domain: "fortune.com",
-    headline: `${BIZ} recognised in the ${AWARD_YEAR} Entrepreneur Awards`,
-    snippet: "The award recognises founders whose businesses have demonstrated…",
-  },
-  {
-    domain: "entrepreneurawards.co",
-    headline: `${AWARD_YEAR} Winner Feature — ${BIZ}`,
-    snippet: "The full winner's feature, including the judges' rubric and the founder's own account of…",
-  },
-];
-
-// ------------------------------------------------------------------ pieces
-function OrderButton({
-  id,
-  className = "",
-  variant = "brand",
-}: {
-  id?: string;
-  className?: string;
-  variant?: "brand" | "light";
-}) {
-  const light = variant === "light";
-  return (
-    <a
-      id={id}
-      href={STRIPE_PAYMENT_LINK}
-      className={`inline-flex items-center justify-center transition-colors ${focusRing} ${className}`}
-      style={{
-        minHeight: "52px",
-        padding: "0 36px",
-        borderRadius: "8px",
-        backgroundColor: light ? "#FFFFFF" : BRAND,
-        color: light ? INK : "#FFFFFF",
-        fontSize: "15.5px",
-        fontWeight: 600,
-      }}
-      onMouseEnter={(e) => {
-        if (!light) e.currentTarget.style.backgroundColor = BRAND_DARK;
-      }}
-      onMouseLeave={(e) => {
-        if (!light) e.currentTarget.style.backgroundColor = BRAND;
-      }}
-    >
-      Order the Winner&rsquo;s Feature
-    </a>
-  );
-}
-
+/* ------------------------------------------------------------- primitives */
 function SpecimenSlot() {
   return (
     <span
@@ -168,15 +79,161 @@ function SpecimenSlot() {
 }
 
 function withSlots(text: string) {
-  return splitOnBusinessToken(text).map((part, i, all) => (
+  const parts = splitOnBusinessToken(text);
+  return parts.map((part, i) => (
     <span key={i}>
       {part}
-      {i < all.length - 1 ? <SpecimenSlot /> : null}
+      {i < parts.length - 1 ? <SpecimenSlot /> : null}
     </span>
   ));
 }
 
-/** Browser-frame mockup of the published winner page — carried over unchanged. */
+function BrandButton({
+  href,
+  children,
+  className = "",
+  style,
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center justify-center transition-colors ${focusRing} ${className}`}
+      style={{
+        backgroundColor: BRAND,
+        color: "#fff",
+        fontSize: "15.5px",
+        fontWeight: 600,
+        borderRadius: "8px",
+        minHeight: "52px",
+        padding: "0 36px",
+        ...style,
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = BRAND_DARK)}
+      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = BRAND)}
+    >
+      {children}
+    </a>
+  );
+}
+
+function FeatureLink({ className = "" }: { className?: string }) {
+  return (
+    <Link
+      to="/winners/$slug"
+      params={{ slug: REAL_FEATURE_SLUG }}
+      className={`inline-block ${focusRing} ${className}`}
+      style={{ color: BRAND, fontSize: "14px", fontWeight: 500 }}
+    >
+      See a real winner&rsquo;s feature &rarr;
+    </Link>
+  );
+}
+
+/* --------------------------------------------------- search result mockup */
+type Result = { domain: string; headline: string; snippet: string };
+
+const heroResults: Result[] = [
+  {
+    domain: "usatoday.com",
+    headline: `[Your Business] named a ${AWARD_YEAR} Entrepreneur Awards winner`,
+    snippet: `The ${AWARD_YEAR} Entrepreneur Awards have named [Your Business] among this year's winners, recognising…`,
+  },
+  {
+    domain: "apnews.com",
+    headline: `${AWARD_YEAR} Entrepreneur Awards names [Your Business] a winner`,
+    snippet: `[Your Business] has been recognised in the ${AWARD_YEAR} Entrepreneur Awards, an independent award for founders…`,
+  },
+  {
+    domain: "businessinsider.com",
+    headline: `How [Your Business] won a ${AWARD_YEAR} Entrepreneur Award`,
+    snippet: `Judged against a published rubric, [Your Business] was selected from this year's entries for…`,
+  },
+  {
+    domain: "entrepreneurawards.co",
+    headline: `${AWARD_YEAR} Winner Feature — [Your Business]`,
+    snippet:
+      "Before the award, the constraint everyone told them to fix turned out to be the reason customers stayed…",
+  },
+];
+
+const fortuneResult: Result = {
+  domain: "fortune.com",
+  headline: `[Your Business] recognised in the ${AWARD_YEAR} Entrepreneur Awards`,
+  snippet: "The award recognises founders whose businesses have demonstrated…",
+};
+
+function SearchResult({ result }: { result: Result }) {
+  return (
+    <div>
+      <p style={{ fontSize: "11px", color: MUTED }}>{result.domain}</p>
+      <p
+        style={{
+          marginTop: "3px",
+          fontSize: "14px",
+          fontWeight: 500,
+          lineHeight: 1.3,
+          color: BRAND,
+        }}
+      >
+        {withSlots(result.headline)}
+      </p>
+      <p
+        className="truncate"
+        style={{ marginTop: "4px", fontSize: "12px", lineHeight: 1.45, color: BODY }}
+      >
+        {result.snippet}
+      </p>
+    </div>
+  );
+}
+
+function SearchMockup() {
+  return (
+    <div
+      role="img"
+      aria-label="Illustration of a search results page showing three news announcements of an Entrepreneur Awards win and the winner's feature on entrepreneurawards.co"
+      style={{
+        backgroundColor: "#fff",
+        border: `1px solid ${LINE}`,
+        borderRadius: "10px",
+        overflow: "hidden",
+        boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
+      }}
+    >
+      <div style={{ backgroundColor: TINT, borderBottom: `1px solid ${LINE}`, padding: "12px" }}>
+        <div
+          className="flex items-center gap-2"
+          style={{
+            backgroundColor: "#fff",
+            border: `1px solid ${LINE}`,
+            borderRadius: "18px",
+            padding: "8px 14px",
+          }}
+        >
+          <Search aria-hidden size={13} color={MUTED} />
+          <span style={{ fontSize: "12.5px", color: INK }}>{SPECIMEN_BUSINESS_TOKEN}</span>
+        </div>
+      </div>
+      {heroResults.map((r, i) => (
+        <div
+          key={r.domain}
+          style={{ padding: "16px", borderTop: i === 0 ? undefined : `1px solid ${LINE}` }}
+        >
+          <SearchResult result={r} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ----------------------------------------------------- winner page mockup */
 function BrowserMockup() {
   return (
     <div className="flex h-full flex-col overflow-hidden" style={{ backgroundColor: "#fff" }}>
@@ -186,17 +243,25 @@ function BrowserMockup() {
       >
         <span className="flex gap-1.5" aria-hidden>
           {[0, 1, 2].map((i) => (
-            <span key={i} className="block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "#E2E6ED" }} />
+            <span
+              key={i}
+              className="block h-2.5 w-2.5 rounded-full"
+              style={{ backgroundColor: "#E2E6ED" }}
+            />
           ))}
         </span>
         <span
           className="ml-1 flex-1 truncate rounded-md px-2.5 py-1"
-          style={{ backgroundColor: "#fff", border: `1px solid ${LINE}`, fontSize: "11px", color: MUTED }}
+          style={{
+            backgroundColor: "#fff",
+            border: `1px solid ${LINE}`,
+            fontSize: "11px",
+            color: MUTED,
+          }}
         >
           entrepreneurawards.co/winners/your-business
         </span>
       </div>
-
       <div className="relative flex-1 px-5 pb-6 pt-5" style={{ minHeight: 0, overflow: "hidden" }}>
         <p
           style={{
@@ -230,75 +295,45 @@ function BrowserMockup() {
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0"
-          style={{ height: "110px", background: "linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%)" }}
+          style={{
+            height: "110px",
+            background: "linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%)",
+          }}
         />
       </div>
     </div>
   );
 }
 
-function SearchMockup() {
-  return (
-    <div
-      role="img"
-      aria-label="Illustrative search results page showing articles about your business on usatoday.com, apnews.com, businessinsider.com, fortune.com and entrepreneurawards.co"
-      className="overflow-hidden"
-      style={{
-        backgroundColor: "#FFFFFF",
-        border: `1px solid ${LINE}`,
-        borderRadius: "10px",
-        boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-      }}
-    >
-      <div style={{ backgroundColor: TINT, borderBottom: `1px solid ${LINE}`, padding: "12px" }}>
-        <div
-          className="flex items-center gap-2"
-          style={{
-            backgroundColor: "#FFFFFF",
-            border: `1px solid ${LINE}`,
-            borderRadius: "18px",
-            padding: "8px 14px",
-          }}
-        >
-          <Search aria-hidden size={14} style={{ color: MUTED, flexShrink: 0 }} />
-          <span style={{ fontSize: "12.5px", color: INK }}>{BIZ}</span>
-        </div>
-      </div>
+/* ------------------------------------------------------------- page content */
+const includedRows: { lead: string; rest: string }[] = [
+  {
+    lead: "Your Feature",
+    rest: ", written by our editorial team and published on the Entrepreneur Awards winners page",
+  },
+  {
+    lead: "A press release",
+    rest: ` announcing your win, placed in ${BASE_PUBLICATIONS}, each linking back to your Feature`,
+  },
+  {
+    lead: "A permanent link",
+    rest: " to every placement, to send to a client or add to your site",
+  },
+  {
+    lead: "Your digital certificate and winner badge",
+    rest: ", ready to use the day it goes live",
+  },
+  { lead: "Your approval", rest: " on every word before anything is published" },
+];
 
-      <div>
-        {SEARCH_RESULTS.map((r, i) => (
-          <div
-            key={r.domain}
-            style={{
-              padding: "16px",
-              borderBottom: i < SEARCH_RESULTS.length - 1 ? `1px solid ${LINE}` : undefined,
-            }}
-          >
-            <p style={{ fontSize: "11px", color: MUTED }}>{r.domain}</p>
-            <p style={{ marginTop: "3px", fontSize: "14px", fontWeight: 500, lineHeight: 1.3, color: BRAND }}>
-              {r.headline}
-            </p>
-            <p
-              className="truncate"
-              style={{ marginTop: "4px", fontSize: "12px", lineHeight: 1.45, color: BODY }}
-            >
-              {r.snippet}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-const VALUE_CARDS = [
+const whyCards = [
   {
     title: "Something to point to",
     body: "When someone looks you up before a call, an article in USA Today answers the question they were about to ask. Put the links on your site, in your email signature, in your deck.",
   },
   {
-    title: "You don\u2019t write a word",
-    body: "Our editorial team writes the piece. Your draft arrives within five working days, and nothing is published until you approve it.",
+    title: "You don't write a word",
+    body: "Our editorial team writes both the Feature and the release. Your draft arrives within five working days, and nothing is published until you approve it.",
   },
   {
     title: "It runs on a date, not a maybe",
@@ -306,76 +341,107 @@ const VALUE_CARDS = [
   },
 ];
 
-const STEPS = ["We write it", "You approve it", "It goes live"];
-
-const QUESTIONS = [
+const questions = [
   {
     q: "Is this a paid placement?",
-    a: "Yes. We pay the publication to run the piece, which is why we can tell you it will be published and when. We would rather say that here than have you find out afterwards.",
+    a: "Yes. We pay the publication to run the release, which is why we can tell you it will be published and when. We would rather say that here than have you find out afterwards.",
   },
   {
-    q: "Who writes the article?",
-    a: "Our editorial team. Beyond a short form about your business, you don\u2019t have to write or brief anything.",
+    q: "Why does the same release appear in every publication?",
+    a: "Because that is what a press release is — one announcement, distributed. Your Feature on the Entrepreneur Awards site is the long version, written for you alone, and every release links back to it.",
   },
   {
-    q: "What if I don\u2019t like the draft?",
-    a: "Tell us what to change and we\u2019ll change it. Nothing is published until you approve it.",
+    q: "Why is Fortune priced separately?",
+    a: "Fortune costs us more than the other three publications combined. We could have averaged that across everyone's price, but that means charging every winner for a placement most of them didn't ask for. So Fortune is there if you want it, and you're not paying for it if you don't.",
+  },
+  {
+    q: "Do you need my address?",
+    a: `Not for the Feature. Everything in the ${money(BASE_PRICE)} package is digital and we only ask for your email. We ask for an address only if you add the Award Package, because we have to post it to you.`,
+  },
+  {
+    q: "Who writes it?",
+    a: "Our editorial team. Beyond a short form about your business, you don't have to write or brief anything.",
+  },
+  {
+    q: "What if I don't like the draft?",
+    a: "Tell us what to change and we'll change it. Nothing is published until you approve it.",
   },
   {
     q: "What can I do with the articles afterwards?",
-    a: "Each one has a permanent link. Send them to clients, add them to your site, include them in your deck or your pitch.",
+    a: "Each placement has a permanent link. Send them to clients, add them to your site, include them in your deck or your pitch.",
   },
   {
     q: "Is there anything recurring?",
-    a: `No. One payment of ${money(PRICE)}, and that\u2019s the whole cost.`,
+    a: `No. One payment of ${money(BASE_PRICE)}, and that's the whole cost unless you choose an upgrade.`,
   },
   {
     q: "Do I have to order this to keep my award?",
-    a: "No. Your engraved award, printed certificate and the free winner files are yours either way. This is for winners who want the story published as well.",
+    a: "No. Your digital certificate and winner badge are yours either way. This is for winners who want the story published as well.",
   },
 ];
 
-// ------------------------------------------------------------------ page
-function SalesPage() {
-  const heroButtonRef = useRef<HTMLDivElement | null>(null);
-  const priceSectionRef = useRef<HTMLElement | null>(null);
-  const [showBar, setShowBar] = useState(false);
+const steps = ["We write it", "You approve it", "It goes live"];
+
+const microLabel = {
+  fontSize: "10px",
+  fontWeight: 700,
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.13em",
+  color: MUTED,
+};
+
+/* --------------------------------------------------------------- sticky bar */
+function useStickyBar(heroRef: React.RefObject<HTMLElement>, priceRef: React.RefObject<HTMLElement>) {
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const state = { heroOut: false, priceVisible: false };
-    const sync = () => setShowBar(state.heroOut && !state.priceVisible);
+    const hero = heroRef.current;
+    const price = priceRef.current;
+    if (!hero || !price) return;
+
+    const state = { heroGone: false, priceVisible: false };
+    const update = () => setVisible(state.heroGone && !state.priceVisible);
 
     const heroObserver = new IntersectionObserver(
-      ([entry]) => {
-        state.heroOut = !entry.isIntersecting;
-        sync();
+      ([e]) => {
+        state.heroGone = !e.isIntersecting && e.boundingClientRect.top < 0;
+        update();
       },
       { threshold: 0 },
     );
     const priceObserver = new IntersectionObserver(
-      ([entry]) => {
-        state.priceVisible = entry.isIntersecting;
-        sync();
+      ([e]) => {
+        state.priceVisible = e.isIntersecting;
+        update();
       },
       { threshold: 0 },
     );
 
-    if (heroButtonRef.current) heroObserver.observe(heroButtonRef.current);
-    if (priceSectionRef.current) priceObserver.observe(priceSectionRef.current);
+    heroObserver.observe(hero);
+    priceObserver.observe(price);
     return () => {
       heroObserver.disconnect();
       priceObserver.disconnect();
     };
-  }, []);
+  }, [heroRef, priceRef]);
+
+  return visible;
+}
+
+/* --------------------------------------------------------------------- page */
+function SalesPage() {
+  const heroCtaRef = useRef<HTMLDivElement>(null);
+  const priceCardRef = useRef<HTMLDivElement>(null);
+  const stickyVisible = useStickyBar(heroCtaRef, priceCardRef);
 
   return (
-    <div style={{ backgroundColor: "#FFFFFF", color: BODY }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#fff", color: BODY }}>
       <SiteNav />
 
       <main>
         {/* 1. HERO */}
-        <section style={{ backgroundColor: "#FFFFFF", paddingTop: "64px", paddingBottom: "56px" }}>
-          <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
+        <section style={{ paddingTop: "64px", paddingBottom: "56px" }}>
+          <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 px-6 lg:grid-cols-2 lg:gap-16">
             <div className="text-center lg:text-left">
               <p
                 style={{
@@ -413,40 +479,41 @@ function SalesPage() {
                   maxWidth: "46ch",
                 }}
               >
-                We write the story of your award win and publish it in USA Today, the Associated
-                Press, Business Insider and Fortune.
+                We write the story of your win, publish it on the Entrepreneur Awards winners page,
+                and announce it in {BASE_PUBLICATIONS}.
               </p>
 
               <div
                 className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 lg:justify-start"
                 style={{ marginTop: "28px" }}
               >
-                <span style={{ fontSize: "34px", fontWeight: 700, color: INK, letterSpacing: "-0.02em" }}>
-                  {money(PRICE)}
+                <span style={{ fontSize: "34px", fontWeight: 700, color: INK }}>
+                  {money(BASE_PRICE)}
                 </span>
-                <span style={{ fontSize: "13px", color: MUTED }}>one payment &middot; nothing recurring</span>
+                <span style={{ fontSize: "13px", color: MUTED }}>
+                  one payment &middot; nothing recurring
+                </span>
               </div>
 
-              <div ref={heroButtonRef} style={{ marginTop: "20px" }}>
-                <OrderButton className="w-full sm:w-auto" />
+              <div ref={heroCtaRef} style={{ marginTop: "20px" }}>
+                <BrandButton href={BASE_LINK} className="w-full sm:w-auto">
+                  Order the Winner&rsquo;s Feature
+                </BrandButton>
               </div>
 
-              <p style={{ marginTop: "12px", fontSize: "12.5px", color: MUTED }}>
+              <p style={{ marginTop: "14px", fontSize: "12.5px", color: MUTED }}>
                 You approve every word before anything is published.
+                <br />
+                No shipping address needed — everything is digital.
               </p>
+
+              <div style={{ marginTop: "20px" }}>
+                <FeatureLink />
+              </div>
             </div>
 
             <div>
-              <p
-                style={{
-                  marginBottom: "10px",
-                  fontSize: "10.5px",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.13em",
-                  color: MUTED,
-                }}
-              >
+              <p style={{ ...microLabel, fontSize: "10.5px", marginBottom: "12px" }}>
                 What people find when they look you up
               </p>
               <SearchMockup />
@@ -457,140 +524,201 @@ function SalesPage() {
           </div>
         </section>
 
-        {/* 2. OFFER BOX */}
+        {/* 2. THE OFFER */}
         <section style={{ backgroundColor: TINT, paddingTop: "64px", paddingBottom: "64px" }}>
           <div className="mx-auto max-w-6xl px-6">
             <h2
-              className="text-center text-[24px] md:text-[28px]"
-              style={{ fontWeight: 700, color: INK, letterSpacing: "-0.01em" }}
+              className="text-center"
+              style={{ fontSize: "24px", fontWeight: 700, color: INK }}
             >
-              Everything in the Winner&rsquo;s Feature
+              <span className="md:hidden">What you get for {money(BASE_PRICE)}</span>
+              <span className="hidden md:inline" style={{ fontSize: "28px" }}>
+                What you get for {money(BASE_PRICE)}
+              </span>
             </h2>
 
             <div
-              className="mx-auto overflow-hidden"
+              className="mx-auto"
               style={{
                 marginTop: "28px",
                 maxWidth: "620px",
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#fff",
                 border: `1px solid ${LINE}`,
                 borderRadius: "10px",
+                overflow: "hidden",
                 boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
               }}
             >
-              <ul style={{ padding: "0 20px" }}>
-                {OFFER_ROWS.map((row, i) => (
-                  <li
-                    key={row.lead + row.rest}
-                    className="flex items-baseline justify-between gap-4"
-                    style={{
-                      paddingTop: "14px",
-                      paddingBottom: "14px",
-                      borderTop: i === 0 ? undefined : `1px solid ${LINE}`,
-                    }}
-                  >
-                    <span style={{ fontSize: "14.5px", color: BODY }}>
-                      <span style={{ fontWeight: 600, color: INK }}>{row.lead}</span>
-                      {row.rest}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "14.5px",
-                        color: INK,
-                        fontVariantNumeric: "tabular-nums",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {row.value === null ? "Included" : money(row.value)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {SHOW_SAVING ? (
-                <div
-                  className="flex items-baseline justify-between gap-4"
-                  style={{ padding: "16px 20px", backgroundColor: TINT, borderTop: `1px solid ${LINE}` }}
-                >
-                  <span
-                    style={{ fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.1em", color: MUTED }}
-                  >
-                    Bought separately
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "20px",
-                      fontWeight: 700,
-                      color: MUTED,
-                      textDecoration: "line-through",
-                      fontVariantNumeric: "tabular-nums",
-                    }}
-                  >
-                    {money(PRICED_TOTAL)}
-                  </span>
-                </div>
-              ) : null}
-
               <div
-                className="flex items-baseline justify-between gap-4"
-                style={{ padding: "20px", backgroundColor: "#FFFFFF", borderTop: `1px solid ${LINE}` }}
+                className="flex items-center justify-between"
+                style={{ backgroundColor: TINT, borderBottom: `1px solid ${LINE}`, padding: "14px" }}
               >
                 <span
-                  style={{ fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.1em", color: MUTED }}
-                >
-                  Your price today
-                </span>
-                <span
                   style={{
-                    fontSize: "34px",
+                    fontSize: "11px",
                     fontWeight: 700,
-                    color: INK,
-                    letterSpacing: "-0.02em",
-                    fontVariantNumeric: "tabular-nums",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    color: MUTED,
                   }}
                 >
-                  {money(PRICE)}
+                  The Winner&rsquo;s Feature
+                </span>
+                <span
+                  className="hidden sm:inline"
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    color: MUTED,
+                  }}
+                >
+                  Digital &middot; no shipping needed
                 </span>
               </div>
 
-              {SHOW_SAVING ? (
-                <p
-                  className="text-center"
+              {includedRows.map((row, i) => (
+                <div
+                  key={row.lead}
+                  className="flex items-start gap-3"
                   style={{
-                    backgroundColor: BRAND,
-                    color: "#FFFFFF",
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    padding: "12px",
+                    padding: "14px 24px",
+                    borderTop: i === 0 ? undefined : `1px solid ${LINE}`,
                   }}
                 >
-                  You save {money(SAVING)}
+                  <Check aria-hidden size={15} color={BRAND} style={{ marginTop: "3px", flexShrink: 0 }} />
+                  <p style={{ fontSize: "14.5px", lineHeight: 1.55, color: BODY }}>
+                    <span style={{ fontWeight: 600, color: INK }}>{row.lead}</span>
+                    {row.rest}
+                  </p>
+                </div>
+              ))}
+
+              <div
+                className="text-center"
+                style={{ backgroundColor: TINT, borderTop: `1px solid ${LINE}`, padding: "24px" }}
+              >
+                <p style={{ fontSize: "36px", fontWeight: 700, color: INK }}>{money(BASE_PRICE)}</p>
+                <p style={{ marginTop: "6px", fontSize: "12.5px", color: MUTED }}>
+                  One payment. Nothing recurring.
                 </p>
-              ) : null}
+              </div>
             </div>
 
             <div className="text-center" style={{ marginTop: "20px" }}>
-              <OrderButton className="w-full sm:w-auto" />
+              <BrandButton href={BASE_LINK} className="w-full sm:w-auto">
+                Order the Winner&rsquo;s Feature — {money(BASE_PRICE)}
+              </BrandButton>
             </div>
+
+            {/* Fortune upgrade */}
+            <div
+              className="mx-auto"
+              style={{
+                marginTop: "32px",
+                maxWidth: "620px",
+                backgroundColor: "#fff",
+                border: `1px solid ${BRAND}`,
+                borderRadius: "10px",
+                padding: "20px",
+              }}
+            >
+              <div className="flex items-baseline justify-between gap-4">
+                <a
+                  href={FORTUNE_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={focusRing}
+                  style={{ fontSize: "16.5px", fontWeight: 600, color: INK }}
+                >
+                  Add Fortune
+                </a>
+                <span style={{ fontSize: "16.5px", fontWeight: 700, color: BRAND }}>
+                  +{money(FORTUNE_PRICE)}
+                </span>
+              </div>
+              <p
+                style={{
+                  marginTop: "10px",
+                  fontSize: "13.5px",
+                  lineHeight: 1.6,
+                  color: BODY,
+                  maxWidth: "60ch",
+                }}
+              >
+                Fortune is the most expensive placement we buy, by a wide margin. Rather than put
+                that cost into everyone&rsquo;s price, we&rsquo;ve kept it optional — so you only
+                pay for it if you want it.
+              </p>
+              <div
+                style={{
+                  marginTop: "16px",
+                  backgroundColor: TINT,
+                  borderRadius: "6px",
+                  padding: "12px",
+                }}
+              >
+                <SearchResult result={fortuneResult} />
+              </div>
+            </div>
+
+            {/* Award package */}
+            <div
+              className="mx-auto"
+              style={{
+                marginTop: "20px",
+                maxWidth: "620px",
+                backgroundColor: "#fff",
+                border: `1px solid ${LINE}`,
+                borderRadius: "8px",
+                padding: "20px",
+              }}
+            >
+              <div className="flex items-baseline justify-between gap-4">
+                <a
+                  href={AWARD_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={focusRing}
+                  style={{ fontSize: "15.5px", fontWeight: 600, color: INK }}
+                >
+                  The Award Package
+                </a>
+                <span style={{ fontSize: "15.5px", fontWeight: 700, color: BRAND }}>
+                  +{money(AWARD_PRICE)}
+                </span>
+              </div>
+              <p style={{ marginTop: "10px", fontSize: "13.5px", lineHeight: 1.6, color: BODY }}>
+                The engraved award with your name and award year, plus a printed certificate ready
+                to frame. Posted to you — this is the only part we need an address for.
+              </p>
+            </div>
+
+            <p
+              className="text-center"
+              style={{ marginTop: "16px", fontSize: "12.5px", color: MUTED }}
+            >
+              You can add either at checkout, or later from your winner page.
+            </p>
           </div>
         </section>
 
         {/* 3. WHY IT MATTERS */}
-        <section style={{ backgroundColor: "#FFFFFF", paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <h2
-              className="text-center"
-              style={{ fontSize: "26px", fontWeight: 700, color: INK, letterSpacing: "-0.01em" }}
-            >
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+          <div className="mx-auto max-w-5xl px-6">
+            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               What it actually does for you
             </h2>
-
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-3" style={{ gap: "20px" }}>
-              {VALUE_CARDS.map((card) => (
+            <div
+              className="grid grid-cols-1 md:grid-cols-3"
+              style={{ marginTop: "28px", gap: "20px" }}
+            >
+              {whyCards.map((card) => (
                 <div
                   key={card.title}
                   style={{
-                    backgroundColor: "#FFFFFF",
+                    backgroundColor: "#fff",
                     border: `1px solid ${LINE}`,
                     borderRadius: "8px",
                     padding: "24px",
@@ -609,30 +737,16 @@ function SalesPage() {
         {/* 4. WHAT ARRIVES */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-6xl px-6">
-            <h2
-              className="text-center"
-              style={{ fontSize: "26px", fontWeight: 700, color: INK, letterSpacing: "-0.01em" }}
-            >
+            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               What arrives
             </h2>
-
             <div
-              className="mx-auto mt-8 grid max-w-4xl grid-cols-1 sm:grid-cols-2"
-              style={{ gap: "20px" }}
+              className="mx-auto grid max-w-4xl grid-cols-1 sm:grid-cols-2"
+              style={{ marginTop: "28px", gap: "20px" }}
             >
               <div>
-                <p
-                  className="text-center"
-                  style={{
-                    marginBottom: "12px",
-                    fontSize: "10px",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.13em",
-                    color: MUTED,
-                  }}
-                >
-                  Your winner page
+                <p className="text-center" style={{ ...microLabel, marginBottom: "12px" }}>
+                  Your Feature
                 </p>
                 <div
                   className="aspect-[4/3] w-full overflow-hidden"
@@ -642,22 +756,12 @@ function SalesPage() {
                 </div>
               </div>
               <div>
-                <p
-                  className="text-center"
-                  style={{
-                    marginBottom: "12px",
-                    fontSize: "10px",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.13em",
-                    color: MUTED,
-                  }}
-                >
-                  The engraved award
+                <p className="text-center" style={{ ...microLabel, marginBottom: "12px" }}>
+                  The Award Package &middot; +{money(AWARD_PRICE)}
                 </p>
                 <img
                   src={portraitAsset.url}
-                  alt="Founder holding an engraved Entrepreneur Award trophy"
+                  alt="Founder holding an engraved Entrepreneur Award trophy beside a printed certificate"
                   width={1264}
                   height={848}
                   loading="lazy"
@@ -672,87 +776,67 @@ function SalesPage() {
                 />
               </div>
             </div>
-
             <div className="text-center" style={{ marginTop: "24px" }}>
-              <Link
-                to={REAL_WINNER_PATH}
-                params={{ slug: REAL_WINNER_SLUG }}
-                className={`inline-block rounded-sm ${focusRing}`}
-                style={{
-                  fontSize: "13.5px",
-                  fontWeight: 600,
-                  color: BRAND,
-                  textDecoration: "underline",
-                  textUnderlineOffset: "4px",
-                }}
-              >
-                See a real winner&rsquo;s feature &rarr;
-              </Link>
+              <FeatureLink />
             </div>
           </div>
         </section>
 
         {/* 5. HOW IT WORKS */}
-        <section style={{ backgroundColor: "#FFFFFF", paddingTop: "48px", paddingBottom: "48px" }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <h2
-              className="text-center"
-              style={{ fontSize: "26px", fontWeight: 700, color: INK, letterSpacing: "-0.01em" }}
-            >
+        <section style={{ paddingTop: "48px", paddingBottom: "48px" }}>
+          <div className="mx-auto max-w-4xl px-6">
+            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               How it works
             </h2>
-
-            <ol className="mt-8 flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-6">
-              {STEPS.map((step, i) => (
+            <ol
+              className="flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-6"
+              style={{ marginTop: "28px" }}
+            >
+              {steps.map((step, i) => (
                 <li key={step} className="flex items-center gap-4">
                   <span className="flex items-center gap-3">
                     <span
-                      aria-hidden
-                      className="flex items-center justify-center"
+                      className="flex items-center justify-center rounded-full"
                       style={{
                         width: "24px",
                         height: "24px",
-                        borderRadius: "9999px",
                         backgroundColor: BRAND,
-                        color: "#FFFFFF",
+                        color: "#fff",
                         fontSize: "11px",
                         fontWeight: 700,
+                        flexShrink: 0,
                       }}
                     >
                       {i + 1}
                     </span>
                     <span style={{ fontSize: "14.5px", fontWeight: 600, color: INK }}>{step}</span>
                   </span>
-                  {i < STEPS.length - 1 ? (
-                    <span aria-hidden className="hidden sm:block" style={{ color: LINE, fontSize: "18px" }}>
-                      &rarr;
+                  {i < steps.length - 1 ? (
+                    <span aria-hidden className="hidden sm:inline" style={{ color: LINE }}>
+                      &mdash;&mdash;
                     </span>
                   ) : null}
                 </li>
               ))}
             </ol>
-
             <p
               className="mx-auto text-center"
-              style={{ marginTop: "24px", maxWidth: "54ch", fontSize: "13.5px", color: MUTED }}
+              style={{ marginTop: "24px", fontSize: "13.5px", color: MUTED, maxWidth: "54ch" }}
             >
-              Your draft arrives within five working days. It goes live three days after you approve it.
+              Your draft arrives within five working days. It goes live three days after you approve
+              it.
             </p>
           </div>
         </section>
 
         {/* 6. QUESTIONS */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-6xl px-6">
-            <h2
-              className="text-center"
-              style={{ fontSize: "26px", fontWeight: 700, color: INK, letterSpacing: "-0.01em" }}
-            >
+          <div className="mx-auto px-6" style={{ maxWidth: "680px" }}>
+            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               Questions
             </h2>
-
-            <div className="mx-auto" style={{ marginTop: "24px", maxWidth: "680px" }}>
-              {QUESTIONS.map((item, i) => (
+            <div style={{ marginTop: "24px" }}>
+              {questions.map((item, i) => (
                 <div
                   key={item.q}
                   style={{
@@ -772,24 +856,20 @@ function SalesPage() {
         </section>
 
         {/* 7. PRICE AND CTA */}
-        <section
-          ref={priceSectionRef}
-          style={{ backgroundColor: "#FFFFFF", paddingTop: "56px", paddingBottom: "56px" }}
-        >
-          <div className="mx-auto max-w-6xl px-6">
-            <h2 className="sr-only">Order the Winner&rsquo;s Feature</h2>
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+          <div className="mx-auto px-6" style={{ maxWidth: "440px" }}>
             <div
-              className="mx-auto overflow-hidden text-center"
+              ref={priceCardRef}
               style={{
-                maxWidth: "440px",
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#fff",
                 border: `1px solid ${LINE}`,
+                borderTop: `3px solid ${BRAND}`,
                 borderRadius: "10px",
                 boxShadow: "0 1px 2px rgba(15,23,42,0.04)",
-                borderTop: `3px solid ${BRAND}`,
+                overflow: "hidden",
               }}
             >
-              <div style={{ padding: "36px 28px" }}>
+              <div className="text-center" style={{ padding: "36px 28px" }}>
                 <p
                   style={{
                     fontSize: "10.5px",
@@ -803,20 +883,31 @@ function SalesPage() {
                 </p>
                 <p
                   className="text-[44px] md:text-[48px]"
-                  style={{ marginTop: "10px", fontWeight: 700, letterSpacing: "-1.2px", color: INK, lineHeight: 1 }}
+                  style={{
+                    marginTop: "10px",
+                    fontWeight: 700,
+                    letterSpacing: "-1.2px",
+                    color: INK,
+                    lineHeight: 1.05,
+                  }}
                 >
-                  {money(PRICE)}
+                  {money(BASE_PRICE)}
                 </p>
                 <p style={{ marginTop: "10px", fontSize: "12.5px", color: MUTED }}>
-                  About {money(PER_PUBLICATION)} a publication. One payment, nothing recurring.
+                  Three publications and your Feature. One payment, nothing recurring.
                 </p>
 
                 <div style={{ marginTop: "24px" }}>
-                  <OrderButton className="w-full" />
+                  <BrandButton href={BASE_LINK} className="w-full" style={{ padding: "0 20px" }}>
+                    Order the Winner&rsquo;s Feature
+                  </BrandButton>
                 </div>
 
                 <p style={{ marginTop: "16px", fontSize: "12.5px", fontWeight: 500, color: BODY }}>
                   Nothing goes live until you approve every word.
+                </p>
+                <p style={{ marginTop: "6px", fontSize: "12.5px", color: MUTED }}>
+                  Email only at checkout. No shipping address.
                 </p>
                 <p
                   style={{
@@ -831,7 +922,8 @@ function SalesPage() {
                 </p>
               </div>
 
-              <p
+              <div
+                className="text-center"
                 style={{
                   backgroundColor: TINT,
                   borderTop: `1px solid ${LINE}`,
@@ -840,8 +932,9 @@ function SalesPage() {
                   color: MUTED,
                 }}
               >
-                Your award, certificate and the free winner files are yours either way.
-              </p>
+                Add Fortune for {money(FORTUNE_PRICE)} or the engraved award for {money(AWARD_PRICE)}{" "}
+                at checkout.
+              </div>
             </div>
           </div>
         </section>
@@ -851,15 +944,31 @@ function SalesPage() {
           className="text-center"
           style={{ backgroundColor: INK, paddingTop: "56px", paddingBottom: "56px" }}
         >
-          <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-3xl px-6">
             <h2
-              className="mx-auto text-[24px] md:text-[30px]"
-              style={{ fontWeight: 700, color: "#FFFFFF", maxWidth: "24ch", lineHeight: 1.15 }}
+              className="mx-auto text-2xl md:text-[30px]"
+              style={{ fontWeight: 700, color: "#fff", maxWidth: "24ch", lineHeight: 1.2 }}
             >
               You&rsquo;ve already won. This is the part people see.
             </h2>
             <div style={{ marginTop: "28px" }}>
-              <OrderButton variant="light" className="w-full sm:w-auto" />
+              <a
+                href={BASE_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex w-full items-center justify-center sm:w-auto ${focusRing}`}
+                style={{
+                  backgroundColor: "#fff",
+                  color: INK,
+                  fontSize: "15.5px",
+                  fontWeight: 600,
+                  borderRadius: "8px",
+                  minHeight: "52px",
+                  padding: "0 36px",
+                }}
+              >
+                Order the Winner&rsquo;s Feature
+              </a>
             </div>
           </div>
         </section>
@@ -869,32 +978,34 @@ function SalesPage() {
 
       {/* 9. MOBILE STICKY BAR */}
       <div
-        className="fixed inset-x-0 bottom-0 z-50 flex items-center justify-between gap-4 md:hidden"
+        className="fixed inset-x-0 bottom-0 z-50 flex items-center justify-between md:hidden"
         style={{
-          backgroundColor: "#FFFFFF",
+          backgroundColor: "#fff",
           borderTop: `1px solid ${LINE}`,
           boxShadow: "0 -2px 10px rgba(15,23,42,0.06)",
           padding: "12px",
           paddingBottom: "calc(12px + env(safe-area-inset-bottom))",
-          transform: showBar ? "translateY(0)" : "translateY(120%)",
-          transition: "transform 200ms ease",
-          pointerEvents: showBar ? "auto" : "none",
+          transform: stickyVisible ? "translateY(0)" : "translateY(120%)",
+          transition: "transform 180ms ease",
         }}
-        aria-hidden={!showBar}
+        aria-hidden={!stickyVisible}
       >
         <div>
-          <p style={{ fontSize: "16px", fontWeight: 700, color: INK }}>{money(PRICE)}</p>
+          <p style={{ fontSize: "16px", fontWeight: 700, color: INK }}>{money(BASE_PRICE)}</p>
           <p style={{ fontSize: "11px", color: MUTED }}>one payment</p>
         </div>
         <a
-          href={STRIPE_PAYMENT_LINK}
-          tabIndex={showBar ? 0 : -1}
-          className={`inline-flex items-center justify-center px-6 ${focusRing}`}
+          href={BASE_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={stickyVisible ? 0 : -1}
+          className={`inline-flex items-center justify-center ${focusRing}`}
           style={{
+            backgroundColor: BRAND,
+            color: "#fff",
             height: "44px",
             borderRadius: "8px",
-            backgroundColor: BRAND,
-            color: "#FFFFFF",
+            padding: "0 22px",
             fontSize: "14.5px",
             fontWeight: 600,
           }}
