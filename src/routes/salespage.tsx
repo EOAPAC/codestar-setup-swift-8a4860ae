@@ -391,7 +391,7 @@ const microLabel = {
 };
 
 /* --------------------------------------------------------------- sticky bar */
-function useStickyBar(heroRef: React.RefObject<HTMLElement>, priceRef: React.RefObject<HTMLElement>) {
+function useStickyBar(heroRef: React.RefObject<HTMLElement | null>, priceRef: React.RefObject<HTMLElement | null>) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
