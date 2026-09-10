@@ -174,10 +174,130 @@ const fortuneResult: Result = {
   snippet: "The award recognises founders whose businesses have demonstrated…",
 };
 
+function PublicationNames({ size = "hero" }: { size?: "hero" | "card" }) {
+  const names = ["USA Today", "The Associated Press", "Business Insider"];
+  const textStyle =
+    size === "hero"
+      ? { fontSize: "16px", lineHeight: 1.25 }
+      : { fontSize: "15px", lineHeight: 1.25 };
+  const dividerHeight = size === "hero" ? "14px" : "12px";
+  const gap = size === "hero" ? "16px" : "12px";
+
+  return (
+    <>
+      <span
+        className="hidden sm:inline-flex items-center"
+        style={{ gap, flexWrap: "wrap" }}
+      >
+        {names.map((name, i) => (
+          <span key={name} className="inline-flex items-center" style={{ gap }}>
+            <span
+              className="md:text-lg"
+              style={{
+                ...textStyle,
+                fontWeight: 600,
+                color: INK,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {name}
+            </span>
+            {i < names.length - 1 && (
+              <span
+                style={{
+                  width: "1px",
+                  height: dividerHeight,
+                  backgroundColor: LINE,
+                  flexShrink: 0,
+                }}
+              />
+            )}
+          </span>
+        ))}
+      </span>
+      <span className="sm:hidden flex flex-col" style={{ gap: "8px" }}>
+        {names.map((name) => (
+          <span
+            key={name}
+            style={{
+              ...textStyle,
+              fontWeight: 600,
+              color: INK,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {name}
+          </span>
+        ))}
+      </span>
+    </>
+  );
+}
+
+function HeroPublicationStrip() {
+  return (
+    <div
+      style={{
+        borderTop: `1px solid ${LINE}`,
+        borderBottom: `1px solid ${LINE}`,
+        padding: "16px 0",
+      }}
+    >
+      <p
+        style={{
+          fontSize: "10px",
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: MUTED,
+        }}
+      >
+        PUBLISHED IN
+      </p>
+      <div style={{ marginTop: "10px" }}>
+        <PublicationNames size="hero" />
+      </div>
+    </div>
+  );
+}
+
+function CardPublicationStrip() {
+  return (
+    <div
+      className="text-center"
+      style={{
+        backgroundColor: TINT,
+        borderTop: `1px solid ${LINE}`,
+        padding: "14px 0",
+      }}
+    >
+      <p
+        style={{
+          fontSize: "9.5px",
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: MUTED,
+        }}
+      >
+        PUBLISHED IN
+      </p>
+      <div style={{ marginTop: "8px" }}>
+        <PublicationNames size="card" />
+      </div>
+    </div>
+  );
+}
+
 function SearchResult({ result }: { result: Result }) {
   return (
     <div>
-      <p style={{ fontSize: "11px", color: MUTED }}>{result.domain}</p>
+      <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
+        {result.name}
+        <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
+          {" · "}{result.domain}
+        </span>
+      </p>
       <p
         style={{
           marginTop: "3px",
