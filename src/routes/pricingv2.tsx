@@ -72,12 +72,41 @@ const v2WhatYouGet = [
   { lead: "Your approval on every word", rest: " before anything is published" },
 ];
 
-const publications = [
-  { name: "USA Today", descriptor: "National daily" },
-  { name: "Associated Press", descriptor: "Global newswire" },
-  { name: "Business Insider", descriptor: "Business & tech" },
-  { name: "Fortune", descriptor: "Business" },
+/**
+ * Four drawn-in-CSS article mockups. A masthead image can later replace the
+ * `name` wordmark inside a single card without changing the layout.
+ */
+const articleCards = [
+  {
+    domain: "usatoday.com",
+    name: "USA Today",
+    headline: "[Your Business] named a 2026 Entrepreneur Awards winner",
+    category: "National daily",
+    lastBar: "58%",
+  },
+  {
+    domain: "apnews.com",
+    name: "Associated Press",
+    headline: "2026 Entrepreneur Awards names [Your Business] a winner",
+    category: "Global newswire",
+    lastBar: "71%",
+  },
+  {
+    domain: "businessinsider.com",
+    name: "Business Insider",
+    headline: "How [Your Business] won a 2026 Entrepreneur Award",
+    category: "Business & tech",
+    lastBar: "46%",
+  },
+  {
+    domain: "fortune.com",
+    name: "Fortune",
+    headline: "[Your Business] recognised in the 2026 Entrepreneur Awards",
+    category: "Business",
+    lastBar: "66%",
+  },
 ];
+
 
 /** Inline tick used by the "what's included" list. */
 function Tick() {
