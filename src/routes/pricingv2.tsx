@@ -776,7 +776,7 @@ function WinnerOptionsPage() {
             </div>
 
 
-            <div className="text-center" style={{ marginTop: "24px" }}>
+            <div className="text-center" style={{ marginTop: "28px" }}>
               <Link
                 to="/winners/specimen"
                 data-event="feature-format-view"
