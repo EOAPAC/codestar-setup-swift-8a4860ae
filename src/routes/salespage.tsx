@@ -869,45 +869,32 @@ function SalesPage() {
 
         {/* 4. WHAT ARRIVES */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-4xl px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
-              What arrives
+              Your Feature, in full
             </h2>
-            <div
-              className="mx-auto grid max-w-4xl grid-cols-1 sm:grid-cols-2"
-              style={{ marginTop: "28px", gap: "20px" }}
+            <p
+              className="mx-auto text-center"
+              style={{
+                marginTop: "12px",
+                fontSize: "14.5px",
+                lineHeight: 1.6,
+                color: BODY,
+                maxWidth: "60ch",
+              }}
             >
-              <div>
-                <p className="text-center" style={{ ...microLabel, marginBottom: "12px" }}>
-                  Your Feature
-                </p>
-                <div
-                  className="aspect-[4/3] w-full overflow-hidden"
-                  style={{ border: `1px solid ${LINE}`, borderRadius: "6px" }}
-                >
-                  <BrowserMockup />
-                </div>
-              </div>
-              <div>
-                <p className="text-center" style={{ ...microLabel, marginBottom: "12px" }}>
-                  The Award Package &middot; +{money(AWARD_PRICE)}
-                </p>
-                <img
-                  src={portraitAsset.url}
-                  alt="Founder holding an engraved Entrepreneur Award trophy beside a printed certificate"
-                  width={1264}
-                  height={848}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[4/3] w-full"
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "50% 35%",
-                    border: `1px solid ${LINE}`,
-                    borderRadius: "6px",
-                  }}
-                />
-              </div>
+              The long version of your story, published on the Entrepreneur Awards winners page with a
+              permanent link. Written by our editorial team, approved by you before it goes live.
+            </p>
+            <div
+              className="mx-auto aspect-[16/10] w-full max-w-[720px] overflow-hidden"
+              style={{
+                marginTop: "28px",
+                border: `1px solid ${LINE}`,
+                borderRadius: "6px",
+              }}
+            >
+              <BrowserMockup />
             </div>
             <div className="text-center" style={{ marginTop: "24px" }}>
               <FeatureLink />
