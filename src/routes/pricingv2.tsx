@@ -169,7 +169,7 @@ function withSlots(text: string) {
 function BrowserMockup() {
   return (
     <div
-      className="overflow-hidden rounded-xl"
+      className="flex h-full flex-col overflow-hidden rounded-xl"
       style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
     >
       <div
@@ -248,7 +248,7 @@ function BrowserMockup() {
 function PressMockup() {
   return (
     <div
-      className="overflow-hidden rounded-xl"
+      className="flex h-full flex-col overflow-hidden rounded-xl"
       style={{ border: `1px solid ${LINE}`, backgroundColor: "#fff" }}
     >
       <div
