@@ -825,9 +825,10 @@ function WinnerOptionsPage() {
               className="mx-auto max-w-md overflow-hidden bg-white"
               style={{
                 marginTop: "48px",
-                border: `1px solid ${INK}`,
-                borderRadius: "3px",
-                borderTop: `3px solid ${GOLD}`,
+                border: `1px solid ${LINE}`,
+                borderRadius: "10px",
+                borderTop: `3px solid ${BLUE}`,
+                boxShadow: "0 1px 2px rgba(15, 23, 42, 0.04)",
               }}
             >
               <div className="text-center" style={{ padding: "32px 24px" }}>
@@ -840,7 +841,7 @@ function WinnerOptionsPage() {
                     color: MUTED,
                   }}
                 >
-                  4 Publications · One story
+                  Four publications · One story
                 </p>
                 <p
                   className="text-[42px] md:text-[46px]"
@@ -855,27 +856,38 @@ function WinnerOptionsPage() {
                   {formatPrice(FEATURE_PRICE)}
                 </p>
                 <p style={{ marginTop: "8px", fontSize: "12.5px", color: MUTED }}>
-                  One payment. Nothing recurring.
+                  About {formatPrice(PER_PUBLICATION)} a publication. One payment, nothing
+                  recurring.
                 </p>
                 <a
                   href={STRIPE_PAYMENT_LINK}
                   data-event="feature-order-click"
-                  className={`flex w-full items-center justify-center rounded-sm text-white transition-opacity hover:opacity-90 ${focusRing}`}
+                  className={`flex w-full items-center justify-center text-white ${focusRing}`}
                   style={{
                     marginTop: "24px",
-                    minHeight: "44px",
-                    backgroundColor: INK,
+                    minHeight: "48px",
+                    borderRadius: "8px",
+                    backgroundColor: BLUE,
                     fontSize: "15px",
                     fontWeight: 600,
+                    transition: "background-color 150ms ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = BLUE_DARK;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = BLUE;
                   }}
                 >
                   Order the Winner&rsquo;s Feature
                 </a>
-
+                <p style={{ marginTop: "16px", fontSize: "12.5px", fontWeight: 500, color: BODY }}>
+                  Nothing goes live until you approve every word.
+                </p>
                 <p
                   style={{
                     marginTop: "14px",
-                    fontSize: "11px",
+                    fontSize: "10.5px",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
                     color: MUTED,
@@ -895,8 +907,9 @@ function WinnerOptionsPage() {
                   color: MUTED,
                 }}
               >
-                Nothing goes live until you approve every word. Your award and the free files are
-                yours either way.
+                Your award, certificate and the free files are yours either way. These are paid
+                placements — we write the piece and the publication runs it, which is why we can
+                promise it goes live.
               </p>
             </div>
           </Container>
