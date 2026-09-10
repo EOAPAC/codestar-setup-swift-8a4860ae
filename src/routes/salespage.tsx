@@ -137,25 +137,29 @@ function FeatureLink({ className = "" }: { className?: string }) {
 }
 
 /* --------------------------------------------------- search result mockup */
-type Result = { domain: string; headline: string; snippet: string };
+type Result = { name: string; domain: string; headline: string; snippet: string };
 
 const heroResults: Result[] = [
   {
+    name: "USA Today",
     domain: "usatoday.com",
     headline: `[Your Business] named a ${AWARD_YEAR} Entrepreneur Awards winner`,
     snippet: `The ${AWARD_YEAR} Entrepreneur Awards have named [Your Business] among this year's winners, recognising…`,
   },
   {
+    name: "The Associated Press",
     domain: "apnews.com",
     headline: `${AWARD_YEAR} Entrepreneur Awards names [Your Business] a winner`,
     snippet: `[Your Business] has been recognised in the ${AWARD_YEAR} Entrepreneur Awards, an independent award for founders…`,
   },
   {
+    name: "Business Insider",
     domain: "businessinsider.com",
     headline: `How [Your Business] won a ${AWARD_YEAR} Entrepreneur Award`,
     snippet: `Judged against a published rubric, [Your Business] was selected from this year's entries for…`,
   },
   {
+    name: "Entrepreneur Awards",
     domain: "entrepreneurawards.co",
     headline: `${AWARD_YEAR} Winner Feature — [Your Business]`,
     snippet:
@@ -164,6 +168,7 @@ const heroResults: Result[] = [
 ];
 
 const fortuneResult: Result = {
+  name: "Fortune",
   domain: "fortune.com",
   headline: `[Your Business] recognised in the ${AWARD_YEAR} Entrepreneur Awards`,
   snippet: "The award recognises founders whose businesses have demonstrated…",
