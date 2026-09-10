@@ -884,43 +884,8 @@ function SalesPage() {
           </div>
         </section>
 
-        {/* 4. WHAT ARRIVES */}
-        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-4xl px-6">
-            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
-              Your Feature, in full
-            </h2>
-            <p
-              className="mx-auto text-center"
-              style={{
-                marginTop: "12px",
-                fontSize: "14.5px",
-                lineHeight: 1.6,
-                color: BODY,
-                maxWidth: "60ch",
-              }}
-            >
-              The long version of your story, published on the Entrepreneur Awards winners page with a
-              permanent link. Written by our editorial team, approved by you before it goes live.
-            </p>
-            <div
-              className="mx-auto aspect-[16/10] w-full max-w-[720px] overflow-hidden"
-              style={{
-                marginTop: "28px",
-                border: `1px solid ${LINE}`,
-                borderRadius: "6px",
-              }}
-            >
-              <BrowserMockup />
-            </div>
-            <div className="text-center" style={{ marginTop: "24px" }}>
-              <FeatureLink />
-            </div>
-          </div>
-        </section>
-
         {/* 5. HOW IT WORKS */}
-        <section style={{ paddingTop: "48px", paddingBottom: "48px" }}>
+        <section style={{ paddingTop: "56px", paddingBottom: "48px" }}>
           <div className="mx-auto max-w-4xl px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               How it works
