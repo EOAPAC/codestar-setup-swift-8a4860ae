@@ -364,56 +364,8 @@ function PressMockup() {
   );
 }
 
-/** Quiet inline row of the four publications — no panel, no box. */
-function PublicationsRow() {
-  return (
-    <div className="mt-8">
-      <p
-        className="text-center"
-        style={{
-          fontSize: "0.6875rem",
-          fontWeight: 600,
-          textTransform: "uppercase",
-          letterSpacing: "0.14em",
-          color: MUTED,
-        }}
-      >
-        Published in
-      </p>
-      <div className="mx-auto mt-4 flex max-w-[640px] flex-wrap justify-center">
-        {publications.map((pub, i) => (
-          <span key={pub.name} className="flex w-1/2 items-center md:w-auto">
-            <span
-              aria-hidden
-              className="hidden md:block"
-              style={{
-                width: i === 0 ? 0 : "1px",
-                alignSelf: "stretch",
-                backgroundColor: i === 0 ? "transparent" : LINE,
-              }}
-            />
-            <span
-              className={`flex-1 px-4 py-1 text-center md:flex-none md:px-6 ${
-                i % 2 === 1 ? "max-md:border-l" : ""
-              }`}
-              style={{
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: "0.14em",
-                color: INK,
-                borderColor: LINE,
-                whiteSpace: "nowrap",
-              }}
-            >
-              {pub.name}
-            </span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
+
+
 
 function useStickyVisible() {
   const [visible, setVisible] = useState(false);
