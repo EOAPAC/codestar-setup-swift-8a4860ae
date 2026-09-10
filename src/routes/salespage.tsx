@@ -605,12 +605,18 @@ function SalesPage() {
                 }}
               >
                 We write the story of your win, publish it on the Entrepreneur Awards winners page,
-                and announce it in {BASE_PUBLICATIONS}.
+                and announce it in three national publications.
               </p>
 
               <div
+                className="mx-auto lg:mx-0"
+                style={{ marginTop: "24px", marginBottom: "24px", maxWidth: "46ch" }}
+              >
+                <HeroPublicationStrip />
+              </div>
+
+              <div
                 className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 lg:justify-start"
-                style={{ marginTop: "28px" }}
               >
                 <span style={{ fontSize: "34px", fontWeight: 700, color: INK }}>
                   {money(BASE_PRICE)}
