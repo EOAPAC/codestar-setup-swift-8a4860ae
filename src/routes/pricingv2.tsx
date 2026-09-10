@@ -718,8 +718,9 @@ function WinnerOptionsPage() {
 
             {/* Winner page + award, 2-up */}
             <div
-              className="mx-auto grid max-w-4xl grid-cols-1 sm:grid-cols-2"
-              style={{ marginTop: "48px", gap: "20px" }}
+              className="mx-auto mt-12 grid max-w-4xl grid-cols-1 sm:grid-cols-2 md:mt-14"
+              style={{ gap: "20px" }}
+
             >
               <div>
                 <p
