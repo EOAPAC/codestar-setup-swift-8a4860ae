@@ -751,8 +751,8 @@ function SalesPage() {
               style={{
                 marginTop: "32px",
                 maxWidth: "620px",
-                backgroundColor: "#fff",
-                border: `1px solid ${BRAND}`,
+                backgroundColor: TINT,
+                border: `1px solid ${LINE}`,
                 borderRadius: "10px",
                 padding: "20px",
               }}
