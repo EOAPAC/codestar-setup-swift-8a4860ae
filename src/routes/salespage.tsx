@@ -438,7 +438,7 @@ const includedRows: { lead: string; rest: string }[] = [
   },
   {
     lead: "A press release",
-    rest: ` announcing your win, placed in ${BASE_PUBLICATIONS}, each linking back to your Feature`,
+    rest: " announcing your win, placed in three national publications, each linking back to your Feature",
   },
   {
     lead: "A permanent link",
