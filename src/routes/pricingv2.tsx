@@ -357,7 +357,7 @@ function PublicationsPanel() {
         {publications.map((pub) => (
           <div
             key={pub.name}
-            className="flex flex-col items-center justify-center px-4 py-6 text-center"
+            className="flex flex-col items-center justify-center px-3 py-6 text-center md:px-4"
             style={{ backgroundColor: "#fff" }}
           >
             <span
@@ -366,8 +366,8 @@ function PublicationsPanel() {
               {pub.name}
             </span>
             <span
-              className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em]"
-              style={{ color: MUTED, whiteSpace: "nowrap" }}
+              className="mt-1 text-[0.625rem] font-semibold uppercase tracking-[0.08em]"
+              style={{ color: MUTED }}
             >
               {pub.descriptor}
             </span>
