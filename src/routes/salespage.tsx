@@ -454,7 +454,7 @@ const includedRows: { lead: string; rest: string }[] = [
 const whyCards = [
   {
     title: "Something to point to",
-    body: "When someone looks you up before a call, an article in USA Today answers the question they were about to ask. Put the links on your site, in your email signature, in your deck.",
+    body: "When someone looks you up before a call, a national article answers the question they were about to ask. Put the links on your site, in your email signature, in your deck.",
   },
   {
     title: "You don't write a word",
