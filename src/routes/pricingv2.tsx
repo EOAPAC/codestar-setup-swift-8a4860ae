@@ -366,7 +366,7 @@ function PublicationsPanel() {
               {pub.name}
             </span>
             <span
-              className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em]"
+              className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] whitespace-nowrap"
               style={{ color: MUTED }}
             >
               {pub.descriptor}
