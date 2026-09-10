@@ -604,146 +604,176 @@ function WinnerOptionsPage() {
               </p>
             </div>
 
-            {/* Where your story runs */}
-            <div
-              className="mx-auto max-w-4xl overflow-hidden bg-white"
-              style={{ marginTop: "36px", border: `1px solid ${LINE}`, borderRadius: "3px" }}
+            {/* Where your story runs — four article cards */}
+            <p
+              className="text-center"
+              style={{
+                marginTop: "44px",
+                fontSize: "10.5px",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: MUTED,
+              }}
             >
-              <p
-                className="text-center"
-                style={{
-                  padding: "12px",
-                  backgroundColor: TINT,
-                  borderBottom: `1px solid ${LINE}`,
-                  fontSize: "10.5px",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.14em",
-                  color: MUTED,
-                }}
-              >
-                Where your story runs
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4">
-                {publications.map((pub, i) => (
+              Where your story runs
+            </p>
+
+            <div
+              className="mx-auto grid max-w-4xl grid-cols-2 sm:grid-cols-4"
+              style={{ marginTop: "20px", gap: "16px" }}
+            >
+              {articleCards.map((card) => (
+                <article
+                  key={card.name}
+                  className="flex flex-col overflow-hidden bg-white text-left"
+                  style={{ border: `1px solid ${LINE}`, borderRadius: "3px" }}
+                >
+                  {/* Browser chrome */}
                   <div
-                    key={pub.name}
-                    className={`flex flex-col items-center justify-center px-3 text-center ${
-                      i % 2 === 1 ? "border-l" : ""
-                    } ${i >= 2 ? "border-t sm:border-t-0" : ""} ${i > 0 ? "sm:border-l" : ""}`}
+                    className="flex items-center gap-1.5"
                     style={{
-                      paddingTop: "28px",
-                      paddingBottom: "28px",
-                      borderColor: LINE,
+                      padding: "8px 12px",
+                      backgroundColor: PAGE,
+                      borderBottom: `1px solid ${LINE}`,
                     }}
                   >
-
-                    {/* Wordmark slot — a logo <img> can replace this span later. */}
-                    <span
-                      className="text-[15px] md:text-[16.5px]"
-                      style={{ fontWeight: 700, letterSpacing: "-0.2px", color: INK }}
-                    >
-                      {pub.name}
+                    <span className="flex shrink-0 gap-1" aria-hidden>
+                      {[0, 1, 2].map((i) => (
+                        <span
+                          key={i}
+                          className="block rounded-full"
+                          style={{ width: "4px", height: "4px", backgroundColor: "#D3D8E0" }}
+                        />
+                      ))}
                     </span>
                     <span
-                      style={{
-                        marginTop: "6px",
-                        fontSize: "10px",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.1em",
-                        color: MUTED,
-                      }}
+                      className="ml-1 truncate"
+                      style={{ fontSize: "9.5px", color: MUTED }}
                     >
-                      {pub.descriptor}
+                      {card.domain}
                     </span>
                   </div>
-                ))}
-              </div>
-              <p
-                className="text-center"
-                style={{
-                  padding: "14px",
-                  borderTop: `1px solid ${LINE}`,
-                  fontSize: "12.5px",
-                  color: MUTED,
-                }}
-              >
-                The same story, written to each publication&rsquo;s format and running under your
-                business name.
-              </p>
-            </div>
 
-            {/* Three matched proof cards */}
-            <div
-              className="grid grid-cols-1 gap-5 sm:grid-cols-3"
-              style={{ marginTop: "44px" }}
-            >
-              {[
-                {
-                  label: "The press release",
-                  media: <PressMockup />,
-                  caption: "A recent placement in USA Today.",
-                },
-                {
-                  label: "Your winner page",
-                  media: <BrowserMockup />,
-                  caption: "The full article, on entrepreneurawards.co.",
-                },
-                {
-                  label: "The award",
-                  media: (
-                    <img
-                      src={portraitAsset.url}
-                      alt="Founder holding an engraved Entrepreneur Award"
-                      width={1264}
-                      height={848}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full"
-                      style={{ objectFit: "cover", objectPosition: "50% 35%" }}
-                    />
-                  ),
-                  caption: "Engraved with your name and year.",
-                },
-              ].map((card) => (
-                <figure
-                  key={card.label}
-                  className="bg-white"
-                  style={{ border: `1px solid ${LINE}`, borderRadius: "3px", padding: "14px" }}
-                >
+                  {/* Body */}
+                  <div className="flex flex-1 flex-col" style={{ padding: "12px" }}>
+                    {/* Wordmark slot — a masthead <img> can replace this span later. */}
+                    <span style={{ fontSize: "13.5px", fontWeight: 700, letterSpacing: "-0.2px", color: INK }}>
+                      {card.name}
+                    </span>
+                    <div style={{ marginTop: "10px", borderTop: `1px solid ${LINE}` }} />
+                    <h3
+                      style={{
+                        marginTop: "10px",
+                        fontSize: "11.5px",
+                        fontWeight: 600,
+                        lineHeight: 1.35,
+                        color: INK,
+                      }}
+                    >
+                      {card.headline}
+                    </h3>
+                    <div aria-hidden style={{ marginTop: "12px" }}>
+                      {["100%", "100%", "88%", card.lastBar].map((w, i) => (
+                        <div
+                          key={i}
+                          style={{
+                            width: w,
+                            height: "4px",
+                            borderRadius: "2px",
+                            backgroundColor: "#EDEFF3",
+                            marginTop: i === 0 ? 0 : "5px",
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Footer */}
                   <p
                     className="text-center"
                     style={{
-                      marginBottom: "12px",
-                      fontSize: "10px",
+                      borderTop: `1px solid ${LINE}`,
+                      padding: "10px",
+                      fontSize: "9.5px",
                       fontWeight: 700,
                       textTransform: "uppercase",
-                      letterSpacing: "0.13em",
+                      letterSpacing: "0.12em",
                       color: MUTED,
                     }}
                   >
-                    {card.label}
+                    {card.category}
                   </p>
-                  <div
-                    className="aspect-[16/11] w-full overflow-hidden"
-                    style={{ border: `1px solid ${LINE}`, borderRadius: "2px" }}
-                  >
-                    {card.media}
-                  </div>
-                  <figcaption
-                    className="text-center"
-                    style={{
-                      marginTop: "12px",
-                      fontSize: "12.5px",
-                      lineHeight: 1.5,
-                      color: BODY,
-                    }}
-                  >
-                    {card.caption}
-                  </figcaption>
-                </figure>
+                </article>
               ))}
             </div>
+
+            <p
+              className="mx-auto text-center"
+              style={{ marginTop: "16px", maxWidth: "60ch", fontSize: "12.5px", color: MUTED }}
+            >
+              The same story, written to each publication&rsquo;s format and running under your
+              business name.
+            </p>
+
+            {/* Winner page + award, 2-up */}
+            <div
+              className="mx-auto grid max-w-4xl grid-cols-1 sm:grid-cols-2"
+              style={{ marginTop: "48px", gap: "20px" }}
+            >
+              <div>
+                <p
+                  className="text-center"
+                  style={{
+                    marginBottom: "12px",
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.13em",
+                    color: MUTED,
+                  }}
+                >
+                  Your winner page
+                </p>
+                <div
+                  className="aspect-[4/3] w-full overflow-hidden"
+                  style={{ border: `1px solid ${LINE}`, borderRadius: "2px" }}
+                >
+                  <BrowserMockup />
+                </div>
+              </div>
+              <div>
+                <p
+                  className="text-center"
+                  style={{
+                    marginBottom: "12px",
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.13em",
+                    color: MUTED,
+                  }}
+                >
+                  The engraved award
+                </p>
+                <img
+                  src={portraitAsset.url}
+                  alt="Founder holding an engraved Entrepreneur Award trophy"
+                  width={1264}
+                  height={848}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/3] w-full"
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "50% 35%",
+                    border: `1px solid ${LINE}`,
+                    borderRadius: "2px",
+                  }}
+                />
+              </div>
+            </div>
+
 
             <div className="text-center" style={{ marginTop: "24px" }}>
               <Link
