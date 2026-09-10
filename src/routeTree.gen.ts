@@ -15,6 +15,7 @@ import { Route as WinnerOptionsRouteImport } from './routes/winner-options'
 import { Route as WinnerMaterialsRouteImport } from './routes/winner-materials'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as SalespageRouteImport } from './routes/salespage'
 import { Route as Pricingv2RouteImport } from './routes/pricingv2'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MethodologyRouteImport } from './routes/methodology'
@@ -62,6 +63,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
   path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalespageRoute = SalespageRouteImport.update({
+  id: '/salespage',
+  path: '/salespage',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Pricingv2Route = Pricingv2RouteImport.update({
@@ -165,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
   '/pricingv2': typeof Pricingv2Route
+  '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -191,6 +198,7 @@ export interface FileRoutesByTo {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
   '/pricingv2': typeof Pricingv2Route
+  '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -218,6 +226,7 @@ export interface FileRoutesById {
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
   '/pricingv2': typeof Pricingv2Route
+  '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
   '/winner-materials': typeof WinnerMaterialsRoute
@@ -246,6 +255,7 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/pricing'
     | '/pricingv2'
+    | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -272,6 +282,7 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/pricing'
     | '/pricingv2'
+    | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -298,6 +309,7 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/pricing'
     | '/pricingv2'
+    | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
     | '/winner-materials'
@@ -325,6 +337,7 @@ export interface RootRouteChildren {
   MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRouteWithChildren
   Pricingv2Route: typeof Pricingv2Route
+  SalespageRoute: typeof SalespageRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
   WinnerMaterialsRoute: typeof WinnerMaterialsRoute
@@ -383,6 +396,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/salespage': {
+      id: '/salespage'
+      path: '/salespage'
+      fullPath: '/salespage'
+      preLoaderRoute: typeof SalespageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricingv2': {
@@ -535,6 +555,7 @@ const rootRouteChildren: RootRouteChildren = {
   MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRouteWithChildren,
   Pricingv2Route: Pricingv2Route,
+  SalespageRoute: SalespageRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
   WinnerMaterialsRoute: WinnerMaterialsRoute,
