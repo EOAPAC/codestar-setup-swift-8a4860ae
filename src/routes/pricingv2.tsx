@@ -686,7 +686,7 @@ function WinnerOptionsPage() {
             </ul>
 
             {/* Process chips */}
-            <ol className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
+            <ol className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
               {processChips.map((chip, i) => (
                 <li key={chip} className="flex items-center gap-3">
                   <span
@@ -709,11 +709,11 @@ function WinnerOptionsPage() {
               ))}
             </ol>
 
-            <p className="mt-5 text-center" style={{ fontSize: "0.9375rem", color: BODY }}>
+            <p className="mt-6 text-center" style={{ fontSize: "0.9375rem", color: BODY }}>
               You'll have your article draft within five working days, and it goes live three days after you approve it.
             </p>
 
-            <div className="mt-8 flex flex-col items-center">
+            <div className="mt-12 flex flex-col items-center">
               <p
                 style={{
                   fontSize: "0.6875rem",
