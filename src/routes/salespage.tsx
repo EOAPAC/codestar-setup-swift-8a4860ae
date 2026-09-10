@@ -822,7 +822,24 @@ function SalesPage() {
                   +{money(AWARD_PRICE)}
                 </span>
               </div>
-              <p style={{ marginTop: "10px", fontSize: "13.5px", lineHeight: 1.6, color: BODY }}>
+              <img
+                src={portraitAsset.url}
+                alt="A founder holding the engraved Entrepreneur Award"
+                width={1264}
+                height={848}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/10] w-full"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "50% 35%",
+                  border: `1px solid ${LINE}`,
+                  borderRadius: "6px",
+                  marginTop: "14px",
+                  marginBottom: "14px",
+                }}
+              />
+              <p style={{ fontSize: "13.5px", lineHeight: 1.6, color: BODY }}>
                 The engraved award with your name and award year, plus a printed certificate ready
                 to frame. Posted to you — this is the only part we need an address for.
               </p>
