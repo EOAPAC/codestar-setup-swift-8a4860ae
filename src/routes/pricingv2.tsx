@@ -676,15 +676,16 @@ function WinnerOptionsPage() {
                 {publications.map((pub, i) => (
                   <div
                     key={pub.name}
-                    className="flex flex-col items-center justify-center px-3 text-center"
+                    className={`flex flex-col items-center justify-center px-3 text-center ${
+                      i % 2 === 1 ? "border-l" : ""
+                    } ${i >= 2 ? "border-t sm:border-t-0" : ""} ${i > 0 ? "sm:border-l" : ""}`}
                     style={{
                       paddingTop: "28px",
                       paddingBottom: "28px",
-                      borderLeft:
-                        i % 2 === 1 || i > 0 ? undefined : undefined,
                       borderColor: LINE,
                     }}
                   >
+
                     {/* Wordmark slot — a logo <img> can replace this span later. */}
                     <span
                       className="text-[15px] md:text-[16.5px]"
