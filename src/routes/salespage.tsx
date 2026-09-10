@@ -944,21 +944,37 @@ function SalesPage() {
               Questions
             </h2>
             <div style={{ marginTop: "24px" }}>
-              {questions.map((item, i) => (
-                <div
-                  key={item.q}
-                  style={{
-                    paddingTop: "20px",
-                    paddingBottom: "20px",
-                    borderTop: i === 0 ? undefined : `1px solid ${LINE}`,
-                  }}
-                >
-                  <h3 style={{ fontSize: "15.5px", fontWeight: 600, color: INK }}>{item.q}</h3>
-                  <p style={{ marginTop: "8px", fontSize: "14.5px", lineHeight: 1.65, color: BODY }}>
-                    {item.a}
-                  </p>
-                </div>
-              ))}
+              <Accordion type="single" collapsible className="w-full">
+                {questions.map((item, i) => (
+                  <AccordionItem
+                    key={item.q}
+                    value={`q-${i}`}
+                    className="border-b-0"
+                    style={{
+                      borderTop: i === 0 ? undefined : `1px solid ${LINE}`,
+                    }}
+                  >
+                    <AccordionTrigger
+                      className="hover:no-underline py-5 text-left [&>svg]:text-[#6B7785]"
+                      style={{
+                        fontSize: "15.5px",
+                        fontWeight: 600,
+                        color: INK,
+                        paddingTop: "20px",
+                        paddingBottom: "20px",
+                      }}
+                    >
+                      {item.q}
+                    </AccordionTrigger>
+                    <AccordionContent
+                      className="pb-5 pt-0"
+                      style={{ fontSize: "14.5px", lineHeight: 1.65, color: BODY }}
+                    >
+                      {item.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </div>
           </div>
         </section>
