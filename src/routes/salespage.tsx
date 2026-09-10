@@ -726,6 +726,8 @@ function SalesPage() {
                 </div>
               ))}
 
+              <CardPublicationStrip />
+
               <div
                 className="text-center"
                 style={{ backgroundColor: TINT, borderTop: `1px solid ${LINE}`, padding: "24px" }}
