@@ -43,6 +43,7 @@ const MUTED = "#6B7785";
 const BLUE = "#1978E5";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
+const GOLD = "#B4903C";
 
 const FEATURE_PRICE = 1595;
 const formatPrice = (n: number) => `$${n.toLocaleString()}`;
@@ -51,17 +52,30 @@ const STRIPE_BUY_BUTTON_SCRIPT = "https://js.stripe.com/v3/buy-button.js";
 const STRIPE_BUY_BUTTON_ID = "buy_btn_1U8nvNGd5RmL1wBxiBeEk4sC";
 const STRIPE_PUBLISHABLE_KEY =
   "pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4";
+/**
+ * Paste a Stripe Payment Link here to swap the embedded buy button for our own
+ * navy button. While empty, the embed carries the price on its own so $1,595
+ * never appears twice.
+ */
+const STRIPE_PAYMENT_LINK = "";
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
 
-const processChips = ["We write both", "You approve both", "It goes live"];
+const processChips = ["We write it", "You approve it", "It goes live"];
 
 const v2WhatYouGet = [
-  "Your story in 4 publications — USA Today, the Associated Press, Business Insider and Fortune.",
-  "A press release about your win, written for you and published on USA Today",
-  "An engraved award carrying your name and your award year",
-  "A printed certificate, ready to frame",
+  {
+    lead: "Your story in four publications",
+    rest: " — USA Today, the Associated Press, Business Insider and Fortune",
+  },
+  {
+    lead: "A full article on your winner page",
+    rest: " at entrepreneurawards.co, with a permanent link",
+  },
+  { lead: "The engraved award", rest: " carrying your name and your award year" },
+  { lead: "A printed certificate", rest: ", ready to frame" },
+  { lead: "Your approval on every word", rest: " before anything is published" },
 ];
 
 const publications = [
@@ -70,6 +84,23 @@ const publications = [
   { name: "Business Insider", descriptor: "Business & tech" },
   { name: "Fortune", descriptor: "Business" },
 ];
+
+/** Inline tick used by the "what's included" list. */
+function Tick() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden
+      style={{ marginTop: "5px", flexShrink: 0 }}
+    >
+      <path d="M2.5 8.5 6 12l7.5-8" stroke={INK} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 
 // ---------------------------------------------------------------- pieces
 
