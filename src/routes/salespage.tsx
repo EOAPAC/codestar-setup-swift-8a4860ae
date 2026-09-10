@@ -6,6 +6,12 @@ import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   SPECIMEN_BYLINE,
   SPECIMEN_HEADLINE,
   SPECIMEN_OPENING_PARAGRAPHS,
