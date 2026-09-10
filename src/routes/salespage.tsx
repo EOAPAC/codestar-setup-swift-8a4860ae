@@ -137,25 +137,29 @@ function FeatureLink({ className = "" }: { className?: string }) {
 }
 
 /* --------------------------------------------------- search result mockup */
-type Result = { domain: string; headline: string; snippet: string };
+type Result = { name: string; domain: string; headline: string; snippet: string };
 
 const heroResults: Result[] = [
   {
+    name: "USA Today",
     domain: "usatoday.com",
     headline: `[Your Business] named a ${AWARD_YEAR} Entrepreneur Awards winner`,
     snippet: `The ${AWARD_YEAR} Entrepreneur Awards have named [Your Business] among this year's winners, recognising…`,
   },
   {
+    name: "The Associated Press",
     domain: "apnews.com",
     headline: `${AWARD_YEAR} Entrepreneur Awards names [Your Business] a winner`,
     snippet: `[Your Business] has been recognised in the ${AWARD_YEAR} Entrepreneur Awards, an independent award for founders…`,
   },
   {
+    name: "Business Insider",
     domain: "businessinsider.com",
     headline: `How [Your Business] won a ${AWARD_YEAR} Entrepreneur Award`,
     snippet: `Judged against a published rubric, [Your Business] was selected from this year's entries for…`,
   },
   {
+    name: "Entrepreneur Awards",
     domain: "entrepreneurawards.co",
     headline: `${AWARD_YEAR} Winner Feature — [Your Business]`,
     snippet:
@@ -164,15 +168,136 @@ const heroResults: Result[] = [
 ];
 
 const fortuneResult: Result = {
+  name: "Fortune",
   domain: "fortune.com",
   headline: `[Your Business] recognised in the ${AWARD_YEAR} Entrepreneur Awards`,
   snippet: "The award recognises founders whose businesses have demonstrated…",
 };
 
+function PublicationNames({ size = "hero" }: { size?: "hero" | "card" }) {
+  const names = ["USA Today", "The Associated Press", "Business Insider"];
+  const textStyle =
+    size === "hero"
+      ? { fontSize: "16px", lineHeight: 1.25 }
+      : { fontSize: "15px", lineHeight: 1.25 };
+  const dividerHeight = size === "hero" ? "14px" : "12px";
+  const gap = size === "hero" ? "16px" : "12px";
+
+  return (
+    <>
+      <span
+        className="hidden sm:inline-flex items-center"
+        style={{ gap, flexWrap: "wrap" }}
+      >
+        {names.map((name, i) => (
+          <span key={name} className="inline-flex items-center" style={{ gap }}>
+            <span
+              className="md:text-lg"
+              style={{
+                ...textStyle,
+                fontWeight: 600,
+                color: INK,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {name}
+            </span>
+            {i < names.length - 1 && (
+              <span
+                style={{
+                  width: "1px",
+                  height: dividerHeight,
+                  backgroundColor: LINE,
+                  flexShrink: 0,
+                }}
+              />
+            )}
+          </span>
+        ))}
+      </span>
+      <span className="sm:hidden flex flex-col" style={{ gap: "8px" }}>
+        {names.map((name) => (
+          <span
+            key={name}
+            style={{
+              ...textStyle,
+              fontWeight: 600,
+              color: INK,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {name}
+          </span>
+        ))}
+      </span>
+    </>
+  );
+}
+
+function HeroPublicationStrip() {
+  return (
+    <div
+      style={{
+        borderTop: `1px solid ${LINE}`,
+        borderBottom: `1px solid ${LINE}`,
+        padding: "16px 0",
+      }}
+    >
+      <p
+        style={{
+          fontSize: "10px",
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: MUTED,
+        }}
+      >
+        PUBLISHED IN
+      </p>
+      <div style={{ marginTop: "10px" }}>
+        <PublicationNames size="hero" />
+      </div>
+    </div>
+  );
+}
+
+function CardPublicationStrip() {
+  return (
+    <div
+      className="text-center"
+      style={{
+        backgroundColor: TINT,
+        borderTop: `1px solid ${LINE}`,
+        padding: "14px 0",
+      }}
+    >
+      <p
+        style={{
+          fontSize: "9.5px",
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: "0.14em",
+          color: MUTED,
+        }}
+      >
+        PUBLISHED IN
+      </p>
+      <div style={{ marginTop: "8px" }}>
+        <PublicationNames size="card" />
+      </div>
+    </div>
+  );
+}
+
 function SearchResult({ result }: { result: Result }) {
   return (
     <div>
-      <p style={{ fontSize: "11px", color: MUTED }}>{result.domain}</p>
+      <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
+        {result.name}
+        <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
+          {" · "}{result.domain}
+        </span>
+      </p>
       <p
         style={{
           marginTop: "3px",
@@ -313,7 +438,7 @@ const includedRows: { lead: string; rest: string }[] = [
   },
   {
     lead: "A press release",
-    rest: ` announcing your win, placed in ${BASE_PUBLICATIONS}, each linking back to your Feature`,
+    rest: " announcing your win, placed in three national publications, each linking back to your Feature",
   },
   {
     lead: "A permanent link",
@@ -329,7 +454,7 @@ const includedRows: { lead: string; rest: string }[] = [
 const whyCards = [
   {
     title: "Something to point to",
-    body: "When someone looks you up before a call, an article in USA Today answers the question they were about to ask. Put the links on your site, in your email signature, in your deck.",
+    body: "When someone looks you up before a call, a national article answers the question they were about to ask. Put the links on your site, in your email signature, in your deck.",
   },
   {
     title: "You don't write a word",
@@ -480,12 +605,18 @@ function SalesPage() {
                 }}
               >
                 We write the story of your win, publish it on the Entrepreneur Awards winners page,
-                and announce it in {BASE_PUBLICATIONS}.
+                and announce it in three national publications.
               </p>
 
               <div
+                className="mx-auto lg:mx-0"
+                style={{ marginTop: "24px", marginBottom: "24px", maxWidth: "46ch" }}
+              >
+                <HeroPublicationStrip />
+              </div>
+
+              <div
                 className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 lg:justify-start"
-                style={{ marginTop: "28px" }}
               >
                 <span style={{ fontSize: "34px", fontWeight: 700, color: INK }}>
                   {money(BASE_PRICE)}
@@ -595,6 +726,8 @@ function SalesPage() {
                 </div>
               ))}
 
+              <CardPublicationStrip />
+
               <div
                 className="text-center"
                 style={{ backgroundColor: TINT, borderTop: `1px solid ${LINE}`, padding: "24px" }}
@@ -618,8 +751,8 @@ function SalesPage() {
               style={{
                 marginTop: "32px",
                 maxWidth: "620px",
-                backgroundColor: "#fff",
-                border: `1px solid ${BRAND}`,
+                backgroundColor: TINT,
+                border: `1px solid ${LINE}`,
                 borderRadius: "10px",
                 padding: "20px",
               }}
