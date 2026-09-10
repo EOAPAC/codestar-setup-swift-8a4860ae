@@ -43,21 +43,15 @@ const MUTED = "#6B7785";
 const BLUE = "#1978E5";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
+const PAGE = "#FAFAF9";
 const GOLD = "#B4903C";
 
 const FEATURE_PRICE = 1595;
 const formatPrice = (n: number) => `$${n.toLocaleString()}`;
 
-const STRIPE_BUY_BUTTON_SCRIPT = "https://js.stripe.com/v3/buy-button.js";
-const STRIPE_BUY_BUTTON_ID = "buy_btn_1U8nvNGd5RmL1wBxiBeEk4sC";
-const STRIPE_PUBLISHABLE_KEY =
-  "pk_live_51PODhuGd5RmL1wBxaPSXB1yj8gkb96lf7T1sN4GIFOdql1w0I3nNAA9eDnwN1mMT5h4W8KuRqtrNELJCjWxz8hGS00QV17YBf4";
-/**
- * Paste a Stripe Payment Link here to swap the embedded buy button for our own
- * navy button. While empty, the embed carries the price on its own so $1,595
- * never appears twice.
- */
-const STRIPE_PAYMENT_LINK = "";
+/** Stripe Payment Link for the Winner's Feature — sits behind our own navy button. */
+const STRIPE_PAYMENT_LINK = "https://payments.entrepreneurawards.co/b/28E9ATesZ6jm2MQ8fi8so0k";
+
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
@@ -78,12 +72,41 @@ const v2WhatYouGet = [
   { lead: "Your approval on every word", rest: " before anything is published" },
 ];
 
-const publications = [
-  { name: "USA Today", descriptor: "National daily" },
-  { name: "Associated Press", descriptor: "Global newswire" },
-  { name: "Business Insider", descriptor: "Business & tech" },
-  { name: "Fortune", descriptor: "Business" },
+/**
+ * Four drawn-in-CSS article mockups. A masthead image can later replace the
+ * `name` wordmark inside a single card without changing the layout.
+ */
+const articleCards = [
+  {
+    domain: "usatoday.com",
+    name: "USA Today",
+    headline: "[Your Business] named a 2026 Entrepreneur Awards winner",
+    category: "National daily",
+    lastBar: "58%",
+  },
+  {
+    domain: "apnews.com",
+    name: "Associated Press",
+    headline: "2026 Entrepreneur Awards names [Your Business] a winner",
+    category: "Global newswire",
+    lastBar: "71%",
+  },
+  {
+    domain: "businessinsider.com",
+    name: "Business Insider",
+    headline: "How [Your Business] won a 2026 Entrepreneur Award",
+    category: "Business & tech",
+    lastBar: "46%",
+  },
+  {
+    domain: "fortune.com",
+    name: "Fortune",
+    headline: "[Your Business] recognised in the 2026 Entrepreneur Awards",
+    category: "Business",
+    lastBar: "66%",
+  },
 ];
+
 
 /** Inline tick used by the "what's included" list. */
 function Tick() {
@@ -278,91 +301,8 @@ function BrowserMockup() {
   );
 }
 
-/** Browser-frame mockup of the press release as published on USA Today. */
-function PressMockup() {
-  return (
-    <div
-      className="flex h-full flex-col overflow-hidden"
-      style={{ backgroundColor: "#fff" }}
-    >
-      <div
-        className="flex items-center gap-2 px-3 py-2"
-        style={{ borderBottom: `1px solid ${LINE}`, backgroundColor: TINT }}
-      >
-        <span className="flex gap-1.5" aria-hidden>
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className="block h-2.5 w-2.5 rounded-full"
-              style={{ backgroundColor: "#E2E6ED" }}
-            />
-          ))}
-        </span>
-        <span
-          className="ml-1 flex-1 truncate rounded-md px-2.5 py-1"
-          style={{
-            backgroundColor: "#fff",
-            border: `1px solid ${LINE}`,
-            fontSize: "11px",
-            color: MUTED,
-          }}
-        >
-          usatoday.com
-        </span>
-      </div>
 
-      <div
-        className="relative flex-1 px-5 pb-6 pt-5"
-        style={{ minHeight: 0, overflow: "hidden" }}
-      >
-        <img
-          src="/usa-today-logo.svg"
-          alt="USA Today"
-          width={160}
-          height={24}
-          loading="lazy"
-          decoding="async"
-          style={{ height: "20px", width: "auto" }}
-        />
-        <div style={{ marginTop: "14px", borderTop: `1px solid ${LINE}` }} />
-        <h3
-          style={{
-            marginTop: "14px",
-            fontSize: "17px",
-            lineHeight: 1.3,
-            fontWeight: 600,
-            letterSpacing: "-0.015em",
-            color: INK,
-          }}
-        >
-          {withSlots(`${SPECIMEN_BUSINESS_TOKEN} Named a Winner of the ${AWARD_YEAR} Entrepreneur Awards`)}
-        </h3>
-        <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>
-          NEW YORK — Entrepreneur Awards
-        </p>
-        {[
-          `${SPECIMEN_BUSINESS_TOKEN} has been named a winner of the ${AWARD_YEAR} Entrepreneur Awards, an annual program recognizing owner-led businesses for measurable operating results.`,
-          "The award is given on the basis of a documented outcome, its consistency over time, and the founder's direct role in producing it.",
-        ].map((p, i) => (
-          <p
-            key={i}
-            style={{ marginTop: "12px", fontSize: "12.5px", lineHeight: 1.7, color: BODY }}
-          >
-            {withSlots(p)}
-          </p>
-        ))}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0"
-          style={{
-            height: "110px",
-            background: "linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%)",
-          }}
-        />
-      </div>
-    </div>
-  );
-}
+
 
 
 
@@ -395,15 +335,8 @@ function useStickyVisible() {
 function WinnerOptionsPage() {
   const stickyVisible = useStickyVisible();
 
-  useEffect(() => {
-    if (document.querySelector(`script[src="${STRIPE_BUY_BUTTON_SCRIPT}"]`)) {
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = STRIPE_BUY_BUTTON_SCRIPT;
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
+
+
 
   return (
     <div
@@ -604,148 +537,179 @@ function WinnerOptionsPage() {
               </p>
             </div>
 
-            {/* Where your story runs */}
-            <div
-              className="mx-auto max-w-4xl overflow-hidden bg-white"
-              style={{ marginTop: "36px", border: `1px solid ${LINE}`, borderRadius: "3px" }}
+            {/* Where your story runs — four article cards */}
+            <p
+              className="text-center"
+              style={{
+                marginTop: "44px",
+                fontSize: "10.5px",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.14em",
+                color: MUTED,
+              }}
             >
-              <p
-                className="text-center"
-                style={{
-                  padding: "12px",
-                  backgroundColor: TINT,
-                  borderBottom: `1px solid ${LINE}`,
-                  fontSize: "10.5px",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.14em",
-                  color: MUTED,
-                }}
-              >
-                Where your story runs
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4">
-                {publications.map((pub, i) => (
+              Where your story runs
+            </p>
+
+            <div
+              className="mx-auto grid max-w-4xl grid-cols-2 sm:grid-cols-4"
+              style={{ marginTop: "20px", gap: "16px" }}
+            >
+              {articleCards.map((card) => (
+                <article
+                  key={card.name}
+                  className="flex flex-col overflow-hidden bg-white text-left"
+                  style={{ border: `1px solid ${LINE}`, borderRadius: "3px" }}
+                >
+                  {/* Browser chrome */}
                   <div
-                    key={pub.name}
-                    className={`flex flex-col items-center justify-center px-3 text-center ${
-                      i % 2 === 1 ? "border-l" : ""
-                    } ${i >= 2 ? "border-t sm:border-t-0" : ""} ${i > 0 ? "sm:border-l" : ""}`}
+                    className="flex items-center gap-1.5"
                     style={{
-                      paddingTop: "28px",
-                      paddingBottom: "28px",
-                      borderColor: LINE,
+                      padding: "8px 12px",
+                      backgroundColor: PAGE,
+                      borderBottom: `1px solid ${LINE}`,
                     }}
                   >
-
-                    {/* Wordmark slot — a logo <img> can replace this span later. */}
-                    <span
-                      className="text-[15px] md:text-[16.5px]"
-                      style={{ fontWeight: 700, letterSpacing: "-0.2px", color: INK }}
-                    >
-                      {pub.name}
+                    <span className="flex shrink-0 gap-1" aria-hidden>
+                      {[0, 1, 2].map((i) => (
+                        <span
+                          key={i}
+                          className="block rounded-full"
+                          style={{ width: "4px", height: "4px", backgroundColor: "#D3D8E0" }}
+                        />
+                      ))}
                     </span>
                     <span
-                      style={{
-                        marginTop: "6px",
-                        fontSize: "10px",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.1em",
-                        color: MUTED,
-                      }}
+                      className="ml-1 truncate"
+                      style={{ fontSize: "9.5px", color: MUTED }}
                     >
-                      {pub.descriptor}
+                      {card.domain}
                     </span>
                   </div>
-                ))}
-              </div>
-              <p
-                className="text-center"
-                style={{
-                  padding: "14px",
-                  borderTop: `1px solid ${LINE}`,
-                  fontSize: "12.5px",
-                  color: MUTED,
-                }}
-              >
-                The same story, written to each publication&rsquo;s format and running under your
-                business name.
-              </p>
-            </div>
 
-            {/* Three matched proof cards */}
-            <div
-              className="grid grid-cols-1 gap-5 sm:grid-cols-3"
-              style={{ marginTop: "44px" }}
-            >
-              {[
-                {
-                  label: "The press release",
-                  media: <PressMockup />,
-                  caption: "A recent placement in USA Today.",
-                },
-                {
-                  label: "Your winner page",
-                  media: <BrowserMockup />,
-                  caption: "The full article, on entrepreneurawards.co.",
-                },
-                {
-                  label: "The award",
-                  media: (
-                    <img
-                      src={portraitAsset.url}
-                      alt="Founder holding an engraved Entrepreneur Award"
-                      width={1264}
-                      height={848}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full"
-                      style={{ objectFit: "cover", objectPosition: "50% 35%" }}
-                    />
-                  ),
-                  caption: "Engraved with your name and year.",
-                },
-              ].map((card) => (
-                <figure
-                  key={card.label}
-                  className="bg-white"
-                  style={{ border: `1px solid ${LINE}`, borderRadius: "3px", padding: "14px" }}
-                >
+                  {/* Body */}
+                  <div className="flex flex-1 flex-col" style={{ padding: "12px" }}>
+                    {/* Wordmark slot — a masthead <img> can replace this span later. */}
+                    <span style={{ fontSize: "13.5px", fontWeight: 700, letterSpacing: "-0.2px", color: INK }}>
+                      {card.name}
+                    </span>
+                    <div style={{ marginTop: "10px", borderTop: `1px solid ${LINE}` }} />
+                    <h3
+                      style={{
+                        marginTop: "10px",
+                        fontSize: "11.5px",
+                        fontWeight: 600,
+                        lineHeight: 1.35,
+                        color: INK,
+                      }}
+                    >
+                      {card.headline}
+                    </h3>
+                    <div aria-hidden style={{ marginTop: "12px" }}>
+                      {["100%", "100%", "88%", card.lastBar].map((w, i) => (
+                        <div
+                          key={i}
+                          style={{
+                            width: w,
+                            height: "4px",
+                            borderRadius: "2px",
+                            backgroundColor: "#EDEFF3",
+                            marginTop: i === 0 ? 0 : "5px",
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Footer */}
                   <p
                     className="text-center"
                     style={{
-                      marginBottom: "12px",
-                      fontSize: "10px",
+                      borderTop: `1px solid ${LINE}`,
+                      padding: "10px",
+                      fontSize: "9.5px",
                       fontWeight: 700,
                       textTransform: "uppercase",
-                      letterSpacing: "0.13em",
+                      letterSpacing: "0.12em",
                       color: MUTED,
                     }}
                   >
-                    {card.label}
+                    {card.category}
                   </p>
-                  <div
-                    className="aspect-[16/11] w-full overflow-hidden"
-                    style={{ border: `1px solid ${LINE}`, borderRadius: "2px" }}
-                  >
-                    {card.media}
-                  </div>
-                  <figcaption
-                    className="text-center"
-                    style={{
-                      marginTop: "12px",
-                      fontSize: "12.5px",
-                      lineHeight: 1.5,
-                      color: BODY,
-                    }}
-                  >
-                    {card.caption}
-                  </figcaption>
-                </figure>
+                </article>
               ))}
             </div>
 
-            <div className="text-center" style={{ marginTop: "24px" }}>
+            <p
+              className="mx-auto text-center"
+              style={{ marginTop: "16px", maxWidth: "60ch", fontSize: "12.5px", color: MUTED }}
+            >
+              The same story, written to each publication&rsquo;s format and running under your
+              business name.
+            </p>
+
+            {/* Winner page + award, 2-up */}
+            <div
+              className="mx-auto mt-12 grid max-w-4xl grid-cols-1 sm:grid-cols-2 md:mt-14"
+              style={{ gap: "20px" }}
+
+            >
+              <div>
+                <p
+                  className="text-center"
+                  style={{
+                    marginBottom: "12px",
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.13em",
+                    color: MUTED,
+                  }}
+                >
+                  Your winner page
+                </p>
+                <div
+                  className="aspect-[4/3] w-full overflow-hidden"
+                  style={{ border: `1px solid ${LINE}`, borderRadius: "2px" }}
+                >
+                  <BrowserMockup />
+                </div>
+              </div>
+              <div>
+                <p
+                  className="text-center"
+                  style={{
+                    marginBottom: "12px",
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.13em",
+                    color: MUTED,
+                  }}
+                >
+                  The engraved award
+                </p>
+                <img
+                  src={portraitAsset.url}
+                  alt="Founder holding an engraved Entrepreneur Award trophy"
+                  width={1264}
+                  height={848}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/3] w-full"
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "50% 35%",
+                    border: `1px solid ${LINE}`,
+                    borderRadius: "2px",
+                  }}
+                />
+              </div>
+            </div>
+
+
+            <div className="text-center" style={{ marginTop: "28px" }}>
               <Link
                 to="/winners/specimen"
                 data-event="feature-format-view"
@@ -871,53 +835,36 @@ function WinnerOptionsPage() {
                 >
                   4 Publications · One story
                 </p>
-                {STRIPE_PAYMENT_LINK ? (
-                  <>
-                    <p
-                      className="text-[42px] md:text-[46px]"
-                      style={{
-                        marginTop: "10px",
-                        fontWeight: 700,
-                        letterSpacing: "-1.2px",
-                        lineHeight: 1.05,
-                        color: INK,
-                      }}
-                    >
-                      {formatPrice(FEATURE_PRICE)}
-                    </p>
-                    <p style={{ marginTop: "8px", fontSize: "12.5px", color: MUTED }}>
-                      One payment. Nothing recurring.
-                    </p>
-                    <a
-                      href={STRIPE_PAYMENT_LINK}
-                      data-event="feature-order-click"
-                      className={`flex w-full items-center justify-center rounded-sm text-white transition-opacity hover:opacity-90 ${focusRing}`}
-                      style={{
-                        marginTop: "24px",
-                        minHeight: "44px",
-                        backgroundColor: INK,
-                        fontSize: "15px",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Order the Winner&rsquo;s Feature
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    <p style={{ marginTop: "10px", fontSize: "12.5px", color: MUTED }}>
-                      One payment. Nothing recurring.
-                    </p>
-                    <div data-event="feature-order-click" style={{ marginTop: "24px" }}>
-                      {/* @ts-expect-error - Stripe web component */}
-                      <stripe-buy-button
-                        buy-button-id={STRIPE_BUY_BUTTON_ID}
-                        publishable-key={STRIPE_PUBLISHABLE_KEY}
-                        style={{ display: "block" }}
-                      />
-                    </div>
-                  </>
-                )}
+                <p
+                  className="text-[42px] md:text-[46px]"
+                  style={{
+                    marginTop: "10px",
+                    fontWeight: 700,
+                    letterSpacing: "-1.2px",
+                    lineHeight: 1.05,
+                    color: INK,
+                  }}
+                >
+                  {formatPrice(FEATURE_PRICE)}
+                </p>
+                <p style={{ marginTop: "8px", fontSize: "12.5px", color: MUTED }}>
+                  One payment. Nothing recurring.
+                </p>
+                <a
+                  href={STRIPE_PAYMENT_LINK}
+                  data-event="feature-order-click"
+                  className={`flex w-full items-center justify-center rounded-sm text-white transition-opacity hover:opacity-90 ${focusRing}`}
+                  style={{
+                    marginTop: "24px",
+                    minHeight: "44px",
+                    backgroundColor: INK,
+                    fontSize: "15px",
+                    fontWeight: 600,
+                  }}
+                >
+                  Order the Winner&rsquo;s Feature
+                </a>
+
                 <p
                   style={{
                     marginTop: "14px",
@@ -969,14 +916,22 @@ function WinnerOptionsPage() {
             <strong style={{ fontWeight: 600 }}>The Winner&rsquo;s Feature</strong>
             <span style={{ color: MUTED }}> · {formatPrice(FEATURE_PRICE)}</span>
           </span>
-          <div data-event="feature-order-click">
-            {/* @ts-expect-error - Stripe web component */}
-            <stripe-buy-button
-              buy-button-id={STRIPE_BUY_BUTTON_ID}
-              publishable-key={STRIPE_PUBLISHABLE_KEY}
-              style={{ display: "block", minWidth: "180px" }}
-            />
-          </div>
+          <a
+            href={STRIPE_PAYMENT_LINK}
+            data-event="feature-order-click"
+            className={`inline-flex items-center justify-center rounded-sm text-white transition-opacity hover:opacity-90 ${focusRing}`}
+            style={{
+              minHeight: "44px",
+              minWidth: "180px",
+              padding: "0 20px",
+              backgroundColor: INK,
+              fontSize: "15px",
+              fontWeight: 600,
+            }}
+          >
+            Order the Winner&rsquo;s Feature
+          </a>
+
         </Container>
       </div>
 
