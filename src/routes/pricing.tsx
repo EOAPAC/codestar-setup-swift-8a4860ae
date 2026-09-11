@@ -4,6 +4,7 @@ import { Check, Star } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { winnerKitFiles } from "@/content/winner-kit";
+import { Confetti } from "@/components/confetti";
 import {
   SPECIMEN_BYLINE,
   SPECIMEN_HEADLINE,
