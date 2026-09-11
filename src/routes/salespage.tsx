@@ -450,10 +450,6 @@ const includedRows: { lead: string; rest: string }[] = [
     lead: "A permanent link",
     rest: " to every placement, to send to a client or add to your site",
   },
-  {
-    lead: "Your digital certificate and winner badge",
-    rest: ", ready to use the day it goes live",
-  },
   { lead: "Your approval", rest: " on every word before anything is published" },
 ];
 
