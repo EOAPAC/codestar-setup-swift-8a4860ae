@@ -478,7 +478,7 @@ const questions = [
   },
   {
     q: "Do you need my address?",
-    a: `Not for the Feature. Everything in the ${money(BASE_PRICE)} package is digital and we only ask for your email. We ask for an address only if you add the Award Package, because we have to post it to you.`,
+    a: "Yes. Checkout asks for one because the engraved award is offered there as an optional extra. If you don't add it, nothing is posted to you and everything arrives by email.",
   },
   {
     q: "Who writes it?",
@@ -631,8 +631,6 @@ function SalesPage() {
 
               <p style={{ marginTop: "14px", fontSize: "12.5px", color: MUTED }}>
                 You approve every word before anything is published.
-                <br />
-                No shipping address needed — everything is digital.
               </p>
 
               <div style={{ marginTop: "20px" }}>
@@ -699,7 +697,7 @@ function SalesPage() {
                     color: MUTED,
                   }}
                 >
-                  Digital &middot; no shipping needed
+                  Digital delivery
                 </span>
               </div>
 
@@ -811,7 +809,7 @@ function SalesPage() {
               className="text-center"
               style={{ marginTop: "16px", fontSize: "12.5px", color: MUTED }}
             >
-              Ships worldwide. You can order it now or any time after your Feature goes live.
+              Offered at checkout as an optional extra. Ships worldwide.
             </p>
           </div>
         </section>
@@ -985,9 +983,6 @@ function SalesPage() {
 
                 <p style={{ marginTop: "16px", fontSize: "12.5px", fontWeight: 500, color: BODY }}>
                   Nothing goes live until you approve every word.
-                </p>
-                <p style={{ marginTop: "6px", fontSize: "12.5px", color: MUTED }}>
-                  Email only at checkout. No shipping address.
                 </p>
                 <p
                   style={{
