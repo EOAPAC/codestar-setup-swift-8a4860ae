@@ -56,13 +56,11 @@ const TINT = "#F7F9FC";
 
 /* Every price on this page derives from these three constants. */
 const BASE_PRICE = 997;
-const FORTUNE_PRICE = 1395;
 const AWARD_PRICE = 197;
 const money = (n: number) => `$${n.toLocaleString()}`;
 
 /* Stripe Payment Links. Base collects email only; the award package collects an address. */
 const BASE_LINK = "https://payments.entrepreneurawards.co/b/28E9ATesZ6jm2MQ8fi8so0k";
-const FORTUNE_LINK = BASE_LINK;
 const AWARD_LINK = BASE_LINK;
 
 const BASE_PUBLICATIONS = "USA Today, the Associated Press and Business Insider";
@@ -176,13 +174,6 @@ const heroResults: Result[] = [
       "Before the award, the constraint everyone told them to fix turned out to be the reason customers stayed…",
   },
 ];
-
-const fortuneResult: Result = {
-  name: "Fortune",
-  domain: "fortune.com",
-  headline: `[Your Business] recognised in the ${AWARD_YEAR} Entrepreneur Awards`,
-  snippet: "The award recognises founders whose businesses have demonstrated…",
-};
 
 function PublicationNames({ size = "hero" }: { size?: "hero" | "card" }) {
   const names = ["USA Today", "The Associated Press", "Business Insider"];
@@ -482,8 +473,8 @@ const questions = [
     a: "Because that is what a press release is — one announcement, distributed. Your Feature on the Entrepreneur Awards site is the long version, written for you alone, and every release links back to it.",
   },
   {
-    q: "Why is Fortune priced separately?",
-    a: "Fortune costs us more than the other three publications combined. We could have averaged that across everyone's price, but that means charging every winner for a placement most of them didn't ask for. So Fortune is there if you want it, and you're not paying for it if you don't.",
+    q: "Can you place the release in other publications?",
+    a: "Yes. We can place in other titles, including Fortune. Pricing varies by publication, so email us and we'll tell you what's available.",
   },
   {
     q: "Do you need my address?",
@@ -748,55 +739,6 @@ function SalesPage() {
               </BrandButton>
             </div>
 
-            {/* Fortune upgrade */}
-            <div
-              className="mx-auto"
-              style={{
-                marginTop: "32px",
-                maxWidth: "620px",
-                backgroundColor: TINT,
-                border: `1px solid ${LINE}`,
-                borderRadius: "10px",
-                padding: "20px",
-              }}
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <a
-                  href={FORTUNE_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={focusRing}
-                  style={{ fontSize: "16.5px", fontWeight: 600, color: INK }}
-                >
-                  Add Fortune
-                </a>
-                <span style={{ fontSize: "16.5px", fontWeight: 700, color: BRAND }}>
-                  +{money(FORTUNE_PRICE)}
-                </span>
-              </div>
-              <p
-                style={{
-                  marginTop: "10px",
-                  fontSize: "13.5px",
-                  lineHeight: 1.6,
-                  color: BODY,
-                  maxWidth: "60ch",
-                }}
-              >
-                Four publications instead of three: national, wire, business and corporate. Add
-                Fortune if you want the full spread.
-              </p>
-              <div
-                style={{
-                  marginTop: "16px",
-                  backgroundColor: TINT,
-                  borderRadius: "6px",
-                  padding: "12px",
-                }}
-              >
-                <SearchResult result={fortuneResult} />
-              </div>
-            </div>
 
             {/* Award package */}
             <div
