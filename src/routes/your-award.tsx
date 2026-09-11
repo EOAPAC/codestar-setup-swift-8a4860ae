@@ -5,6 +5,8 @@ import { AWARD_YEAR } from "@/content/award";
 import { winnerKitFiles } from "@/content/winner-kit";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { Confetti } from "@/components/confetti";
+import sealKnockout from "@/assets/ea-winner-seal-knockout.png";
 
 export const Route = createFileRoute("/your-award")({
   head: () => ({

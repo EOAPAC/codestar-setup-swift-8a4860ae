@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { Check, Star } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
