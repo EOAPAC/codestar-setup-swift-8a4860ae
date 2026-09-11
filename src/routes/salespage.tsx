@@ -1012,7 +1012,17 @@ function SalesPage() {
                   color: MUTED,
                 }}
               >
-                Add the engraved award for {money(AWARD_PRICE)} at checkout.
+                Want the engraved award as well?{" "}
+                <a
+                  href={AWARD_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={focusRing}
+                  style={{ color: BRAND, fontWeight: 500 }}
+                >
+                  Add it for {money(AWARD_PRICE)}
+                </a>
+                .
               </div>
             </div>
           </div>
