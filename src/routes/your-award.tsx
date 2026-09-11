@@ -69,7 +69,7 @@ function YourAwardPage() {
       className="min-h-screen font-sans antialiased"
       style={{ backgroundColor: "#fff", color: BODY }}
     >
-      <SiteNav />
+      <SiteNav hideCTA />
       <main>
         <Header />
         <Downloads />

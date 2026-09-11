@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import markAsset from "@/assets/ea-mark.png.asset.json";
 import { AWARD_YEAR } from "@/content/award";
 
-export function SiteNav() {
+export function SiteNav({ hideCTA = false }: { hideCTA?: boolean }) {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
@@ -28,9 +28,11 @@ export function SiteNav() {
           </Link>
           <a href="/#contact" className="hover:text-foreground">Contact</a>
         </nav>
-        <Button asChild size="sm">
-          <a href="/#submit">Enter the {AWARD_YEAR} Awards</a>
-        </Button>
+        {!hideCTA && (
+          <Button asChild size="sm">
+            <a href="/#submit">Enter the {AWARD_YEAR} Awards</a>
+          </Button>
+        )}
       </div>
     </header>
   );
