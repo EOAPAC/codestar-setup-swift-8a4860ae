@@ -744,7 +744,7 @@ function SalesPage() {
             <div
               className="mx-auto"
               style={{
-                marginTop: "20px",
+                marginTop: "32px",
                 maxWidth: "620px",
                 backgroundColor: "#fff",
                 border: `1px solid ${LINE}`,
@@ -793,7 +793,7 @@ function SalesPage() {
               className="text-center"
               style={{ marginTop: "16px", fontSize: "12.5px", color: MUTED }}
             >
-              You can add either at checkout, or later from your winner page.
+              You can add it at checkout, or later from your winner page.
             </p>
           </div>
         </section>
@@ -994,8 +994,7 @@ function SalesPage() {
                   color: MUTED,
                 }}
               >
-                Add Fortune for {money(FORTUNE_PRICE)} or the engraved award for {money(AWARD_PRICE)}{" "}
-                at checkout.
+                Add the engraved award for {money(AWARD_PRICE)} at checkout.
               </div>
             </div>
           </div>
