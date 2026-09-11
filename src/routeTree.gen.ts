@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as YourAwardRouteImport } from './routes/your-award'
 import { Route as WinnerProductConceptsRouteImport } from './routes/winner-product-concepts'
 import { Route as WinnerOptionsV2RouteImport } from './routes/winner-options-v2'
 import { Route as WinnerOptionsRouteImport } from './routes/winner-options'
@@ -35,6 +36,11 @@ import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as FeaturesSlugRouteImport } from './routes/features.$slug'
 import { Route as ApiPublicWinnerKitZipRouteImport } from './routes/api/public/winner-kit.zip'
 
+const YourAwardRoute = YourAwardRouteImport.update({
+  id: '/your-award',
+  path: '/your-award',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WinnerProductConceptsRoute = WinnerProductConceptsRouteImport.update({
   id: '/winner-product-concepts',
   path: '/winner-product-concepts',
@@ -178,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
+  '/your-award': typeof YourAwardRoute
   '/features/$slug': typeof FeaturesSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/pricing/aj': typeof PricingAjRoute
@@ -205,6 +212,7 @@ export interface FileRoutesByTo {
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
+  '/your-award': typeof YourAwardRoute
   '/features/$slug': typeof FeaturesSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/pricing/aj': typeof PricingAjRoute
@@ -233,6 +241,7 @@ export interface FileRoutesById {
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-options-v2': typeof WinnerOptionsV2Route
   '/winner-product-concepts': typeof WinnerProductConceptsRoute
+  '/your-award': typeof YourAwardRoute
   '/features/$slug': typeof FeaturesSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/pricing/aj': typeof PricingAjRoute
@@ -262,6 +271,7 @@ export interface FileRouteTypes {
     | '/winner-options'
     | '/winner-options-v2'
     | '/winner-product-concepts'
+    | '/your-award'
     | '/features/$slug'
     | '/insights/$slug'
     | '/pricing/aj'
@@ -289,6 +299,7 @@ export interface FileRouteTypes {
     | '/winner-options'
     | '/winner-options-v2'
     | '/winner-product-concepts'
+    | '/your-award'
     | '/features/$slug'
     | '/insights/$slug'
     | '/pricing/aj'
@@ -316,6 +327,7 @@ export interface FileRouteTypes {
     | '/winner-options'
     | '/winner-options-v2'
     | '/winner-product-concepts'
+    | '/your-award'
     | '/features/$slug'
     | '/insights/$slug'
     | '/pricing/aj'
@@ -344,6 +356,7 @@ export interface RootRouteChildren {
   WinnerOptionsRoute: typeof WinnerOptionsRoute
   WinnerOptionsV2Route: typeof WinnerOptionsV2Route
   WinnerProductConceptsRoute: typeof WinnerProductConceptsRoute
+  YourAwardRoute: typeof YourAwardRoute
   FeaturesSlugRoute: typeof FeaturesSlugRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   WinnerResourcesTokenRoute: typeof WinnerResourcesTokenRoute
@@ -356,6 +369,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/your-award': {
+      id: '/your-award'
+      path: '/your-award'
+      fullPath: '/your-award'
+      preLoaderRoute: typeof YourAwardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/winner-product-concepts': {
       id: '/winner-product-concepts'
       path: '/winner-product-concepts'
@@ -562,6 +582,7 @@ const rootRouteChildren: RootRouteChildren = {
   WinnerOptionsRoute: WinnerOptionsRoute,
   WinnerOptionsV2Route: WinnerOptionsV2Route,
   WinnerProductConceptsRoute: WinnerProductConceptsRoute,
+  YourAwardRoute: YourAwardRoute,
   FeaturesSlugRoute: FeaturesSlugRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   WinnerResourcesTokenRoute: WinnerResourcesTokenRoute,
