@@ -229,6 +229,7 @@ function Downloads() {
                       download={file.filename}
                       className="inline-flex items-center gap-1.5 transition-colors hover:underline"
                       style={{
+                        minHeight: "44px",
                         fontSize: "13.5px",
                         fontWeight: 600,
                         color: BRAND,
