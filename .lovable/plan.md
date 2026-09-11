@@ -1,12 +1,12 @@
-# Create /your-award and redirect /pricing to it
+# Create /your-award and redirect /salespage to it
 
 ## Goal
-Move the free winner-award downloads portion of `/pricing` to a new standalone page at `/your-award`, and make `/pricing` permanently redirect there. The paid Winner's Feature content stays on `/salespage` and is not touched.
+Move the free winner-award downloads portion of `/pricing` to a new standalone page at `/your-award`. Keep `/pricing` untouched. Redirect `/salespage` to `/your-award` so any winner-email links pointing at `/salespage` land on the award page instead.
 
 ## Files to change
 
 1. `src/routes/your-award.tsx` — new route.
-2. `src/routes/pricing.tsx` — replace with a 301 redirect to `/your-award`.
+2. `src/routes/salespage.tsx` — replace with a redirect to `/your-award`.
 3. `src/routeTree.gen.ts` — regenerates automatically; do not edit.
 
 ## Page structure for `/your-award`
@@ -50,10 +50,10 @@ Move the free winner-award downloads portion of `/pricing` to a new standalone p
 - Link: "See the Winner's Feature →" — `--brand`, 13.5px semibold, 12px below line 2, points to `/salespage`
 - No card, price, or button here.
 
-## Redirect `/pricing` → `/your-award`
-- Replace the contents of `src/routes/pricing.tsx` with a route that throws `redirect({ to: "/your-award", statusCode: 301 })` from `beforeLoad`.
+## Redirect `/salespage` → `/your-award`
+- Replace the contents of `src/routes/salespage.tsx` with a route that throws `redirect({ to: "/your-award", statusCode: 301 })` from `beforeLoad`.
 - If `statusCode: 301` is not supported by the current TanStack Router version, fall back to the default redirect (the same behaviour used for `/how-it-works` → `/methodology`).
-- Keep the route file so existing winner-email links to `/pricing` keep resolving.
+- Keep the route file so existing winner-email links to `/salespage` keep resolving.
 
 ## Brand tokens (same as recent pages)
 - `--ink: #0F172A`
@@ -69,11 +69,11 @@ Move the free winner-award downloads portion of `/pricing` to a new standalone p
 ## Rules
 - No prices anywhere on `/your-award`.
 - The only off-page link is the single "See the Winner's Feature →" text link.
-- `/pricing` must resolve but redirect.
-- Do not change `/salespage`, `/pricingv2`, `/apply`, or the winner-kit API.
+- `/salespage` must resolve but redirect.
+- Do not change `/pricing`, `/pricingv2`, `/apply`, or the winner-kit API.
 
 ## Verification
 - TypeScript check passes.
 - Playwright screenshots at 390px, 768px, and 1440px with no horizontal overflow.
 - Every download link and the main "Download everything" button are at least 44px tall on mobile.
-- `/pricing` redirects to `/your-award`.
+- `/salespage` redirects to `/your-award`.
