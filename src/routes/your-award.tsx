@@ -97,9 +97,9 @@ function Header() {
         <img
           src={sealKnockout}
           alt="the 2026 Entrepreneur Awards winner badge"
-          className="mx-auto mb-7 w-[104px] object-contain md:w-[132px]"
-          width={132}
-          height={132}
+          className="mx-auto mb-7 w-[124px] object-contain md:w-[156px]"
+          width={156}
+          height={156}
         />
         <p
           className="text-[11px] font-semibold uppercase tracking-[0.16em]"
