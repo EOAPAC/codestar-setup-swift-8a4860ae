@@ -5,6 +5,8 @@ import { AWARD_YEAR } from "@/content/award";
 import { winnerKitFiles } from "@/content/winner-kit";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { Confetti } from "@/components/confetti";
+import sealKnockout from "@/assets/ea-winner-seal-knockout.png";
 
 export const Route = createFileRoute("/your-award")({
   head: () => ({
@@ -79,24 +81,26 @@ function YourAwardPage() {
 }
 
 function Header() {
-  const seal = winnerKitFiles.find((file) => file.id === "seal");
-
   return (
-    <section style={{ backgroundColor: INK }}>
-      <Container narrow={760} className="pt-14 pb-12 text-center md:pt-[72px] md:pb-16">
-        {seal && (
-          <div
-            className="mx-auto mb-7 flex w-[108px] items-center justify-center rounded-full bg-white md:w-[140px]"
-            style={{ aspectRatio: "1 / 1" }}
-          >
-            <img
-              src={seal.url}
-              alt="the 2026 Entrepreneur Awards winner badge"
-              className="object-contain"
-              style={{ width: "70%", height: "70%" }}
-            />
-          </div>
-        )}
+    <section
+      className="relative overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse 760px 440px at 50% 20%, #1B2B47 0%, #0F172A 68%)",
+      }}
+    >
+      <Confetti />
+      <Container
+        narrow={760}
+        className="relative z-10 pt-14 pb-12 text-center md:pt-[72px] md:pb-16"
+      >
+        <img
+          src={sealKnockout}
+          alt="the 2026 Entrepreneur Awards winner badge"
+          className="mx-auto mb-7 w-[104px] object-contain md:w-[132px]"
+          width={132}
+          height={132}
+        />
         <p
           className="text-[11px] font-semibold uppercase tracking-[0.16em]"
           style={{ color: "rgba(255,255,255,0.6)" }}
