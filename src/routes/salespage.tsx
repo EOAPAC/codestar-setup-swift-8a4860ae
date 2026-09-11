@@ -567,7 +567,7 @@ function SalesPage() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#fff", color: BODY }}>
-      <SiteNav />
+      <SalesPageNav />
 
       <main>
         {/* 1. HERO */}
