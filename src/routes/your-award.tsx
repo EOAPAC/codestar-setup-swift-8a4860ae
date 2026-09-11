@@ -31,7 +31,6 @@ const INK = "#0F172A";
 const BODY = "#52606D";
 const MUTED = "#6B7785";
 const BRAND = "#1978E5";
-const BRAND_DARK = "#1565C4";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
 
@@ -80,23 +79,38 @@ function YourAwardPage() {
 }
 
 function Header() {
+  const seal = winnerKitFiles.find((file) => file.id === "seal");
+
   return (
-    <section className="bg-white">
-      <Container narrow={760} className="pt-16 pb-12 text-center">
+    <section style={{ backgroundColor: INK }}>
+      <Container narrow={760} className="pt-14 pb-12 text-center md:pt-[72px] md:pb-16">
+        {seal && (
+          <div
+            className="mx-auto mb-7 flex w-[108px] items-center justify-center rounded-full bg-white md:w-[140px]"
+            style={{ aspectRatio: "1 / 1" }}
+          >
+            <img
+              src={seal.url}
+              alt="the 2026 Entrepreneur Awards winner badge"
+              className="object-contain"
+              style={{ width: "70%", height: "70%" }}
+            />
+          </div>
+        )}
         <p
           className="text-[11px] font-semibold uppercase tracking-[0.16em]"
-          style={{ color: MUTED }}
+          style={{ color: "rgba(255,255,255,0.6)" }}
         >
           {AWARD_YEAR} Entrepreneur Award
         </p>
         <h1
           className="mt-5"
           style={{
-            fontSize: "clamp(34px, 5vw, 52px)",
+            fontSize: "clamp(36px, 5.5vw, 56px)",
             fontWeight: 700,
             lineHeight: 1.05,
             letterSpacing: "-0.02em",
-            color: INK,
+            color: "#fff",
           }}
         >
           You won.
@@ -107,7 +121,7 @@ function Header() {
             maxWidth: "52ch",
             fontSize: "16.5px",
             lineHeight: 1.6,
-            color: BODY,
+            color: "rgba(255,255,255,0.75)",
           }}
         >
           Congratulations on your {AWARD_YEAR} Entrepreneur Award. Everything that comes
@@ -164,23 +178,25 @@ function Downloads() {
           </a>
         </div>
 
-        <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 flex flex-wrap justify-center gap-5">
           {winnerKitFiles.map((file) => (
-            <li key={file.id} className="flex">
+            <li key={file.id} className="w-full sm:basis-[300px] sm:max-w-[340px]">
               <article
                 className="flex w-full flex-col overflow-hidden"
                 style={{
                   backgroundColor: "#fff",
                   border: `1px solid ${LINE}`,
                   borderRadius: "8px",
+                  boxShadow: "0 1px 2px rgba(15, 23, 42, 0.05)",
                 }}
               >
                 <div
                   className="flex items-center justify-center"
                   style={{
-                    height: "160px",
-                    padding: "16px",
-                    backgroundColor: TINT,
+                    height: "150px",
+                    padding: "20px",
+                    backgroundColor: "#fff",
+                    borderBottom: `1px solid ${LINE}`,
                   }}
                 >
                   <img
@@ -257,7 +273,7 @@ function Closing() {
           That&apos;s everything you can post yourself.
         </p>
         <p
-          className="mx-auto mt-4"
+          className="mx-auto mt-2.5"
           style={{
             maxWidth: "56ch",
             fontSize: "13.5px",
@@ -267,7 +283,7 @@ function Closing() {
           If you&apos;d like the story behind the award written up and published as well,
           that&apos;s the Winner&apos;s Feature.
         </p>
-        <div className="mt-3">
+        <div className="mt-3.5">
           <Link
             to="/salespage"
             className="inline-flex items-center gap-1 transition-colors hover:underline"
