@@ -61,7 +61,7 @@ const money = (n: number) => `$${n.toLocaleString()}`;
 
 /* Stripe Payment Links. Base collects email only; the award package collects an address. */
 const BASE_LINK = "https://payments.entrepreneurawards.co/b/28E9ATesZ6jm2MQ8fi8so0k";
-const AWARD_LINK = BASE_LINK;
+const AWARD_LINK = "https://payments.entrepreneurawards.co/b/14A28racJfTW1IM7be8so0l";
 
 const BASE_PUBLICATIONS = "USA Today, the Associated Press and Business Insider";
 const REAL_FEATURE_SLUG = "adam-pisk";
@@ -787,13 +787,31 @@ function SalesPage() {
                 The engraved award with your name and award year, plus a printed certificate ready
                 to frame. Posted to you — this is the only part we need an address for.
               </p>
+              <a
+                href={AWARD_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex w-full items-center justify-center transition-colors hover:bg-[#F7F9FC] ${focusRing}`}
+                style={{
+                  marginTop: "16px",
+                  minHeight: "46px",
+                  borderRadius: "8px",
+                  border: `1px solid ${BRAND}`,
+                  backgroundColor: "#FFFFFF",
+                  color: BRAND,
+                  fontSize: "14.5px",
+                  fontWeight: 600,
+                }}
+              >
+                Add the engraved award — {money(AWARD_PRICE)}
+              </a>
             </div>
 
             <p
               className="text-center"
               style={{ marginTop: "16px", fontSize: "12.5px", color: MUTED }}
             >
-              You can add it at checkout, or later from your winner page.
+              Ships worldwide. You can order it now or any time after your Feature goes live.
             </p>
           </div>
         </section>
@@ -994,7 +1012,17 @@ function SalesPage() {
                   color: MUTED,
                 }}
               >
-                Add the engraved award for {money(AWARD_PRICE)} at checkout.
+                Want the engraved award as well?{" "}
+                <a
+                  href={AWARD_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={focusRing}
+                  style={{ color: BRAND, fontWeight: 500 }}
+                >
+                  Add it for {money(AWARD_PRICE)}
+                </a>
+                .
               </div>
             </div>
           </div>
