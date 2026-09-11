@@ -20,6 +20,10 @@ import {
 } from "@/content/specimen";
 import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 
+function SalesPageNav() {
+  return <SiteNav hideCTA />;
+}
+
 export const Route = createFileRoute("/salespage")({
   head: () => ({
     meta: [
@@ -650,9 +654,6 @@ function SalesPage() {
                 What people find when they look you up
               </p>
               <SearchMockup />
-              <p style={{ marginTop: "12px", fontSize: "11.5px", color: MUTED }}>
-                Illustrative. Your headlines are written for your business and approved by you.
-              </p>
             </div>
           </div>
         </section>
