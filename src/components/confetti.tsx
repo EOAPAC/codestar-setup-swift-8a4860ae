@@ -40,16 +40,6 @@ export function Confetti() {
           />
         );
       })}
-      <style>{`
-        @keyframes ea-confetti-fall {
-          0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-          8% { opacity: 0.95; }
-          100% { transform: translateY(320px) translateX(var(--ea-drift, 0px)) rotate(720deg); opacity: 0; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .ea-confetti { animation: none; display: none; }
-        }
-      `}</style>
     </div>
   );
 }
