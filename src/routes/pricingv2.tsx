@@ -346,7 +346,7 @@ function SearchResult({ result }: { result: Result }) {
   return (
     <div>
       <div className="flex items-center gap-2">
-        {publisherName ? <PublisherLogos size="serp" publications={[publisherName]} priority /> : null}
+        {publisherName ? <PublisherLogos size="serp" publications={[publisherName]} /> : null}
         <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
           {result.name}
           <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
