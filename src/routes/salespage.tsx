@@ -213,6 +213,29 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
   const dividerHeight = size === "hero" ? "14px" : "12px";
   const itemGap = size === "hero" ? "16px" : "12px";
   const logoGap = size === "hero" ? "8px" : "7px";
+  const labelOnlyLogo = new Set(["USA Today"]);
+
+  const Label = ({ name }: { name: string }) => (
+    <span
+      className="inline-flex items-center"
+      style={{ gap: logoGap }}
+    >
+      {showLogos ? <PublicationLogo name={name} /> : null}
+      {!(showLogos && labelOnlyLogo.has(name)) && (
+        <span
+          className="md:text-lg"
+          style={{
+            ...textStyle,
+            fontWeight: 600,
+            color: INK,
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {name}
+        </span>
+      )}
+    </span>
+  );
 
   return (
     <>
@@ -222,20 +245,7 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
       >
         {names.map((name, i) => (
           <span key={name} className="inline-flex items-center" style={{ gap: itemGap }}>
-            <span className="inline-flex items-center" style={{ gap: logoGap }}>
-              {showLogos ? <PublicationLogo name={name} /> : null}
-              <span
-                className="md:text-lg"
-                style={{
-                  ...textStyle,
-                  fontWeight: 600,
-                  color: INK,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {name}
-              </span>
-            </span>
+            <Label name={name} />
             {i < names.length - 1 && (
               <span
                 style={{
@@ -251,23 +261,7 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
       </span>
       <span className="sm:hidden flex flex-col" style={{ gap: "8px" }}>
         {names.map((name) => (
-          <span
-            key={name}
-            className="inline-flex items-center"
-            style={{ gap: logoGap }}
-          >
-            {showLogos ? <PublicationLogo name={name} /> : null}
-            <span
-              style={{
-                ...textStyle,
-                fontWeight: 600,
-                color: INK,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              {name}
-            </span>
-          </span>
+          <Label key={name} name={name} />
         ))}
       </span>
     </>
