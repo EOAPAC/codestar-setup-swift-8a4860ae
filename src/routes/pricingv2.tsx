@@ -274,7 +274,7 @@ function HeroPublicationStrip() {
 function CardPublicationStrip() {
   const logos = [
     { name: "USA Today", src: "/usa-today-logo.svg", height: 18 },
-    { name: "The Associated Press", src: "/associated-press-ap.png", height: 20 },
+    { name: "The Associated Press", src: apUserLogoAsset.url, height: 20 },
     { name: "Business Insider", src: "/business-insider-logo.png", height: 20 },
   ];
 
