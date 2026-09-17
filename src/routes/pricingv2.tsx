@@ -251,21 +251,23 @@ function PublisherLogos({
       {publications.map((name, index) => {
         const asset = isSerp ? PUBLISHER_ASSETS[name].icon : PUBLISHER_ASSETS[name].wordmark;
         const height = PUBLISHER_LOGO_HEIGHTS[size][name];
+        const containerStyle = {
+          "--publisher-divider-height": `${PUBLISHER_DIVIDER_HEIGHTS[size]}px`,
+          height: `${height}px`,
+          width: isSerp ? "20px" : undefined,
+          borderColor: "#E4E9F2",
+          borderRadius: isSerp ? "4px" : undefined,
+          overflow: isSerp ? "hidden" : undefined,
+        } as React.CSSProperties & { "--publisher-divider-height": string };
         return (
           <span
             key={`${size}-${name}`}
-            className={`flex shrink-0 items-center justify-center ${multiple && index > 0 ? "ml-4 border-l pl-4 md:ml-[26px] md:pl-[26px]" : ""}`}
-            style={{
-              height: isSerp ? "20px" : `${PUBLISHER_DIVIDER_HEIGHTS[size]}px`,
-              width: isSerp ? "20px" : undefined,
-              borderColor: "#E4E9F2",
-              borderRadius: isSerp ? "4px" : undefined,
-              overflow: isSerp ? "hidden" : undefined,
-            }}
+            className={`relative flex shrink-0 items-center justify-center ${multiple && index > 0 ? "ml-4 pl-4 before:absolute before:left-0 before:top-1/2 before:h-[var(--publisher-divider-height)] before:w-px before:-translate-y-1/2 before:bg-[#E4E9F2] before:content-[''] md:ml-[26px] md:pl-[26px]" : ""}`}
+            style={containerStyle}
           >
             <img
               src={asset.src}
-              alt={isSerp ? "" : asset.alt}
+              alt={isSerp ? "" : PUBLISHER_ASSETS[name].alt}
               width={asset.width}
               height={asset.height}
               loading={priority ? "eager" : "lazy"}
@@ -273,7 +275,7 @@ function PublisherLogos({
               decoding={priority ? undefined : "async"}
               style={{
                 display: "block",
-                height: isSerp ? "100%" : `${height}px`,
+                height: "100%",
                 width: isSerp ? "100%" : "auto",
                 objectFit: isSerp ? "contain" : "contain",
               }}
