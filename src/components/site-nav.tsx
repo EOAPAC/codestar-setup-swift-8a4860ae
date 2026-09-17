@@ -16,6 +16,7 @@ type SiteNavProps = {
   hideCTA?: boolean;
   mobileMenu?: boolean;
   compactCta?: { href: string; label: string; className?: string };
+  containerClassName?: string;
 };
 
 const navLinks = [
