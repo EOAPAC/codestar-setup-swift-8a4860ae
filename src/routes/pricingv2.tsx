@@ -221,7 +221,7 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
   const textStyle = size === "hero" ? { fontSize: "16px", lineHeight: 1.25 } : { fontSize: "15px", lineHeight: 1.25 };
 
   const Label = ({ name, index }: { name: string; index: number }) => (
-    <span className={`flex min-h-11 items-center justify-center px-5 min-[900px]:min-h-8 ${index > 0 ? "min-[900px]:border-l" : ""}`} style={{ borderColor: LINE }}>
+    <span className={`flex items-center justify-center min-[900px]:min-h-8 ${index > 0 ? "min-[900px]:border-l min-[900px]:pl-8 min-[900px]:ml-8" : ""}`} style={{ borderColor: LINE }}>
       {showLogos ? <PublicationLogo name={name} /> : (
         <span
           style={{
@@ -238,7 +238,7 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
   );
 
   return (
-    <span className="grid grid-cols-1 place-items-center min-[900px]:grid-cols-3">
+    <span className="flex flex-col items-center justify-center gap-5 min-[900px]:flex-row min-[900px]:gap-0">
       {names.map((name, index) => <Label key={name} name={name} index={index} />)}
     </span>
   );
@@ -254,6 +254,7 @@ function HeroPublicationStrip() {
       }}
     >
       <p
+        className="text-center"
         style={{
           fontSize: "12px",
           fontWeight: 700,
@@ -264,7 +265,7 @@ function HeroPublicationStrip() {
       >
         PUBLISHED IN
       </p>
-      <div style={{ marginTop: "10px" }}>
+      <div style={{ marginTop: "14px" }}>
         <PublicationNames size="hero" showLogos />
       </div>
     </div>
