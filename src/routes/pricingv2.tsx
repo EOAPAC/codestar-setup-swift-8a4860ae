@@ -18,7 +18,7 @@ import {
   SPECIMEN_BUSINESS_TOKEN,
   splitOnBusinessToken,
 } from "@/content/specimen";
-import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
+
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 
 function SalesPageNav() {
@@ -221,7 +221,7 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
   const textStyle = size === "hero" ? { fontSize: "16px", lineHeight: 1.25 } : { fontSize: "15px", lineHeight: 1.25 };
 
   const Label = ({ name, index }: { name: string; index: number }) => (
-    <span className={`flex min-h-11 items-center justify-center px-5 min-[900px]:min-h-8 ${index > 0 ? "min-[900px]:border-l" : ""}`} style={{ borderColor: LINE }}>
+    <span className={`flex items-center justify-center min-[900px]:min-h-8 ${index > 0 ? "min-[900px]:border-l min-[900px]:pl-8 min-[900px]:ml-8" : ""}`} style={{ borderColor: LINE }}>
       {showLogos ? <PublicationLogo name={name} /> : (
         <span
           style={{
@@ -238,7 +238,7 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
   );
 
   return (
-    <span className="grid grid-cols-1 place-items-center min-[900px]:grid-cols-3">
+    <span className="flex flex-col items-center justify-center gap-5 min-[900px]:flex-row min-[900px]:gap-0">
       {names.map((name, index) => <Label key={name} name={name} index={index} />)}
     </span>
   );
@@ -254,6 +254,7 @@ function HeroPublicationStrip() {
       }}
     >
       <p
+        className="text-center"
         style={{
           fontSize: "12px",
           fontWeight: 700,
@@ -264,7 +265,7 @@ function HeroPublicationStrip() {
       >
         PUBLISHED IN
       </p>
-      <div style={{ marginTop: "10px" }}>
+      <div style={{ marginTop: "14px" }}>
         <PublicationNames size="hero" showLogos />
       </div>
     </div>
@@ -298,12 +299,12 @@ function CardPublicationStrip() {
       >
         Published in
       </p>
-      <div className="flex max-w-full items-center justify-center gap-3 md:gap-[26px]">
+      <div className="flex max-w-full items-center justify-center">
         {logos.map((logo, index) => (
           <span
             key={logo.name}
-            className="flex h-[22px] items-center justify-center pl-3 md:pl-[26px]"
-            style={{ borderLeft: index === 0 ? undefined : "1px solid #E4E9F2" }}
+            className={`flex h-[22px] items-center justify-center ${index === 0 ? "" : "ml-3 border-l pl-3 md:ml-[26px] md:pl-[26px]"}`}
+            style={{ borderColor: "#E4E9F2" }}
           >
             <img
               src={logo.src}
@@ -823,76 +824,37 @@ function SalesPage() {
                   </p>
                 </div>
               </div>
-            </div>
 
-
-            {/* Award package */}
-            <div
-              className="mx-auto"
-              style={{
-                marginTop: "32px",
-                maxWidth: "620px",
-                backgroundColor: "#fff",
-                border: `1px solid ${LINE}`,
-                borderRadius: "8px",
-                padding: "20px",
-              }}
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 style={{ fontSize: "15.5px", fontWeight: 600, color: INK }}>
-                  The Award Package
-                </h3>
-                <span style={{ fontSize: "15.5px", fontWeight: 700, color: BRAND }}>
-                  +{money(AWARD_PRICE)}
-                </span>
-              </div>
-              <img
-                src={portraitAsset.url}
-                alt="A founder holding the engraved Entrepreneur Award"
-                width={1264}
-                height={848}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[16/10] w-full"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 35%",
-                  border: `1px solid ${LINE}`,
-                  borderRadius: "6px",
-                  marginTop: "14px",
-                  marginBottom: "14px",
-                }}
-              />
-              <p style={{ fontSize: "13.5px", lineHeight: 1.6, color: BODY }}>
-                The engraved award with your name and award year, plus a printed certificate ready
-                to frame. Posted to you — this is the only part we need an address for.
-              </p>
-              <a
-                href={AWARD_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex w-full items-center justify-center transition-colors hover:bg-[#F7F9FC] ${focusRing}`}
-                style={{
-                  marginTop: "16px",
-                  minHeight: "46px",
-                  borderRadius: "8px",
-                  border: `1px solid ${BRAND}`,
-                  backgroundColor: "#FFFFFF",
-                  color: BRAND,
-                  fontSize: "14.5px",
-                  fontWeight: 600,
-                }}
+              <div
+                className="flex flex-wrap items-center gap-x-4 px-[18px] py-4 md:flex-nowrap md:px-[34px]"
+                style={{ backgroundColor: "#F2F5FA", borderTop: "1px solid #E4E9F2" }}
               >
-                Add the engraved award — {money(AWARD_PRICE)}
-              </a>
+                <img
+                  src="/award-crystal-square.jpg"
+                  alt="The engraved 2026 Entrepreneur Award"
+                  width={232}
+                  height={232}
+                  loading="lazy"
+                  decoding="async"
+                  className="order-1 h-[58px] w-[58px] shrink-0 object-cover"
+                  style={{ borderRadius: "9px", backgroundColor: "#E7ECF4", border: "1px solid #DCE3EE" }}
+                />
+                <span
+                  className="order-2 ml-auto shrink-0 whitespace-nowrap md:order-3 md:ml-0"
+                  style={{ fontSize: "13.5px", fontWeight: 700, color: "#55616F" }}
+                >
+                  Add for {money(AWARD_PRICE)} at checkout
+                </span>
+                <p
+                  className="order-3 mt-3 w-full md:order-2 md:mt-0 md:w-auto md:flex-1"
+                  style={{ margin: undefined, fontSize: "13.5px", lineHeight: 1.5, color: "#55616F" }}
+                >
+                  <strong style={{ color: "#0B1220", fontWeight: 700 }}>Optional: the engraved award.</strong>{" "}
+                  Your name and award year on crystal, plus a printed certificate. Posted to you — the only part we need an address for.
+                </p>
+              </div>
             </div>
 
-            <p
-              className="text-center"
-              style={{ marginTop: "16px", fontSize: "12.5px", color: MUTED }}
-            >
-              Offered at checkout as an optional extra. Ships worldwide.
-            </p>
           </div>
         </section>
 
