@@ -324,9 +324,15 @@ function CardPublicationStrip() {
 }
 
 const SEARCH_LOGO_ONLY = new Set(["USA Today"]);
+const SEARCH_LOGO_SIZES: Record<string, { height: number; width: number }> = {
+  "USA Today": { height: 14, width: 96 },
+  "The Associated Press": { height: 24, width: 24 },
+  "Business Insider": { height: 26, width: 52 },
+};
 
 function SearchResult({ result }: { result: Result }) {
   const logo = PUBLICATION_LOGOS[result.name];
+  const size = SEARCH_LOGO_SIZES[result.name];
   const showName = !SEARCH_LOGO_ONLY.has(result.name);
   return (
     <div>
@@ -335,14 +341,14 @@ function SearchResult({ result }: { result: Result }) {
           <img
             src={logo.src}
             alt=""
-            width={logo.width}
-            height={logo.height}
+            width={size?.width ?? logo.width}
+            height={size?.height ?? logo.height}
             loading="lazy"
             decoding="async"
             style={{
               display: "block",
-              height: `${logo.height}px`,
-              width: `${logo.width}px`,
+              height: `${size?.height ?? logo.height}px`,
+              width: `${size?.width ?? logo.width}px`,
               objectFit: "contain",
               flexShrink: 0,
               ...logo.style,
