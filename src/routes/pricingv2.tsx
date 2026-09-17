@@ -621,10 +621,7 @@ function SalesPage() {
         <section style={{ paddingTop: "64px", paddingBottom: "56px" }}>
           <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 px-6 lg:grid-cols-2 lg:gap-16">
             <div className="text-center lg:text-left">
-              <p className="flex items-center justify-center gap-3 lg:justify-start" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.16em", color: MUTED }}>
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full" style={{ border: `1px solid ${BRAND}`, color: BRAND, backgroundColor: TINT, fontWeight: 700, letterSpacing: "0.04em" }}>
-                  {AWARD_YEAR}
-                </span>
+              <p className="flex items-center justify-center lg:justify-start" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.16em", color: MUTED }}>
                 <span>Entrepreneur Awards &middot; The Winner&rsquo;s Feature</span>
               </p>
 
