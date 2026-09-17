@@ -271,28 +271,48 @@ function HeroPublicationStrip() {
 }
 
 function CardPublicationStrip() {
+  const logos = [
+    { name: "USA Today", src: "/usa-today-logo.svg", height: 18 },
+    { name: "The Associated Press", src: "/associated-press-wordmark.svg", height: 22 },
+    { name: "Business Insider", src: "/business-insider-logo.png", height: 20 },
+  ];
+
   return (
     <div
-      className="text-center"
+      className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:flex-row md:gap-[26px] md:px-[34px] md:py-[21px]"
       style={{
-        backgroundColor: TINT,
-        borderTop: `1px solid ${LINE}`,
-        padding: "14px 0",
+        backgroundColor: "#FFFFFF",
+        borderTop: "1px solid #EEF1F7",
       }}
     >
       <p
+        className="shrink-0"
         style={{
-          fontSize: "12px",
+          fontSize: "11px",
           fontWeight: 700,
           textTransform: "uppercase",
           letterSpacing: "0.14em",
-          color: MUTED,
+          color: "#55616F",
         }}
       >
-        PUBLISHED IN
+        Published in
       </p>
-      <div style={{ marginTop: "8px" }}>
-        <PublicationNames size="card" showLogos />
+      <div className="flex max-w-full items-center justify-center gap-3 md:gap-[26px]">
+        {logos.map((logo, index) => (
+          <span
+            key={logo.name}
+            className="flex h-[22px] items-center justify-center pl-3 md:pl-[26px]"
+            style={{ borderLeft: index === 0 ? undefined : "1px solid #E4E9F2" }}
+          >
+            <img
+              src={logo.src}
+              alt={logo.name}
+              loading="lazy"
+              decoding="async"
+              style={{ display: "block", height: `${logo.height}px`, width: "auto", maxWidth: "100%", objectFit: "contain" }}
+            />
+          </span>
+        ))}
       </div>
     </div>
   );
@@ -696,90 +716,115 @@ function SalesPage() {
               className="mx-auto"
               style={{
                 marginTop: "28px",
-                maxWidth: "620px",
-                backgroundColor: INK,
-                border: `1px solid ${LINE}`,
-                borderRadius: "10px",
+                maxWidth: "1024px",
+                backgroundColor: "#FFFFFF",
+                border: "1px solid #E4E9F2",
+                borderRadius: "18px",
                 overflow: "hidden",
-                boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
+                boxShadow: "0 1px 2px rgba(16,27,45,.04), 0 14px 34px rgba(16,27,45,.07)",
               }}
             >
               <div
                 className="flex items-center justify-between"
-                  style={{ backgroundColor: INK, borderBottom: `1px solid ${BODY}`, padding: "14px" }}
+                style={{ borderBottom: "1px solid #EEF1F7", padding: "22px 34px" }}
               >
                 <span
                   style={{
-                    fontSize: "12px",
+                    fontSize: "11.5px",
                     fontWeight: 700,
                     textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    color: LINE,
+                    letterSpacing: "0.14em",
+                    color: "#55616F",
                   }}
                 >
                   The Winner&rsquo;s Feature
                 </span>
                 <span
-                  className="hidden sm:inline"
                   style={{
-                    fontSize: "12px",
+                    fontSize: "11px",
                     fontWeight: 700,
                     textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    color: LINE,
+                    letterSpacing: "0.1em",
+                    color: "#14508F",
+                    backgroundColor: "#EAF2FD",
+                    padding: "6px 12px",
+                    borderRadius: "999px",
                   }}
                 >
                   Digital delivery
                 </span>
               </div>
 
-              {includedRows.map((row, i) => (
-                <div
-                  key={row.lead}
-                  className="flex items-start gap-3"
-                  style={{
-                    padding: "14px 24px",
-                    borderTop: i === 0 ? undefined : `1px solid ${BODY}`,
-                  }}
-                >
-                  <Check aria-hidden size={15} color={BRAND} style={{ marginTop: "3px", flexShrink: 0 }} />
-                  <p style={{ fontSize: "14.5px", lineHeight: 1.55, color: LINE }}>
-                    <span style={{ fontWeight: 600, color: "#fff" }}>{row.lead}</span>
-                    {row.rest}
-                  </p>
+              <div className="grid grid-cols-1 gap-[28px] px-5 py-7 md:grid-cols-12 md:gap-[34px] md:px-[34px] md:pb-7 md:pt-[30px]">
+                <div className="flex flex-col gap-[19px] md:col-span-7">
+                  {includedRows.map((row) => (
+                    <div key={row.lead} className="flex items-start gap-[13px]">
+                      <Check aria-hidden size={19} strokeWidth={2.6} color="#1668C7" style={{ marginTop: "3px", flexShrink: 0 }} />
+                      <p style={{ fontSize: "15.5px", lineHeight: 1.55, color: "#414B59" }}>
+                        <strong style={{ fontWeight: 700, color: "#0B1220" }}>{row.lead}</strong>
+                        {row.rest}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+
+                <aside
+                  className="md:col-span-5"
+                  style={{ backgroundColor: "#F7F9FC", border: "1px solid #E7ECF4", borderRadius: "13px", padding: "22px" }}
+                >
+                  <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#55616F" }}>
+                    Timeline
+                  </p>
+                  <ol className="mt-4 flex items-start justify-between md:flex-col md:items-stretch md:justify-start">
+                    {steps.map((step, index) => {
+                      const mobileLabel = ["We write it", "Approve", "Live"][index];
+                      return (
+                        <li key={step} className="relative flex min-w-0 flex-1 flex-col items-center md:flex-none md:items-start">
+                          <div className="flex w-full items-center md:w-auto">
+                            {index > 0 ? <span aria-hidden className="h-px flex-1 bg-[#D8E0EC] md:hidden" /> : null}
+                            <span className="grid h-[23px] w-[23px] shrink-0 place-items-center rounded-full bg-[#1668C7] text-white" style={{ fontSize: "11.5px", fontWeight: 700 }}>
+                              {index + 1}
+                            </span>
+                            {index < steps.length - 1 ? <span aria-hidden className="h-px flex-1 bg-[#D8E0EC] md:hidden" /> : null}
+                          </div>
+                          <span className="mt-2 text-center md:absolute md:left-9 md:top-0 md:mt-0 md:text-left" style={{ fontSize: "14.5px", fontWeight: 600, color: "#0B1220" }}>
+                            <span className="md:hidden">{mobileLabel}</span>
+                            <span className="hidden md:inline">{step}</span>
+                          </span>
+                          {index < steps.length - 1 ? <span aria-hidden className="ml-[11px] hidden h-[22px] w-px bg-[#D8E0EC] md:block" /> : null}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                  <p style={{ marginTop: "18px", fontSize: "13px", lineHeight: 1.5, color: "#55616F" }}>
+                    Your draft arrives within five working days. It goes live three days after you approve it.
+                  </p>
+                </aside>
+              </div>
 
               <CardPublicationStrip />
 
               <div
-                className="text-center"
-                style={{ backgroundColor: INK, borderTop: `1px solid ${BODY}`, padding: "20px 24px 24px" }}
+                className="flex flex-col gap-5 px-5 py-[22px] md:flex-row md:items-center md:justify-between md:px-[34px]"
+                style={{ backgroundColor: "#101B2D" }}
               >
-                <ol className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {steps.map((step, i) => (
-                    <li key={step} className="flex items-center justify-center gap-2">
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full" style={{ backgroundColor: BRAND, color: "#fff", fontSize: "12px", fontWeight: 700 }}>{i + 1}</span>
-                      <span style={{ fontSize: "13.5px", fontWeight: 600, color: "#fff" }}>{step}</span>
-                    </li>
-                  ))}
-                </ol>
-                <p style={{ marginTop: "14px", fontSize: "13px", lineHeight: 1.55, color: LINE }}>
-                  Your draft arrives within five working days. It goes live three days after you approve it.
-                </p>
-                <div style={{ marginTop: "20px", paddingTop: "20px", borderTop: `1px solid ${BODY}` }}>
-                  <p style={{ fontSize: "36px", fontWeight: 700, color: "#fff" }}>{money(BASE_PRICE)}</p>
+                <div className="flex items-baseline gap-3 md:block">
+                  <p style={{ fontSize: "40px", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>
+                    {money(BASE_PRICE)}
+                  </p>
+                  <p className="md:mt-2" style={{ fontSize: "13.5px", color: "#AFBCD0" }}>
+                    One payment. Nothing recurring.
+                  </p>
                 </div>
-                <p style={{ marginTop: "6px", fontSize: "12.5px", color: LINE }}>
-                  One payment. Nothing recurring.
-                </p>
+                <div className="md:text-right">
+                  <BrandButton href={BASE_LINK} className="w-full md:w-auto" style={{ minHeight: "52px", borderRadius: "10px", padding: "0 26px", fontWeight: 700 }}>
+                    Order the Winner&rsquo;s Feature — {money(BASE_PRICE)}
+                  </BrandButton>
+                  <p style={{ marginTop: "9px", fontSize: "12.5px", color: "#AFBCD0" }}>
+                    Nothing goes live until you approve every word.
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <div className="text-center" style={{ marginTop: "20px" }}>
-              <BrandButton href={BASE_LINK} className="w-full sm:w-auto">
-                Order the Winner&rsquo;s Feature — {money(BASE_PRICE)}
-              </BrandButton>
             </div>
 
 
