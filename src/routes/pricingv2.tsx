@@ -299,12 +299,12 @@ function CardPublicationStrip() {
       >
         Published in
       </p>
-      <div className="flex max-w-full items-center justify-center gap-3 md:gap-[26px]">
+      <div className="flex max-w-full items-center justify-center">
         {logos.map((logo, index) => (
           <span
             key={logo.name}
-            className="flex h-[22px] items-center justify-center pl-3 md:pl-[26px]"
-            style={{ borderLeft: index === 0 ? undefined : "1px solid #E4E9F2" }}
+            className={`flex h-[22px] items-center justify-center ${index === 0 ? "" : "ml-3 border-l pl-3 md:ml-[26px] md:pl-[26px]"}`}
+            style={{ borderColor: "#E4E9F2" }}
           >
             <img
               src={logo.src}
@@ -823,6 +823,35 @@ function SalesPage() {
                     Nothing goes live until you approve every word.
                   </p>
                 </div>
+              </div>
+
+              <div
+                className="flex flex-wrap items-center gap-x-4 px-[18px] py-4 md:flex-nowrap md:px-[34px]"
+                style={{ backgroundColor: "#F2F5FA", borderTop: "1px solid #E4E9F2" }}
+              >
+                <img
+                  src="/award-crystal-square.jpg"
+                  alt="The engraved 2026 Entrepreneur Award"
+                  width={232}
+                  height={232}
+                  loading="lazy"
+                  decoding="async"
+                  className="order-1 h-[58px] w-[58px] shrink-0 object-cover"
+                  style={{ borderRadius: "9px", backgroundColor: "#E7ECF4", border: "1px solid #DCE3EE" }}
+                />
+                <span
+                  className="order-2 ml-auto shrink-0 whitespace-nowrap md:order-3 md:ml-0"
+                  style={{ fontSize: "13.5px", fontWeight: 700, color: "#55616F" }}
+                >
+                  Add for {money(AWARD_PRICE)} at checkout
+                </span>
+                <p
+                  className="order-3 mt-3 w-full md:order-2 md:mt-0 md:w-auto md:flex-1"
+                  style={{ margin: undefined, fontSize: "13.5px", lineHeight: 1.5, color: "#55616F" }}
+                >
+                  <strong style={{ color: "#0B1220", fontWeight: 700 }}>Optional: the engraved award.</strong>{" "}
+                  Your name and award year on crystal, plus a printed certificate. Posted to you — the only part we need an address for.
+                </p>
               </div>
             </div>
 
