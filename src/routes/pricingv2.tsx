@@ -21,6 +21,47 @@ import {
 
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 
+const PUBLISHERS = ["USA Today", "The Associated Press", "Business Insider"] as const;
+type PublisherName = (typeof PUBLISHERS)[number];
+type PublisherLogoVariant = "hero" | "card" | "serp";
+
+const PUBLISHER_ASSETS: Record<
+  PublisherName,
+  {
+    alt: string;
+    wordmark: { src: string; width: number; height: number };
+    icon: { src: string; width: number; height: number };
+  }
+> = {
+  "USA Today": {
+    alt: "USA Today",
+    wordmark: { src: "/usa-today-logo.svg", width: 600, height: 90 },
+    icon: { src: "/usa-today-favicon.png", width: 96, height: 96 },
+  },
+  "The Associated Press": {
+    alt: "The Associated Press",
+    wordmark: { src: apUserLogoAsset.url, width: 542, height: 552 },
+    icon: { src: apUserLogoAsset.url, width: 542, height: 552 },
+  },
+  "Business Insider": {
+    alt: "Business Insider",
+    wordmark: { src: "/business-insider-logo.png", width: 1152, height: 576 },
+    icon: { src: "/business-insider-favicon.png", width: 96, height: 96 },
+  },
+};
+
+const PUBLISHER_LOGO_HEIGHTS: Record<PublisherLogoVariant, Record<PublisherName, number>> = {
+  hero: { "USA Today": 20, "The Associated Press": 32, "Business Insider": 22 },
+  card: { "USA Today": 18, "The Associated Press": 28, "Business Insider": 20 },
+  serp: { "USA Today": 20, "The Associated Press": 20, "Business Insider": 20 },
+};
+
+const PUBLISHER_DIVIDER_HEIGHTS: Record<PublisherLogoVariant, number> = {
+  hero: 34,
+  card: 30,
+  serp: 22,
+};
+
 function SalesPageNav() {
   return (
     <SiteNav
@@ -52,6 +93,11 @@ export const Route = createFileRoute("/pricingv2")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
+    links: PUBLISHERS.map((name) => ({
+      rel: "preload",
+      as: "image",
+      href: PUBLISHER_ASSETS[name].wordmark.src,
+    })),
   }),
   component: SalesPage,
 });
@@ -70,9 +116,8 @@ const BASE_PRICE = 997;
 const AWARD_PRICE = 197;
 const money = (n: number) => `$${n.toLocaleString()}`;
 
-/* Stripe Payment Links. Base collects email only; the award package collects an address. */
+/* Stripe Payment Link for the Winner's Feature. */
 const BASE_LINK = "https://payments.entrepreneurawards.co/b/00wbJ1acJ6jm3QUfHK8so0j";
-const AWARD_LINK = "https://payments.entrepreneurawards.co/b/14A28racJfTW1IM7be8so0l";
 
 const BASE_PUBLICATIONS = "USA Today, the Associated Press and Business Insider";
 const REAL_FEATURE_SLUG = "adam-pisk";
@@ -147,8 +192,8 @@ function FeatureLink({ className = "" }: { className?: string }) {
     <Link
       to="/winners/$slug"
       params={{ slug: REAL_FEATURE_SLUG }}
-      className={`inline-block ${focusRing} ${className}`}
-      style={{ color: BRAND, fontSize: "14px", fontWeight: 500 }}
+      className={`inline-flex items-center ${focusRing} ${className}`}
+      style={{ color: BRAND, fontSize: "14px", fontWeight: 500, minHeight: "44px", padding: "8px 0" }}
     >
       See a real winner&rsquo;s feature &rarr;
     </Link>
@@ -186,60 +231,58 @@ const heroResults: Result[] = [
   },
 ];
 
-const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
-  "USA Today": { src: "/usa-today-logo.svg", height: 18, width: 112 },
-  "The Associated Press": { src: apUserLogoAsset.url, height: 26, width: 26 },
-  "Business Insider": { src: "/business-insider-logo.png", height: 30, width: 76 },
-};
-
-function PublicationLogo({ name }: { name: string }) {
-  const logo = PUBLICATION_LOGOS[name];
-  if (!logo) return null;
-  return (
-    <span className="flex h-8 items-center justify-center" style={{ width: `${logo.width}px` }}>
-      <img
-        src={logo.src}
-        alt={name}
-        width={logo.width}
-        height={logo.height}
-        loading="lazy"
-        decoding="async"
-        style={{
-          display: "block",
-          maxHeight: `${logo.height}px`,
-          width: "100%",
-          objectFit: "contain",
-          ...logo.style,
-        }}
-      />
-    </span>
-  );
-}
-
-function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" | "card"; showLogos?: boolean }) {
-  const names = ["USA Today", "The Associated Press", "Business Insider"];
-  const textStyle = size === "hero" ? { fontSize: "16px", lineHeight: 1.25 } : { fontSize: "15px", lineHeight: 1.25 };
-
-  const Label = ({ name, index }: { name: string; index: number }) => (
-    <span className={`flex items-center justify-center min-[900px]:min-h-8 ${index > 0 ? "min-[900px]:border-l min-[900px]:pl-8 min-[900px]:ml-8" : ""}`} style={{ borderColor: LINE }}>
-      {showLogos ? <PublicationLogo name={name} /> : (
-        <span
-          style={{
-            ...textStyle,
-            fontWeight: 600,
-            color: INK,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {name}
-        </span>
-      )}
-    </span>
-  );
+function PublisherLogos({
+  size,
+  publications = PUBLISHERS,
+  priority = false,
+  className = "",
+}: {
+  size: PublisherLogoVariant;
+  publications?: readonly PublisherName[];
+  priority?: boolean;
+  className?: string;
+}) {
+  const isSerp = size === "serp";
+  const multiple = publications.length > 1;
+  const gapClass = size === "card" ? "gap-0" : "gap-0";
 
   return (
-    <span className="flex flex-col items-center justify-center gap-5 min-[900px]:flex-row min-[900px]:gap-0">
-      {names.map((name, index) => <Label key={name} name={name} index={index} />)}
+    <span className={`flex flex-nowrap items-center justify-center ${gapClass} ${className}`}>
+      {publications.map((name, index) => {
+        const asset = isSerp ? PUBLISHER_ASSETS[name].icon : PUBLISHER_ASSETS[name].wordmark;
+        const height = PUBLISHER_LOGO_HEIGHTS[size][name];
+        const containerStyle = {
+          "--publisher-divider-height": `${PUBLISHER_DIVIDER_HEIGHTS[size]}px`,
+          height: `${height}px`,
+          width: isSerp ? "20px" : undefined,
+          borderColor: "#E4E9F2",
+          borderRadius: isSerp ? "4px" : undefined,
+          overflow: isSerp ? "hidden" : undefined,
+        } as React.CSSProperties & { "--publisher-divider-height": string };
+        return (
+          <span
+            key={`${size}-${name}`}
+            className={`relative flex shrink-0 items-center justify-center ${multiple && index > 0 ? "ml-4 pl-4 before:absolute before:left-0 before:top-1/2 before:h-[var(--publisher-divider-height)] before:w-px before:-translate-y-1/2 before:bg-[#E4E9F2] before:content-[''] md:ml-[26px] md:pl-[26px]" : ""}`}
+            style={containerStyle}
+          >
+            <img
+              src={asset.src}
+              alt={isSerp ? "" : PUBLISHER_ASSETS[name].alt}
+              width={asset.width}
+              height={asset.height}
+              loading={priority ? "eager" : "lazy"}
+              fetchPriority={priority ? "high" : undefined}
+              decoding={priority ? undefined : "async"}
+              style={{
+                display: "block",
+                height: "100%",
+                width: isSerp ? "100%" : "auto",
+                objectFit: isSerp ? "contain" : "contain",
+              }}
+            />
+          </span>
+        );
+      })}
     </span>
   );
 }
@@ -266,19 +309,13 @@ function HeroPublicationStrip() {
         PUBLISHED IN
       </p>
       <div style={{ marginTop: "14px" }}>
-        <PublicationNames size="hero" showLogos />
+        <PublisherLogos size="hero" priority />
       </div>
     </div>
   );
 }
 
 function CardPublicationStrip() {
-  const logos = [
-    { name: "USA Today", src: "/usa-today-logo.svg", height: 18 },
-    { name: "The Associated Press", src: apUserLogoAsset.url, height: 20 },
-    { name: "Business Insider", src: "/business-insider-logo.png", height: 20 },
-  ];
-
   return (
     <div
       className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:flex-row md:gap-[26px] md:px-[34px] md:py-[21px]"
@@ -299,61 +336,21 @@ function CardPublicationStrip() {
       >
         Published in
       </p>
-      <div className="flex max-w-full items-center justify-center">
-        {logos.map((logo, index) => (
-          <span
-            key={logo.name}
-            className={`flex h-[22px] items-center justify-center ${index === 0 ? "" : "ml-3 border-l pl-3 md:ml-[26px] md:pl-[26px]"}`}
-            style={{ borderColor: "#E4E9F2" }}
-          >
-            <img
-              src={logo.src}
-              alt={logo.name}
-              loading="lazy"
-              decoding="async"
-              style={{ display: "block", height: `${logo.height}px`, width: "auto", maxWidth: "100%", objectFit: "contain" }}
-            />
-          </span>
-        ))}
-      </div>
+      <PublisherLogos size="card" />
     </div>
   );
 }
 
-const SEARCH_LOGO_ONLY = new Set(["USA Today"]);
-const SEARCH_LOGOS: Record<string, { src: string; height: number; width: number }> = {
-  "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96 },
-  "The Associated Press": { src: apUserLogoAsset.url, height: 24, width: 24 },
-  "Business Insider": { src: "/business-insider-logo.png", height: 26, width: 52 },
-};
-
 function SearchResult({ result }: { result: Result }) {
-  const logo = SEARCH_LOGOS[result.name];
-  const showName = !SEARCH_LOGO_ONLY.has(result.name);
+  const publisherName = PUBLISHERS.find((name) => name === result.name);
   return (
     <div>
       <div className="flex items-center gap-2">
-        {logo ? (
-          <img
-            src={logo.src}
-            alt=""
-            width={logo.width}
-            height={logo.height}
-            loading="lazy"
-            decoding="async"
-            style={{
-              display: "block",
-              height: `${logo.height}px`,
-              width: `${logo.width}px`,
-              objectFit: "contain",
-              flexShrink: 0,
-            }}
-          />
-        ) : null}
+        {publisherName ? <PublisherLogos size="serp" publications={[publisherName]} /> : null}
         <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
-          {showName ? result.name : null}
+          {result.name}
           <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
-            {showName ? " · " : ""}{result.domain}
+            {" · "}{result.domain}
           </span>
         </p>
       </div>
@@ -621,8 +618,8 @@ function SalesPage() {
       <main>
         {/* 1. HERO */}
         <section style={{ paddingTop: "64px", paddingBottom: "56px" }}>
-          <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 px-6 lg:grid-cols-2 lg:gap-16">
-            <div className="text-center lg:text-left">
+          <div className="mx-auto grid max-w-[1360px] grid-cols-1 items-start gap-12 px-6 lg:grid-cols-12 lg:gap-16">
+            <div className="text-center lg:col-span-5 lg:text-left">
               <p className="flex items-center justify-center lg:justify-start" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.16em", color: MUTED }}>
                 <span>Entrepreneur Awards &middot; The Winner&rsquo;s Feature</span>
               </p>
@@ -689,7 +686,7 @@ function SalesPage() {
               </div>
             </div>
 
-            <div>
+            <div className="lg:col-span-7">
               <p style={{ ...microLabel, marginBottom: "12px" }}>
                 What people find when they look you up
               </p>
@@ -989,29 +986,6 @@ function SalesPage() {
                 >
                   Secure checkout by Stripe
                 </p>
-              </div>
-
-              <div
-                className="text-center"
-                style={{
-                  backgroundColor: TINT,
-                  borderTop: `1px solid ${LINE}`,
-                  padding: "14px 20px",
-                  fontSize: "12.5px",
-                  color: MUTED,
-                }}
-              >
-                Want the engraved award as well?{" "}
-                <a
-                  href={AWARD_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={focusRing}
-                  style={{ color: BRAND, fontWeight: 500 }}
-                >
-                  Add it for {money(AWARD_PRICE)}
-                </a>
-                .
               </div>
             </div>
           </div>
