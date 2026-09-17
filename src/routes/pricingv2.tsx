@@ -322,7 +322,7 @@ function CardPublicationStrip() {
 const SEARCH_LOGO_ONLY = new Set(["USA Today"]);
 const SEARCH_LOGOS: Record<string, { src: string; height: number; width: number }> = {
   "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96 },
-  "The Associated Press": { src: "/associated-press-ap.png", height: 24, width: 31 },
+  "The Associated Press": { src: apUserLogoAsset.url, height: 24, width: 24 },
   "Business Insider": { src: "/business-insider-logo.png", height: 26, width: 52 },
 };
 
