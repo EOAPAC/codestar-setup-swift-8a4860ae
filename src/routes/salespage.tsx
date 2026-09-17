@@ -177,7 +177,7 @@ const heroResults: Result[] = [
 
 const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
   "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96, style: { objectPosition: "left center" } },
-  "The Associated Press": { src: "/associated-press-ap.png", height: 20, width: 26 },
+  "The Associated Press": { src: "/associated-press-logo.png", height: 18, width: 18 },
   "Business Insider": { src: "/business-insider-logo.png", height: 32, width: 64, style: { objectPosition: "left center" } },
 };
 

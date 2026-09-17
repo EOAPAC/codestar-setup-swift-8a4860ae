@@ -19,6 +19,7 @@ import {
   splitOnBusinessToken,
 } from "@/content/specimen";
 import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
+import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 
 function SalesPageNav() {
   return (
@@ -187,7 +188,7 @@ const heroResults: Result[] = [
 
 const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
   "USA Today": { src: "/usa-today-logo.svg", height: 18, width: 112 },
-  "The Associated Press": { src: "/associated-press-ap.png", height: 26, width: 34 },
+  "The Associated Press": { src: apUserLogoAsset.url, height: 26, width: 26 },
   "Business Insider": { src: "/business-insider-logo.png", height: 30, width: 76 },
 };
 
@@ -273,7 +274,7 @@ function HeroPublicationStrip() {
 function CardPublicationStrip() {
   const logos = [
     { name: "USA Today", src: "/usa-today-logo.svg", height: 18 },
-    { name: "The Associated Press", src: "/associated-press-ap.png", height: 20 },
+    { name: "The Associated Press", src: apUserLogoAsset.url, height: 20 },
     { name: "Business Insider", src: "/business-insider-logo.png", height: 20 },
   ];
 
@@ -321,7 +322,7 @@ function CardPublicationStrip() {
 const SEARCH_LOGO_ONLY = new Set(["USA Today"]);
 const SEARCH_LOGOS: Record<string, { src: string; height: number; width: number }> = {
   "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96 },
-  "The Associated Press": { src: "/associated-press-ap.png", height: 24, width: 31 },
+  "The Associated Press": { src: apUserLogoAsset.url, height: 24, width: 24 },
   "Business Insider": { src: "/business-insider-logo.png", height: 26, width: 52 },
 };
 
