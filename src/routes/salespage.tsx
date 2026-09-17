@@ -60,7 +60,7 @@ const AWARD_PRICE = 197;
 const money = (n: number) => `$${n.toLocaleString()}`;
 
 /* Stripe Payment Links. Base collects email only; the award package collects an address. */
-const BASE_LINK = "https://payments.entrepreneurawards.co/b/00wbJ1acJ6jm3QUfHK8so0j";
+const BASE_LINK = "https://payments.entrepreneurawards.co/b/eVqcN51Gd9vy2MQ5368so0m";
 const AWARD_LINK = "https://payments.entrepreneurawards.co/b/14A28racJfTW1IM7be8so0l";
 
 const BASE_PUBLICATIONS = "USA Today, the Associated Press and Business Insider";
