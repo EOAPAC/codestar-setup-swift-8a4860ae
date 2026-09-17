@@ -18,7 +18,7 @@ import {
   SPECIMEN_BUSINESS_TOKEN,
   splitOnBusinessToken,
 } from "@/content/specimen";
-import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
+
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 
 function SalesPageNav() {
