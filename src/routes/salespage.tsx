@@ -290,15 +290,42 @@ function CardPublicationStrip() {
   );
 }
 
+const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
+  "USA Today": { src: "/usa-today-logo.svg", height: 13, width: 88, style: { objectPosition: "left center" } },
+  "The Associated Press": { src: "/associated-press-logo.png", height: 17, width: 17 },
+  "Business Insider": { src: "/business-insider-logo.png", height: 12, width: 90, style: { objectPosition: "left center" } },
+};
+
 function SearchResult({ result }: { result: Result }) {
+  const logo = PUBLICATION_LOGOS[result.name];
   return (
     <div>
-      <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
-        {result.name}
-        <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
-          {" · "}{result.domain}
-        </span>
-      </p>
+      <div className="flex items-center gap-2">
+        {logo ? (
+          <img
+            src={logo.src}
+            alt=""
+            width={logo.width}
+            height={logo.height}
+            loading="lazy"
+            decoding="async"
+            style={{
+              display: "block",
+              height: `${logo.height}px`,
+              width: `${logo.width}px`,
+              objectFit: "contain",
+              flexShrink: 0,
+              ...logo.style,
+            }}
+          />
+        ) : null}
+        <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
+          {result.name}
+          <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
+            {" · "}{result.domain}
+          </span>
+        </p>
+      </div>
       <p
         style={{
           marginTop: "3px",
