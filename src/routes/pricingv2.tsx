@@ -618,7 +618,7 @@ function SalesPage() {
       <main>
         {/* 1. HERO */}
         <section style={{ paddingTop: "64px", paddingBottom: "56px" }}>
-          <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 px-6 lg:grid-cols-12 lg:gap-16">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-12 px-6 lg:grid-cols-12 lg:gap-16">
             <div className="text-center lg:col-span-5 lg:text-left">
               <p className="flex items-center justify-center lg:justify-start" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.16em", color: MUTED }}>
                 <span>Entrepreneur Awards &middot; The Winner&rsquo;s Feature</span>
