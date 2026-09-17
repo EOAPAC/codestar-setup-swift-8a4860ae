@@ -16,6 +16,7 @@ type SiteNavProps = {
   hideCTA?: boolean;
   mobileMenu?: boolean;
   compactCta?: { href: string; label: string; className?: string };
+  containerClassName?: string;
 };
 
 const navLinks = [
@@ -24,10 +25,10 @@ const navLinks = [
   { label: "FAQ", to: "/faq" },
 ] as const;
 
-export function SiteNav({ hideCTA = false, mobileMenu = false, compactCta }: SiteNavProps) {
+export function SiteNav({ hideCTA = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl" }: SiteNavProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className={`mx-auto flex h-16 items-center justify-between px-6 ${containerClassName}`}>
         <Link to="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
           <img
             src={markAsset.url}

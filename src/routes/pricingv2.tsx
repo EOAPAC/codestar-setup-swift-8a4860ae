@@ -67,6 +67,7 @@ function SalesPageNav() {
     <SiteNav
       hideCTA
       mobileMenu
+      containerClassName="max-w-[1360px]"
       compactCta={{
         href: BASE_LINK,
         label: `Order — ${money(BASE_PRICE)}`,
@@ -520,10 +521,6 @@ const whyCards = [
 
 const questions = [
   {
-    q: "Is this a paid placement?",
-    a: "Yes. We pay the publication to run the release, which is why we can tell you it will be published and when. We would rather say that here than have you find out afterwards.",
-  },
-  {
     q: "Why does the same release appear in every publication?",
     a: "Because that is what a press release is — one announcement, distributed. Your Feature on the Entrepreneur Awards site is the long version, written for you alone, and every release links back to it.",
   },
@@ -889,7 +886,7 @@ function SalesPage() {
               Questions
             </h2>
             <div style={{ marginTop: "24px" }}>
-              <Accordion type="multiple" defaultValue={["q-0"]} className="w-full">
+              <Accordion type="multiple" className="w-full">
                 {questions.map((item, i) => (
                   <AccordionItem
                     key={item.q}
