@@ -291,9 +291,9 @@ function CardPublicationStrip() {
 }
 
 const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
-  "USA Today": { src: "/usa-today-logo.svg", height: 13, width: 88, style: { objectPosition: "left center" } },
-  "The Associated Press": { src: "/associated-press-logo.png", height: 17, width: 17 },
-  "Business Insider": { src: "/business-insider-logo.png", height: 12, width: 90, style: { objectPosition: "left center" } },
+  "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96, style: { objectPosition: "left center" } },
+  "The Associated Press": { src: "/associated-press-logo.png", height: 18, width: 18 },
+  "Business Insider": { src: "/business-insider-logo.png", height: 14, width: 34, style: { objectPosition: "left center" } },
 };
 
 function SearchResult({ result }: { result: Result }) {
