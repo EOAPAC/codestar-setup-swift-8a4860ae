@@ -21,7 +21,7 @@ import {
 import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 
 function SalesPageNav() {
-  return <SiteNav hideCTA />;
+  return <SiteNav hideCTA mobileMenu compactCta={{ href: BASE_LINK, label: `Order — ${money(BASE_PRICE)}` }} />;
 }
 
 export const Route = createFileRoute("/pricingv2")({
@@ -49,8 +49,8 @@ export const Route = createFileRoute("/pricingv2")({
 const INK = "#0F172A";
 const BODY = "#52606D";
 const MUTED = "#6B7785";
-const BRAND = "#1978E5";
-const BRAND_DARK = "#1565C4";
+const BRAND = "#1668C7";
+const BRAND_DARK = "#1056A7";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
 
@@ -67,7 +67,7 @@ const BASE_PUBLICATIONS = "USA Today, the Associated Press and Business Insider"
 const REAL_FEATURE_SLUG = "adam-pisk";
 
 const focusRing =
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1668C7]";
 
 /* ------------------------------------------------------------- primitives */
 function SpecimenSlot() {
@@ -176,54 +176,43 @@ const heroResults: Result[] = [
 ];
 
 const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
-  "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96, style: { objectPosition: "left center" } },
-  "The Associated Press": { src: "/associated-press-logo.png", height: 18, width: 18 },
-  "Business Insider": { src: "/business-insider-logo.png", height: 32, width: 64, style: { objectPosition: "left center" } },
+  "USA Today": { src: "/usa-today-logo.svg", height: 18, width: 112 },
+  "The Associated Press": { src: "/associated-press-wordmark.svg", height: 24, width: 116 },
+  "Business Insider": { src: "/business-insider-logo.png", height: 30, width: 76 },
 };
 
 function PublicationLogo({ name }: { name: string }) {
   const logo = PUBLICATION_LOGOS[name];
   if (!logo) return null;
   return (
-    <img
-      src={logo.src}
-      alt=""
-      width={logo.width}
-      height={logo.height}
-      loading="lazy"
-      decoding="async"
-      style={{
-        display: "block",
-        height: `${logo.height}px`,
-        width: `${logo.width}px`,
-        objectFit: "contain",
-        flexShrink: 0,
-        ...logo.style,
-      }}
-    />
+    <span className="flex h-8 items-center justify-center" style={{ width: `${logo.width}px` }}>
+      <img
+        src={logo.src}
+        alt={name}
+        width={logo.width}
+        height={logo.height}
+        loading="lazy"
+        decoding="async"
+        style={{
+          display: "block",
+          maxHeight: `${logo.height}px`,
+          width: "100%",
+          objectFit: "contain",
+          ...logo.style,
+        }}
+      />
+    </span>
   );
 }
 
 function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" | "card"; showLogos?: boolean }) {
   const names = ["USA Today", "The Associated Press", "Business Insider"];
-  const textStyle =
-    size === "hero"
-      ? { fontSize: "16px", lineHeight: 1.25 }
-      : { fontSize: "15px", lineHeight: 1.25 };
-  const dividerHeight = size === "hero" ? "14px" : "12px";
-  const itemGap = size === "hero" ? "16px" : "12px";
-  const logoGap = size === "hero" ? "8px" : "7px";
-  const labelOnlyLogo = new Set(["USA Today", "Business Insider"]);
+  const textStyle = size === "hero" ? { fontSize: "16px", lineHeight: 1.25 } : { fontSize: "15px", lineHeight: 1.25 };
 
-  const Label = ({ name }: { name: string }) => (
-    <span
-      className="inline-flex items-center"
-      style={{ gap: logoGap }}
-    >
-      {showLogos ? <PublicationLogo name={name} /> : null}
-      {!(showLogos && labelOnlyLogo.has(name)) && (
+  const Label = ({ name, index }: { name: string; index: number }) => (
+    <span className={`flex min-h-11 items-center justify-center px-5 min-[900px]:min-h-8 ${index > 0 ? "min-[900px]:border-l" : ""}`} style={{ borderColor: LINE }}>
+      {showLogos ? <PublicationLogo name={name} /> : (
         <span
-          className="md:text-lg"
           style={{
             ...textStyle,
             fontWeight: 600,
@@ -238,33 +227,9 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
   );
 
   return (
-    <>
-      <span
-        className="hidden sm:inline-flex items-center"
-        style={{ gap: itemGap, flexWrap: "wrap" }}
-      >
-        {names.map((name, i) => (
-          <span key={name} className="inline-flex items-center" style={{ gap: itemGap }}>
-            <Label name={name} />
-            {i < names.length - 1 && (
-              <span
-                style={{
-                  width: "1px",
-                  height: dividerHeight,
-                  backgroundColor: LINE,
-                  flexShrink: 0,
-                }}
-              />
-            )}
-          </span>
-        ))}
-      </span>
-      <span className="sm:hidden flex flex-col" style={{ gap: "8px" }}>
-        {names.map((name) => (
-          <Label key={name} name={name} />
-        ))}
-      </span>
-    </>
+    <span className="grid grid-cols-1 place-items-center min-[900px]:grid-cols-3">
+      {names.map((name, index) => <Label key={name} name={name} index={index} />)}
+    </span>
   );
 }
 
@@ -279,7 +244,7 @@ function HeroPublicationStrip() {
     >
       <p
         style={{
-          fontSize: "10px",
+          fontSize: "12px",
           fontWeight: 700,
           textTransform: "uppercase",
           letterSpacing: "0.14em",
@@ -307,7 +272,7 @@ function CardPublicationStrip() {
     >
       <p
         style={{
-          fontSize: "9.5px",
+          fontSize: "12px",
           fontWeight: 700,
           textTransform: "uppercase",
           letterSpacing: "0.14em",
@@ -326,7 +291,7 @@ function CardPublicationStrip() {
 const SEARCH_LOGO_ONLY = new Set(["USA Today"]);
 const SEARCH_LOGO_SIZES: Record<string, { height: number; width: number }> = {
   "USA Today": { height: 14, width: 96 },
-  "The Associated Press": { height: 24, width: 24 },
+  "The Associated Press": { height: 24, width: 116 },
   "Business Insider": { height: 26, width: 52 },
 };
 
@@ -568,7 +533,7 @@ const questions = [
 const steps = ["We write it", "You approve it", "It goes live"];
 
 const microLabel = {
-  fontSize: "10px",
+  fontSize: "12px",
   fontWeight: 700,
   textTransform: "uppercase" as const,
   letterSpacing: "0.13em",
@@ -620,7 +585,7 @@ function SalesPage() {
   const stickyVisible = useStickyBar(heroCtaRef, priceCardRef);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#fff", color: BODY }}>
+    <div className="min-h-screen pb-20 md:pb-0" style={{ backgroundColor: "#fff", color: BODY }}>
       <SalesPageNav />
 
       <main>
@@ -628,15 +593,11 @@ function SalesPage() {
         <section style={{ paddingTop: "64px", paddingBottom: "56px" }}>
           <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 px-6 lg:grid-cols-2 lg:gap-16">
             <div className="text-center lg:text-left">
-              <p
-                style={{
-                  fontSize: "11px",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.16em",
-                  color: MUTED,
-                }}
-              >
-                {AWARD_YEAR} Entrepreneur Awards &middot; The Winner&rsquo;s Feature
+              <p className="flex items-center justify-center gap-3 lg:justify-start" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.16em", color: MUTED }}>
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full" style={{ border: `1px solid ${BRAND}`, color: BRAND, backgroundColor: TINT, fontWeight: 700, letterSpacing: "0.04em" }}>
+                  {AWARD_YEAR}
+                </span>
+                <span>Entrepreneur Awards &middot; The Winner&rsquo;s Feature</span>
               </p>
 
               <h1
@@ -702,7 +663,7 @@ function SalesPage() {
             </div>
 
             <div>
-              <p style={{ ...microLabel, fontSize: "10.5px", marginBottom: "12px" }}>
+              <p style={{ ...microLabel, marginBottom: "12px" }}>
                 What people find when they look you up
               </p>
               <SearchMockup />
@@ -728,7 +689,7 @@ function SalesPage() {
               style={{
                 marginTop: "28px",
                 maxWidth: "620px",
-                backgroundColor: "#fff",
+                backgroundColor: INK,
                 border: `1px solid ${LINE}`,
                 borderRadius: "10px",
                 overflow: "hidden",
@@ -737,15 +698,15 @@ function SalesPage() {
             >
               <div
                 className="flex items-center justify-between"
-                style={{ backgroundColor: TINT, borderBottom: `1px solid ${LINE}`, padding: "14px" }}
+                  style={{ backgroundColor: INK, borderBottom: `1px solid ${BODY}`, padding: "14px" }}
               >
                 <span
                   style={{
-                    fontSize: "11px",
+                    fontSize: "12px",
                     fontWeight: 700,
                     textTransform: "uppercase",
                     letterSpacing: "0.12em",
-                    color: MUTED,
+                    color: LINE,
                   }}
                 >
                   The Winner&rsquo;s Feature
@@ -753,11 +714,11 @@ function SalesPage() {
                 <span
                   className="hidden sm:inline"
                   style={{
-                    fontSize: "11px",
+                    fontSize: "12px",
                     fontWeight: 700,
                     textTransform: "uppercase",
                     letterSpacing: "0.12em",
-                    color: MUTED,
+                    color: LINE,
                   }}
                 >
                   Digital delivery
@@ -770,12 +731,12 @@ function SalesPage() {
                   className="flex items-start gap-3"
                   style={{
                     padding: "14px 24px",
-                    borderTop: i === 0 ? undefined : `1px solid ${LINE}`,
+                    borderTop: i === 0 ? undefined : `1px solid ${BODY}`,
                   }}
                 >
                   <Check aria-hidden size={15} color={BRAND} style={{ marginTop: "3px", flexShrink: 0 }} />
-                  <p style={{ fontSize: "14.5px", lineHeight: 1.55, color: BODY }}>
-                    <span style={{ fontWeight: 600, color: INK }}>{row.lead}</span>
+                  <p style={{ fontSize: "14.5px", lineHeight: 1.55, color: LINE }}>
+                    <span style={{ fontWeight: 600, color: "#fff" }}>{row.lead}</span>
                     {row.rest}
                   </p>
                 </div>
@@ -785,10 +746,23 @@ function SalesPage() {
 
               <div
                 className="text-center"
-                style={{ backgroundColor: TINT, borderTop: `1px solid ${LINE}`, padding: "24px" }}
+                style={{ backgroundColor: INK, borderTop: `1px solid ${BODY}`, padding: "20px 24px 24px" }}
               >
-                <p style={{ fontSize: "36px", fontWeight: 700, color: INK }}>{money(BASE_PRICE)}</p>
-                <p style={{ marginTop: "6px", fontSize: "12.5px", color: MUTED }}>
+                <ol className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  {steps.map((step, i) => (
+                    <li key={step} className="flex items-center justify-center gap-2">
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full" style={{ backgroundColor: BRAND, color: "#fff", fontSize: "12px", fontWeight: 700 }}>{i + 1}</span>
+                      <span style={{ fontSize: "13.5px", fontWeight: 600, color: "#fff" }}>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+                <p style={{ marginTop: "14px", fontSize: "13px", lineHeight: 1.55, color: LINE }}>
+                  Your draft arrives within five working days. It goes live three days after you approve it.
+                </p>
+                <div style={{ marginTop: "20px", paddingTop: "20px", borderTop: `1px solid ${BODY}` }}>
+                  <p style={{ fontSize: "36px", fontWeight: 700, color: "#fff" }}>{money(BASE_PRICE)}</p>
+                </div>
+                <p style={{ marginTop: "6px", fontSize: "12.5px", color: LINE }}>
                   One payment. Nothing recurring.
                 </p>
               </div>
@@ -814,15 +788,9 @@ function SalesPage() {
               }}
             >
               <div className="flex items-baseline justify-between gap-4">
-                <a
-                  href={AWARD_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={focusRing}
-                  style={{ fontSize: "15.5px", fontWeight: 600, color: INK }}
-                >
+                <h3 style={{ fontSize: "15.5px", fontWeight: 600, color: INK }}>
                   The Award Package
-                </a>
+                </h3>
                 <span style={{ fontSize: "15.5px", fontWeight: 700, color: BRAND }}>
                   +{money(AWARD_PRICE)}
                 </span>
@@ -907,53 +875,6 @@ function SalesPage() {
           </div>
         </section>
 
-        {/* 5. HOW IT WORKS */}
-        <section style={{ paddingTop: "56px", paddingBottom: "48px" }}>
-          <div className="mx-auto max-w-4xl px-6">
-            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
-              How it works
-            </h2>
-            <ol
-              className="flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-6"
-              style={{ marginTop: "28px" }}
-            >
-              {steps.map((step, i) => (
-                <li key={step} className="flex items-center gap-4">
-                  <span className="flex items-center gap-3">
-                    <span
-                      className="flex items-center justify-center rounded-full"
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        backgroundColor: BRAND,
-                        color: "#fff",
-                        fontSize: "11px",
-                        fontWeight: 700,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {i + 1}
-                    </span>
-                    <span style={{ fontSize: "14.5px", fontWeight: 600, color: INK }}>{step}</span>
-                  </span>
-                  {i < steps.length - 1 ? (
-                    <span aria-hidden className="hidden sm:inline" style={{ color: LINE }}>
-                      &mdash;&mdash;
-                    </span>
-                  ) : null}
-                </li>
-              ))}
-            </ol>
-            <p
-              className="mx-auto text-center"
-              style={{ marginTop: "24px", fontSize: "13.5px", color: MUTED, maxWidth: "54ch" }}
-            >
-              Your draft arrives within five working days. It goes live three days after you approve
-              it.
-            </p>
-          </div>
-        </section>
-
         {/* 6. QUESTIONS */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto px-6" style={{ maxWidth: "680px" }}>
@@ -961,7 +882,7 @@ function SalesPage() {
               Questions
             </h2>
             <div style={{ marginTop: "24px" }}>
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion type="multiple" defaultValue={["q-0"]} className="w-full">
                 {questions.map((item, i) => (
                   <AccordionItem
                     key={item.q}
@@ -1013,7 +934,7 @@ function SalesPage() {
               <div className="text-center" style={{ padding: "36px 28px" }}>
                 <p
                   style={{
-                    fontSize: "10.5px",
+                    fontSize: "12px",
                     fontWeight: 700,
                     textTransform: "uppercase",
                     letterSpacing: "0.14em",
@@ -1050,7 +971,7 @@ function SalesPage() {
                 <p
                   style={{
                     marginTop: "12px",
-                    fontSize: "10.5px",
+                    fontSize: "12px",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
                     color: MUTED,
@@ -1121,7 +1042,7 @@ function SalesPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <SiteFooter statementClassName="text-[13px]" />
 
       {/* 9. MOBILE STICKY BAR */}
       <div
@@ -1150,7 +1071,7 @@ function SalesPage() {
           style={{
             backgroundColor: BRAND,
             color: "#fff",
-            height: "44px",
+            minHeight: "48px",
             borderRadius: "8px",
             padding: "0 22px",
             fontSize: "14.5px",
