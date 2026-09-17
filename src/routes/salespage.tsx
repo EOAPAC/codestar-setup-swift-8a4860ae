@@ -323,8 +323,11 @@ function CardPublicationStrip() {
   );
 }
 
+const SEARCH_LOGO_ONLY = new Set(["USA Today"]);
+
 function SearchResult({ result }: { result: Result }) {
   const logo = PUBLICATION_LOGOS[result.name];
+  const showName = !SEARCH_LOGO_ONLY.has(result.name);
   return (
     <div>
       <div className="flex items-center gap-2">
@@ -347,9 +350,9 @@ function SearchResult({ result }: { result: Result }) {
           />
         ) : null}
         <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
-          {result.name}
+          {showName ? result.name : null}
           <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
-            {" · "}{result.domain}
+            {showName ? " · " : ""}{result.domain}
           </span>
         </p>
       </div>
