@@ -67,6 +67,7 @@ function SalesPageNav() {
     <SiteNav
       hideCTA
       mobileMenu
+      containerClassName="max-w-[1360px]"
       compactCta={{
         href: BASE_LINK,
         label: `Order — ${money(BASE_PRICE)}`,
