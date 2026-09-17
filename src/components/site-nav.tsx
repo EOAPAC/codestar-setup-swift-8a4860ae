@@ -15,7 +15,7 @@ import { AWARD_YEAR } from "@/content/award";
 type SiteNavProps = {
   hideCTA?: boolean;
   mobileMenu?: boolean;
-  compactCta?: { href: string; label: string };
+  compactCta?: { href: string; label: string; className?: string };
 };
 
 const navLinks = [
@@ -47,7 +47,7 @@ export function SiteNav({ hideCTA = false, mobileMenu = false, compactCta }: Sit
             <a href="/#contact" className="hover:text-foreground">Contact</a>
           </nav>
           {compactCta ? (
-            <Button asChild size="sm">
+            <Button asChild size="sm" className={compactCta.className}>
               <a href={compactCta.href} target="_blank" rel="noopener noreferrer">{compactCta.label}</a>
             </Button>
           ) : !hideCTA ? (

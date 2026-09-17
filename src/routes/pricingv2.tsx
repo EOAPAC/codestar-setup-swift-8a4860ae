@@ -21,7 +21,17 @@ import {
 import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 
 function SalesPageNav() {
-  return <SiteNav hideCTA mobileMenu compactCta={{ href: BASE_LINK, label: `Order — ${money(BASE_PRICE)}` }} />;
+  return (
+    <SiteNav
+      hideCTA
+      mobileMenu
+      compactCta={{
+        href: BASE_LINK,
+        label: `Order — ${money(BASE_PRICE)}`,
+        className: "bg-[#1668C7] text-white hover:bg-[#1056A7] focus-visible:ring-[#1668C7]",
+      }}
+    />
+  );
 }
 
 export const Route = createFileRoute("/pricingv2")({
@@ -289,15 +299,14 @@ function CardPublicationStrip() {
 }
 
 const SEARCH_LOGO_ONLY = new Set(["USA Today"]);
-const SEARCH_LOGO_SIZES: Record<string, { height: number; width: number }> = {
-  "USA Today": { height: 14, width: 96 },
-  "The Associated Press": { height: 24, width: 116 },
-  "Business Insider": { height: 26, width: 52 },
+const SEARCH_LOGOS: Record<string, { src: string; height: number; width: number }> = {
+  "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96 },
+  "The Associated Press": { src: "/associated-press-logo.png", height: 24, width: 24 },
+  "Business Insider": { src: "/business-insider-logo.png", height: 26, width: 52 },
 };
 
 function SearchResult({ result }: { result: Result }) {
-  const logo = PUBLICATION_LOGOS[result.name];
-  const size = SEARCH_LOGO_SIZES[result.name];
+  const logo = SEARCH_LOGOS[result.name];
   const showName = !SEARCH_LOGO_ONLY.has(result.name);
   return (
     <div>
@@ -306,17 +315,16 @@ function SearchResult({ result }: { result: Result }) {
           <img
             src={logo.src}
             alt=""
-            width={size?.width ?? logo.width}
-            height={size?.height ?? logo.height}
+            width={logo.width}
+            height={logo.height}
             loading="lazy"
             decoding="async"
             style={{
               display: "block",
-              height: `${size?.height ?? logo.height}px`,
-              width: `${size?.width ?? logo.width}px`,
+              height: `${logo.height}px`,
+              width: `${logo.width}px`,
               objectFit: "contain",
               flexShrink: 0,
-              ...logo.style,
             }}
           />
         ) : null}
@@ -419,7 +427,7 @@ function BrowserMockup() {
       <div className="relative flex-1 px-5 pb-6 pt-5" style={{ minHeight: 0, overflow: "hidden" }}>
         <p
           style={{
-            fontSize: "10px",
+            fontSize: "12px",
             fontWeight: 600,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
