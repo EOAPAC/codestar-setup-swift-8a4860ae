@@ -829,16 +829,13 @@ function SalesPage() {
                 className="flex flex-wrap items-center gap-x-4 px-[18px] py-4 md:flex-nowrap md:px-[34px]"
                 style={{ backgroundColor: "#F2F5FA", borderTop: "1px solid #E4E9F2" }}
               >
-                <img
-                  src="/award-crystal-square.jpg"
-                  alt="The engraved 2026 Entrepreneur Award"
-                  width={232}
-                  height={232}
-                  loading="lazy"
-                  decoding="async"
-                  className="order-1 h-[58px] w-[58px] shrink-0 object-cover"
+                <div
+                  className="order-1 flex h-[58px] w-[58px] shrink-0 items-center justify-center"
                   style={{ borderRadius: "9px", backgroundColor: "#E7ECF4", border: "1px solid #DCE3EE" }}
-                />
+                  aria-label="The engraved 2026 Entrepreneur Award"
+                >
+                  <Trophy size={28} color="#55616F" strokeWidth={1.75} />
+                </div>
                 <span
                   className="order-2 ml-auto shrink-0 whitespace-nowrap md:order-3 md:ml-0"
                   style={{ fontSize: "13.5px", fontWeight: 700, color: "#55616F" }}
