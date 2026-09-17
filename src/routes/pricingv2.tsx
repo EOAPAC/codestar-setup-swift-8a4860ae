@@ -886,7 +886,7 @@ function SalesPage() {
               Questions
             </h2>
             <div style={{ marginTop: "24px" }}>
-              <Accordion type="multiple" defaultValue={["q-0"]} className="w-full">
+              <Accordion type="multiple" className="w-full">
                 {questions.map((item, i) => (
                   <AccordionItem
                     key={item.q}
