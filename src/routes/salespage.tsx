@@ -175,33 +175,66 @@ const heroResults: Result[] = [
   },
 ];
 
-function PublicationNames({ size = "hero" }: { size?: "hero" | "card" }) {
+const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
+  "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96, style: { objectPosition: "left center" } },
+  "The Associated Press": { src: "/associated-press-logo.png", height: 18, width: 18 },
+  "Business Insider": { src: "/business-insider-logo.png", height: 14, width: 34, style: { objectPosition: "left center" } },
+};
+
+function PublicationLogo({ name }: { name: string }) {
+  const logo = PUBLICATION_LOGOS[name];
+  if (!logo) return null;
+  return (
+    <img
+      src={logo.src}
+      alt=""
+      width={logo.width}
+      height={logo.height}
+      loading="lazy"
+      decoding="async"
+      style={{
+        display: "block",
+        height: `${logo.height}px`,
+        width: `${logo.width}px`,
+        objectFit: "contain",
+        flexShrink: 0,
+        ...logo.style,
+      }}
+    />
+  );
+}
+
+function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" | "card"; showLogos?: boolean }) {
   const names = ["USA Today", "The Associated Press", "Business Insider"];
   const textStyle =
     size === "hero"
       ? { fontSize: "16px", lineHeight: 1.25 }
       : { fontSize: "15px", lineHeight: 1.25 };
   const dividerHeight = size === "hero" ? "14px" : "12px";
-  const gap = size === "hero" ? "16px" : "12px";
+  const itemGap = size === "hero" ? "16px" : "12px";
+  const logoGap = size === "hero" ? "8px" : "7px";
 
   return (
     <>
       <span
         className="hidden sm:inline-flex items-center"
-        style={{ gap, flexWrap: "wrap" }}
+        style={{ gap: itemGap, flexWrap: "wrap" }}
       >
         {names.map((name, i) => (
-          <span key={name} className="inline-flex items-center" style={{ gap }}>
-            <span
-              className="md:text-lg"
-              style={{
-                ...textStyle,
-                fontWeight: 600,
-                color: INK,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              {name}
+          <span key={name} className="inline-flex items-center" style={{ gap: itemGap }}>
+            <span className="inline-flex items-center" style={{ gap: logoGap }}>
+              {showLogos ? <PublicationLogo name={name} /> : null}
+              <span
+                className="md:text-lg"
+                style={{
+                  ...textStyle,
+                  fontWeight: 600,
+                  color: INK,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {name}
+              </span>
             </span>
             {i < names.length - 1 && (
               <span
@@ -220,14 +253,20 @@ function PublicationNames({ size = "hero" }: { size?: "hero" | "card" }) {
         {names.map((name) => (
           <span
             key={name}
-            style={{
-              ...textStyle,
-              fontWeight: 600,
-              color: INK,
-              letterSpacing: "-0.01em",
-            }}
+            className="inline-flex items-center"
+            style={{ gap: logoGap }}
           >
-            {name}
+            {showLogos ? <PublicationLogo name={name} /> : null}
+            <span
+              style={{
+                ...textStyle,
+                fontWeight: 600,
+                color: INK,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {name}
+            </span>
           </span>
         ))}
       </span>
@@ -256,7 +295,7 @@ function HeroPublicationStrip() {
         PUBLISHED IN
       </p>
       <div style={{ marginTop: "10px" }}>
-        <PublicationNames size="hero" />
+        <PublicationNames size="hero" showLogos />
       </div>
     </div>
   );
@@ -284,17 +323,11 @@ function CardPublicationStrip() {
         PUBLISHED IN
       </p>
       <div style={{ marginTop: "8px" }}>
-        <PublicationNames size="card" />
+        <PublicationNames size="card" showLogos />
       </div>
     </div>
   );
 }
-
-const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
-  "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96, style: { objectPosition: "left center" } },
-  "The Associated Press": { src: "/associated-press-logo.png", height: 18, width: 18 },
-  "Business Insider": { src: "/business-insider-logo.png", height: 14, width: 34, style: { objectPosition: "left center" } },
-};
 
 function SearchResult({ result }: { result: Result }) {
   const logo = PUBLICATION_LOGOS[result.name];
