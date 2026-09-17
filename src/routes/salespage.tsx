@@ -178,7 +178,7 @@ const heroResults: Result[] = [
 const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
   "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96, style: { objectPosition: "left center" } },
   "The Associated Press": { src: "/associated-press-logo.png", height: 18, width: 18 },
-  "Business Insider": { src: "/business-insider-logo.png", height: 14, width: 34, style: { objectPosition: "left center" } },
+  "Business Insider": { src: "/business-insider-logo.png", height: 18, width: 36, style: { objectPosition: "left center" } },
 };
 
 function PublicationLogo({ name }: { name: string }) {
@@ -213,7 +213,7 @@ function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" 
   const dividerHeight = size === "hero" ? "14px" : "12px";
   const itemGap = size === "hero" ? "16px" : "12px";
   const logoGap = size === "hero" ? "8px" : "7px";
-  const labelOnlyLogo = new Set(["USA Today"]);
+  const labelOnlyLogo = new Set(["USA Today", "Business Insider"]);
 
   const Label = ({ name }: { name: string }) => (
     <span
