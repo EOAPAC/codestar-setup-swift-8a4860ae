@@ -62,7 +62,7 @@ const PUBLISHER_DIVIDER_HEIGHTS: Record<PublisherLogoVariant, number> = {
   serp: 22,
 };
 
-function SalesPageNav() {
+function WinnerFeatureNav() {
   return (
     <SiteNav
       hideCTA
@@ -100,7 +100,7 @@ export const Route = createFileRoute("/winner-feature")({
       href: PUBLISHER_ASSETS[name].wordmark.src,
     })),
   }),
-  component: SalesPage,
+  component: WinnerFeaturePage,
 });
 
 /* ----------------------------------------------------------------- tokens */
