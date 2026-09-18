@@ -614,14 +614,14 @@ function useStickyBar(heroRef: React.RefObject<HTMLElement | null>, priceRef: Re
 }
 
 /* --------------------------------------------------------------------- page */
-function WinnerFeaturePage() {
+function SalesPage() {
   const heroCtaRef = useRef<HTMLDivElement>(null);
   const priceCardRef = useRef<HTMLDivElement>(null);
   const stickyVisible = useStickyBar(heroCtaRef, priceCardRef);
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#fff", color: BODY }}>
-      <WinnerFeatureNav />
+      <SalesPageNav />
 
       <main>
         {/* 1. HERO */}
