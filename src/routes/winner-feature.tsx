@@ -20,7 +20,7 @@ import {
 } from "@/content/specimen";
 import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 
-function SalesPageNav() {
+function WinnerFeatureNav() {
   return <SiteNav hideCTA />;
 }
 
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/winner-feature")({
       { name: "robots", content: "noindex" },
     ],
   }),
-  component: SalesPage,
+  component: WinnerFeaturePage,
 });
 
 /* ----------------------------------------------------------------- tokens */
