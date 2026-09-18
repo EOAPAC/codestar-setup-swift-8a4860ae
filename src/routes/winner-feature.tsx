@@ -77,7 +77,7 @@ function SalesPageNav() {
   );
 }
 
-export const Route = createFileRoute("/pricingv2")({
+export const Route = createFileRoute("/winner-feature")({
   head: () => ({
     meta: [
       { title: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },

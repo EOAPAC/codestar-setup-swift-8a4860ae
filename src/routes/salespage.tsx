@@ -24,7 +24,7 @@ function WinnerFeatureNav() {
   return <SiteNav hideCTA />;
 }
 
-export const Route = createFileRoute("/winner-feature")({
+export const Route = createFileRoute("/salespage")({
   head: () => ({
     meta: [
       { title: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
