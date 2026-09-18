@@ -521,10 +521,6 @@ const whyCards = [
 
 const questions = [
   {
-    q: "Why does the same release appear in every publication?",
-    a: "Because that is what a press release is — one announcement, distributed. Your Feature on the Entrepreneur Awards site is the long version, written for you alone, and every release links back to it.",
-  },
-  {
     q: "Can you place the release in other publications?",
     a: "Yes. We can place in other titles, including Fortune. Pricing varies by publication, so email us and we'll tell you what's available.",
   },
