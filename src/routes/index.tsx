@@ -257,7 +257,7 @@ const winWorth = [
   },
   {
     title: "Assessed on what you built",
-    body: "The reading is about the business itself — what you made, what it does and what happened as a result — rather than how polished the writing around it is.",
+    body: "The reading is about the business itself (what you made, what it does and what happened as a result) rather than how polished the writing around it is.",
   },
 ];
 
