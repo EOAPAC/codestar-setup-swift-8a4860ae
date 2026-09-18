@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Check, Search } from "lucide-react";
+import { Check, Search, Trophy } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
@@ -18,10 +18,63 @@ import {
   SPECIMEN_BUSINESS_TOKEN,
   splitOnBusinessToken,
 } from "@/content/specimen";
-import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
+
+import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
+
+const PUBLISHERS = ["USA Today", "The Associated Press", "Business Insider"] as const;
+type PublisherName = (typeof PUBLISHERS)[number];
+type PublisherLogoVariant = "hero" | "card" | "serp";
+
+const PUBLISHER_ASSETS: Record<
+  PublisherName,
+  {
+    alt: string;
+    wordmark: { src: string; width: number; height: number };
+    icon: { src: string; width: number; height: number };
+  }
+> = {
+  "USA Today": {
+    alt: "USA Today",
+    wordmark: { src: "/usa-today-logo.svg", width: 600, height: 90 },
+    icon: { src: "/usa-today-favicon.png", width: 96, height: 96 },
+  },
+  "The Associated Press": {
+    alt: "The Associated Press",
+    wordmark: { src: apUserLogoAsset.url, width: 542, height: 552 },
+    icon: { src: apUserLogoAsset.url, width: 542, height: 552 },
+  },
+  "Business Insider": {
+    alt: "Business Insider",
+    wordmark: { src: "/business-insider-logo.png", width: 1152, height: 576 },
+    icon: { src: "/business-insider-favicon.png", width: 96, height: 96 },
+  },
+};
+
+const PUBLISHER_LOGO_HEIGHTS: Record<PublisherLogoVariant, Record<PublisherName, number>> = {
+  hero: { "USA Today": 20, "The Associated Press": 32, "Business Insider": 22 },
+  card: { "USA Today": 18, "The Associated Press": 28, "Business Insider": 20 },
+  serp: { "USA Today": 20, "The Associated Press": 20, "Business Insider": 20 },
+};
+
+const PUBLISHER_DIVIDER_HEIGHTS: Record<PublisherLogoVariant, number> = {
+  hero: 34,
+  card: 30,
+  serp: 22,
+};
 
 function WinnerFeatureNav() {
-  return <SiteNav hideCTA />;
+  return (
+    <SiteNav
+      hideCTA
+      mobileMenu
+      containerClassName="max-w-[1360px]"
+      compactCta={{
+        href: BASE_LINK,
+        label: `Order — ${money(BASE_PRICE)}`,
+        className: "bg-[#1668C7] text-white hover:bg-[#1056A7] focus-visible:ring-[#1668C7]",
+      }}
+    />
+  );
 }
 
 export const Route = createFileRoute("/winner-feature")({
@@ -41,6 +94,11 @@ export const Route = createFileRoute("/winner-feature")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
     ],
+    links: PUBLISHERS.map((name) => ({
+      rel: "preload",
+      as: "image",
+      href: PUBLISHER_ASSETS[name].wordmark.src,
+    })),
   }),
   component: WinnerFeaturePage,
 });
@@ -49,8 +107,8 @@ export const Route = createFileRoute("/winner-feature")({
 const INK = "#0F172A";
 const BODY = "#52606D";
 const MUTED = "#6B7785";
-const BRAND = "#1978E5";
-const BRAND_DARK = "#1565C4";
+const BRAND = "#1668C7";
+const BRAND_DARK = "#1056A7";
 const LINE = "#E5E9F0";
 const TINT = "#F7F9FC";
 
@@ -59,15 +117,14 @@ const BASE_PRICE = 997;
 const AWARD_PRICE = 197;
 const money = (n: number) => `$${n.toLocaleString()}`;
 
-/* Stripe Payment Links. Base collects email only; the award package collects an address. */
-const BASE_LINK = "https://payments.entrepreneurawards.co/b/eVqcN51Gd9vy2MQ5368so0m";
-const AWARD_LINK = "https://payments.entrepreneurawards.co/b/14A28racJfTW1IM7be8so0l";
+/* Stripe Payment Link for the Winner's Feature. */
+const BASE_LINK = "https://payments.entrepreneurawards.co/b/00wbJ1acJ6jm3QUfHK8so0j";
 
 const BASE_PUBLICATIONS = "USA Today, the Associated Press and Business Insider";
 const REAL_FEATURE_SLUG = "adam-pisk";
 
 const focusRing =
-  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1668C7]";
 
 /* ------------------------------------------------------------- primitives */
 function SpecimenSlot() {
@@ -136,8 +193,8 @@ function FeatureLink({ className = "" }: { className?: string }) {
     <Link
       to="/winners/$slug"
       params={{ slug: REAL_FEATURE_SLUG }}
-      className={`inline-block ${focusRing} ${className}`}
-      style={{ color: BRAND, fontSize: "14px", fontWeight: 500 }}
+      className={`inline-flex items-center ${focusRing} ${className}`}
+      style={{ color: BRAND, fontSize: "14px", fontWeight: 500, minHeight: "44px", padding: "8px 0" }}
     >
       See a real winner&rsquo;s feature &rarr;
     </Link>
@@ -175,96 +232,59 @@ const heroResults: Result[] = [
   },
 ];
 
-const PUBLICATION_LOGOS: Record<string, { src: string; height: number; width: number; style?: React.CSSProperties }> = {
-  "USA Today": { src: "/usa-today-logo.svg", height: 14, width: 96, style: { objectPosition: "left center" } },
-  "The Associated Press": { src: "/associated-press-logo.png", height: 18, width: 18 },
-  "Business Insider": { src: "/business-insider-logo.png", height: 32, width: 64, style: { objectPosition: "left center" } },
-};
-
-function PublicationLogo({ name }: { name: string }) {
-  const logo = PUBLICATION_LOGOS[name];
-  if (!logo) return null;
-  return (
-    <img
-      src={logo.src}
-      alt=""
-      width={logo.width}
-      height={logo.height}
-      loading="lazy"
-      decoding="async"
-      style={{
-        display: "block",
-        height: `${logo.height}px`,
-        width: `${logo.width}px`,
-        objectFit: "contain",
-        flexShrink: 0,
-        ...logo.style,
-      }}
-    />
-  );
-}
-
-function PublicationNames({ size = "hero", showLogos = false }: { size?: "hero" | "card"; showLogos?: boolean }) {
-  const names = ["USA Today", "The Associated Press", "Business Insider"];
-  const textStyle =
-    size === "hero"
-      ? { fontSize: "16px", lineHeight: 1.25 }
-      : { fontSize: "15px", lineHeight: 1.25 };
-  const dividerHeight = size === "hero" ? "14px" : "12px";
-  const itemGap = size === "hero" ? "16px" : "12px";
-  const logoGap = size === "hero" ? "8px" : "7px";
-  const labelOnlyLogo = new Set(["USA Today", "Business Insider"]);
-
-  const Label = ({ name }: { name: string }) => (
-    <span
-      className="inline-flex items-center"
-      style={{ gap: logoGap }}
-    >
-      {showLogos ? <PublicationLogo name={name} /> : null}
-      {!(showLogos && labelOnlyLogo.has(name)) && (
-        <span
-          className="md:text-lg"
-          style={{
-            ...textStyle,
-            fontWeight: 600,
-            color: INK,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {name}
-        </span>
-      )}
-    </span>
-  );
+function PublisherLogos({
+  size,
+  publications = PUBLISHERS,
+  priority = false,
+  className = "",
+}: {
+  size: PublisherLogoVariant;
+  publications?: readonly PublisherName[];
+  priority?: boolean;
+  className?: string;
+}) {
+  const isSerp = size === "serp";
+  const multiple = publications.length > 1;
+  const gapClass = size === "card" ? "gap-0" : "gap-0";
 
   return (
-    <>
-      <span
-        className="hidden sm:inline-flex items-center"
-        style={{ gap: itemGap, flexWrap: "wrap" }}
-      >
-        {names.map((name, i) => (
-          <span key={name} className="inline-flex items-center" style={{ gap: itemGap }}>
-            <Label name={name} />
-            {i < names.length - 1 && (
-              <span
-                style={{
-                  width: "1px",
-                  height: dividerHeight,
-                  backgroundColor: LINE,
-                  flexShrink: 0,
-                }}
-              />
-            )}
+    <span className={`flex flex-nowrap items-center justify-center ${gapClass} ${className}`}>
+      {publications.map((name, index) => {
+        const asset = isSerp ? PUBLISHER_ASSETS[name].icon : PUBLISHER_ASSETS[name].wordmark;
+        const height = PUBLISHER_LOGO_HEIGHTS[size][name];
+        const containerStyle = {
+          "--publisher-divider-height": `${PUBLISHER_DIVIDER_HEIGHTS[size]}px`,
+          height: `${height}px`,
+          width: isSerp ? "20px" : undefined,
+          borderColor: "#E4E9F2",
+          borderRadius: isSerp ? "4px" : undefined,
+          overflow: isSerp ? "hidden" : undefined,
+        } as React.CSSProperties & { "--publisher-divider-height": string };
+        return (
+          <span
+            key={`${size}-${name}`}
+            className={`relative flex shrink-0 items-center justify-center ${multiple && index > 0 ? "ml-4 pl-4 before:absolute before:left-0 before:top-1/2 before:h-[var(--publisher-divider-height)] before:w-px before:-translate-y-1/2 before:bg-[#E4E9F2] before:content-[''] md:ml-[26px] md:pl-[26px]" : ""}`}
+            style={containerStyle}
+          >
+            <img
+              src={asset.src}
+              alt={isSerp ? "" : PUBLISHER_ASSETS[name].alt}
+              width={asset.width}
+              height={asset.height}
+              loading={priority ? "eager" : "lazy"}
+              fetchPriority={priority ? "high" : undefined}
+              decoding={priority ? undefined : "async"}
+              style={{
+                display: "block",
+                height: "100%",
+                width: isSerp ? "100%" : "auto",
+                objectFit: isSerp ? "contain" : "contain",
+              }}
+            />
           </span>
-        ))}
-      </span>
-      <span className="sm:hidden flex flex-col" style={{ gap: "8px" }}>
-        {names.map((name) => (
-          <Label key={name} name={name} />
-        ))}
-      </span>
-    </>
+        );
+      })}
+    </span>
   );
 }
 
@@ -278,8 +298,9 @@ function HeroPublicationStrip() {
       }}
     >
       <p
+        className="text-center"
         style={{
-          fontSize: "10px",
+          fontSize: "12px",
           fontWeight: 700,
           textTransform: "uppercase",
           letterSpacing: "0.14em",
@@ -288,8 +309,8 @@ function HeroPublicationStrip() {
       >
         PUBLISHED IN
       </p>
-      <div style={{ marginTop: "10px" }}>
-        <PublicationNames size="hero" showLogos />
+      <div style={{ marginTop: "14px" }}>
+        <PublisherLogos size="hero" priority />
       </div>
     </div>
   );
@@ -298,67 +319,39 @@ function HeroPublicationStrip() {
 function CardPublicationStrip() {
   return (
     <div
-      className="text-center"
+      className="flex flex-col items-center justify-center gap-4 px-5 py-5 md:flex-row md:gap-[26px] md:px-[34px] md:py-[21px]"
       style={{
-        backgroundColor: TINT,
-        borderTop: `1px solid ${LINE}`,
-        padding: "14px 0",
+        backgroundColor: "#FFFFFF",
+        borderTop: "1px solid #EEF1F7",
       }}
     >
       <p
+        className="shrink-0"
         style={{
-          fontSize: "9.5px",
+          fontSize: "11px",
           fontWeight: 700,
           textTransform: "uppercase",
           letterSpacing: "0.14em",
-          color: MUTED,
+          color: "#55616F",
         }}
       >
-        PUBLISHED IN
+        Published in
       </p>
-      <div style={{ marginTop: "8px" }}>
-        <PublicationNames size="card" showLogos />
-      </div>
+      <PublisherLogos size="card" />
     </div>
   );
 }
 
-const SEARCH_LOGO_ONLY = new Set(["USA Today"]);
-const SEARCH_LOGO_SIZES: Record<string, { height: number; width: number }> = {
-  "USA Today": { height: 14, width: 96 },
-  "The Associated Press": { height: 24, width: 24 },
-  "Business Insider": { height: 26, width: 52 },
-};
-
 function SearchResult({ result }: { result: Result }) {
-  const logo = PUBLICATION_LOGOS[result.name];
-  const size = SEARCH_LOGO_SIZES[result.name];
-  const showName = !SEARCH_LOGO_ONLY.has(result.name);
+  const publisherName = PUBLISHERS.find((name) => name === result.name);
   return (
     <div>
       <div className="flex items-center gap-2">
-        {logo ? (
-          <img
-            src={logo.src}
-            alt=""
-            width={size?.width ?? logo.width}
-            height={size?.height ?? logo.height}
-            loading="lazy"
-            decoding="async"
-            style={{
-              display: "block",
-              height: `${size?.height ?? logo.height}px`,
-              width: `${size?.width ?? logo.width}px`,
-              objectFit: "contain",
-              flexShrink: 0,
-              ...logo.style,
-            }}
-          />
-        ) : null}
+        {publisherName ? <PublisherLogos size="serp" publications={[publisherName]} /> : null}
         <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
-          {showName ? result.name : null}
+          {result.name}
           <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
-            {showName ? " · " : ""}{result.domain}
+            {" · "}{result.domain}
           </span>
         </p>
       </div>
@@ -454,7 +447,7 @@ function BrowserMockup() {
       <div className="relative flex-1 px-5 pb-6 pt-5" style={{ minHeight: 0, overflow: "hidden" }}>
         <p
           style={{
-            fontSize: "10px",
+            fontSize: "12px",
             fontWeight: 600,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
@@ -528,10 +521,6 @@ const whyCards = [
 
 const questions = [
   {
-    q: "Is this a paid placement?",
-    a: "Yes. We pay the publication to run the release, which is why we can tell you it will be published and when. We would rather say that here than have you find out afterwards.",
-  },
-  {
     q: "Why does the same release appear in every publication?",
     a: "Because that is what a press release is — one announcement, distributed. Your Feature on the Entrepreneur Awards site is the long version, written for you alone, and every release links back to it.",
   },
@@ -568,7 +557,7 @@ const questions = [
 const steps = ["We write it", "You approve it", "It goes live"];
 
 const microLabel = {
-  fontSize: "10px",
+  fontSize: "12px",
   fontWeight: 700,
   textTransform: "uppercase" as const,
   letterSpacing: "0.13em",
@@ -620,23 +609,16 @@ function WinnerFeaturePage() {
   const stickyVisible = useStickyBar(heroCtaRef, priceCardRef);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#fff", color: BODY }}>
+    <div className="min-h-screen pb-20 md:pb-0" style={{ backgroundColor: "#fff", color: BODY }}>
       <WinnerFeatureNav />
 
       <main>
         {/* 1. HERO */}
         <section style={{ paddingTop: "64px", paddingBottom: "56px" }}>
-          <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 px-6 lg:grid-cols-2 lg:gap-16">
-            <div className="text-center lg:text-left">
-              <p
-                style={{
-                  fontSize: "11px",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.16em",
-                  color: MUTED,
-                }}
-              >
-                {AWARD_YEAR} Entrepreneur Awards &middot; The Winner&rsquo;s Feature
+          <div className="mx-auto grid max-w-[1360px] grid-cols-1 items-start gap-12 px-6 lg:grid-cols-12 lg:gap-16">
+            <div className="text-center lg:col-span-5 lg:text-left">
+              <p className="flex items-center justify-center lg:justify-start" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.16em", color: MUTED }}>
+                <span>Entrepreneur Awards &middot; The Winner&rsquo;s Feature</span>
               </p>
 
               <h1
@@ -701,8 +683,8 @@ function WinnerFeaturePage() {
               </div>
             </div>
 
-            <div>
-              <p style={{ ...microLabel, fontSize: "10.5px", marginBottom: "12px" }}>
+            <div className="lg:col-span-7">
+              <p style={{ ...microLabel, marginBottom: "12px" }}>
                 What people find when they look you up
               </p>
               <SearchMockup />
@@ -727,153 +709,143 @@ function WinnerFeaturePage() {
               className="mx-auto"
               style={{
                 marginTop: "28px",
-                maxWidth: "620px",
-                backgroundColor: "#fff",
-                border: `1px solid ${LINE}`,
-                borderRadius: "10px",
+                maxWidth: "1024px",
+                backgroundColor: "#FFFFFF",
+                border: "1px solid #E4E9F2",
+                borderRadius: "18px",
                 overflow: "hidden",
-                boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
+                boxShadow: "0 1px 2px rgba(16,27,45,.04), 0 14px 34px rgba(16,27,45,.07)",
               }}
             >
               <div
                 className="flex items-center justify-between"
-                style={{ backgroundColor: TINT, borderBottom: `1px solid ${LINE}`, padding: "14px" }}
+                style={{ borderBottom: "1px solid #EEF1F7", padding: "22px 34px" }}
               >
                 <span
                   style={{
-                    fontSize: "11px",
+                    fontSize: "11.5px",
                     fontWeight: 700,
                     textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    color: MUTED,
+                    letterSpacing: "0.14em",
+                    color: "#55616F",
                   }}
                 >
                   The Winner&rsquo;s Feature
                 </span>
                 <span
-                  className="hidden sm:inline"
                   style={{
                     fontSize: "11px",
                     fontWeight: 700,
                     textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    color: MUTED,
+                    letterSpacing: "0.1em",
+                    color: "#14508F",
+                    backgroundColor: "#EAF2FD",
+                    padding: "6px 12px",
+                    borderRadius: "999px",
                   }}
                 >
                   Digital delivery
                 </span>
               </div>
 
-              {includedRows.map((row, i) => (
-                <div
-                  key={row.lead}
-                  className="flex items-start gap-3"
-                  style={{
-                    padding: "14px 24px",
-                    borderTop: i === 0 ? undefined : `1px solid ${LINE}`,
-                  }}
-                >
-                  <Check aria-hidden size={15} color={BRAND} style={{ marginTop: "3px", flexShrink: 0 }} />
-                  <p style={{ fontSize: "14.5px", lineHeight: 1.55, color: BODY }}>
-                    <span style={{ fontWeight: 600, color: INK }}>{row.lead}</span>
-                    {row.rest}
-                  </p>
+              <div className="grid grid-cols-1 gap-[28px] px-5 py-7 md:grid-cols-12 md:gap-[34px] md:px-[34px] md:pb-7 md:pt-[30px]">
+                <div className="flex flex-col gap-[19px] md:col-span-7">
+                  {includedRows.map((row) => (
+                    <div key={row.lead} className="flex items-start gap-[13px]">
+                      <Check aria-hidden size={19} strokeWidth={2.6} color="#1668C7" style={{ marginTop: "3px", flexShrink: 0 }} />
+                      <p style={{ fontSize: "15.5px", lineHeight: 1.55, color: "#414B59" }}>
+                        <strong style={{ fontWeight: 700, color: "#0B1220" }}>{row.lead}</strong>
+                        {row.rest}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+
+                <aside
+                  className="md:col-span-5"
+                  style={{ backgroundColor: "#F7F9FC", border: "1px solid #E7ECF4", borderRadius: "13px", padding: "22px" }}
+                >
+                  <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#55616F" }}>
+                    Timeline
+                  </p>
+                  <ol className="mt-4 flex items-start justify-between md:flex-col md:items-stretch md:justify-start">
+                    {steps.map((step, index) => {
+                      const mobileLabel = ["We write it", "Approve", "Live"][index];
+                      return (
+                        <li key={step} className="relative flex min-w-0 flex-1 flex-col items-center md:flex-none md:items-start">
+                          <div className="flex w-full items-center md:w-auto">
+                            {index > 0 ? <span aria-hidden className="h-px flex-1 bg-[#D8E0EC] md:hidden" /> : null}
+                            <span className="grid h-[23px] w-[23px] shrink-0 place-items-center rounded-full bg-[#1668C7] text-white" style={{ fontSize: "11.5px", fontWeight: 700 }}>
+                              {index + 1}
+                            </span>
+                            {index < steps.length - 1 ? <span aria-hidden className="h-px flex-1 bg-[#D8E0EC] md:hidden" /> : null}
+                          </div>
+                          <span className="mt-2 text-center md:absolute md:left-9 md:top-0 md:mt-0 md:text-left" style={{ fontSize: "14.5px", fontWeight: 600, color: "#0B1220" }}>
+                            <span className="md:hidden">{mobileLabel}</span>
+                            <span className="hidden md:inline">{step}</span>
+                          </span>
+                          {index < steps.length - 1 ? <span aria-hidden className="ml-[11px] hidden h-[22px] w-px bg-[#D8E0EC] md:block" /> : null}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                  <p style={{ marginTop: "18px", fontSize: "13px", lineHeight: 1.5, color: "#55616F" }}>
+                    Your draft arrives within five working days. It goes live three days after you approve it.
+                  </p>
+                </aside>
+              </div>
 
               <CardPublicationStrip />
 
               <div
-                className="text-center"
-                style={{ backgroundColor: TINT, borderTop: `1px solid ${LINE}`, padding: "24px" }}
+                className="flex flex-col gap-5 px-5 py-[22px] md:flex-row md:items-center md:justify-between md:px-[34px]"
+                style={{ backgroundColor: "#101B2D" }}
               >
-                <p style={{ fontSize: "36px", fontWeight: 700, color: INK }}>{money(BASE_PRICE)}</p>
-                <p style={{ marginTop: "6px", fontSize: "12.5px", color: MUTED }}>
-                  One payment. Nothing recurring.
+                <div className="flex items-baseline gap-3 md:block">
+                  <p style={{ fontSize: "40px", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>
+                    {money(BASE_PRICE)}
+                  </p>
+                  <p className="md:mt-2" style={{ fontSize: "13.5px", color: "#AFBCD0" }}>
+                    One payment. Nothing recurring.
+                  </p>
+                </div>
+                <div className="md:text-right">
+                  <BrandButton href={BASE_LINK} className="w-full md:w-auto" style={{ minHeight: "52px", borderRadius: "10px", padding: "0 26px", fontWeight: 700 }}>
+                    Order the Winner&rsquo;s Feature — {money(BASE_PRICE)}
+                  </BrandButton>
+                  <p style={{ marginTop: "9px", fontSize: "12.5px", color: "#AFBCD0" }}>
+                    Nothing goes live until you approve every word.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className="flex flex-wrap items-center gap-x-4 px-[18px] py-4 md:flex-nowrap md:px-[34px]"
+                style={{ backgroundColor: "#F2F5FA", borderTop: "1px solid #E4E9F2" }}
+              >
+                <div
+                  className="order-1 flex h-[58px] w-[58px] shrink-0 items-center justify-center"
+                  style={{ borderRadius: "9px", backgroundColor: "#E7ECF4", border: "1px solid #DCE3EE" }}
+                  aria-label="The engraved 2026 Entrepreneur Award"
+                >
+                  <Trophy size={28} color="#55616F" strokeWidth={1.75} />
+                </div>
+                <span
+                  className="order-2 ml-auto shrink-0 whitespace-nowrap md:order-3 md:ml-0"
+                  style={{ fontSize: "13.5px", fontWeight: 700, color: "#55616F" }}
+                >
+                  Add for {money(AWARD_PRICE)} at checkout
+                </span>
+                <p
+                  className="order-3 mt-3 w-full md:order-2 md:mt-0 md:w-auto md:flex-1"
+                  style={{ margin: undefined, fontSize: "13.5px", lineHeight: 1.5, color: "#55616F" }}
+                >
+                  <strong style={{ color: "#0B1220", fontWeight: 700 }}>Optional: the engraved award.</strong>{" "}
+                  Your name and award year on crystal, plus a printed certificate. Posted to you — the only part we need an address for.
                 </p>
               </div>
             </div>
 
-            <div className="text-center" style={{ marginTop: "20px" }}>
-              <BrandButton href={BASE_LINK} className="w-full sm:w-auto">
-                Order the Winner&rsquo;s Feature — {money(BASE_PRICE)}
-              </BrandButton>
-            </div>
-
-
-            {/* Award package */}
-            <div
-              className="mx-auto"
-              style={{
-                marginTop: "32px",
-                maxWidth: "620px",
-                backgroundColor: "#fff",
-                border: `1px solid ${LINE}`,
-                borderRadius: "8px",
-                padding: "20px",
-              }}
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <a
-                  href={AWARD_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={focusRing}
-                  style={{ fontSize: "15.5px", fontWeight: 600, color: INK }}
-                >
-                  The Award Package
-                </a>
-                <span style={{ fontSize: "15.5px", fontWeight: 700, color: BRAND }}>
-                  +{money(AWARD_PRICE)}
-                </span>
-              </div>
-              <img
-                src={portraitAsset.url}
-                alt="A founder holding the engraved Entrepreneur Award"
-                width={1264}
-                height={848}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[16/10] w-full"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 35%",
-                  border: `1px solid ${LINE}`,
-                  borderRadius: "6px",
-                  marginTop: "14px",
-                  marginBottom: "14px",
-                }}
-              />
-              <p style={{ fontSize: "13.5px", lineHeight: 1.6, color: BODY }}>
-                The engraved award with your name and award year, plus a printed certificate ready
-                to frame. Posted to you — this is the only part we need an address for.
-              </p>
-              <a
-                href={AWARD_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex w-full items-center justify-center transition-colors hover:bg-[#F7F9FC] ${focusRing}`}
-                style={{
-                  marginTop: "16px",
-                  minHeight: "46px",
-                  borderRadius: "8px",
-                  border: `1px solid ${BRAND}`,
-                  backgroundColor: "#FFFFFF",
-                  color: BRAND,
-                  fontSize: "14.5px",
-                  fontWeight: 600,
-                }}
-              >
-                Add the engraved award — {money(AWARD_PRICE)}
-              </a>
-            </div>
-
-            <p
-              className="text-center"
-              style={{ marginTop: "16px", fontSize: "12.5px", color: MUTED }}
-            >
-              Offered at checkout as an optional extra. Ships worldwide.
-            </p>
           </div>
         </section>
 
@@ -907,53 +879,6 @@ function WinnerFeaturePage() {
           </div>
         </section>
 
-        {/* 5. HOW IT WORKS */}
-        <section style={{ paddingTop: "56px", paddingBottom: "48px" }}>
-          <div className="mx-auto max-w-4xl px-6">
-            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
-              How it works
-            </h2>
-            <ol
-              className="flex flex-col items-center justify-center gap-5 sm:flex-row sm:gap-6"
-              style={{ marginTop: "28px" }}
-            >
-              {steps.map((step, i) => (
-                <li key={step} className="flex items-center gap-4">
-                  <span className="flex items-center gap-3">
-                    <span
-                      className="flex items-center justify-center rounded-full"
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        backgroundColor: BRAND,
-                        color: "#fff",
-                        fontSize: "11px",
-                        fontWeight: 700,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {i + 1}
-                    </span>
-                    <span style={{ fontSize: "14.5px", fontWeight: 600, color: INK }}>{step}</span>
-                  </span>
-                  {i < steps.length - 1 ? (
-                    <span aria-hidden className="hidden sm:inline" style={{ color: LINE }}>
-                      &mdash;&mdash;
-                    </span>
-                  ) : null}
-                </li>
-              ))}
-            </ol>
-            <p
-              className="mx-auto text-center"
-              style={{ marginTop: "24px", fontSize: "13.5px", color: MUTED, maxWidth: "54ch" }}
-            >
-              Your draft arrives within five working days. It goes live three days after you approve
-              it.
-            </p>
-          </div>
-        </section>
-
         {/* 6. QUESTIONS */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto px-6" style={{ maxWidth: "680px" }}>
@@ -961,7 +886,7 @@ function WinnerFeaturePage() {
               Questions
             </h2>
             <div style={{ marginTop: "24px" }}>
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion type="multiple" className="w-full">
                 {questions.map((item, i) => (
                   <AccordionItem
                     key={item.q}
@@ -1013,7 +938,7 @@ function WinnerFeaturePage() {
               <div className="text-center" style={{ padding: "36px 28px" }}>
                 <p
                   style={{
-                    fontSize: "10.5px",
+                    fontSize: "12px",
                     fontWeight: 700,
                     textTransform: "uppercase",
                     letterSpacing: "0.14em",
@@ -1050,7 +975,7 @@ function WinnerFeaturePage() {
                 <p
                   style={{
                     marginTop: "12px",
-                    fontSize: "10.5px",
+                    fontSize: "12px",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
                     color: MUTED,
@@ -1058,29 +983,6 @@ function WinnerFeaturePage() {
                 >
                   Secure checkout by Stripe
                 </p>
-              </div>
-
-              <div
-                className="text-center"
-                style={{
-                  backgroundColor: TINT,
-                  borderTop: `1px solid ${LINE}`,
-                  padding: "14px 20px",
-                  fontSize: "12.5px",
-                  color: MUTED,
-                }}
-              >
-                Want the engraved award as well?{" "}
-                <a
-                  href={AWARD_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={focusRing}
-                  style={{ color: BRAND, fontWeight: 500 }}
-                >
-                  Add it for {money(AWARD_PRICE)}
-                </a>
-                .
               </div>
             </div>
           </div>
@@ -1121,7 +1023,7 @@ function WinnerFeaturePage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <SiteFooter statementClassName="text-[13px]" />
 
       {/* 9. MOBILE STICKY BAR */}
       <div
@@ -1150,7 +1052,7 @@ function WinnerFeaturePage() {
           style={{
             backgroundColor: BRAND,
             color: "#fff",
-            height: "44px",
+            minHeight: "48px",
             borderRadius: "8px",
             padding: "0 22px",
             fontSize: "14.5px",

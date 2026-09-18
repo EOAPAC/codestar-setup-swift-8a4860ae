@@ -18,7 +18,6 @@ import { Route as WinnerFeatureRouteImport } from './routes/winner-feature'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as SalespageRouteImport } from './routes/salespage'
-import { Route as Pricingv2RouteImport } from './routes/pricingv2'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
@@ -80,11 +79,6 @@ const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
 const SalespageRoute = SalespageRouteImport.update({
   id: '/salespage',
   path: '/salespage',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Pricingv2Route = Pricingv2RouteImport.update({
-  id: '/pricingv2',
-  path: '/pricingv2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -182,7 +176,6 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
-  '/pricingv2': typeof Pricingv2Route
   '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
@@ -211,7 +204,6 @@ export interface FileRoutesByTo {
   '/how-it-works': typeof HowItWorksRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
-  '/pricingv2': typeof Pricingv2Route
   '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
@@ -241,7 +233,6 @@ export interface FileRoutesById {
   '/how-it-works': typeof HowItWorksRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
-  '/pricingv2': typeof Pricingv2Route
   '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
@@ -272,7 +263,6 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/methodology'
     | '/pricing'
-    | '/pricingv2'
     | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
@@ -301,7 +291,6 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/methodology'
     | '/pricing'
-    | '/pricingv2'
     | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
@@ -330,7 +319,6 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/methodology'
     | '/pricing'
-    | '/pricingv2'
     | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
@@ -360,7 +348,6 @@ export interface RootRouteChildren {
   HowItWorksRoute: typeof HowItWorksRoute
   MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRouteWithChildren
-  Pricingv2Route: typeof Pricingv2Route
   SalespageRoute: typeof SalespageRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
@@ -443,13 +430,6 @@ declare module '@tanstack/react-router' {
       path: '/salespage'
       fullPath: '/salespage'
       preLoaderRoute: typeof SalespageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pricingv2': {
-      id: '/pricingv2'
-      path: '/pricingv2'
-      fullPath: '/pricingv2'
-      preLoaderRoute: typeof Pricingv2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -594,7 +574,6 @@ const rootRouteChildren: RootRouteChildren = {
   HowItWorksRoute: HowItWorksRoute,
   MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRouteWithChildren,
-  Pricingv2Route: Pricingv2Route,
   SalespageRoute: SalespageRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
