@@ -118,7 +118,7 @@ const AWARD_PRICE = 197;
 const money = (n: number) => `$${n.toLocaleString()}`;
 
 /* Stripe Payment Link for the Winner's Feature. */
-const BASE_LINK = "https://payments.entrepreneurawards.co/b/00wbJ1acJ6jm3QUfHK8so0j";
+const BASE_LINK = "https://payments.entrepreneurawards.co/b/eVqcN51Gd9vy2MQ5368so0m";
 
 const BASE_PUBLICATIONS = "USA Today, the Associated Press and Business Insider";
 const REAL_FEATURE_SLUG = "adam-pisk";
