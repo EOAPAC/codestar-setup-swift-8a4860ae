@@ -14,6 +14,7 @@ import { Route as WinnerProductConceptsRouteImport } from './routes/winner-produ
 import { Route as WinnerOptionsV2RouteImport } from './routes/winner-options-v2'
 import { Route as WinnerOptionsRouteImport } from './routes/winner-options'
 import { Route as WinnerMaterialsRouteImport } from './routes/winner-materials'
+import { Route as WinnerFeatureRouteImport } from './routes/winner-feature'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as SalespageRouteImport } from './routes/salespage'
@@ -59,6 +60,11 @@ const WinnerOptionsRoute = WinnerOptionsRouteImport.update({
 const WinnerMaterialsRoute = WinnerMaterialsRouteImport.update({
   id: '/winner-materials',
   path: '/winner-materials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WinnerFeatureRoute = WinnerFeatureRouteImport.update({
+  id: '/winner-feature',
+  path: '/winner-feature',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThankYouRoute = ThankYouRouteImport.update({
@@ -180,6 +186,7 @@ export interface FileRoutesByFullPath {
   '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/winner-feature': typeof WinnerFeatureRoute
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-options-v2': typeof WinnerOptionsV2Route
@@ -208,6 +215,7 @@ export interface FileRoutesByTo {
   '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/winner-feature': typeof WinnerFeatureRoute
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-options-v2': typeof WinnerOptionsV2Route
@@ -237,6 +245,7 @@ export interface FileRoutesById {
   '/salespage': typeof SalespageRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/thank-you': typeof ThankYouRoute
+  '/winner-feature': typeof WinnerFeatureRoute
   '/winner-materials': typeof WinnerMaterialsRoute
   '/winner-options': typeof WinnerOptionsRoute
   '/winner-options-v2': typeof WinnerOptionsV2Route
@@ -267,6 +276,7 @@ export interface FileRouteTypes {
     | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/winner-feature'
     | '/winner-materials'
     | '/winner-options'
     | '/winner-options-v2'
@@ -295,6 +305,7 @@ export interface FileRouteTypes {
     | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/winner-feature'
     | '/winner-materials'
     | '/winner-options'
     | '/winner-options-v2'
@@ -323,6 +334,7 @@ export interface FileRouteTypes {
     | '/salespage'
     | '/terms-and-conditions'
     | '/thank-you'
+    | '/winner-feature'
     | '/winner-materials'
     | '/winner-options'
     | '/winner-options-v2'
@@ -352,6 +364,7 @@ export interface RootRouteChildren {
   SalespageRoute: typeof SalespageRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ThankYouRoute: typeof ThankYouRoute
+  WinnerFeatureRoute: typeof WinnerFeatureRoute
   WinnerMaterialsRoute: typeof WinnerMaterialsRoute
   WinnerOptionsRoute: typeof WinnerOptionsRoute
   WinnerOptionsV2Route: typeof WinnerOptionsV2Route
@@ -402,6 +415,13 @@ declare module '@tanstack/react-router' {
       path: '/winner-materials'
       fullPath: '/winner-materials'
       preLoaderRoute: typeof WinnerMaterialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/winner-feature': {
+      id: '/winner-feature'
+      path: '/winner-feature'
+      fullPath: '/winner-feature'
+      preLoaderRoute: typeof WinnerFeatureRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/thank-you': {
@@ -578,6 +598,7 @@ const rootRouteChildren: RootRouteChildren = {
   SalespageRoute: SalespageRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ThankYouRoute: ThankYouRoute,
+  WinnerFeatureRoute: WinnerFeatureRoute,
   WinnerMaterialsRoute: WinnerMaterialsRoute,
   WinnerOptionsRoute: WinnerOptionsRoute,
   WinnerOptionsV2Route: WinnerOptionsV2Route,
