@@ -807,7 +807,7 @@ function WinnerFeaturePage() {
                 </div>
                 <div className="md:text-right">
                   <BrandButton href={BASE_LINK} className="w-full md:w-auto" style={{ minHeight: "52px", borderRadius: "10px", padding: "0 26px", fontWeight: 700 }}>
-                    Order the Winner&rsquo;s Feature — {money(BASE_PRICE)}
+                    Order the Winner&rsquo;s Feature for {money(BASE_PRICE)}
                   </BrandButton>
                   <p style={{ marginTop: "9px", fontSize: "12.5px", color: "#AFBCD0" }}>
                     Nothing goes live until you approve every word.
@@ -837,7 +837,7 @@ function WinnerFeaturePage() {
                   style={{ margin: undefined, fontSize: "13.5px", lineHeight: 1.5, color: "#55616F" }}
                 >
                   <strong style={{ color: "#0B1220", fontWeight: 700 }}>Optional: the engraved award.</strong>{" "}
-                  Your name and award year on crystal, plus a printed certificate. Posted to you — the only part we need an address for.
+                  Your name and award year on crystal, plus a printed certificate. Posted to you. That is the only part we need an address for.
                 </p>
               </div>
             </div>
