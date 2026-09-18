@@ -24,7 +24,7 @@ function SalesPageNav() {
   return <SiteNav hideCTA />;
 }
 
-export const Route = createFileRoute("/salespage")({
+export const Route = createFileRoute("/winner-feature")({
   head: () => ({
     meta: [
       { title: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },

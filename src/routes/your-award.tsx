@@ -289,7 +289,7 @@ function Closing() {
         </p>
         <div className="mt-3.5">
           <Link
-            to="/salespage"
+            to="/winner-feature"
             className="inline-flex items-center gap-1 transition-colors hover:underline"
             style={{
               fontSize: "13.5px",
