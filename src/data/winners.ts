@@ -40,4 +40,17 @@ export const WINNERS: Winner[] = [
       "Ashton Bishop, founder and chief executive of the Sydney consultancy Step Change, has received a 2026 Entrepreneur Award for work on how companies communicate commercial value. The award centers on the Value Gap Audit, a free diagnostic launched in July 2026 that scores a company's website, its competitor set, and one marketing document in about two minutes.",
     ],
   },
+  {
+    slug: "gabriel-sabadin",
+    name: "Gabriel Sabadin",
+    company: "Tuteliq",
+    companyUrl: "https://tuteliq.ai",
+    category: "Child Safety Technology™",
+    year: AWARD_YEAR,
+    reference: "EA-2026-0521",
+    featureUrl: "/features/gabriel-sabadin",
+    summary: [
+      "Gabriel Sabadin has been awarded a 2026 Entrepreneur Award for Child Safety Technology™ for his work as founder and chief executive of Tuteliq, a Swedish company whose detection software flags online harm against children while it is happening.",
+    ],
+  },
 ];

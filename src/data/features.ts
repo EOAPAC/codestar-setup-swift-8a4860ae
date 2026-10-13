@@ -2,6 +2,7 @@ import portraitAsset from "@/assets/jeremy-portrait.jpg.asset.json";
 import andyFunkPortraitAsset from "@/assets/andy-funk.png.asset.json";
 import adamPiskPortraitAsset from "@/assets/adam-pisk.jpg.asset.json";
 import ashtonBishopPortraitAsset from "@/assets/ashton-bishop.jpg.asset.json";
+import gabrielSabadinPortraitAsset from "@/assets/gabriel-sabadin.jpg.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
 
 export type FeatureSegment =
@@ -151,6 +152,36 @@ export const FEATURES: Feature[] = [
     },
     portrait: ashtonBishopPortraitAsset.url,
     portraitCaption: "Ashton Bishop, founder and chief executive of Step Change",
+    awardImage: awardAsset.url
+  },
+  {
+    slug: "gabriel-sabadin",
+    winnerSlug: "gabriel-sabadin",
+    headline: "Gabriel Sabadin Wins A 2026 Entrepreneur Award For Child Safety Technology™",
+    subheadline: "Sabadin, founder and chief executive of Swedish company Tuteliq, won for building detection software that flags online harm against children while it is happening.",
+    body: [
+      { type: 'p', text: "Gabriel Sabadin, founder and chief executive of Tuteliq, has won a 2026 Entrepreneur Award for building detection software that flags online harm against children while it is happening. The company sells a child safety API that reads text, voice, image, and video across 27 languages, scoring for grooming, coercive control, exploitation, bullying, fraud, and radicalization as a conversation unfolds." },
+      { type: 'p', text: "The award recognizes the founder, not the company. Tuteliq was founded in Sweden in 2024, and in July 2026 joined the Internet Watch Foundation as a member, adding the IWF's URL List and Image Hash List, which hold digital fingerprints of known child sexual abuse material, to its detection pipeline." },
+      { type: 'h2', text: "Why The Win Matters" },
+      { type: 'p', text: "Most moderation systems classify one message at a time and act after harmful material has already been shared. Tuteliq scores conversations as they develop, tracking shifts in power, trust-building sequences, and escalation patterns that single-message classifiers tend to miss. Sabadin, a computer scientist with a doctorate and more than 25 years in software engineering and machine learning, is the named inventor on the patent-pending pipeline behind it. The judges pointed to the decision to build the detection science alongside a criminologist rather than treat the problem as generic classification." },
+      { type: 'quote', text: "The difference is that authentication protects your system. Child safety protects your users,", attribution: "Sabadin wrote in a post for developers" },
+      { type: 'h2', text: "Market Context" },
+      { type: 'p', text: "The scale of the problem sharpened through 2026. The Internet Watch Foundation assessed 6,310 AI-generated images meeting the legal definition of child sexual abuse in the first six months of the year, against 4,512 across all of 2025, a 40 percent rise in half the time. Girls appeared in 98 percent of the first-half images, and children aged seven to 13 accounted for 79 percent of them, up from 70 percent a year earlier. Regulation has moved in parallel, with the EU Digital Services Act, the UK Online Safety Act, and the Australian Online Safety Act placing duties on platforms that serve young users." },
+      { type: 'quote', text: "Every day at the IWF, our analysts see the horrific results of online grooming and sexual exploitation. We don't want any more children to slip through the gaps and Tuteliq can help make that a reality.", attribution: "Kerry Smith, chief executive of the Internet Watch Foundation, said in July" },
+      { type: 'h2', text: "The Judges Final Words" },
+      { type: 'quote', text: "The panel looked for a defined problem and a response that can be checked. This entry built its detection science with a criminologist, wired an independent body's data into its own pipeline, and kept its technical claims specific enough to test. In a category where good intentions are common, that is the harder path.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" },
+      { type: 'h2', text: "About The Entrepreneur Awards" },
+      { type: 'p', text: "The Entrepreneur Awards recognizes the founder rather than the company. Here the award acknowledges Sabadin's work in moving child safety detection from after-the-fact review to something a platform can act on while a conversation is still running." }
+    ],
+    info: {
+      industry: "Child Safety Technology™",
+      location: "Sweden",
+      whatTheyDo: "Gabriel Sabadin is founder and chief executive of Tuteliq, which supplies a real-time child safety API that detects grooming, coercive control, exploitation, bullying, fraud, and radicalization across text, voice, image, and video in 27 languages.",
+      website: "tuteliq.ai",
+      websiteUrl: "https://tuteliq.ai"
+    },
+    portrait: gabrielSabadinPortraitAsset.url,
+    portraitCaption: "Gabriel Sabadin, Founder and CEO of Tuteliq",
     awardImage: awardAsset.url
   }
 ];
