@@ -14,6 +14,7 @@ import { AWARD_YEAR } from "@/content/award";
 
 type SiteNavProps = {
   hideCTA?: boolean;
+  hideLinks?: boolean;
   mobileMenu?: boolean;
   compactCta?: { href: string; label: string; className?: string };
   containerClassName?: string;
