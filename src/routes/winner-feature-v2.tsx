@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { FEATURES, type Feature, type FeatureBlock } from "@/data/features";
-import { fillBusiness, sanitizeBusiness } from "@/lib/winner-feature-business";
+import { sanitizeBusiness } from "@/lib/winner-feature-business";
 import {
   Accordion,
   AccordionContent,
