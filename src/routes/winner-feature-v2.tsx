@@ -126,7 +126,7 @@ function BrandButton({
 
 /* ------------------------------------------------------------ logo bar */
 function LogoBar() {
-  const dividerClass = "mx-3 h-[26px] w-px shrink-0 sm:mx-6 sm:h-8";
+  const dividerClass = "mx-2 min-[380px]:mx-3 h-[26px] w-px shrink-0 sm:mx-6 sm:h-8";
   return (
     <div
       style={{
@@ -156,7 +156,7 @@ function LogoBar() {
             height={90}
             loading="eager"
             fetchPriority="high"
-            className="h-[17px] w-auto sm:h-[22px]"
+            className="h-[15px] w-auto min-[380px]:h-[17px] sm:h-[22px]"
             style={{ display: "block", objectFit: "contain" }}
           />
           <span aria-hidden className={dividerClass} style={{ backgroundColor: LINE }} />
