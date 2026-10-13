@@ -40,14 +40,16 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
         </Link>
 
         <div className="hidden items-center gap-5 md:flex">
-          <nav className="flex items-center gap-5 text-sm text-muted-foreground lg:gap-8">
-            {navLinks.map((link) => (
-              <Link key={link.to} to={link.to} className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
-                {link.label}
-              </Link>
-            ))}
-            <a href="/#contact" className="hover:text-foreground">Contact</a>
-          </nav>
+          {!hideLinks && (
+            <nav className="flex items-center gap-5 text-sm text-muted-foreground lg:gap-8">
+              {navLinks.map((link) => (
+                <Link key={link.to} to={link.to} className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
+                  {link.label}
+                </Link>
+              ))}
+              <a href="/#contact" className="hover:text-foreground">Contact</a>
+            </nav>
+          )}
           {compactCta ? (
             <Button asChild size="sm" className={compactCta.className}>
               <a href={compactCta.href} target="_blank" rel="noopener noreferrer">{compactCta.label}</a>
