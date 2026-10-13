@@ -19,6 +19,21 @@ import {
 import eaMark84Asset from "@/assets/ea-mark-84.png.asset.json";
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 import apStackedLogoAsset from "@/assets/associated-press-logo-stacked.png.asset.json";
+import ashtonPressAsset from "@/assets/ashton-bishop-usa-today-2x.webp.asset.json";
+import adamPressAsset from "@/assets/adam-pisk-usa-today-2x.webp.asset.json";
+
+/* Real USA Today coverage of two 2026 winners. Screenshots are 2x (996×726),
+ * so they render at 498px wide and are never stretched larger. */
+const pressScreenshots = [
+  {
+    src: ashtonPressAsset.url,
+    alt: "USA Today article: Ashton Bishop wins a 2026 Entrepreneur Award",
+  },
+  {
+    src: adamPressAsset.url,
+    alt: "USA Today article: Adam Pisk wins a 2026 Entrepreneur Award",
+  },
+];
 
 export const Route = createFileRoute("/winner-feature-v2")({
   validateSearch: (search: Record<string, unknown>) => ({
