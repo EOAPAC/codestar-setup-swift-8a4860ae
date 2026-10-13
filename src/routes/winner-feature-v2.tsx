@@ -19,6 +19,21 @@ import {
 import eaMark84Asset from "@/assets/ea-mark-84.png.asset.json";
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 import apStackedLogoAsset from "@/assets/associated-press-logo-stacked.png.asset.json";
+import ashtonPressAsset from "@/assets/ashton-bishop-usa-today-2x.webp.asset.json";
+import adamPressAsset from "@/assets/adam-pisk-usa-today-2x.webp.asset.json";
+
+/* Real USA Today coverage of two 2026 winners. Screenshots are 2x (996×726),
+ * so they render at 498px wide and are never stretched larger. */
+const pressScreenshots = [
+  {
+    src: ashtonPressAsset.url,
+    alt: "USA Today article: Ashton Bishop wins a 2026 Entrepreneur Award",
+  },
+  {
+    src: adamPressAsset.url,
+    alt: "USA Today article: Adam Pisk wins a 2026 Entrepreneur Award",
+  },
+];
 
 export const Route = createFileRoute("/winner-feature-v2")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -547,6 +562,40 @@ function WinnerFeatureV2Page() {
               </div>
             </div>
 
+          </div>
+        </section>
+
+        {/* AS SEEN IN USA TODAY */}
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+          <div className="mx-auto max-w-[1080px] px-6">
+            <h2
+              className="text-center"
+              style={{ fontSize: "24px", fontWeight: 700, color: INK }}
+            >
+              As seen in USA Today
+            </h2>
+            <div className="mt-9 flex flex-col items-center justify-center gap-8 min-[1100px]:flex-row min-[1100px]:items-start">
+              {pressScreenshots.map((shot) => (
+                <img
+                  key={shot.alt}
+                  src={shot.src}
+                  alt={shot.alt}
+                  width={996}
+                  height={726}
+                  loading="lazy"
+                  decoding="async"
+                  style={{
+                    width: "498px",
+                    maxWidth: "100%",
+                    height: "auto",
+                    display: "block",
+                    borderRadius: "12px",
+                    border: "1px solid #E5E5E5",
+                    boxShadow: "0 1px 2px rgba(16,27,45,.05), 0 14px 34px rgba(16,27,45,.08)",
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </section>
 
