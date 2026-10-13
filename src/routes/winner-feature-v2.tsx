@@ -19,18 +19,23 @@ import {
 import eaMark84Asset from "@/assets/ea-mark-84.png.asset.json";
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 import apStackedLogoAsset from "@/assets/associated-press-logo-stacked.png.asset.json";
-import ashtonPressAsset from "@/assets/ashton-bishop-usa-today-2x.webp.asset.json";
-import adamPressAsset from "@/assets/adam-pisk-usa-today-2x.webp.asset.json";
+import ashtonPress1xAsset from "@/assets/ashton-bishop-usa-today.webp.asset.json";
+import ashtonPress2xAsset from "@/assets/ashton-bishop-usa-today-2x.webp.asset.json";
+import adamPress1xAsset from "@/assets/adam-pisk-usa-today.webp.asset.json";
+import adamPress2xAsset from "@/assets/adam-pisk-usa-today-2x.webp.asset.json";
 
-/* Real USA Today coverage of two 2026 winners. Screenshots are 2x (996×726),
- * so they render at 498px wide and are never stretched larger. */
+/* Real USA Today coverage of two 2026 winners. Screenshots are served at 1x
+ * (700×530) and 2x (1400×1060) via srcset, so they render at 700px wide and
+ * stay sharp on retina screens without ever being stretched larger. */
 const pressScreenshots = [
   {
-    src: ashtonPressAsset.url,
+    src: ashtonPress1xAsset.url,
+    srcSet: `${ashtonPress1xAsset.url} 1x, ${ashtonPress2xAsset.url} 2x`,
     alt: "USA Today article: Ashton Bishop wins a 2026 Entrepreneur Award",
   },
   {
-    src: adamPressAsset.url,
+    src: adamPress1xAsset.url,
+    srcSet: `${adamPress1xAsset.url} 1x, ${adamPress2xAsset.url} 2x`,
     alt: "USA Today article: Adam Pisk wins a 2026 Entrepreneur Award",
   },
 ];
@@ -567,25 +572,28 @@ function WinnerFeatureV2Page() {
 
         {/* AS SEEN IN USA TODAY */}
         <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-[1080px] px-6">
+          {/* 1480px max plus the 24px gutters, so the two 700px columns + 40px gap fit exactly */}
+          <div className="mx-auto max-w-[1528px] px-6">
             <h2
               className="text-center"
               style={{ fontSize: "24px", fontWeight: 700, color: INK }}
             >
               As seen in USA Today
             </h2>
-            <div className="mt-9 flex flex-col items-center justify-center gap-8 min-[1100px]:flex-row min-[1100px]:items-start">
+            <div className="mt-9 flex flex-col items-center justify-center gap-10 min-[1000px]:flex-row min-[1000px]:items-start">
               {pressScreenshots.map((shot) => (
                 <img
                   key={shot.alt}
                   src={shot.src}
+                  srcSet={shot.srcSet}
                   alt={shot.alt}
-                  width={996}
-                  height={726}
+                  width={1400}
+                  height={1060}
                   loading="lazy"
                   decoding="async"
                   style={{
-                    width: "498px",
+                    width: "700px",
+                    minWidth: 0,
                     maxWidth: "100%",
                     height: "auto",
                     display: "block",
