@@ -18,6 +18,8 @@ type SiteNavProps = {
   mobileMenu?: boolean;
   compactCta?: { href: string; label: string; className?: string };
   containerClassName?: string;
+  /** Optional lighter mark image; defaults to the shared mark. */
+  markSrc?: string;
 };
 
 const navLinks = [
@@ -26,13 +28,15 @@ const navLinks = [
   { label: "FAQ", to: "/faq" },
 ] as const;
 
-export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl" }: SiteNavProps) {
+export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl", markSrc }: SiteNavProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className={`mx-auto flex h-16 items-center justify-between px-6 ${containerClassName}`}>
         <Link to="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
           <img
-            src={markAsset.url}
+            src={markSrc ?? markAsset.url}
+            width={28}
+            height={28}
             alt="Entrepreneur Awards mark"
             className="h-7 w-7 shrink-0 object-contain"
           />
