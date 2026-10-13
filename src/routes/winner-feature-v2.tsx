@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Trophy } from "lucide-react";
+import { FileText, Newspaper, Trophy } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
@@ -230,14 +230,13 @@ function RealFeaturePreview() {
   if (!feature) return null;
   return (
     <Dialog>
-      <div className="flex flex-col overflow-hidden rounded-lg border border-border bg-card sm:flex-row">
+      <div className="overflow-hidden rounded-lg border border-border bg-card">
         {feature.portrait ? (
-          <img src={feature.portrait} alt={feature.portraitCaption ?? ""} width={400} height={300} loading="lazy" decoding="async" className="h-40 w-full object-cover object-top sm:h-auto sm:w-[200px] sm:shrink-0" />
+          <img src={feature.portrait} alt={feature.portraitCaption ?? ""} width={640} height={360} loading="lazy" decoding="async" className="aspect-video w-full rounded-t-lg object-cover object-top" />
         ) : null}
-        <div className="flex flex-col items-start p-5">
-          <p className="text-[17px] font-bold leading-[1.3] text-foreground">{feature.headline}</p>
-          <p className="mt-2 text-[14px] leading-[1.5] text-muted-foreground">{feature.subheadline}</p>
-          <DialogTrigger asChild><Button variant="outline" className="mt-4 min-h-11 px-5">Read the full Feature</Button></DialogTrigger>
+        <div className="p-4">
+          <p className="line-clamp-2 text-[16px] font-bold leading-[1.3] text-foreground">{feature.headline}</p>
+          <DialogTrigger asChild><Button variant="outline" className="mt-3 min-h-11 w-full">Read the full Feature</Button></DialogTrigger>
         </div>
       </div>
           <DialogContent className="h-dvh max-h-dvh max-w-none overflow-y-auto p-0 [&>button]:fixed [&>button]:right-4 [&>button]:top-4 [&>button]:z-10 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:bg-background [&>button]:opacity-100 sm:h-auto sm:max-h-[90dvh] sm:max-w-[820px]">
@@ -262,11 +261,7 @@ function RealFeaturePreview() {
 const whyCards = [
   {
     title: "Something to point to",
-    body: "When someone looks you up before a call, a national article answers the question they were about to ask. Put the links on your site, in your email signature, in your deck.",
-  },
-  {
-    title: "You don't write a word",
-    body: "Our editorial team writes both the Feature and the release. Your draft arrives within five working days, and nothing is published until you approve it.",
+    body: "When someone looks you up before a call, a national publication answers the question they were about to ask. Put the links on your site, in your email signature, on LinkedIn or in your deck.",
   },
   {
     title: "It runs on a date, not a maybe",
@@ -276,46 +271,26 @@ const whyCards = [
 
 const questions = [
   {
-    q: "Can you place the release in other publications?",
+    q: "Can you place the press release in other publications?",
     a: "Yes. We can place it in other titles. Pricing varies by publication, so email us and we'll tell you what's available.",
   },
   {
-    q: "Do you need my address?",
-    a: "No. Everything arrives by email. If you add the engraved award at checkout, we'll email you for a shipping address.",
-  },
-  {
-    q: "Who writes it?",
-    a: "Our editorial team. Beyond a short form about your business, you don't have to write or brief anything.",
-  },
-  {
-    q: "What if I don't like the draft?",
-    a: "Tell us what to change and we'll change it. Nothing is published until you approve it.",
-  },
-  {
-    q: "What can I do with it afterwards?",
-    a: "You get a link to your Feature article and to your press release in each publication. Send them to clients, add them to your site, include them in your deck or your pitch.",
-  },
-  {
-    q: "Is there anything recurring?",
-    a: `No. One payment of ${money(BASE_PRICE)}, and that's the whole cost unless you add the engraved award.`,
-  },
-  {
     q: "Do I have to order this to keep my award?",
-    a: "No. Your digital certificate and winner badge are yours either way. This is for winners who want the Feature article published as well.",
+    a: "No. Your digital certificate and winner badge are yours either way. This is for winners who want their Feature article published as well.",
   },
 ];
 
-const howSteps = [
-  { title: "Order", body: `${money(BASE_PRICE)}, one payment.` },
-  { title: "Tell us about your business", body: "A short form after checkout. That's all the writing you do." },
-  { title: "Approve your draft", body: "It arrives within five working days. Ask for any changes you want." },
-  { title: "Go live", body: "Three days after you approve, your Feature article and press release are published." },
-];
+const steps = ["We write it", "You approve it", "It goes live"];
 
 const getItems = [
-  { title: "Your Feature article", body: "Written by our editorial team and published on the Entrepreneur Awards winners page." },
-  { title: "A press release in USA Today, the Associated Press and Business Insider", body: "Announcing your win, each with a link back to your Feature article." },
-  { title: "Links to everything", body: "For your website, email signature, LinkedIn or sales deck." },
+  { title: "Your Feature article", body: "Written by our editorial team and published on the Entrepreneur Awards winners page.", Icon: FileText },
+  { title: "Your press release in all three publications", body: "Announcing your win, with a link back to your Feature article. You get the link to each one.", Icon: Newspaper },
+];
+
+const FAVICONS = [
+  { src: "/usa-today-favicon.png", alt: "USA Today" },
+  { src: apUserLogoAsset.url, alt: "The Associated Press" },
+  { src: "/business-insider-favicon.png", alt: "Business Insider" },
 ];
 
 /* --------------------------------------------------------------- sticky bar */
@@ -402,7 +377,7 @@ function WinnerFeatureV2Page() {
                 maxWidth: "50ch",
               }}
             >
-              We write an article about your Entrepreneur Award, publish it on our winners page, and place a press release about it in all three. When people look you up, there&rsquo;s something to find.
+              We write an article about your win for the Entrepreneur Awards winners page and place a press release about it in all three.
             </p>
 
             <div style={{ marginTop: "24px", marginBottom: "24px" }}>
@@ -411,7 +386,7 @@ function WinnerFeatureV2Page() {
 
             <p style={{ fontSize: "15px", color: BODY }}>
               <span style={{ fontWeight: 700, color: INK }}>{money(BASE_PRICE)}</span>
-              {" · one payment, nothing recurring"}
+              {" · one payment"}
             </p>
 
             <div ref={heroCtaRef} style={{ marginTop: "20px" }}>
@@ -420,100 +395,101 @@ function WinnerFeatureV2Page() {
               </BrandButton>
             </div>
 
-            <p style={{ marginTop: "14px", fontSize: "12.5px", color: MUTED }}>
-              You approve every word before anything is published.
-            </p>
           </div>
         </section>
 
         {/* HOW IT WORKS */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="mx-auto max-w-3xl px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>How it works</h2>
-            <ol className="mt-7 grid grid-cols-1 gap-5 md:grid-cols-4">
-              {howSteps.map((step, index) => (
-                <li key={step.title} style={{ backgroundColor: "#fff", border: `1px solid ${LINE}`, borderRadius: "8px", padding: "22px" }}>
-                  <span className="grid h-7 w-7 place-items-center rounded-full text-white" style={{ backgroundColor: BRAND, fontSize: "13px", fontWeight: 700 }}>{index + 1}</span>
-                  <h3 style={{ marginTop: "14px", fontSize: "16px", fontWeight: 600, color: INK }}>{step.title}</h3>
-                  <p style={{ marginTop: "6px", fontSize: "14.5px", lineHeight: 1.55, color: BODY }}>{step.body}</p>
+            <ol className="mx-auto mt-8 flex w-fit flex-col md:w-full md:flex-row md:items-start">
+              {steps.map((step, index) => (
+                <li key={step} className="flex flex-row md:flex-1 md:flex-col md:items-center">
+                  <div className="flex flex-col items-center md:w-full md:flex-row">
+                    <span aria-hidden className={`hidden h-px flex-1 md:block ${index === 0 ? "md:invisible" : ""}`} style={{ backgroundColor: "#D8E0EC" }} />
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white" style={{ backgroundColor: BRAND, fontSize: "13px", fontWeight: 700 }}>{index + 1}</span>
+                    <span aria-hidden className={`hidden h-px flex-1 md:block ${index === steps.length - 1 ? "md:invisible" : ""}`} style={{ backgroundColor: "#D8E0EC" }} />
+                    {index < steps.length - 1 ? <span aria-hidden className="h-7 w-px md:hidden" style={{ backgroundColor: "#D8E0EC" }} /> : null}
+                  </div>
+                  <span className="ml-4 mt-1.5 md:ml-0 md:mt-3" style={{ fontSize: "16px", fontWeight: 700, color: INK }}>{step}</span>
                 </li>
               ))}
             </ol>
+            <p className="mt-7 text-center" style={{ fontSize: "14.5px", lineHeight: 1.55, color: BODY }}>
+              Your draft arrives within five working days. It goes live three days after you approve it.
+            </p>
+          </div>
+        </section>
+
+        {/* WHAT IT DOES FOR YOU */}
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+          <div className="mx-auto max-w-[860px] px-6">
+            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What it does for you</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2" style={{ marginTop: "28px", gap: "20px" }}>
+              {whyCards.map((card) => (
+                <div key={card.title} style={{ backgroundColor: "#fff", border: `1px solid ${LINE}`, borderRadius: "8px", padding: "24px" }}>
+                  <h3 style={{ fontSize: "16.5px", fontWeight: 600, color: INK }}>{card.title}</h3>
+                  <p style={{ marginTop: "10px", fontSize: "14.5px", lineHeight: 1.6, color: BODY }}>{card.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* WHAT YOU GET */}
-        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-[760px] px-6">
-            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What you get</h2>
-            <div className="mt-7 flex flex-col gap-8">
-              {getItems.map((item, index) => (
-                <div key={item.title}>
-                  <h3 style={{ fontSize: "17px", fontWeight: 600, color: INK }}>{item.title}</h3>
-                  <p style={{ marginTop: "6px", fontSize: "15px", lineHeight: 1.55, color: BODY }}>{item.body}</p>
-                  {index === 0 ? <div className="mt-4"><RealFeaturePreview /></div> : null}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 3. WHY IT MATTERS */}
-        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-5xl px-6">
-            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
-              What it actually does for you
-            </h2>
-            <div
-              className="grid grid-cols-1 md:grid-cols-3"
-              style={{ marginTop: "28px", gap: "20px" }}
-            >
-              {whyCards.map((card) => (
-                <div
-                  key={card.title}
-                  style={{
-                    backgroundColor: "#fff",
-                    border: `1px solid ${LINE}`,
-                    borderRadius: "8px",
-                    padding: "24px",
-                  }}
-                >
-                  <h3 style={{ fontSize: "16.5px", fontWeight: 600, color: INK }}>{card.title}</h3>
-                  <p style={{ marginTop: "10px", fontSize: "14.5px", lineHeight: 1.6, color: BODY }}>
-                    {card.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PRICE BOX */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-6xl px-6">
+            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What you get</h2>
             <div
               className="mx-auto"
               style={{
-                maxWidth: "1024px",
+                marginTop: "28px",
+                maxWidth: "960px",
+                backgroundColor: "#fff",
                 border: "1px solid #E4E9F2",
                 borderRadius: "18px",
                 overflow: "hidden",
                 boxShadow: "0 1px 2px rgba(16,27,45,.04), 0 14px 34px rgba(16,27,45,.07)",
               }}
             >
+              <div className="flex items-center justify-between gap-3 px-5 py-[18px] md:px-[34px]" style={{ borderBottom: "1px solid #EEF1F7" }}>
+                <span style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#55616F" }}>The Winner&rsquo;s Feature</span>
+                <span style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#14508F", backgroundColor: "#EAF2FD", padding: "6px 12px", borderRadius: "999px", whiteSpace: "nowrap" }}>Digital delivery</span>
+              </div>
+              <div className="grid grid-cols-1 gap-8 px-5 py-7 md:grid-cols-[11fr_9fr] md:gap-10 md:px-[34px] md:py-8">
+                <div className="flex flex-col gap-6">
+                  {getItems.map(({ title, body, Icon }, index) => (
+                    <div key={title} className="flex items-start gap-4">
+                      <span className="grid h-10 w-10 shrink-0 place-items-center" style={{ backgroundColor: "#EAF2FD", borderRadius: "10px" }}>
+                        <Icon aria-hidden size={20} color={BRAND} />
+                      </span>
+                      <div>
+                        <h3 style={{ fontSize: "16px", fontWeight: 700, color: INK }}>{title}</h3>
+                        <p style={{ marginTop: "4px", fontSize: "14.5px", lineHeight: 1.55, color: BODY }}>{body}</p>
+                        {index === 1 ? (
+                          <div className="mt-3 flex items-center gap-2.5">
+                            {FAVICONS.map((f) => (
+                              <img key={f.alt} src={f.src} alt={f.alt} width={20} height={20} loading="lazy" className="h-5 w-5 object-contain" style={{ borderRadius: "4px" }} />
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <p style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#55616F" }}>See a real one</p>
+                  <div className="mt-3"><RealFeaturePreview /></div>
+                </div>
+              </div>
               <div
                 ref={priceRailRef}
                 className="flex flex-col gap-5 px-5 py-[22px] md:flex-row md:items-center md:justify-between md:px-[34px]"
                 style={{ backgroundColor: "#101B2D" }}
               >
-                <div className="flex items-baseline gap-3 md:block">
-                  <p style={{ fontSize: "40px", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>
-                    {money(BASE_PRICE)}
-                  </p>
-                  <p className="md:mt-2" style={{ fontSize: "13.5px", color: "#AFBCD0" }}>
-                    One payment. Nothing recurring.
-                  </p>
-                </div>
+                <p style={{ fontSize: "40px", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>
+                  {money(BASE_PRICE)}
+                </p>
                 <div className="md:text-right">
                   <BrandButton href={BASE_LINK} className="w-full md:w-auto" style={{ minHeight: "52px", borderRadius: "10px", padding: "0 26px", fontWeight: 700 }}>
                     Order the Winner&rsquo;s Feature
@@ -543,7 +519,7 @@ function WinnerFeatureV2Page() {
                   style={{ fontSize: "13.5px", lineHeight: 1.5, color: "#55616F" }}
                 >
                   <strong style={{ color: "#0B1220", fontWeight: 700 }}>Optional: the engraved award.</strong>{" "}
-                  Your name and award year on crystal, plus a printed certificate, posted to you. If you add it, we&rsquo;ll email you for a shipping address.
+                  Your name and award year on crystal, plus a printed certificate, posted to you.
                 </p>
               </div>
             </div>
@@ -605,9 +581,6 @@ function WinnerFeatureV2Page() {
             >
               You&rsquo;ve already won. This is the part people see.
             </h2>
-            <p style={{ marginTop: "14px", fontSize: "13.5px", color: "#AFBCD0" }}>
-              {money(BASE_PRICE)} &middot; one payment
-            </p>
             <div style={{ marginTop: "24px" }}>
               <a
                 href={BASE_LINK}
@@ -660,7 +633,6 @@ function WinnerFeatureV2Page() {
       >
         <div>
           <p style={{ fontSize: "16px", fontWeight: 700, color: INK }}>{money(BASE_PRICE)}</p>
-          <p style={{ fontSize: "11px", color: MUTED }}>one payment</p>
         </div>
         <a
           href={BASE_LINK}
