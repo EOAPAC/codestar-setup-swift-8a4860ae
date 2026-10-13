@@ -519,10 +519,10 @@ function WinnerFeatureV2Page() {
                   style={{ fontSize: "13.5px", lineHeight: 1.5, color: "#55616F" }}
                 >
                   <strong style={{ color: "#0B1220", fontWeight: 700 }}>Optional: the engraved award.</strong>{" "}
-                  Your name and award year on crystal, plus a printed certificate, posted to you. If you add it, we&rsquo;ll email you for a shipping address.
+                  Your name and award year on crystal, plus a printed certificate, posted to you.
                 </p>
               </div>
-                  Your name and award year on crystal, plus a printed certificate, posted to you.
+            </div>
 
           </div>
         </section>
