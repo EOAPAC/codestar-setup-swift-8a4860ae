@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/accordion";
 
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
+import apStackedLogoAsset from "@/assets/associated-press-logo-stacked.png.asset.json";
 
 export const Route = createFileRoute("/winner-feature-v2")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -40,7 +41,7 @@ export const Route = createFileRoute("/winner-feature-v2")({
     ],
     links: [
       { rel: "preload", as: "image", href: "/usa-today-logo.svg" },
-      { rel: "preload", as: "image", href: apUserLogoAsset.url },
+      { rel: "preload", as: "image", href: apStackedLogoAsset.url },
       { rel: "preload", as: "image", href: "/business-insider-logo-cropped.png" },
     ],
   }),
@@ -124,7 +125,8 @@ function BrandButton({
 /* ------------------------------------------------------------ logo bar */
 function LogoBar() {
   const itemClass =
-    "flex shrink-0 items-center justify-center sm:ml-4 sm:border-l sm:border-border sm:pl-4 first:ml-0 first:border-l-0 first:pl-0";
+    "flex shrink-0 items-center justify-center px-3 first:pl-0 last:pr-0 sm:px-6";
+  const dividerClass = "h-[26px] w-px shrink-0 sm:h-8";
   return (
     <div
       style={{
@@ -145,7 +147,7 @@ function LogoBar() {
       >
         PUBLISHED IN
       </p>
-      <div className="mt-[14px] flex flex-col items-center justify-center gap-y-5 sm:flex-row">
+      <div className="mt-[14px] flex flex-nowrap items-center justify-center">
         <span className={itemClass}>
           <img
             src="/usa-today-logo.svg"
@@ -154,28 +156,24 @@ function LogoBar() {
             height={90}
             loading="eager"
             fetchPriority="high"
-            className="h-[17px] w-auto md:h-5"
+            className="h-[17px] w-auto sm:h-[22px]"
             style={{ display: "block", objectFit: "contain" }}
           />
         </span>
-        <span className={itemClass} aria-label="The Associated Press">
+        <span aria-hidden className={dividerClass} style={{ backgroundColor: LINE }} />
+        <span className={itemClass}>
           <img
-            src={apUserLogoAsset.url}
-            alt=""
-            width={542}
-            height={552}
+            src={apStackedLogoAsset.url}
+            alt="Associated Press"
+            width={500}
+            height={228}
             loading="eager"
             fetchPriority="high"
-            className="h-5 w-auto md:h-6"
+            className="h-[36px] w-auto sm:h-[42px]"
             style={{ display: "block", objectFit: "contain" }}
           />
-          <span
-            className="ml-2 text-[14px] md:text-base"
-            style={{ fontWeight: 600, color: INK, whiteSpace: "nowrap" }}
-          >
-            The Associated Press
-          </span>
         </span>
+        <span aria-hidden className={dividerClass} style={{ backgroundColor: LINE }} />
         <span className={itemClass}>
           <img
             src="/business-insider-logo-cropped.png"
@@ -184,7 +182,7 @@ function LogoBar() {
             height={330}
             loading="eager"
             fetchPriority="high"
-            className="h-6 w-auto md:h-7"
+            className="h-[24px] w-auto sm:h-[30px]"
             style={{ display: "block", objectFit: "contain" }}
           />
         </span>
