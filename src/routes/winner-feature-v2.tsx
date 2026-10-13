@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Check, Search, Trophy } from "lucide-react";
+import { Trophy } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { FEATURES, type Feature, type FeatureBlock } from "@/data/features";
-import { fillBusiness, sanitizeBusiness } from "@/lib/winner-feature-business";
+import { sanitizeBusiness } from "@/lib/winner-feature-business";
 import {
   Accordion,
   AccordionContent,
@@ -27,12 +27,12 @@ export const Route = createFileRoute("/winner-feature-v2")({
       { title: `The Winner's Feature v2 — ${AWARD_YEAR} Entrepreneur Awards` },
       {
         name: "description",
-        content: `We write the story of your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and announce it in USA Today, the Associated Press and Business Insider.`,
+        content: `We write a Feature article about your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and place a press release in USA Today, the Associated Press and Business Insider.`,
       },
       { property: "og:title", content: `The Winner's Feature v2 — ${AWARD_YEAR} Entrepreneur Awards` },
       {
         property: "og:description",
-        content: `One story: your Feature on the Entrepreneur Awards winners page, announced in three national publications.`,
+        content: `Your Feature article on the Entrepreneur Awards winners page, plus a press release in three national publications.`,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -154,7 +154,7 @@ function LogoBar() {
             height={90}
             loading="eager"
             fetchPriority="high"
-            className="h-4 w-auto md:h-[18px]"
+            className="h-[17px] w-auto md:h-5"
             style={{ display: "block", objectFit: "contain" }}
           />
         </span>
@@ -166,11 +166,11 @@ function LogoBar() {
             height={552}
             loading="eager"
             fetchPriority="high"
-            className="h-[28px] w-auto md:h-[32px]"
+            className="h-5 w-auto md:h-6"
             style={{ display: "block", objectFit: "contain" }}
           />
           <span
-            className="ml-2 text-base md:text-lg"
+            className="ml-2 text-[14px] md:text-base"
             style={{ fontWeight: 600, color: INK, whiteSpace: "nowrap" }}
           >
             The Associated Press
@@ -184,7 +184,7 @@ function LogoBar() {
             height={330}
             loading="eager"
             fetchPriority="high"
-            className="h-[38px] w-auto md:h-[42px]"
+            className="h-6 w-auto md:h-7"
             style={{ display: "block", objectFit: "contain" }}
           />
         </span>
@@ -193,132 +193,6 @@ function LogoBar() {
   );
 }
 
-/* --------------------------------------------------- search result mockup */
-type Result = { name: string; domain: string; headline: string; snippet: string };
-
-const RESULTS: Result[] = [
-  {
-    name: "USA Today",
-    domain: "usatoday.com",
-    headline: `[Your Business] named a ${AWARD_YEAR} Entrepreneur Awards winner`,
-    snippet: `The ${AWARD_YEAR} Entrepreneur Awards have named [Your Business] among this year's winners, recognising…`,
-  },
-  {
-    name: "The Associated Press",
-    domain: "apnews.com",
-    headline: `${AWARD_YEAR} Entrepreneur Awards names [Your Business] a winner`,
-    snippet: `[Your Business] has been recognised in the ${AWARD_YEAR} Entrepreneur Awards, an independent award for founders…`,
-  },
-  {
-    name: "Business Insider",
-    domain: "businessinsider.com",
-    headline: `How [Your Business] won a ${AWARD_YEAR} Entrepreneur Award`,
-    snippet: `Judged against a published rubric, [Your Business] was selected from this year's entries for…`,
-  },
-  {
-    name: "Entrepreneur Awards",
-    domain: "entrepreneurawards.co",
-    headline: `${AWARD_YEAR} Winner Feature — [Your Business]`,
-    snippet:
-      "Before the award, the constraint everyone told them to fix turned out to be the reason customers stayed…",
-  },
-];
-
-const RESULT_ICONS: Record<string, { src: string; width: number; height: number }> = {
-  "USA Today": { src: "/usa-today-favicon.png", width: 96, height: 96 },
-  "The Associated Press": { src: apUserLogoAsset.url, width: 542, height: 552 },
-  "Business Insider": { src: "/business-insider-favicon.png", width: 96, height: 96 },
-};
-
-function SearchResult({ result, business }: { result: Result; business: string }) {
-  const icon = RESULT_ICONS[result.name];
-  const fill = (s: string) => fillBusiness(s, business);
-  return (
-    <div>
-      <div className="flex items-center gap-2">
-        {icon ? (
-          <span
-            className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden"
-            style={{ borderRadius: "4px" }}
-          >
-            <img
-              src={icon.src}
-              alt=""
-              width={icon.width}
-              height={icon.height}
-              loading="lazy"
-              decoding="async"
-              style={{ display: "block", height: "100%", width: "100%", objectFit: "contain" }}
-            />
-          </span>
-        ) : null}
-        <p style={{ fontSize: "12px", fontWeight: 600, color: INK }}>
-          {result.name}
-          <span style={{ fontSize: "11px", fontWeight: 400, color: MUTED }}>
-            {" · "}{result.domain}
-          </span>
-        </p>
-      </div>
-      <p
-        style={{
-          marginTop: "3px",
-          fontSize: "14px",
-          fontWeight: 500,
-          lineHeight: 1.3,
-          color: BRAND,
-        }}
-      >
-        {fill(result.headline)}
-      </p>
-      <p
-        className="truncate"
-        style={{ marginTop: "4px", fontSize: "12px", lineHeight: 1.45, color: BODY }}
-      >
-        {fill(result.snippet)}
-      </p>
-    </div>
-  );
-}
-
-function SearchMockup({ business, resultBusiness }: { business: string; resultBusiness: string }) {
-  return (
-    <div
-      role="img"
-      aria-label="Illustration of a search results page showing three news announcements of an Entrepreneur Awards win and the winner's feature on entrepreneurawards.co"
-      style={{
-        backgroundColor: "#fff",
-        border: `1px solid ${LINE}`,
-        borderRadius: "10px",
-        overflow: "hidden",
-        boxShadow: "0 1px 3px rgba(15,23,42,0.06)",
-        textAlign: "left",
-      }}
-    >
-      <div style={{ backgroundColor: TINT, borderBottom: `1px solid ${LINE}`, padding: "12px" }}>
-        <div
-          className="flex items-center gap-2"
-          style={{
-            backgroundColor: "#fff",
-            border: `1px solid ${LINE}`,
-            borderRadius: "18px",
-            padding: "8px 14px",
-          }}
-        >
-          <Search aria-hidden size={13} color={MUTED} />
-          <span style={{ fontSize: "12.5px", color: INK }}>{business}</span>
-        </div>
-      </div>
-      {RESULTS.map((r, i) => (
-        <div
-          key={r.domain}
-          style={{ padding: "16px", borderTop: i === 0 ? undefined : `1px solid ${LINE}` }}
-        >
-          <SearchResult result={r} business={resultBusiness} />
-        </div>
-      ))}
-    </div>
-  );
-}
 
 function ArticleBlock({ block }: { block: FeatureBlock }) {
   if (block.type === "h2") {
@@ -354,23 +228,18 @@ function FeaturePortrait({ feature }: { feature: Feature }) {
 function RealFeaturePreview() {
   const feature = REAL_FEATURE;
   if (!feature) return null;
-  const firstParagraph = feature.body.find((block) => block.type === "p");
   return (
-    <section className="py-14">
-      <div className="mx-auto max-w-[760px] px-6">
-        <h2 className="mb-7 text-center text-2xl font-bold text-foreground">A real winner&rsquo;s Feature</h2>
-        <div className="overflow-hidden rounded-lg border border-border bg-card">
-          <div className="px-6 pt-6 md:px-8 md:pt-8">
-            <FeaturePortrait feature={feature} />
-            <h3 className="mb-3.5 text-[28px] font-bold leading-[1.2] text-foreground">{feature.headline}</h3>
-            <p className="mb-8 text-[17px] font-semibold leading-[1.4] text-muted-foreground">{feature.subheadline}</p>
-            {firstParagraph ? <ArticleBlock block={firstParagraph} /> : null}
-          </div>
+    <Dialog>
+      <div className="flex flex-col overflow-hidden rounded-lg border border-border bg-card sm:flex-row">
+        {feature.portrait ? (
+          <img src={feature.portrait} alt={feature.portraitCaption ?? ""} width={400} height={300} loading="lazy" decoding="async" className="h-40 w-full object-cover object-top sm:h-auto sm:w-[200px] sm:shrink-0" />
+        ) : null}
+        <div className="flex flex-col items-start p-5">
+          <p className="text-[17px] font-bold leading-[1.3] text-foreground">{feature.headline}</p>
+          <p className="mt-2 text-[14px] leading-[1.5] text-muted-foreground">{feature.subheadline}</p>
+          <DialogTrigger asChild><Button variant="outline" className="mt-4 min-h-11 px-5">Read the full Feature</Button></DialogTrigger>
         </div>
-        <Dialog>
-          <div className="mt-6 text-center">
-            <DialogTrigger asChild><Button variant="outline" className="min-h-12 px-7">Read the full Feature</Button></DialogTrigger>
-          </div>
+      </div>
           <DialogContent className="h-dvh max-h-dvh max-w-none overflow-y-auto p-0 [&>button]:fixed [&>button]:right-4 [&>button]:top-4 [&>button]:z-10 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:bg-background [&>button]:opacity-100 sm:h-auto sm:max-h-[90dvh] sm:max-w-[820px]">
             <article className="mx-auto w-full max-w-[720px] px-6 pb-12 pt-16 md:pt-[72px]">
               <DialogTitle className="mb-3.5 text-[28px] font-bold leading-[1.2] text-foreground md:text-[40px]">{feature.headline}</DialogTitle>
@@ -386,28 +255,9 @@ function RealFeaturePreview() {
               <div className="mt-10 text-center"><BrandButton href={BASE_LINK} className="w-full sm:w-auto">Order the Winner&rsquo;s Feature</BrandButton></div>
             </article>
           </DialogContent>
-        </Dialog>
-      </div>
-    </section>
+    </Dialog>
   );
 }
-
-/* ------------------------------------------------------------- page content */
-const includedRows: { lead: string; rest: string }[] = [
-  {
-    lead: "Your Feature",
-    rest: ", written by our editorial team and published on the Entrepreneur Awards winners page",
-  },
-  {
-    lead: "A press release",
-    rest: " announcing your win, placed in three national publications, each linking back to your Feature",
-  },
-  {
-    lead: "A permanent link",
-    rest: " to every placement, to send to a client or add to your site",
-  },
-  { lead: "Your approval", rest: " on every word before anything is published" },
-];
 
 const whyCards = [
   {
@@ -420,7 +270,7 @@ const whyCards = [
   },
   {
     title: "It runs on a date, not a maybe",
-    body: "These are paid placements. We write the piece and the publication runs it, which is why we can give you a date instead of pitching editors and hoping.",
+    body: "These are paid press releases. We write it and the publication runs it, which is why we can give you a date instead of pitching editors and hoping.",
   },
 ];
 
@@ -442,8 +292,8 @@ const questions = [
     a: "Tell us what to change and we'll change it. Nothing is published until you approve it.",
   },
   {
-    q: "What can I do with the articles afterwards?",
-    a: "Each placement has a permanent link. Send them to clients, add them to your site, include them in your deck or your pitch.",
+    q: "What can I do with it afterwards?",
+    a: "You get a link to your Feature article and to your press release in each publication. Send them to clients, add them to your site, include them in your deck or your pitch.",
   },
   {
     q: "Is there anything recurring?",
@@ -451,11 +301,22 @@ const questions = [
   },
   {
     q: "Do I have to order this to keep my award?",
-    a: "No. Your digital certificate and winner badge are yours either way. This is for winners who want the story published as well.",
+    a: "No. Your digital certificate and winner badge are yours either way. This is for winners who want the Feature article published as well.",
   },
 ];
 
-const steps = ["We write it", "You approve it", "It goes live"];
+const howSteps = [
+  { title: "Order", body: `${money(BASE_PRICE)}, one payment.` },
+  { title: "Tell us about your business", body: "A short form after checkout. That's all the writing you do." },
+  { title: "Approve your draft", body: "It arrives within five working days. Ask for any changes you want." },
+  { title: "Go live", body: "Three days after you approve, your Feature article and press release are published." },
+];
+
+const getItems = [
+  { title: "Your Feature article", body: "Written by our editorial team and published on the Entrepreneur Awards winners page." },
+  { title: "A press release in USA Today, the Associated Press and Business Insider", body: "Announcing your win, each with a link back to your Feature article." },
+  { title: "Links to everything", body: "For your website, email signature, LinkedIn or sales deck." },
+];
 
 /* --------------------------------------------------------------- sticky bar */
 function useStickyBar(heroRef: React.RefObject<HTMLElement | null>, priceRef: React.RefObject<HTMLElement | null>) {
@@ -499,8 +360,6 @@ function useStickyBar(heroRef: React.RefObject<HTMLElement | null>, priceRef: Re
 function WinnerFeatureV2Page() {
   const { business: rawBusiness } = Route.useSearch();
   const business = sanitizeBusiness(rawBusiness);
-  const boxName = business ?? "Your Business";
-  const resultName = business ?? "[Your Business]";
 
   const heroCtaRef = useRef<HTMLDivElement>(null);
   const priceRailRef = useRef<HTMLDivElement>(null);
@@ -515,7 +374,7 @@ function WinnerFeatureV2Page() {
         <section style={{ paddingTop: "64px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-[720px] px-6 text-center">
             <p style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.16em", color: MUTED }}>
-              Entrepreneur Awards &middot; The Winner&rsquo;s Feature
+              {business ? `For ${business}, a ${AWARD_YEAR} Entrepreneur Awards winner` : `For ${AWARD_YEAR} Entrepreneur Awards winners`}
             </p>
 
             <h1
@@ -527,10 +386,10 @@ function WinnerFeatureV2Page() {
                 lineHeight: 1.08,
                 letterSpacing: "-0.02em",
                 color: INK,
-                maxWidth: "22ch",
+                maxWidth: "24ch",
               }}
             >
-              Give people something to find when they look you up.
+              Your win, published in USA Today, the Associated Press and Business Insider.
             </h1>
 
             <p
@@ -540,11 +399,10 @@ function WinnerFeatureV2Page() {
                 fontSize: "16.5px",
                 lineHeight: 1.55,
                 color: BODY,
-                maxWidth: "46ch",
+                maxWidth: "50ch",
               }}
             >
-              We write the story of your win, publish it on the Entrepreneur Awards winners page,
-              and announce it in three national publications.
+              We write an article about your Entrepreneur Award, publish it on our winners page, and place a press release about it in all three. When people look you up, there&rsquo;s something to find.
             </p>
 
             <div style={{ marginTop: "24px", marginBottom: "24px" }}>
@@ -568,19 +426,37 @@ function WinnerFeatureV2Page() {
           </div>
         </section>
 
-        {/* 2. SEARCH MOCKUP */}
+        {/* HOW IT WORKS */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-[760px] px-6 text-center">
-            <h2 style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
-              What people find when they look you up
-            </h2>
-            <div style={{ marginTop: "24px" }}>
-              <SearchMockup business={boxName} resultBusiness={resultName} />
-            </div>
+          <div className="mx-auto max-w-5xl px-6">
+            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>How it works</h2>
+            <ol className="mt-7 grid grid-cols-1 gap-5 md:grid-cols-4">
+              {howSteps.map((step, index) => (
+                <li key={step.title} style={{ backgroundColor: "#fff", border: `1px solid ${LINE}`, borderRadius: "8px", padding: "22px" }}>
+                  <span className="grid h-7 w-7 place-items-center rounded-full text-white" style={{ backgroundColor: BRAND, fontSize: "13px", fontWeight: 700 }}>{index + 1}</span>
+                  <h3 style={{ marginTop: "14px", fontSize: "16px", fontWeight: 600, color: INK }}>{step.title}</h3>
+                  <p style={{ marginTop: "6px", fontSize: "14.5px", lineHeight: 1.55, color: BODY }}>{step.body}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
-        <RealFeaturePreview />
+        {/* WHAT YOU GET */}
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+          <div className="mx-auto max-w-[760px] px-6">
+            <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What you get</h2>
+            <div className="mt-7 flex flex-col gap-8">
+              {getItems.map((item, index) => (
+                <div key={item.title}>
+                  <h3 style={{ fontSize: "17px", fontWeight: 600, color: INK }}>{item.title}</h3>
+                  <p style={{ marginTop: "6px", fontSize: "15px", lineHeight: 1.55, color: BODY }}>{item.body}</p>
+                  {index === 0 ? <div className="mt-4"><RealFeaturePreview /></div> : null}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* 3. WHY IT MATTERS */}
         <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
@@ -612,109 +488,19 @@ function WinnerFeatureV2Page() {
           </div>
         </section>
 
-        {/* 4. THE OFFER */}
-        <section style={{ backgroundColor: TINT, paddingTop: "64px", paddingBottom: "64px" }}>
+        {/* PRICE BOX */}
+        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-6xl px-6">
-            <h2
-              className="text-center"
-              style={{ fontSize: "24px", fontWeight: 700, color: INK }}
-            >
-              <span className="md:hidden">What you get</span>
-              <span className="hidden md:inline" style={{ fontSize: "28px" }}>
-                What you get
-              </span>
-            </h2>
-
             <div
               className="mx-auto"
               style={{
-                marginTop: "28px",
                 maxWidth: "1024px",
-                backgroundColor: "#FFFFFF",
                 border: "1px solid #E4E9F2",
                 borderRadius: "18px",
                 overflow: "hidden",
                 boxShadow: "0 1px 2px rgba(16,27,45,.04), 0 14px 34px rgba(16,27,45,.07)",
               }}
             >
-              <div
-                className="flex items-center justify-between"
-                style={{ borderBottom: "1px solid #EEF1F7", padding: "22px 34px" }}
-              >
-                <span
-                  style={{
-                    fontSize: "11.5px",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.14em",
-                    color: "#55616F",
-                  }}
-                >
-                  The Winner&rsquo;s Feature
-                </span>
-                <span
-                  style={{
-                    fontSize: "11px",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: "#14508F",
-                    backgroundColor: "#EAF2FD",
-                    padding: "6px 12px",
-                    borderRadius: "999px",
-                  }}
-                >
-                  Digital delivery
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 gap-[28px] px-5 py-7 md:grid-cols-12 md:gap-[34px] md:px-[34px] md:pb-7 md:pt-[30px]">
-                <div className="flex flex-col gap-[19px] md:col-span-7">
-                  {includedRows.map((row) => (
-                    <div key={row.lead} className="flex items-start gap-[13px]">
-                      <Check aria-hidden size={19} strokeWidth={2.6} color="#1668C7" style={{ marginTop: "3px", flexShrink: 0 }} />
-                      <p style={{ fontSize: "15.5px", lineHeight: 1.55, color: "#414B59" }}>
-                        <strong style={{ fontWeight: 700, color: "#0B1220" }}>{row.lead}</strong>
-                        {row.rest}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <aside
-                  className="md:col-span-5"
-                  style={{ backgroundColor: "#F7F9FC", border: "1px solid #E7ECF4", borderRadius: "13px", padding: "22px" }}
-                >
-                  <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#55616F" }}>
-                    Timeline
-                  </p>
-                  <ol className="mt-4 flex items-start justify-between md:flex-col md:items-stretch md:justify-start">
-                    {steps.map((step, index) => {
-                      const mobileLabel = ["We write it", "Approve", "Live"][index];
-                      return (
-                        <li key={step} className="relative flex min-w-0 flex-1 flex-col items-center md:flex-none md:items-start">
-                          <div className="flex w-full items-center md:w-auto">
-                            {index > 0 ? <span aria-hidden className="h-px flex-1 bg-[#D8E0EC] md:hidden" /> : null}
-                            <span className="grid h-[23px] w-[23px] shrink-0 place-items-center rounded-full bg-[#1668C7] text-white" style={{ fontSize: "11.5px", fontWeight: 700 }}>
-                              {index + 1}
-                            </span>
-                            {index < steps.length - 1 ? <span aria-hidden className="h-px flex-1 bg-[#D8E0EC] md:hidden" /> : null}
-                          </div>
-                          <span className="mt-2 text-center md:absolute md:left-9 md:top-0 md:mt-0 md:text-left" style={{ fontSize: "14.5px", fontWeight: 600, color: "#0B1220" }}>
-                            <span className="md:hidden">{mobileLabel}</span>
-                            <span className="hidden md:inline">{step}</span>
-                          </span>
-                          {index < steps.length - 1 ? <span aria-hidden className="ml-[11px] hidden h-[22px] w-px bg-[#D8E0EC] md:block" /> : null}
-                        </li>
-                      );
-                    })}
-                  </ol>
-                  <p style={{ marginTop: "18px", fontSize: "13px", lineHeight: 1.5, color: "#55616F" }}>
-                    Your draft arrives within five working days. It goes live three days after you approve it.
-                  </p>
-                </aside>
-              </div>
-
               <div
                 ref={priceRailRef}
                 className="flex flex-col gap-5 px-5 py-[22px] md:flex-row md:items-center md:justify-between md:px-[34px]"
