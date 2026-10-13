@@ -255,9 +255,7 @@ function RealFeaturePreview() {
               <div className="mt-10 text-center"><BrandButton href={BASE_LINK} className="w-full sm:w-auto">Order the Winner&rsquo;s Feature</BrandButton></div>
             </article>
           </DialogContent>
-        </Dialog>
-      </div>
-    </section>
+    </Dialog>
   );
 }
 
