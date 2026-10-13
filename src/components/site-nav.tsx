@@ -14,6 +14,7 @@ import { AWARD_YEAR } from "@/content/award";
 
 type SiteNavProps = {
   hideCTA?: boolean;
+  hideLinks?: boolean;
   mobileMenu?: boolean;
   compactCta?: { href: string; label: string; className?: string };
   containerClassName?: string;
@@ -25,7 +26,7 @@ const navLinks = [
   { label: "FAQ", to: "/faq" },
 ] as const;
 
-export function SiteNav({ hideCTA = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl" }: SiteNavProps) {
+export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl" }: SiteNavProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className={`mx-auto flex h-16 items-center justify-between px-6 ${containerClassName}`}>
@@ -39,14 +40,16 @@ export function SiteNav({ hideCTA = false, mobileMenu = false, compactCta, conta
         </Link>
 
         <div className="hidden items-center gap-5 md:flex">
-          <nav className="flex items-center gap-5 text-sm text-muted-foreground lg:gap-8">
-            {navLinks.map((link) => (
-              <Link key={link.to} to={link.to} className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
-                {link.label}
-              </Link>
-            ))}
-            <a href="/#contact" className="hover:text-foreground">Contact</a>
-          </nav>
+          {!hideLinks && (
+            <nav className="flex items-center gap-5 text-sm text-muted-foreground lg:gap-8">
+              {navLinks.map((link) => (
+                <Link key={link.to} to={link.to} className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
+                  {link.label}
+                </Link>
+              ))}
+              <a href="/#contact" className="hover:text-foreground">Contact</a>
+            </nav>
+          )}
           {compactCta ? (
             <Button asChild size="sm" className={compactCta.className}>
               <a href={compactCta.href} target="_blank" rel="noopener noreferrer">{compactCta.label}</a>
@@ -58,7 +61,7 @@ export function SiteNav({ hideCTA = false, mobileMenu = false, compactCta, conta
           ) : null}
         </div>
 
-        {mobileMenu ? (
+        {!hideLinks && mobileMenu ? (
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="min-h-11 min-w-11 md:hidden" aria-label="Open navigation menu">
