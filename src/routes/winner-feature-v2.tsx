@@ -503,6 +503,7 @@ function WinnerFeatureV2Page() {
                 overflow: "hidden",
                 boxShadow: "0 1px 2px rgba(16,27,45,.04), 0 14px 34px rgba(16,27,45,.07)",
               }}
+            >
               <div
                 ref={priceRailRef}
                 className="flex flex-col gap-5 px-5 py-[22px] md:flex-row md:items-center md:justify-between md:px-[34px]"
