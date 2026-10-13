@@ -126,8 +126,6 @@ function BrandButton({
 
 /* ------------------------------------------------------------ logo bar */
 function LogoBar() {
-  const itemClass =
-    "flex shrink-0 items-center justify-center px-3 first:pl-0 last:pr-0 sm:px-6";
   const dividerClass = "mx-3 h-[26px] w-px shrink-0 sm:mx-6 sm:h-8";
   return (
     <div
