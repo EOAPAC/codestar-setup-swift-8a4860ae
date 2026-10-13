@@ -61,7 +61,7 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
           ) : null}
         </div>
 
-        {mobileMenu ? (
+        {!hideLinks && mobileMenu ? (
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="min-h-11 min-w-11 md:hidden" aria-label="Open navigation menu">
