@@ -26,7 +26,7 @@ const navLinks = [
   { label: "FAQ", to: "/faq" },
 ] as const;
 
-export function SiteNav({ hideCTA = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl" }: SiteNavProps) {
+export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl" }: SiteNavProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className={`mx-auto flex h-16 items-center justify-between px-6 ${containerClassName}`}>
