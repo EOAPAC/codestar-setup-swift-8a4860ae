@@ -592,6 +592,7 @@ function WinnerFeatureV2Page() {
                   decoding="async"
                   style={{
                     width: "700px",
+                    minWidth: 0,
                     maxWidth: "100%",
                     height: "auto",
                     display: "block",
