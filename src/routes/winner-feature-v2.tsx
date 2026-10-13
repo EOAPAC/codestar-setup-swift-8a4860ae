@@ -572,7 +572,8 @@ function WinnerFeatureV2Page() {
 
         {/* AS SEEN IN USA TODAY */}
         <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-[1480px] px-6">
+          {/* 1480px max plus the 24px gutters, so the two 700px columns + 40px gap fit exactly */}
+          <div className="mx-auto max-w-[1528px] px-6">
             <h2
               className="text-center"
               style={{ fontSize: "24px", fontWeight: 700, color: INK }}
