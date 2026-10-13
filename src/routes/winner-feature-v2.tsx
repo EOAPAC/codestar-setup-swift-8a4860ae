@@ -5,6 +5,10 @@ import { Check, Search, Trophy } from "lucide-react";
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { FEATURES, type Feature, type FeatureBlock } from "@/data/features";
+import { fillBusiness, sanitizeBusiness } from "@/lib/winner-feature-business";
 import {
   Accordion,
   AccordionContent,
@@ -20,12 +24,12 @@ export const Route = createFileRoute("/winner-feature-v2")({
   }),
   head: () => ({
     meta: [
-      { title: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
+      { title: `The Winner's Feature v2 — ${AWARD_YEAR} Entrepreneur Awards` },
       {
         name: "description",
         content: `We write the story of your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and announce it in USA Today, the Associated Press and Business Insider.`,
       },
-      { property: "og:title", content: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
+      { property: "og:title", content: `The Winner's Feature v2 — ${AWARD_YEAR} Entrepreneur Awards` },
       {
         property: "og:description",
         content: `One story: your Feature on the Entrepreneur Awards winners page, announced in three national publications.`,
@@ -60,7 +64,7 @@ const money = (n: number) => `$${n.toLocaleString()}`;
 /* Stripe Payment Link for the Winner's Feature. */
 const BASE_LINK = "https://payments.entrepreneurawards.co/b/eVqcN51Gd9vy2MQ5368so0m";
 
-const REAL_FEATURE_URL = "/winners/adam-pisk";
+const REAL_FEATURE = FEATURES.find((feature) => feature.winnerSlug === "adam-pisk");
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1668C7]";
@@ -117,26 +121,10 @@ function BrandButton({
   );
 }
 
-function FeatureLink({ className = "" }: { className?: string }) {
-  return (
-    <a
-      href={REAL_FEATURE_URL}
-      target="_blank"
-      rel="noopener"
-      className={`inline-flex items-center ${focusRing} ${className}`}
-      style={{ color: BRAND, fontSize: "14px", fontWeight: 500, minHeight: "44px", padding: "8px 0" }}
-    >
-      See a real winner&rsquo;s feature &rarr;
-    </a>
-  );
-}
-
 /* ------------------------------------------------------------ logo bar */
-const GRAYSCALE = "grayscale(1) brightness(0.42)";
-
 function LogoBar() {
   const itemClass =
-    "relative flex shrink-0 items-center justify-center ml-4 pl-4 first:ml-0 first:pl-0 before:absolute before:left-0 before:top-1/2 before:h-[26px] before:w-px before:-translate-y-1/2 before:bg-[#E4E9F2] before:content-[''] first:before:hidden";
+    "flex shrink-0 items-center justify-center sm:ml-4 sm:border-l sm:border-border sm:pl-4 first:ml-0 first:border-l-0 first:pl-0";
   return (
     <div
       style={{
@@ -157,7 +145,7 @@ function LogoBar() {
       >
         PUBLISHED IN
       </p>
-      <div className="mt-[14px] flex flex-wrap items-center justify-center">
+      <div className="mt-[14px] flex flex-col items-center justify-center gap-y-5 sm:flex-row">
         <span className={itemClass}>
           <img
             src="/usa-today-logo.svg"
@@ -167,7 +155,7 @@ function LogoBar() {
             loading="eager"
             fetchPriority="high"
             className="h-4 w-auto md:h-[18px]"
-            style={{ display: "block", objectFit: "contain", filter: GRAYSCALE }}
+            style={{ display: "block", objectFit: "contain" }}
           />
         </span>
         <span className={itemClass} aria-label="The Associated Press">
@@ -178,12 +166,12 @@ function LogoBar() {
             height={552}
             loading="eager"
             fetchPriority="high"
-            className="h-[24px] w-auto md:h-[26px]"
-            style={{ display: "block", objectFit: "contain", filter: GRAYSCALE }}
+            className="h-[28px] w-auto md:h-[32px]"
+            style={{ display: "block", objectFit: "contain" }}
           />
           <span
-            className="ml-2"
-            style={{ fontSize: "15px", fontWeight: 600, color: BODY, whiteSpace: "nowrap" }}
+            className="ml-2 text-base md:text-lg"
+            style={{ fontWeight: 600, color: INK, whiteSpace: "nowrap" }}
           >
             The Associated Press
           </span>
@@ -196,8 +184,8 @@ function LogoBar() {
             height={330}
             loading="eager"
             fetchPriority="high"
-            className="h-[18px] w-auto md:h-[20px]"
-            style={{ display: "block", objectFit: "contain", filter: GRAYSCALE }}
+            className="h-[38px] w-auto md:h-[42px]"
+            style={{ display: "block", objectFit: "contain" }}
           />
         </span>
       </div>
@@ -242,15 +230,9 @@ const RESULT_ICONS: Record<string, { src: string; width: number; height: number 
   "Business Insider": { src: "/business-insider-favicon.png", width: 96, height: 96 },
 };
 
-function sanitizeBusiness(raw: string | undefined): string | undefined {
-  if (!raw) return undefined;
-  const cleaned = raw.replace(/[<>]/g, "").trim().slice(0, 60);
-  return cleaned || undefined;
-}
-
 function SearchResult({ result, business }: { result: Result; business: string }) {
   const icon = RESULT_ICONS[result.name];
-  const fill = (s: string) => s.split("[Your Business]").join(business);
+  const fill = (s: string) => fillBusiness(s, business);
   return (
     <div>
       <div className="flex items-center gap-2">
@@ -298,7 +280,7 @@ function SearchResult({ result, business }: { result: Result; business: string }
   );
 }
 
-function SearchMockup({ business }: { business: string }) {
+function SearchMockup({ business, resultBusiness }: { business: string; resultBusiness: string }) {
   return (
     <div
       role="img"
@@ -331,10 +313,82 @@ function SearchMockup({ business }: { business: string }) {
           key={r.domain}
           style={{ padding: "16px", borderTop: i === 0 ? undefined : `1px solid ${LINE}` }}
         >
-          <SearchResult result={r} business={business} />
+          <SearchResult result={r} business={resultBusiness} />
         </div>
       ))}
     </div>
+  );
+}
+
+function ArticleBlock({ block }: { block: FeatureBlock }) {
+  if (block.type === "h2") {
+    return <h2 className="mb-4 mt-11 text-[22px] font-bold text-foreground">{block.text}</h2>;
+  }
+  if (block.type === "quote") {
+    return (
+      <blockquote className="my-9 border-l-[3px] border-primary pl-[22px]">
+        <p className="text-[19px] italic leading-[1.6] text-foreground">{block.text}</p>
+        <p className="mt-3 text-[15px] text-muted-foreground">{block.attribution}</p>
+      </blockquote>
+    );
+  }
+  return (
+    <p className="mb-[22px] text-[17px] leading-[1.75] text-foreground md:text-lg">
+      {block.segments ? block.segments.map((segment, index) => segment.type === "link" ? (
+        <a key={index} href={segment.href} target={segment.external ? "_blank" : undefined} rel={segment.external ? "nofollow noopener" : undefined} className="text-primary underline underline-offset-2">{segment.text}</a>
+      ) : <span key={index}>{segment.text}</span>) : block.text}
+    </p>
+  );
+}
+
+function FeaturePortrait({ feature }: { feature: Feature }) {
+  if (!feature.portrait) return null;
+  return (
+    <figure className="mb-11">
+      <img src={feature.portrait} alt={feature.portraitCaption ?? ""} width={900} height={600} loading="lazy" decoding="async" className="aspect-[3/2] w-full object-cover object-center" />
+      {feature.portraitCaption ? <figcaption className="mt-3 text-[13px] leading-[1.5] text-muted-foreground">{feature.portraitCaption}</figcaption> : null}
+    </figure>
+  );
+}
+
+function RealFeaturePreview() {
+  const feature = REAL_FEATURE;
+  if (!feature) return null;
+  const firstParagraph = feature.body.find((block) => block.type === "p");
+  return (
+    <section className="py-14">
+      <div className="mx-auto max-w-[760px] px-6">
+        <h2 className="mb-7 text-center text-2xl font-bold text-foreground">A real winner&rsquo;s Feature</h2>
+        <div className="overflow-hidden rounded-lg border border-border bg-card">
+          <div className="px-6 pt-6 md:px-8 md:pt-8">
+            <FeaturePortrait feature={feature} />
+            <h3 className="mb-3.5 text-[28px] font-bold leading-[1.2] text-foreground">{feature.headline}</h3>
+            <p className="mb-8 text-[17px] font-semibold leading-[1.4] text-muted-foreground">{feature.subheadline}</p>
+            {firstParagraph ? <ArticleBlock block={firstParagraph} /> : null}
+          </div>
+        </div>
+        <Dialog>
+          <div className="mt-6 text-center">
+            <DialogTrigger asChild><Button variant="outline" className="min-h-12 px-7">Read the full Feature</Button></DialogTrigger>
+          </div>
+          <DialogContent className="h-dvh max-h-dvh max-w-none overflow-y-auto p-0 [&>button]:fixed [&>button]:right-4 [&>button]:top-4 [&>button]:z-10 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:bg-background [&>button]:opacity-100 sm:h-auto sm:max-h-[90dvh] sm:max-w-[820px]">
+            <article className="mx-auto w-full max-w-[720px] px-6 pb-12 pt-16 md:pt-[72px]">
+              <DialogTitle className="mb-3.5 text-[28px] font-bold leading-[1.2] text-foreground md:text-[40px]">{feature.headline}</DialogTitle>
+              <DialogDescription className="mb-8 text-[17px] font-semibold leading-[1.4] text-muted-foreground md:text-[19px]">{feature.subheadline}</DialogDescription>
+              <hr className="mb-10 border-border" />
+              <FeaturePortrait feature={feature} />
+              {feature.body.map((block, index) => <ArticleBlock key={index} block={block} />)}
+              {feature.awardImage ? <figure className="mb-12 mt-14"><img src={feature.awardImage} alt={`The ${AWARD_YEAR} Entrepreneur Awards engraved crystal award`} width={1152} height={648} loading="lazy" className="aspect-video w-full object-cover" /><figcaption className="mt-3 text-[13px] text-muted-foreground">The {AWARD_YEAR} Entrepreneur Awards engraved crystal award.</figcaption></figure> : null}
+              <h2 className="mb-4 mt-11 text-[22px] font-bold text-foreground">Additional Information</h2>
+              <dl className="border-y border-border py-2">
+                {[["Industry", feature.info.industry], ["Location", feature.info.location], ["What They Do", feature.info.whatTheyDo], ["Website", feature.info.website]].map(([label, value]) => <div key={label} className="flex flex-col gap-1 py-2 sm:flex-row"><dt className="shrink-0 text-xs uppercase text-muted-foreground sm:w-40">{label}</dt><dd className="text-base leading-[1.6] text-foreground">{label === "Website" ? <a href={feature.info.websiteUrl} target="_blank" rel="nofollow noopener" className="underline underline-offset-2">{value}</a> : value}</dd></div>)}
+              </dl>
+              <div className="mt-10 text-center"><BrandButton href={BASE_LINK} className="w-full sm:w-auto">Order the Winner&rsquo;s Feature</BrandButton></div>
+            </article>
+          </DialogContent>
+        </Dialog>
+      </div>
+    </section>
   );
 }
 
@@ -521,13 +575,12 @@ function WinnerFeatureV2Page() {
               What people find when they look you up
             </h2>
             <div style={{ marginTop: "24px" }}>
-              <SearchMockup business={boxName === "Your Business" ? boxName : resultName} />
-            </div>
-            <div style={{ marginTop: "8px" }}>
-              <FeatureLink />
+              <SearchMockup business={boxName} resultBusiness={resultName} />
             </div>
           </div>
         </section>
+
+        <RealFeaturePreview />
 
         {/* 3. WHY IT MATTERS */}
         <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
@@ -566,9 +619,9 @@ function WinnerFeatureV2Page() {
               className="text-center"
               style={{ fontSize: "24px", fontWeight: 700, color: INK }}
             >
-              <span className="md:hidden">What you get for {money(BASE_PRICE)}</span>
+              <span className="md:hidden">What you get</span>
               <span className="hidden md:inline" style={{ fontSize: "28px" }}>
-                What you get for {money(BASE_PRICE)}
+                What you get
               </span>
             </h2>
 
@@ -677,7 +730,7 @@ function WinnerFeatureV2Page() {
                 </div>
                 <div className="md:text-right">
                   <BrandButton href={BASE_LINK} className="w-full md:w-auto" style={{ minHeight: "52px", borderRadius: "10px", padding: "0 26px", fontWeight: 700 }}>
-                    Order the Winner&rsquo;s Feature for {money(BASE_PRICE)}
+                    Order the Winner&rsquo;s Feature
                   </BrandButton>
                 </div>
               </div>
