@@ -574,7 +574,7 @@ function WinnerFeatureV2Page() {
             >
               As seen in USA Today
             </h2>
-            <div className="mt-9 flex flex-col items-center justify-center gap-8 sm:flex-row sm:items-start">
+            <div className="mt-9 flex flex-col items-center justify-center gap-8 min-[1100px]:flex-row min-[1100px]:items-start">
               {pressScreenshots.map((shot) => (
                 <img
                   key={shot.alt}
