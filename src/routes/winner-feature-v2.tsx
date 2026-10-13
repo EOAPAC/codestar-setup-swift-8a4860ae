@@ -572,25 +572,26 @@ function WinnerFeatureV2Page() {
 
         {/* AS SEEN IN USA TODAY */}
         <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-[1080px] px-6">
+          <div className="mx-auto max-w-[1480px] px-6">
             <h2
               className="text-center"
               style={{ fontSize: "24px", fontWeight: 700, color: INK }}
             >
               As seen in USA Today
             </h2>
-            <div className="mt-9 flex flex-col items-center justify-center gap-8 min-[1100px]:flex-row min-[1100px]:items-start">
+            <div className="mt-9 flex flex-col items-center justify-center gap-10 min-[1000px]:flex-row min-[1000px]:items-start">
               {pressScreenshots.map((shot) => (
                 <img
                   key={shot.alt}
                   src={shot.src}
+                  srcSet={shot.srcSet}
                   alt={shot.alt}
-                  width={996}
-                  height={726}
+                  width={1400}
+                  height={1060}
                   loading="lazy"
                   decoding="async"
                   style={{
-                    width: "498px",
+                    width: "700px",
                     maxWidth: "100%",
                     height: "auto",
                     display: "block",
