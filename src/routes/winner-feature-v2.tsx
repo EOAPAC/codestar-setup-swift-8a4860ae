@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { FileText, Newspaper, Trophy } from "lucide-react";
+import { FileText, Link, Newspaper, ShieldCheck, Trophy } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
@@ -232,10 +232,10 @@ function RealFeaturePreview() {
     <Dialog>
       <div className="overflow-hidden rounded-lg border border-border bg-card">
         {feature.portrait ? (
-          <img src={feature.portrait} alt={feature.portraitCaption ?? ""} width={640} height={360} loading="lazy" decoding="async" className="aspect-video w-full rounded-t-lg object-cover object-top" />
+          <img src={feature.portrait} alt={feature.portraitCaption ?? ""} width={640} height={360} loading="lazy" decoding="async" className="aspect-[3/2] w-full rounded-t-lg object-cover object-top" />
         ) : null}
         <div className="p-4">
-          <p className="line-clamp-2 text-[16px] font-bold leading-[1.3] text-foreground">{feature.headline}</p>
+          <p className="text-[16px] font-bold leading-[1.3] text-foreground">{feature.headline}</p>
           <DialogTrigger asChild><Button variant="outline" className="mt-3 min-h-11 w-full">Read the full Feature</Button></DialogTrigger>
         </div>
       </div>
@@ -271,6 +271,22 @@ const whyCards = [
 
 const questions = [
   {
+    q: "Do I need to write anything?",
+    a: "No. Our editorial team writes everything. We'll ask you a few quick questions about your business, and that's it.",
+  },
+  {
+    q: "What if I don't like the draft?",
+    a: "Tell us what to change and we'll change it. Nothing is published until you approve it.",
+  },
+  {
+    q: "Is there anything recurring?",
+    a: `No. One payment of ${money(BASE_PRICE)}. The engraved award is the only optional extra.`,
+  },
+  {
+    q: "Do you need my address?",
+    a: "Only if you add the engraved award. We'll email you for it after checkout.",
+  },
+  {
     q: "Can you place the press release in other publications?",
     a: "Yes. We can place it in other titles. Pricing varies by publication, so email us and we'll tell you what's available.",
   },
@@ -284,7 +300,9 @@ const steps = ["We write it", "You approve it", "It goes live"];
 
 const getItems = [
   { title: "Your Feature article", body: "Written by our editorial team and published on the Entrepreneur Awards winners page.", Icon: FileText },
-  { title: "Your press release in all three publications", body: "Announcing your win, with a link back to your Feature article. You get the link to each one.", Icon: Newspaper },
+  { title: "Your press release in all three publications", body: "Announcing your win, with a link back to your Feature article.", Icon: Newspaper },
+  { title: "A link to each one", body: "Yours to share with clients, on your website or on LinkedIn.", Icon: Link },
+  { title: "Your approval on every word", body: "Nothing goes live until you've signed off on the draft.", Icon: ShieldCheck },
 ];
 
 const FAVICONS = [
@@ -347,7 +365,7 @@ function WinnerFeatureV2Page() {
       <main>
         {/* 1. HERO */}
         <section style={{ paddingTop: "64px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-[720px] px-6 text-center">
+          <div className="mx-auto max-w-[728px] px-6 text-center">
             <p style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.16em", color: MUTED }}>
               {business ? `For ${business}, a ${AWARD_YEAR} Entrepreneur Awards winner` : `For ${AWARD_YEAR} Entrepreneur Awards winners`}
             </p>
@@ -395,12 +413,15 @@ function WinnerFeatureV2Page() {
               </BrandButton>
             </div>
 
+            <p style={{ marginTop: "14px", fontSize: "12.5px", color: MUTED }}>
+              You approve every word before anything is published.
+            </p>
           </div>
         </section>
 
         {/* HOW IT WORKS */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-3xl px-6">
+          <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>How it works</h2>
             <ol className="mx-auto mt-8 flex w-fit flex-col md:w-full md:flex-row md:items-start">
               {steps.map((step, index) => (
@@ -423,7 +444,7 @@ function WinnerFeatureV2Page() {
 
         {/* WHAT IT DOES FOR YOU */}
         <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-[860px] px-6">
+          <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What it does for you</h2>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ marginTop: "28px", gap: "20px" }}>
               {whyCards.map((card) => (
@@ -438,13 +459,13 @@ function WinnerFeatureV2Page() {
 
         {/* WHAT YOU GET */}
         <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What you get</h2>
             <div
               className="mx-auto"
               style={{
                 marginTop: "28px",
-                maxWidth: "960px",
+                maxWidth: "880px",
                 backgroundColor: "#fff",
                 border: "1px solid #E4E9F2",
                 borderRadius: "18px",
@@ -452,11 +473,11 @@ function WinnerFeatureV2Page() {
                 boxShadow: "0 1px 2px rgba(16,27,45,.04), 0 14px 34px rgba(16,27,45,.07)",
               }}
             >
-              <div className="flex items-center justify-between gap-3 px-5 py-[18px] md:px-[34px]" style={{ borderBottom: "1px solid #EEF1F7" }}>
-                <span style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#55616F" }}>The Winner&rsquo;s Feature</span>
+              <div className="flex flex-col items-start gap-2 px-5 py-[18px] sm:flex-row sm:items-center sm:justify-between sm:gap-3 md:px-8" style={{ borderBottom: "1px solid #EEF1F7" }}>
+                <span style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#55616F", whiteSpace: "nowrap" }}>The Winner&rsquo;s Feature</span>
                 <span style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#14508F", backgroundColor: "#EAF2FD", padding: "6px 12px", borderRadius: "999px", whiteSpace: "nowrap" }}>Digital delivery</span>
               </div>
-              <div className="grid grid-cols-1 gap-8 px-5 py-7 md:grid-cols-[11fr_9fr] md:gap-10 md:px-[34px] md:py-8">
+              <div className="grid grid-cols-1 gap-8 px-5 py-7 md:grid-cols-[3fr_2fr] md:gap-10 md:p-8">
                 <div className="flex flex-col gap-6">
                   {getItems.map(({ title, body, Icon }, index) => (
                     <div key={title} className="flex items-start gap-4">
@@ -478,27 +499,31 @@ function WinnerFeatureV2Page() {
                   ))}
                 </div>
                 <div>
-                  <p style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#55616F" }}>See a real one</p>
+                  <p style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#55616F" }}>A real winner&rsquo;s Feature article</p>
                   <div className="mt-3"><RealFeaturePreview /></div>
                 </div>
               </div>
               <div
                 ref={priceRailRef}
-                className="flex flex-col gap-5 px-5 py-[22px] md:flex-row md:items-center md:justify-between md:px-[34px]"
+                className="flex flex-col gap-5 px-5 py-[22px] md:flex-row md:items-center md:justify-between md:px-8"
                 style={{ backgroundColor: "#101B2D" }}
               >
-                <p style={{ fontSize: "40px", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>
-                  {money(BASE_PRICE)}
-                </p>
+                <div>
+                  <p style={{ fontSize: "40px", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>
+                    {money(BASE_PRICE)}
+                  </p>
+                  <p style={{ marginTop: "8px", fontSize: "13.5px", color: "#AFBCD0" }}>One payment for everything above</p>
+                </div>
                 <div className="md:text-right">
                   <BrandButton href={BASE_LINK} className="w-full md:w-auto" style={{ minHeight: "52px", borderRadius: "10px", padding: "0 26px", fontWeight: 700 }}>
                     Order the Winner&rsquo;s Feature
                   </BrandButton>
+                  <p className="mt-2 text-center md:text-right" style={{ fontSize: "12.5px", color: "#AFBCD0" }}>Secure checkout by Stripe</p>
                 </div>
               </div>
 
               <div
-                className="flex flex-wrap items-center gap-x-4 px-[18px] py-4 md:flex-nowrap md:px-[34px]"
+                className="flex flex-wrap items-center gap-x-4 px-5 py-4 md:flex-nowrap md:px-8"
                 style={{ backgroundColor: "#F2F5FA", borderTop: "1px solid #E4E9F2" }}
               >
                 <div
@@ -509,13 +534,13 @@ function WinnerFeatureV2Page() {
                   <Trophy size={28} color="#55616F" strokeWidth={1.75} />
                 </div>
                 <span
-                  className="order-2 ml-auto shrink-0 whitespace-nowrap md:order-3 md:ml-0"
+                  className="order-3 mt-3 w-full shrink-0 whitespace-nowrap text-left md:mt-0 md:w-auto"
                   style={{ fontSize: "13.5px", fontWeight: 700, color: "#55616F" }}
                 >
                   Add for {money(AWARD_PRICE)} at checkout
                 </span>
                 <p
-                  className="order-3 mt-3 w-full md:order-2 md:mt-0 md:w-auto md:flex-1"
+                  className="order-2 min-w-0 flex-1"
                   style={{ fontSize: "13.5px", lineHeight: 1.5, color: "#55616F" }}
                 >
                   <strong style={{ color: "#0B1220", fontWeight: 700 }}>Optional: the engraved award.</strong>{" "}
@@ -529,7 +554,7 @@ function WinnerFeatureV2Page() {
 
         {/* 5. QUESTIONS */}
         <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          <div className="mx-auto px-6" style={{ maxWidth: "680px" }}>
+          <div className="mx-auto px-6" style={{ maxWidth: "728px" }}>
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               Questions
             </h2>
