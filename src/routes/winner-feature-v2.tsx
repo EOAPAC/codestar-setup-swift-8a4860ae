@@ -16,6 +16,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import eaMark84Asset from "@/assets/ea-mark-84.png.asset.json";
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 import apStackedLogoAsset from "@/assets/associated-press-logo-stacked.png.asset.json";
 
@@ -25,12 +26,12 @@ export const Route = createFileRoute("/winner-feature-v2")({
   }),
   head: () => ({
     meta: [
-      { title: `The Winner's Feature v2 — ${AWARD_YEAR} Entrepreneur Awards` },
+      { title: `The Winner's Feature | ${AWARD_YEAR} Entrepreneur Awards` },
       {
         name: "description",
         content: `We write a Feature article about your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and place a press release in USA Today, the Associated Press and Business Insider.`,
       },
-      { property: "og:title", content: `The Winner's Feature v2 — ${AWARD_YEAR} Entrepreneur Awards` },
+      { property: "og:title", content: `The Winner's Feature | ${AWARD_YEAR} Entrepreneur Awards` },
       {
         property: "og:description",
         content: `Your Feature article on the Entrepreneur Awards winners page, plus a press release in three national publications.`,
@@ -42,7 +43,7 @@ export const Route = createFileRoute("/winner-feature-v2")({
     links: [
       { rel: "preload", as: "image", href: "/usa-today-logo.svg" },
       { rel: "preload", as: "image", href: apStackedLogoAsset.url },
-      { rel: "preload", as: "image", href: "/business-insider-logo-cropped.png" },
+      { rel: "preload", as: "image", href: "/business-insider-logo-270.webp" },
     ],
   }),
   component: WinnerFeatureV2Page,
@@ -74,12 +75,13 @@ const focusRing =
 function WinnerFeatureV2Nav() {
   return (
     <SiteNav
+      markSrc={eaMark84Asset.url}
       hideCTA
       hideLinks
       containerClassName="max-w-[1360px]"
       compactCta={{
         href: BASE_LINK,
-        label: `Order — ${money(BASE_PRICE)}`,
+        label: `Order · ${money(BASE_PRICE)}`,
         className: "bg-[#1668C7] text-white hover:bg-[#1056A7] focus-visible:ring-[#1668C7]",
       }}
     />
@@ -124,9 +126,7 @@ function BrandButton({
 
 /* ------------------------------------------------------------ logo bar */
 function LogoBar() {
-  const itemClass =
-    "flex shrink-0 items-center justify-center px-3 first:pl-0 last:pr-0 sm:px-6";
-  const dividerClass = "h-[26px] w-px shrink-0 sm:h-8";
+  const dividerClass = "mx-2 min-[380px]:mx-3 h-[26px] w-px shrink-0 sm:mx-6 sm:h-8";
   return (
     <div
       style={{
@@ -147,8 +147,8 @@ function LogoBar() {
       >
         PUBLISHED IN
       </p>
-      <div className="mt-[14px] flex flex-nowrap items-center justify-center">
-        <span className={itemClass}>
+      <div className="mt-[14px] grid grid-cols-[1fr_auto_1fr] items-center">
+        <div className="flex items-center justify-self-end">
           <img
             src="/usa-today-logo.svg"
             alt="USA Today"
@@ -156,12 +156,12 @@ function LogoBar() {
             height={90}
             loading="eager"
             fetchPriority="high"
-            className="h-[17px] w-auto sm:h-[22px]"
+            className="h-[15px] w-auto min-[380px]:h-[17px] sm:h-[22px]"
             style={{ display: "block", objectFit: "contain" }}
           />
-        </span>
-        <span aria-hidden className={dividerClass} style={{ backgroundColor: LINE }} />
-        <span className={itemClass}>
+          <span aria-hidden className={dividerClass} style={{ backgroundColor: LINE }} />
+        </div>
+        <div className="flex items-center justify-self-center">
           <img
             src={apStackedLogoAsset.url}
             alt="Associated Press"
@@ -172,11 +172,11 @@ function LogoBar() {
             className="h-[36px] w-auto sm:h-[42px]"
             style={{ display: "block", objectFit: "contain" }}
           />
-        </span>
-        <span aria-hidden className={dividerClass} style={{ backgroundColor: LINE }} />
-        <span className={itemClass}>
+        </div>
+        <div className="flex items-center justify-self-start">
+          <span aria-hidden className={dividerClass} style={{ backgroundColor: LINE }} />
           <img
-            src="/business-insider-logo-cropped.png"
+            src="/business-insider-logo-270.webp"
             alt="Business Insider"
             width={968}
             height={330}
@@ -185,7 +185,7 @@ function LogoBar() {
             className="h-[24px] w-auto sm:h-[30px]"
             style={{ display: "block", objectFit: "contain" }}
           />
-        </span>
+        </div>
       </div>
     </div>
   );
@@ -234,7 +234,7 @@ function RealFeaturePreview() {
         ) : null}
         <div className="p-4">
           <p className="text-[16px] font-bold leading-[1.3] text-foreground">{feature.headline}</p>
-          <DialogTrigger asChild><Button variant="outline" className="mt-3 min-h-11 w-full">Read the full Feature</Button></DialogTrigger>
+          <DialogTrigger asChild><Button variant="outline" className="mt-3 min-h-11 w-full">Read the full Feature article</Button></DialogTrigger>
         </div>
       </div>
           <DialogContent className="h-dvh max-h-dvh max-w-none overflow-y-auto p-0 [&>button]:fixed [&>button]:right-4 [&>button]:top-4 [&>button]:z-10 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:bg-background [&>button]:opacity-100 sm:h-auto sm:max-h-[90dvh] sm:max-w-[820px]">
@@ -488,7 +488,7 @@ function WinnerFeatureV2Page() {
                         {index === 1 ? (
                           <div className="mt-3 flex items-center gap-2.5">
                             {FAVICONS.map((f) => (
-                              <img key={f.alt} src={f.src} alt={f.alt} width={20} height={20} loading="lazy" className="h-5 w-5 object-contain" style={{ borderRadius: "4px" }} />
+                              <img key={f.alt} src={f.src} alt={f.alt} width={20} height={20} loading="eager" decoding="async" className="h-5 w-5 object-contain" style={{ borderRadius: "4px" }} />
                             ))}
                           </div>
                         ) : null}
@@ -516,7 +516,7 @@ function WinnerFeatureV2Page() {
                   <BrandButton href={BASE_LINK} className="w-full md:w-auto" style={{ minHeight: "52px", borderRadius: "10px", padding: "0 26px", fontWeight: 700 }}>
                     Order the Winner&rsquo;s Feature
                   </BrandButton>
-                  <p className="mt-2 text-center md:text-right" style={{ fontSize: "12.5px", color: "#AFBCD0" }}>Secure checkout by Stripe</p>
+                  <p className="mt-2 text-center md:text-right" style={{ fontSize: "13px", color: "#AFBCD0" }}>Secure checkout by Stripe</p>
                 </div>
               </div>
 
@@ -624,13 +624,7 @@ function WinnerFeatureV2Page() {
               </a>
             </div>
             <p
-              style={{
-                marginTop: "16px",
-                fontSize: "12px",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                color: "#AFBCD0",
-              }}
+              style={{ marginTop: "16px", fontSize: "13px", color: "#AFBCD0" }}
             >
               Secure checkout by Stripe
             </p>
