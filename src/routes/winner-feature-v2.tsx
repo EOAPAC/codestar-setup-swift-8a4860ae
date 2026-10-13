@@ -404,7 +404,6 @@ function WinnerFeatureV2Page() {
             >
               We write an article about your Entrepreneur Award, publish it on our winners page, and place a press release about it in all three. When people look you up, there&rsquo;s something to find.
             </p>
-            </p>
 
             <div style={{ marginTop: "24px", marginBottom: "24px" }}>
               <LogoBar />
