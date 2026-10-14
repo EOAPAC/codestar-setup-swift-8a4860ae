@@ -53,4 +53,17 @@ export const WINNERS: Winner[] = [
       "Gabriel Sabadin has been awarded a 2026 Entrepreneur Award for Child Safety Technology™ for his work as founder and chief executive of Tuteliq, a Swedish company whose detection software flags online harm against children while it is happening.",
     ],
   },
+  {
+    slug: "nimisha-nailor",
+    name: "Nimisha Nailor",
+    company: "Kultra",
+    companyUrl: "https://kultra.co.uk/",
+    category: "Specialist Nutrition™",
+    year: AWARD_YEAR,
+    reference: "EA-2026-0522",
+    featureUrl: "/features/nimisha-nailor",
+    summary: [
+      "Nimisha Nailor, founder of the UK brand Kultra, has won a 2026 Entrepreneur Award for building a goat whey protein business aimed at people who cannot tolerate conventional cow whey powders. The product is sold direct to consumers in four markets.",
+    ],
+  },
 ];
