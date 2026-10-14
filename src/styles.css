@@ -319,3 +319,13 @@
     display: none;
   }
 }
+
+/* Hide the swipe-row scrollbar on the Winner's Feature v2 snippet row while
+ * keeping touch scrolling and snap points working. */
+.ea-hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.ea-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

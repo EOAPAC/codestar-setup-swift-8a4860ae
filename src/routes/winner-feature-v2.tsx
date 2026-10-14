@@ -88,6 +88,7 @@ function WinnerFeatureV2Nav() {
       compactCta={{
         href: BASE_LINK,
         label: `Order · ${money(BASE_PRICE)}`,
+        target: "_self",
         className: "bg-[#1668C7] text-white hover:bg-[#1056A7] focus-visible:ring-[#1668C7]",
       }}
     />
@@ -109,8 +110,6 @@ function BrandButton({
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       className={`inline-flex items-center justify-center transition-colors ${focusRing} ${className}`}
       style={{
         backgroundColor: BRAND,
@@ -679,8 +678,6 @@ function WinnerFeatureV2Page() {
             <div style={{ marginTop: "24px" }}>
               <a
                 href={BASE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
                 className={`inline-flex w-full items-center justify-center sm:w-auto ${focusRing}`}
                 style={{
                   backgroundColor: "#fff",
@@ -725,8 +722,6 @@ function WinnerFeatureV2Page() {
         </div>
         <a
           href={BASE_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
           tabIndex={stickyVisible ? 0 : -1}
           className={`inline-flex items-center justify-center ${focusRing}`}
           style={{
