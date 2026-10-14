@@ -3,6 +3,7 @@ import andyFunkPortraitAsset from "@/assets/andy-funk.png.asset.json";
 import adamPiskPortraitAsset from "@/assets/adam-pisk.jpg.asset.json";
 import ashtonBishopPortraitAsset from "@/assets/ashton-bishop.jpg.asset.json";
 import gabrielSabadinPortraitAsset from "@/assets/gabriel-sabadin.jpg.asset.json";
+import nimishaNailorPortraitAsset from "@/assets/nimisha-nailor.jpg.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
 
 export type FeatureSegment =
@@ -182,6 +183,37 @@ export const FEATURES: Feature[] = [
     },
     portrait: gabrielSabadinPortraitAsset.url,
     portraitCaption: "Gabriel Sabadin, Founder and CEO of Tuteliq",
+    awardImage: awardAsset.url
+  },
+  {
+    slug: "nimisha-nailor",
+    winnerSlug: "nimisha-nailor",
+    headline: "Nimisha Nailor Wins A 2026 Entrepreneur Award For Specialist Nutrition™",
+    subheadline: "Nimisha Nailor, founder of the UK brand Kultra, has won a 2026 Entrepreneur Award for building a goat whey protein business aimed at people who cannot tolerate conventional cow whey powders. The product is sold direct to consumers in four markets.",
+    body: [
+      { type: 'p', text: "Nimisha Nailor, founder of the British nutrition brand Kultra, has won a 2026 Entrepreneur Award for building a protein supplement business around an ingredient the mainstream market had largely left alone. Kultra sells a goat whey protein powder made from three ingredients, goat whey concentrate, natural vanilla and stevia leaf, and ships to customers in the United Kingdom, Ireland, Canada and the United States." },
+      { type: 'p', text: "Nailor started the business after what the company describes as years of searching without success for a goat whey protein she could use daily, having dealt with chronic inflammation and polycystic ovary syndrome. The company trades as Kultra Wellness Ltd and is registered in England and Wales." },
+      { type: 'h2', text: "Why The Win Matters" },
+      { type: 'p', text: "Nearly all retail protein powder is made from cow whey, a by-product of industrial cheesemaking that is cheap, plentiful and sold at volume. Goat whey is none of those things. Kultra sources from grass-fed European goats on small Dutch farms, which constrains supply and raises cost, and the product retails at £69.99 for 30 servings, or £59.49 on a monthly subscription, against mass-market powders sold for a fraction of that." },
+      { type: 'p', text: "The judges pointed to the decision to build on the harder supply chain rather than reformulate an existing one. Each serving provides 26 grams of protein, including 5.5 grams of branched-chain amino acids, and the company says every batch is tested for heavy metals and that its manufacturing is NSF GMP registered." },
+      { type: 'h2', text: "Market Context" },
+      { type: 'p', text: "The category is growing quickly. Grand View Research values the global protein supplements market at $31.9 billion in 2026 and projects $63.2 billion by 2033, a compound annual growth rate of 10.3 percent. Animal-based sources, whey among them, accounted for 59.9 percent of the market in 2025. The same research describes female consumers as a growing segment, a group the mass market has historically addressed last." },
+      { type: 'p', text: "Against that backdrop, the judges treated Kultra as a bet on a specific, underserved buyer rather than on category growth generally: the customer who wants a conventional protein powder and has found that conventional protein powder does not agree with them." },
+      { type: 'h2', text: "The Judges Final Words" },
+      { type: 'quote', text: "The panel looked for a founder who had identified a real gap and accepted the cost of filling it properly. This entry did not take the cheap ingredient and market it harder. It took the difficult one, kept the formulation to three ingredients, and priced accordingly. That is a commercial decision with consequences, and she made it deliberately.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" },
+      { type: 'h2', text: "About the Entrepreneur Awards" },
+      { type: 'p', text: "The Entrepreneur Awards is a recognition program for individual business founders." }
+    ],
+    info: {
+      industry: "Specialist Nutrition™",
+      location: "United Kingdom",
+      whatTheyDo: "Nimisha Nailor is founder of Kultra, a British nutrition brand selling goat whey protein powder made from goat whey concentrate, natural vanilla and stevia leaf to consumers in the United Kingdom, Ireland, Canada and the United States.",
+      website: "kultra.co.uk",
+      websiteUrl: "https://kultra.co.uk/"
+    },
+    portrait: nimishaNailorPortraitAsset.url,
+    portraitCaption: "Nimisha Nailor, founder of Kultra",
+    portraitAspect: "240 / 210",
     awardImage: awardAsset.url
   }
 ];
