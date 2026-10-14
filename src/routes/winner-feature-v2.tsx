@@ -1,12 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { FileText, Link, Newspaper, ShieldCheck, Trophy } from "lucide-react";
+import { FileText, Link, Newspaper, Search, ShieldCheck, Trophy } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { WINNERS } from "@/data/winners";
+import snippetAdamAsset from "@/assets/snippet-usatoday-adam-pisk.webp.asset.json";
+import snippetNimishaAsset from "@/assets/snippet-ap-nimisha-nailor.webp.asset.json";
+import snippetGabrielAsset from "@/assets/snippet-bi-gabriel-sabadin.webp.asset.json";
+import snippetAshtonAsset from "@/assets/snippet-usatoday-ashton-bishop.webp.asset.json";
 import { FEATURES, type Feature, type FeatureBlock } from "@/data/features";
 import { sanitizeBusiness } from "@/lib/winner-feature-business";
 import {
@@ -19,26 +24,7 @@ import {
 import eaMark84Asset from "@/assets/ea-mark-84.png.asset.json";
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 import apStackedLogoAsset from "@/assets/associated-press-logo-stacked.png.asset.json";
-import ashtonPress1xAsset from "@/assets/ashton-bishop-usa-today.webp.asset.json";
-import ashtonPress2xAsset from "@/assets/ashton-bishop-usa-today-2x.webp.asset.json";
-import adamPress1xAsset from "@/assets/adam-pisk-usa-today.webp.asset.json";
-import adamPress2xAsset from "@/assets/adam-pisk-usa-today-2x.webp.asset.json";
 
-/* Real USA Today coverage of two 2026 winners. Screenshots are served at 1x
- * (700×530) and 2x (1400×1060) via srcset, so they render at 700px wide and
- * stay sharp on retina screens without ever being stretched larger. */
-const pressScreenshots = [
-  {
-    src: ashtonPress1xAsset.url,
-    srcSet: `${ashtonPress1xAsset.url} 1x, ${ashtonPress2xAsset.url} 2x`,
-    alt: "USA Today article: Ashton Bishop wins a 2026 Entrepreneur Award",
-  },
-  {
-    src: adamPress1xAsset.url,
-    srcSet: `${adamPress1xAsset.url} 1x, ${adamPress2xAsset.url} 2x`,
-    alt: "USA Today article: Adam Pisk wins a 2026 Entrepreneur Award",
-  },
-];
 
 export const Route = createFileRoute("/winner-feature-v2")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -437,8 +423,10 @@ function WinnerFeatureV2Page() {
           </div>
         </section>
 
+        <PublishedSnippets />
+
         {/* HOW IT WORKS */}
-        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>How it works</h2>
             <ol className="mx-auto mt-8 flex w-fit flex-col md:w-full md:flex-row md:items-start">
@@ -461,7 +449,7 @@ function WinnerFeatureV2Page() {
         </section>
 
         {/* WHAT IT DOES FOR YOU */}
-        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What it does for you</h2>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ marginTop: "28px", gap: "20px" }}>
@@ -570,45 +558,8 @@ function WinnerFeatureV2Page() {
           </div>
         </section>
 
-        {/* AS SEEN IN USA TODAY */}
-        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          {/* 1480px max plus the 24px gutters, so the two 700px columns + 40px gap fit exactly */}
-          <div className="mx-auto max-w-[1528px] px-6">
-            <h2
-              className="text-center"
-              style={{ fontSize: "24px", fontWeight: 700, color: INK }}
-            >
-              As seen in USA Today
-            </h2>
-            <div className="mt-9 flex flex-col items-center justify-center gap-10 min-[1000px]:flex-row min-[1000px]:items-start">
-              {pressScreenshots.map((shot) => (
-                <img
-                  key={shot.alt}
-                  src={shot.src}
-                  srcSet={shot.srcSet}
-                  alt={shot.alt}
-                  width={1400}
-                  height={1060}
-                  loading="lazy"
-                  decoding="async"
-                  style={{
-                    width: "700px",
-                    minWidth: 0,
-                    maxWidth: "100%",
-                    height: "auto",
-                    display: "block",
-                    borderRadius: "12px",
-                    border: "1px solid #E5E5E5",
-                    boxShadow: "0 1px 2px rgba(16,27,45,.05), 0 14px 34px rgba(16,27,45,.08)",
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* 5. QUESTIONS */}
-        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto px-6" style={{ maxWidth: "728px" }}>
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               Questions
