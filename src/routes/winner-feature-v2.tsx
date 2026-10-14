@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { FileText, Link, Newspaper, Search, ShieldCheck, Trophy } from "lucide-react";
+import { FileText, Link, Newspaper, ShieldCheck, Trophy } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
