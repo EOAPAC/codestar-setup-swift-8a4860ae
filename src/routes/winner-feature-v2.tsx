@@ -309,6 +309,85 @@ const getItems = [
   { title: "Your approval on every word", body: "Nothing goes live until you've signed off on the draft.", Icon: ShieldCheck },
 ];
 
+const winnerBySlug = (slug: string) => {
+  const winner = WINNERS.find((w) => w.slug === slug);
+  if (!winner) throw new Error(`Missing winner data for ${slug}`);
+  return winner;
+};
+
+/* Real press releases for 2026 winners. Names and companies come from the
+ * shared winner records so they never drift from the /winners pages. */
+const SNIPPETS = [
+  { slug: "adam-pisk", publication: "USA Today", favicon: 0, src: snippetAdamAsset.url },
+  { slug: "nimisha-nailor", publication: "Associated Press", favicon: 1, src: snippetNimishaAsset.url },
+  { slug: "gabriel-sabadin", publication: "Business Insider", favicon: 2, src: snippetGabrielAsset.url },
+  { slug: "ashton-bishop", publication: "USA Today", favicon: 0, src: snippetAshtonAsset.url },
+].map((s) => ({ ...s, winner: winnerBySlug(s.slug) }));
+
+function PublishedSnippets() {
+  return (
+    <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
+      <div className="mx-auto max-w-[928px] px-6">
+        <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
+          Already published for {AWARD_YEAR} winners
+        </h2>
+        <p className="mx-auto mt-3 max-w-[56ch] text-center" style={{ fontSize: "15px", lineHeight: 1.55, color: BODY }}>
+          Real press releases for this year&rsquo;s winners, on USA Today, the Associated Press and Business Insider.
+        </p>
+        {/* Mobile: sideways swipe row bleeding to the screen edges; desktop: 2 × 2 grid */}
+        <ul className="-mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+          {SNIPPETS.map((item) => {
+            const alt = `${item.publication} press release for ${item.winner.name}`;
+            const icon = FAVICONS[item.favicon];
+            return (
+              <li key={item.slug} className="flex w-[85vw] shrink-0 snap-start md:w-auto">
+                <div className="flex w-full flex-col overflow-hidden bg-white" style={{ borderRadius: "12px", border: `1px solid ${LINE}` }}>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button type="button" className="group relative block w-full cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-2px]" style={{ outlineColor: BRAND }} aria-label={`Enlarge: ${alt}`}>
+                        <img
+                          src={item.src}
+                          alt={alt}
+                          width={800}
+                          height={500}
+                          loading="eager"
+                          decoding="async"
+                          className="block w-full object-cover object-top"
+                          style={{ aspectRatio: "16 / 10", borderBottom: `1px solid ${LINE}` }}
+                        />
+                        <span className="absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-white/95 px-2 py-1 opacity-100 transition-opacity [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:opacity-100" style={{ fontSize: "12px", color: MUTED }}>
+                          <Search aria-hidden className="h-3 w-3" />
+                          Click to enlarge
+                        </span>
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="w-[calc(100vw-32px)] max-w-[1000px] p-3 sm:p-4 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:rounded-full [&>button]:bg-background [&>button]:opacity-100 [&>button]:right-1 [&>button]:top-1">
+                      <DialogTitle className="sr-only">{alt}</DialogTitle>
+                      <DialogDescription className="sr-only">Enlarged screenshot of the press release.</DialogDescription>
+                      <img src={item.src} alt={alt} width={800} height={500} className="mt-10 block h-auto w-full rounded-md" />
+                    </DialogContent>
+                  </Dialog>
+                  <div className="flex flex-1 flex-col gap-1.5" style={{ padding: "16px" }}>
+                    <p className="flex items-center gap-2" style={{ fontSize: "13px" }}>
+                      <img src={icon.src} alt="" width={20} height={20} className="h-5 w-5 object-contain" />
+                      <span style={{ fontWeight: 600, color: INK }}>{item.publication}</span>
+                      <span style={{ color: MUTED }}>· Press release</span>
+                    </p>
+                    <p style={{ fontSize: "15px" }}>
+                      <span style={{ fontWeight: 600, color: INK }}>{item.winner.name}</span>
+                      <span style={{ color: MUTED }}> · {item.winner.company}</span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 const FAVICONS = [
   { src: "/usa-today-favicon.png", alt: "USA Today" },
   { src: apUserLogoAsset.url, alt: "The Associated Press" },
@@ -464,7 +543,7 @@ function WinnerFeatureV2Page() {
         </section>
 
         {/* WHAT YOU GET */}
-        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What you get</h2>
             <div
