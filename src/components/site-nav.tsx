@@ -16,7 +16,7 @@ type SiteNavProps = {
   hideCTA?: boolean;
   hideLinks?: boolean;
   mobileMenu?: boolean;
-  compactCta?: { href: string; label: string; className?: string };
+  compactCta?: { href: string; label: string; className?: string; target?: string };
   containerClassName?: string;
   /** Optional lighter mark image; defaults to the shared mark. */
   markSrc?: string;
@@ -56,7 +56,7 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
           )}
           {compactCta ? (
             <Button asChild size="sm" className={compactCta.className}>
-              <a href={compactCta.href} target="_blank" rel="noopener noreferrer">{compactCta.label}</a>
+              <a href={compactCta.href} target={compactCta.target ?? "_blank"} rel="noopener noreferrer">{compactCta.label}</a>
             </Button>
           ) : !hideCTA ? (
             <Button asChild size="sm">

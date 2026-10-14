@@ -88,6 +88,7 @@ function WinnerFeatureV2Nav() {
       compactCta={{
         href: BASE_LINK,
         label: `Order · ${money(BASE_PRICE)}`,
+        target: "_self",
         className: "bg-[#1668C7] text-white hover:bg-[#1056A7] focus-visible:ring-[#1668C7]",
       }}
     />
@@ -109,8 +110,6 @@ function BrandButton({
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       className={`inline-flex items-center justify-center transition-colors ${focusRing} ${className}`}
       style={{
         backgroundColor: BRAND,
@@ -332,10 +331,10 @@ function PublishedSnippets() {
           Already published for {AWARD_YEAR} winners
         </h2>
         <p className="mx-auto mt-3 max-w-[56ch] text-center" style={{ fontSize: "15px", lineHeight: 1.55, color: BODY }}>
-          Real press releases for this year&rsquo;s winners, on USA Today, the Associated Press and Business Insider.
+          Real press releases for this year&rsquo;s winners.
         </p>
-        {/* Mobile: sideways swipe row bleeding to the screen edges; desktop: 2 × 2 grid */}
-        <ul className="-mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+        {/* Mobile: sideways swipe row with the same 24px page margin; desktop: 2 × 2 grid */}
+        <ul className="ea-hide-scrollbar -mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 scroll-pl-6 scroll-pr-6 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:scroll-pl-0 md:scroll-pr-0">
           {SNIPPETS.map((item) => {
             const alt = `${item.publication} press release for ${item.winner.name}`;
             const icon = FAVICONS[item.favicon];
@@ -679,8 +678,6 @@ function WinnerFeatureV2Page() {
             <div style={{ marginTop: "24px" }}>
               <a
                 href={BASE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
                 className={`inline-flex w-full items-center justify-center sm:w-auto ${focusRing}`}
                 style={{
                   backgroundColor: "#fff",
@@ -725,8 +722,6 @@ function WinnerFeatureV2Page() {
         </div>
         <a
           href={BASE_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
           tabIndex={stickyVisible ? 0 : -1}
           className={`inline-flex items-center justify-center ${focusRing}`}
           style={{
