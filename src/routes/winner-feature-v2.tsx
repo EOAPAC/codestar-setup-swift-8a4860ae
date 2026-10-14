@@ -1,12 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { FileText, Link, Newspaper, ShieldCheck, Trophy } from "lucide-react";
+import { FileText, Link, Newspaper, Search, ShieldCheck, Trophy } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { WINNERS } from "@/data/winners";
+import snippetAdamAsset from "@/assets/snippet-usatoday-adam-pisk.webp.asset.json";
+import snippetNimishaAsset from "@/assets/snippet-ap-nimisha-nailor.webp.asset.json";
+import snippetGabrielAsset from "@/assets/snippet-bi-gabriel-sabadin.webp.asset.json";
+import snippetAshtonAsset from "@/assets/snippet-usatoday-ashton-bishop.webp.asset.json";
 import { FEATURES, type Feature, type FeatureBlock } from "@/data/features";
 import { sanitizeBusiness } from "@/lib/winner-feature-business";
 import {
@@ -19,26 +24,7 @@ import {
 import eaMark84Asset from "@/assets/ea-mark-84.png.asset.json";
 import apUserLogoAsset from "@/assets/associated-press-ap-user.png.asset.json";
 import apStackedLogoAsset from "@/assets/associated-press-logo-stacked.png.asset.json";
-import ashtonPress1xAsset from "@/assets/ashton-bishop-usa-today.webp.asset.json";
-import ashtonPress2xAsset from "@/assets/ashton-bishop-usa-today-2x.webp.asset.json";
-import adamPress1xAsset from "@/assets/adam-pisk-usa-today.webp.asset.json";
-import adamPress2xAsset from "@/assets/adam-pisk-usa-today-2x.webp.asset.json";
 
-/* Real USA Today coverage of two 2026 winners. Screenshots are served at 1x
- * (700×530) and 2x (1400×1060) via srcset, so they render at 700px wide and
- * stay sharp on retina screens without ever being stretched larger. */
-const pressScreenshots = [
-  {
-    src: ashtonPress1xAsset.url,
-    srcSet: `${ashtonPress1xAsset.url} 1x, ${ashtonPress2xAsset.url} 2x`,
-    alt: "USA Today article: Ashton Bishop wins a 2026 Entrepreneur Award",
-  },
-  {
-    src: adamPress1xAsset.url,
-    srcSet: `${adamPress1xAsset.url} 1x, ${adamPress2xAsset.url} 2x`,
-    alt: "USA Today article: Adam Pisk wins a 2026 Entrepreneur Award",
-  },
-];
 
 export const Route = createFileRoute("/winner-feature-v2")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -323,6 +309,85 @@ const getItems = [
   { title: "Your approval on every word", body: "Nothing goes live until you've signed off on the draft.", Icon: ShieldCheck },
 ];
 
+const winnerBySlug = (slug: string) => {
+  const winner = WINNERS.find((w) => w.slug === slug);
+  if (!winner) throw new Error(`Missing winner data for ${slug}`);
+  return winner;
+};
+
+/* Real press releases for 2026 winners. Names and companies come from the
+ * shared winner records so they never drift from the /winners pages. */
+const SNIPPETS = [
+  { slug: "adam-pisk", publication: "USA Today", favicon: 0, src: snippetAdamAsset.url },
+  { slug: "nimisha-nailor", publication: "Associated Press", favicon: 1, src: snippetNimishaAsset.url },
+  { slug: "gabriel-sabadin", publication: "Business Insider", favicon: 2, src: snippetGabrielAsset.url },
+  { slug: "ashton-bishop", publication: "USA Today", favicon: 0, src: snippetAshtonAsset.url },
+].map((s) => ({ ...s, winner: winnerBySlug(s.slug) }));
+
+function PublishedSnippets() {
+  return (
+    <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
+      <div className="mx-auto max-w-[928px] px-6">
+        <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
+          Already published for {AWARD_YEAR} winners
+        </h2>
+        <p className="mx-auto mt-3 max-w-[56ch] text-center" style={{ fontSize: "15px", lineHeight: 1.55, color: BODY }}>
+          Real press releases for this year&rsquo;s winners, on USA Today, the Associated Press and Business Insider.
+        </p>
+        {/* Mobile: sideways swipe row bleeding to the screen edges; desktop: 2 × 2 grid */}
+        <ul className="-mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+          {SNIPPETS.map((item) => {
+            const alt = `${item.publication} press release for ${item.winner.name}`;
+            const icon = FAVICONS[item.favicon];
+            return (
+              <li key={item.slug} className="flex w-[85vw] shrink-0 snap-start md:w-auto">
+                <div className="flex w-full flex-col overflow-hidden bg-white" style={{ borderRadius: "12px", border: `1px solid ${LINE}` }}>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button type="button" className="group relative block w-full cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-2px]" style={{ outlineColor: BRAND }} aria-label={`Enlarge: ${alt}`}>
+                        <img
+                          src={item.src}
+                          alt={alt}
+                          width={800}
+                          height={500}
+                          loading="eager"
+                          decoding="async"
+                          className="block w-full object-cover object-top"
+                          style={{ aspectRatio: "16 / 10", borderBottom: `1px solid ${LINE}` }}
+                        />
+                        <span className="absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-white/95 px-2 py-1 opacity-100 transition-opacity [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:opacity-100" style={{ fontSize: "12px", color: MUTED }}>
+                          <Search aria-hidden className="h-3 w-3" />
+                          Click to enlarge
+                        </span>
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="w-[calc(100vw-32px)] max-w-[1000px] p-3 sm:p-4 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:rounded-full [&>button]:bg-background [&>button]:opacity-100 [&>button]:right-1 [&>button]:top-1">
+                      <DialogTitle className="sr-only">{alt}</DialogTitle>
+                      <DialogDescription className="sr-only">Enlarged screenshot of the press release.</DialogDescription>
+                      <img src={item.src} alt={alt} width={800} height={500} className="mt-10 block h-auto w-full rounded-md" />
+                    </DialogContent>
+                  </Dialog>
+                  <div className="flex flex-1 flex-col gap-1.5" style={{ padding: "16px" }}>
+                    <p className="flex items-center gap-2" style={{ fontSize: "13px" }}>
+                      <img src={icon.src} alt="" width={20} height={20} className="h-5 w-5 object-contain" />
+                      <span style={{ fontWeight: 600, color: INK }}>{item.publication}</span>
+                      <span style={{ color: MUTED }}>· Press release</span>
+                    </p>
+                    <p style={{ fontSize: "15px" }}>
+                      <span style={{ fontWeight: 600, color: INK }}>{item.winner.name}</span>
+                      <span style={{ color: MUTED }}> · {item.winner.company}</span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 const FAVICONS = [
   { src: "/usa-today-favicon.png", alt: "USA Today" },
   { src: apUserLogoAsset.url, alt: "The Associated Press" },
@@ -437,8 +502,10 @@ function WinnerFeatureV2Page() {
           </div>
         </section>
 
+        <PublishedSnippets />
+
         {/* HOW IT WORKS */}
-        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>How it works</h2>
             <ol className="mx-auto mt-8 flex w-fit flex-col md:w-full md:flex-row md:items-start">
@@ -461,7 +528,7 @@ function WinnerFeatureV2Page() {
         </section>
 
         {/* WHAT IT DOES FOR YOU */}
-        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What it does for you</h2>
             <div className="grid grid-cols-1 md:grid-cols-2" style={{ marginTop: "28px", gap: "20px" }}>
@@ -476,7 +543,7 @@ function WinnerFeatureV2Page() {
         </section>
 
         {/* WHAT YOU GET */}
-        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
+        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto max-w-[928px] px-6">
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>What you get</h2>
             <div
@@ -570,45 +637,8 @@ function WinnerFeatureV2Page() {
           </div>
         </section>
 
-        {/* AS SEEN IN USA TODAY */}
-        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
-          {/* 1480px max plus the 24px gutters, so the two 700px columns + 40px gap fit exactly */}
-          <div className="mx-auto max-w-[1528px] px-6">
-            <h2
-              className="text-center"
-              style={{ fontSize: "24px", fontWeight: 700, color: INK }}
-            >
-              As seen in USA Today
-            </h2>
-            <div className="mt-9 flex flex-col items-center justify-center gap-10 min-[1000px]:flex-row min-[1000px]:items-start">
-              {pressScreenshots.map((shot) => (
-                <img
-                  key={shot.alt}
-                  src={shot.src}
-                  srcSet={shot.srcSet}
-                  alt={shot.alt}
-                  width={1400}
-                  height={1060}
-                  loading="lazy"
-                  decoding="async"
-                  style={{
-                    width: "700px",
-                    minWidth: 0,
-                    maxWidth: "100%",
-                    height: "auto",
-                    display: "block",
-                    borderRadius: "12px",
-                    border: "1px solid #E5E5E5",
-                    boxShadow: "0 1px 2px rgba(16,27,45,.05), 0 14px 34px rgba(16,27,45,.08)",
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* 5. QUESTIONS */}
-        <section style={{ paddingTop: "56px", paddingBottom: "56px" }}>
+        <section style={{ backgroundColor: TINT, paddingTop: "56px", paddingBottom: "56px" }}>
           <div className="mx-auto px-6" style={{ maxWidth: "728px" }}>
             <h2 className="text-center" style={{ fontSize: "24px", fontWeight: 700, color: INK }}>
               Questions
