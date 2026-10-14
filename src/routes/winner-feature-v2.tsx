@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { FileText, Link, Newspaper, Search, ShieldCheck, Trophy } from "lucide-react";
+import { FileText, Link, Newspaper, ShieldCheck, Trophy } from "lucide-react";
 
 import { AWARD_YEAR } from "@/content/award";
 import { SiteNav } from "@/components/site-nav";
@@ -342,31 +342,16 @@ function PublishedSnippets() {
             return (
               <li key={item.slug} className="flex w-[85vw] shrink-0 snap-start md:w-auto">
                 <div className="flex w-full flex-col overflow-hidden bg-white" style={{ borderRadius: "12px", border: `1px solid ${LINE}` }}>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <button type="button" className="group relative block w-full cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-2px]" style={{ outlineColor: BRAND }} aria-label={`Enlarge: ${alt}`}>
-                        <img
-                          src={item.src}
-                          alt={alt}
-                          width={800}
-                          height={500}
-                          loading="eager"
-                          decoding="async"
-                          className="block w-full object-cover object-top"
-                          style={{ aspectRatio: "16 / 10", borderBottom: `1px solid ${LINE}` }}
-                        />
-                        <span className="absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-white/95 px-2 py-1 opacity-100 transition-opacity [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:opacity-100" style={{ fontSize: "12px", color: MUTED }}>
-                          <Search aria-hidden className="h-3 w-3" />
-                          Click to enlarge
-                        </span>
-                      </button>
-                    </DialogTrigger>
-                    <DialogContent className="w-[calc(100vw-32px)] max-w-[1000px] p-3 sm:p-4 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:rounded-full [&>button]:bg-background [&>button]:opacity-100 [&>button]:right-1 [&>button]:top-1">
-                      <DialogTitle className="sr-only">{alt}</DialogTitle>
-                      <DialogDescription className="sr-only">Enlarged screenshot of the press release.</DialogDescription>
-                      <img src={item.src} alt={alt} width={800} height={500} className="mt-10 block h-auto w-full rounded-md" />
-                    </DialogContent>
-                  </Dialog>
+                  <img
+                    src={item.src}
+                    alt={alt}
+                    width={800}
+                    height={500}
+                    loading="eager"
+                    decoding="async"
+                    className="block w-full object-cover object-top"
+                    style={{ aspectRatio: "16 / 10", borderBottom: `1px solid ${LINE}` }}
+                  />
                   <div className="flex flex-1 flex-col gap-1.5" style={{ padding: "16px" }}>
                     <p className="flex items-center gap-2" style={{ fontSize: "13px" }}>
                       <img src={icon.src} alt="" width={20} height={20} className="h-5 w-5 object-contain" />
