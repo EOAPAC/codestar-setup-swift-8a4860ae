@@ -91,7 +91,9 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
             </SheetContent>
           </Sheet>
         ) : !hideCTA ? (
-          <Button asChild size="sm">
+          // Fallback CTA for pages without a mobile menu: small screens only, so it
+          // never duplicates the CTA inside the md:flex nav group above.
+          <Button asChild size="sm" className="md:hidden">
             <a href="/#submit">Enter the {AWARD_YEAR} Awards</a>
           </Button>
         ) : null}
