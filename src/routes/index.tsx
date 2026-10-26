@@ -52,8 +52,6 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:image", content: heroTrophy.url },
-      { name: "twitter:image", content: heroTrophy.url },
     ],
   }),
   component: Index,
