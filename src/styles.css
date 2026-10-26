@@ -329,3 +329,33 @@
 .ea-hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Scoped to the homepage statistics strip. */
+.award-number {
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+.award-number:nth-child(2) { transition-delay: 80ms; }
+.award-number:nth-child(3) { transition-delay: 160ms; }
+.award-number:nth-child(4) { transition-delay: 240ms; }
+.award-numbers-waiting .award-number {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.award-numbers-visible .award-number {
+  opacity: 1;
+  transform: translateY(0);
+}
+.award-number:nth-child(n + 3) {
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 768px) {
+  .award-number:nth-child(n + 3) { border-top: 0; }
+  .award-number + .award-number { border-left: 1px solid var(--border); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .award-numbers-band .award-number {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

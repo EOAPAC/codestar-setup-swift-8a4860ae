@@ -11,3 +11,4 @@
 
 - The Winner's Feature preview and article overlay read the existing `FEATURES` data directly; keep this page's presentation local so other winner and offer pages remain unchanged.
 - Business-name personalization uses a browser-safe helper with tests for sanitization and placeholder replacement so URL input never becomes markup.
+- Keep homepage statistics in a dedicated browser-safe component with scoped styles and tested data/counting logic so its animation does not alter other page sections.

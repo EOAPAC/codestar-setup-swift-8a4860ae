@@ -30,6 +30,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
+import { AwardNumbers } from "@/components/award-numbers";
 import { ArrowUpRight } from "lucide-react";
 
 
@@ -43,6 +44,16 @@ import awardBand from "@/assets/award-band.jpg.asset.json";
 import winnerWords from "@/assets/winner-words.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Entrepreneur Awards — For the person who built it." },
+      { name: "description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
+      { property: "og:title", content: "Entrepreneur Awards — For the person who built it." },
+      { property: "og:description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
@@ -56,6 +67,7 @@ function Index() {
         <AwardBand />
         <WhatAWinIsWorth />
         <HowItWorks />
+        <AwardNumbers />
         <Criteria />
         <SpecimenCitation />
         <WhatItDoesNotDo />
