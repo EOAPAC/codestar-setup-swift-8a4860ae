@@ -87,15 +87,7 @@ function CriteriaPage() {
               How winners are <span>chosen</span>
             </h1>
             <div className="mt-3 space-y-3 text-[15px] leading-normal text-header-subtitle">
-              <p>
-                Entrepreneur Awards is an independent award for founders. Every entry in the {AWARD_YEAR} cycle is read
-                against the same three published criteria, in the same order, so each founder is assessed on the work
-                rather than the application.
-              </p>
-              <p>
-                There is one award and one standard. Most entries are not selected, and every founder receives a
-                decision within five business days, with the reason.
-              </p>
+              <p>Every {AWARD_YEAR} entry is read against the same three published criteria, in the same order.</p>
             </div>
             </div>
           </div>
@@ -107,7 +99,7 @@ function CriteriaPage() {
             <div className="mx-auto max-w-3xl">
               <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Three published criteria</h2>
               <p className="mt-3 text-muted-foreground">
-                Each is weighted equally, and each is read in the context of the founder's stage and industry.
+                There is one award and one standard. Each criterion is weighted equally and read in the context of the founder's stage and industry.
               </p>
             </div>
 
