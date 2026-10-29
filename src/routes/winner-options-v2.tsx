@@ -44,12 +44,12 @@ export const Route = createFileRoute("/winner-options-v2")({
 });
 
 // ------------------------------------------------------------- tokens
-const INK = "#0F172A";
-const BODY = "#52606D";
-const MUTED = "#6B7785";
-const BLUE = "#1978E5";
-const LINE = "#E5E9F0";
-const TINT = "#F7F9FC";
+const INK = "var(--foreground)";
+const BODY = "var(--muted-foreground)";
+const MUTED = "var(--muted-foreground)";
+const BLUE = "var(--primary)";
+const LINE = "var(--border)";
+const TINT = "var(--background)";
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";

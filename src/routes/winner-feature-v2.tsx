@@ -70,7 +70,7 @@ function WinnerFeatureNav() {
       containerClassName="max-w-[1360px]"
       compactCta={{
         href: BASE_LINK,
-        label: `Order — ${money(BASE_PRICE)}`,
+        label: `Order | ${money(BASE_PRICE)}`,
         className: "bg-[#1668C7] text-white hover:bg-[#1056A7] focus-visible:ring-[#1668C7]",
       }}
     />
@@ -80,12 +80,12 @@ function WinnerFeatureNav() {
 export const Route = createFileRoute("/winner-feature-v2")({
   head: () => ({
     meta: [
-      { title: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
+      { title: `The Winner's Feature | ${AWARD_YEAR} Entrepreneur Awards` },
       {
         name: "description",
         content: `We write the story of your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and announce it in USA Today, the Associated Press and Business Insider.`,
       },
-      { property: "og:title", content: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
+      { property: "og:title", content: `The Winner's Feature | ${AWARD_YEAR} Entrepreneur Awards` },
       {
         property: "og:description",
         content: `One story: your Feature on the Entrepreneur Awards winners page, announced in three national publications.`,
@@ -104,13 +104,13 @@ export const Route = createFileRoute("/winner-feature-v2")({
 });
 
 /* ----------------------------------------------------------------- tokens */
-const INK = "#0F172A";
-const BODY = "#52606D";
-const MUTED = "#6B7785";
-const BRAND = "#1668C7";
-const BRAND_DARK = "#1056A7";
-const LINE = "#E5E9F0";
-const TINT = "#F7F9FC";
+const INK = "var(--foreground)";
+const BODY = "var(--muted-foreground)";
+const MUTED = "var(--muted-foreground)";
+const BRAND = "var(--primary)";
+const BRAND_DARK = "var(--primary)";
+const LINE = "var(--border)";
+const TINT = "var(--background)";
 
 /* Every price on this page derives from these three constants. */
 const BASE_PRICE = 997;

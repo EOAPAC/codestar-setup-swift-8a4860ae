@@ -27,12 +27,12 @@ function SalesPageNav() {
 export const Route = createFileRoute("/salespage")({
   head: () => ({
     meta: [
-      { title: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
+      { title: `The Winner's Feature | ${AWARD_YEAR} Entrepreneur Awards` },
       {
         name: "description",
         content: `We write the story of your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and announce it in USA Today, the Associated Press and Business Insider.`,
       },
-      { property: "og:title", content: `The Winner's Feature — ${AWARD_YEAR} Entrepreneur Awards` },
+      { property: "og:title", content: `The Winner's Feature | ${AWARD_YEAR} Entrepreneur Awards` },
       {
         property: "og:description",
         content: `One story: your Feature on the Entrepreneur Awards winners page, announced in three national publications.`,
@@ -46,13 +46,13 @@ export const Route = createFileRoute("/salespage")({
 });
 
 /* ----------------------------------------------------------------- tokens */
-const INK = "#0F172A";
-const BODY = "#52606D";
-const MUTED = "#6B7785";
-const BRAND = "#1978E5";
-const BRAND_DARK = "#1565C4";
-const LINE = "#E5E9F0";
-const TINT = "#F7F9FC";
+const INK = "var(--foreground)";
+const BODY = "var(--muted-foreground)";
+const MUTED = "var(--muted-foreground)";
+const BRAND = "var(--primary)";
+const BRAND_DARK = "var(--primary)";
+const LINE = "var(--border)";
+const TINT = "var(--background)";
 
 /* Every price on this page derives from these three constants. */
 const BASE_PRICE = 997;

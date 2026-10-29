@@ -56,13 +56,13 @@ export const Route = createFileRoute("/winner-feature")({
 });
 
 /* ----------------------------------------------------------------- tokens */
-const INK = "#0F172A";
-const BODY = "#52606D";
-const MUTED = "#6B7785";
-const BRAND = "#1668C7";
-const BRAND_DARK = "#1056A7";
-const LINE = "#E5E9F0";
-const TINT = "#F7F9FC";
+const INK = "var(--foreground)";
+const BODY = "var(--muted-foreground)";
+const MUTED = "var(--muted-foreground)";
+const BRAND = "var(--primary)";
+const BRAND_DARK = "var(--primary)";
+const LINE = "var(--border)";
+const TINT = "var(--background)";
 
 /* Every price on this page derives from these three constants. */
 const BASE_PRICE = 997;

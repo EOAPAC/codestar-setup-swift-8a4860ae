@@ -433,3 +433,27 @@
   .newspaper-site .award-number dd { font-size: 32px; }
   .award-number dt { font-size: 11px; line-height: 1.5; }
 }
+
+.criteria-process { max-width: 680px; margin-top: 40px; }
+.criteria-process li { padding-block: 28px; border-top: 1px solid var(--border); }
+.criteria-process h3 { margin-bottom: 14px; }
+.faq-topics { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.faq-topics a { min-height: 44px; display: inline-flex; align-items: center; }
+.winner-directory li { border-bottom: 1px solid var(--border); }
+.winner-directory-entry { display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding-block: 36px; color: var(--foreground); }
+.winner-reference { display: flex; flex-direction: column; gap: 6px; font-family: ui-monospace, monospace; font-size: 13px; color: var(--muted-foreground); }
+.winner-company { margin-top: 8px; color: var(--muted-foreground); }
+.winner-category { margin-block: 20px 10px; color: var(--muted-foreground); font-size: 14px !important; }
+.newspaper-site main [style*="color:"] { color: var(--foreground) !important; }
+.newspaper-site main :is(p,dd)[style*="color:"] { color: var(--muted-foreground) !important; }
+.newspaper-site main [style*="background-color:"] { background-color: var(--background) !important; }
+.newspaper-site main [style*="background:"] { background: var(--background) !important; }
+.newspaper-site main a[style*="background-color: var(--primary)"], .newspaper-site main button[style*="background-color: var(--primary)"] { background: var(--primary) !important; color: var(--primary-foreground) !important; border-radius: 4px !important; }
+.newspaper-site main a:not([class*="bg-primary"]):not([style*="background-color: var(--primary)"]) { color: var(--primary); }
+.newspaper-site main [style*="box-shadow"] { box-shadow: none !important; }
+.newspaper-site main [style*="border-radius"] { border-radius: 0 !important; }
+.newspaper-site main [class*="grid"] > [style*="border:"] { border: 0 !important; }
+.newspaper-site [style*="max-width:"] { max-width: 1120px !important; }
+.newspaper-site main :is([class*="max-w-3xl"],article) { max-width: 728px; }
+.newspaper-site main [class*="grid"] > [class*="border"] { box-shadow: none !important; }
+@media (max-width: 639px) { .winner-directory-entry { grid-template-columns: 1fr; gap: 16px; } .winner-reference { flex-direction: row; gap: 20px; } }

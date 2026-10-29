@@ -19,12 +19,12 @@ import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: `Pricing — ${AWARD_YEAR} Entrepreneur Award` },
+      { title: `Pricing | ${AWARD_YEAR} Entrepreneur Award` },
       {
         name: "description",
         content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
       },
-      { property: "og:title", content: `Pricing — ${AWARD_YEAR} Entrepreneur Award` },
+      { property: "og:title", content: `Pricing | ${AWARD_YEAR} Entrepreneur Award` },
       {
         property: "og:description",
         content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
@@ -38,12 +38,12 @@ export const Route = createFileRoute("/pricing")({
 });
 
 // ------------------------------------------------------------- tokens
-const INK = "#0F172A";
-const BODY = "#52606D";
-const MUTED = "#6B7785";
-const BLUE = "#1978E5";
-const LINE = "#E5E9F0";
-const TINT = "#F7F9FC";
+const INK = "var(--foreground)";
+const BODY = "var(--muted-foreground)";
+const MUTED = "var(--muted-foreground)";
+const BLUE = "var(--primary)";
+const LINE = "var(--border)";
+const TINT = "var(--background)";
 
 const FEATURE_PRICE = 1595;
 const formatPrice = (n: number) => `$${n.toLocaleString()}`;
