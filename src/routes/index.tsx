@@ -285,7 +285,7 @@ function WhatAWinIsWorth() {
           </p>
         </div>
 
-        <div className="mt-12 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
+        <div className="mt-12 grid gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
           {winWorth.map((item, index) => (
             <Fragment key={item.title}>
               {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
@@ -770,7 +770,7 @@ function SubmissionForm() {
 
 function Contact() {
   return (
-    <section id="contact" className="border-t border-border bg-surface py-24">
+    <section id="contact" className="border-t border-border bg-surface py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6 text-center">
         <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
           Questions? Get in touch.
@@ -778,7 +778,7 @@ function Contact() {
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
           We reply to email within one business day.
         </p>
-        <div className="mt-8">
+        <div className="mt-12">
           <a
             href="mailto:hello@entrepreneurawards.co"
             className="text-lg font-medium text-primary underline underline-offset-4"
