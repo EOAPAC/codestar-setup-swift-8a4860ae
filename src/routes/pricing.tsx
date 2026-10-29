@@ -24,6 +24,7 @@ export const Route = createFileRoute("/pricing")({
         name: "description",
         content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
       },
+      { name: "twitter:description", content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.` },
       { property: "og:title", content: `Pricing | ${AWARD_YEAR} Entrepreneur Award` },
       {
         property: "og:description",

@@ -33,6 +33,7 @@ export const Route = createFileRoute("/winner-materials")({
         content:
           "Your award statement, certificate and included winner materials, plus the optional Winner's Feature.",
       },
+      { name: "twitter:description", content: "Your award statement, certificate and included winner materials, plus the optional Winner's Feature." },
       { property: "og:title", content: "Your Entrepreneur Award | Winner Materials" },
       {
         property: "og:description",

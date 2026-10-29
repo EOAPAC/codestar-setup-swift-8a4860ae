@@ -16,6 +16,7 @@ export const Route = createFileRoute("/your-award")({
         name: "description",
         content: `Download your ${AWARD_YEAR} Entrepreneur Award winner badge, banner, social graphics and email signature.`,
       },
+      { name: "twitter:description", content: `Download your ${AWARD_YEAR} Entrepreneur Award winner badge, banner, social graphics and email signature.` },
       { property: "og:title", content: `Your ${AWARD_YEAR} Entrepreneur Award` },
       {
         property: "og:description",

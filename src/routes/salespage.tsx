@@ -32,6 +32,7 @@ export const Route = createFileRoute("/salespage")({
         name: "description",
         content: `We write the story of your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and announce it in USA Today, the Associated Press and Business Insider.`,
       },
+      { name: "twitter:description", content: `We write the story of your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and announce it in USA Today, the Associated Press and Business Insider.` },
       { property: "og:title", content: `The Winner's Feature | ${AWARD_YEAR} Entrepreneur Awards` },
       {
         property: "og:description",

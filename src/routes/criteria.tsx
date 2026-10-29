@@ -14,7 +14,9 @@ export const Route = createFileRoute("/criteria")({
     meta: [
       { title: "Criteria | Entrepreneur Awards" },
       { name: "description", content: DESCRIPTION },
+      { name: "twitter:description", content: DESCRIPTION },
       { property: "og:title", content: "Criteria | Entrepreneur Awards" },
+      { name: "twitter:title", content: "Criteria | Entrepreneur Awards" },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -56,7 +58,7 @@ const criteria = [
   {
     icon: Lightbulb,
     title: "Originality",
-    body: "What the founder is building, why it matters, and what makes the approach their own. We look for judgment and clarity of direction rather than novelty for its own sake.",
+    body: "What the founder is building, why it matters, and what makes the approach their own. We look for judgment and clarity of direction.",
   },
   {
     icon: LineChart,
@@ -66,7 +68,7 @@ const criteria = [
   {
     icon: Trophy,
     title: "A standout achievement",
-    body: "One thing the founder did that a reasonable person would call hard. Built through a setback, solved under constraint, or delivered when the odds said otherwise.",
+    body: "One thing the founder did that a reasonable person would call hard. For example, recovering from a setback or delivering under tight constraints.",
   },
 ];
 
@@ -81,10 +83,7 @@ function CriteriaPage() {
           <div className="restored-page-header-shade" aria-hidden="true" />
           <div className="restored-page-header-content">
             <div className="restored-page-header-copy">
-            <span className="inline-flex items-center rounded-full border border-header-foreground/25 bg-transparent px-3 py-1 text-xs font-medium uppercase tracking-widest text-header-foreground">
-              Criteria
-            </span>
-            <h1 className="mt-3 text-[26px] font-semibold leading-tight text-header-foreground lg:text-[38px]">
+            <h1 className="text-[26px] font-semibold leading-tight text-header-foreground lg:text-[38px]">
               How winners are <span>chosen</span>
             </h1>
             <div className="mt-3 space-y-3 text-[15px] leading-normal text-header-subtitle">
@@ -106,7 +105,6 @@ function CriteriaPage() {
         <section className="py-24 md:py-32">
           <div className="mx-auto max-w-5xl px-6">
             <div className="mx-auto max-w-3xl">
-              <p className="text-sm font-medium uppercase tracking-widest text-primary">The standard</p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Three published criteria</h2>
               <p className="mt-3 text-muted-foreground">
                 Each is weighted equally, and each is read in the context of the founder's stage and industry.
@@ -142,7 +140,6 @@ function CriteriaPage() {
         {/* Review process */}
         <section className="border-t border-border bg-secondary/30 py-24 md:py-32">
           <div className="mx-auto max-w-3xl px-6">
-            <p className="text-sm font-medium uppercase tracking-widest text-primary">The process</p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">From entry to decision</h2>
             <p className="mt-3 text-muted-foreground">Four stages, applied the same way to every entry.</p>
 
@@ -163,7 +160,7 @@ function CriteriaPage() {
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-xs font-medium uppercase tracking-widest text-primary">
+                      <span className="text-xs font-medium text-primary">
                         Step {parseInt(s.n)} of {steps.length}
                       </span>
                       <span className="h-px flex-1 bg-border" />
@@ -179,8 +176,8 @@ function CriteriaPage() {
 
 
         <SiteCTA
-          eyebrow="Read against the same three criteria"
-          heading="Put your story forward."
+          eyebrow=""
+          heading="Enter the 2026 Awards."
           subheading="One entry, one standard, and a decision within five business days."
         />
       </main>

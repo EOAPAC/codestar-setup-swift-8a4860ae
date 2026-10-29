@@ -12,9 +12,8 @@ import { Button } from "@/components/ui/button";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
-import { SiteFigure } from "@/components/site-figure";
 
-import { HelpCircle, Mail, ArrowRight, Sparkles } from "lucide-react";
+import { Mail, ArrowRight, Sparkles } from "lucide-react";
 
 const topics = [
   { label: "Getting started", target: "q1" },
@@ -29,6 +28,7 @@ export const Route = createFileRoute("/faq")({
     meta: [
       { title: "FAQ | Entrepreneur Awards" },
       { name: "description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
+      { name: "twitter:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:title", content: "FAQ | Entrepreneur Awards" },
       { property: "og:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:type", content: "website" },
@@ -51,15 +51,11 @@ function FAQPage() {
           <div className="restored-page-header-shade" aria-hidden="true" />
           <div className="restored-page-header-content">
             <div className="restored-page-header-copy">
-            <span className="inline-flex items-center gap-2 rounded-full border border-header-foreground/25 bg-transparent px-3 py-1 text-xs font-medium text-header-foreground">
-              <HelpCircle className="h-3.5 w-3.5 text-header-foreground" />
-              FAQ
-            </span>
-            <h1 className="mt-3 text-[26px] font-semibold leading-tight text-header-foreground lg:text-[38px]">
+            <h1 className=" text-[26px] font-semibold leading-tight text-header-foreground lg:text-[38px]">
               Frequently Asked <span>Questions</span>
             </h1>
             <p className="mt-3 text-[15px] leading-normal text-header-subtitle">
-              Everything you need to know before putting your story forward.
+              Common questions about entering, judging and what winners receive.
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-2">
               {topics.map((t) => (
@@ -76,16 +72,6 @@ function FAQPage() {
               ))}
             </div>
             </div>
-          </div>
-        </section>
-
-        <section className="pt-16 md:pt-20">
-          <div className="mx-auto max-w-3xl px-6">
-            <SiteFigure
-              src="/images/ea-award-detail.webp"
-              alt="Close detail of the 2026 Entrepreneur Award, showing the winner seal etched into the crystal."
-              ratio="21 / 9"
-            />
           </div>
         </section>
 
@@ -232,7 +218,7 @@ function FAQPage() {
           </div>
         </section>
 
-        <SiteCTA />
+        <SiteCTA eyebrow="" heading="Enter the 2026 Awards." subheading="Every entry is read by founders and operators." />
       </main>
       <SiteFooter />
     </div>

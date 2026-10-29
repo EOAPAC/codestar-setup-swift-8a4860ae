@@ -37,6 +37,7 @@ export const Route = createFileRoute("/insights/$slug")({
       meta: [
         { title: seoTitle },
         { name: "description", content: metaDescription },
+        { name: "twitter:description", content: metaDescription },
         { property: "og:title", content: seoTitle },
         { property: "og:description", content: metaDescription },
         { property: "og:type", content: "article" },

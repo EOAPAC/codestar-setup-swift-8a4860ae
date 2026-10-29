@@ -30,6 +30,7 @@ export const Route = createFileRoute("/winners/")({
         content:
           "The permanent record of Entrepreneur Awards winners: founders recognised on the strength of what they have built.",
       },
+      { name: "twitter:description", content: "The permanent record of Entrepreneur Awards winners: founders recognised on the strength of what they have built." },
       { property: "og:title", content: "Entrepreneur Awards Winners" },
       {
         property: "og:description",
