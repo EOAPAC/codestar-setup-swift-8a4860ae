@@ -180,24 +180,8 @@ const publications: {
 ];
 
 
-const proofPoints = [
-  {
-    title: "Read against a published rubric",
-    body: "The same criteria, in the same order, for every entry. Nothing is assessed privately.",
-  },
-  {
-    title: "Five business days",
-    body: "A decision either way, with the reason it was reached, inside one working week.",
-  },
-  {
-    title: "Independently assessed",
-    body: "The judgment is made outside your business, by people with no stake in the outcome.",
-  },
-];
-
 function CredibilityBand() {
   return (
-    <>
       <section className="homepage-v2-press">
         <div className="homepage-v2-press-inner">
           <p className="homepage-v2-press-label">As seen in</p>
@@ -210,19 +194,6 @@ function CredibilityBand() {
           </div>
         </div>
       </section>
-      <section className="border-y border-border bg-surface py-20 md:py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mt-16 grid gap-10 md:grid-cols-3">
-            {proofPoints.map((point) => (
-              <div key={point.title} className="border-l-2 border-primary pl-5">
-                <h3 className="text-lg font-semibold">{point.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-muted-foreground">{point.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
   );
 }
 
@@ -232,7 +203,7 @@ function AwardBand() {
       <div className="homepage-v2-award-inner">
         <img
           src={awardBand.url}
-          alt={`A winner of the ${AWARD_YEAR} Entrepreneur Award holding the crystal award etched with the winner seal.`}
+          alt=""
           loading="eager"
           decoding="async"
           className="homepage-v2-award-photo"
@@ -266,7 +237,7 @@ function WhatAWinIsWorth() {
             What a win is worth to you.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-            Entrepreneur Awards recognises the founder. Selection puts an outside assessment of what you built in your own name, and it stays useful long after the year it was awarded.
+            Selection gives you an outside assessment of what you built, in your own name, and it stays useful long after the year it was awarded.
           </p>
         </div>
 
@@ -295,15 +266,15 @@ function WhatAWinIsWorth() {
 const criteria = [
   {
     title: "Originality",
-    body: "What was built, and whether it is meaningfully different from what already existed.",
+    body: "What you're building, why it matters and what makes your approach your own.",
   },
   {
     title: "Traction",
-    body: "Progress you can show: revenue, customers, users, adoption or another outcome you can evidence. Judged for the stage your business is at. There is no fixed threshold.",
+    body: "Real progress against your own goals: revenue, customers, adoption or results for the people you serve.",
   },
   {
     title: "A standout achievement",
-    body: "One specific thing you did that a comparable operator would not have. Name a single event and give the detail.",
+    body: "One thing you did that most people would call hard, told in detail.",
   },
 ];
 
@@ -314,11 +285,10 @@ function Criteria() {
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            The three criteria, in full.
+            The three criteria.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-            Every entry is read against these, in this order. There are no categories, so nothing is
-            selected by default.
+            Every entry is read against these three, in this order.
           </p>
         </div>
 
@@ -369,7 +339,7 @@ function SpecimenCitation() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.8fr_1fr]">
         <SiteFigure
           src={winnerWords.url}
-          alt={`A ${AWARD_YEAR} Entrepreneur Award winner holding the crystal award.`}
+          alt=""
           ratio="4 / 5"
           width={614}
           height={768}
@@ -387,7 +357,7 @@ function SpecimenCitation() {
               </div>
             </div>
             <p className="mt-6 text-[17px] leading-relaxed text-foreground">
-              A winner feature tells the story of what you built, with the panel's own words on why you were selected.
+              A winner feature is a published page about you and what you built.
             </p>
             <dl className="mt-6">
               {recordRows.map((row) => (
@@ -421,7 +391,7 @@ const doesNotDo = [
   },
   {
     title: "No categories",
-    body: "There are no sector awards, size brackets, or separate categories. Every entry is read against the same three criteria.",
+    body: "There are no sector awards, size brackets or separate categories, so nothing is selected by default.",
   },
   {
     title: "No membership",
@@ -464,7 +434,7 @@ const howItWorks = [
     title: "You enter",
     body: (
       <>
-        Four fields and three short questions. About five minutes. We assess what you built, so the writing doesn't need to be polished.
+        Four fields and three short questions. About five minutes. Plain answers are fine.
       </>
     ),
   },
