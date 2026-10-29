@@ -12,7 +12,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
 import { SiteFigure } from "@/components/site-figure";
 
-import { HelpCircle, Mail, ArrowRight, Sparkles } from "lucide-react";
+import { Mail, ArrowRight, Sparkles } from "lucide-react";
 
 const topics = [
   { label: "Getting started", target: "q1" },

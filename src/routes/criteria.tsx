@@ -102,23 +102,14 @@ function CriteriaPage() {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
-              {criteria.map((c) => {
-                const Icon = c.icon;
-                return (
-                  <div
-                    key={c.title}
-                    className="rounded-2xl border border-border bg-background p-6 transition-colors hover:border-primary/40"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-4 text-lg font-semibold tracking-tight">{c.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-                  </div>
-                );
-              })}
-            </div>
+            <dl className="mt-12 border-t border-border">
+              {criteria.map((c) => (
+                <div key={c.title} className="grid gap-2 border-b border-border py-6 md:grid-cols-[240px_1fr] md:gap-10">
+                  <dt className="font-bold">{c.title}</dt>
+                  <dd className="max-w-[680px] text-muted-foreground">{c.body}</dd>
+                </div>
+              ))}
+            </dl>
 
             <p className="mx-auto mt-12 max-w-3xl text-sm leading-relaxed text-muted-foreground">
               Scoring is rubric-based so founders across different sectors, stages, and geographies are compared on a
