@@ -59,7 +59,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground antialiased">
+    <div className="homepage-colour-restored min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
         <Hero />
@@ -198,7 +198,7 @@ function CredibilityBand() {
   return (
     <section className="border-y border-border bg-surface py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+        <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-primary">
           As seen in
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -280,7 +280,7 @@ function WhatAWinIsWorth() {
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             What a win is worth to you.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
             Entrepreneur Awards recognises the founder. Selection puts an outside assessment of what you built in your own name, and it stays useful long after the year it was awarded.
           </p>
         </div>
@@ -331,7 +331,7 @@ function Criteria() {
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             The three criteria, in full.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
             Every entry is read against these, in this order. There are no categories, so nothing is
             selected by default.
           </p>
@@ -734,7 +734,7 @@ function SubmissionForm() {
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             Enter the 2026 Awards.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
             Everything needed to assess the business is on this one page.
           </p>
         </div>
@@ -775,7 +775,7 @@ function Contact() {
         <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
           Questions? Get in touch.
         </h2>
-        <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+        <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
           We reply to email within one business day.
         </p>
         <div className="mt-8">

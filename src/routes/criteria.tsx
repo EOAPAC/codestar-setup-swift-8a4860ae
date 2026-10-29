@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
+import winnersHeroAsset from "@/assets/winners-hero-trophy.jpg.asset.json";
 import { AWARD_YEAR } from "@/content/award";
 import { FileText, ClipboardCheck, Users, Award, Lightbulb, LineChart, Trophy } from "lucide-react";
 
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/criteria")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: winnersHeroAsset.url },
+      { name: "twitter:image", content: winnersHeroAsset.url },
     ],
   }),
   component: CriteriaPage,
@@ -69,23 +72,22 @@ const criteria = [
 
 function CriteriaPage() {
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground antialiased">
+    <div className="criteria-colour-restored min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden border-b border-border">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/18),transparent_70%)]"
-          />
-          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <span className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
+        <section className="restored-page-header">
+          <img src={winnersHeroAsset.url} alt="" aria-hidden="true" className="restored-page-header-image" />
+          <div className="restored-page-header-shade" aria-hidden="true" />
+          <div className="restored-page-header-content">
+            <div className="restored-page-header-copy">
+            <span className="inline-flex items-center rounded-full border border-header-foreground/25 bg-transparent px-3 py-1 text-xs font-medium uppercase tracking-widest text-header-foreground">
               Criteria
             </span>
-            <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">
-              How winners are <span className="text-primary">chosen</span>
+            <h1 className="mt-3 text-[26px] font-semibold leading-tight text-header-foreground lg:text-[38px]">
+              How winners are <span>chosen</span>
             </h1>
-            <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
+            <div className="mt-3 space-y-3 text-[15px] leading-normal text-header-subtitle">
               <p>
                 Entrepreneur Awards is an independent award for founders. Every entry in the {AWARD_YEAR} cycle is read
                 against the same three published criteria, in the same order, so each founder is assessed on the work
@@ -95,6 +97,7 @@ function CriteriaPage() {
                 There is one award and one standard. Most entries are not selected, and every founder receives a
                 decision within five business days, with the reason.
               </p>
+            </div>
             </div>
           </div>
         </section>

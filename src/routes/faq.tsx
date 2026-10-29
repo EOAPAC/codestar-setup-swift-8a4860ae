@@ -1,3 +1,5 @@
+import { useState } from "react";
+import winnersHeroAsset from "@/assets/winners-hero-trophy.jpg.asset.json";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Accordion,
@@ -31,42 +33,48 @@ export const Route = createFileRoute("/faq")({
       { property: "og:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: winnersHeroAsset.url },
+      { name: "twitter:image", content: winnersHeroAsset.url },
     ],
   }),
   component: FAQPage,
 });
 
 function FAQPage() {
+  const [selectedTopic, setSelectedTopic] = useState("q1");
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground antialiased">
+    <div className="faq-colour-restored min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
-        <section className="relative overflow-hidden border-b border-border">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
-          />
-          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
-              <HelpCircle className="h-3.5 w-3.5 text-primary" />
+        <section className="restored-page-header">
+          <img src={winnersHeroAsset.url} alt="" aria-hidden="true" className="restored-page-header-image" />
+          <div className="restored-page-header-shade" aria-hidden="true" />
+          <div className="restored-page-header-content">
+            <div className="restored-page-header-copy">
+            <span className="inline-flex items-center gap-2 rounded-full border border-header-foreground/25 bg-transparent px-3 py-1 text-xs font-medium text-header-foreground">
+              <HelpCircle className="h-3.5 w-3.5 text-header-foreground" />
               FAQ
             </span>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
-              Frequently Asked <span className="text-primary">Questions</span>
+            <h1 className="mt-3 text-[26px] font-semibold leading-tight text-header-foreground lg:text-[38px]">
+              Frequently Asked <span>Questions</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-3 text-[15px] leading-normal text-header-subtitle">
               Everything you need to know before putting your story forward.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <div className="mt-5 flex flex-wrap items-center gap-2">
               {topics.map((t) => (
-                <a
+                <Button
                   key={t.target}
-                  href={`#${t.target}`}
-                  className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                  asChild
+                  variant="outline"
+                  className={`faq-header-topic ${selectedTopic === t.target ? "faq-header-topic-selected" : ""}`}
                 >
-                  {t.label}
-                </a>
+                  <a href={`#${t.target}`} onClick={() => setSelectedTopic(t.target)} aria-current={selectedTopic === t.target ? "true" : undefined}>
+                    {t.label}
+                  </a>
+                </Button>
               ))}
+            </div>
             </div>
           </div>
         </section>
