@@ -5,14 +5,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
 import { SiteFigure } from "@/components/site-figure";
 
-import { HelpCircle, Mail, ArrowRight, Sparkles } from "lucide-react";
 
 const topics = [
   { label: "Getting started", target: "q1" },
@@ -182,31 +179,16 @@ function FAQPage() {
               </Accordion>
             </div>
 
-            <Card className="mt-10 flex flex-col items-start gap-6 border-primary/20 bg-primary/5 p-8 md:flex-row md:items-center md:justify-between">
-              <div className="flex items-start gap-4">
-                <span className="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <Sparkles className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold">Still have a question?</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    Our team usually replies within one business day.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild variant="outline">
-                  <a href="mailto:hello@entrepreneurawards.co">
-                    <Mail className="mr-2 h-4 w-4" /> Email us
-                  </a>
-                </Button>
-                <Button asChild>
-                  <a href="/#submit">
-                    Start Your Entry <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </div>
-            </Card>
+            <div className="mt-12 max-w-[680px] border-t border-border pt-8">
+              <h3 className="text-xl font-bold">Still have a question?</h3>
+              <p className="mt-2 text-muted-foreground">
+                Our team usually replies within one business day.{" "}
+                <a href="mailto:hello@entrepreneurawards.co" className="font-medium text-primary underline underline-offset-4">
+                  Email us
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </section>
 
