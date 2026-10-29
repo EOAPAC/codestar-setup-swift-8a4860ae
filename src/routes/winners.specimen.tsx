@@ -18,6 +18,7 @@ export const Route = createFileRoute("/winners/specimen")({
         content:
           "A format specimen showing the length, structure and voice of an Entrepreneur Awards Winner's Feature. The business described is not a real recipient.",
       },
+      { name: "twitter:description", content: "A format specimen showing the length, structure and voice of an Entrepreneur Awards Winner's Feature. The business described is not a real recipient." },
       { name: "robots", content: "noindex, nofollow" },
       { property: "og:title", content: "Winner's Feature | format specimen" },
       {

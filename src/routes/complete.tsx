@@ -23,6 +23,7 @@ export const Route = createFileRoute("/complete")({
         content:
           "A one-time entry fee completes your application for the 2026 Entrepreneur Awards.",
       },
+      { name: "twitter:description", content: "A one-time entry fee completes your application for the 2026 Entrepreneur Awards." },
       {
         property: "og:title",
         content: "Complete Your Entry | Entrepreneur Awards",

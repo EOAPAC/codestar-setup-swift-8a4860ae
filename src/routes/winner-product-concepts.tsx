@@ -20,6 +20,7 @@ export const Route = createFileRoute("/winner-product-concepts")({
         content:
           "Internal working comparison of two possible post-win products for the Entrepreneur Awards.",
       },
+      { name: "twitter:description", content: "Internal working comparison of two possible post-win products for the Entrepreneur Awards." },
       { property: "og:title", content: "Winner Product Concepts | Internal comparison" },
       {
         property: "og:description",

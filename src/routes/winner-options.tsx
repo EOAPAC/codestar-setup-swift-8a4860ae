@@ -23,6 +23,7 @@ export const Route = createFileRoute("/winner-options")({
         name: "description",
         content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
       },
+      { name: "twitter:description", content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.` },
       { property: "og:title", content: `You won a ${AWARD_YEAR} Entrepreneur Award` },
       {
         property: "og:description",

@@ -10,6 +10,7 @@ export const Route = createFileRoute("/terms-and-conditions")({
         content:
           "The terms governing entry, winner packages and badge licensing for the Entrepreneur Awards.",
       },
+      { name: "twitter:description", content: "The terms governing entry, winner packages and badge licensing for the Entrepreneur Awards." },
       { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Terms and Conditions | Entrepreneur Awards" },
       {

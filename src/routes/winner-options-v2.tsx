@@ -29,6 +29,7 @@ export const Route = createFileRoute("/winner-options-v2")({
         content:
           "Download your winner seal and graphics, and see the two optional additions available to Entrepreneur Award winners.",
       },
+      { name: "twitter:description", content: "Download your winner seal and graphics, and see the two optional additions available to Entrepreneur Award winners." },
       { property: "og:title", content: "Your Winner Materials | Entrepreneur Awards" },
       {
         property: "og:description",

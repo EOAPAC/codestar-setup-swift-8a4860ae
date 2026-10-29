@@ -37,6 +37,7 @@ export const Route = createFileRoute("/winner-feature")({
         name: "description",
         content: `We write a Feature article about your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and place a press release in USA Today, the Associated Press and Business Insider.`,
       },
+      { name: "twitter:description", content: `We write a Feature article about your ${AWARD_YEAR} Entrepreneur Awards win, publish it on the winners page and place a press release in USA Today, the Associated Press and Business Insider.` },
       { property: "og:title", content: `The Winner's Feature | ${AWARD_YEAR} Entrepreneur Awards` },
       {
         property: "og:description",

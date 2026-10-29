@@ -43,6 +43,7 @@ export const Route = createFileRoute("/winner-resources/$token")({
         content:
           "Celebrate your 2026 Entrepreneur Award. Download your winner assets and make your recognition official with a published feature and keepsake award.",
       },
+      { name: "twitter:description", content: "Celebrate your 2026 Entrepreneur Award. Download your winner assets and make your recognition official with a published feature and keepsake award." },
       { property: "og:title", content: "Your Winner Resources | Entrepreneur Awards" },
       {
         property: "og:description",
