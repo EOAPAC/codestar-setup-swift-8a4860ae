@@ -385,9 +385,6 @@ function SpecimenCitation() {
                 <img src={eaMark.url} alt="" width={24} height={24} className="h-6 w-6" />
                 <span className="whitespace-nowrap text-sm font-semibold">Entrepreneur Awards</span>
               </div>
-              <span className="whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-[#1978E5]">
-                Winner feature
-              </span>
             </div>
             <p className="mt-6 text-[17px] leading-relaxed text-foreground">
               A winner feature tells the story of what you built, with the panel's own words on why you were selected.
