@@ -54,9 +54,9 @@ export function AwardNumbers() {
   }, []);
 
   return (
-    <section ref={sectionRef} aria-labelledby="award-numbers-heading" className="award-numbers-band bg-linear-to-b from-surface to-background py-16 font-sans md:py-20">
+    <section ref={sectionRef} aria-labelledby="award-numbers-heading" className="award-numbers-band bg-primary text-primary-foreground py-16 font-sans md:py-20">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 id="award-numbers-heading" className="text-center text-xs font-medium uppercase tracking-[0.12em] text-primary">
+        <h2 id="award-numbers-heading" className="text-center text-[32px] font-semibold leading-tight text-primary-foreground">
           The award in numbers
         </h2>
         <dl className={`award-numbers-grid mt-10 grid grid-cols-2 md:grid-cols-4 ${visible ? "award-numbers-visible" : "award-numbers-waiting"}`}>
@@ -64,11 +64,11 @@ export function AwardNumbers() {
             const Icon = ICONS[index];
             return (
               <div key={stat.label} className="award-number flex flex-col items-center px-4 py-7 text-center md:py-2">
-                <div className="mb-4 flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <div className="mb-4 flex size-11 items-center justify-center rounded-full bg-primary-foreground/10 text-primary-foreground">
                   {Icon && <Icon className="size-5" strokeWidth={1.75} aria-hidden="true" />}
                 </div>
-                <dt className="order-2 mt-3 text-sm leading-relaxed text-muted-foreground">{stat.label}</dt>
-                <dd className="text-4xl font-semibold tabular-nums text-foreground md:text-5xl">
+                <dt className="order-2 mt-3 text-sm leading-relaxed text-primary-foreground">{stat.label}</dt>
+                <dd className="text-4xl font-semibold tabular-nums text-primary-foreground md:text-5xl">
                   <span className="sr-only">{stat.prefix}{stat.value}</span>
                   <span aria-hidden="true">{stat.prefix}{elapsed === null ? stat.value : countAwardNumber(stat.value, elapsed, index * STAGGER_MS)}</span>
                 </dd>
