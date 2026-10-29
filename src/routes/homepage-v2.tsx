@@ -49,6 +49,7 @@ export const Route = createFileRoute("/homepage-v2")({
     meta: [
       { title: "Entrepreneur Awards | Homepage v2" },
       { name: "description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
+      { name: "twitter:description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
       { property: "og:title", content: "Entrepreneur Awards | Homepage v2" },
       { property: "og:description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
       { property: "og:type", content: "website" },

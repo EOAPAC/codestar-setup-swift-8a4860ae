@@ -17,6 +17,7 @@ export const Route = createFileRoute("/thank-you")({
     meta: [
       { title: "Thank You | Entry Received | Entrepreneur Awards" },
       { name: "description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
+      { name: "twitter:description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
       { property: "og:title", content: "Thank You | Entry Received | Entrepreneur Awards" },
       { property: "og:description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
       { property: "og:type", content: "website" },

@@ -11,6 +11,7 @@ export const Route = createFileRoute("/insights/")({
     meta: [
       { title: "Insights | Entrepreneur Awards" },
       { name: "description", content: STANDFIRST },
+      { name: "twitter:description", content: STANDFIRST },
       { property: "og:title", content: "Insights | Entrepreneur Awards" },
       { property: "og:description", content: STANDFIRST },
       { property: "og:type", content: "website" },

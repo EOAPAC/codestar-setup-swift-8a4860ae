@@ -28,6 +28,7 @@ export const Route = createFileRoute("/winners/$slug")({
       meta: [
         { title: feature.headline },
         { name: "description", content: description },
+        { name: "twitter:description", content: description },
         { property: "og:title", content: feature.headline },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },

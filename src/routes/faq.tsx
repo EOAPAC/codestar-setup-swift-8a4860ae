@@ -29,6 +29,7 @@ export const Route = createFileRoute("/faq")({
     meta: [
       { title: "FAQ | Entrepreneur Awards" },
       { name: "description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
+      { name: "twitter:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:title", content: "FAQ | Entrepreneur Awards" },
       { property: "og:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:type", content: "website" },
