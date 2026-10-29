@@ -14,6 +14,7 @@ import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as CriteriaRouteImport } from './routes/criteria'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as HomepageV2RouteImport } from './routes/homepage-v2'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -60,6 +61,11 @@ const CriteriaRoute = CriteriaRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomepageV2Route = HomepageV2RouteImport.update({
+  id: '/homepage-v2',
+  path: '/homepage-v2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
@@ -179,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
+  '/homepage-v2': typeof HomepageV2Route
   '/how-it-works': typeof HowItWorksRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
@@ -208,6 +215,7 @@ export interface FileRoutesByTo {
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
+  '/homepage-v2': typeof HomepageV2Route
   '/how-it-works': typeof HowItWorksRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
@@ -238,6 +246,7 @@ export interface FileRoutesById {
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
+  '/homepage-v2': typeof HomepageV2Route
   '/how-it-works': typeof HowItWorksRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRouteWithChildren
@@ -269,6 +278,7 @@ export interface FileRouteTypes {
     | '/complete'
     | '/criteria'
     | '/faq'
+    | '/homepage-v2'
     | '/how-it-works'
     | '/methodology'
     | '/pricing'
@@ -298,6 +308,7 @@ export interface FileRouteTypes {
     | '/complete'
     | '/criteria'
     | '/faq'
+    | '/homepage-v2'
     | '/how-it-works'
     | '/methodology'
     | '/pricing'
@@ -327,6 +338,7 @@ export interface FileRouteTypes {
     | '/complete'
     | '/criteria'
     | '/faq'
+    | '/homepage-v2'
     | '/how-it-works'
     | '/methodology'
     | '/pricing'
@@ -357,6 +369,7 @@ export interface RootRouteChildren {
   CompleteRoute: typeof CompleteRoute
   CriteriaRoute: typeof CriteriaRoute
   FaqRoute: typeof FaqRoute
+  HomepageV2Route: typeof HomepageV2Route
   HowItWorksRoute: typeof HowItWorksRoute
   MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRouteWithChildren
@@ -415,6 +428,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homepage-v2': {
+      id: '/homepage-v2'
+      path: '/homepage-v2'
+      fullPath: '/homepage-v2'
+      preLoaderRoute: typeof HomepageV2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/how-it-works': {
@@ -591,6 +611,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompleteRoute: CompleteRoute,
   CriteriaRoute: CriteriaRoute,
   FaqRoute: FaqRoute,
+  HomepageV2Route: HomepageV2Route,
   HowItWorksRoute: HowItWorksRoute,
   MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRouteWithChildren,
