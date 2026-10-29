@@ -32,6 +32,10 @@
   --radius-4xl: calc(var(--radius) + 16px);
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-intro-foreground: var(--intro-foreground);
+  --color-header-background: var(--header-background);
+  --color-header-foreground: var(--header-foreground);
+  --color-header-subtitle: var(--header-subtitle);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -71,6 +75,10 @@
   --background: oklch(1 0 0);
   /* Tinted band surface used to group alternating homepage sections. */
   --surface: oklch(0.982 0.004 247.9);
+  --intro-foreground: oklch(0.446 0.043 257.281);
+  --header-background: #0B1521;
+  --header-foreground: #ffffff;
+  --header-subtitle: rgb(255 255 255 / 65%);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -346,11 +354,11 @@
   transform: translateY(0);
 }
 .award-number:nth-child(n + 3) {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid color-mix(in srgb, var(--primary-foreground) 25%, transparent);
 }
 @media (min-width: 768px) {
   .award-number:nth-child(n + 3) { border-top: 0; }
-  .award-number + .award-number { border-left: 1px solid var(--border); }
+  .award-number + .award-number { border-left: 1px solid color-mix(in srgb, var(--primary-foreground) 25%, transparent); }
 }
 @media (prefers-reduced-motion: reduce) {
   .award-numbers-band .award-number {
@@ -358,4 +366,85 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* Colour restoration is scoped to the three requested pages. */
+.homepage-colour-restored main section h2::before,
+.criteria-colour-restored main section:not(.restored-page-header) h2::before,
+.faq-colour-restored main > section:last-child h2::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin-bottom: 20px;
+  background: var(--primary);
+}
+.homepage-colour-restored .text-center h2::before,
+.criteria-colour-restored .text-center h2::before,
+.faq-colour-restored .text-center h2::before {
+  margin-inline: auto;
+}
+.homepage-colour-restored #award-numbers-heading::before { content: none; }
+
+.restored-page-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 240px;
+  overflow: hidden;
+  background: var(--header-background);
+}
+.restored-page-header-image {
+  position: absolute;
+  top: 50%;
+  right: 38%;
+  transform: translate(50%, -50%);
+  height: 130%;
+  width: auto;
+  max-width: none;
+  pointer-events: none;
+}
+.restored-page-header-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, color-mix(in srgb, var(--header-background) 90%, transparent) 0%, color-mix(in srgb, var(--header-background) 75%, transparent) 32%, color-mix(in srgb, var(--header-background) 30%, transparent) 55%, transparent 72%);
+  pointer-events: none;
+}
+.restored-page-header-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+.restored-page-header-copy { max-width: 460px; }
+.faq-header-topic {
+  min-height: 44px;
+  border: 1px solid var(--header-foreground);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--header-foreground);
+  padding-inline: 12px;
+  font-size: 12px;
+  box-shadow: none;
+}
+.faq-header-topic:hover,
+.faq-header-topic-selected {
+  background: var(--header-foreground);
+  color: var(--header-background);
+}
+@media (min-width: 768px) {
+  .restored-page-header { height: 320px; }
+}
+@media (min-width: 1024px) {
+  .restored-page-header { height: 400px; }
+}
+@media (max-width: 767px) {
+  .restored-page-header-image { display: none; }
+  .restored-page-header-copy { max-width: none; }
+  .criteria-colour-restored .restored-page-header-copy > span,
+  .faq-colour-restored .restored-page-header-copy > span { display: none; }
+  .criteria-colour-restored .restored-page-header-copy > div { margin-top: 8px; }
+  .criteria-colour-restored .restored-page-header-copy > div p { line-height: 1.4; }
 }
