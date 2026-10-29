@@ -141,6 +141,15 @@
 }
 
 @layer base {
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   * {
     border-color: var(--color-border);
   }
