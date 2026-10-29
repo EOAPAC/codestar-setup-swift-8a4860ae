@@ -1,5 +1,10 @@
 # Roadmap
 
+## Current
+- [ ] Restore the specified homepage colour and contrast.
+- [ ] Match Criteria and FAQ headers to the Winners trophy header and restyle FAQ topics.
+- [ ] Check public pages at 1440, 1024, 768 and 390px, preserving unrelated content.
+
 ## Done
 - [x] Create `/your-award` page from the free portion of `/pricing`
 - [x] Redirect `/salespage` to `/your-award`
