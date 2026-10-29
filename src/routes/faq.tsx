@@ -25,9 +25,9 @@ const topics = [
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — Entrepreneur Awards" },
+      { title: "FAQ | Entrepreneur Awards" },
       { name: "description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
-      { property: "og:title", content: "FAQ — Entrepreneur Awards" },
+      { property: "og:title", content: "FAQ | Entrepreneur Awards" },
       { property: "og:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -41,33 +41,19 @@ function FAQPage() {
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
-        <section className="relative overflow-hidden border-b border-border">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
-          />
-          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
-              <HelpCircle className="h-3.5 w-3.5 text-primary" />
-              FAQ
-            </span>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
-              Frequently Asked <span className="text-primary">Questions</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-[1120px] px-6 pt-20 pb-16 md:pt-28 md:pb-20">
+            <h1 className="text-5xl font-extrabold tracking-[-0.02em] md:text-6xl">Frequently asked questions</h1>
+            <p className="mt-6 max-w-[680px] text-xl leading-relaxed text-muted-foreground">
               Everything you need to know before putting your story forward.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <nav aria-label="FAQ topics" className="mt-8 flex flex-wrap gap-x-6">
               {topics.map((t) => (
-                <a
-                  key={t.target}
-                  href={`#${t.target}`}
-                  className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
-                >
+                <a key={t.target} href={`#${t.target}`} className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
                   {t.label}
                 </a>
               ))}
-            </div>
+            </nav>
           </div>
         </section>
 
