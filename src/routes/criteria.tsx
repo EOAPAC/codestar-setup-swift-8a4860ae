@@ -11,9 +11,9 @@ const DESCRIPTION =
 export const Route = createFileRoute("/criteria")({
   head: () => ({
     meta: [
-      { title: "Criteria — Entrepreneur Awards" },
+      { title: "Criteria | Entrepreneur Awards" },
       { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Criteria — Entrepreneur Awards" },
+      { property: "og:title", content: "Criteria | Entrepreneur Awards" },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -74,16 +74,9 @@ function CriteriaPage() {
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden border-b border-border">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/18),transparent_70%)]"
-          />
-          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <span className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
-              Criteria
-            </span>
+          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 md:pt-32 md:pb-20">
             <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">
-              How winners are <span className="text-primary">chosen</span>
+              How winners are chosen
             </h1>
             <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
               <p>
@@ -103,30 +96,20 @@ function CriteriaPage() {
         <section className="py-24 md:py-32">
           <div className="mx-auto max-w-5xl px-6">
             <div className="mx-auto max-w-3xl">
-              <p className="text-sm font-medium uppercase tracking-widest text-primary">The standard</p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Three published criteria</h2>
               <p className="mt-3 text-muted-foreground">
                 Each is weighted equally, and each is read in the context of the founder's stage and industry.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
-              {criteria.map((c) => {
-                const Icon = c.icon;
-                return (
-                  <div
-                    key={c.title}
-                    className="rounded-2xl border border-border bg-background p-6 transition-colors hover:border-primary/40"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-4 text-lg font-semibold tracking-tight">{c.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-                  </div>
-                );
-              })}
-            </div>
+            <dl className="mt-12 border-t border-border">
+              {criteria.map((c) => (
+                <div key={c.title} className="grid gap-2 border-b border-border py-6 md:grid-cols-[240px_1fr] md:gap-10">
+                  <dt className="font-bold">{c.title}</dt>
+                  <dd className="max-w-[680px] text-muted-foreground">{c.body}</dd>
+                </div>
+              ))}
+            </dl>
 
             <p className="mx-auto mt-12 max-w-3xl text-sm leading-relaxed text-muted-foreground">
               Scoring is rubric-based so founders across different sectors, stages, and geographies are compared on a
@@ -137,28 +120,15 @@ function CriteriaPage() {
         </section>
 
         {/* Review process */}
-        <section className="border-t border-border bg-secondary/30 py-24 md:py-32">
+        <section className="border-t border-border py-24 md:py-32">
           <div className="mx-auto max-w-3xl px-6">
-            <p className="text-sm font-medium uppercase tracking-widest text-primary">The process</p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">From entry to decision</h2>
             <p className="mt-3 text-muted-foreground">Four stages, applied the same way to every entry.</p>
 
             <ol className="relative mt-14 space-y-12">
-              <div
-                aria-hidden
-                className="absolute left-6 top-2 bottom-2 hidden w-px md:block"
-                style={{
-                  background:
-                    "linear-gradient(to bottom, color-mix(in oklab, var(--color-primary) 40%, transparent), color-mix(in oklab, var(--color-primary) 5%, transparent))",
-                }}
-              />
               {steps.map((s) => {
-                const Icon = s.icon;
-                return (
-                  <li key={s.n} className="relative md:pl-20">
-                    <div className="absolute left-0 top-0 hidden h-12 w-12 items-center justify-center rounded-full border border-border bg-background shadow-sm md:flex">
-                      <Icon className="h-5 w-5 text-primary" />
-                    </div>
+                                return (
+                  <li key={s.n} className="relative">
                     <div className="flex items-center gap-3">
                       <span className="text-xs font-medium uppercase tracking-widest text-primary">
                         Step {parseInt(s.n)} of {steps.length}
