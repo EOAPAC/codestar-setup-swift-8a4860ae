@@ -13,8 +13,8 @@ export function SiteCTA({
   return (
     <section className="border-t border-border bg-secondary/30 py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <p className="text-sm font-medium uppercase tracking-widest text-primary">{eyebrow}</p>
-        <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">{heading}</h2>
+        {eyebrow ? <p className="text-sm font-medium uppercase tracking-widest text-primary">{eyebrow}</p> : null}
+        <h2 -semibold tracking-tight md:text-5xl">{heading}</h2>
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">{subheading}</p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button asChild size="lg" className="min-w-48">
