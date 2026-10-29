@@ -521,7 +521,11 @@ function SubmissionForm() {
       const btn = form.querySelector<HTMLInputElement | HTMLButtonElement>(
         'input[type="submit"], button[type="submit"]'
       );
-      if (btn) btn.disabled = false;
+      if (btn) {
+        btn.disabled = false;
+        if (btn instanceof HTMLInputElement) btn.value = "Submit entry";
+        else btn.textContent = "Submit entry";
+      }
     };
 
     formContainer?.addEventListener("submit", handleServerSubmit, true);

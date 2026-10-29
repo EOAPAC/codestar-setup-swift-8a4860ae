@@ -3,7 +3,7 @@
 @import "tw-animate-css";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Libre Franklin", ui-sans-serif, system-ui, sans-serif;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -67,27 +67,30 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.375rem;
   --background: oklch(1 0 0);
-  /* Tinted band surface used to group alternating homepage sections. */
-  --surface: oklch(0.982 0.004 247.9);
-  --foreground: oklch(0.129 0.042 264.695);
+  /* No tinted bands: surface matches the page. */
+  --surface: oklch(1 0 0);
+  /* Ink #111111 */
+  --foreground: oklch(0.178 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.178 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
+  --popover-foreground: oklch(0.178 0 0);
   --primary: oklch(0.588 0.187 258);
   --primary-foreground: oklch(0.99 0 0);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  /* Muted text #5F5B55 */
+  --muted-foreground: oklch(0.464 0.011 70);
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
+  /* Rules #E2E0DB */
+  --border: oklch(0.907 0.007 84);
+  --input: oklch(0.82 0.007 84);
   --ring: oklch(0.704 0.04 256.788);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -148,6 +151,16 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 }
 
@@ -330,32 +343,11 @@
   display: none;
 }
 
-/* Scoped to the homepage statistics strip. */
-.award-number {
-  transition: opacity 600ms ease-out, transform 600ms ease-out;
-}
-.award-number:nth-child(2) { transition-delay: 80ms; }
-.award-number:nth-child(3) { transition-delay: 160ms; }
-.award-number:nth-child(4) { transition-delay: 240ms; }
-.award-numbers-waiting .award-number {
-  opacity: 0;
-  transform: translateY(12px);
-}
-.award-numbers-visible .award-number {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Homepage statistics: one row of numerals divided by thin vertical rules. */
 .award-number:nth-child(n + 3) {
   border-top: 1px solid var(--border);
 }
 @media (min-width: 768px) {
   .award-number:nth-child(n + 3) { border-top: 0; }
   .award-number + .award-number { border-left: 1px solid var(--border); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .award-numbers-band .award-number {
-    transition: none;
-    opacity: 1;
-    transform: none;
-  }
 }

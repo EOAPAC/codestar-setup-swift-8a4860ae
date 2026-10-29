@@ -8,15 +8,18 @@ export function SiteFooter({ statementClassName = "" }: { statementClassName?: s
         <p className={`text-center ${statementClassName}`}>
           Every {AWARD_YEAR} entry is read against the same three published criteria.
         </p>
-
-
+        <p className="text-center">
+          Questions?{" "}
+          <a href="mailto:hello@entrepreneurawards.co" className="text-primary underline underline-offset-4">hello@entrepreneurawards.co</a>
+          . We reply within one business day.
+        </p>
 
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link to="/criteria" className="hover:text-foreground">Criteria</Link>
           <Link to="/faq" className="hover:text-foreground">FAQ</Link>
           <Link to="/terms-and-conditions" className="hover:text-foreground">Terms and Conditions</Link>
           <a href="/#submit" className="hover:text-foreground">Enter</a>
-          <a href="/#contact" className="hover:text-foreground">Contact</a>
+          <a href="mailto:hello@entrepreneurawards.co" className="hover:text-foreground">Contact</a>
         </nav>
 
         {/* Legal footprint. Fill these three lines in. */}
