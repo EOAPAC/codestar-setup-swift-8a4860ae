@@ -31,7 +31,7 @@ import { Card } from "@/components/ui/card";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { AwardNumbers } from "@/components/award-numbers";
-import homepageV2Css from "../homepage-v2.css?url";
+import { ArrowUpRight } from "lucide-react";
 
 
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
@@ -42,7 +42,6 @@ import { SiteFigure } from "@/components/site-figure";
 import heroTrophy from "@/assets/hero-trophy.jpg.asset.json";
 import awardBand from "@/assets/award-band.jpg.asset.json";
 import winnerWords from "@/assets/winner-words.jpg.asset.json";
-import eaMark from "@/assets/ea-mark-84.png.asset.json";
 
 export const Route = createFileRoute("/homepage-v2")({
   head: () => ({
@@ -56,7 +55,6 @@ export const Route = createFileRoute("/homepage-v2")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex, follow" },
     ],
-    links: [{ rel: "stylesheet", href: homepageV2Css }],
   }),
   component: Index,
 });
@@ -180,33 +178,78 @@ const publications: {
 ];
 
 
+const proofPoints = [
+  {
+    title: "Read against a published rubric",
+    body: "The same criteria, in the same order, for every entry. Nothing is assessed privately.",
+  },
+  {
+    title: "Five business days",
+    body: "A decision either way, with the reason it was reached, inside one working week.",
+  },
+  {
+    title: "Independently assessed",
+    body: "The judgment is made outside your business, by people with no stake in the outcome.",
+  },
+];
+
 function CredibilityBand() {
   return (
-      <section className="homepage-v2-press">
-        <div className="homepage-v2-press-inner">
-          <p className="homepage-v2-press-label">As seen in</p>
-          <div className="homepage-v2-press-outlets">
-            {publications.map((pub) => (
-              <a key={pub.name} href={pub.href} target="_blank" rel="noopener noreferrer">
-                {pub.name}
-              </a>
-            ))}
-          </div>
+    <section className="border-y border-border bg-surface py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-primary">
+          As seen in
+        </p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {publications.map((pub) => (
+            <a
+              key={pub.name}
+              href={pub.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center rounded-xl border border-border bg-card p-5 text-center transition-all hover:border-primary hover:bg-muted hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              <span className="flex flex-1 items-center justify-center py-4">
+                <span
+                  className={`block text-muted-foreground transition-colors group-hover:text-foreground ${pub.className}`}
+                  style={pub.style}
+                >
+                  {pub.name}
+                </span>
+              </span>
+              <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors group-hover:text-primary">
+                Read article
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
+              </span>
+            </a>
+          ))}
         </div>
-      </section>
+
+
+        <div className="mt-16 grid gap-10 md:grid-cols-3">
+          {proofPoints.map((point) => (
+            <div key={point.title} className="border-l-2 border-primary pl-5">
+              <h3 className="text-lg font-semibold">{point.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">{point.body}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
   );
 }
 
 function AwardBand() {
   return (
-    <section className="homepage-v2-award-band">
-      <div className="homepage-v2-award-inner">
+    <section>
+      <div className="w-full bg-secondary [aspect-ratio:3/2] sm:[aspect-ratio:16/9] md:[aspect-ratio:21/9]">
         <img
           src={awardBand.url}
-          alt=""
+          alt={`A winner of the ${AWARD_YEAR} Entrepreneur Award holding the crystal award etched with the winner seal.`}
           loading="eager"
           decoding="async"
-          className="homepage-v2-award-photo"
+          className="h-full w-full object-cover [object-position:50%_25%]"
         />
       </div>
     </section>
@@ -230,14 +273,14 @@ const winWorth = [
 
 function WhatAWinIsWorth() {
   return (
-    <section className="homepage-v2-win-worth">
+    <section className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             What a win is worth to you.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-            Selection gives you an outside assessment of what you built, in your own name, and it stays useful long after the year it was awarded.
+            Entrepreneur Awards recognises the founder. Selection puts an outside assessment of what you built in your own name, and it stays useful long after the year it was awarded.
           </p>
         </div>
 
@@ -266,15 +309,15 @@ function WhatAWinIsWorth() {
 const criteria = [
   {
     title: "Originality",
-    body: "What you're building, why it matters and what makes your approach your own.",
+    body: "What was built, and whether it is meaningfully different from what already existed.",
   },
   {
     title: "Traction",
-    body: "Real progress against your own goals: revenue, customers, adoption or results for the people you serve.",
+    body: "Progress you can show: revenue, customers, users, adoption or another outcome you can evidence. Judged for the stage your business is at. There is no fixed threshold.",
   },
   {
     title: "A standout achievement",
-    body: "One thing you did that most people would call hard, told in detail.",
+    body: "One specific thing you did that a comparable operator would not have. Name a single event and give the detail.",
   },
 ];
 
@@ -285,10 +328,11 @@ function Criteria() {
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            The three criteria.
+            The three criteria, in full.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-            Every entry is read against these three, in this order.
+            Every entry is read against these, in this order. There are no categories, so nothing is
+            selected by default.
           </p>
         </div>
 
@@ -314,32 +358,13 @@ function Criteria() {
   );
 }
 
-const recordRows = [
-  {
-    label: "The story",
-    body: "What you built and how you got there, written about your business.",
-  },
-  {
-    label: "The panel's words",
-    body: "Why your entry was selected, in the judging panel's own words.",
-  },
-  {
-    label: "Your details",
-    body: "Your company, industry, location and website, linked from the page.",
-  },
-  {
-    label: "Yours to share",
-    body: "Link to it from your site, in proposals or with press.",
-  },
-];
-
 function SpecimenCitation() {
   return (
     <section className="border-y border-border bg-surface py-16 md:py-24">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.8fr_1fr]">
         <SiteFigure
           src={winnerWords.url}
-          alt=""
+          alt={`A ${AWARD_YEAR} Entrepreneur Award winner holding the crystal award.`}
           ratio="4 / 5"
           width={614}
           height={768}
@@ -349,34 +374,10 @@ function SpecimenCitation() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             What the award says about you.
           </h2>
-          <Card className="mt-7 border border-border bg-background p-8 shadow-none">
-            <div className="flex items-center justify-between gap-3 border-b border-border pb-5">
-              <div className="flex items-center gap-2">
-                <img src={eaMark.url} alt="" width={24} height={24} className="h-6 w-6" />
-                <span className="whitespace-nowrap text-sm font-semibold">Entrepreneur Awards</span>
-              </div>
-            </div>
-            <p className="mt-6 text-[17px] leading-relaxed text-foreground">
-              A winner feature is a published page about you and what you built.
+          <Card className="mt-7 border border-border bg-background p-8 shadow-none md:p-10">
+            <p className="text-base leading-relaxed text-foreground">
+              Winners receive a dated, signed record of the assessment. It states what was judged and why the entry was selected, written for that specific business. You can quote from it however you like.
             </p>
-            <dl className="mt-6">
-              {recordRows.map((row) => (
-                <div
-                  key={row.label}
-                  className="flex flex-col gap-1 border-t border-border py-4 sm:flex-row sm:items-baseline sm:gap-8"
-                >
-                  <dt className="shrink-0 text-[15px] font-semibold">{row.label}</dt>
-                  <dd className="text-[15px] leading-relaxed text-muted-foreground sm:ml-auto sm:max-w-[58%]">
-                    {row.body}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-            <div className="border-t border-border pt-5">
-              <a href="/winners" className="text-[15px] font-semibold text-[#1978E5] hover:underline">
-                See winner features
-              </a>
-            </div>
           </Card>
         </div>
       </div>
@@ -391,7 +392,7 @@ const doesNotDo = [
   },
   {
     title: "No categories",
-    body: "There are no sector awards, size brackets or separate categories, so nothing is selected by default.",
+    body: "There are no sector awards, size brackets, or separate categories. Every entry is read against the same three criteria.",
   },
   {
     title: "No membership",
@@ -434,7 +435,7 @@ const howItWorks = [
     title: "You enter",
     body: (
       <>
-        Four fields and three short questions. About five minutes. Plain answers are fine.
+        Four fields and three short questions. About five minutes. We assess what you built, so the writing doesn't need to be polished.
       </>
     ),
   },
@@ -584,7 +585,7 @@ function buildHubSpotSubmissionPayload(form: HTMLFormElement): HubSpotSubmission
 function SubmissionForm() {
   const formContainerRef = useRef<HTMLDivElement>(null);
   const targetId = "hubspot-form-target";
-  const navigate = useNavigate({ from: "/homepage-v2" });
+  const navigate = useNavigate({ from: "/" });
   const submitLead = useServerFn(submitHubSpotLead);
   const [formError, setFormError] = useState<string | null>(null);
   const consentRef = useRef<HTMLDivElement>(null);
