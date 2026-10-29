@@ -118,7 +118,7 @@ function Hero() {
             {AWARD_YEAR} entries are open · decisions within five business days
           </span>
           <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
-            For the person who <span className="text-primary">built it.</span>
+            For the person who built it.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
             An independent award for founders. One entry, one decision, and most entries are
@@ -198,7 +198,7 @@ function CredibilityBand() {
   return (
     <section className="border-y border-border bg-surface py-20 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+        <p className="text-center text-sm font-medium text-muted-foreground">
           As seen in
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -277,15 +277,15 @@ function WhatAWinIsWorth() {
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
             What a win is worth to you.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
             Entrepreneur Awards recognises the founder. Selection puts an outside assessment of what you built in your own name, and it stays useful long after the year it was awarded.
           </p>
         </div>
 
-        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
+        <div className="mt-12 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
           {winWorth.map((item, index) => (
             <Fragment key={item.title}>
               {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
@@ -328,16 +328,16 @@ function Criteria() {
     <section id="criteria" className="py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
             The three criteria, in full.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
             Every entry is read against these, in this order. There are no categories, so nothing is
             selected by default.
           </p>
         </div>
 
-        <div className="mt-16 space-y-6">
+        <div className="mt-12 space-y-6">
           {criteria.map((item) => (
             <div
               key={item.title}
@@ -372,10 +372,10 @@ function SpecimenCitation() {
           objectPosition="center"
         />
         <div>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             What the award says about you.
           </h2>
-          <Card className="mt-7 border border-border bg-background p-8 shadow-none md:p-10">
+          <Card className="mt-4 border border-border bg-background p-8 shadow-none md:p-10">
             <p className="text-base leading-relaxed text-foreground">
               Winners receive a dated, signed record of the assessment. It states what was judged and why the entry was selected, written for that specific business. You can quote from it however you like.
             </p>
@@ -406,15 +406,15 @@ function WhatItDoesNotDo() {
     <section className="bg-[#0B1220] py-24 text-white md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
             What this award does not do.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-white/60 md:text-xl">
+          <p className="mt-4 text-lg leading-relaxed text-white/60 md:text-xl">
             Three things to know before you enter.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
           {doesNotDo.map((item, index) => (
             <div key={item.title} className="bg-[#0B1220] p-7 md:p-8">
               <span className="text-sm font-medium tabular-nums text-white/35">
@@ -480,12 +480,12 @@ function HowItWorks() {
     >
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
             Four steps from entry to decision.
           </h2>
         </div>
 
-        <ol className="mt-16 grid gap-12 md:grid-cols-4 md:gap-10">
+        <ol className="mt-12 grid gap-12 md:grid-cols-4 md:gap-10">
           {howItWorks.map((step) => (
             <li key={step.number} className="border-t border-border pt-6">
               <span className="block text-4xl font-semibold leading-none tracking-tight text-muted-foreground/40 md:text-5xl">
@@ -731,10 +731,10 @@ function SubmissionForm() {
     <section id="submit" className="py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
             Enter the 2026 Awards.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
             Everything needed to assess the business is on this one page.
           </p>
         </div>
@@ -772,10 +772,10 @@ function Contact() {
   return (
     <section id="contact" className="border-t border-border bg-surface py-24">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+        <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
           Questions? Get in touch.
         </h2>
-        <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">
           We reply to email within one business day.
         </p>
         <div className="mt-8">
