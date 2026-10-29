@@ -42,6 +42,7 @@ import { SiteFigure } from "@/components/site-figure";
 import heroTrophy from "@/assets/hero-trophy.jpg.asset.json";
 import awardBand from "@/assets/award-band.jpg.asset.json";
 import winnerWords from "@/assets/winner-words.jpg.asset.json";
+import eaMark from "@/assets/ea-mark-84.png.asset.json";
 
 export const Route = createFileRoute("/homepage-v2")({
   head: () => ({
@@ -342,6 +343,25 @@ function Criteria() {
   );
 }
 
+const recordRows = [
+  {
+    label: "What was judged",
+    body: "Your entry, read against originality, traction and a standout achievement.",
+  },
+  {
+    label: "Why it was selected",
+    body: "The reasons for the decision, written for your business.",
+  },
+  {
+    label: "Dated and signed",
+    body: "A record of one decision, on one date.",
+  },
+  {
+    label: "Yours to quote",
+    body: "Use any line from it on your site, in proposals or with press.",
+  },
+];
+
 function SpecimenCitation() {
   return (
     <section className="border-y border-border bg-surface py-16 md:py-24">
@@ -358,10 +378,37 @@ function SpecimenCitation() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             What the award says about you.
           </h2>
-          <Card className="mt-7 border border-border bg-background p-8 shadow-none md:p-10">
-            <p className="text-base leading-relaxed text-foreground">
-              Winners receive a dated, signed record of the assessment. It states what was judged and why the entry was selected, written for that specific business. You can quote from it however you like.
+          <Card className="mt-7 border border-border bg-background p-8 shadow-none">
+            <div className="flex items-center justify-between gap-4 border-b border-border pb-5">
+              <div className="flex items-center gap-2.5">
+                <img src={eaMark.url} alt="" width={28} height={28} className="h-7 w-7" />
+                <span className="text-sm font-semibold">Entrepreneur Awards</span>
+              </div>
+              <span className="font-mono text-[11px] tracking-[0.05em] text-[#1978E5]">
+                Winner record
+              </span>
+            </div>
+            <p className="mt-6 text-[17px] leading-relaxed text-foreground">
+              Every winner receives a dated, signed record of the assessment, written for their business.
             </p>
+            <dl className="mt-6">
+              {recordRows.map((row) => (
+                <div
+                  key={row.label}
+                  className="flex flex-col gap-1 border-t border-border py-4 sm:flex-row sm:items-baseline sm:gap-8"
+                >
+                  <dt className="shrink-0 text-[15px] font-semibold">{row.label}</dt>
+                  <dd className="text-[15px] leading-relaxed text-muted-foreground sm:ml-auto sm:max-w-[58%]">
+                    {row.body}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <div className="border-t border-border pt-5">
+              <a href="/winners" className="text-[15px] font-semibold text-[#1978E5] hover:underline">
+                See published winner records
+              </a>
+            </div>
           </Card>
         </div>
       </div>
