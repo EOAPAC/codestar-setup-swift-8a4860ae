@@ -612,7 +612,7 @@ function WinnerOptionsV2Page() {
                 >
                   <span style={{ fontSize: "0.9375rem", color: INK, fontWeight: 500 }}>
                     {m.title}{" "}
-                    <span style={{ fontWeight: 400, color: MUTED }}>&mdash; {m.use}</span>
+                    <span style={{ fontWeight: 400, color: MUTED }}>: {m.use}</span>
                   </span>
                   <span
                     style={{
@@ -691,7 +691,7 @@ function WinnerOptionsV2Page() {
         <Section id="feature">
           <Container>
             <SectionHeading>
-              A published feature about your business &mdash; {formatPrice(FEATURE_PRICE)}
+              A published feature about your business · {formatPrice(FEATURE_PRICE)}
             </SectionHeading>
             <Body className="mt-3">
               Your award statement is a paragraph. The Winner's Feature is a full article about your
@@ -817,7 +817,7 @@ function WinnerOptionsV2Page() {
               />
               <div>
                 <SectionHeading>
-                  A physical award for your desk or wall &mdash; {formatPrice(COMMEMORATIVE_PRICE)}
+                  A physical award for your desk or wall · {formatPrice(COMMEMORATIVE_PRICE)}
                 </SectionHeading>
                 <Body className="mt-3">
                   A designed physical version of your award, made to order and shipped to you.
@@ -896,10 +896,10 @@ function WinnerOptionsV2Page() {
             <SectionHeading>Ready when you are.</SectionHeading>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
               <FilledButton event="feature-order-click" onClick={handleSelect}>
-                Get your Winner's Feature &mdash; {formatPrice(FEATURE_PRICE)}
+                Get your Winner's Feature · {formatPrice(FEATURE_PRICE)}
               </FilledButton>
               <OutlineButton event="commemorative-select-click" onClick={handleSelect}>
-                Order your commemorative award &mdash; {formatPrice(COMMEMORATIVE_PRICE)}
+                Order your commemorative award · {formatPrice(COMMEMORATIVE_PRICE)}
               </OutlineButton>
             </div>
             <p className="mt-6" style={{ fontSize: "0.875rem", color: MUTED }}>

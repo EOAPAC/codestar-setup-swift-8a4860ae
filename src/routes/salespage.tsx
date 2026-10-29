@@ -938,7 +938,7 @@ function SalesPage() {
                   </span>
                   {i < steps.length - 1 ? (
                     <span aria-hidden className="hidden sm:inline" style={{ color: LINE }}>
-                      &mdash;&mdash;
+                      ··
                     </span>
                   ) : null}
                 </li>

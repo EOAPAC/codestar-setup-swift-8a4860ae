@@ -209,8 +209,8 @@ function WinnerMaterialsPage() {
                   You have been selected for the Entrepreneur Award.
                 </h1>
                 <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-                  Your award statement &mdash; the short, formal lines explaining what was
-                  assessed and why your entry was selected &mdash; certificate and winner
+                  Your award statement (the short, formal lines explaining what was
+                  assessed and why your entry was selected), certificate and winner
                   materials are ready to use.
                 </p>
               </div>
