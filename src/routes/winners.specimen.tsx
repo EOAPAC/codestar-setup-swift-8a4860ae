@@ -12,14 +12,14 @@ import markAsset from "@/assets/ea-mark.png.asset.json";
 export const Route = createFileRoute("/winners/specimen")({
   head: () => ({
     meta: [
-      { title: "Winner's Feature | format specimen | Entrepreneur Awards" },
+      { title: "Winner's Feature — format specimen | Entrepreneur Awards" },
       {
         name: "description",
         content:
           "A format specimen showing the length, structure and voice of an Entrepreneur Awards Winner's Feature. The business described is not a real recipient.",
       },
       { name: "robots", content: "noindex, nofollow" },
-      { property: "og:title", content: "Winner's Feature | format specimen" },
+      { property: "og:title", content: "Winner's Feature — format specimen" },
       {
         property: "og:description",
         content:
@@ -32,12 +32,12 @@ export const Route = createFileRoute("/winners/specimen")({
   component: SpecimenPage,
 });
 
-const INK = "var(--foreground)";
-const TEXT = "var(--foreground)";
-const MUTED = "var(--muted-foreground)";
-const BLUE = "var(--primary)";
-const LINE = "var(--border)";
-const TINT = "var(--background)";
+const INK = "#0F172A";
+const TEXT = "#1a1a1a";
+const MUTED = "#6B7785";
+const BLUE = "#1978E5";
+const LINE = "#E5E9F0";
+const TINT = "#F7F9FC";
 
 const focusRing =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1978E5]";

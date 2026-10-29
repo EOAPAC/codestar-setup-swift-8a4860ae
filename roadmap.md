@@ -1,10 +1,5 @@
 # Roadmap
 
-## Newspaper redesign
-- [x] Redesign the homepage to match the uploaded section-by-section brief.
-- [x] Apply the editorial design site-wide, including Winners, Criteria, FAQ and Terms, without changing facts or destinations.
-- [x] Verify mobile/desktop layouts, form preservation, links and existing tests.
-
 ## Done
 - [x] Create `/your-award` page from the free portion of `/pricing`
 - [x] Redirect `/salespage` to `/your-award`

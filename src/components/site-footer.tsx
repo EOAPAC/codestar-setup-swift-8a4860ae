@@ -5,7 +5,7 @@ export function SiteFooter({ statementClassName = "" }: { statementClassName?: s
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-xs text-muted-foreground">
-        <p className={statementClassName}>
+        <p className={`text-center ${statementClassName}`}>
           Every {AWARD_YEAR} entry is read against the same three published criteria.
         </p>
 
@@ -26,8 +26,7 @@ export function SiteFooter({ statementClassName = "" }: { statementClassName?: s
           <p>{/* Company number */}</p>
         </div>
 
-        <p id="contact" className="scroll-mt-24">Questions? <a href="mailto:hello@entrepreneurawards.co">hello@entrepreneurawards.co</a>. We reply within one business day.</p>
-        <div className="flex flex-col items-start gap-1 md:flex-row md:justify-between md:gap-6">
+        <div className="flex flex-col items-center gap-1 text-center md:flex-row md:justify-between md:gap-6">
           <p>Entrepreneur Awards. All rights reserved.</p>
           <p>For the person who built it.</p>
         </div>

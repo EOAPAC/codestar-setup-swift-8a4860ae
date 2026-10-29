@@ -29,12 +29,12 @@ export const Route = createFileRoute("/your-award")({
   component: YourAwardPage,
 });
 
-const INK = "var(--foreground)";
-const BODY = "var(--muted-foreground)";
-const MUTED = "var(--muted-foreground)";
-const BRAND = "var(--primary)";
-const LINE = "var(--border)";
-const TINT = "var(--background)";
+const INK = "#0F172A";
+const BODY = "#52606D";
+const MUTED = "#6B7785";
+const BRAND = "#1978E5";
+const LINE = "#E5E9F0";
+const TINT = "#F7F9FC";
 
 const dimensionsById: Record<string, string> = {
   seal: "PNG · 1200 × 1200 px",

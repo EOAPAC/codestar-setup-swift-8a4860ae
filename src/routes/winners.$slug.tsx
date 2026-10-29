@@ -31,7 +31,6 @@ export const Route = createFileRoute("/winners/$slug")({
         { property: "og:title", content: feature.headline },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
-        { name: "twitter:card", content: "summary_large_image" },
         { name: "robots", content: "noindex, nofollow" },
       ],
     };

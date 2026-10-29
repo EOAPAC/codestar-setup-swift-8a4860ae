@@ -11,5 +11,4 @@
 
 - The Winner's Feature preview and article overlay read the existing `FEATURES` data directly; keep this page's presentation local so other winner and offer pages remain unchanged.
 - Business-name personalization uses a browser-safe helper with tests for sanitization and placeholder replacement so URL input never becomes markup.
-- Keep static homepage statistics in a dedicated browser-safe component with tested source values so other page sections remain independent.
-- Apply the newspaper design through shared semantic tokens and global editorial rules; keep page-specific structure local and leave all data, legal content and server behavior intact.
+- Keep homepage statistics in a dedicated browser-safe component with scoped styles and tested data/counting logic so its animation does not alter other page sections.
