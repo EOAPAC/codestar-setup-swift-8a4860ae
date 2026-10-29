@@ -226,7 +226,7 @@ const heroResults: Result[] = [
   {
     name: "Entrepreneur Awards",
     domain: "entrepreneurawards.co",
-    headline: `${AWARD_YEAR} Winner Feature — [Your Business]`,
+    headline: `${AWARD_YEAR} Winner Feature · [Your Business]`,
     snippet:
       "Before the award, the constraint everyone told them to fix turned out to be the reason customers stayed…",
   },

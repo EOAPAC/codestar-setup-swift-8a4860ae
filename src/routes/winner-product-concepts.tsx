@@ -184,7 +184,7 @@ function CommemorativeVisual() {
         <span>Presentation card</span>
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
-        Physical Commemorative Edition — concept visual
+        Physical Commemorative Edition · concept visual
       </p>
     </div>
   );
@@ -220,9 +220,9 @@ function FeatureVisual() {
           </div>
         </div>
       </div>
-      <p className="mt-4 text-xs text-muted-foreground">Winner&rsquo;s Feature — format concept</p>
+      <p className="mt-4 text-xs text-muted-foreground">Winner&rsquo;s Feature · format concept</p>
       <p className="mt-1 text-xs font-medium text-foreground">
-        Format concept — not a real winner feature
+        Format concept · not a real winner feature
       </p>
     </div>
   );
@@ -285,7 +285,7 @@ function ConceptCard({
         </Button>
         <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
           <Lock className="h-3 w-3" aria-hidden="true" />
-          Internal concept only — not connected to checkout
+          Internal concept only · not connected to checkout
         </p>
       </div>
     </article>
@@ -316,8 +316,8 @@ function WinnerProductConceptsPage() {
             </div>
             <div className="flex flex-wrap items-center gap-3">
               <span className="text-sm text-muted-foreground">Winner Product Concepts</span>
-              <InternalTag>Internal — not for public use</InternalTag>
-              <InternalTag>Internal concept page — not public</InternalTag>
+              <InternalTag>Internal · not for public use</InternalTag>
+              <InternalTag>Internal concept page · not public</InternalTag>
             </div>
           </div>
         </header>
@@ -594,7 +594,7 @@ function WinnerProductConceptsPage() {
         <footer className="border-t border-border py-10">
           <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-6 text-xs text-muted-foreground">
             <p>Entrepreneur Awards. Internal working document.</p>
-            <InternalTag>Internal — not for public use</InternalTag>
+            <InternalTag>Internal · not for public use</InternalTag>
           </div>
         </footer>
       </div>

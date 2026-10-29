@@ -250,7 +250,7 @@ function PressMockup() {
           {withSlots(`${SPECIMEN_BUSINESS_TOKEN} Named a Winner of the ${AWARD_YEAR} Entrepreneur Awards`)}
         </h3>
         <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>
-          NEW YORK — Entrepreneur Awards
+          NEW YORK · Entrepreneur Awards
         </p>
         {[
           `${SPECIMEN_BUSINESS_TOKEN} has been named a winner of the ${AWARD_YEAR} Entrepreneur Awards, an annual program recognizing owner-led businesses for measurable operating results.`,
@@ -344,7 +344,7 @@ function WinnerOptionsPage() {
       </header>
 
       <main style={{ paddingBottom: "88px" }}>
-        {/* 1 — Hero */}
+        {/* 1 · Hero */}
         <section
           className="relative flex items-center overflow-hidden"
           style={{ minHeight: "380px" }}
@@ -383,7 +383,7 @@ function WinnerOptionsPage() {
           </Container>
         </section>
 
-        {/* 2 — Downloads */}
+        {/* 2 · Downloads */}
         <section id="downloads" style={{ backgroundColor: TINT, padding: "56px 0" }}>
           <Container>
             <div className="text-center">
@@ -474,7 +474,7 @@ function WinnerOptionsPage() {
           </Container>
         </section>
 
-        {/* 3 — The Winner's Feature */}
+        {/* 3 · The Winner's Feature */}
         <section id="feature" style={{ padding: "48px 0 64px" }}>
           <Container>
             <div className="text-center">
@@ -631,7 +631,7 @@ function WinnerOptionsPage() {
         </section>
       </main>
 
-      {/* 4 — Sticky bar */}
+      {/* 4 · Sticky bar */}
       <div
         className="ea-sticky fixed inset-x-0 bottom-0 z-40"
         style={{

@@ -348,6 +348,7 @@
 .newspaper-site :is([class*="shadow"],[data-slot="card"]) { box-shadow: none !important; }
 .newspaper-site main :is([data-slot="card"],[class*="grid"] > [class*="rounded"]) { border: 0 !important; border-radius: 0 !important; }
 .newspaper-site main :is(p,span)[class*="uppercase"][class*="tracking"] { display: none; }
+.newspaper-site .publication-wordmark { display: inline !important; font-family: var(--font-sans); font-size: 20px; font-weight: 800; }
 .newspaper-site main [class*="rounded-full"]:not(button):not(a) { border: 0; border-radius: 0; background: none !important; }
 .newspaper-site main [class*="rounded-full"]:not(button):not(a) > svg { display: none; }
 .newspaper-site main [aria-hidden="true"][class*="absolute"][class*="bg-"] { display: none; }
@@ -457,3 +458,14 @@
 .newspaper-site main :is([class*="max-w-3xl"],article) { max-width: 728px; }
 .newspaper-site main [class*="grid"] > [class*="border"] { box-shadow: none !important; }
 @media (max-width: 639px) { .winner-directory-entry { grid-template-columns: 1fr; gap: 16px; } .winner-reference { flex-direction: row; gap: 20px; } }
+
+.newspaper-site main :is(p,span)[style*="text-transform: uppercase"] { display: none; }
+.newspaper-site main a[style*="background-color: var(--primary)"] { background: var(--primary) !important; color: var(--primary-foreground) !important; border-radius: 4px !important; }
+.newspaper-site main a[style*="background-color: var(--primary)"]:is([style*="border-radius"]) { border-radius: 4px !important; }
+.newspaper-site .publication-row a { color: var(--foreground) !important; }
+.home-winner-photo { padding-block: 40px; }
+.home-winner-photo img { display: block; width: 100%; height: auto; max-height: 640px; object-fit: cover; object-position: center 35%; }
+.home-winner-photo figcaption { margin-top: 14px; font-size: 14px; color: var(--muted-foreground); }
+.newspaper-site .editorial-dark { background: var(--foreground) !important; }
+@media (min-width: 1024px) { .home-hero h1, .home-deck { background: var(--background); } .home-trophy { right: -80px; } }
+@media (max-width: 639px) { .publication-row { gap: 20px; } .newspaper-site .publication-wordmark { font-size: 14px; } }

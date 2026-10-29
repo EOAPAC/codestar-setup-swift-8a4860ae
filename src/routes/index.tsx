@@ -39,6 +39,8 @@ import { AWARD_YEAR } from "@/content/award";
 
 
 
+import { FEATURES } from "@/data/features";
+
 import heroTrophy from "@/assets/hero-trophy.jpg.asset.json";
 
 
@@ -64,6 +66,7 @@ function Index() {
       <main>
         <Hero />
         <CredibilityBand />
+        <WinnerPortrait />
         <WhatAWinIsWorth />
         <HowItWorks />
         <AwardNumbers />
@@ -141,10 +144,21 @@ function CredibilityBand() {
       <div className="editorial-container">
         <p>As seen in</p>
         <div className="publication-row">
-          {publications.map((pub) => <a key={pub.name} href={pub.href} target="_blank" rel="noopener noreferrer" aria-label={`Read the article in ${pub.name}`}><span className={pub.className} style={pub.style}>{pub.name}</span></a>)}
+          {publications.map((pub) => <a key={pub.name} href={pub.href} target="_blank" rel="noopener noreferrer" aria-label={`Read the article in ${pub.name}`}><span className="publication-wordmark" style={pub.style}>{pub.name}</span></a>)}
         </div>
       </div>
     </section>
+  );
+}
+
+function WinnerPortrait() {
+  const winner = FEATURES.find((feature) => feature.winnerSlug === "adam-pisk");
+  if (!winner?.portrait) return null;
+  return (
+    <section className="editorial-section home-winner-photo"><figure className="editorial-container">
+      <img src={winner.portrait} alt={winner.portraitCaption} width={900} height={600} loading="lazy" decoding="async" />
+      <figcaption>Adam Pisk, BruntWork. {AWARD_YEAR} Entrepreneur Awards winner.</figcaption>
+    </figure></section>
   );
 }
 

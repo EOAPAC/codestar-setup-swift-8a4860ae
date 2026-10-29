@@ -169,7 +169,7 @@ const heroResults: Result[] = [
   {
     name: "Entrepreneur Awards",
     domain: "entrepreneurawards.co",
-    headline: `${AWARD_YEAR} Winner Feature — [Your Business]`,
+    headline: `${AWARD_YEAR} Winner Feature · [Your Business]`,
     snippet:
       "Before the award, the constraint everyone told them to fix turned out to be the reason customers stayed…",
   },
@@ -533,7 +533,7 @@ const questions = [
   },
   {
     q: "Why does the same release appear in every publication?",
-    a: "Because that is what a press release is — one announcement, distributed. Your Feature on the Entrepreneur Awards site is the long version, written for you alone, and every release links back to it.",
+    a: "Because that is what a press release is · one announcement, distributed. Your Feature on the Entrepreneur Awards site is the long version, written for you alone, and every release links back to it.",
   },
   {
     q: "Can you place the release in other publications?",
@@ -796,7 +796,7 @@ function SalesPage() {
 
             <div className="text-center" style={{ marginTop: "20px" }}>
               <BrandButton href={BASE_LINK} className="w-full sm:w-auto">
-                Order the Winner&rsquo;s Feature — {money(BASE_PRICE)}
+                Order the Winner&rsquo;s Feature · {money(BASE_PRICE)}
               </BrandButton>
             </div>
 
@@ -846,7 +846,7 @@ function SalesPage() {
               />
               <p style={{ fontSize: "13.5px", lineHeight: 1.6, color: BODY }}>
                 The engraved award with your name and award year, plus a printed certificate ready
-                to frame. Posted to you — this is the only part we need an address for.
+                to frame. Posted to you · this is the only part we need an address for.
               </p>
               <a
                 href={AWARD_LINK}
@@ -864,7 +864,7 @@ function SalesPage() {
                   fontWeight: 600,
                 }}
               >
-                Add the engraved award — {money(AWARD_PRICE)}
+                Add the engraved award · {money(AWARD_PRICE)}
               </a>
             </div>
 
@@ -938,7 +938,7 @@ function SalesPage() {
                   </span>
                   {i < steps.length - 1 ? (
                     <span aria-hidden className="hidden sm:inline" style={{ color: LINE }}>
-                      &mdash;&mdash;
+                      ,,
                     </span>
                   ) : null}
                 </li>
