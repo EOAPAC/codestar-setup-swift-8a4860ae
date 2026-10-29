@@ -1,16 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { AWARD_YEAR } from "@/content/award";
 
-export function SiteFooter({ statementClassName = "" }: { statementClassName?: string }) {
+export function SiteFooter(_props: { statementClassName?: string }) {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-xs text-muted-foreground">
-        <p className={`text-center ${statementClassName}`}>
-          Every {AWARD_YEAR} entry is read against the same three published criteria.
-        </p>
-
-
-
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link to="/criteria" className="hover:text-foreground">Criteria</Link>
           <Link to="/faq" className="hover:text-foreground">FAQ</Link>
