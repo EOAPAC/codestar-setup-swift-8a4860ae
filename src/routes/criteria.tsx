@@ -53,7 +53,7 @@ const criteria = [
   {
     icon: Lightbulb,
     title: "Originality",
-    body: "What the founder is building, why it matters, and what makes the approach their own. We look for judgment and clarity of direction.",
+    body: "What the founder is building, why it matters, and what makes the approach their own. We look for judgment and clarity of direction rather than novelty for its own sake.",
   },
   {
     icon: LineChart,
@@ -63,7 +63,7 @@ const criteria = [
   {
     icon: Trophy,
     title: "A standout achievement",
-    body: "One thing the founder did that a reasonable person would call hard. For example, recovering from a setback or delivering under tight constraints.",
+    body: "One thing the founder did that a reasonable person would call hard. Built through a setback, solved under constraint, or delivered when the odds said otherwise.",
   },
 ];
 
@@ -74,14 +74,22 @@ function CriteriaPage() {
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden border-b border-border">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/18),transparent_70%)]"
+          />
           <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-              How winners are chosen
+            <span className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
+              Criteria
+            </span>
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">
+              How winners are <span className="text-primary">chosen</span>
             </h1>
             <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
               <p>
                 Entrepreneur Awards is an independent award for founders. Every entry in the {AWARD_YEAR} cycle is read
-                against the same three published criteria, in the same order, so each founder is assessed on the work itself.
+                against the same three published criteria, in the same order, so each founder is assessed on the work
+                rather than the application.
               </p>
               <p>
                 There is one award and one standard. Most entries are not selected, and every founder receives a
@@ -95,7 +103,8 @@ function CriteriaPage() {
         <section className="py-24 md:py-32">
           <div className="mx-auto max-w-5xl px-6">
             <div className="mx-auto max-w-3xl">
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Three published criteria</h2>
+              <p className="text-sm font-medium uppercase tracking-widest text-primary">The standard</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Three published criteria</h2>
               <p className="mt-3 text-muted-foreground">
                 Each is weighted equally, and each is read in the context of the founder's stage and industry.
               </p>
@@ -130,7 +139,8 @@ function CriteriaPage() {
         {/* Review process */}
         <section className="border-t border-border bg-secondary/30 py-24 md:py-32">
           <div className="mx-auto max-w-3xl px-6">
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">From entry to decision</h2>
+            <p className="text-sm font-medium uppercase tracking-widest text-primary">The process</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">From entry to decision</h2>
             <p className="mt-3 text-muted-foreground">Four stages, applied the same way to every entry.</p>
 
             <ol className="relative mt-14 space-y-12">
@@ -150,7 +160,7 @@ function CriteriaPage() {
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-xs font-medium text-muted-foreground">
+                      <span className="text-xs font-medium uppercase tracking-widest text-primary">
                         Step {parseInt(s.n)} of {steps.length}
                       </span>
                       <span className="h-px flex-1 bg-border" />
@@ -166,7 +176,8 @@ function CriteriaPage() {
 
 
         <SiteCTA
-          heading="Enter the 2026 Awards."
+          eyebrow="Read against the same three criteria"
+          heading="Put your story forward."
           subheading="One entry, one standard, and a decision within five business days."
         />
       </main>

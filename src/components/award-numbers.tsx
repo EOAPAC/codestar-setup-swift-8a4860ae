@@ -56,7 +56,7 @@ export function AwardNumbers() {
   return (
     <section ref={sectionRef} aria-labelledby="award-numbers-heading" className="award-numbers-band bg-linear-to-b from-surface to-background py-16 font-sans md:py-20">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 id="award-numbers-heading" className="text-center text-sm font-medium text-muted-foreground">
+        <h2 id="award-numbers-heading" className="text-center text-xs font-medium uppercase tracking-[0.12em] text-primary">
           The award in numbers
         </h2>
         <dl className={`award-numbers-grid mt-10 grid grid-cols-2 md:grid-cols-4 ${visible ? "award-numbers-visible" : "award-numbers-waiting"}`}>
@@ -69,8 +69,8 @@ export function AwardNumbers() {
                 </div>
                 <dt className="order-2 mt-3 text-sm leading-relaxed text-muted-foreground">{stat.label}</dt>
                 <dd className="text-4xl font-semibold tabular-nums text-foreground md:text-5xl">
-                  <span className="sr-only">{stat.value}{stat.suffix}</span>
-                  <span aria-hidden="true">{elapsed === null ? stat.value : countAwardNumber(stat.value, elapsed, index * STAGGER_MS)}{stat.suffix}</span>
+                  <span className="sr-only">{stat.prefix}{stat.value}</span>
+                  <span aria-hidden="true">{stat.prefix}{elapsed === null ? stat.value : countAwardNumber(stat.value, elapsed, index * STAGGER_MS)}</span>
                 </dd>
               </div>
             );

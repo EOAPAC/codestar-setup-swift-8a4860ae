@@ -13,7 +13,7 @@ describe("Award statistics", () => {
     assert.equal(AWARD_NUMBERS[2].value, 13);
   });
   it("presents 389 awards with a leading plus sign", () => {
-    assert.equal(`${AWARD_NUMBERS[3].value}${AWARD_NUMBERS[3].suffix}`, "389+");
+    assert.equal(`${AWARD_NUMBERS[3].prefix}${AWARD_NUMBERS[3].value}`, "+389");
   });
   it("counts up over 1200ms with an ease-out curve and a stagger delay", () => {
     assert.equal(countAwardNumber(250, 0), 0);
