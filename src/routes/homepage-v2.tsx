@@ -379,12 +379,12 @@ function SpecimenCitation() {
             What the award says about you.
           </h2>
           <Card className="mt-7 border border-border bg-background p-8 shadow-none">
-            <div className="flex items-center justify-between gap-4 border-b border-border pb-5">
-              <div className="flex items-center gap-2.5">
-                <img src={eaMark.url} alt="" width={28} height={28} className="h-7 w-7" />
-                <span className="text-sm font-semibold">Entrepreneur Awards</span>
+            <div className="flex items-center justify-between gap-3 border-b border-border pb-5">
+              <div className="flex items-center gap-2">
+                <img src={eaMark.url} alt="" width={24} height={24} className="h-6 w-6" />
+                <span className="whitespace-nowrap text-sm font-semibold">Entrepreneur Awards</span>
               </div>
-              <span className="font-mono text-[11px] tracking-[0.05em] text-[#1978E5]">
+              <span className="whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-[#1978E5]">
                 Winner record
               </span>
             </div>
