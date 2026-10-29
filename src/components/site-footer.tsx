@@ -8,6 +8,14 @@ export function SiteFooter({ statementClassName = "" }: { statementClassName?: s
         <p className={`text-center ${statementClassName}`}>
           Every {AWARD_YEAR} entry is read against the same three published criteria.
         </p>
+        {/* Replaces the old homepage contact section; keeps /#contact links working. */}
+        <p id="contact" className="scroll-mt-20 text-center text-sm text-foreground">
+          Questions?{" "}
+          <a href="mailto:hello@entrepreneurawards.co" className="text-primary underline underline-offset-4">
+            hello@entrepreneurawards.co
+          </a>
+          . We reply within one business day.
+        </p>
 
 
 
