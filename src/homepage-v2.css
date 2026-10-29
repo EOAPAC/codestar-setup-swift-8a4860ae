@@ -53,7 +53,10 @@
 }
 @media (max-width: 767px) {
   .homepage-v2-press-inner { flex-direction: column; gap: 24px; }
-  .homepage-v2-press-outlets { flex: auto; flex-wrap: wrap; justify-content: center; gap: 16px 24px; max-width: 520px; }
-  .homepage-v2-press-outlets a { font-size: 16px; }
+  .homepage-v2-press-outlets { flex: auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: center; gap: 16px 12px; width: 100%; max-width: 520px; }
+  .homepage-v2-press-outlets a { grid-column: span 2; font-size: 16px; white-space: normal; text-align: center; }
+  .homepage-v2-press-outlets a:nth-child(-n + 2) { grid-column: span 3; }
+  .homepage-v2-press-outlets a:first-child { justify-self: end; }
+  .homepage-v2-press-outlets a:nth-child(2) { justify-self: start; }
   .homepage-v2-award-photo { height: 280px; }
 }
