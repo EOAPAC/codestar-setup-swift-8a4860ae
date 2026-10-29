@@ -1,0 +1,59 @@
+/* Scoped comparison-page tokens and presentation; the original homepage is unchanged. */
+.homepage-v2-press {
+  --press-rule: #E2E8F0;
+  --press-label: #64748B;
+  --press-outlet: #475569;
+  --press-hover: #0F172A;
+  --press-white: #ffffff;
+  background: var(--press-white);
+  border-block: 1px solid var(--press-rule);
+  padding-block: 48px;
+}
+.homepage-v2-press-inner {
+  max-width: 1152px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+.homepage-v2-press-label {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--press-label);
+}
+.homepage-v2-press-outlets {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.homepage-v2-press-outlets a {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--press-outlet);
+  text-decoration: none;
+}
+.homepage-v2-press-outlets a:hover { color: var(--press-hover); }
+.homepage-v2-press-outlets a:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+.homepage-v2-award-band { background: var(--background); padding-block: 80px; padding-inline: 24px; }
+.homepage-v2-award-inner { max-width: 1120px; margin-inline: auto; }
+.homepage-v2-award-photo { display: block; width: 100%; height: 420px; object-fit: cover; object-position: center 25%; border-radius: 12px; }
+@media (min-width: 768px) and (max-width: 1100px) {
+  .homepage-v2-press-inner { gap: 56px; }
+  .homepage-v2-press-outlets { gap: 12px; }
+  .homepage-v2-press-outlets a { white-space: normal; text-align: center; }
+}
+@media (max-width: 767px) {
+  .homepage-v2-press-inner { flex-direction: column; gap: 24px; }
+  .homepage-v2-press-outlets { flex: auto; flex-wrap: wrap; justify-content: center; gap: 16px 24px; max-width: 520px; }
+  .homepage-v2-press-outlets a { font-size: 16px; }
+  .homepage-v2-award-photo { height: 280px; }
+}
