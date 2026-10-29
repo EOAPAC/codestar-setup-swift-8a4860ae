@@ -441,10 +441,9 @@
   .restored-page-header { height: 400px; }
 }
 @media (max-width: 767px) {
+  .restored-page-header { height: auto; min-height: 240px; padding-block: 24px; }
   .restored-page-header-image { display: none; }
   .restored-page-header-copy { max-width: none; }
-  .criteria-colour-restored .restored-page-header-copy > span,
-  .faq-colour-restored .restored-page-header-copy > span { display: none; }
   .criteria-colour-restored .restored-page-header-copy > div { margin-top: 8px; }
   .criteria-colour-restored .restored-page-header-copy > div p { line-height: 1.4; }
 }
