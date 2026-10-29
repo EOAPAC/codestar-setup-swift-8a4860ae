@@ -467,7 +467,7 @@
 .home-winner-photo img { display: block; width: 100%; height: auto; max-height: 640px; object-fit: cover; object-position: center 35%; }
 .home-winner-photo figcaption { margin-top: 14px; font-size: 14px; color: var(--muted-foreground); }
 .newspaper-site .editorial-dark { background: var(--foreground) !important; }
-@media (min-width: 1024px) { .home-hero h1, .home-deck { background: var(--background); } .home-trophy { right: -80px; } }
+@media (min-width: 1024px) { .home-trophy { right: -80px; } }
 @media (max-width: 639px) { .publication-row { gap: 20px; } .newspaper-site .publication-wordmark { font-size: 14px; } }
 
 .newspaper-site main :is(a,button)[style*="background-color:var(--primary)"] { background: var(--primary) !important; color: var(--primary-foreground) !important; border-radius: 4px !important; }
@@ -477,3 +477,8 @@
 .newspaper-site main :is(p,span,div)[class*="text-[#"] { color: var(--foreground) !important; }
 .newspaper-site main :is(p,span)[style*="letter-spacing"] { letter-spacing: 0 !important; }
 .newspaper-site main :is(a,button)[style*="background-color:var(--primary)"] { overflow-wrap: normal; }
+
+.newspaper-site .award-number dd { white-space: nowrap; overflow-wrap: normal; }
+#hubspot-form-target form.hs-form :is(input.hs-input,textarea.hs-input,select.hs-input) { border-radius: 4px !important; }
+#hubspot-form-target form.hs-form :is(input[type="submit"],button[type="submit"]) { border-radius: 4px !important; background: var(--primary) !important; }
+@media (max-width: 639px) { .award-number { padding-inline: 8px; } .newspaper-site .award-number dd { font-size: 30px; } }
