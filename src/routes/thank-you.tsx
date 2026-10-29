@@ -15,9 +15,9 @@ export const Route = createFileRoute("/thank-you")({
   validateSearch: thankYouSearchSchema,
   head: () => ({
     meta: [
-      { title: "Thank You — Entry Received | Entrepreneur Awards" },
+      { title: "Thank You | Entry Received | Entrepreneur Awards" },
       { name: "description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
-      { property: "og:title", content: "Thank You — Entry Received | Entrepreneur Awards" },
+      { property: "og:title", content: "Thank You | Entry Received | Entrepreneur Awards" },
       { property: "og:description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -368,7 +368,7 @@ function WinnerMaterialsPage() {
                     </DialogHeader>
                     <FeatureSpecimen large />
                     <p className="text-sm text-muted-foreground">
-                      Feature format specimen — shown to demonstrate structure and
+                      Feature format specimen, shown to demonstrate structure and
                       presentation. It is not presented as a real award winner.
                     </p>
                   </DialogContent>
@@ -407,7 +407,7 @@ function WinnerMaterialsPage() {
               aria-label="Placeholder for an image of the physical commemorative edition"
             >
               <span className="text-sm text-muted-foreground">
-                Physical commemorative edition — image coming soon
+                Physical commemorative edition: image coming soon
               </span>
             </div>
             <div>
@@ -456,7 +456,7 @@ function WinnerMaterialsPage() {
                   </DialogHeader>
                   <FeatureSpecimen large />
                   <p className="text-sm text-muted-foreground">
-                    Feature format specimen — shown to demonstrate structure and
+                    Feature format specimen, shown to demonstrate structure and
                     presentation. It is not presented as a real award winner.
                   </p>
                 </DialogContent>

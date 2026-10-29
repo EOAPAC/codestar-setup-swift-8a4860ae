@@ -290,7 +290,7 @@ function PressMockup() {
           {withSlots(`${SPECIMEN_BUSINESS_TOKEN} Named a Winner of the ${AWARD_YEAR} Entrepreneur Awards`)}
         </h3>
         <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>
-          NEW YORK — Entrepreneur Awards
+          NEW YORK: Entrepreneur Awards
         </p>
         {[
           `${SPECIMEN_BUSINESS_TOKEN} has been named a winner of the ${AWARD_YEAR} Entrepreneur Awards, an annual program recognizing owner-led businesses for measurable operating results.`,

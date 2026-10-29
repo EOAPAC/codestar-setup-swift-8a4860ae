@@ -46,9 +46,9 @@ import winnerWords from "@/assets/winner-words.jpg.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Entrepreneur Awards — For the person who built it." },
+      { title: "Entrepreneur Awards | For the person who built it" },
       { name: "description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
-      { property: "og:title", content: "Entrepreneur Awards — For the person who built it." },
+      { property: "og:title", content: "Entrepreneur Awards | For the person who built it" },
       { property: "og:description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -12,14 +12,14 @@ import markAsset from "@/assets/ea-mark.png.asset.json";
 export const Route = createFileRoute("/winners/specimen")({
   head: () => ({
     meta: [
-      { title: "Winner's Feature — format specimen | Entrepreneur Awards" },
+      { title: "Winner's Feature | format specimen | Entrepreneur Awards" },
       {
         name: "description",
         content:
           "A format specimen showing the length, structure and voice of an Entrepreneur Awards Winner's Feature. The business described is not a real recipient.",
       },
       { name: "robots", content: "noindex, nofollow" },
-      { property: "og:title", content: "Winner's Feature — format specimen" },
+      { property: "og:title", content: "Winner's Feature | format specimen" },
       {
         property: "og:description",
         content:

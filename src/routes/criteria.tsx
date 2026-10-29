@@ -11,9 +11,9 @@ const DESCRIPTION =
 export const Route = createFileRoute("/criteria")({
   head: () => ({
     meta: [
-      { title: "Criteria — Entrepreneur Awards" },
+      { title: "Criteria | Entrepreneur Awards" },
       { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Criteria — Entrepreneur Awards" },
+      { property: "og:title", content: "Criteria | Entrepreneur Awards" },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

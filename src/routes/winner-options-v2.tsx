@@ -562,7 +562,7 @@ function WinnerOptionsV2Page() {
                 color: INK,
               }}
             >
-              Congratulations — your {AWARD_YEAR} Entrepreneur Award is confirmed.
+              Congratulations, your {AWARD_YEAR} Entrepreneur Award is confirmed.
             </h1>
             <p
               className="mx-auto"
