@@ -83,10 +83,7 @@ function CriteriaPage() {
           <div className="restored-page-header-shade" aria-hidden="true" />
           <div className="restored-page-header-content">
             <div className="restored-page-header-copy">
-            <span className="inline-flex items-center rounded-full border border-header-foreground/25 bg-transparent px-3 py-1 text-xs font-medium uppercase tracking-widest text-header-foreground">
-              Criteria
-            </span>
-            <h1 className="mt-3 text-[26px] font-semibold leading-tight text-header-foreground lg:text-[38px]">
+            <h1 className="text-[26px] font-semibold leading-tight text-header-foreground lg:text-[38px]">
               How winners are <span>chosen</span>
             </h1>
             <div className="mt-3 space-y-3 text-[15px] leading-normal text-header-subtitle">
