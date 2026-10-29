@@ -114,10 +114,7 @@ function Hero() {
 
       <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-24 md:pt-12 md:pb-32">
         <div className="max-w-2xl">
-          <span className="text-xs font-medium text-muted-foreground">
-            {AWARD_YEAR} entries are open · decisions within five business days
-          </span>
-          <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
+          <h1 className="text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
             For the person who <span className="text-primary">built it.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
