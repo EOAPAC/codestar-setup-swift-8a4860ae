@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -27,29 +27,27 @@ declare global {
 }
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
-import { AwardNumbers } from "@/components/award-numbers";
-import { ArrowUpRight } from "lucide-react";
-
 
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
+import { AWARD_NUMBERS } from "@/lib/award-numbers";
 import { AWARD_YEAR } from "@/content/award";
-
-import { SiteFigure } from "@/components/site-figure";
+import { WINNERS } from "@/data/winners";
 
 import heroTrophy from "@/assets/hero-trophy.jpg.asset.json";
-import awardBand from "@/assets/award-band.jpg.asset.json";
-import winnerWords from "@/assets/winner-words.jpg.asset.json";
+import adamPisk from "@/assets/adam-pisk.jpg.asset.json";
+
+const TITLE = "Entrepreneur Awards | For the person who built it";
+const DESCRIPTION = "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Entrepreneur Awards — For the person who built it." },
-      { name: "description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
-      { property: "og:title", content: "Entrepreneur Awards — For the person who built it." },
-      { property: "og:description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -57,83 +55,65 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+/** Shared page width; body copy is held narrower for reading. */
+const WRAP = "mx-auto max-w-[1120px] px-6";
+const H2 = "text-4xl font-extrabold leading-[1.1] tracking-[-0.02em] md:text-5xl";
+const LINK = "font-medium text-primary underline underline-offset-4 hover:no-underline";
+
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
-      <main>
+      <main className="divide-y divide-border">
         <Hero />
-        <CredibilityBand />
-        <AwardBand />
-        <WhatAWinIsWorth />
+        <AsSeenIn />
+        <WinnerPhoto />
+        <AwardedToTheFounder />
         <HowItWorks />
         <AwardNumbers />
         <Criteria />
-        <SpecimenCitation />
+        <WrittenRecord />
         <WhatItDoesNotDo />
         <SubmissionForm />
-        <Contact />
       </main>
       <SiteFooter />
     </div>
   );
 }
 
-/** One eyebrow treatment for every section, so each announces its role. */
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-xs font-medium uppercase tracking-[0.12em] text-primary">{children}</p>
-  );
-}
-
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <img
-        src={heroTrophy.url}
-        alt=""
-        aria-hidden
-        width={1376}
-        height={768}
-        loading="eager"
-        decoding="async"
-        className="pointer-events-none absolute top-0 right-0 hidden h-full w-auto max-w-none object-contain object-right lg:block"
-        style={{
-          // Feather the image's left edge into the page background so the
-          // photo's own studio-grey backdrop never reads as a second colour.
-          maskImage:
-            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 18%, black 40%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 18%, black 40%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-background from-30% via-background/60 via-55% to-transparent lg:block"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-24 md:pt-12 md:pb-32">
-        <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            {AWARD_YEAR} entries are open · decisions within five business days
-          </span>
-          <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
-            For the person who <span className="text-primary">built it.</span>
+    <section id="top">
+      <div className={`${WRAP} grid items-center gap-10 py-16 md:py-24 lg:grid-cols-[1.1fr_1fr]`}>
+        <div>
+          <h1 className="text-5xl font-extrabold leading-[1.05] tracking-[-0.02em] md:text-7xl">
+            For the person who built it.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mt-6 max-w-[680px] text-xl leading-relaxed text-muted-foreground">
             An independent award for founders. One entry, one decision, and most entries are
             not selected.
           </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="min-w-48">
-              <a href="#submit">Enter now →</a>
+          <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+            <Button asChild size="lg">
+              <a href="#submit">Enter the {AWARD_YEAR} Awards</a>
             </Button>
-            <Button asChild size="lg" variant="ghost">
-              <a href="#how-it-works">See how it works</a>
-            </Button>
+            <a href="#how-it-works" className={`${LINK} inline-flex min-h-11 items-center`}>
+              See how it works
+            </a>
           </div>
+          <p className="mt-6 text-base text-muted-foreground">
+            {AWARD_YEAR} entries are open. Decisions within five business days.
+          </p>
         </div>
+        <img
+          src={heroTrophy.url}
+          alt={`The ${AWARD_YEAR} Entrepreneur Award trophy.`}
+          width={1376}
+          height={768}
+          loading="eager"
+          decoding="async"
+          className="h-auto w-full"
+        />
       </div>
     </section>
   );
@@ -179,81 +159,51 @@ const publications: {
   },
 ];
 
-
-const proofPoints = [
-  {
-    title: "Read against a published rubric",
-    body: "The same criteria, in the same order, for every entry. Nothing is assessed privately.",
-  },
-  {
-    title: "Five business days",
-    body: "A decision either way, with the reason it was reached, inside one working week.",
-  },
-  {
-    title: "Independently assessed",
-    body: "The judgment is made outside your business, by people with no stake in the outcome.",
-  },
-];
-
-function CredibilityBand() {
+function AsSeenIn() {
   return (
-    <section className="border-y border-border bg-surface py-20 md:py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <p className="text-center text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
-          As seen in
-        </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <section className="py-10">
+      <div className={WRAP}>
+        <p className="text-base text-muted-foreground">As seen in</p>
+        <ul className="mt-4 flex flex-wrap items-center gap-x-10 gap-y-2">
           {publications.map((pub) => (
-            <a
-              key={pub.name}
-              href={pub.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center rounded-xl border border-border bg-card p-5 text-center transition-all hover:border-primary hover:bg-muted hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-            >
-              <span className="flex flex-1 items-center justify-center py-4">
-                <span
-                  className={`block text-muted-foreground transition-colors group-hover:text-foreground ${pub.className}`}
-                  style={pub.style}
-                >
-                  {pub.name}
-                </span>
-              </span>
-              <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors group-hover:text-primary">
-                Read article
-                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
-              </span>
-            </a>
+            <li key={pub.name}>
+              <a
+                href={pub.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${pub.name} article about Entrepreneur Awards`}
+                className={`inline-flex min-h-11 items-center text-foreground transition-colors hover:text-primary ${pub.className}`}
+                style={pub.style}
+              >
+                {pub.name}
+              </a>
+            </li>
           ))}
-        </div>
-
-
-        <div className="mt-16 grid gap-10 md:grid-cols-3">
-          {proofPoints.map((point) => (
-            <div key={point.title} className="border-l-2 border-primary pl-5">
-              <h3 className="text-lg font-semibold">{point.title}</h3>
-              <p className="mt-2 text-base leading-relaxed text-muted-foreground">{point.body}</p>
-            </div>
-          ))}
-        </div>
-
+        </ul>
       </div>
     </section>
   );
 }
 
-function AwardBand() {
+const ADAM = WINNERS.find((w) => w.slug === "adam-pisk");
+
+/** A real winner, captioned like a newspaper photograph. */
+function WinnerPhoto() {
+  if (!ADAM) return null;
   return (
-    <section>
-      <div className="w-full bg-secondary [aspect-ratio:3/2] sm:[aspect-ratio:16/9] md:[aspect-ratio:21/9]">
+    <section className="py-16 md:py-20">
+      <figure className={WRAP}>
         <img
-          src={awardBand.url}
-          alt={`A winner of the ${AWARD_YEAR} Entrepreneur Award holding the crystal award etched with the winner seal.`}
-          loading="eager"
+          src={adamPisk.url}
+          alt={`${ADAM.name}, founder of ${ADAM.company}.`}
+          loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover [object-position:50%_25%]"
+          className="h-auto w-full max-w-[680px]"
         />
-      </div>
+        <figcaption className="mt-3 text-sm text-muted-foreground">
+          {ADAM.name}, {ADAM.company}, {ADAM.year} winner.
+        </figcaption>
+      </figure>
     </section>
   );
 }
@@ -273,40 +223,111 @@ const winWorth = [
   },
 ];
 
-function WhatAWinIsWorth() {
+function AwardedToTheFounder() {
   return (
-    <section className="py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <Eyebrow>What you get out of it</Eyebrow>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            What a win is worth to you.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
+    <section className="py-20 md:py-28">
+      <div className={WRAP}>
+        <h2 className={`${H2} max-w-[800px]`}>This one is awarded to the founder.</h2>
+        <div className="mt-8 max-w-[680px] space-y-6">
+          <p className="text-xl leading-relaxed">
             Entrepreneur Awards recognises the founder rather than the company. Selection puts an
             external assessment of what you built into your own name, issued by someone outside
             your business, and it stays useful long after the year it was awarded.
           </p>
-        </div>
-
-        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
-          {winWorth.map((item, index) => (
-            <Fragment key={item.title}>
-              {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
-              <div>
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{item.body}</p>
-              </div>
-            </Fragment>
+          {winWorth.map((item) => (
+            <p key={item.title}>
+              <strong className="font-bold">{item.title}.</strong>{" "}
+              <span className="text-muted-foreground">{item.body}</span>
+            </p>
           ))}
         </div>
-
-        <div className="mt-16 flex justify-center">
-          <Button asChild size="lg" className="min-w-48">
-            <a href="#submit">Enter now →</a>
-          </Button>
-        </div>
       </div>
+    </section>
+  );
+}
+
+const howItWorks = [
+  {
+    when: "Today",
+    title: "You enter",
+    body: (
+      <>
+        Four fields and three short questions. About five minutes. We are assessing what was built,
+        not how well an application is written.
+      </>
+    ),
+  },
+  {
+    when: "Next five business days",
+    title: "We read it",
+    body: (
+      <>
+        Read against{" "}
+        <a href="#criteria" className={LINK}>
+          three published criteria
+        </a>
+        : originality, traction, and a standout achievement.
+      </>
+    ),
+  },
+  {
+    when: "By the fifth business day",
+    title: "You hear back",
+    body: <>Either way, and with the reason it was reached. Nothing is left unanswered.</>,
+  },
+  {
+    when: "If selected",
+    title: "Your winner pack",
+    body: (
+      <>
+        Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
+        and the written record of your assessment arrive by email. No further payment, and they
+        remain yours permanently.
+      </>
+    ),
+  },
+];
+
+/** A timeline: horizontal on desktop, vertical on mobile, one dot per step. */
+function HowItWorks() {
+  return (
+    <section id="how-it-works" className="scroll-mt-20 py-20 md:py-28">
+      <div className={WRAP}>
+        <h2 className={`${H2} max-w-[800px]`}>From entry to decision in five business days.</h2>
+        <ol className="relative mt-14 grid gap-10 border-l border-foreground pl-6 md:grid-cols-4 md:gap-8 md:border-t md:border-l-0 md:pl-0 md:pt-8">
+          {howItWorks.map((step) => (
+            <li key={step.title} className="relative">
+              <span
+                aria-hidden
+                className="absolute top-1.5 -left-[29px] size-2.5 rounded-full bg-foreground md:-top-[37px] md:left-0"
+              />
+              <p className="text-sm font-semibold text-muted-foreground">{step.when}</p>
+              <h3 className="mt-1 text-xl font-bold">{step.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+function AwardNumbers() {
+  return (
+    <section aria-label="The award in numbers" className="py-16 md:py-20">
+      <dl className={`${WRAP} grid grid-cols-2 gap-y-10 md:grid-cols-4`}>
+        {AWARD_NUMBERS.map((stat, index) => (
+          <div
+            key={stat.label}
+            className={`flex flex-col pr-4 ${index % 2 === 1 ? "border-l border-border pl-6" : ""} ${index > 0 ? "md:border-l md:border-border md:pl-6" : ""}`}
+          >
+            <dt className="order-2 mt-2 text-base text-muted-foreground">{stat.label}</dt>
+            <dd className="text-5xl font-extrabold tracking-[-0.02em] tabular-nums md:text-6xl">
+              {stat.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }
@@ -326,69 +347,42 @@ const criteria = [
   },
 ];
 
-/** A rubric, not a sequence: bordered cards with a blue left rule and no numerals. */
 function Criteria() {
   return (
-    <section id="criteria" className="py-24 md:py-32">
-      <div className="mx-auto max-w-3xl px-6">
-        <div className="text-center">
-          <Eyebrow>How entries are read</Eyebrow>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            The three criteria, in full.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Every entry is read against these, in this order. There are no categories, so nothing is
-            selected by default.
-          </p>
-        </div>
-
-        <div className="mt-16 space-y-6">
+    <section id="criteria" className="scroll-mt-20 py-20 md:py-28">
+      <div className={WRAP}>
+        <h2 className={H2}>The three criteria, in full.</h2>
+        <p className="mt-6 max-w-[680px] text-xl leading-relaxed">
+          Every entry is read against these, in this order. There are no categories, so nothing is
+          selected by default. The judgment is made outside your business, by people with no stake
+          in the outcome.
+        </p>
+        <dl className="mt-12 divide-y divide-border border-y border-border">
           {criteria.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-lg border border-border border-l-2 border-l-primary bg-background p-6 md:p-8"
-            >
-              <h3 className="text-lg font-semibold">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground">{item.body}</p>
+            <div key={item.title} className="grid gap-2 py-6 md:grid-cols-[280px_1fr] md:gap-10">
+              <dt className="text-xl font-bold">{item.title}</dt>
+              <dd className="max-w-[680px] text-muted-foreground">{item.body}</dd>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 flex justify-center">
-          <Button asChild size="lg" variant="outline">
-            <a href="/criteria">See the full criteria page →</a>
-          </Button>
-        </div>
+        </dl>
+        <a href="/criteria" className={`${LINK} mt-8 inline-flex min-h-11 items-center`}>
+          See the full criteria page
+        </a>
       </div>
     </section>
   );
 }
 
-function SpecimenCitation() {
+function WrittenRecord() {
   return (
-    <section className="border-y border-border bg-surface py-16 md:py-24">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[0.8fr_1fr]">
-        <SiteFigure
-          src={winnerWords.url}
-          alt={`A ${AWARD_YEAR} Entrepreneur Award winner holding the crystal award.`}
-          ratio="4 / 5"
-          width={614}
-          height={768}
-          objectPosition="center"
-        />
-        <div>
-          <Eyebrow>The words you receive</Eyebrow>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            What the award actually says about you.
-          </h2>
-          <Card className="mt-7 border border-border bg-background p-8 shadow-none md:p-10">
-            <p className="text-base leading-relaxed text-foreground">
-              Winners receive a dated, signed record of the assessment. It states what was judged
-              and why the entry was selected, written for that specific business rather than from
-              a template. You can use it as the basis for any quote you choose.
-            </p>
-          </Card>
-        </div>
+    <section className="py-20 md:py-28">
+      <div className={WRAP}>
+        <h2 className={H2}>The written record winners receive.</h2>
+        <p className="mt-8 max-w-[680px] text-2xl leading-relaxed">
+          Winners receive a dated, signed record of the assessment. It states what was judged
+          and why the entry was selected, written for that specific business rather than from
+          a template. You can use it as the basis for any quote you choose.
+        </p>
       </div>
     </section>
   );
@@ -409,113 +403,27 @@ const doesNotDo = [
   },
 ];
 
+/** The page's one dark section. */
 function WhatItDoesNotDo() {
   return (
-    <section className="bg-[#0B1220] py-24 text-white md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl">
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-white/50">
-            Setting expectations
-          </p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            What this award does not do.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-white/60 md:text-xl">
-            Worth knowing before you enter, so nothing about the process comes as a surprise later.
-          </p>
-        </div>
-
-        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
-          {doesNotDo.map((item, index) => (
-            <div key={item.title} className="bg-[#0B1220] p-7 md:p-8">
-              <span className="text-sm font-medium tabular-nums text-white/35">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-              <p className="mt-2 text-base leading-relaxed text-white/60">{item.body}</p>
-            </div>
+    <section className="bg-foreground py-20 text-background md:py-28">
+      <div className={WRAP}>
+        <h2 className={H2}>What this award does not do.</h2>
+        <p className="mt-6 max-w-[680px] text-xl leading-relaxed text-background/75">
+          Worth knowing before you enter, so nothing about the process comes as a surprise later.
+        </p>
+        <div className="mt-10 max-w-[680px] space-y-5">
+          {doesNotDo.map((item) => (
+            <p key={item.title}>
+              <strong className="font-bold">{item.title}.</strong>{" "}
+              <span className="text-background/75">{item.body}</span>
+            </p>
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-const howItWorks = [
-  {
-    number: "01",
-    title: "You enter",
-    body: (
-      <>
-        Four fields and three short questions. About five minutes. We are assessing what was built,
-        not how well an application is written.
-      </>
-    ),
-  },
-  {
-    number: "02",
-    title: "We assess it",
-    body: (
-      <>
-        Read against{" "}
-        <a href="#criteria" className="text-primary underline underline-offset-4">
-          three published criteria
-        </a>
-        : originality, traction, and a standout achievement.
-      </>
-    ),
-  },
-  {
-    number: "03",
-    title: "You hear back",
-    body: <>Either way, and with the reason it was reached. Nothing is left unanswered.</>,
-  },
-  {
-    number: "04",
-    title: "If selected",
-    body: (
-      <>
-        Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
-        and the written record of your assessment arrive by email. No further payment, and they
-        remain yours permanently.
-      </>
-    ),
-  },
-];
-
-/** A sequence in time: large grey numerals on a connecting hairline. */
-function HowItWorks() {
-  return (
-    <section
-      id="how-it-works"
-      className="border-y border-border bg-surface py-24 md:py-32"
-    >
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>How it works</Eyebrow>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Four steps, start to finish.
-          </h2>
-        </div>
-
-        <ol className="mt-16 grid gap-12 md:grid-cols-4 md:gap-10">
-          {howItWorks.map((step) => (
-            <li key={step.number} className="border-t border-border pt-6">
-              <span className="block text-4xl font-semibold leading-none tracking-tight text-muted-foreground/40 md:text-5xl">
-                {step.number}
-              </span>
-              <h3 className="mt-5 text-lg font-semibold">{step.title}</h3>
-              <p className="mt-2 text-base leading-relaxed text-muted-foreground">{step.body}</p>
-            </li>
-          ))}
-        </ol>
-
-      </div>
-    </section>
-  );
-}
-
-
 
 type HubSpotSubmissionPayload = {
   submittedAt: number;
@@ -686,7 +594,11 @@ function SubmissionForm() {
       const btn = form.querySelector<HTMLInputElement | HTMLButtonElement>(
         'input[type="submit"], button[type="submit"]'
       );
-      if (btn) btn.disabled = false;
+      if (btn) {
+        btn.disabled = false;
+        if (btn instanceof HTMLInputElement) btn.value = "Submit entry";
+        else btn.textContent = "Submit entry";
+      }
     };
 
     formContainer?.addEventListener("submit", handleServerSubmit, true);
@@ -741,18 +653,13 @@ function SubmissionForm() {
   }, [navigate, submitLead]);
 
   return (
-    <section id="submit" className="py-24 md:py-32">
-      <div className="mx-auto max-w-3xl px-6">
-        <div className="text-center">
-          <Eyebrow>Enter now</Eyebrow>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Put your entry in.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Everything needed to assess the business is on this one page.
-          </p>
-        </div>
-        <Card className="mt-12 p-8 md:p-10">
+    <section id="submit" className="scroll-mt-20 py-20 md:py-28">
+      <div className={WRAP}>
+        <h2 className={H2}>Enter the {AWARD_YEAR} Awards.</h2>
+        <p className="mt-6 max-w-[680px] text-xl leading-relaxed">
+          Everything needed to assess the business is on this one page.
+        </p>
+        <div className="mt-10 max-w-[680px]">
           <div id={targetId} ref={formContainerRef} />
           <div className="mt-6" ref={consentRef}>
             <p className="text-sm text-foreground">
@@ -761,48 +668,23 @@ function SubmissionForm() {
                 href="/terms-and-conditions"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-primary"
+                className="text-primary underline underline-offset-4"
               >
                 Terms and Conditions
               </a>
               .
             </p>
-            <p className="mt-6 text-center text-sm text-muted-foreground">
+            <p className="mt-6 text-sm text-muted-foreground">
               We reply to every entry either way, within five business days.
             </p>
           </div>
           {formError && (
-            <p className="mt-4 text-center text-sm font-medium text-destructive" role="alert">
+            <p className="mt-4 text-sm font-medium text-destructive" role="alert">
               {formError}
             </p>
           )}
-        </Card>
-      </div>
-    </section>
-  );
-}
-
-function Contact() {
-  return (
-    <section id="contact" className="border-t border-border bg-surface py-24">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <Eyebrow>Contact</Eyebrow>
-        <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-          Questions? Get in touch.
-        </h2>
-        <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
-          We reply to email within one business day.
-        </p>
-        <div className="mt-8">
-          <a
-            href="mailto:hello@entrepreneurawards.co"
-            className="text-lg font-medium text-primary underline underline-offset-4"
-          >
-            hello@entrepreneurawards.co
-          </a>
         </div>
       </div>
     </section>
   );
 }
-
