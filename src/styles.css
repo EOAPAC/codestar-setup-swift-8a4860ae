@@ -469,3 +469,11 @@
 .newspaper-site .editorial-dark { background: var(--foreground) !important; }
 @media (min-width: 1024px) { .home-hero h1, .home-deck { background: var(--background); } .home-trophy { right: -80px; } }
 @media (max-width: 639px) { .publication-row { gap: 20px; } .newspaper-site .publication-wordmark { font-size: 14px; } }
+
+.newspaper-site main :is(a,button)[style*="background-color:var(--primary)"] { background: var(--primary) !important; color: var(--primary-foreground) !important; border-radius: 4px !important; }
+.newspaper-site main :is(p,span)[style*="text-transform:uppercase"] { display: none; }
+.newspaper-site main [class*="grid"] > * { min-width: 0; }
+.newspaper-site main :is(p,span,a,dd) { overflow-wrap: anywhere; }
+.newspaper-site main :is(p,span,div)[class*="text-[#"] { color: var(--foreground) !important; }
+.newspaper-site main :is(p,span)[style*="letter-spacing"] { letter-spacing: 0 !important; }
+.newspaper-site main :is(a,button)[style*="background-color:var(--primary)"] { overflow-wrap: normal; }
