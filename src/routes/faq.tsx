@@ -12,7 +12,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
 import { SiteFigure } from "@/components/site-figure";
 
-import { HelpCircle, Mail, ArrowRight, Sparkles } from "lucide-react";
+import { Mail, ArrowRight, Sparkles } from "lucide-react";
 
 const topics = [
   { label: "Getting started", target: "q1" },
@@ -42,20 +42,12 @@ function FAQPage() {
       <SiteNav />
       <main>
         <section className="relative overflow-hidden border-b border-border">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
-          />
           <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
-              <HelpCircle className="h-3.5 w-3.5 text-primary" />
-              FAQ
-            </span>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
-              Frequently Asked <span className="text-primary">Questions</span>
+            <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
+              Frequently Asked Questions
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Everything you need to know before putting your story forward.
+              Common questions about entering, judging and what winners receive.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
               {topics.map((t) => (
@@ -216,7 +208,7 @@ function FAQPage() {
                 </Button>
                 <Button asChild>
                   <a href="/#submit">
-                    Start Your Entry <ArrowRight className="ml-2 h-4 w-4" />
+                    Start your entry <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
               </div>
