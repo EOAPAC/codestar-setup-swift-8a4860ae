@@ -25,9 +25,9 @@ const topics = [
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — Entrepreneur Awards" },
+      { title: "FAQ | Entrepreneur Awards" },
       { name: "description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
-      { property: "og:title", content: "FAQ — Entrepreneur Awards" },
+      { property: "og:title", content: "FAQ | Entrepreneur Awards" },
       { property: "og:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,17 +42,9 @@ function FAQPage() {
       <SiteNav />
       <main>
         <section className="relative overflow-hidden border-b border-border">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
-          />
-          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
-              <HelpCircle className="h-3.5 w-3.5 text-primary" />
-              FAQ
-            </span>
+          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 md:pt-32 md:pb-20">
             <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
-              Frequently Asked <span className="text-primary">Questions</span>
+              Frequently Asked Questions
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Everything you need to know before putting your story forward.
