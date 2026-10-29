@@ -346,20 +346,20 @@ function Criteria() {
 
 const recordRows = [
   {
-    label: "What was judged",
-    body: "Your entry, read against originality, traction and a standout achievement.",
+    label: "The story",
+    body: "What you built and how you got there, written about your business.",
   },
   {
-    label: "Why it was selected",
-    body: "The reasons for the decision, written for your business.",
+    label: "The panel's words",
+    body: "Why your entry was selected, in the judging panel's own words.",
   },
   {
-    label: "Dated and signed",
-    body: "A record of one decision, on one date.",
+    label: "Your details",
+    body: "Your company, industry, location and website, linked from the page.",
   },
   {
-    label: "Yours to quote",
-    body: "Use any line from it on your site, in proposals or with press.",
+    label: "Yours to share",
+    body: "Link to it from your site, in proposals or with press.",
   },
 ];
 
@@ -386,11 +386,11 @@ function SpecimenCitation() {
                 <span className="whitespace-nowrap text-sm font-semibold">Entrepreneur Awards</span>
               </div>
               <span className="whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-[#1978E5]">
-                Winner record
+                Winner feature
               </span>
             </div>
             <p className="mt-6 text-[17px] leading-relaxed text-foreground">
-              Every winner receives a dated, signed record of the assessment, written for their business.
+              A winner feature tells the story of what you built, with the panel's own words on why you were selected.
             </p>
             <dl className="mt-6">
               {recordRows.map((row) => (
@@ -407,7 +407,7 @@ function SpecimenCitation() {
             </dl>
             <div className="border-t border-border pt-5">
               <a href="/winners" className="text-[15px] font-semibold text-[#1978E5] hover:underline">
-                See published winner records
+                See winner features
               </a>
             </div>
           </Card>
