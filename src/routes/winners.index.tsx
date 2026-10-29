@@ -28,13 +28,13 @@ export const Route = createFileRoute("/winners/")({
       {
         name: "description",
         content:
-          "The permanent record of Entrepreneur Awards winners: founders recognised on the strength of what they have built.",
+          "The permanent record of Entrepreneur Awards winners — founders recognised on the strength of what they have built.",
       },
       { property: "og:title", content: "Entrepreneur Awards Winners" },
       {
         property: "og:description",
         content:
-          "The permanent record of Entrepreneur Awards winners: founders recognised on the strength of what they have built.",
+          "The permanent record of Entrepreneur Awards winners — founders recognised on the strength of what they have built.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://entrepreneurawards.co/winners" },

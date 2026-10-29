@@ -3,16 +3,13 @@ import { AWARD_YEAR } from "@/content/award";
 
 export function SiteFooter({ statementClassName = "" }: { statementClassName?: string }) {
   return (
-    <footer id="contact" className="border-t border-border py-10">
+    <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-xs text-muted-foreground">
         <p className={`text-center ${statementClassName}`}>
           Every {AWARD_YEAR} entry is read against the same three published criteria.
         </p>
-        <p className="text-center">
-          Questions?{" "}
-          <a href="mailto:hello@entrepreneurawards.co" className="text-primary underline underline-offset-4">hello@entrepreneurawards.co</a>
-          . We reply within one business day.
-        </p>
+
+
 
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link to="/criteria" className="hover:text-foreground">Criteria</Link>
