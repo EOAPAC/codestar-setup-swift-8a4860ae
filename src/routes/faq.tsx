@@ -5,11 +5,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
 import { SiteFigure } from "@/components/site-figure";
 
+import { HelpCircle, Mail, ArrowRight, Sparkles } from "lucide-react";
 
 const topics = [
   { label: "Getting started", target: "q1" },
@@ -22,9 +25,9 @@ const topics = [
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ | Entrepreneur Awards" },
+      { title: "FAQ — Entrepreneur Awards" },
       { name: "description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
-      { property: "og:title", content: "FAQ | Entrepreneur Awards" },
+      { property: "og:title", content: "FAQ — Entrepreneur Awards" },
       { property: "og:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -38,24 +41,38 @@ function FAQPage() {
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-[1120px] px-6 pt-20 pb-16 md:pt-28 md:pb-20">
-            <h1 className="text-5xl font-extrabold tracking-[-0.02em] md:text-6xl">Frequently asked questions</h1>
-            <p className="mt-6 max-w-[680px] text-xl leading-relaxed text-muted-foreground">
+        <section className="relative overflow-hidden border-b border-border">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.primary/12),transparent_70%)]"
+          />
+          <div className="relative mx-auto max-w-3xl px-6 pt-24 pb-16 text-center md:pt-32 md:pb-20">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
+              <HelpCircle className="h-3.5 w-3.5 text-primary" />
+              FAQ
+            </span>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+              Frequently Asked <span className="text-primary">Questions</span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Everything you need to know before putting your story forward.
             </p>
-            <nav aria-label="FAQ topics" className="mt-8 flex flex-wrap gap-x-6">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
               {topics.map((t) => (
-                <a key={t.target} href={`#${t.target}`} className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
+                <a
+                  key={t.target}
+                  href={`#${t.target}`}
+                  className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                >
                   {t.label}
                 </a>
               ))}
-            </nav>
+            </div>
           </div>
         </section>
 
         <section className="pt-16 md:pt-20">
-          <div className="mx-auto max-w-[1120px] px-6">
+          <div className="mx-auto max-w-3xl px-6">
             <SiteFigure
               src="/images/ea-award-detail.webp"
               alt="Close detail of the 2026 Entrepreneur Award, showing the winner seal etched into the crystal."
@@ -65,8 +82,8 @@ function FAQPage() {
         </section>
 
         <section className="py-16 md:py-24">
-          <div className="mx-auto max-w-[1120px] px-6">
-            <div className="max-w-[800px] border-t border-border">
+          <div className="mx-auto max-w-3xl px-6">
+            <Card className="px-4 py-2 md:px-6 md:py-4">
 
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="q1" id="q1" className="scroll-mt-24">
@@ -83,7 +100,7 @@ function FAQPage() {
                     What does it cost in total?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award statement (the short, formal lines explaining what was assessed and why the entry was selected) are provided free and permanently.
+                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award statement &mdash; the short, formal lines explaining what was assessed and why the entry was selected &mdash; are provided free and permanently.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -177,18 +194,33 @@ function FAQPage() {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-            </div>
+            </Card>
 
-            <div className="mt-12 max-w-[680px] border-t border-border pt-8">
-              <h3 className="text-xl font-bold">Still have a question?</h3>
-              <p className="mt-2 text-muted-foreground">
-                Our team usually replies within one business day.{" "}
-                <a href="mailto:hello@entrepreneurawards.co" className="font-medium text-primary underline underline-offset-4">
-                  Email us
-                </a>
-                .
-              </p>
-            </div>
+            <Card className="mt-10 flex flex-col items-start gap-6 border-primary/20 bg-primary/5 p-8 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                  <Sparkles className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold">Still have a question?</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Our team usually replies within one business day.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild variant="outline">
+                  <a href="mailto:hello@entrepreneurawards.co">
+                    <Mail className="mr-2 h-4 w-4" /> Email us
+                  </a>
+                </Button>
+                <Button asChild>
+                  <a href="/#submit">
+                    Start Your Entry <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+            </Card>
           </div>
         </section>
 
