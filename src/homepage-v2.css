@@ -43,9 +43,15 @@
 }
 .homepage-v2-press-outlets a:hover { color: var(--press-hover); }
 .homepage-v2-press-outlets a:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
-.homepage-v2-award-band { background: var(--background); padding-block: 80px; padding-inline: 24px; }
+.homepage-v2-award-band { background: var(--background); padding: 80px 24px 0; }
 .homepage-v2-award-inner { max-width: 1120px; margin-inline: auto; }
 .homepage-v2-award-photo { display: block; width: 100%; height: 420px; object-fit: cover; object-position: center 25%; border-radius: 12px; }
+/* Exactly 72px between the photo's bottom edge and the blue bar above the next
+ * heading: 60px here plus the heading's own 12px top margin. */
+.homepage-v2-win-worth { padding-top: 60px; padding-bottom: 96px; }
+@media (min-width: 768px) {
+  .homepage-v2-win-worth { padding-bottom: 128px; }
+}
 @media (min-width: 768px) and (max-width: 1100px) {
   .homepage-v2-press-inner { gap: 56px; }
   .homepage-v2-press-outlets { gap: 12px; }
