@@ -257,7 +257,7 @@ const winWorth = [
 
 function WhatAWinIsWorth() {
   return (
-    <section className="py-24 md:py-32">
+    <section className="homepage-v2-win-worth">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
