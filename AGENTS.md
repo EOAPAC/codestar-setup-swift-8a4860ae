@@ -13,3 +13,4 @@
 - Business-name personalization uses a browser-safe helper with tests for sanitization and placeholder replacement so URL input never becomes markup.
 - Keep homepage statistics in a dedicated browser-safe component with scoped styles and tested data/counting logic so its animation does not alter other page sections.
 - Scope colour-restoration styles to homepage, Criteria and FAQ classes; their trophy headers reuse the Winners asset without changing the directory or shared CTA presentation.
+- Keep the homepage comparison route as an independent copy with its own scoped stylesheet and unchanged form integration, so comparison edits never alter the original homepage.
