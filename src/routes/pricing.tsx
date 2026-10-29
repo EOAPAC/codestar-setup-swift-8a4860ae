@@ -19,12 +19,12 @@ import portraitAsset from "@/assets/ea-winner-award-portrait.jpg.asset.json";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: `Pricing — ${AWARD_YEAR} Entrepreneur Award` },
+      { title: `Pricing | ${AWARD_YEAR} Entrepreneur Award` },
       {
         name: "description",
         content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
       },
-      { property: "og:title", content: `Pricing — ${AWARD_YEAR} Entrepreneur Award` },
+      { property: "og:title", content: `Pricing | ${AWARD_YEAR} Entrepreneur Award` },
       {
         property: "og:description",
         content: `Download your ${AWARD_YEAR} Entrepreneur Award winner graphics and see The Winner's Feature.`,
@@ -250,7 +250,7 @@ function PressMockup() {
           {withSlots(`${SPECIMEN_BUSINESS_TOKEN} Named a Winner of the ${AWARD_YEAR} Entrepreneur Awards`)}
         </h3>
         <p style={{ marginTop: "10px", fontSize: "11px", color: MUTED }}>
-          NEW YORK — Entrepreneur Awards
+          NEW YORK: Entrepreneur Awards
         </p>
         {[
           `${SPECIMEN_BUSINESS_TOKEN} has been named a winner of the ${AWARD_YEAR} Entrepreneur Awards, an annual program recognizing owner-led businesses for measurable operating results.`,

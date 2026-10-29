@@ -49,7 +49,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
     id: "fees-and-payment",
     title: "4. Fees and Payment",
     body: [
-      "4.1 Winner packages are priced as published at the time of purchase — currently **Digital $245**, **Signature $495**, **Headline $895**. Badge licences are **$149 per year**.",
+      "4.1 Winner packages are priced as published at the time of purchase, currently **Digital $245**, **Signature $495**, **Headline $895**. Badge licences are **$149 per year**.",
       "4.2 Payment is by credit or debit card via our payment processor, or by bank transfer where agreed in advance. Payment is due in full at purchase. We do not offer instalments or financing.",
       "4.3 To place an order you must provide accurate and complete billing and contact information.",
       "4.4 We may refuse any order or cancel any transaction at our discretion, refunding the amount paid.",
@@ -61,7 +61,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
     body: [
       "5.1 Winner packages are **optional**. Your selection is confirmed before any package is offered, and declining a package does not take your award away.",
       "5.2 Deliverables are digital unless we say otherwise. Typical turnaround is **5 business days** from the later of (a) payment and (b) our receipt of everything we have asked you for. Where a package includes a physical item, we will confirm shipping and lead time at the point of purchase; we are not responsible for carrier delays, damage or loss in transit.",
-      "5.3 Where a deliverable needs something from you — approvals, a headshot, copy, a factual correction — the clock runs from when we receive it. We will make reasonable efforts to chase you for it.",
+      "5.3 Where a deliverable needs something from you (approvals, a headshot, copy, a factual correction), the clock runs from when we receive it. We will make reasonable efforts to chase you for it.",
       "5.4 We may substitute a deliverable of equivalent or greater value where a specified item becomes unavailable.",
     ],
   },
@@ -71,10 +71,10 @@ export const TERMS_SECTIONS: TermsSection[] = [
     body: [
       "6.1 Winners may license the Entrepreneur Awards winner badge for **$149 per year**.",
       "6.2 The licence is a **limited, non-exclusive, non-transferable, revocable** right to display the badge in connection with the specific award and year granted. We retain ownership of the badge and all associated marks.",
-      "6.3 You **may** use the badge on your personal website and social profiles, in your LinkedIn banner or featured section, in bio and speaker materials, in pitch and media kits, and in email signatures — provided the award name and year are legible and accurate.",
+      "6.3 You **may** use the badge on your personal website and social profiles, in your LinkedIn banner or featured section, in bio and speaker materials, in pitch and media kits, and in email signatures, provided the award name and year are legible and accurate.",
       "6.4 You **may not**: alter the badge's proportions, colours or wording; imply an award, year or category you did not receive; imply a ranking, endorsement, certification or accreditation that was not granted; transfer the badge to another person or to a company you are not the awarded founder of; or imply an ongoing relationship with us beyond the award.",
       "6.5 Because this is a personal award, the licence is personal to you. It does not transfer if you leave, sell or close the business.",
-      "6.6 The licence expires at the end of its annual term unless renewed. On expiry or termination you must stop using the badge in all live and controlled media within **30 days**. Plain-text historical references — for example, \"Winner, Entrepreneur Awards 2026\" in a bio — remain permitted indefinitely.",
+      "6.6 The licence expires at the end of its annual term unless renewed. On expiry or termination you must stop using the badge in all live and controlled media within **30 days**. Plain-text historical references (for example, \"Winner, Entrepreneur Awards 2026\" in a bio) remain permitted indefinitely.",
       "6.7 We may audit use of the badge and may revoke a licence for breach of this section, for misrepresentation, or where continued display would mislead someone.",
     ],
   },
@@ -92,18 +92,18 @@ export const TERMS_SECTIONS: TermsSection[] = [
     id: "published-content-name-likeness",
     title: "8. Published Content, Name and Likeness",
     body: [
-      "8.1 By entering, you grant us a non-exclusive, worldwide, royalty-free licence to use your name, likeness, biography, business name, logo and submitted materials for the purpose of reviewing your entry, and — if you are selected — announcing, publishing and promoting your award across our website, publications, social channels and partner media.",
+      "8.1 By entering, you grant us a non-exclusive, worldwide, royalty-free licence to use your name, likeness, biography, business name, logo and submitted materials for the purpose of reviewing your entry, and, if you are selected, announcing, publishing and promoting your award across our website, publications, social channels and partner media.",
       "8.2 Editorial control of anything we publish rests with us. Winner features are written from what you supply. We will correct factual errors on request; we do not offer approval rights over tone, framing or structure.",
       "8.3 We may keep published winner content, including archived years, online indefinitely. If we agree to remove something, removal from third-party caches, aggregators and search indexes is outside our control.",
       "8.4 You may quote and share published content about your own award, with attribution and without changing its meaning.",
-      "8.5 If your entry names other people — co-founders, team members, clients — you confirm you have their permission to include the information you have provided about them.",
+      "8.5 If your entry names other people (co-founders, team members, clients), you confirm you have their permission to include the information you have provided about them.",
     ],
   },
   {
     id: "intellectual-property",
     title: "9. Intellectual Property",
     body: [
-      "9.1 All content on the Website — text, graphics, logos, badges, images, page design and software — is our property or licensed to us, and is protected by copyright, trade mark and other intellectual property laws.",
+      "9.1 All content on the Website (text, graphics, logos, badges, images, page design and software) is our property or licensed to us, and is protected by copyright, trade mark and other intellectual property laws.",
       "9.2 You may not reproduce, modify, distribute, sell or display any part of the Website without our prior written consent.",
       "9.3 Entrepreneur Awards name, logo and badges may not be used except under a licence granted under section 6 or with our prior written consent.",
       "9.4 You keep ownership of what you submit. You grant us the licence described in section 8 in respect of it.",

@@ -209,8 +209,8 @@ function WinnerMaterialsPage() {
                   You have been selected for the Entrepreneur Award.
                 </h1>
                 <p className="mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-                  Your award statement &mdash; the short, formal lines explaining what was
-                  assessed and why your entry was selected &mdash; certificate and winner
+                  Your award statement (the short, formal lines explaining what was
+                  assessed and why your entry was selected), certificate and winner
                   materials are ready to use.
                 </p>
               </div>
@@ -368,7 +368,7 @@ function WinnerMaterialsPage() {
                     </DialogHeader>
                     <FeatureSpecimen large />
                     <p className="text-sm text-muted-foreground">
-                      Feature format specimen — shown to demonstrate structure and
+                      Feature format specimen, shown to demonstrate structure and
                       presentation. It is not presented as a real award winner.
                     </p>
                   </DialogContent>
@@ -407,7 +407,7 @@ function WinnerMaterialsPage() {
               aria-label="Placeholder for an image of the physical commemorative edition"
             >
               <span className="text-sm text-muted-foreground">
-                Physical commemorative edition — image coming soon
+                Physical commemorative edition: image coming soon
               </span>
             </div>
             <div>
@@ -456,7 +456,7 @@ function WinnerMaterialsPage() {
                   </DialogHeader>
                   <FeatureSpecimen large />
                   <p className="text-sm text-muted-foreground">
-                    Feature format specimen — shown to demonstrate structure and
+                    Feature format specimen, shown to demonstrate structure and
                     presentation. It is not presented as a real award winner.
                   </p>
                 </DialogContent>

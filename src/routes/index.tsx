@@ -46,9 +46,9 @@ import winnerWords from "@/assets/winner-words.jpg.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Entrepreneur Awards — For the person who built it." },
+      { title: "Entrepreneur Awards | For the person who built it" },
       { name: "description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
-      { property: "og:title", content: "Entrepreneur Awards — For the person who built it." },
+      { property: "og:title", content: "Entrepreneur Awards | For the person who built it" },
       { property: "og:description", content: "An independent award for founders. Discover the assessment criteria, how it works, and enter the 2026 Entrepreneur Awards." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -114,8 +114,7 @@ function Hero() {
 
       <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-24 md:pt-12 md:pb-32">
         <div className="max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+          <span className="text-xs font-medium text-muted-foreground">
             {AWARD_YEAR} entries are open · decisions within five business days
           </span>
           <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
@@ -261,15 +260,15 @@ function AwardBand() {
 const winWorth = [
   {
     title: "Recognition in your name",
-    body: "Most business awards go to companies. This one is awarded to the founder, so it travels with you into whatever you build next and reads as a judgment on you rather than on an entity.",
+    body: "Most business awards go to companies. This one is awarded to the founder, so it travels with you into whatever you build next.",
   },
   {
     title: "A reason to be seen",
-    body: "Selection is something that happened, on a date. That gives you a legitimate reason to update your profile, write to your clients and talk to press, without any of it reading as self-promotion.",
+    body: "Selection is a dated event. It gives you a reason to update your profile, write to your clients and talk to press without it reading as self-promotion.",
   },
   {
     title: "Assessed on what you built",
-    body: "The reading is about the business itself (what you made, what it does and what happened as a result) rather than how polished the writing around it is.",
+    body: "We read for the business itself: what you made, what it does and what happened as a result.",
   },
 ];
 
@@ -278,14 +277,11 @@ function WhatAWinIsWorth() {
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <Eyebrow>What you get out of it</Eyebrow>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             What a win is worth to you.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Entrepreneur Awards recognises the founder rather than the company. Selection puts an
-            external assessment of what you built into your own name, issued by someone outside
-            your business, and it stays useful long after the year it was awarded.
+            Entrepreneur Awards recognises the founder. Selection puts an outside assessment of what you built in your own name, and it stays useful long after the year it was awarded.
           </p>
         </div>
 
@@ -314,15 +310,15 @@ function WhatAWinIsWorth() {
 const criteria = [
   {
     title: "Originality",
-    body: "What was built, and whether it is meaningfully different from what already existed. We are reading the substance of the thing itself, not how novel it sounds when described.",
+    body: "What was built, and whether it is meaningfully different from what already existed.",
   },
   {
     title: "Traction",
-    body: "Progress that can be pointed at. Revenue, customers, users, adoption, or another outcome you can evidence. Read in the context of the stage your business is at, not against a fixed threshold.",
+    body: "Progress you can show: revenue, customers, users, adoption or another outcome you can evidence. Judged for the stage your business is at. There is no fixed threshold.",
   },
   {
     title: "A standout achievement",
-    body: "One specific thing you did that a comparable operator would not have. This asks for a single concrete event rather than a general standard, and it is where detail matters most.",
+    body: "One specific thing you did that a comparable operator would not have. Name a single event and give the detail.",
   },
 ];
 
@@ -332,7 +328,6 @@ function Criteria() {
     <section id="criteria" className="py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <Eyebrow>How entries are read</Eyebrow>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             The three criteria, in full.
           </h2>
@@ -377,15 +372,12 @@ function SpecimenCitation() {
           objectPosition="center"
         />
         <div>
-          <Eyebrow>The words you receive</Eyebrow>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            What the award actually says about you.
+            What the award says about you.
           </h2>
           <Card className="mt-7 border border-border bg-background p-8 shadow-none md:p-10">
             <p className="text-base leading-relaxed text-foreground">
-              Winners receive a dated, signed record of the assessment. It states what was judged
-              and why the entry was selected, written for that specific business rather than from
-              a template. You can use it as the basis for any quote you choose.
+              Winners receive a dated, signed record of the assessment. It states what was judged and why the entry was selected, written for that specific business. You can quote from it however you like.
             </p>
           </Card>
         </div>
@@ -397,7 +389,7 @@ function SpecimenCitation() {
 const doesNotDo = [
   {
     title: "No shortlist fee",
-    body: "Reaching a shortlist costs nothing. Nothing is asked of you to be read and assessed.",
+    body: "Reaching a shortlist costs nothing. There is no charge to be read and assessed.",
   },
   {
     title: "No categories",
@@ -414,14 +406,11 @@ function WhatItDoesNotDo() {
     <section className="bg-[#0B1220] py-24 text-white md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-white/50">
-            Setting expectations
-          </p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
             What this award does not do.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-white/60 md:text-xl">
-            Worth knowing before you enter, so nothing about the process comes as a surprise later.
+            Three things to know before you enter.
           </p>
         </div>
 
@@ -447,8 +436,7 @@ const howItWorks = [
     title: "You enter",
     body: (
       <>
-        Four fields and three short questions. About five minutes. We are assessing what was built,
-        not how well an application is written.
+        Four fields and three short questions. About five minutes. We assess what you built, so the writing doesn't need to be polished.
       </>
     ),
   },
@@ -468,7 +456,7 @@ const howItWorks = [
   {
     number: "03",
     title: "You hear back",
-    body: <>Either way, and with the reason it was reached. Nothing is left unanswered.</>,
+    body: <>Either way, with the reason for the decision.</>,
   },
   {
     number: "04",
@@ -492,9 +480,8 @@ function HowItWorks() {
     >
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>How it works</Eyebrow>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Four steps, start to finish.
+            Four steps from entry to decision.
           </h2>
         </div>
 
@@ -744,9 +731,8 @@ function SubmissionForm() {
     <section id="submit" className="py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <Eyebrow>Enter now</Eyebrow>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Put your entry in.
+            Enter the 2026 Awards.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground md:text-xl">
             Everything needed to assess the business is on this one page.
@@ -786,7 +772,6 @@ function Contact() {
   return (
     <section id="contact" className="border-t border-border bg-surface py-24">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <Eyebrow>Contact</Eyebrow>
         <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
           Questions? Get in touch.
         </h2>

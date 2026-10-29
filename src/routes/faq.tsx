@@ -25,9 +25,9 @@ const topics = [
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — Entrepreneur Awards" },
+      { title: "FAQ | Entrepreneur Awards" },
       { name: "description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
-      { property: "og:title", content: "FAQ — Entrepreneur Awards" },
+      { property: "og:title", content: "FAQ | Entrepreneur Awards" },
       { property: "og:description", content: "Answers about entering the Entrepreneur Awards: eligibility, how it works, judging criteria, and what winners receive." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -100,7 +100,7 @@ function FAQPage() {
                     What does it cost in total?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award statement &mdash; the short, formal lines explaining what was assessed and why the entry was selected &mdash; are provided free and permanently.
+                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award statement (the short, formal lines explaining what was assessed and why the entry was selected) are provided free and permanently.
                   </AccordionContent>
                 </AccordionItem>
 
