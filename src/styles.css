@@ -447,3 +447,6 @@
   .criteria-colour-restored .restored-page-header-copy > div { margin-top: 8px; }
   .criteria-colour-restored .restored-page-header-copy > div p { line-height: 1.4; }
 }
+
+/* Criteria hero lines up with the site nav logo */
+.criteria-colour-restored .restored-page-header-content { max-width: 1152px; padding-inline: 24px; }
