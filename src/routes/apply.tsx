@@ -16,12 +16,12 @@ import { AWARD_YEAR } from "@/content/award";
 export const Route = createFileRoute("/apply")({
   head: () => ({
     meta: [
-      { title: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
+      { title: "Apply for an Entrepreneur Award · Entrepreneur Awards" },
       {
         name: "description",
         content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes a feature story, an engraved trophy, certificate, winner page, and publicity kit.`,
       },
-      { property: "og:title", content: "Apply for an Entrepreneur Award — Entrepreneur Awards" },
+      { property: "og:title", content: "Apply for an Entrepreneur Award · Entrepreneur Awards" },
       {
         property: "og:description",
         content: `Apply for your ${AWARD_YEAR} Entrepreneur Award. The Winner Package includes a feature story, an engraved trophy, certificate, winner page, and publicity kit.`,
