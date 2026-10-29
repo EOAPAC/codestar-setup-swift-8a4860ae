@@ -58,7 +58,7 @@ function FAQPage() {
         </section>
 
         <section className="pt-16 md:pt-20">
-          <div className="mx-auto max-w-3xl px-6">
+          <div className="mx-auto max-w-[1120px] px-6">
             <SiteFigure
               src="/images/ea-award-detail.webp"
               alt="Close detail of the 2026 Entrepreneur Award, showing the winner seal etched into the crystal."
@@ -68,8 +68,8 @@ function FAQPage() {
         </section>
 
         <section className="py-16 md:py-24">
-          <div className="mx-auto max-w-3xl px-6">
-            <Card className="px-4 py-2 md:px-6 md:py-4">
+          <div className="mx-auto max-w-[1120px] px-6">
+            <div className="max-w-[800px] border-t border-border">
 
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="q1" id="q1" className="scroll-mt-24">
@@ -86,7 +86,7 @@ function FAQPage() {
                     What does it cost in total?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award statement &mdash; the short, formal lines explaining what was assessed and why the entry was selected &mdash; are provided free and permanently.
+                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award statement (the short, formal lines explaining what was assessed and why the entry was selected) are provided free and permanently.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -180,7 +180,7 @@ function FAQPage() {
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
-            </Card>
+            </div>
 
             <Card className="mt-10 flex flex-col items-start gap-6 border-primary/20 bg-primary/5 p-8 md:flex-row md:items-center md:justify-between">
               <div className="flex items-start gap-4">
