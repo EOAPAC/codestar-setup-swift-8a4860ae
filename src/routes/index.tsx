@@ -214,7 +214,18 @@ function WhatAWinIsWorth() {
   return (
     <section className="homepage-v2-win-worth">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-[72px]">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="mt-3 text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
+            What a win is
+            <br className="lg:hidden" />{" "}
+            worth to you.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
+            Selection gives you an outside assessment of what you built, in your own name, and it stays useful long after the year it was awarded.
+          </p>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-10 lg:mt-14 lg:grid lg:grid-cols-2 lg:items-center lg:gap-[72px]">
           <img
             src={awardBand.url}
             alt=""
@@ -222,17 +233,8 @@ function WhatAWinIsWorth() {
             decoding="async"
             className="homepage-v2-win-photo"
           />
-          <div className="min-w-0 flex-1">
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-              What a win is
-              <br />
-              worth to you.
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-              Selection gives you an outside assessment of what you built, in your own name, and it stays useful long after the year it was awarded.
-            </p>
-
-            <div className="mt-10 divide-y divide-border">
+          <div className="min-w-0">
+            <div className="divide-y divide-border">
               {winWorth.map((item) => (
                 <div key={item.title} className="py-6 first:pt-0">
                   <h3 className="text-lg font-semibold">{item.title}</h3>

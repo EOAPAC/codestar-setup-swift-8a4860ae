@@ -45,10 +45,10 @@
 .homepage-v2-press-outlets a:hover { color: var(--press-hover); }
 .homepage-v2-press-outlets a:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
 /* The trophy photo sits inside "What a win is worth to you.": full width and
- * ~340px tall on phones, a fixed 500x580 column on desktop. */
+ * ~340px tall under 1024px, a 6:5 column beside the points from 1024px up. */
 .homepage-v2-win-photo { display: block; width: 100%; height: 340px; object-fit: cover; object-position: center 25%; border-radius: 12px; }
-@media (min-width: 768px) {
-  .homepage-v2-win-photo { width: 500px; height: 580px; flex-shrink: 0; }
+@media (min-width: 1024px) {
+  .homepage-v2-win-photo { height: auto; aspect-ratio: 6 / 5; }
 }
 .homepage-v2-win-worth { padding-top: 72px; padding-bottom: 96px; }
 @media (min-width: 768px) {
