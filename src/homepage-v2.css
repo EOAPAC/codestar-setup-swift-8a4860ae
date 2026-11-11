@@ -6,7 +6,9 @@
   --press-hover: #0F172A;
   --press-white: #ffffff;
   background: var(--press-white);
-  padding-block: 8px;
+  padding-block: 32px;
+  border-top: 1px solid var(--press-rule);
+  border-bottom: 1px solid var(--press-rule);
 }
 .homepage-v2-press-inner {
   max-width: 1152px;
