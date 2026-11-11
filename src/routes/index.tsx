@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -67,7 +67,6 @@ function Index() {
       <main>
         <Hero />
         <CredibilityBand />
-        <AwardBand />
         <WhatAWinIsWorth />
         <HowItWorks />
         <AwardNumbers />
@@ -196,22 +195,6 @@ function CredibilityBand() {
   );
 }
 
-function AwardBand() {
-  return (
-    <section className="homepage-v2-award-band">
-      <div className="homepage-v2-award-inner">
-        <img
-          src={awardBand.url}
-          alt=""
-          loading="eager"
-          decoding="async"
-          className="homepage-v2-award-photo"
-        />
-      </div>
-    </section>
-  );
-}
-
 const winWorth = [
   {
     title: "Recognition in your name",
@@ -231,31 +214,39 @@ function WhatAWinIsWorth() {
   return (
     <section className="homepage-v2-win-worth">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            What a win is worth to you.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-            Selection gives you an outside assessment of what you built, in your own name, and it stays useful long after the year it was awarded.
-          </p>
-        </div>
+        <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-[72px]">
+          <img
+            src={awardBand.url}
+            alt=""
+            loading="eager"
+            decoding="async"
+            className="homepage-v2-win-photo"
+          />
+          <div className="min-w-0 flex-1">
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+              What a win is
+              <br />
+              worth to you.
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
+              Selection gives you an outside assessment of what you built, in your own name, and it stays useful long after the year it was awarded.
+            </p>
 
-        <div className="mt-16 grid items-start gap-8 md:grid-cols-[1fr_1px_1fr_1px_1fr]">
-          {winWorth.map((item, index) => (
-            <Fragment key={item.title}>
-              {index > 0 && <div className="h-px w-full bg-border md:h-full md:w-px" />}
-              <div>
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{item.body}</p>
-              </div>
-            </Fragment>
-          ))}
-        </div>
+            <div className="mt-10 divide-y divide-border">
+              {winWorth.map((item) => (
+                <div key={item.title} className="py-6 first:pt-0">
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">{item.body}</p>
+                </div>
+              ))}
+            </div>
 
-        <div className="mt-16 flex justify-center">
-          <Button asChild size="lg" className="min-w-48">
-            <a href="#submit">Enter now →</a>
-          </Button>
+            <div className="mt-10">
+              <Button asChild size="lg" className="min-w-48">
+                <a href="#submit">Enter now →</a>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

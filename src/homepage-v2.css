@@ -42,14 +42,13 @@
 }
 .homepage-v2-press-outlets a:hover { color: var(--press-hover); }
 .homepage-v2-press-outlets a:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
-/* 1104px = the 1152px page container minus its 24px side padding, so the photo's
- * edges sit exactly on the header logo and CTA edges. */
-.homepage-v2-award-band { background: var(--background); padding: 48px 24px 0; }
-.homepage-v2-award-inner { max-width: 1104px; margin-inline: auto; }
-.homepage-v2-award-photo { display: block; width: 100%; height: 420px; object-fit: cover; object-position: center 25%; border-radius: 12px; }
-/* Exactly 72px between the photo's bottom edge and the blue bar above the next
- * heading: 60px here plus the heading's own 12px top margin. */
-.homepage-v2-win-worth { padding-top: 60px; padding-bottom: 96px; }
+/* The trophy photo sits inside "What a win is worth to you.": full width and
+ * ~340px tall on phones, a fixed 500x580 column on desktop. */
+.homepage-v2-win-photo { display: block; width: 100%; height: 340px; object-fit: cover; object-position: center 25%; border-radius: 12px; }
+@media (min-width: 768px) {
+  .homepage-v2-win-photo { width: 500px; height: 580px; flex-shrink: 0; }
+}
+.homepage-v2-win-worth { padding-top: 72px; padding-bottom: 96px; }
 @media (min-width: 768px) {
   .homepage-v2-win-worth { padding-bottom: 128px; }
 }
@@ -65,5 +64,4 @@
   .homepage-v2-press-outlets a:nth-child(-n + 2) { grid-column: span 3; }
   .homepage-v2-press-outlets a:first-child { justify-self: end; }
   .homepage-v2-press-outlets a:nth-child(2) { justify-self: start; }
-  .homepage-v2-award-photo { height: 280px; }
 }
