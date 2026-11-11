@@ -67,3 +67,16 @@
   .homepage-v2-press-outlets a:first-child { justify-self: end; }
   .homepage-v2-press-outlets a:nth-child(2) { justify-self: start; }
 }
+
+/* First screen (>=1024px): hero + press strip fill the viewport under the
+   65px sticky header (64px bar + 1px border), capped so the trophy stays sane. */
+@media (min-width: 1024px) {
+  .homepage-v2-first-screen {
+    display: flex;
+    flex-direction: column;
+    min-height: min(calc(100svh - 65px), 920px);
+  }
+  .homepage-v2-first-screen > .homepage-v2-press { flex: none; }
+  .homepage-v2-hero { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; }
+  .homepage-v2-hero-inner { width: 100%; padding-top: 48px; padding-bottom: 48px; }
+}

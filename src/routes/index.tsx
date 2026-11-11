@@ -65,8 +65,10 @@ function Index() {
     <div className="homepage-colour-restored min-h-screen bg-background font-sans text-foreground antialiased">
       <SiteNav />
       <main>
-        <Hero />
-        <CredibilityBand />
+        <div className="homepage-v2-first-screen">
+          <Hero />
+          <CredibilityBand />
+        </div>
         <WhatAWinIsWorth />
         <HowItWorks />
         <AwardNumbers />
@@ -90,7 +92,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section id="top" className="homepage-v2-hero relative overflow-hidden">
       <img
         src={heroTrophy.url}
         alt=""
@@ -114,7 +116,7 @@ function Hero() {
         className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-background from-30% via-background/60 via-55% to-transparent lg:block"
       />
 
-      <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-14 md:pt-12 md:pb-18">
+      <div className="homepage-v2-hero-inner relative mx-auto max-w-6xl px-6 pt-10 pb-14 md:pt-12 md:pb-18">
         <div className="max-w-2xl">
           <h1 className="text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
             For the person who <span className="text-primary">built it.</span>
