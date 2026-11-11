@@ -6,8 +6,7 @@
   --press-hover: #0F172A;
   --press-white: #ffffff;
   background: var(--press-white);
-  border-block: 1px solid var(--press-rule);
-  padding-block: 48px;
+  padding-block: 8px;
 }
 .homepage-v2-press-inner {
   max-width: 1152px;
@@ -43,8 +42,10 @@
 }
 .homepage-v2-press-outlets a:hover { color: var(--press-hover); }
 .homepage-v2-press-outlets a:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
-.homepage-v2-award-band { background: var(--background); padding: 80px 24px 0; }
-.homepage-v2-award-inner { max-width: 1120px; margin-inline: auto; }
+/* 1104px = the 1152px page container minus its 24px side padding, so the photo's
+ * edges sit exactly on the header logo and CTA edges. */
+.homepage-v2-award-band { background: var(--background); padding: 48px 24px 0; }
+.homepage-v2-award-inner { max-width: 1104px; margin-inline: auto; }
 .homepage-v2-award-photo { display: block; width: 100%; height: 420px; object-fit: cover; object-position: center 25%; border-radius: 12px; }
 /* Exactly 72px between the photo's bottom edge and the blue bar above the next
  * heading: 60px here plus the heading's own 12px top margin. */

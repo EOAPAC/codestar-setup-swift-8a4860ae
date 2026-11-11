@@ -115,7 +115,7 @@ function Hero() {
         className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-background from-30% via-background/60 via-55% to-transparent lg:block"
       />
 
-      <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-24 md:pt-12 md:pb-32">
+      <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-14 md:pt-12 md:pb-18">
         <div className="max-w-2xl">
           <h1 className="text-5xl font-semibold tracking-tight text-foreground md:text-7xl">
             For the person who <span className="text-primary">built it.</span>
