@@ -122,8 +122,9 @@ function Hero() {
             For the person who <span className="text-primary">built it.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            An independent award for founders. One entry, one decision, and most entries are
-            not selected.
+            An independent award for founders.
+            <br className="homepage-v2-hero-break" aria-hidden="true" />
+            One entry, one decision, and most entries are not selected.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="min-w-48">

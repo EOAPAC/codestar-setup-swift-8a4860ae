@@ -68,6 +68,12 @@
   .homepage-v2-press-outlets a:nth-child(2) { justify-self: start; }
 }
 
+/* Hero paragraph: forced line break after "founders." from 768px up only. */
+.homepage-v2-hero-break { display: none; }
+@media (min-width: 768px) {
+  .homepage-v2-hero-break { display: block; }
+}
+
 /* First screen (>=1024px): hero + press strip fill the viewport under the
    65px sticky header (64px bar + 1px border), capped so the trophy stays sane. */
 @media (min-width: 1024px) {
