@@ -96,6 +96,8 @@
 .awards-samples figure { border: 1px solid var(--border); border-radius: 14px; padding: 16px; background: var(--card); }
 .sample-wide { grid-column: span 2; }
 .sample-stage { height: 180px; display: flex; justify-content: center; align-items: center; }
+.sample-img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 6px 18px -10px color-mix(in oklab, var(--foreground) 30%, transparent); background: var(--card); }
+.sample-img-badge { border: 0; box-shadow: none; border-radius: 50%; }
 .awards-samples figcaption { color: var(--muted-foreground); font-size: 13px; margin-top: 12px; }
 .sample-banner { aspect-ratio: 4/1; width: 100%; background: var(--awards-banner); display: flex; align-items: center; padding: 10px; gap: 10px; }
 .sample-banner .awards-seal { width: 20%; height: auto; flex-shrink: 0; }
