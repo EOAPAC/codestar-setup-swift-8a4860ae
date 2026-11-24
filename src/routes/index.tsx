@@ -152,7 +152,7 @@ const publications: {
 }[] = [
   {
     name: "Vanity Fair",
-    href: "https://vanityfairgermany.com/entrepreneur-awards-is-quietly-rewiring-how-founders-earn-status/",
+    href: "https://vanityfairswitzerland.com/entrepreneur-awards-is-quietly-rewiring-how-founders-earn-status/",
     className: "text-[20px] uppercase tracking-[0.18em]",
     style: { fontFamily: SERIF, fontWeight: 400 },
   },
