@@ -38,6 +38,7 @@ import { Route as WinnerResourcesTokenRouteImport } from './routes/winner-resour
 import { Route as WinnersIndexRouteImport } from './routes/winners.index'
 import { Route as WinnersSlugRouteImport } from './routes/winners.$slug'
 import { Route as WinnersSpecimenRouteImport } from './routes/winners.specimen'
+import { Route as ApiPublicStripeWebhookRouteImport } from './routes/api/public/stripe-webhook'
 import { Route as ApiPublicWinnerKitZipRouteImport } from './routes/api/public/winner-kit.zip'
 
 const IndexRoute = IndexRouteImport.update({
@@ -185,6 +186,11 @@ const WinnersSpecimenRoute = WinnersSpecimenRouteImport.update({
   path: '/winners/specimen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicStripeWebhookRoute = ApiPublicStripeWebhookRouteImport.update({
+  id: '/api/public/stripe-webhook',
+  path: '/api/public/stripe-webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicWinnerKitZipRoute = ApiPublicWinnerKitZipRouteImport.update({
   id: '/api/public/winner-kit/zip',
   path: '/api/public/winner-kit/zip',
@@ -221,6 +227,7 @@ export interface FileRoutesByFullPath {
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights/': typeof InsightsIndexRoute
   '/winners/': typeof WinnersIndexRoute
+  '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/api/public/winner-kit/zip': typeof ApiPublicWinnerKitZipRoute
 }
 export interface FileRoutesByTo {
@@ -253,6 +260,7 @@ export interface FileRoutesByTo {
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights': typeof InsightsIndexRoute
   '/winners': typeof WinnersIndexRoute
+  '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/api/public/winner-kit/zip': typeof ApiPublicWinnerKitZipRoute
 }
 export interface FileRoutesById {
@@ -286,6 +294,7 @@ export interface FileRoutesById {
   '/winners/specimen': typeof WinnersSpecimenRoute
   '/insights/': typeof InsightsIndexRoute
   '/winners/': typeof WinnersIndexRoute
+  '/api/public/stripe-webhook': typeof ApiPublicStripeWebhookRoute
   '/api/public/winner-kit/zip': typeof ApiPublicWinnerKitZipRoute
 }
 export interface FileRouteTypes {
@@ -320,6 +329,7 @@ export interface FileRouteTypes {
     | '/winners/specimen'
     | '/insights/'
     | '/winners/'
+    | '/api/public/stripe-webhook'
     | '/api/public/winner-kit/zip'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -352,6 +362,7 @@ export interface FileRouteTypes {
     | '/winners/specimen'
     | '/insights'
     | '/winners'
+    | '/api/public/stripe-webhook'
     | '/api/public/winner-kit/zip'
   id:
     | '__root__'
@@ -384,6 +395,7 @@ export interface FileRouteTypes {
     | '/winners/specimen'
     | '/insights/'
     | '/winners/'
+    | '/api/public/stripe-webhook'
     | '/api/public/winner-kit/zip'
   fileRoutesById: FileRoutesById
 }
@@ -416,6 +428,7 @@ export interface RootRouteChildren {
   WinnersSpecimenRoute: typeof WinnersSpecimenRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
   WinnersIndexRoute: typeof WinnersIndexRoute
+  ApiPublicStripeWebhookRoute: typeof ApiPublicStripeWebhookRoute
   ApiPublicWinnerKitZipRoute: typeof ApiPublicWinnerKitZipRoute
 }
 
@@ -624,6 +637,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WinnersSpecimenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/stripe-webhook': {
+      id: '/api/public/stripe-webhook'
+      path: '/api/public/stripe-webhook'
+      fullPath: '/api/public/stripe-webhook'
+      preLoaderRoute: typeof ApiPublicStripeWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/winner-kit/zip': {
       id: '/api/public/winner-kit/zip'
       path: '/api/public/winner-kit/zip'
@@ -674,6 +694,7 @@ const rootRouteChildren: RootRouteChildren = {
   WinnersSpecimenRoute: WinnersSpecimenRoute,
   InsightsIndexRoute: InsightsIndexRoute,
   WinnersIndexRoute: WinnersIndexRoute,
+  ApiPublicStripeWebhookRoute: ApiPublicStripeWebhookRoute,
   ApiPublicWinnerKitZipRoute: ApiPublicWinnerKitZipRoute,
 }
 export const routeTree = rootRouteImport
