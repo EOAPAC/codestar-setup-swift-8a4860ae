@@ -27,13 +27,16 @@
 .award-icon svg { width: 23px; height: 23px; }
 .award-icon img { width: 28px; height: 28px; object-fit: contain; }
 .award-icon-main { width: 52px; height: 52px; }
-.award-main { display: grid; gap: 32px; padding: 32px; background: var(--card); border: 1px solid var(--awards-highlight-border); border-radius: 16px; box-shadow: var(--awards-main-shadow); }
+.award-main { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 32px; padding: 32px; background: var(--card); border: 1px solid var(--awards-highlight-border); border-radius: 16px; box-shadow: var(--awards-main-shadow); }
 .award-main-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .award-main-head h3 { flex: 1; min-width: 140px; }
 .award-main-head > strong { flex-shrink: 0; font-size: 16px; }
 .award-main-intro { color: var(--primary); font-weight: 600; font-size: 14px; line-height: 1.7; margin-top: 20px; }
 .award-description, .award-tell { font-size: 14px; line-height: 1.75; margin-top: 16px; }
-.award-description { color: var(--muted-foreground); }
+.award-description { color: var(--foreground); }
+.award-tell { color: var(--muted-foreground); }
+.award-main-action { margin-top: 24px; }
+.awards-extra img.awards-extra-award { object-fit: contain; background: var(--card); padding: 16px; }
 .award-tell strong { font-weight: 600; }
 .award-selected { background: var(--awards-highlight); border-radius: 8px; padding: 14px 16px; margin-block: 20px; font-size: 14px; line-height: 1.65; }
 .award-selected span { color: var(--muted-foreground); }
@@ -51,8 +54,9 @@
 .hero-sample { width: 100%; }
 .hero-sample-panel { --hero-sample-size: min(300px, calc(100% - 60px)); position: relative; height: 360px; border-radius: 20px; background: var(--awards-panel); display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .hero-sample-card { position: absolute; width: var(--hero-sample-size); aspect-ratio: 1; border-radius: 18px; background: var(--awards-highlight-strong); transform: translateX(14px) rotate(5deg); }
-.hero-sample-img { position: absolute; width: var(--hero-sample-size); aspect-ratio: 1; border-radius: 18px; object-fit: contain; opacity: 0; transition: opacity 400ms ease; box-shadow: var(--awards-hero-shadow); }
-.hero-sample-img.is-shown { opacity: 1; }
+.hero-sample-img { position: absolute; width: var(--hero-sample-size); aspect-ratio: 1; border-radius: 18px; object-fit: contain; opacity: 0; transition: opacity 200ms ease; box-shadow: var(--awards-hero-shadow); }
+/* Fade out, then in: the new frame waits for the old one to clear so titles never overlap. */
+.hero-sample-img.is-shown { opacity: 1; transition-delay: 200ms; }
 .hero-sample figcaption { margin-top: 12px; text-align: center; color: var(--muted-foreground); font-size: 12px; line-height: 1.6; }
 .awards-samples { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; }
 .awards-samples figure { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px; }
