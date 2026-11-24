@@ -97,14 +97,19 @@ export function submitLabel(selected: readonly string[], submitting: boolean) {
 }
 
 export function hiddenEntryFields(selected: readonly string[]) {
+  const ordered = orderCategories(selected);
   const paid = paidCount(selected);
   const fields: Record<string, string> = {
     ea_paid_categories: String(paid),
     ea_amount_due: paid === 0 ? "0" : amountDue(paid),
     ea_entry_type: paid > 0 ? "paid" : "free_only",
     ea_payment_link: paymentLinkFor(paid),
+    ea_categories_text: ordered.map((c) => c.name).join(", "),
   };
-  if (paid > 0) fields["ea_payment_status"] = "Awaiting payment";
+  if (paid > 0) {
+    fields["ea_payment_status"] = "Awaiting payment";
+    fields["ea_amount_due_text"] = `US$${amountDue(paid)}`;
+  }
   return fields;
 }
 

@@ -18,8 +18,17 @@ describe("entry categories", () => {
     assert.equal(totalLine([]), null);
   });
   it("free-only sends no payment link and zero due", () => {
-    assert.deepEqual(hiddenEntryFields(["emerging-founder"]), { ea_paid_categories: "0", ea_amount_due: "0", ea_entry_type: "free_only", ea_payment_link: "" });
+    assert.deepEqual(hiddenEntryFields(["emerging-founder"]), { ea_paid_categories: "0", ea_amount_due: "0", ea_entry_type: "free_only", ea_payment_link: "", ea_categories_text: "Emerging Founder" });
     assert.equal(submitLabel(["emerging-founder"], false), "Submit my entry");
+  });
+  it("sends category names in card order, separated by a comma and a space", () => {
+    assert.equal(hiddenEntryFields(["impact-leader", "innovator"]).ea_categories_text, "Innovator, Impact Leader");
+    assert.equal(hiddenEntryFields(["emerging-founder", "innovator"]).ea_categories_text, "Innovator, Emerging Founder");
+  });
+  it("sends the total as US$ with two decimals only when something is paid", () => {
+    assert.equal(hiddenEntryFields(["innovator"]).ea_amount_due_text, "US$129.90");
+    assert.equal(hiddenEntryFields(["innovator", "impact-leader"]).ea_amount_due_text, "US$259.80");
+    assert.equal("ea_amount_due_text" in hiddenEntryFields(["emerging-founder"]), false);
   });
   it("two paid plus free uses the 2-category link with email", () => {
     const f = hiddenEntryFields(["innovator", "emerging-founder", "impact-leader"]);
