@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApplyRouteImport } from './routes/apply'
+import { Route as AwardsRouteImport } from './routes/awards'
 import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as CriteriaRouteImport } from './routes/criteria'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -46,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
 const ApplyRoute = ApplyRouteImport.update({
   id: '/apply',
   path: '/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwardsRoute = AwardsRouteImport.update({
+  id: '/awards',
+  path: '/awards',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompleteRoute = CompleteRouteImport.update({
@@ -182,6 +188,7 @@ const ApiPublicWinnerKitZipRoute = ApiPublicWinnerKitZipRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apply': typeof ApplyRoute
+  '/awards': typeof AwardsRoute
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
@@ -212,6 +219,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apply': typeof ApplyRoute
+  '/awards': typeof AwardsRoute
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
@@ -243,6 +251,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/apply': typeof ApplyRoute
+  '/awards': typeof AwardsRoute
   '/complete': typeof CompleteRoute
   '/criteria': typeof CriteriaRoute
   '/faq': typeof FaqRoute
@@ -275,6 +284,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/apply'
+    | '/awards'
     | '/complete'
     | '/criteria'
     | '/faq'
@@ -305,6 +315,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/apply'
+    | '/awards'
     | '/complete'
     | '/criteria'
     | '/faq'
@@ -335,6 +346,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/apply'
+    | '/awards'
     | '/complete'
     | '/criteria'
     | '/faq'
@@ -366,6 +378,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApplyRoute: typeof ApplyRoute
+  AwardsRoute: typeof AwardsRoute
   CompleteRoute: typeof CompleteRoute
   CriteriaRoute: typeof CriteriaRoute
   FaqRoute: typeof FaqRoute
@@ -407,6 +420,13 @@ declare module '@tanstack/react-router' {
       path: '/apply'
       fullPath: '/apply'
       preLoaderRoute: typeof ApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/awards': {
+      id: '/awards'
+      path: '/awards'
+      fullPath: '/awards'
+      preLoaderRoute: typeof AwardsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/complete': {
@@ -608,6 +628,7 @@ const PricingRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApplyRoute: ApplyRoute,
+  AwardsRoute: AwardsRoute,
   CompleteRoute: CompleteRoute,
   CriteriaRoute: CriteriaRoute,
   FaqRoute: FaqRoute,

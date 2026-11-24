@@ -23,6 +23,7 @@ type SiteNavProps = {
 };
 
 const navLinks = [
+  { label: "Awards and fees", to: "/awards" },
   { label: "Winners", to: "/winners" },
   { label: "Criteria", to: "/criteria" },
   { label: "FAQ", to: "/faq" },
@@ -47,7 +48,7 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
           {!hideLinks && (
             <nav className="flex items-center gap-5 text-sm text-muted-foreground lg:gap-8">
               {navLinks.map((link) => (
-                <Link key={link.to} to={link.to} className="hover:text-foreground" activeProps={{ className: "text-foreground" }}>
+                <Link key={link.to} to={link.to} className={link.to === "/awards" ? "awards-nav-link hover:text-foreground" : "hover:text-foreground"} activeProps={{ className: "text-foreground" }}>
                   {link.label}
                 </Link>
               ))}
@@ -79,7 +80,7 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
               <nav className="mt-8 flex flex-col">
                 {navLinks.map((link) => (
                   <SheetClose asChild key={link.to}>
-                    <Link to={link.to} className="flex min-h-12 items-center border-b border-border text-base font-medium">
+                    <Link to={link.to} className={`flex min-h-12 items-center border-b border-border text-base font-medium ${link.to === "/awards" ? "awards-nav-link" : ""}`}>
                       {link.label}
                     </Link>
                   </SheetClose>

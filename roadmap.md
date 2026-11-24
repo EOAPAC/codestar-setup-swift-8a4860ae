@@ -1,6 +1,8 @@
 # Roadmap
 
 ## Current
+- [x] Add the visual-only Awards and fees page and first navigation item, without changing existing forms or payments.
+- [x] Pass 17 mock/live-fee tests; check seven desktop/mobile widths, loaded photographs, section jumps, mobile menu, winner article and links to the unchanged entry form.
 - [x] Make entry-fee wording consistent on both homepages, FAQ and the existing payment page, preserving checkout and later offers.
 - [x] Test the fee rules and check updated wording on desktop and mobile; existing Stripe button confirms US$129.90. No live application or payment submitted for this copy-only change.
 - [x] Restore the specified homepage colour and contrast.

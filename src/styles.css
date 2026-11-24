@@ -159,6 +159,36 @@
   }
 }
 
+/* Isolated visual mock: never inherit these tokens on existing entry pages. */
+.awards-page {
+  --background: #FFFFFF;
+  --foreground: #0B1220;
+  --card: #FFFFFF;
+  --card-foreground: #0B1220;
+  --primary: #1F66D1;
+  --primary-foreground: #FFFFFF;
+  --border: #E2E8F0;
+  --muted-foreground: #64748B;
+  --surface: #F8FAFC;
+  --awards-highlight: #F3F7FE;
+  --awards-highlight-strong: #E8F0FC;
+  --awards-icon-surface: #EEF4FD;
+  --awards-highlight-border: #BFD3F3;
+  --awards-success: #15803D;
+  --awards-banner: linear-gradient(105deg, var(--background), var(--awards-highlight-strong));
+}
+.awards-nav-link { display: inline-flex; align-items: center; min-height: 44px; }
+.awards-nav-link[data-status="active"] {
+  font-weight: 600;
+  color: var(--foreground);
+  box-shadow: inset 0 -2px var(--primary);
+}
+.awards-page .awards-seal .seal-outer { fill: var(--background); stroke: var(--primary); }
+.awards-page .awards-seal .seal-inner { fill: none; stroke: var(--awards-highlight-border); }
+.awards-page .awards-seal .seal-ink { fill: var(--foreground); }
+.awards-page .awards-seal .seal-muted { fill: var(--muted-foreground); }
+.awards-page .awards-seal .seal-rule { stroke: var(--primary); }
+
 /* HubSpot form embed — match site design system */
 #hubspot-form-target,
 #hubspot-form-target .hbspt-form,
