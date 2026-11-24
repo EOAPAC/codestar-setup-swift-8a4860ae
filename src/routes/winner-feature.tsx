@@ -229,6 +229,49 @@ function FeaturePortrait({ feature }: { feature: Feature }) {
   );
 }
 
+
+/* Shared article layout: the preview overlay and the published snippet overlays read the same FEATURES data. */
+function FeatureArticle({ feature, masthead }: { feature: Feature; masthead?: boolean }) {
+  return (
+            <article className={`mx-auto w-full max-w-[720px] px-6 pb-12 ${masthead ? "pt-8 md:pt-10" : "pt-16 md:pt-[72px]"}`}>
+              {masthead ? <p className="mb-4 text-[13px] font-semibold uppercase tracking-wide text-muted-foreground">Press release</p> : null}
+              <DialogTitle className="mb-3.5 text-[28px] font-bold leading-[1.2] text-foreground md:text-[40px]">{feature.headline}</DialogTitle>
+              <DialogDescription className="mb-8 text-[17px] font-semibold leading-[1.4] text-muted-foreground md:text-[19px]">{feature.subheadline}</DialogDescription>
+              <hr className="mb-10 border-border" />
+              <FeaturePortrait feature={feature} />
+              {feature.body.map((block, index) => <ArticleBlock key={index} block={block} />)}
+              {feature.awardImage ? <figure className="mb-12 mt-14"><img src={feature.awardImage} alt={`The ${AWARD_YEAR} Entrepreneur Awards engraved crystal award`} width={1152} height={648} loading="lazy" className="aspect-video w-full object-cover" /><figcaption className="mt-3 text-[13px] text-muted-foreground">The {AWARD_YEAR} Entrepreneur Awards engraved crystal award.</figcaption></figure> : null}
+              <h2 className="mb-4 mt-11 text-[22px] font-bold text-foreground">Additional Information</h2>
+              <dl className="border-y border-border py-2">
+                {[["Industry", feature.info.industry], ["Location", feature.info.location], ["What They Do", feature.info.whatTheyDo], ["Website", feature.info.website]].map(([label, value]) => <div key={label} className="flex flex-col gap-1 py-2 sm:flex-row"><dt className="shrink-0 text-xs uppercase text-muted-foreground sm:w-40">{label}</dt><dd className="text-base leading-[1.6] text-foreground">{label === "Website" ? <a href={feature.info.websiteUrl} target="_blank" rel="nofollow noopener" className="underline underline-offset-2">{value}</a> : value}</dd></div>)}
+              </dl>
+              <div className="mt-10 text-center"><BrandButton href={BASE_LINK} className="w-full sm:w-auto">Order the Winner&rsquo;s Feature</BrandButton></div>
+            </article>
+  );
+}
+
+const DIALOG_CLASS = "h-dvh max-h-dvh w-full max-w-none overflow-x-hidden overflow-y-auto p-0 [&>*]:min-w-0 [&>button]:fixed [&>button]:right-4 [&>button]:top-4 [&>button]:z-20 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:rounded-full [&>button]:bg-background [&>button]:opacity-100 [&>button]:shadow sm:h-auto sm:max-h-[90dvh] sm:max-w-[820px]";
+
+const MASTHEADS = [
+  { src: "/usa-today-logo.svg", alt: "USA Today", height: 26, menu: ["Home", "U.S.", "Politics", "Sports", "Entertainment", "Life", "Money", "Tech", "Travel"] },
+  { src: apStackedLogoAsset.url, alt: "The Associated Press", height: 40, menu: ["World", "U.S.", "Politics", "Sports", "Entertainment", "Business", "Science"] },
+  { src: "/business-insider-logo-270.webp", alt: "Business Insider", height: 30, menu: ["Business", "Tech", "Markets", "Economy", "Strategy", "Lifestyle"] },
+];
+
+function PublicationMasthead({ index }: { index: number }) {
+  const m = MASTHEADS[index] ?? MASTHEADS[0]!;
+  return (
+    <header className="sticky top-0 z-10 border-b border-border bg-background">
+      <div className="flex items-center gap-4 px-6 py-3 pr-20">
+        <img src={m.src} alt={m.alt} style={{ height: `${m.height}px` }} className="w-auto" />
+      </div>
+      <nav aria-hidden="true" className="ea-hide-scrollbar flex gap-5 overflow-x-auto border-t border-border px-6 py-2 text-[13px] text-muted-foreground">
+        {m.menu.map((item) => <span key={item} className="shrink-0">{item}</span>)}
+      </nav>
+    </header>
+  );
+}
+
 function RealFeaturePreview() {
   const feature = REAL_FEATURE;
   if (!feature) return null;
@@ -244,19 +287,7 @@ function RealFeaturePreview() {
         </div>
       </div>
           <DialogContent className="h-dvh max-h-dvh max-w-none overflow-y-auto p-0 [&>button]:fixed [&>button]:right-4 [&>button]:top-4 [&>button]:z-10 [&>button]:grid [&>button]:h-11 [&>button]:w-11 [&>button]:place-items-center [&>button]:bg-background [&>button]:opacity-100 sm:h-auto sm:max-h-[90dvh] sm:max-w-[820px]">
-            <article className="mx-auto w-full max-w-[720px] px-6 pb-12 pt-16 md:pt-[72px]">
-              <DialogTitle className="mb-3.5 text-[28px] font-bold leading-[1.2] text-foreground md:text-[40px]">{feature.headline}</DialogTitle>
-              <DialogDescription className="mb-8 text-[17px] font-semibold leading-[1.4] text-muted-foreground md:text-[19px]">{feature.subheadline}</DialogDescription>
-              <hr className="mb-10 border-border" />
-              <FeaturePortrait feature={feature} />
-              {feature.body.map((block, index) => <ArticleBlock key={index} block={block} />)}
-              {feature.awardImage ? <figure className="mb-12 mt-14"><img src={feature.awardImage} alt={`The ${AWARD_YEAR} Entrepreneur Awards engraved crystal award`} width={1152} height={648} loading="lazy" className="aspect-video w-full object-cover" /><figcaption className="mt-3 text-[13px] text-muted-foreground">The {AWARD_YEAR} Entrepreneur Awards engraved crystal award.</figcaption></figure> : null}
-              <h2 className="mb-4 mt-11 text-[22px] font-bold text-foreground">Additional Information</h2>
-              <dl className="border-y border-border py-2">
-                {[["Industry", feature.info.industry], ["Location", feature.info.location], ["What They Do", feature.info.whatTheyDo], ["Website", feature.info.website]].map(([label, value]) => <div key={label} className="flex flex-col gap-1 py-2 sm:flex-row"><dt className="shrink-0 text-xs uppercase text-muted-foreground sm:w-40">{label}</dt><dd className="text-base leading-[1.6] text-foreground">{label === "Website" ? <a href={feature.info.websiteUrl} target="_blank" rel="nofollow noopener" className="underline underline-offset-2">{value}</a> : value}</dd></div>)}
-              </dl>
-              <div className="mt-10 text-center"><BrandButton href={BASE_LINK} className="w-full sm:w-auto">Order the Winner&rsquo;s Feature</BrandButton></div>
-            </article>
+            <FeatureArticle feature={feature} />
           </DialogContent>
     </Dialog>
   );
@@ -322,7 +353,7 @@ const SNIPPETS = [
   { slug: "nimisha-nailor", publication: "Associated Press", favicon: 1, src: snippetNimishaAsset.url },
   { slug: "gabriel-sabadin", publication: "Business Insider", favicon: 2, src: snippetGabrielAsset.url },
   { slug: "ashton-bishop", publication: "USA Today", favicon: 0, src: snippetAshtonAsset.url },
-].map((s) => ({ ...s, winner: winnerBySlug(s.slug) }));
+].map((s) => ({ ...s, winner: winnerBySlug(s.slug), feature: FEATURES.find((f) => f.winnerSlug === s.slug) }));
 
 function PublishedSnippets() {
   return (
@@ -343,7 +374,7 @@ function PublishedSnippets() {
               <li key={item.slug} className="flex w-[85vw] shrink-0 snap-start md:w-auto">
                 <Dialog>
                 <DialogTrigger asChild>
-                <button type="button" aria-label={`View larger: ${alt}`} className="flex w-full cursor-pointer flex-col overflow-hidden bg-white text-left transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" style={{ borderRadius: "12px", border: `1px solid ${LINE}` }}>
+                <button type="button" className="flex w-full cursor-pointer flex-col overflow-hidden bg-white text-left transition hover:-translate-y-0.5 hover:shadow-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" style={{ borderRadius: "12px", border: `1px solid ${LINE}` }}>
                   <img
                     src={item.src}
                     alt={alt}
@@ -364,14 +395,12 @@ function PublishedSnippets() {
                       <span style={{ fontWeight: 600, color: INK }}>{item.winner.name}</span>
                       <span style={{ color: MUTED }}> · {item.winner.company}</span>
                     </p>
-                    <p style={{ fontSize: "13px", fontWeight: 600, color: INK, textDecoration: "underline", textUnderlineOffset: "3px" }}>View larger</p>
                   </div>
                 </button>
                 </DialogTrigger>
-                <DialogContent className="max-h-[92vh] w-[96vw] max-w-[1200px] overflow-y-auto p-3 sm:p-4">
-                  <DialogTitle className="sr-only">{alt}</DialogTitle>
-                  <DialogDescription className="sr-only">Full-size screenshot of the press release.</DialogDescription>
-                  <img src={item.src} alt={alt} className="mt-8 block h-auto w-full rounded-lg" />
+                <DialogContent className={DIALOG_CLASS}>
+                  <PublicationMasthead index={item.favicon} />
+                  {item.feature ? <FeatureArticle feature={item.feature} masthead /> : <DialogTitle className="p-6">{alt}</DialogTitle>}
                 </DialogContent>
                 </Dialog>
               </li>
