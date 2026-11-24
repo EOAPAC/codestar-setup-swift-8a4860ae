@@ -177,6 +177,7 @@
   --awards-success: #15803D;
   --awards-panel: #F1F5F9;
   --awards-shadow: 0 8px 24px rgba(15,23,42,0.08);
+  --awards-sample-shadow: 0 6px 18px rgba(15,23,42,0.10);
   --awards-banner: linear-gradient(105deg, var(--background), var(--awards-highlight-strong));
 }
 .awards-nav-link { display: inline-flex; align-items: center; min-height: 44px; }

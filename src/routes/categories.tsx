@@ -3,7 +3,7 @@ import { ArrowRight, Globe, Lightbulb, RotateCcw, Sprout, TrendingUp, Users } fr
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
-import { WinnerFile, WinnerFileStack } from "@/components/winner-files";
+import { WinnerFileStack } from "@/components/winner-files";
 import { MOCK_AWARDS, MOCK_PRICES, mockAwardPrice, type MockAward } from "@/content/awards-mock";
 import markAsset from "@/assets/ea-mark-84.png.asset.json";
 import adamAsset from "@/assets/adam-pisk.jpg.asset.json";
@@ -86,17 +86,20 @@ function AwardDetail({ award }: { award: MockAward }) {
   </article>;
 }
 
+type WinnerSample = { file: string; alt: string; caption: string; wide?: boolean; shadow?: boolean };
+
+const WINNER_SAMPLES: WinnerSample[] = [
+  { file: "01-linkedin-banner.webp", alt: "Sample LinkedIn banner for Entrepreneur of the Year 2027", caption: "LinkedIn banner", wide: true },
+  { file: "02-square-post.webp", alt: "Sample square post for Growth Founder of the Year 2027", caption: "Square post" },
+  { file: "03-story.webp", alt: "Sample story for Innovator of the Year 2027", caption: "Story" },
+  { file: "04-certificate.webp", alt: "Sample certificate for Employer of the Year 2027", caption: "Certificate" },
+  { file: "05-website-badge.webp", alt: "Entrepreneur Awards winner badge", caption: "Website badge", shadow: false },
+  { file: "06-email-signature.webp", alt: "Sample email signature for Startup Founder of the Year 2027", caption: "Email signature" },
+  { file: "07-written-assessment.webp", alt: "Sample assessment record for Turnaround of the Year 2027", caption: "Written assessment" },
+];
+
 function WinnerSamples() {
-  const samples = [
-    ["banner", "LinkedIn banner", "Entrepreneur of the Year 2027"],
-    ["square", "Square post", "Growth Founder of the Year 2027"],
-    ["story", "Story", "Innovator of the Year 2027"],
-    ["certificate", "Certificate", "Employer of the Year 2027"],
-    ["badge", "Website badge", ""],
-    ["signature", "Email signature", "Startup Founder of the Year 2027"],
-    ["assessment", "Written assessment", "Turnaround of the Year 2027"],
-  ] as const;
-  return <><div className="awards-samples">{samples.map(([kind, caption, title]) => <figure key={kind} className={kind === "banner" ? "sample-wide" : undefined}><div className="sample-stage" aria-hidden="true"><WinnerFile kind={kind} title={title} /></div><figcaption>{caption}</figcaption></figure>)}</div><p className="awards-note">Samples. Yours carry the title of the category you won.</p></>;
+  return <><div className="awards-samples">{WINNER_SAMPLES.map(({ file, alt, caption, wide, shadow = true }) => <figure key={file} className={wide ? "sample-wide" : undefined}><div className="sample-stage"><img src={`/winner-samples/${file}`} alt={alt} loading="lazy" decoding="async" className={shadow ? undefined : "awards-sample-flat"} /></div><figcaption>{caption}</figcaption></figure>)}</div><p className="awards-note">Samples. Yours carry the title of the category you won.</p></>;
 }
 
 function AwardsPage() {
