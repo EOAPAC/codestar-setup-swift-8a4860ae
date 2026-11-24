@@ -341,7 +341,9 @@ function PublishedSnippets() {
             const icon = FAVICONS[item.favicon];
             return (
               <li key={item.slug} className="flex w-[85vw] shrink-0 snap-start md:w-auto">
-                <div className="flex w-full flex-col overflow-hidden bg-white" style={{ borderRadius: "12px", border: `1px solid ${LINE}` }}>
+                <Dialog>
+                <DialogTrigger asChild>
+                <button type="button" aria-label={`View larger: ${alt}`} className="flex w-full cursor-pointer flex-col overflow-hidden bg-white text-left transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" style={{ borderRadius: "12px", border: `1px solid ${LINE}` }}>
                   <img
                     src={item.src}
                     alt={alt}
@@ -362,8 +364,16 @@ function PublishedSnippets() {
                       <span style={{ fontWeight: 600, color: INK }}>{item.winner.name}</span>
                       <span style={{ color: MUTED }}> · {item.winner.company}</span>
                     </p>
+                    <p style={{ fontSize: "13px", fontWeight: 600, color: INK, textDecoration: "underline", textUnderlineOffset: "3px" }}>View larger</p>
                   </div>
-                </div>
+                </button>
+                </DialogTrigger>
+                <DialogContent className="max-h-[92vh] w-[96vw] max-w-[1200px] overflow-y-auto p-3 sm:p-4">
+                  <DialogTitle className="sr-only">{alt}</DialogTitle>
+                  <DialogDescription className="sr-only">Full-size screenshot of the press release.</DialogDescription>
+                  <img src={item.src} alt={alt} className="mt-8 block h-auto w-full rounded-lg" />
+                </DialogContent>
+                </Dialog>
               </li>
             );
           })}
