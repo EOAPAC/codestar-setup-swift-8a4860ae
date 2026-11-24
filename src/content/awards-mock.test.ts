@@ -1,35 +1,28 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { MOCK_AWARDS, MOCK_DATES, MOCK_ELIGIBILITY, MOCK_PRICES, mockAwardPrice } from "./awards-mock";
-
-describe("Awards page mock rules, isolated from live checkout", () => {
-  it("shows the main award free in early and standard periods", () => {
-    assert.equal(mockAwardPrice("entrepreneur-of-the-year", "early"), 0);
-    assert.equal(mockAwardPrice("entrepreneur-of-the-year", "standard"), 0);
+import { MOCK_AWARDS, MOCK_ELIGIBILITY, MOCK_ENTRY_RULES, MOCK_PRICES, HERO_SOURCES, EMERGING_SAMPLE, mockAwardPrice } from "./awards-mock";
+describe("Categories visual mock, isolated from live checkout", () => {
+  it("charges US$129.90 for the main award and five achievement awards", () => {
+    const paid = MOCK_AWARDS.filter((award) => award.slug !== "emerging-founder");
+    assert.equal(paid.length, 6);
+    for (const award of paid) assert.equal(mockAwardPrice(award.slug), 129.9);
   });
-  it("shows a $55 late fee for the main award", () => {
-    assert.equal(mockAwardPrice("entrepreneur-of-the-year", "late"), 55);
+  it("makes only Emerging Founder free", () => {
+    assert.equal(mockAwardPrice("emerging-founder"), 0);
+    assert.deepEqual(MOCK_AWARDS.filter((award) => award.price === 0).map((award) => award.slug), ["emerging-founder"]);
   });
-  it("shows all six achievement awards at $129.90 early", () => {
-    const achievements = MOCK_AWARDS.filter((award) => award.slug !== "entrepreneur-of-the-year");
-    assert.equal(achievements.length, 6);
-    for (const award of achievements) assert.equal(mockAwardPrice(award.slug, "early"), 129.9);
+  it("limits Emerging Founder eligibility to three trading years", () => assert.equal(MOCK_ELIGIBILITY.emergingTradingYears, 3));
+  it("requires two years of trading for High-Growth Founder", () => assert.equal(MOCK_ELIGIBILITY.growthTradingYears, 2));
+  it("measures growth over the last twelve months", () => assert.equal(MOCK_ELIGIBILITY.growthMeasurementMonths, 12));
+  it("requires at least five employees for Employer of Choice", () => assert.equal(MOCK_ELIGIBILITY.employerEmployees, 5));
+  it("keeps entries open all year", () => assert.equal(MOCK_ENTRY_RULES.openAllYear, true));
+  it("has no recurring fee", () => assert.equal(MOCK_ENTRY_RULES.recurring, false));
+  it("judges each category separately", () => assert.equal(MOCK_ENTRY_RULES.separateJudging, true));
+  it("allows multiple categories", () => assert.equal(MOCK_ENTRY_RULES.multipleCategories, true));
+  it("keeps the optional Feature at $997", () => assert.equal(MOCK_PRICES.feature, 997));
+  it("keeps the optional physical award at $197", () => assert.equal(MOCK_PRICES.physicalAward, 197));
+  it("cycles the six paid award images in order, excluding Emerging Founder", () => {
+    assert.deepEqual(HERO_SOURCES, ["entrepreneur-of-distinction", "high-growth-founder", "innovator", "turnaround-leader", "employer-of-choice", "impact-leader"].map((slug) => `/winner-samples/hero/square-${slug}.webp`));
+    assert.equal(HERO_SOURCES.includes(EMERGING_SAMPLE), false);
   });
-  it("shows achievement awards at $159.90 standard", () => {
-    assert.equal(mockAwardPrice("startup-founder", "standard"), 159.9);
-  });
-  it("includes the $55 late fee in the $214.90 achievement price", () => {
-    assert.equal(mockAwardPrice("growth-founder", "late"), 214.9);
-    assert.equal(MOCK_PRICES.standard + MOCK_PRICES.lateFee, MOCK_PRICES.late);
-  });
-  it("ends early prices on 31 January 2027", () => assert.equal(MOCK_DATES.earlyEnds, "2027-01-31"));
-  it("ends free entry on 15 May 2027", () => assert.equal(MOCK_DATES.freeEnds, "2027-05-15"));
-  it("starts late fees on 16 May 2027", () => assert.equal(MOCK_DATES.lateStarts, "2027-05-16"));
-  it("closes entries on 31 May 2027", () => assert.equal(MOCK_DATES.entriesClose, "2027-05-31"));
-  it("states a five-business-day decision", () => assert.equal(MOCK_DATES.decisionBusinessDays, 5));
-  it("sets startup eligibility to trading from 2024", () => assert.equal(MOCK_ELIGIBILITY.startupEarliestYear, 2024));
-  it("sets growth eligibility to at least two trading years", () => assert.equal(MOCK_ELIGIBILITY.growthTradingYears, 2));
-  it("sets employer eligibility to at least five employees", () => assert.equal(MOCK_ELIGIBILITY.employerEmployees, 5));
-  it("shows the optional Feature at $997", () => assert.equal(MOCK_PRICES.feature, 997));
-  it("shows the optional physical award at $197", () => assert.equal(MOCK_PRICES.physicalAward, 197));
 });

@@ -1,16 +1,6 @@
 import { useEffect, useState } from "react";
 
-const HERO_SAMPLES = [
-  "square-entrepreneur-of-the-year",
-  "square-startup-founder",
-  "square-growth-founder",
-  "square-innovator",
-  "square-turnaround",
-  "square-employer",
-  "square-impact-founder",
-] as const;
-
-const SOURCES = HERO_SAMPLES.map((name) => `/winner-samples/hero/${name}.webp`);
+import { HERO_SOURCES as SOURCES } from "@/content/awards-mock";
 
 export function HeroSampleStack() {
   const [index, setIndex] = useState(0);
@@ -45,7 +35,8 @@ export function HeroSampleStack() {
   return <figure className="hero-sample">
     <div className="hero-sample-panel" aria-hidden="true" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <span className="hero-sample-card" />
-      {frames.map((src, frame) => <img key={src} src={src} alt="" className={`hero-sample-img${frame === index ? " is-shown" : ""}`} />)}
+      {frames.map((src, frame) => <img key={src} src={src} alt="" className={`hero-sample-img${frame === (reduced ? 0 : index) ? " is-shown" : ""}`} />)}
     </div>
+    <figcaption>Sample winner files</figcaption>
   </figure>;
 }
