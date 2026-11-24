@@ -99,7 +99,7 @@ const WINNER_SAMPLES: WinnerSample[] = [
 ];
 
 function WinnerSamples() {
-  return <><div className="awards-samples">{WINNER_SAMPLES.map(({ file, alt, caption, wide, shadow = true }) => <figure key={file} className={wide ? "sample-wide" : undefined}><div className="sample-stage"><img src={`/winner-samples/${file}`} alt={alt} loading="lazy" decoding="async" className={shadow ? undefined : "awards-sample-flat"} /></div><figcaption>{caption}</figcaption></figure>)}</div><p className="awards-note">Samples. Yours carry the title of the category you won.</p></>;
+  return <><div className="awards-samples">{WINNER_SAMPLES.map(({ file, alt, caption, wide, shadow = true }) => <figure key={file} className={wide ? "sample-wide" : undefined}><div className="sample-stage"><img src={`/winner-samples/${file}`} alt={alt} loading="lazy" decoding="async" className={shadow ? undefined : "awards-sample-flat"} /></div><figcaption>{caption}</figcaption></figure>)}</div></>;
 }
 
 function AwardsPage() {

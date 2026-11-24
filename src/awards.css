@@ -97,7 +97,6 @@
 .hero-sample-card { position: absolute; width: var(--hero-sample-size); height: var(--hero-sample-size); border-radius: 18px; background: var(--awards-highlight-strong); transform: translateX(14px) rotate(5deg); }
 .hero-sample-img { position: absolute; width: var(--hero-sample-size); height: var(--hero-sample-size); border-radius: 18px; object-fit: cover; opacity: 0; transition: opacity 400ms ease; box-shadow: var(--awards-hero-shadow); }
 .hero-sample-img.is-shown { opacity: 1; }
-.hero-sample figcaption { font-size: 12px; color: var(--muted-foreground); text-align: center; margin-top: 12px; }
 .awards-samples { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; }
 .awards-samples figure { border: 1px solid var(--border); border-radius: 14px; padding: 16px; background: var(--card); }
 .sample-wide { grid-column: span 2; }
