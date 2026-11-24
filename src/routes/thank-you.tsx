@@ -16,10 +16,10 @@ export const Route = createFileRoute("/thank-you")({
   head: () => ({
     meta: [
       { title: "Thank You | Entry Received | Entrepreneur Awards" },
-      { name: "description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
-      { name: "twitter:description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
+      { name: "description", content: "Your entry has been received. We'll reply with our decision within five business days." },
+      { name: "twitter:description", content: "Your entry has been received. We'll reply with our decision within five business days." },
       { property: "og:title", content: "Thank You | Entry Received | Entrepreneur Awards" },
-      { property: "og:description", content: "Your entry has been received. Our founder-judges will review your story and reply within 14 days." },
+      { property: "og:description", content: "Your entry has been received. We'll reply with our decision within five business days." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "noindex" },
@@ -52,8 +52,8 @@ function ThankYouPage() {
     {
       icon: Mail,
       label: "You get a reply",
-      date: "Within 14 days",
-      description: "Shortlisted founders can claim The Winner's Feature to turn their win into a published story and a keepsake award.",
+      date: "Within five business days",
+      description: "If you're selected, you get your winner files, and you can add The Winner's Feature or The Award Package if you want them.",
       status: "pending" as const,
     },
     {
@@ -87,15 +87,14 @@ function ThankYouPage() {
             <Check className="h-8 w-8 text-primary" />
           </div>
 
-          <p className="mt-6 text-sm font-medium uppercase tracking-widest text-primary">Entry received</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+          <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
             Thank you{founderName !== "Founder" ? `, ${founderName}` : ""}.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
             {companyName
               ? `We've received your entry for ${companyName}.`
               : "We've received your entry."}{" "}
-            Our founder-judges will reply with next steps within 14 days.
+            We'll reply with our decision within five business days, whether you're selected or not.
           </p>
 
           {referenceId && (

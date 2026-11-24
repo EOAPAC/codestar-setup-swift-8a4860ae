@@ -44,6 +44,20 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
       "what_do_you_do",
       "standout_achievement",
       "why_exceptional",
+      "0-2/name",
+      "ea_industry",
+      "ea_industry_other",
+      "ea_categories",
+      "ea_answer_high_growth_founder",
+      "ea_answer_innovator",
+      "ea_answer_turnaround_leader",
+      "ea_answer_employer_of_choice",
+      "ea_answer_impact_leader",
+      "ea_answer_emerging_founder",
+      "ea_paid_categories",
+      "ea_amount_due",
+      "ea_entry_type",
+      "ea_payment_link",
     ]);
     const filteredFields = data.fields.filter((f) => ALLOWED_FIELDS.has(f.name));
 
