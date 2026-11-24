@@ -22,8 +22,7 @@ export const Route = createFileRoute("/categories")({
   component: CategoriesPage,
 });
 const ICONS: Record<string, LucideIcon> = { sprout: Sprout, growth: TrendingUp, idea: Lightbulb, turnaround: RotateCcw, team: Users, globe: Globe };
-const JUMPS = [["categories", "Categories"], ["win", "What you win"], ["extras", "Optional extras"], ["questions", "Questions about fees"]] as const;
-const INDUSTRIES = ["Professional services", "Technology and software", "Finance and insurance", "Health and wellness", "Retail and e-commerce", "Food and drink", "Property and construction", "Marketing and media", "Education and coaching", "Beauty and fashion", "Travel and hospitality", "Trades and local services", "Something else? Choose Other."];
+const JUMPS = [["categories", "Categories"], ["win", "What you win"], ["free", "Emerging Founder"], ["extras", "Optional extras"], ["questions", "Questions about fees"]] as const;
 const QUESTIONS = [
   ["How much does a category cost?", "US$129.90 per category, paid once when you submit your entry. Nothing is recurring."],
   ["Why is Emerging Founder free?", "Early-stage founders often have the least to spend on awards. We'd rather judge what they've built than their budget."],
@@ -52,7 +51,7 @@ function EntryButton({ award }: { award?: MockAward }) {
   </Button>;
 }
 function AwardFacts({ award }: { award: MockAward }) {
-  return <><p className="award-tell"><strong>Tell us about:</strong> {award.tell}</p><p className="award-selected"><span>If selected:</span> <strong>{award.title}</strong></p></>;
+  return <><p className="award-tell"><strong>Tell us about:</strong> {award.tell}</p></>;
 }
 function CategoryCard({ award }: { award: MockAward }) {
   return <article className="award-detail" id={award.slug}>
@@ -64,9 +63,9 @@ function CategoryCard({ award }: { award: MockAward }) {
 function MainAward({ award }: { award: MockAward }) {
   return <article className="award-main" id={award.slug}><div>
     <div className="award-main-head"><AwardIcon award={award} /><h3>{award.name}</h3><strong>US${award.price.toFixed(2)}</strong></div>
-    <p className="award-main-intro">Our main award, judged in the context of your industry.</p>
+    <p className="award-main-intro">We assess your business in the context of your industry.</p>
     <p className="award-description">{award.description}</p><AwardFacts award={award} /><EntryButton award={award} />
-  </div><div className="award-industries"><strong>Choose your industry when you enter</strong><ul>{INDUSTRIES.map((industry) => <li key={industry}>{industry}</li>)}</ul></div></article>;
+  </div></article>;
 }
 function CategoriesPage() {
   const main = MOCK_AWARDS.find((award) => award.slug === "entrepreneur-of-distinction");
@@ -76,8 +75,8 @@ function CategoriesPage() {
     <main>
       <section className="awards-top awards-container">
         <div className="awards-hero-grid"><div><h1>Find the award that fits what you've built</h1>
-          <p className="awards-intro">One main award, and five for a specific achievement: growth, innovation, a turnaround, your team or your impact. Every category is judged separately, on the same <Link to="/criteria" className="awards-inline-link">three criteria</Link>.</p>
-          <p className="awards-hero-price"><strong>US$129.90 per category. Entries are open all year.</strong></p>
+          <p className="awards-intro">Choose Entrepreneur of Distinction for the business you’ve built as a whole. If one achievement stands out, choose the category that recognises it.</p>
+          <p className="awards-hero-price"><strong>Paid entries are US$129.90 per category. Enter any time.</strong></p>
           <div className="awards-hero-actions"><EntryButton /><Link to="/categories" hash="categories" className="awards-action-link">Compare the categories<ArrowRight size={16} aria-hidden="true" /></Link></div>
         </div><HeroSampleStack /></div>
         <nav aria-label="On this page" className="awards-jumps"><span>On this page:</span>{JUMPS.map(([id, label]) => <Link key={id} to="/categories" hash={id}>{label}</Link>)}</nav>
@@ -91,19 +90,19 @@ function CategoriesPage() {
       </div></section>
       <section className="awards-section awards-container" id="win"><div className="awards-heading"><h2>What you win</h2><p className="awards-sub">Every category comes with the same winner files, with your title on them.</p></div>
         <div className="awards-samples">{SAMPLES.map((sample) => <figure key={sample.file} className={sample.wide ? "sample-wide" : undefined}><div className="sample-stage"><img src={`/winner-samples/${sample.file}`} alt={sample.alt} loading="lazy" decoding="async" className={sample.flat ? "awards-sample-flat" : undefined} /></div><figcaption>{sample.caption}</figcaption></figure>)}</div>
-        <p className="awards-note">Samples. Yours carry the title you won.</p>
+        <p className="awards-note">If you win, your certificate and badge carry your category title, for example, ‘2027 High-Growth Founder.’</p>
+      </section>
+      <section className="awards-section awards-container" id="free"><div className="awards-heading"><h2>Free for early-stage founders</h2></div>
+        {emerging && <article className="award-emerging"><img className="award-emerging-image" src={EMERGING_SAMPLE} alt="Sample square post for an Emerging Founder" loading="lazy" /><div>
+          <div className="award-main-head"><AwardIcon award={emerging} /><h3>Emerging Founder</h3><strong className="award-free">Free</strong></div><p className="award-description">{emerging.description}</p>
+          <p className="award-description">There’s no entry fee. We use the same judging criteria, and winners receive the same materials.</p><AwardFacts award={emerging} /><EntryButton award={emerging} />
+        </div></article>}
       </section>
       <section className="awards-section awards-container" id="extras"><div className="awards-heading"><h2>Optional ways to celebrate your win</h2><p className="awards-sub">Your winner files are already included. If you'd like a physical award or a published feature about your business, these are available separately once you've won.</p></div>
         <div className="awards-extras-grid">
           <article className="awards-extra"><img src={adamAsset.url} alt="Adam Pisk, Entrepreneur Awards winner" loading="lazy" /><div className="awards-extra-copy"><div className="awards-extra-heading"><h3>The Winner's Feature</h3><strong>US${MOCK_PRICES.feature}</strong></div><p>A Feature about your business, written by our editorial team and published on the Entrepreneur Awards winners page. It comes with a paid press release about your win on USA Today, the Associated Press and Business Insider, each linking back to the Feature. The press release is a paid placement, not independent news coverage.</p><Link to="/winners/$slug" params={{ slug: "adam-pisk" }} className="awards-action-link">Read Adam Pisk's Feature<ArrowRight size={16} aria-hidden="true" /></Link></div></article>
           <article className="awards-extra"><img src={awardAsset.url} alt="Engraved Entrepreneur Awards crystal award" loading="lazy" /><div className="awards-extra-copy"><div className="awards-extra-heading"><h3>The Award Package</h3><strong>US${MOCK_PRICES.physicalAward}</strong></div><p>The engraved crystal award with your name and title, plus a printed certificate ready to frame. Posted worldwide.</p></div></article>
         </div>
-      </section>
-      <section className="awards-section awards-container" id="free"><div className="awards-heading"><h2>Free for early-stage founders</h2></div>
-        {emerging && <article className="award-emerging"><img className="award-emerging-image" src={EMERGING_SAMPLE} alt="Sample square post for an Emerging Founder" loading="lazy" /><div>
-          <div className="award-main-head"><AwardIcon award={emerging} /><h3>Emerging Founder</h3><strong className="award-free">Free</strong></div><p className="award-description">{emerging.description}</p>
-          <p className="award-description">Same criteria, same judging and the same winner files as every other category. The only difference is who can enter.</p><AwardFacts award={emerging} /><EntryButton award={emerging} />
-        </div></article>}
       </section>
       <section className="awards-section awards-band" id="questions"><div className="awards-container"><h2 className="awards-heading">Questions about fees</h2><div className="awards-questions">{QUESTIONS.map(([question, answer]) => <div className="awards-question" key={question}><h3>{question}</h3><p>{answer}</p></div>)}</div><Link to="/faq" className="awards-action-link awards-more-questions">More questions about fees<ArrowRight size={16} aria-hidden="true" /></Link></div></section>
       <section className="awards-section awards-container"><div className="awards-closing"><div><h2>Start your entry</h2><p>Choose your categories in one entry form.</p></div><EntryButton /></div></section>

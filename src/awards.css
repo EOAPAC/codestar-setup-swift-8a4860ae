@@ -27,7 +27,7 @@
 .award-icon svg { width: 23px; height: 23px; }
 .award-icon img { width: 28px; height: 28px; object-fit: contain; }
 .award-icon-main { width: 52px; height: 52px; }
-.award-main { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 32px; padding: 32px; background: var(--card); border: 1px solid var(--awards-highlight-border); border-radius: 16px; box-shadow: var(--awards-main-shadow); }
+.award-main { display: grid; gap: 32px; padding: 32px; background: var(--card); border: 1px solid var(--awards-highlight-border); border-radius: 16px; box-shadow: var(--awards-main-shadow); }
 .award-main-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .award-main-head h3 { flex: 1; min-width: 140px; }
 .award-main-head > strong { flex-shrink: 0; font-size: 16px; }
