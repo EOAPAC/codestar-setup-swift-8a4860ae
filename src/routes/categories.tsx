@@ -23,7 +23,6 @@ export const Route = createFileRoute("/categories")({
 });
 const ICONS: Record<string, LucideIcon> = { sprout: Sprout, growth: TrendingUp, idea: Lightbulb, turnaround: RotateCcw, team: Users, globe: Globe };
 const JUMPS = [["categories", "Categories"], ["win", "What you win"], ["extras", "Optional extras"], ["questions", "Questions about fees"]] as const;
-const INDUSTRIES = ["Professional services", "Technology and software", "Finance and insurance", "Health and wellness", "Retail and e-commerce", "Food and drink", "Property and construction", "Marketing and media", "Education and coaching", "Beauty and fashion", "Travel and hospitality", "Trades and local services", "Something else? Choose Other."];
 const QUESTIONS = [
   ["How much does a category cost?", "US$129.90 per category, paid once when you submit your entry. Nothing is recurring."],
   ["Why is Emerging Founder free?", "Early-stage founders often have the least to spend on awards. We'd rather judge what they've built than their budget."],
@@ -62,11 +61,12 @@ function CategoryCard({ award }: { award: MockAward }) {
   </article>;
 }
 function MainAward({ award }: { award: MockAward }) {
-  return <article className="award-main" id={award.slug}><div>
-    <div className="award-main-head"><AwardIcon award={award} /><h3>{award.name}</h3><strong>US${award.price.toFixed(2)}</strong></div>
-    <p className="award-main-intro">We assess your business in the context of your industry.</p>
-    <p className="award-description">{award.description}</p><AwardFacts award={award} /><div className="award-main-action"><EntryButton award={award} solid /></div>
-  </div><div className="award-industries"><strong>Choose your industry when you enter</strong><ul>{INDUSTRIES.map((industry) => <li key={industry}>{industry}</li>)}</ul></div></article>;
+  return <article className="award-main" id={award.slug}>
+    <span className="award-main-mark"><img src={markAsset.url} alt="" width={28} height={28} /></span>
+    <div className="award-main-title"><h3>{award.name}</h3><p className="award-main-intro">We assess your business in the context of your industry.</p></div>
+    <div className="award-main-body"><p className="award-main-desc">{award.description}</p><p className="award-main-tell"><strong>Tell us about:</strong> {award.tell}</p></div>
+    <div className="award-main-side"><p className="award-main-price"><strong>US${award.price.toFixed(2)}</strong><span>per category</span></p><EntryButton award={award} solid /></div>
+  </article>;
 }
 function CategoriesPage() {
   const main = MOCK_AWARDS.find((award) => award.slug === "entrepreneur-of-distinction");
