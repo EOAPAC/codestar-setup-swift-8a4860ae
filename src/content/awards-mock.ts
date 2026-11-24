@@ -21,46 +21,44 @@ export const MOCK_ELIGIBILITY = { startupEarliestYear: 2024, growthTradingYears:
 export const MOCK_AWARDS = [
   {
     slug: "entrepreneur-of-the-year", name: "Entrepreneur of the Year", icon: "logo",
-    description: "The main award, judged within your industry.",
-    detail: "The main award. You're judged against founders in your own industry, so a café owner isn't compared with a software company.",
-    who: "Any founder. One entry each.",
+    description: "For founders making a distinctive contribution in their industry through the business they've built.",
     tell: "What you built, the traction it has and one standout achievement.",
     title: "Entrepreneur of the Year 2027, followed by your industry",
   },
   {
     slug: "startup-founder", name: "Startup Founder of the Year", icon: "sprout",
-    description: "For a business that started trading in 2024 or later, with paying customers.",
+    description: "For founders of businesses that began trading in 2024 or later and already have paying customers.",
     who: "Founders whose business started trading in 2024 or later and already has paying customers.",
     tell: "When you started, your first customers and what you have built since.",
     title: "Startup Founder of the Year 2027",
   },
   {
     slug: "growth-founder", name: "Growth Founder of the Year", icon: "growth",
-    description: "For a business that grew this year, with the figures to show it.",
+    description: "For founders with at least two years of trading and measurable growth over the last 12 months.",
     who: "Founders with at least two years of trading, so there is a full year to compare.",
     tell: "Your last 12 months against the 12 before, and what drove the change.",
     title: "Growth Founder of the Year 2027",
   },
   {
     slug: "innovator", name: "Innovator of the Year", icon: "idea",
-    description: "For a new product, service or way of working that customers already use.",
+    description: "For founders whose new product, service or approach is already delivering results.",
     tell: "What is new, who uses it and what changed for them.", title: "Innovator of the Year 2027",
   },
   {
     slug: "turnaround", name: "Turnaround of the Year", icon: "turnaround",
-    description: "For the founder who brought a struggling business back.",
+    description: "For founders who have led a struggling business back to stronger performance.",
     tell: "Where the business was, what you changed and where it is now.", title: "Turnaround of the Year 2027",
   },
   {
     slug: "employer", name: "Employer of the Year", icon: "team",
-    description: "For the founder who built a team people stay with.",
+    description: "For founders with at least five employees who can demonstrate strong staff retention and a positive workplace.",
     who: "Founders with at least five employees.",
     tell: "How many people work with you, how long they stay and why.", title: "Employer of the Year 2027",
   },
   {
     slug: "impact-founder", name: "Impact Founder of the Year", icon: "globe",
-    description: "For results that reach beyond customers: a community, a cause or the environment.",
-    tell: "Who benefits beyond your customers, and how you measure it.", title: "Impact Founder of the Year 2027",
+    description: "For founders delivering measurable benefits to communities, society or the environment.",
+    tell: "Who benefits, how they benefit and how you measure it.", title: "Impact Founder of the Year 2027",
   },
 ] as const;
 

@@ -1,6 +1,8 @@
 # Roadmap
 
 ## Current
+- [x] Replace the Awards mock with Categories and fees, preserve live forms/payments, and redirect the old address.
+- [x] Verify category prices, links, seven sample files, animated hero and mobile layout.
 - [x] Add the visual-only Awards and fees page and first navigation item, without changing existing forms or payments.
 - [x] Pass 17 mock/live-fee tests; check seven desktop/mobile widths, loaded photographs, section jumps, mobile menu, winner article and links to the unchanged entry form.
 - [x] Make entry-fee wording consistent on both homepages, FAQ and the existing payment page, preserving checkout and later offers.

@@ -10,7 +10,8 @@
 <!-- LOVABLE:END -->
 
 - The Winner's Feature preview and article overlay read the existing `FEATURES` data directly; keep this page's presentation local so other winner and offer pages remain unchanged.
-- The Awards and fees page uses isolated mock award data and scoped styling; its displayed prices and eligibility must never configure live forms or checkout.
+- The Categories and fees page uses isolated mock category data and scoped styling; its displayed prices and eligibility must never configure live forms or checkout. Redirect /awards permanently to /categories to preserve the old public URL.
+- Build decorative winner-file samples in the shared winner-files module; keep its timed category cycling client-side and honour reduced motion so samples remain SSR-safe.
 - Entry-fee presentation reads the browser-safe `src/content/entry-fees.ts` values so homepage, FAQ and payment-page amounts stay consistent without altering checkout configuration.
 - Business-name personalization uses a browser-safe helper with tests for sanitization and placeholder replacement so URL input never becomes markup.
 - Keep homepage statistics in a dedicated browser-safe component with scoped styles and tested data/counting logic so its animation does not alter other page sections.
