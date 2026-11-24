@@ -3,7 +3,7 @@ import { ArrowRight, Globe, Lightbulb, RotateCcw, Sprout, TrendingUp, Users } fr
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
-import { WinnerFileStack } from "@/components/winner-files";
+import { HeroSampleStack } from "@/components/hero-sample";
 import { MOCK_AWARDS, MOCK_PRICES, mockAwardPrice, type MockAward } from "@/content/awards-mock";
 import markAsset from "@/assets/ea-mark-84.png.asset.json";
 import adamAsset from "@/assets/adam-pisk.jpg.asset.json";
@@ -111,7 +111,7 @@ function AwardsPage() {
         <div className="awards-hero-grid"><div><h1>Find the award that fits what you've built</h1>
           <p className="awards-intro">Entrepreneur of the Year is free to enter. You can also enter any of six achievement categories, for US$129.90 each until 31 January 2027. Each category is judged separately, on the same <Link to="/criteria" className="awards-inline-link">three criteria</Link>.</p>
           <div className="awards-hero-actions"><FreeEntryButton /><Link to="/categories" hash="categories" className="awards-action-link">Compare the awards<ArrowRight size={16} aria-hidden="true" /></Link></div>
-        </div><WinnerFileStack /></div>
+        </div><HeroSampleStack /></div>
         <nav aria-label="On this page" className="awards-jumps"><span>On this page:</span>{jumps.map(([id, label]) => <Link key={id} to="/categories" hash={id}>{label}</Link>)}</nav>
       </section>
 

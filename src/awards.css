@@ -92,6 +92,12 @@
 .stack-banner { width: min(340px, calc(100% - 32px)); height: 85px; left: 16px; bottom: 24px; }
 .winner-file-stack strong { transition: opacity 150ms ease; }
 .winner-file-stack.is-fading strong { opacity: 0; }
+.hero-sample { width: 100%; }
+.hero-sample-panel { --hero-sample-size: 340px; position: relative; height: calc(var(--hero-sample-size) + 60px); border-radius: 20px; background: var(--awards-panel); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.hero-sample-card { position: absolute; width: var(--hero-sample-size); height: var(--hero-sample-size); border-radius: 18px; background: var(--awards-highlight-strong); transform: translateX(14px) rotate(5deg); }
+.hero-sample-img { position: absolute; width: var(--hero-sample-size); height: var(--hero-sample-size); border-radius: 18px; object-fit: cover; opacity: 0; transition: opacity 400ms ease; box-shadow: var(--awards-hero-shadow); }
+.hero-sample-img.is-shown { opacity: 1; }
+.hero-sample figcaption { font-size: 12px; color: var(--muted-foreground); text-align: center; margin-top: 12px; }
 .awards-samples { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; }
 .awards-samples figure { border: 1px solid var(--border); border-radius: 14px; padding: 16px; background: var(--card); }
 .sample-wide { grid-column: span 2; }
@@ -143,6 +149,7 @@
 @media (max-width: 899px) {
   .awards-hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .winner-file-hero { width: 100%; max-width: 440px; margin-inline: auto; }
+  .hero-sample { width: 100%; max-width: 440px; margin-inline: auto; }
   .awards-samples { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .awards-extra { grid-template-columns: 1fr; }
   .awards-extra > img { height: 240px; }
@@ -180,5 +187,9 @@
   .stack-square .sample-square .awards-seal { width: 90px; height: 90px; }
   .stack-banner .sample-banner strong { font-size: 10px; }
   .stack-banner .sample-banner p { font-size: 7px; }
+  .hero-sample-panel { --hero-sample-size: 260px; }
 }
-@media (prefers-reduced-motion: reduce) { .winner-file-stack strong { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .winner-file-stack strong { transition: none; }
+  .hero-sample-img { transition: none; }
+}
