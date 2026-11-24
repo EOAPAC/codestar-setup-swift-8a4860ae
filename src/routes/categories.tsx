@@ -8,11 +8,6 @@ import { MOCK_AWARDS, MOCK_PRICES, mockAwardPrice, type MockAward } from "@/cont
 import markAsset from "@/assets/ea-mark-84.png.asset.json";
 import adamAsset from "@/assets/adam-pisk.jpg.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
-import bannerImg from "@/assets/EA_Linkedin_Banner.png.asset.json";
-import squareImg from "@/assets/EA_Square_Social_Image.png.asset.json";
-import storyImg from "@/assets/EA_Portrait_Winner_Image.png.asset.json";
-import sealImg from "@/assets/ea-winner-seal-full-1200.png.asset.json";
-import signatureImg from "@/assets/ea-winner-emailsig-full-600x200-2.png.asset.json";
 import awardsCss from "../awards.css?url";
 
 const TITLE = "Award categories and entry fees | Entrepreneur Awards";
@@ -101,8 +96,7 @@ function WinnerSamples() {
     ["signature", "Email signature", "Startup Founder of the Year 2027"],
     ["assessment", "Written assessment", "Turnaround of the Year 2027"],
   ] as const;
-  const images: Partial<Record<(typeof samples)[number][0], string>> = { banner: bannerImg.url, square: squareImg.url, story: storyImg.url, badge: sealImg.url, signature: signatureImg.url };
-  return <><div className="awards-samples">{samples.map(([kind, caption, title]) => <figure key={kind} className={kind === "banner" ? "sample-wide" : undefined}><div className="sample-stage" aria-hidden="true">{images[kind] ? <img className={`sample-img sample-img-${kind}`} src={images[kind]} alt="" loading="lazy" /> : <WinnerFile kind={kind} title={title} />}</div><figcaption>{caption}</figcaption></figure>)}</div><p className="awards-note">Samples. Yours carry the title of the category you won.</p></>;
+  return <><div className="awards-samples">{samples.map(([kind, caption, title]) => <figure key={kind} className={kind === "banner" ? "sample-wide" : undefined}><div className="sample-stage" aria-hidden="true"><WinnerFile kind={kind} title={title} /></div><figcaption>{caption}</figcaption></figure>)}</div><p className="awards-note">Samples. Yours carry the title of the category you won.</p></>;
 }
 
 function AwardsPage() {
