@@ -91,7 +91,6 @@ function CategoriesPage() {
       </div></section>
       <section className="awards-section awards-container" id="win"><div className="awards-heading"><h2>What you win</h2><p className="awards-sub">Winners in every category get the same files, made with the title they won.</p></div>
         <div className="awards-samples">{SAMPLES.map((sample) => <figure key={sample.file} className={sample.wide ? "sample-wide" : undefined}><div className="sample-stage"><img src={`/winner-samples/${sample.file}`} alt={sample.alt} loading="lazy" decoding="async" className={sample.flat ? "awards-sample-flat" : undefined} /></div><figcaption>{sample.caption}</figcaption></figure>)}</div>
-        <p className="awards-note">If you win, your certificate, social posts and email signature carry your category title, for example, ‘2027 High-Growth Founder.’</p>
       </section>
       <section className="awards-section awards-container" id="free"><div className="awards-heading"><h2>Free for early-stage founders</h2></div>
         {emerging && <article className="award-emerging"><img className="award-emerging-image" src={EMERGING_SAMPLE} alt="Sample square post for an Emerging Founder" loading="lazy" /><div>

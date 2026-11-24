@@ -37,6 +37,5 @@ export function HeroSampleStack() {
       <span className="hero-sample-card" />
       {frames.map((src, frame) => <img key={src} src={src} alt="" className={`hero-sample-img${frame === (reduced ? 0 : index) ? " is-shown" : ""}`} />)}
     </div>
-    <figcaption>Sample winner files</figcaption>
   </figure>;
 }
