@@ -4,10 +4,10 @@ export const MOCK_ELIGIBILITY = { emergingTradingYears: 3, growthTradingYears: 2
 export const MOCK_ENTRY_RULES = { openAllYear: true, recurring: false, separateJudging: true, multipleCategories: true } as const;
 export const MOCK_AWARDS = [
   { slug: "entrepreneur-of-distinction", name: "Entrepreneur of Distinction", icon: "logo", price: MOCK_PRICES.category,
-    description: "For founders making a distinctive contribution in their industry through the business they've built.",
+    description: "For founders whose business stands out in its industry: an original idea, real traction and one result worth pointing to.",
     tell: "What you built, the traction it has and one standout achievement." },
   { slug: "high-growth-founder", name: "High-Growth Founder", icon: "growth", price: MOCK_PRICES.category,
-    description: "For founders with at least two years of trading and measurable growth over the last 12 months.",
+    description: "For founders with at least two years of trading and strong growth over the last 12 months, with the figures to show it.",
     tell: "Your last 12 months against the 12 before, and what drove the change." },
   { slug: "innovator", name: "Innovator", icon: "idea", price: MOCK_PRICES.category,
     description: "For founders whose new product, service or approach is already delivering results.",

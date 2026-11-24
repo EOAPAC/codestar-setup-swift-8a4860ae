@@ -26,7 +26,7 @@ const JUMPS = [["categories", "Categories"], ["win", "What you win"], ["extras",
 const INDUSTRIES = ["Professional services", "Technology and software", "Finance and insurance", "Health and wellness", "Retail and e-commerce", "Food and drink", "Property and construction", "Marketing and media", "Education and coaching", "Beauty and fashion", "Travel and hospitality", "Trades and local services", "Something else? Choose Other."];
 const QUESTIONS = [
   ["How much does a category cost?", "US$129.90 per category, paid once when you submit your entry. Nothing is recurring."],
-  ["Why is Emerging Founder free?", "Early-stage founders often have the least to spend on awards. It's judged on the same criteria as every other category, and winners get the same files."],
+  ["Why is Emerging Founder free?", "Early-stage founders often have the least to spend on awards. We'd rather judge what they've built than their budget."],
   ["Is there a deadline?", "No. Entries are open all year, and each entry is judged as it comes in."],
   ["Can I enter Emerging Founder and a paid category?", "Yes, in the same form. You only pay for the paid categories."],
   ["Does entering more categories improve my chances?", "Paying doesn't change how an entry is judged. Each category is assessed on its own."],
@@ -64,7 +64,7 @@ function CategoryCard({ award }: { award: MockAward }) {
 function MainAward({ award }: { award: MockAward }) {
   return <article className="award-main" id={award.slug}><div>
     <div className="award-main-head"><AwardIcon award={award} /><h3>{award.name}</h3><strong>US${award.price.toFixed(2)}</strong></div>
-    <p className="award-main-intro">Our main award, judged with your industry taken into account.</p>
+    <p className="award-main-intro">Our main award, judged in the context of your industry.</p>
     <p className="award-description">{award.description}</p><AwardFacts award={award} /><EntryButton award={award} />
   </div><div className="award-industries"><strong>Choose your industry when you enter</strong><ul>{INDUSTRIES.map((industry) => <li key={industry}>{industry}</li>)}</ul></div></article>;
 }
@@ -76,27 +76,27 @@ function CategoriesPage() {
     <main>
       <section className="awards-top awards-container">
         <div className="awards-hero-grid"><div><h1>Find the award that fits what you've built</h1>
-          <p className="awards-intro">One main award for what you've built, and five for a specific achievement, from growth to innovation. Every category is judged separately, on the same <Link to="/criteria" className="awards-inline-link">three criteria</Link>.</p>
+          <p className="awards-intro">One main award, and five for a specific achievement: growth, innovation, a turnaround, your team or your impact. Every category is judged separately, on the same <Link to="/criteria" className="awards-inline-link">three criteria</Link>.</p>
           <p className="awards-hero-price"><strong>US$129.90 per category. Entries are open all year.</strong></p>
           <div className="awards-hero-actions"><EntryButton /><Link to="/categories" hash="categories" className="awards-action-link">Compare the categories<ArrowRight size={16} aria-hidden="true" /></Link></div>
         </div><HeroSampleStack /></div>
         <nav aria-label="On this page" className="awards-jumps"><span>On this page:</span>{JUMPS.map(([id, label]) => <Link key={id} to="/categories" hash={id}>{label}</Link>)}</nav>
       </section>
       <section className="awards-section awards-band" id="categories"><div className="awards-container">
-        <div className="awards-heading"><h2>Award categories</h2><p className="awards-sub">US$129.90 per category. Choose as many as fit, in one entry form, and each one is judged on its own.</p></div>
+        <div className="awards-heading"><h2>Award categories</h2><p className="awards-sub">Choose as many as fit, all in one entry form.</p></div>
         {main && <MainAward award={main} />}
         <div className="awards-category-grid">{MOCK_AWARDS.filter((award) => award.slug !== "entrepreneur-of-distinction" && award.price > 0).map((award) => <CategoryCard key={award.slug} award={award} />)}
           <article className="award-helper"><h3>Not sure which fits?</h3><p>Pick the category that matches your strongest result. You can enter more than one in the same form.</p><Link to="/" hash="submit" className="awards-action-link">Start your entry<ArrowRight size={16} aria-hidden="true" /></Link></article>
-        </div><p className="awards-note">Prices are in US dollars, per category, paid once when you submit your entry.</p>
+        </div>
       </div></section>
       <section className="awards-section awards-container" id="win"><div className="awards-heading"><h2>What you win</h2><p className="awards-sub">Every category comes with the same winner files, with your title on them.</p></div>
         <div className="awards-samples">{SAMPLES.map((sample) => <figure key={sample.file} className={sample.wide ? "sample-wide" : undefined}><div className="sample-stage"><img src={`/winner-samples/${sample.file}`} alt={sample.alt} loading="lazy" decoding="async" className={sample.flat ? "awards-sample-flat" : undefined} /></div><figcaption>{sample.caption}</figcaption></figure>)}</div>
         <p className="awards-note">Samples. Yours carry the title you won.</p>
       </section>
-      <section className="awards-section awards-container" id="extras"><div className="awards-heading"><h2>Optional ways to celebrate your win</h2><p className="awards-sub">Your winner files are already included. If you'd like a physical award or a published feature about your business, these are available separately after selection.</p></div>
+      <section className="awards-section awards-container" id="extras"><div className="awards-heading"><h2>Optional ways to celebrate your win</h2><p className="awards-sub">Your winner files are already included. If you'd like a physical award or a published feature about your business, these are available separately once you've won.</p></div>
         <div className="awards-extras-grid">
-          <article className="awards-extra"><img src={adamAsset.url} alt="Adam Pisk, Entrepreneur Awards winner" loading="lazy" /><div className="awards-extra-copy"><div className="awards-extra-heading"><h3>The Winner's Feature</h3><strong>${MOCK_PRICES.feature}</strong></div><p>A Feature about your business, written by our editorial team and published on the Entrepreneur Awards winners page. It comes with a paid press release about your win on USA Today, the Associated Press and Business Insider, each linking back to the Feature. The press release is a paid placement, not independent news coverage.</p><Link to="/winners/$slug" params={{ slug: "adam-pisk" }} className="awards-action-link">Read Adam Pisk's Feature<ArrowRight size={16} aria-hidden="true" /></Link></div></article>
-          <article className="awards-extra"><img src={awardAsset.url} alt="Engraved Entrepreneur Awards crystal award" loading="lazy" /><div className="awards-extra-copy"><div className="awards-extra-heading"><h3>The Award Package</h3><strong>${MOCK_PRICES.physicalAward}</strong></div><p>The engraved crystal award with your name and title, plus a printed certificate ready to frame. Posted worldwide.</p></div></article>
+          <article className="awards-extra"><img src={adamAsset.url} alt="Adam Pisk, Entrepreneur Awards winner" loading="lazy" /><div className="awards-extra-copy"><div className="awards-extra-heading"><h3>The Winner's Feature</h3><strong>US${MOCK_PRICES.feature}</strong></div><p>A Feature about your business, written by our editorial team and published on the Entrepreneur Awards winners page. It comes with a paid press release about your win on USA Today, the Associated Press and Business Insider, each linking back to the Feature. The press release is a paid placement, not independent news coverage.</p><Link to="/winners/$slug" params={{ slug: "adam-pisk" }} className="awards-action-link">Read Adam Pisk's Feature<ArrowRight size={16} aria-hidden="true" /></Link></div></article>
+          <article className="awards-extra"><img src={awardAsset.url} alt="Engraved Entrepreneur Awards crystal award" loading="lazy" /><div className="awards-extra-copy"><div className="awards-extra-heading"><h3>The Award Package</h3><strong>US${MOCK_PRICES.physicalAward}</strong></div><p>The engraved crystal award with your name and title, plus a printed certificate ready to frame. Posted worldwide.</p></div></article>
         </div>
       </section>
       <section className="awards-section awards-container" id="free"><div className="awards-heading"><h2>Free for early-stage founders</h2></div>
