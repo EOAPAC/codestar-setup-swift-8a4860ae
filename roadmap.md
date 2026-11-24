@@ -1,9 +1,8 @@
 # Roadmap
 
 ## Current
-- [ ] Rebuild the Categories visual mock with the six paid awards, free Emerging Founder, seven sections and unchanged live forms/payments.
-- [ ] Verify category rules, entry links, hero cycling and desktop/mobile layouts.
-- [ ] Replace old-title sample artwork when corrected images are supplied (current saved pictures still say “of the Year”).
+- [ ] Categories redesign is on hold: user requested image files only and no page changes yet.
+- [x] Save the seven corrected hero images with their uploaded filenames and remove all older files from that folder; leave page code unchanged.
 - [x] Replace the Awards mock with Categories and fees, preserve live forms/payments, and redirect the old address.
 - [x] Verify category prices, links, seven sample files, animated hero and mobile layout.
 - [x] Add the visual-only Awards and fees page and first navigation item, without changing existing forms or payments.
