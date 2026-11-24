@@ -36,7 +36,7 @@
 .award-description { color: var(--foreground); }
 .award-tell { color: var(--muted-foreground); }
 .award-main-action { margin-top: 24px; }
-.awards-extra img.awards-extra-award { object-fit: contain; background: var(--card); padding: 16px; }
+.awards-extra img.awards-extra-award { object-fit: cover; object-position: center; }
 .award-tell strong { font-weight: 600; }
 .award-selected { background: var(--awards-highlight); border-radius: 8px; padding: 14px 16px; margin-block: 20px; font-size: 14px; line-height: 1.65; }
 .award-selected span { color: var(--muted-foreground); }
