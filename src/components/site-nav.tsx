@@ -23,7 +23,7 @@ type SiteNavProps = {
 };
 
 const navLinks = [
-  { label: "Categories and fees", to: "/categories" },
+  { label: "Categories", to: "/categories" },
   { label: "Winners", to: "/winners" },
   { label: "Criteria", to: "/criteria" },
   { label: "FAQ", to: "/faq" },
