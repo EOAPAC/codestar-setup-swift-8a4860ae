@@ -44,7 +44,7 @@ const steps = [
     n: "03",
     icon: Users,
     title: "Panel review",
-    body: "The panel is made up of founders and operators. Each entry is scored against the same three criteria, independently, then discussed. There are no categories, so nothing is selected by default.",
+    body: "The panel is made up of founders and operators. Each entry is scored against the same three criteria, independently, then discussed. Each category is judged on its own, and nothing is selected by default.",
   },
   {
     n: "04",
@@ -87,7 +87,7 @@ function CriteriaPage() {
               How winners are <span>chosen</span>
             </h1>
             <div className="mt-3 space-y-3 text-[15px] leading-normal text-header-subtitle">
-              <p>Every {AWARD_YEAR} entry is read against the same three published criteria, in the same order.</p>
+              <p>Every entry, in every category, is read against the same three published criteria, in the same order.</p>
             </div>
             </div>
           </div>
@@ -99,7 +99,7 @@ function CriteriaPage() {
             <div className="mx-auto max-w-3xl">
               <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">Three published criteria</h2>
               <p className="mt-3 text-muted-foreground">
-                There is one award and one standard. Each criterion is weighted equally and read in the context of the founder's stage and industry.
+                Every category uses one standard. Each criterion is weighted equally and read in the context of the founder's stage, industry and the category entered. In each category, your standout achievement should be the result that category recognises.
               </p>
             </div>
 
@@ -169,8 +169,8 @@ function CriteriaPage() {
 
         <SiteCTA
           eyebrow=""
-          heading="Enter the 2026 Awards."
-          subheading="One entry, one standard, and a decision within five business days."
+          heading="Start your entry."
+          subheading="One form, as many categories as fit, and a decision within five business days."
         />
       </main>
       <SiteFooter />

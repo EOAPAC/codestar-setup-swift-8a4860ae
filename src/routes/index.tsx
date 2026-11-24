@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 
@@ -125,14 +125,14 @@ function Hero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
             An independent award for founders.
             <br className="homepage-v2-hero-break" aria-hidden="true" />
-            One entry, one decision, and most entries are not selected.
+            Choose from six award categories, and get a decision on each. Most entries are not selected.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg" className="min-w-48">
               <a href="#submit">Enter now →</a>
             </Button>
             <Button asChild size="lg" variant="ghost">
-              <a href="#how-it-works">See how it works</a>
+              <Link to="/categories">See the categories</Link>
             </Button>
           </div>
         </div>
@@ -383,11 +383,11 @@ function SpecimenCitation() {
 const doesNotDo = [
   {
     title: "Payment does not buy a win",
-    body: `The ${ENTRY_FEE_LABEL} entry fee covers review and administration. There is no separate shortlist fee, and payment does not guarantee selection.`,
+    body: `Each US${ENTRY_FEE_LABEL} category fee covers review and administration. There is no separate shortlist fee, and payment does not guarantee selection.`,
   },
   {
-    title: "No categories",
-    body: "There are no sector awards, size brackets or separate categories, so nothing is selected by default.",
+    title: "No winner by default",
+    body: "Every category is judged on its own, against the same three criteria. If no entry in a category meets the standard, nobody is selected in it.",
   },
   {
     title: "No membership",
@@ -430,7 +430,7 @@ const howItWorks = [
     title: "You enter",
     body: (
       <>
-        Four fields and three short questions. About five minutes. Plain answers are fine. Pay the one-time {ENTRY_FEE_LABEL} entry fee after submitting the form.
+        Choose your categories, then answer a few short questions. About five minutes, and plain answers are fine. After you submit, you pay US${ENTRY_FEE_LABEL} for each category you entered. Emerging Founder is free.
       </>
     ),
   },
@@ -439,7 +439,7 @@ const howItWorks = [
     title: "We assess it",
     body: (
       <>
-        Read against{" "}
+        Each category you enter is read against{" "}
         <a href="#criteria" className="text-primary underline underline-offset-4">
           three published criteria
         </a>
@@ -450,7 +450,7 @@ const howItWorks = [
   {
     number: "03",
     title: "You hear back",
-    body: <>Either way, with the reason for the decision.</>,
+    body: <>A decision on each category, either way, with the reason.</>,
   },
   {
     number: "04",
@@ -458,8 +458,8 @@ const howItWorks = [
     body: (
       <>
         Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
-        and the written record of your assessment arrive by email. Included in your entry fee, and they
-        remain yours permanently.
+        and the written record of your assessment arrive by email. They carry the title you won, come at no extra
+        cost and remain yours permanently.
       </>
     ),
   },

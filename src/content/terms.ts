@@ -4,7 +4,7 @@ export type TermsSection = {
   body: string[];
 };
 
-export const LAST_UPDATED = "26 July 2026";
+export const LAST_UPDATED = "24 November 2026";
 
 export const TERMS_INTRO: string[] = [
   "Welcome to the Entrepreneur Awards, a recognition programme for founders and business owners building something worth talking about.",
@@ -37,12 +37,13 @@ export const TERMS_SECTIONS: TermsSection[] = [
     title: "3. Entry, Eligibility and Selection",
     body: [
       "3.1 Entry is open to founders, co-founders and owner-operators of a legally operating business. You enter as an individual, and your entry is your own story.",
-      "3.2 One entry per founder per cycle. We may reject duplicate or near-duplicate submissions.",
-      "3.3 **A non-refundable entry fee applies at submission.** The fee covers review and administration. It does not purchase an award, and submitting an entry does not guarantee selection.",
+      "3.2 You may enter more than one category, with one entry per category per founder in each cycle. We may reject duplicate or near-duplicate submissions.",
+      "3.3 **A non-refundable entry fee applies to each paid category at submission.** Emerging Founder has no entry fee. Fees cover review and administration. They do not purchase an award, and submitting an entry does not guarantee selection.",
       "3.4 You are responsible for everything you submit. You warrant that your entry is your own work, that the facts, numbers and milestones in it are true, that the images you upload are yours to use, and that nothing in it breaches a confidentiality agreement or any third-party right.",
       "3.5 We may ask for evidence supporting any claim in an entry. We may reject an entry, or withdraw an award already granted, where information is inaccurate, misleading, plagiarised or unverifiable, or where a winner's conduct brings the programme into disrepute. No refund is due in those circumstances.",
       "3.6 Selection decisions are made at our discretion and are final. We do not publish scores, share reviewer identities, or provide individual feedback, and we do not enter into correspondence about why a decision was reached.",
       "3.7 We may decline to make an award in any cycle or category where the standard of entries does not support a credible result.",
+      "3.8 Each category has its own eligibility requirements, published on the Categories page. An entry that does not meet a category's requirements may not be selected in that category. Emerging Founder is limited to businesses that began trading in the last three years, and we may ask for evidence of this.",
     ],
   },
   {

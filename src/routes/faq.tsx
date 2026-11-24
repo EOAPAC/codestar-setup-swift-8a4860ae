@@ -86,7 +86,7 @@ function FAQPage() {
                     What are the Entrepreneur Awards?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    A recognition program for founders and entrepreneurs, celebrating the people building standout businesses and the stories behind them.
+                    A recognition programme for founders and entrepreneurs, with award categories for the business as a whole and for specific achievements. See all categories on the <Link to="/categories" className="font-medium text-primary hover:underline">Categories page</Link>.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -95,7 +95,7 @@ function FAQPage() {
                     What does it cost in total?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    {ENTRY_FEE_LABEL} to enter, which is the only compulsory cost. There is no separate shortlist fee. Later offers are optional and are not required to win. The winner badge, graphics and award statement (the short, formal lines explaining what was assessed and why the entry was selected) are included in the entry fee and remain yours permanently.
+                    US${ENTRY_FEE_LABEL} for each category you enter, paid once when you submit. Emerging Founder is free for businesses in their first three years. There is no separate shortlist fee. Later offers are optional and are not required to win. The winner badge, graphics and award statement are included at no extra cost and remain yours permanently.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -105,7 +105,7 @@ function FAQPage() {
                     Who can enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Any founder or entrepreneur is eligible. Entries are assessed on the business and what you built.
+                    Any founder or entrepreneur can enter. Some categories have their own requirements, such as years of trading or team size, listed on the Categories page. Emerging Founder is for businesses that began trading in the last three years and already have paying customers.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -114,7 +114,7 @@ function FAQPage() {
                     Is there a cost to enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Yes. After submitting the form, you pay a one-time {ENTRY_FEE_LABEL} entry fee to complete your entry. It covers review and administration. There is no separate shortlist fee. Every entry is read and scored by our founder-judges. The fee does not purchase an award, and entering does not guarantee selection.
+                    Yes, US${ENTRY_FEE_LABEL} for each paid category, paid once after you submit the form. Emerging Founder is free. Fees cover review and administration, and there is no separate shortlist fee. A fee does not purchase an award, and entering does not guarantee selection.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -123,7 +123,25 @@ function FAQPage() {
                     How do I enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Complete the online entry form with your details and your story, then pay the one-time {ENTRY_FEE_LABEL} entry fee on the next page to complete your entry.
+                    Choose your categories and complete the online entry form with your details and your story. Then pay for any paid categories on the next page.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="q-multiple" id="q-multiple" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    Can I enter more than one category?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Yes, in the same form. Each category is judged on its own, and you can be selected in more than one.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="q-which" id="q-which" className="scroll-mt-24">
+                  <AccordionTrigger className="text-left text-base font-medium">
+                    Which category should I choose?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Choose Entrepreneur of Distinction for the business as a whole. If one achievement stands out, choose the category that recognises it. See the <Link to="/categories" className="font-medium text-primary hover:underline">Categories page</Link>.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -132,11 +150,7 @@ function FAQPage() {
                     What are the judging criteria?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Entries are assessed on vision, traction, resilience, and influence. See our{" "}
-                    <Link to="/criteria" className="font-medium text-primary hover:underline">
-                      Criteria
-                    </Link>{" "}
-                    for the full breakdown.
+                    Every category is judged on the same three criteria: originality, traction and a standout achievement. See our <Link to="/criteria" className="font-medium text-primary hover:underline">Criteria page</Link> for the full breakdown.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -145,7 +159,7 @@ function FAQPage() {
                     How are winners chosen?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Every entry is screened, shortlisted, and evaluated by our review panel against consistent criteria.
+                    Every entry is screened, then assessed by our review panel in each category entered, against the same criteria.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -154,7 +168,7 @@ function FAQPage() {
                     What do winners receive?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature, and the written record of your assessment. Everything arrives by email, is included in your entry fee, and is permanently yours.
+                    Your winner seal, your badge, graphics for LinkedIn, social and your email signature, and the written record of your assessment, made with the title you won. They come at no extra cost and are permanently yours.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -163,7 +177,7 @@ function FAQPage() {
                     What is the Winner&rsquo;s Feature?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    An optional commission available to winners. Our editors write a full article about your business and publish it as your winner page on entrepreneurawards.co, at a permanent address. A press release announcing your win is carried on USA Today, and an engraved award and printed certificate are included. $1,595, and nothing is published until you have approved every word.
+                    An optional extra for winners. Our editorial team writes a Feature about your business and publishes it as your winner page on entrepreneurawards.co. It comes with a paid press release about your win on USA Today, the Associated Press and Business Insider, each linking back to the Feature. US$997, and nothing is published until you&rsquo;ve approved every word. The engraved crystal award and a printed certificate are available separately as the US$197 Award Package.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -172,7 +186,7 @@ function FAQPage() {
                     Is there a deadline?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Entries are reviewed on a rolling basis. Enter early to be considered in the current cycle.
+                    No. Entries are open all year, and each entry is judged as it comes in.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -219,7 +233,7 @@ function FAQPage() {
           </div>
         </section>
 
-        <SiteCTA eyebrow="" heading="Enter the 2026 Awards." subheading="Every entry is read by founders and operators." />
+        <SiteCTA eyebrow="" heading="Start your entry." subheading="Every entry is read by founders and operators." />
       </main>
       <SiteFooter />
     </div>
