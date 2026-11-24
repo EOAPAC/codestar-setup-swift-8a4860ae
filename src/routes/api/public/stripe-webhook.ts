@@ -54,8 +54,8 @@ export const Route = createFileRoute("/api/public/stripe-webhook")({
 
         try {
           if (event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded") {
-            if (obj.payment_status !== "paid") { log("not paid yet, skipped"); return new Response("ok"); }
-            const cents = Number(obj.amount_total ?? 0);
+            if (obj.payment_status !== "paid" && obj.payment_status !== "no_payment_required") { log("not paid yet, skipped"); return new Response("ok"); }
+            const cents = obj.payment_status === "no_payment_required" ? 0 : Number(obj.amount_total ?? 0);
             const purchase = classifyPurchase(obj.payment_link, cents);
             if (!purchase) { log("unrelated payment link, ignored"); return new Response("ok"); }
             const email = String(obj.customer_details?.email ?? "").trim().toLowerCase();

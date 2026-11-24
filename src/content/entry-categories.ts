@@ -98,12 +98,14 @@ export function submitLabel(selected: readonly string[], submitting: boolean) {
 
 export function hiddenEntryFields(selected: readonly string[]) {
   const paid = paidCount(selected);
-  return {
+  const fields: Record<string, string> = {
     ea_paid_categories: String(paid),
     ea_amount_due: paid === 0 ? "0" : amountDue(paid),
     ea_entry_type: paid > 0 ? "paid" : "free_only",
     ea_payment_link: paymentLinkFor(paid),
   };
+  if (paid > 0) fields["ea_payment_status"] = "Awaiting payment";
+  return fields;
 }
 
 export const SAVED_ENTRY_KEY = "ea-entry";
