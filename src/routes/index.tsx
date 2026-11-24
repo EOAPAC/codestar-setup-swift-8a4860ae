@@ -10,7 +10,7 @@ import homepageV2Css from "../homepage-v2.css?url";
 
 import { EntryForm } from "@/components/entry-form";
 import { AWARD_YEAR } from "@/content/award";
-import { ENTRY_FEE_LABEL } from "@/content/entry-fees";
+import { ENTRY_FEE_AMOUNT, ENTRY_FEE_LABEL } from "@/content/entry-fees";
 
 import { SiteFigure } from "@/components/site-figure";
 
@@ -404,7 +404,7 @@ const howItWorks = [
     title: "You enter",
     body: (
       <>
-        Choose your categories, then answer a few short questions. About five minutes, and plain answers are fine. After you submit, you pay US${ENTRY_FEE_LABEL} for each category you entered. Emerging Founder is free.
+        Choose your categories, then answer a few short questions. About five minutes, and plain answers are fine. After you submit, you pay US${ENTRY_FEE_AMOUNT} for each category you entered. Emerging Founder is free.
       </>
     ),
   },

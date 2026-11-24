@@ -14,6 +14,7 @@ import {
   SAVED_ENTRY_KEY,
   hiddenEntryFields,
   isCategoryValue,
+  normalizeProfileUrl,
   orderCategories,
   paidCount,
   submitLabel,
@@ -124,7 +125,7 @@ export function EntryForm() {
     push("lastname", fields.lastname);
     push("0-2/name", fields.company);
     push("email", fields.email);
-    push("linkedin_or_profile_url", fields.linkedin_or_profile_url);
+    push("linkedin_or_profile_url", normalizeProfileUrl(fields.linkedin_or_profile_url));
     push("ea_industry", fields.ea_industry);
     if (fields.ea_industry === "other") push("ea_industry_other", fields.ea_industry_other);
     push("ea_categories", ordered.map((c) => c.value).join(";"));
@@ -185,7 +186,7 @@ export function EntryForm() {
           <Input id={`${uid}-em`} type="email" name="email" autoComplete="email" inputMode="email" required maxLength={255} value={fields.email} onChange={set("email")} />
         </Field>
         <Field id={`${uid}-url`} label="LinkedIn or website/profile URL" required>
-          <Input id={`${uid}-url`} type="url" name="linkedin_or_profile_url" inputMode="url" placeholder="https://" required maxLength={500} value={fields.linkedin_or_profile_url} onChange={set("linkedin_or_profile_url")} />
+          <Input id={`${uid}-url`} type="text" name="linkedin_or_profile_url" inputMode="url" placeholder="https://" required maxLength={500} pattern="[^\s]+\.[^\s]+" title="Enter a web address such as linkedin.com/in/name" value={fields.linkedin_or_profile_url} onChange={set("linkedin_or_profile_url")} />
         </Field>
         <Field id={`${uid}-ind`} label="Industry" required>
           <select id={`${uid}-ind`} name="ea_industry" required className={SELECT_CLASS} value={fields.ea_industry} onChange={set("ea_industry")}>
@@ -233,7 +234,7 @@ export function EntryForm() {
                     className="mt-1 h-4 w-4 shrink-0 accent-primary"
                   />
                   <span className="min-w-0 flex-1">
-                    <span className="flex flex-wrap items-baseline justify-between gap-x-3">
+                    <span className="flex flex-col items-start gap-y-0.5 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-x-3">
                       <span className="font-medium text-foreground">{c.name}</span>
                       <span className="text-sm font-medium text-foreground">{c.free ? "Free" : "US$129.90"}</span>
                     </span>

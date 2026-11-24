@@ -45,6 +45,16 @@ export const PAYMENT_LINKS: Record<number, string> = {
   6: "https://payments.entrepreneurawards.co/b/6oUaEX1Gd236cnqfHK8so0s",
 };
 
+/**
+ * Profile addresses are typed as free text ("linkedin.com/in/name"), so the
+ * form stores a full address: adds the scheme unless one is already present.
+ */
+export function normalizeProfileUrl(raw: string) {
+  const value = raw.trim();
+  if (!value) return "";
+  return /^https?:\/\//i.test(value) ? value : `https://${value}`;
+}
+
 export function isCategoryValue(value: string | null | undefined): value is string {
   return !!value && ENTRY_CATEGORIES.some((c) => c.value === value);
 }

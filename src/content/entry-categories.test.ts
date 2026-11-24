@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { amountDue, checkoutUrl, hiddenEntryFields, isCategoryValue, PAYMENT_LINKS, submitLabel, totalLine } from "./entry-categories";
+import { amountDue, checkoutUrl, hiddenEntryFields, isCategoryValue, normalizeProfileUrl, PAYMENT_LINKS, submitLabel, totalLine } from "./entry-categories";
 
 describe("entry categories", () => {
   it("totals paid categories at US$129.90 each", () => {
@@ -31,5 +31,21 @@ describe("entry categories", () => {
   it("ignores unknown pre-selected categories", () => {
     assert.equal(isCategoryValue("innovator"), true);
     assert.equal(isCategoryValue("best-ever"), false);
+  });
+});
+
+describe("profile url", () => {
+  it("adds https:// to addresses typed without a scheme", () => {
+    assert.equal(normalizeProfileUrl("linkedin.com/in/name"), "https://linkedin.com/in/name");
+    assert.equal(normalizeProfileUrl("www.company.com"), "https://www.company.com");
+  });
+  it("keeps an address that already has a scheme", () => {
+    assert.equal(normalizeProfileUrl("https://company.com/about"), "https://company.com/about");
+    assert.equal(normalizeProfileUrl("http://company.com"), "http://company.com");
+    assert.equal(normalizeProfileUrl("HTTPS://Company.com"), "HTTPS://Company.com");
+  });
+  it("trims surrounding space and returns empty for blank input", () => {
+    assert.equal(normalizeProfileUrl("  company.com  "), "https://company.com");
+    assert.equal(normalizeProfileUrl("   "), "");
   });
 });
