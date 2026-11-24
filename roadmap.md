@@ -1,6 +1,8 @@
 # Roadmap
 
 ## Current
+- [x] Make entry-fee wording consistent on both homepages, FAQ and the existing payment page, preserving checkout and later offers.
+- [x] Test the fee rules and check updated wording on desktop and mobile; existing Stripe button confirms US$129.90. No live application or payment submitted for this copy-only change.
 - [x] Restore the specified homepage colour and contrast.
 - [x] Match Criteria and FAQ headers to the Winners trophy header and restyle FAQ topics.
 - [x] Check 37 public pages at 1440, 1024, 768 and 390px, preserving unrelated content. Existing internal comparison page has 2px mobile overflow; left unchanged under the instruction to change nothing else. Token-only resources lack a supplied valid token and were not checked.

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteCTA } from "@/components/site-cta";
+import { ENTRY_FEE_LABEL } from "@/content/entry-fees";
 
 import { Mail, ArrowRight, Sparkles } from "lucide-react";
 
@@ -94,7 +95,7 @@ function FAQPage() {
                     What does it cost in total?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    $129.90 to enter, which is the only compulsory cost. Winners are offered one optional extra, a written feature about the business, at $595. Selection is never conditional on purchasing it, and the winner badge, graphics and award statement (the short, formal lines explaining what was assessed and why the entry was selected) are provided free and permanently.
+                    {ENTRY_FEE_LABEL} to enter, which is the only compulsory cost. There is no separate shortlist fee. Later offers are optional and are not required to win. The winner badge, graphics and award statement (the short, formal lines explaining what was assessed and why the entry was selected) are included in the entry fee and remain yours permanently.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -113,7 +114,7 @@ function FAQPage() {
                     Is there a cost to enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Yes. A one-time entry fee applies when you submit. It covers the review and administration of your entry. Every entry is read and scored by our founder-judges. The fee does not purchase an award, and entering does not guarantee selection.
+                    Yes. After submitting the form, you pay a one-time {ENTRY_FEE_LABEL} entry fee to complete your entry. It covers review and administration. There is no separate shortlist fee. Every entry is read and scored by our founder-judges. The fee does not purchase an award, and entering does not guarantee selection.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -122,7 +123,7 @@ function FAQPage() {
                     How do I enter?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Complete the online entry form with your details and your story. Takes about 10 minutes.
+                    Complete the online entry form with your details and your story, then pay the one-time {ENTRY_FEE_LABEL} entry fee on the next page to complete your entry.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -153,7 +154,7 @@ function FAQPage() {
                     What do winners receive?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature, and the written record of your assessment. Everything arrives by email, at no charge, and is permanently yours.
+                    Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature, and the written record of your assessment. Everything arrives by email, is included in your entry fee, and is permanently yours.
                   </AccordionContent>
                 </AccordionItem>
 

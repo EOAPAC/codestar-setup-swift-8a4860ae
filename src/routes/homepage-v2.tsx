@@ -36,6 +36,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { submitHubSpotLead } from "@/lib/hubspot.functions";
 import { AWARD_YEAR } from "@/content/award";
+import { ENTRY_FEE_LABEL } from "@/content/entry-fees";
 
 import { SiteFigure } from "@/components/site-figure";
 
@@ -387,8 +388,8 @@ function SpecimenCitation() {
 
 const doesNotDo = [
   {
-    title: "No shortlist fee",
-    body: "Reaching a shortlist costs nothing. There is no charge to be read and assessed.",
+    title: "Payment does not buy a win",
+    body: `The ${ENTRY_FEE_LABEL} entry fee covers review and administration. There is no separate shortlist fee, and payment does not guarantee selection.`,
   },
   {
     title: "No categories",
@@ -435,7 +436,7 @@ const howItWorks = [
     title: "You enter",
     body: (
       <>
-        Four fields and three short questions. About five minutes. We assess what you built, so the writing doesn't need to be polished.
+        Four fields and three short questions. About five minutes. We assess what you built, so the writing doesn't need to be polished. Pay the one-time {ENTRY_FEE_LABEL} entry fee after submitting the form.
       </>
     ),
   },
@@ -463,7 +464,7 @@ const howItWorks = [
     body: (
       <>
         Your winner seal, your badge, four sized graphics for LinkedIn, social and email signature,
-        and the written record of your assessment arrive by email. No further payment, and they
+        and the written record of your assessment arrive by email. Included in your entry fee, and they
         remain yours permanently.
       </>
     ),
@@ -734,7 +735,7 @@ function SubmissionForm() {
             Enter the 2026 Awards.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-            Everything needed to assess the business is on this one page.
+            Complete the form, then pay the one-time {ENTRY_FEE_LABEL} entry fee to complete your entry. The fee covers review and administration, not an award.
           </p>
         </div>
         <Card className="mt-12 p-8 md:p-10">

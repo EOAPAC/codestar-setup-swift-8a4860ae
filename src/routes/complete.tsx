@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Lock, FileCheck } from "lucide-react";
+import { ENTRY_FEE_LABEL } from "@/content/entry-fees";
 
 // ------------------------------------------------------------------
 // Easy-edit constants for the Stripe buy button embed.
@@ -66,8 +67,7 @@ function CompletePage() {
             Complete your entry
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-            Your submission is ready. A one-time entry fee completes your
-            application for the 2026 Entrepreneur Awards.
+            Your form has been received. Pay the one-time {ENTRY_FEE_LABEL} entry fee below to complete your application for the 2026 Entrepreneur Awards.
           </p>
         </div>
 
@@ -79,9 +79,7 @@ function CompletePage() {
             <div>
               <p className="font-medium text-foreground">What the fee covers</p>
               <p className="mt-1">
-                The entry fee covers the consideration of your application. All
-                entries are reviewed, and winners are announced after the review
-                period. Entering does not guarantee selection.
+                The entry fee covers review and administration. There is no separate shortlist fee. Every completed entry is assessed against the three published criteria, with a decision within five business days. Payment does not guarantee selection.
               </p>
             </div>
           </div>
