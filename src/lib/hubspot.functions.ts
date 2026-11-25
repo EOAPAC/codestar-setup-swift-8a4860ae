@@ -61,6 +61,7 @@ export const submitHubSpotLead = createServerFn({ method: "POST" })
       "ea_payment_status",
       "ea_categories_text",
       "ea_amount_due_text",
+      "ea_category_answers",
     ]);
     const filteredFields = data.fields.filter((f) => ALLOWED_FIELDS.has(f.name));
 

@@ -1,30 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { Fragment, useEffect, useRef, useState } from "react";
-
-declare global {
-  interface Window {
-    hbspt?: {
-      forms: {
-        create: (options: {
-          portalId: string;
-          formId: string;
-          region?: string;
-          target?: string;
-          css?: string;
-          cssClass?: string;
-          submitButtonClass?: string;
-          pageName?: string;
-          pageUrl?: string;
-          inlineMessage?: string;
-          onFormReady?: (form: unknown) => void;
-          onFormSubmit?: (form: unknown) => void;
-          onFormSubmitted?: (form: unknown) => void;
-        }) => void;
-      };
-    };
-  }
-}
+import { createFileRoute } from "@tanstack/react-router";
+import { Fragment } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -34,9 +9,8 @@ import { AwardNumbers } from "@/components/award-numbers";
 import { ArrowUpRight } from "lucide-react";
 
 
-import { submitHubSpotLead } from "@/lib/hubspot.functions";
+import { EntrySteps } from "@/components/entry-steps";
 import { AWARD_YEAR } from "@/content/award";
-import { ENTRY_FEE_LABEL } from "@/content/entry-fees";
 
 import { SiteFigure } from "@/components/site-figure";
 
@@ -63,7 +37,7 @@ export const Route = createFileRoute("/homepage-v2")({
 function Index() {
   return (
     <div className="homepage-colour-restored min-h-screen bg-background font-sans text-foreground antialiased">
-      <SiteNav />
+      <SiteNav hideCategoriesLink entryHref="#submit" />
       <main>
         <Hero />
         <CredibilityBand />
@@ -77,7 +51,7 @@ function Index() {
         <SubmissionForm />
         <Contact />
       </main>
-      <SiteFooter />
+      <SiteFooter entryHref="#submit" />
     </div>
   );
 }
@@ -332,8 +306,7 @@ function Criteria() {
             The three criteria, in full.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-            Every entry is read against these, in this order. There are no categories, so nothing is
-            selected by default.
+            Every entry is read against these, in this order.
           </p>
         </div>
 
@@ -389,11 +362,7 @@ function SpecimenCitation() {
 const doesNotDo = [
   {
     title: "Payment does not buy a win",
-    body: `The ${ENTRY_FEE_LABEL} entry fee covers review and administration. There is no separate shortlist fee, and payment does not guarantee selection.`,
-  },
-  {
-    title: "No categories",
-    body: "There are no sector awards, size brackets, or separate categories. Every entry is read against the same three criteria.",
+    body: `The entry fee covers review and administration. There is no separate shortlist fee, and payment does not guarantee selection.`,
   },
   {
     title: "No membership",
@@ -410,11 +379,11 @@ function WhatItDoesNotDo() {
             What this award does not do.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-white/60 md:text-xl">
-            Three things to know before you enter.
+            Two things to know before you enter.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2">
           {doesNotDo.map((item, index) => (
             <div key={item.title} className="bg-[#0B1220] p-7 md:p-8">
               <span className="text-sm font-medium tabular-nums text-white/35">
@@ -436,7 +405,7 @@ const howItWorks = [
     title: "You enter",
     body: (
       <>
-        Four fields and three short questions. About five minutes. We assess what you built, so the writing doesn't need to be polished. Pay the one-time {ENTRY_FEE_LABEL} entry fee after submitting the form.
+        Four fields and three short questions. About five minutes. We assess what you built, so the writing doesn't need to be polished. Pay the one-time entry fee at the end of the form.
       </>
     ),
   },
@@ -502,270 +471,8 @@ function HowItWorks() {
   );
 }
 
-
-
-type HubSpotSubmissionPayload = {
-  submittedAt: number;
-  fields: Array<{ name: string; value: string }>;
-  context: {
-    hutk?: string;
-    pageUri: string;
-    pageName: string;
-    referrer?: string;
-  };
-};
-
-function readCookie(name: string) {
-  return document.cookie
-    .split(";")
-    .map((cookie) => cookie.trim())
-    .find((cookie) => cookie.startsWith(`${name}=`))
-    ?.slice(name.length + 1);
-}
-
-function buildHubSpotSubmissionPayload(form: HTMLFormElement): HubSpotSubmissionPayload {
-  const excludedNames = new Set(["hs_context", "hsCtaTracking", "g-recaptcha-response"]);
-  const fieldValues = new Map<string, string[]>();
-
-  Array.from(form.elements).forEach((element) => {
-    if (!(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement || element instanceof HTMLSelectElement)) {
-      return;
-    }
-
-    const { name } = element;
-    if (!name || excludedNames.has(name) || element.disabled) {
-      return;
-    }
-
-    if (element instanceof HTMLInputElement) {
-      const inputType = element.type.toLowerCase();
-      if (["submit", "button", "reset", "file"].includes(inputType)) {
-        return;
-      }
-      if (["checkbox", "radio"].includes(inputType) && !element.checked) {
-        return;
-      }
-    }
-
-    const value = element.value.trim();
-    if (!value) {
-      return;
-    }
-
-    fieldValues.set(name, [...(fieldValues.get(name) ?? []), value]);
-  });
-
-  const hsContextInput = form.querySelector<HTMLInputElement>('input[name="hs_context"]');
-  let parsedContext: { hutk?: string } = {};
-  if (hsContextInput?.value) {
-    try {
-      parsedContext = JSON.parse(hsContextInput.value) as { hutk?: string };
-    } catch {
-      parsedContext = {};
-    }
-  }
-
-  const hutk = parsedContext.hutk ?? readCookie("hubspotutk");
-
-  return {
-    submittedAt: Date.now(),
-    fields: Array.from(fieldValues, ([name, values]) => ({
-      name,
-      value: values.join(";"),
-    })),
-    context: {
-      ...(hutk ? { hutk: decodeURIComponent(hutk) } : {}),
-      pageUri: window.location.href.split("#")[0],
-      pageName: document.title,
-      ...(document.referrer ? { referrer: document.referrer } : {}),
-    },
-  };
-}
-
-
 function SubmissionForm() {
-  const formContainerRef = useRef<HTMLDivElement>(null);
-  const targetId = "hubspot-form-target";
-  const navigate = useNavigate({ from: "/" });
-  const submitLead = useServerFn(submitHubSpotLead);
-  const [formError, setFormError] = useState<string | null>(null);
-  const consentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const scriptSrc = "https://js.hsforms.net/forms/embed/v2.js";
-    const formContainer = formContainerRef.current;
-
-    const setSubmitButtonState = (form: HTMLFormElement, submitting: boolean) => {
-      const button = form.querySelector<HTMLInputElement | HTMLButtonElement>('input[type="submit"], button[type="submit"]');
-      if (!button) return;
-
-      button.disabled = submitting;
-      if (button instanceof HTMLInputElement) {
-        if (!button.dataset.originalValue) button.dataset.originalValue = button.value;
-        button.value = submitting ? "Submitting..." : button.dataset.originalValue;
-      } else {
-        if (!button.dataset.originalText) button.dataset.originalText = button.textContent ?? "Submit";
-        button.textContent = submitting ? "Submitting..." : button.dataset.originalText;
-      }
-    };
-
-    const handleServerSubmit = async (event: SubmitEvent) => {
-      event.preventDefault();
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-
-      const form = event.target instanceof HTMLFormElement ? event.target : null;
-      if (!form) return;
-      if (form.dataset.serverSubmitting === "true") return;
-      form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
-        field.dataset.touched = "true";
-      });
-      if (!form.reportValidity()) return;
-
-      form.dataset.serverSubmitting = "true";
-      setSubmitButtonState(form, true);
-      setFormError(null);
-
-      try {
-        const payload = buildHubSpotSubmissionPayload(form);
-        const result = await submitLead({ data: payload });
-        if (!result.ok) {
-          throw new Error(`HubSpot submission failed [${result.status}]`);
-        }
-        navigate({ to: "/complete" });
-      } catch (error) {
-        console.error("HubSpot server-side submission failed", error);
-        setFormError("Something went wrong submitting your entry. Please try again.");
-        delete form.dataset.serverSubmitting;
-        setSubmitButtonState(form, false);
-      }
-    };
-
-    const attachServerSubmit = () => {
-      const form = formContainerRef.current?.querySelector("form");
-      if (!form || form.dataset.serverSubmitAttached === "true") return;
-
-      form.dataset.serverSubmitAttached = "true";
-
-      const firstName = form.querySelector<HTMLInputElement>('input[name="firstname"]');
-      if (firstName) {
-        firstName.placeholder = "Your first name, used to address you";
-      }
-
-      // Errors stay hidden until a field is blurred or the form is submitted.
-      form.querySelectorAll<HTMLElement>(".hs-form-field").forEach((field) => {
-        field.querySelectorAll<HTMLElement>("input, textarea, select").forEach((input) => {
-          input.addEventListener("blur", () => {
-            field.dataset.touched = "true";
-          });
-        });
-      });
-
-
-
-
-      // Consent must read directly above the submit button.
-      const submitWrapper = form.querySelector(".hs_submit") ?? form.querySelector(".hs-submit");
-      if (submitWrapper && consentRef.current) {
-        submitWrapper.parentElement?.insertBefore(consentRef.current, submitWrapper);
-      }
-
-      const btn = form.querySelector<HTMLInputElement | HTMLButtonElement>(
-        'input[type="submit"], button[type="submit"]'
-      );
-      if (btn) btn.disabled = false;
-    };
-
-    formContainer?.addEventListener("submit", handleServerSubmit, true);
-
-    const createForm = () => {
-      if (window.hbspt && formContainerRef.current) {
-        formContainerRef.current.innerHTML = "";
-        setFormError(null);
-        window.hbspt.forms.create({
-          portalId: "24057088",
-          formId: "e11dcc5d-8be4-4fe7-86ff-10f733956165",
-          region: "na1",
-          target: `#${targetId}`,
-          css: "",
-          pageName: document.title,
-          pageUrl: window.location.href,
-          onFormReady: attachServerSubmit,
-          onFormSubmitted: () => {
-            navigate({ to: "/complete" });
-          },
-        });
-      }
-    };
-
-    const existing = document.querySelector<HTMLScriptElement>(`script[src="${scriptSrc}"]`);
-    let loadingScript: HTMLScriptElement | null = null;
-    if (existing) {
-      if (window.hbspt) {
-        createForm();
-      } else {
-        existing.addEventListener("load", createForm);
-      }
-      loadingScript = existing;
-    } else {
-      const script = document.createElement("script");
-      script.src = scriptSrc;
-      script.async = true;
-      script.charset = "utf-8";
-      script.type = "text/javascript";
-      script.addEventListener("load", createForm);
-      document.body.appendChild(script);
-      loadingScript = script;
-    }
-
-    return () => {
-      loadingScript?.removeEventListener("load", createForm);
-      formContainer?.removeEventListener("submit", handleServerSubmit, true);
-      formContainer?.querySelectorAll<HTMLFormElement>("form").forEach((form) => {
-        delete form.dataset.serverSubmitAttached;
-      });
-    };
-  }, [navigate, submitLead]);
-
-  return (
-    <section id="submit" className="py-24 md:py-32">
-      <div className="mx-auto max-w-3xl px-6">
-        <div className="text-center">
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
-            Enter the 2026 Awards.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-intro-foreground md:text-xl">
-            Complete the form, then pay the one-time {ENTRY_FEE_LABEL} entry fee to complete your entry. The fee covers review and administration, not an award.
-          </p>
-        </div>
-        <Card className="mt-12 p-8 md:p-10">
-          <div id={targetId} ref={formContainerRef} />
-          <div className="mt-6" ref={consentRef}>
-            <p className="text-sm text-foreground">
-              By submitting you agree to the{" "}
-              <a
-                href="/terms-and-conditions"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-primary"
-              >
-                Terms and Conditions
-              </a>
-              .
-            </p>
-            <p className="mt-6 text-center text-sm text-muted-foreground">
-              We reply to every entry either way, within five business days.
-            </p>
-          </div>
-          {formError && (
-            <p className="mt-4 text-center text-sm font-medium text-destructive" role="alert">
-              {formError}
-            </p>
-          )}
-        </Card>
-      </div>
-    </section>
-  );
+  return <EntrySteps />;
 }
 
 function Contact() {

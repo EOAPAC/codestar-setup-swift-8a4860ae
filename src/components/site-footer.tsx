@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-export function SiteFooter(_props: { statementClassName?: string }) {
+export function SiteFooter({ entryHref = "/#submit" }: { statementClassName?: string; entryHref?: string }) {
   return (
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 text-xs text-muted-foreground">
@@ -8,7 +8,7 @@ export function SiteFooter(_props: { statementClassName?: string }) {
           <Link to="/criteria" className="hover:text-foreground">Criteria</Link>
           <Link to="/faq" className="hover:text-foreground">FAQ</Link>
           <Link to="/terms-and-conditions" className="hover:text-foreground">Terms and Conditions</Link>
-          <a href="/#submit" className="hover:text-foreground">Enter</a>
+          <a href={entryHref} className="hover:text-foreground">Enter</a>
           <a href="/#contact" className="hover:text-foreground">Contact</a>
         </nav>
 

@@ -122,3 +122,28 @@ export function checkoutUrl(paid: number, email: string) {
   if (!link) return "";
   return `${link}?prefilled_email=${encodeURIComponent(email)}`;
 }
+
+/** On-screen names for the stepped form; submitted values and ea_categories_text keep the canonical names. */
+export const STEPPED_DISPLAY_NAMES: Record<string, string> = {
+  "entrepreneur-of-distinction": "Pacesetter",
+  "high-growth-founder": "Scale-Up Leader",
+  innovator: "Trailblazer",
+  "turnaround-leader": "Turnaround Leader",
+  "employer-of-choice": "Employer of Choice",
+  "impact-leader": "Changemaker",
+  "emerging-founder": "Rising Star",
+};
+
+export function displayName(value: string) {
+  return STEPPED_DISPLAY_NAMES[value] ?? ENTRY_CATEGORIES.find((c) => c.value === value)?.name ?? value;
+}
+
+/** "Category name: answer" per answered category, card order, blank line between. */
+export function categoryAnswersText(selected: readonly string[], answers: Readonly<Record<string, string>>) {
+  return orderCategories(selected)
+    .flatMap((c) => {
+      const answer = c.question ? (answers[c.question.field] ?? "").trim() : "";
+      return answer ? [`${displayName(c.value)}: ${answer}`] : [];
+    })
+    .join("\n\n");
+}

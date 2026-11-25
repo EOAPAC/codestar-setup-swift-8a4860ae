@@ -20,6 +20,10 @@ type SiteNavProps = {
   containerClassName?: string;
   /** Optional lighter mark image; defaults to the shared mark. */
   markSrc?: string;
+  /** Hides the Categories link (desktop and mobile menu) on pages that keep categories inside their form. */
+  hideCategoriesLink?: boolean;
+  /** Where "Start your entry" points; defaults to the homepage form. */
+  entryHref?: string;
 };
 
 const navLinks = [
@@ -29,7 +33,8 @@ const navLinks = [
   { label: "FAQ", to: "/faq" },
 ] as const;
 
-export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl", markSrc }: SiteNavProps) {
+export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false, compactCta, containerClassName = "max-w-6xl", markSrc, hideCategoriesLink = false, entryHref = "/#submit" }: SiteNavProps) {
+  const links = hideCategoriesLink ? navLinks.filter((l) => l.to !== "/categories") : navLinks;
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className={`mx-auto flex h-16 items-center justify-between px-6 ${containerClassName}`}>
@@ -47,7 +52,7 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
         <div className="hidden items-center gap-5 md:flex">
           {!hideLinks && (
             <nav className="flex items-center gap-5 text-sm text-muted-foreground lg:gap-8">
-              {navLinks.map((link) => (
+              {links.map((link) => (
                 <Link key={link.to} to={link.to} className={link.to === "/categories" ? "awards-nav-link hover:text-foreground" : "hover:text-foreground"} activeProps={{ className: "text-foreground" }}>
                   {link.label}
                 </Link>
@@ -61,7 +66,7 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
             </Button>
           ) : !hideCTA ? (
             <Button asChild size="sm">
-              <a href="/#submit">Start your entry</a>
+              <a href={entryHref}>Start your entry</a>
             </Button>
           ) : null}
         </div>
@@ -78,7 +83,7 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
                 <SheetTitle>Entrepreneur Awards</SheetTitle>
               </SheetHeader>
               <nav className="mt-8 flex flex-col">
-                {navLinks.map((link) => (
+                {links.map((link) => (
                   <SheetClose asChild key={link.to}>
                     <Link to={link.to} className={`flex min-h-12 items-center border-b border-border text-base font-medium ${link.to === "/categories" ? "awards-nav-link" : ""}`}>
                       {link.label}
@@ -95,7 +100,7 @@ export function SiteNav({ hideCTA = false, hideLinks = false, mobileMenu = false
           // Fallback CTA for pages without a mobile menu: small screens only, so it
           // never duplicates the CTA inside the md:flex nav group above.
           <Button asChild size="sm" className="md:hidden">
-            <a href="/#submit">Start your entry</a>
+            <a href={entryHref}>Start your entry</a>
           </Button>
         ) : null}
       </div>

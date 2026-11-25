@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { amountDue, checkoutUrl, hiddenEntryFields, isCategoryValue, normalizeProfileUrl, PAYMENT_LINKS, submitLabel, totalLine } from "./entry-categories";
+import { amountDue, categoryAnswersText, displayName, checkoutUrl, hiddenEntryFields, isCategoryValue, normalizeProfileUrl, PAYMENT_LINKS, submitLabel, totalLine } from "./entry-categories";
 
 describe("entry categories", () => {
   it("totals paid categories at US$129.90 each", () => {
@@ -56,5 +56,22 @@ describe("profile url", () => {
   it("trims surrounding space and returns empty for blank input", () => {
     assert.equal(normalizeProfileUrl("  company.com  "), "https://company.com");
     assert.equal(normalizeProfileUrl("   "), "");
+  });
+});
+
+describe("stepped form category answers", () => {
+  it("joins answers as 'Name: answer' in card order with a blank line between", () => {
+    const text = categoryAnswersText(["impact-leader", "innovator", "entrepreneur-of-distinction"], {
+      ea_answer_impact_leader: "Schools",
+      ea_answer_innovator: " New app ",
+    });
+    assert.equal(text, "Trailblazer: New app\n\nChangemaker: Schools");
+  });
+  it("is empty when only Pacesetter is chosen", () => {
+    assert.equal(categoryAnswersText(["entrepreneur-of-distinction"], {}), "");
+  });
+  it("shows the new names on screen", () => {
+    assert.equal(displayName("emerging-founder"), "Rising Star");
+    assert.equal(displayName("high-growth-founder"), "Scale-Up Leader");
   });
 });
