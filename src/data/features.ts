@@ -3,6 +3,11 @@ import adamPiskPortraitAsset from "@/assets/adam-pisk.jpg.asset.json";
 import ashtonBishopPortraitAsset from "@/assets/ashton-bishop.jpg.asset.json";
 import gabrielSabadinPortraitAsset from "@/assets/gabriel-sabadin.jpg.asset.json";
 import nimishaNailorPortraitAsset from "@/assets/nimisha-nailor.webp.asset.json";
+import chrisPoulterPortraitAsset from "@/assets/chris-poulter.jpg.asset.json";
+import kennethKellyPortraitAsset from "@/assets/kenneth-kelly.jpg.asset.json";
+import sandeepHodkasiaPortraitAsset from "@/assets/sandeep-hodkasia.jpg.asset.json";
+import amyTaylorKabbazPortraitAsset from "@/assets/amy-taylor-kabbaz.jpg.asset.json";
+import cliffordGrossPortraitAsset from "@/assets/clifford-gross.jpg.asset.json";
 import awardAsset from "@/assets/feature-award.jpg.asset.json";
 
 export type FeatureSegment =
@@ -179,6 +184,163 @@ export const FEATURES: Feature[] = [
     portrait: nimishaNailorPortraitAsset.url,
     portraitCaption: "Nimisha Nailor, founder of Kultra",
     portraitAspect: "240 / 210",
+    awardImage: awardAsset.url
+  }
+,
+  {
+    slug: "chris-poulter",
+    winnerSlug: "chris-poulter",
+    headline: "Chris Poulter Wins A 2026 Entrepreneur Award For Intelligence Technology\u2122",
+    subheadline: "Poulter, founder of the Australian company OSINT Combine, won for building open-source intelligence software and training used by government agencies and law enforcement in more than 25 countries.",
+    body: [
+      { type: 'p', text: "Chris Poulter, founder of OSINT Combine, has won a 2026 Entrepreneur Award for building open-source intelligence capability for government agencies, law enforcement and corporate security teams. The company pairs its own investigation platform, NexusXplore, with practitioner-led training, and says it supports customers in more than 25 countries from staff based in Australia, the United States, the United Kingdom and Europe." },
+      { type: 'p', text: "The award recognizes the founder, not the company. Poulter founded OSINT Combine in 2018, drawing on his operational experience in the Australian Defence Force, and started with training and tradecraft before the company began building NexusXplore in 2020. It placed permanent staff in the United States in 2022, expanded into Europe in 2023, and in November 2025 merged with Kaseware, an investigative case management company based in Denver." },
+      { type: 'h2', text: "Why The Win Matters" },
+      { type: 'p', text: "Open-source intelligence is the work of collecting and analyzing publicly and commercially available information to support investigations and decisions. The tools matter, but so does the analyst's judgment about where to look and what a result means. OSINT Combine was built around both, selling its software alongside courses in the tradecraft behind it. The company also gives capability, training and operational support to selected NGOs working against human trafficking, and to victim identification work against child sexual exploitation. The judges pointed to the decision to keep training and software together instead of selling the platform on its own." },
+      { type: 'quote', text: "The direct involvement in cases reminds us of the importance of OSINT for good,", attribution: "Poulter told State of OSINT, describing his team's counter-trafficking work" },
+      { type: 'h2', text: "Market Context" },
+      { type: 'p', text: "The problem these teams work on is growing. The United Nations Office on Drugs and Crime's 2024 Global Report on Trafficking in Persons, which covers 156 countries, recorded a 25 percent rise in detected trafficking victims in 2022 compared with 2019. Detected child victims rose 31 percent and made up 38 percent of all victims detected. In 2022, people of at least 162 nationalities were trafficked to 128 destination countries, although most victims were trafficked within their own national borders." },
+      { type: 'p', text: "Those are the cases that were found. Finding more of them depends on investigators who can locate and connect information quickly, much of it public. The judges saw Poulter's insistence on training analysts, as well as equipping them, as a direct answer to that need." },
+      { type: 'h2', text: "The Judges Final Words" },
+      { type: 'quote', text: "The panel looked for a founder who built for the people doing the work. This entry paired its software with the training to use it well, carried that model from Australia to the United States and Europe, and put the same capability behind groups working on trafficking and child exploitation cases. That is capability built to last.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" },
+      { type: 'h2', text: "About The Entrepreneur Awards" },
+      { type: 'p', text: "The Entrepreneur Awards recognizes the founder rather than the company. Here the award acknowledges Poulter's work in turning military intelligence experience into software and training that analysts across government, law enforcement and industry can use." }
+    ],
+    info: {
+      industry: "Intelligence Technology\u2122",
+      location: "Australia",
+      whatTheyDo: "Chris Poulter is founder of OSINT Combine, which provides open-source intelligence software, including its NexusXplore platform, and practitioner-led training to government agencies, law enforcement and corporate security teams in more than 25 countries.",
+      website: "osintcombine.com",
+      websiteUrl: "https://www.osintcombine.com"
+    },
+    portrait: chrisPoulterPortraitAsset.url,
+    portraitCaption: "Chris Poulter, founder of OSINT Combine",
+    awardImage: awardAsset.url
+  },
+  {
+    slug: "kenneth-kelly",
+    winnerSlug: "kenneth-kelly",
+    headline: "Kenneth Kelly Wins A 2026 Entrepreneur Award For Government Technology Services\u2122",
+    subheadline: "Kelly, co-founder and chief executive of Maryland company Strativia, won for building a business that started with commercial clients into a federal contractor with 378 employees.",
+    body: [
+      { type: 'p', text: "Kenneth Kelly, co-founder, president and chief executive of Strativia, has won a 2026 Entrepreneur Award for building a technology and professional services company that now works directly for federal agencies. Strativia, headquartered in Largo, Maryland, provides management, technology, consulting, logistics and engineering services, and lists the US Army, Navy and Air Force, the Department of Energy, the Department of Homeland Security and the National Institute of Standards and Technology among its customers." },
+      { type: 'p', text: "The award recognizes the founder, not the company. Kelly launched Strativia in June 2007 after 12 years in corporate software roles, including at Micros Systems, now part of Oracle. Washington Technology's 2024 Fast 50 list reported Strativia's revenue at $33.2 million in 2023, up from $19.9 million in 2019, with 378 employees." },
+      { type: 'h2', text: "Why The Win Matters" },
+      { type: 'p', text: "Federal agencies buy from companies with a record of past work, which a new company does not have. Kelly built that record in stages. Strativia worked for commercial clients from 2007, moved into state and local government work from 2010, and began pursuing federal customers in 2013, first as a subcontractor to established prime contractors so it could build the past performance needed to bid in its own name. By 2016 federal work made up the larger share of its revenue. In 2019 it won what was then its largest contract, a five-year agreement worth $75 million to provide scientific, technical and engineering support to research programs at the National Institute of Standards and Technology." },
+      { type: 'p', text: "The judges also noted where the company chose to stay. Strativia was one of the first graduates of the Prince George's County Economic Development Corporation's small business incubator, by Kelly's account won its first contract from the county, and kept its headquarters there as it grew." },
+      { type: 'quote', text: "We just put our heads down and did the work,", attribution: "Kelly told Black Enterprise in 2019" },
+      { type: 'h2', text: "Market Context" },
+      { type: 'p', text: "Small businesses compete for a large share of federal spending. The US Small Business Administration's scorecard for fiscal year 2025, released in June 2026, shows agencies awarded nearly 28 percent of prime federal contract dollars, about $179 billion, to small businesses, above the statutory goal of 23 percent. Counting subcontracts as well, small businesses received nearly $273 billion." },
+      { type: 'p', text: "Winning prime contracts in that market takes registrations, certifications and a performance history before the first bid. Strativia was appraised at Level 3 of the Capability Maturity Model Integration, a widely used benchmark for process maturity, in 2019. The judges treated its route from subcontractor to prime contractor as the slower and more durable way into federal work." },
+      { type: 'h2', text: "The Judges Final Words" },
+      { type: 'quote', text: "The panel looked for growth that was earned in order. This entry built commercial references first, then state and local work, then federal subcontracts, and only then went after prime contracts in its own name. It kept its headquarters in the county that gave it an early chance. That is a founder building something meant to stay.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" },
+      { type: 'h2', text: "About The Entrepreneur Awards" },
+      { type: 'p', text: "The Entrepreneur Awards recognizes the founder rather than the company. Here the award acknowledges Kelly's work over nearly two decades in taking Strativia from commercial projects to direct contracts with federal agencies." }
+    ],
+    info: {
+      industry: "Government Technology Services\u2122",
+      location: "Largo, Maryland, United States",
+      whatTheyDo: "Kenneth Kelly is co-founder, president and chief executive of Strativia, a Largo, Maryland company providing management, technology, consulting, logistics and engineering services to federal agencies including the US Army, Navy and Air Force, the Department of Energy and the Department of Homeland Security.",
+      website: "strativia.com",
+      websiteUrl: "https://www.strativia.com/"
+    },
+    portrait: kennethKellyPortraitAsset.url,
+    portraitCaption: "Kenneth Kelly, president and chief executive of Strativia",
+    awardImage: awardAsset.url
+  },
+  {
+    slug: "sandeep-hodkasia",
+    winnerSlug: "sandeep-hodkasia",
+    headline: "Sandeep Hodkasia Wins A 2026 Entrepreneur Award For Cybersecurity\u2122",
+    subheadline: "Hodkasia, founder and chief executive of Singapore-based AppSecure, won for building a self-funded security testing firm on the same methods that led him to a privacy flaw in Meta AI.",
+    body: [
+      { type: 'p', text: "Sandeep Hodkasia, founder and chief executive of AppSecure, has won a 2026 Entrepreneur Award for building a security testing company on the hands-on methods he first used as a bug bounty hunter. AppSecure runs penetration tests, red team exercises and continuous testing for technology companies, and says it has secured more than 450 companies." },
+      { type: 'p', text: "The award recognizes the founder, not the company. Hodkasia, who comes from the town of Bhadra in Rajasthan, founded AppSecure in May 2016 during the first year of his computer science degree, registering it in Singapore to work with international clients. The company has funded itself from revenue since it started, and its clients have included the investment platform Groww, SBI General Insurance, Truecaller and MyGate." },
+      { type: 'h2', text: "Why The Win Matters" },
+      { type: 'p', text: "Hodkasia's own research is the clearest evidence of the approach. On December 26, 2024, he privately reported a flaw in Meta AI that let a logged-in user view other people's prompts and AI-generated responses by changing a number the system assigned to each edited prompt. Meta fixed it on January 24, 2025, said it found no evidence of abuse, and paid him a $10,000 bug bounty, as TechCrunch reported in July 2025. In 2022 he reported a flaw in WeWork India's visitor check-in system that exposed visitors' personal information, which the company fixed after TechCrunch contacted it." },
+      { type: 'p', text: "The judges pointed to the habit behind both findings: testing how a system actually behaves when someone pushes on it, instead of relying on automated scanners alone." },
+      { type: 'quote', text: "My vision was clear: build a one-stop shop for real-world threat simulation,", attribution: "Hodkasia told Startup Pedia in 2025" },
+      { type: 'h2', text: "Market Context" },
+      { type: 'p', text: "The cost of missing a flaw keeps rising. IBM's 2026 Cost of a Data Breach Report, published in July and based on breaches at 602 organizations, put the global average cost of a breach at $4.99 million. One in four malicious breaches was AI-enabled, a 56 percent increase on the previous year, and those breaches cost $6 million on average. More than 20 percent of organizations reported a breach targeting AI models or applications, most commonly through compromised APIs, applications or plug-ins, or through cloud misconfigurations." },
+      { type: 'quote', text: "AI is making attacks faster and cheaper, while breaches keep getting more expensive,", attribution: "Suja Viswesan, vice president of IBM Security Software, said in July" },
+      { type: 'p', text: "The Meta AI finding belongs to that last group: a missing access check in the system around an AI product, not a fault in the model itself. The judges treated it as an example of the testing the market now needs." },
+      { type: 'h2', text: "The Judges Final Words" },
+      { type: 'quote', text: "The panel looked for a founder whose claims could be checked. This entry's best evidence is public: a disclosed flaw in Meta's AI assistant, a confirmed fix and a paid bounty. Building a ten-year business on that kind of work, without outside investment, takes discipline.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" },
+      { type: 'h2', text: "About The Entrepreneur Awards" },
+      { type: 'p', text: "The Entrepreneur Awards recognizes the founder rather than the company. Here the award acknowledges Hodkasia's work in turning individual vulnerability research into a security firm with clients across Asia-Pacific, the United States, the United Kingdom and India." }
+    ],
+    info: {
+      industry: "Cybersecurity\u2122",
+      location: "Singapore",
+      whatTheyDo: "Sandeep Hodkasia is founder and chief executive of AppSecure, a Singapore-headquartered security testing firm that provides penetration testing, red teaming and continuous testing to technology companies.",
+      website: "appsecure.security",
+      websiteUrl: "https://www.appsecure.security"
+    },
+    portrait: sandeepHodkasiaPortraitAsset.url,
+    portraitCaption: "Sandeep Hodkasia, founder and CEO of AppSecure",
+    awardImage: awardAsset.url
+  },
+  {
+    slug: "amy-taylor-kabbaz",
+    winnerSlug: "amy-taylor-kabbaz",
+    headline: "Amy Taylor-Kabbaz Wins A 2026 Entrepreneur Award For Maternal Health Education\u2122",
+    subheadline: "Taylor-Kabbaz, an Australian author and former ABC journalist, won for building an education business around matrescence, the transition to motherhood, and helping bring the subject to the screen.",
+    body: [
+      { type: 'p', text: "Amy Taylor-Kabbaz, founder of Mama Rising, has won a 2026 Entrepreneur Award for building an education business around matrescence, the psychological and social transition a woman goes through as she becomes a mother. Her work spans a book, a podcast, a training program for coaches and, in 2026, a feature documentary." },
+      { type: 'p', text: "The award recognizes the founder, not the company. Taylor-Kabbaz spent more than a decade covering news and current affairs for the Australian Broadcasting Corporation before making motherhood her subject. Her book, Mama Rising, was published by Hay House in 2019, the year she launched what she describes as the world's first matrescence coaching training. The film's producers say that program has now trained more than 350 coaches across 29 countries. Her podcast, The Happy Mama Movement, has passed 300,000 downloads, and in 2023 she set up the Global Matrescence Foundation." },
+      { type: 'h2', text: "Why The Win Matters" },
+      { type: 'p', text: "Matrescence is not a new idea. The anthropologist Dana Raphael coined the term in the 1970s, and the clinical psychologist Aur\u00e9lie Athan of Columbia University later described it as a developmental stage comparable to adolescence. What has been missing is a way to bring that research to the people who support new mothers. Taylor-Kabbaz has built it in stages: her own writing and broadcasting first, then the training program, then advice to employers including Google and LinkedIn on supporting mothers at work. Most recently she was an executive producer and writer of Matrescence, a documentary directed by Claire Tonti and Libby Chow that launched in August 2026." },
+      { type: 'p', text: "The judges pointed to the decision to train others instead of keeping the work tied to one person." },
+      { type: 'quote', text: "What happens to a woman when she becomes a mother?", attribution: "the question Taylor-Kabbaz says she has spent more than a decade trying to answer" },
+      { type: 'h2', text: "Market Context" },
+      { type: 'p', text: "The health stakes are well documented. The World Health Organization estimates that about 10 percent of pregnant women and 13 percent of women who have just given birth experience a mental disorder, mainly depression. In developing countries the figures are higher, at 15.6 percent during pregnancy and 19.8 percent after childbirth. WHO also notes that maternal mental disorders are treatable, and that effective help can be delivered by well-trained providers who are not mental health specialists." },
+      { type: 'p', text: "That last point is where Taylor-Kabbaz's model fits. A matrescence coach is not a clinician, but a wider circle of people who understand the transition can give mothers words for what they are going through. The judges saw the coach training as the part of her work most likely to reach mothers who will never read a book or watch a film." },
+      { type: 'h2', text: "The Judges Final Words" },
+      { type: 'quote', text: "The panel looked for someone who took a neglected idea and built the structures to carry it. This entry began with one woman's question and turned it into a book, a podcast and a training program, and has now helped put it on screen. Each step made the work depend less on her, which is how an idea outlasts its founder.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" },
+      { type: 'h2', text: "About The Entrepreneur Awards" },
+      { type: 'p', text: "The Entrepreneur Awards recognizes the founder rather than the company. Here the award acknowledges Taylor-Kabbaz's work in moving matrescence out of academic research and into the hands of the coaches, employers and families who support new mothers." }
+    ],
+    info: {
+      industry: "Maternal Health Education\u2122",
+      location: "Australia",
+      whatTheyDo: "Amy Taylor-Kabbaz is founder of Mama Rising, which trains matrescence coaches and facilitators worldwide, and author of the book Mama Rising. She hosts The Happy Mama Movement podcast and was an executive producer and writer of the 2026 documentary Matrescence.",
+      website: "mamarising.net",
+      websiteUrl: "https://mamarising.net"
+    },
+    portrait: amyTaylorKabbazPortraitAsset.url,
+    portraitCaption: "Amy Taylor-Kabbaz, founder of Mama Rising",
+    awardImage: awardAsset.url
+  },
+  {
+    slug: "clifford-gross",
+    winnerSlug: "clifford-gross",
+    headline: "Clifford Gross Wins A 2026 Entrepreneur Award For Technology Transfer\u2122",
+    subheadline: "Gross, chief executive of London-listed Tekcapital, won for a career spent turning university research into companies, including portfolio businesses taken to public listings in London and New York.",
+    body: [
+      { type: 'p', text: "Dr. Clifford Gross, chief executive of Tekcapital plc, has won a 2026 Entrepreneur Award for building a business that invests in discoveries made at universities and turns them into operating companies. Tekcapital is quoted on the AIM market of the London Stock Exchange under the ticker TEK, and its portfolio companies have included smart eyewear maker Innovative Eyewear and low-sodium salt producer MicroSalt." },
+      { type: 'p', text: "The award recognizes the founder, not the company. Gross founded Tekcapital after building Biomechanics Corp. and UTEK Corporation, and co-founded ventures including HumanCAD, MicroSalt, GenIP and Guident. He holds a doctorate from New York University and an executive MBA from Oxford, is a Fellow of the National Academy of Inventors, and is a named inventor on more than 50 issued or pending patents, according to a CFI.co profile published in November 2025. His earlier ergonomic work included the DEWALT cordless drill for Black & Decker and the Parachute Chair for Knoll." },
+      { type: 'h2', text: "Why The Win Matters" },
+      { type: 'p', text: "Tekcapital's model is to identify university discoveries, manage the intellectual property, shape a company around each one and guide it toward a listing or sale. Two results are on the public record. Innovative Eyewear, the company behind the Lucyd smart eyewear brand, completed a US$7.35 million initial public offering on Nasdaq in August 2022. MicroSalt, which makes salt crystals about one hundred times smaller than typical table salt so food tastes salty with roughly half the sodium, was admitted to AIM on February 1, 2024, after raising about \u00a33.14 million, with Tekcapital holding 77.24 percent at listing." },
+      { type: 'p', text: "The judges pointed to the fact that the same process has been carried through to a public listing more than once, in two different markets." },
+      { type: 'quote', text: "MicroSalt has established a new category of full-flavour, low sodium salt,", attribution: "Gross said when MicroSalt listed in February 2024" },
+      { type: 'h2', text: "Market Context" },
+      { type: 'p', text: "The UK, where Tekcapital is headquartered, has become Europe's largest source of university spinout value. The Royal Academy of Engineering's Spotlight on Spinouts 2026 report found that UK university spinouts have nearly tripled in value since 2020, to \u00a349 billion, and that some 2,000 spinouts created since 2010 have generated 27,000 jobs." },
+      { type: 'quote', text: "We're still too slow getting ideas out of the lab and into the market,", attribution: "Ana Avaliani, director of enterprise at the Royal Academy of Engineering, said" },
+      { type: 'p', text: "That gap between research and market is where Tekcapital works. The judges treated Gross's record as evidence that the commercial work after a discovery can be run as a repeatable process." },
+      { type: 'h2', text: "The Judges Final Words" },
+      { type: 'quote', text: "The panel looked for a founder whose results are on the public record. This entry's evidence sits in stock exchange announcements: companies formed, money raised and shares listed. Turning laboratory work into businesses is slow and uncertain, and doing it in public, under disclosure rules, leaves little room to overstate.", attribution: "Alexandra Dalton, a spokesperson for the Entrepreneur Awards" },
+      { type: 'h2', text: "About The Entrepreneur Awards" },
+      { type: 'p', text: "The Entrepreneur Awards recognizes the founder rather than the company. Here the award acknowledges Gross's work over more than 25 years as an academic, inventor and founder in moving research out of universities and into the market." }
+    ],
+    info: {
+      industry: "Technology Transfer\u2122",
+      location: "United Kingdom",
+      whatTheyDo: "Dr. Clifford Gross is chief executive of Tekcapital plc, an intellectual property investment group quoted on AIM that invests in university-developed discoveries and builds them into companies, including MicroSalt and Innovative Eyewear.",
+      website: "tekcapital.com",
+      websiteUrl: "https://www.tekcapital.com"
+    },
+    portrait: cliffordGrossPortraitAsset.url,
+    portraitCaption: "Dr. Clifford Gross, chief executive of Tekcapital",
     awardImage: awardAsset.url
   }
 ];
