@@ -9,7 +9,7 @@ import { AwardNumbers } from "@/components/award-numbers";
 import { ArrowUpRight } from "lucide-react";
 
 
-import { EntrySteps } from "@/components/entry-steps";
+import { TestEntryForm } from "@/components/test-entry-form";
 import { AWARD_YEAR } from "@/content/award";
 
 import { SiteFigure } from "@/components/site-figure";
@@ -472,7 +472,7 @@ function HowItWorks() {
 }
 
 function SubmissionForm() {
-  return <EntrySteps />;
+  return <TestEntryForm />;
 }
 
 function Contact() {

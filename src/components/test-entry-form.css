@@ -1,0 +1,118 @@
+.test-entry { background: var(--background); color: var(--foreground); padding: 96px 16px; scroll-margin-top: 88px; }
+.test-entry-column { max-width: 720px; margin-inline: auto; }
+.test-entry-intro { text-align: center; margin-bottom: 40px; }
+.test-entry-intro h2 { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: 0; }
+.homepage-colour-restored .test-entry-intro h2::before { margin-inline: auto; background: var(--test-blue); }
+.test-entry-intro p { margin-top: 20px; color: var(--muted-foreground); font-size: 16px; line-height: 1.6; }
+.test-entry-progress { margin-bottom: 24px; font-size: 14px; color: var(--test-secondary); }
+.test-entry-progress strong { color: var(--foreground); }
+.test-entry-bars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+.test-entry-bars span { height: 4px; background: var(--border); }
+.test-entry-bars span[data-filled="true"] { background: var(--test-blue); }
+.test-entry-card { overflow: hidden; border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--test-shadow); background: var(--background); }
+.test-entry-header { padding: 32px 36px 26px; }
+.test-entry-heading { font-size: 26px; font-weight: 700; line-height: 1.3; letter-spacing: 0; }
+.test-entry-heading:focus-visible { outline: 2px solid var(--test-blue); outline-offset: 6px; }
+.test-entry-header p { margin-top: 10px; font-size: 16px; line-height: 1.6; color: var(--muted-foreground); }
+.test-entry-fields { padding: 0 36px 32px; display: grid; gap: 24px; }
+.test-entry-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.test-entry-field { min-width: 0; }
+.test-entry-field label { display: block; font-size: 15px; font-weight: 500; line-height: 1.5; margin-bottom: 8px; }
+.test-entry-field input, .test-entry-field select { min-height: 46px; font-size: 16px; }
+.test-entry-field select { width: 100%; border: 1px solid var(--input); border-radius: 6px; background: var(--background); color: var(--foreground); padding: 10px 12px; }
+.test-entry-field select:focus-visible { outline: 2px solid var(--test-blue); outline-offset: 2px; }
+.test-entry-field textarea { font-size: 16px; min-height: 128px; resize: vertical; }
+.test-entry-helper { color: var(--muted-foreground); font-size: 14px; line-height: 1.5; margin: -2px 0 10px; }
+.test-entry-error { color: var(--destructive); font-size: 14px; margin-top: 8px; }
+.test-entry-footer { border-top: 1px solid var(--border); background: var(--surface); padding: 22px 36px; }
+.test-entry-footer-main { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.test-entry-action { min-height: 50px; height: auto; white-space: normal; padding: 12px 22px; font-size: 15px; }
+.test-entry-action:focus-visible, .test-entry-edit:focus-visible { outline: 2px solid var(--test-blue); outline-offset: 3px; }
+.test-entry-action:disabled { background: var(--border); color: var(--muted-foreground); opacity: 1; box-shadow: none; }
+.test-entry-checkout { display: flex; align-items: center; justify-content: flex-end; gap: 20px; min-width: 0; }
+.test-entry-total { text-align: right; }
+.test-entry-count { font-size: 14px; color: var(--test-secondary); line-height: 1.5; }
+.test-entry-total p { font-size: 14px; margin-top: 2px; }
+.test-entry-total strong { font-size: 20px; font-weight: 700; white-space: nowrap; }
+.test-entry-note { margin-top: 12px; text-align: right; color: var(--test-secondary); font-size: 13px; line-height: 1.6; }
+.test-entry-note a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.test-entry-row { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 14px; padding: 22px 36px; cursor: pointer; border-top: 1px solid var(--border); transition: background 150ms; }
+.test-entry-row[data-selected="true"] { background: var(--test-selected); }
+.test-entry-row:focus-within { outline: 2px solid var(--test-blue); outline-offset: -2px; }
+.test-entry-checkbox { position: relative; width: 22px; height: 22px; margin-top: 2px; }
+.test-entry-checkbox input { position: absolute; inset: 0; opacity: 0; width: 22px; height: 22px; cursor: pointer; }
+.test-entry-checkbox span { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border: 1px solid var(--border); border-radius: 5px; background: var(--background); pointer-events: none; }
+.test-entry-checkbox input:checked + span { background: var(--test-blue); border-color: var(--test-blue); color: var(--primary-foreground); }
+.test-entry-row-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 12px; }
+.test-entry-category-name { font-size: 17px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.test-entry-price { font-size: 15px; font-weight: 600; line-height: 1.7; text-align: right; white-space: nowrap; }
+.test-entry-description { display: block; margin-top: 5px; font-size: 15px; color: var(--muted-foreground); line-height: 1.6; }
+.test-entry-title { display: block; margin-top: 9px; font-size: 14px; line-height: 1.5; color: var(--primary); }
+.test-entry-band { background: var(--surface); border-top: 1px solid var(--border); padding: 12px 36px; font-size: 13px; font-weight: 700; color: var(--muted-foreground); }
+.test-entry-benefits { margin: 36px auto 0; max-width: 600px; text-align: center; }
+.test-entry-benefits h4 { font-size: 20px; font-weight: 600; }
+.test-entry-benefits ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; margin-top: 22px; text-align: left; font-size: 14px; }
+.test-entry-benefits li { display: flex; gap: 10px; align-items: flex-start; }
+.test-entry-benefits svg { color: var(--test-blue); width: 18px; height: 18px; flex-shrink: 0; }
+.test-entry-benefits p { font-size: 14px; color: var(--test-secondary); line-height: 1.6; margin-top: 20px; }
+.test-entry-question-section { border-top: 1px solid var(--border); padding: 28px 36px 0; }
+.test-entry-question-section h4 { font-size: 19px; font-weight: 600; }
+.test-entry-question-section > p { color: var(--muted-foreground); font-size: 15px; margin: 8px 0 24px; }
+.test-entry-question-section .test-entry-fields { padding-inline: 0; }
+.test-entry-question-category { display: block; color: var(--primary); font-size: 14px; margin-bottom: 8px; }
+.test-entry-radio { margin-bottom: 20px; }
+.test-entry-radio legend { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+.test-entry-radio label { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px; cursor: pointer; }
+.test-entry-radio input { width: 18px; height: 18px; accent-color: var(--primary); }
+.test-entry-review-row { padding: 24px 36px; border-top: 1px solid var(--border); }
+.test-entry-review-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.test-entry-review-top h4 { font-size: 16px; font-weight: 600; }
+.test-entry-edit { min-height: 44px; padding: 0 2px; height: auto; }
+.test-entry-review-row p { color: var(--muted-foreground); line-height: 1.6; font-size: 15px; overflow-wrap: anywhere; }
+.test-entry-review-category { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; font-size: 15px; }
+.test-entry-review-category span:last-child { white-space: nowrap; }
+.test-entry-review-total { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 26px 36px; border-top: 1px solid var(--border); }
+.test-entry-review-total strong { font-size: 24px; white-space: nowrap; }
+.test-entry-assessment { padding: 24px 36px; border-top: 1px solid var(--border); background: var(--surface); color: var(--muted-foreground); font-size: 14px; line-height: 1.7; }
+.test-entry-welcome { display: flex; align-items: center; gap: 8px; padding: 14px 36px; color: var(--primary); background: var(--test-selected); font-size: 14px; }
+.test-entry-welcome svg { width: 16px; height: 16px; }
+.test-entry-confirmation { padding: 48px 36px; text-align: center; }
+.test-entry-confirmation p { font-size: 16px; line-height: 1.7; margin-top: 18px; overflow-wrap: anywhere; }
+.test-entry-confirmation .test-entry-test-note { color: var(--test-secondary); font-size: 14px; margin-bottom: 28px; }
+.test-entry-success { display: flex; width: 60px; height: 60px; align-items: center; justify-content: center; margin: 0 auto 24px; border-radius: 50%; background: var(--test-selected); color: var(--test-blue); }
+@media (min-width: 1024px) {
+  .test-entry-intro p { width: max-content; max-width: calc(100vw - 32px); margin-left: 50%; transform: translateX(-50%); }
+}
+@media (max-width: 639px) {
+  .test-entry { padding-block: 64px; }
+  .test-entry-intro h2 { font-size: 30px; }
+  .test-entry-header { padding: 26px 20px 24px; }
+  .test-entry-heading { font-size: 24px; }
+  .test-entry-fields { padding: 0 20px 26px; }
+  .test-entry-details { grid-template-columns: minmax(0, 1fr); }
+  .test-entry-footer { padding: 20px; }
+  .test-entry-footer-main { gap: 12px; }
+  .test-entry-action { padding-inline: 16px; }
+  .test-entry-row { padding: 22px 16px; gap: 10px; }
+  .test-entry-row-top { gap: 8px; }
+  .test-entry-category-name { font-size: 16px; }
+  .test-entry-price { font-size: 14px; }
+  .test-entry-band { padding-inline: 16px; }
+  .test-entry-question-section { padding: 26px 20px 0; }
+  .test-entry-review-row, .test-entry-review-total, .test-entry-assessment { padding: 22px 20px; }
+  .test-entry-welcome { padding-inline: 20px; }
+  .test-entry-benefits ul { column-gap: 16px; }
+  .test-entry-category-footer { position: fixed; inset: auto 0 0; z-index: 40; padding: 16px 16px max(16px, env(safe-area-inset-bottom)); box-shadow: var(--test-shadow); }
+  .test-entry-category-footer .test-entry-footer-main { display: grid; grid-template-columns: auto minmax(0, 1fr); }
+  .test-entry-checkout { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; }
+  .test-entry-total strong { display: block; font-size: 20px; }
+  .test-entry-total p { font-size: 13px; }
+  .test-entry-count { font-size: 13px; }
+  .test-entry-note { text-align: center; font-size: 12px; }
+  .test-entry-step-categories { padding-bottom: calc(var(--test-footer-height, 184px) + 20px); }
+}
+@media (max-width: 359px) {
+  .test-entry-checkout { gap: 8px; }
+  .test-entry-category-footer .test-entry-action { padding-inline: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .test-entry-row { transition: none; } }

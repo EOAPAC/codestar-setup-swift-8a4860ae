@@ -487,3 +487,19 @@
 
 /* Criteria hero lines up with the site nav logo */
 .criteria-colour-restored .restored-page-header-content { max-width: 1152px; padding-inline: 24px; }
+
+/* Tokens are local to the disconnected comparison-page entry section. */
+.test-entry {
+  --foreground: #020618;
+  --muted-foreground: #45556C;
+  --test-secondary: #62748E;
+  --background: #FFFFFF;
+  --primary: #1F6FDB;
+  --primary-foreground: #FFFFFF;
+  --test-blue: #2778E9;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --surface: #F7F9FC;
+  --test-selected: #F0F6FF;
+  --test-shadow: 0 4px 20px rgb(2 6 24 / 5%);
+}

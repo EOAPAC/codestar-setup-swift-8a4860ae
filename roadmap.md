@@ -1,6 +1,8 @@
 # Roadmap
 
 ## Current
+- [x] Replace only /homepage-v2's entry section with the disconnected four-step visual test, browser-only progress and test confirmation.
+- [x] Test selection totals, validation, answer restoration, review, free and paid confirmations, and phone layout without sending entries or payments.
 - [x] Rebuild Categories to the supplied seven-section mock and replace all sample images; keep live forms and payments unchanged.
 - [x] Pass 15 mock/live-fee tests and verify 1440, 1024, 768, 390 and 360px layouts, loaded images, entry links, navigation, six-image cycling, hover pause and reduced motion.
 - [x] Save the seven corrected hero images with their uploaded filenames and remove all older files from that folder; leave page code unchanged.
