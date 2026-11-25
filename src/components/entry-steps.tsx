@@ -107,6 +107,12 @@ function industryLabel(fields: Fields) {
 }
 
 function winLine(value: string, fields: Fields) {
+  const line = baseWinLine(value, fields);
+  const company = fields.company.trim();
+  return company ? `${company} named${line.slice("Named".length)}` : line;
+}
+
+function baseWinLine(value: string, fields: Fields) {
   if (value === "entrepreneur-of-distinction") {
     const known = fields.ea_industry && fields.ea_industry !== "other";
     const industry = known ? `in ${industryLabel(fields).toLowerCase()}` : "in your industry";
@@ -337,7 +343,7 @@ export function EntrySteps() {
         <span className="min-w-0 flex-1">
           <span className="block font-medium text-foreground">{displayName(c.value)}</span>
           <span className="mt-1 block text-sm text-muted-foreground">{CATEGORY_LINES[c.value]}</span>
-          <span className="mt-2 block text-sm text-foreground">If you win: "{winLine(c.value, fields)}"</span>
+          <span className="mt-2 block break-words text-sm text-foreground">If you win: "{winLine(c.value, fields)}"</span>
         </span>
       </label>
     );
