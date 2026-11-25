@@ -64,8 +64,13 @@ function WinnerPage() {
               height={600}
               loading="lazy"
               decoding="async"
-              className="w-full object-cover object-center"
-              style={{ aspectRatio: feature.portraitAspect ?? "3 / 2" }}
+              className="w-full object-cover"
+              style={{
+                aspectRatio: feature.portraitAspect ?? "3 / 2",
+                // Keeps heads inside the frame for photos that aren't exactly 3:2;
+                // a true 3:2 photo is unaffected.
+                objectPosition: "center 30%",
+              }}
             />
             {feature.portraitCaption ? (
               <figcaption className="mt-3 text-[13px] leading-[1.5] text-[#5a6572]">
