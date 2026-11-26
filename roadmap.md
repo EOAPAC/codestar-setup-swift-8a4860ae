@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Current
+- [x] Complete the missing attachment details in the /homepage-v2 test form only; 11 tests and paid/free laptop/phone journeys pass without entry submissions or payments.
 - [x] Replace only /homepage-v2's entry section with the disconnected four-step visual test, browser-only progress and test confirmation.
 - [x] Test selection totals, validation, answer restoration, review, free and paid confirmations, and phone layout without sending entries or payments.
 - [x] Rebuild Categories to the supplied seven-section mock and replace all sample images; keep live forms and payments unchanged.

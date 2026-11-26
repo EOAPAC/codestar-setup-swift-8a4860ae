@@ -33,6 +33,8 @@ export function TestEntryForm() {
   const moved = useRef(false);
   const { step, details, selected, answers, impactTitle } = progress;
   const summary = testSummary(selected);
+  const categoryNames = new Intl.ListFormat("en", { style: "long", type: "conjunction" }).format(summary.categories.map((category) => category.name));
+  const stepName = step === 3 && !summary.cents ? "Review your entry" : TEST_STEPS[step];
 
   // This test has its own storage key and never reads the live entry draft.
   useEffect(() => {
@@ -143,26 +145,45 @@ export function TestEntryForm() {
     card = <div className="test-entry-confirmation">
       <span className="test-entry-success"><Check aria-hidden="true" size={28} /></span>
       <h3 className="test-entry-heading" ref={headingRef} tabIndex={-1}>Your entry is in</h3>
-      <p>Thanks, {details.firstName.trim()}. We've received your entry for {summary.categories.map((category) => category.name).join(", ")}.</p>
+      <p>{summary.cents
+        ? <>Thanks, {details.firstName.trim()}. We've received your payment of {summary.amount} and your entry for {categoryNames}.</>
+        : <>Thanks, {details.firstName.trim()}. We've received your entry for New Business. There's nothing to pay.</>}</p>
       <p className="test-entry-test-note">Test version: nothing was sent or charged.</p>
-      {action("Start again", restart)}
+      <div className="test-entry-next">
+        <h4>What happens next</h4>
+        {summary.cents ? <ol>
+          <li>A confirmation and receipt are on their way to {details.email}.</li>
+          <li>{selected.includes("new") ? "Each category you entered is assessed separately. For New Business, we also check that your business started trading within the last three years and has paying customers." : "Each category you entered is assessed separately against our published criteria."}</li>
+          <li>You'll hear from us within five business days, with a decision for each category.</li>
+        </ol> : <ol>
+          <li>A confirmation is on its way to {details.email}.</li>
+          <li>We check that your business started trading within the last three years and has paying customers, then assess your entry against our published criteria.</li>
+          <li>You'll hear from us within five business days, whether you're selected or not. If your business doesn't meet the New Business rule, we'll tell you in that reply.</li>
+        </ol>}
+      </div>
+      <div className="test-entry-confirmation-links">
+        <Button variant="outline" className="test-entry-action" asChild><Link to="/winners">See this year's winners</Link></Button>
+        <Button variant="link" className="test-entry-edit" asChild><Link to="/criteria">Read the criteria</Link></Button>
+      </div>
+      <Button variant="link" className="test-entry-restart" type="button" onClick={restart}>Start again (test only)</Button>
     </div>;
   } else if (step === 0) {
     card = <>
       {header("About you", "Start with who you are. You'll choose your categories next.")}
       <div className="test-entry-fields test-entry-details">
-        {DETAIL_FIELDS.map((field) => <div className="test-entry-field" key={field.key}>
+        {DETAIL_FIELDS.map((field) => <div className={`test-entry-field${field.key === "profile" ? " test-entry-full-width" : ""}`} key={field.key}>
           <label htmlFor={`${uid}-${field.key}`}>{field.label}{!field.optional && <span aria-hidden="true"> *</span>}</label>
           <Input {...inputProps(field.key)} type={field.type} autoComplete={field.autoComplete} required={!field.optional} {...(field.key === "profile" ? { placeholder: "https://", inputMode: "url" as const } : {})} value={details[field.key]} onChange={(event) => {
             setProgress((previous) => ({ ...previous, details: { ...previous.details, [field.key]: event.target.value } })); clearError(field.key);
           }} />
           {error(field.key)}
         </div>)}
-        <div className="test-entry-field">
+        <div className="test-entry-field test-entry-full-width">
           <label htmlFor={`${uid}-industry`}>Industry <span aria-hidden="true">*</span></label>
           <select {...inputProps("industry")} required value={details.industry} onChange={(event) => {
             setProgress((previous) => ({ ...previous, details: { ...previous.details, industry: event.target.value } })); clearError("industry");
           }}><option value="" disabled>Choose your industry</option>{TEST_INDUSTRIES.map((industry) => <option key={industry} value={industry}>{industry}</option>)}</select>
+          <p className="test-entry-industry-help">The judges use your industry as context.</p>
           {error("industry")}
         </div>
       </div>
@@ -205,7 +226,7 @@ export function TestEntryForm() {
       <div className="test-entry-question-section">
         <h4>One question for each category</h4>
         <p>{summary.count === 1 ? "You selected 1 category, so there is 1 question here." : `You selected ${summary.count} categories, so there are ${summary.count} questions here.`}</p>
-        <div className="test-entry-fields">{summary.categories.map((category) => <div key={category.id}>
+        <div className="test-entry-fields">{summary.categories.map((category) => <div className="test-entry-category-question" key={category.id}>
           <span className="test-entry-question-category">{category.name}</span>
           {category.id === "impact" && <fieldset className="test-entry-radio">
             <legend>Which title fits your result?</legend>
@@ -224,14 +245,15 @@ export function TestEntryForm() {
       {header(summary.cents ? "Review and pay" : "Review your entry", summary.cents ? "Check your categories and total, then pay to send your entry to the judges." : "Check your entry, then submit it. There's nothing to pay.")}
       <div className="test-entry-review-row">
         <div className="test-entry-review-top"><h4>About you</h4>{edit(0, "about you")}</div>
-        <p>{details.firstName} {details.lastName}</p>
-        {details.company && <p>{details.company}</p>}<p>{details.email}</p><p>{details.industry}</p>
+        <p>{details.firstName} {details.lastName}{details.company && `, ${details.company}`}</p>
+        <p>{details.email} · {details.industry}</p>
       </div>
       <div className="test-entry-review-row">
-        <div className="test-entry-review-top"><h4>Categories</h4>{edit(1, "categories")}</div>
+        <div className="test-entry-review-top"><h4>{summary.count === 1 ? "Category" : "Categories"}</h4>{edit(1, "categories")}</div>
         {summary.categories.map((category) => <div key={category.id}>
           <div className="test-entry-review-category"><span>{category.name}</span><span>{category.cents ? "US$129.90" : "Free"}</span></div>
-          {category.id === "impact" && <p>{impactTitle}</p>}
+          {category.id === "impact" && <p>Title: {impactTitle}</p>}
+          {category.id === "new" && <p>Started trading within the last three years and has paying customers. We check this during assessment.</p>}
         </div>)}
       </div>
       <div className="test-entry-review-row">
@@ -239,15 +261,15 @@ export function TestEntryForm() {
         <p>Three shared answers, plus {summary.count} category {summary.count === 1 ? "question" : "questions"}.</p>
       </div>
       <div className="test-entry-review-total"><span>Entry total</span><strong>{summary.amount}</strong></div>
-      <div className="test-entry-assessment">Each category you enter is assessed separately against our published criteria: Originality, Traction and A standout achievement. You'll receive a decision for each one within five business days. Paying does not guarantee selection.</div>
+      <div className="test-entry-assessment">{summary.cents ? "Each category you enter is assessed separately against our published criteria: Originality, Traction and A standout achievement. You'll receive a decision for each one within five business days. Paying does not guarantee selection." : "Your entry is assessed against our published criteria: Originality, Traction and A standout achievement. You'll receive a decision within five business days."}</div>
       {footer(summary.cents ? `Pay ${summary.amount}` : "Submit free entry", confirm, <>{summary.cents ? "You'll pay on Stripe's secure checkout, then come straight back here. " : "No payment required. "}By submitting, you agree to the <Link to="/terms-and-conditions">Terms and Conditions</Link>.</>)}
     </>;
   }
 
   return <section id="submit" className={`test-entry${step === 1 && !done ? " test-entry-step-categories" : ""}`} ref={sectionRef}>
     <div className="test-entry-column">
-      <div className="test-entry-intro"><h2>Enter the 2026 Awards.</h2><p>Four short steps. We reply to every entry within five business days, whether you're selected or not.</p></div>
-      {!done && <div className="test-entry-progress" aria-label={`Step ${step + 1} of 4: ${TEST_STEPS[step]}`}><strong>Step {step + 1} of 4</strong> · {TEST_STEPS[step]}<div className="test-entry-bars" aria-hidden="true">{TEST_STEPS.map((name, index) => <span key={name} data-filled={index <= step} />)}</div></div>}
+      <div className="test-entry-intro"><h2>Enter the 2026 Awards.</h2><p>Four short steps. We reply to every entry either way, within five business days.</p></div>
+      {!done && <div className="test-entry-progress" aria-label={`Step ${step + 1} of 4: ${stepName}`}><strong>Step {step + 1} of 4</strong> · {stepName}<div className="test-entry-bars" aria-hidden="true">{TEST_STEPS.map((name, index) => <span key={name} data-filled={index <= step} />)}</div></div>}
       <div className="test-entry-card">{restored && !done && <div className="test-entry-welcome"><Check aria-hidden="true" />Welcome back. We kept your answers.</div>}{card}</div>
       {step === 1 && !done && <div className="test-entry-benefits"><h4>Every winner gets</h4><ul>{WINNER_FILES.map((file) => <li key={file}><Check aria-hidden="true" />{file}</li>)}</ul><p>The same files for every category, with the title you won on them.</p></div>}
     </div>

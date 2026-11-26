@@ -17,11 +17,14 @@
 .test-entry-fields { padding: 0 36px 32px; display: grid; gap: 24px; }
 .test-entry-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .test-entry-field { min-width: 0; }
+.test-entry-full-width { grid-column: 1 / -1; }
+.test-entry-industry-help { color: var(--muted-foreground); font-size: 14px; line-height: 1.5; margin-top: 8px; }
 .test-entry-field label { display: block; font-size: 15px; font-weight: 500; line-height: 1.5; margin-bottom: 8px; }
 .test-entry-field input, .test-entry-field select { min-height: 46px; font-size: 16px; }
 .test-entry-field select { width: 100%; border: 1px solid var(--input); border-radius: 6px; background: var(--background); color: var(--foreground); padding: 10px 12px; }
 .test-entry-field select:focus-visible { outline: 2px solid var(--test-blue); outline-offset: 2px; }
 .test-entry-field textarea { font-size: 16px; min-height: 128px; resize: vertical; }
+.test-entry-field:has(textarea) label { font-weight: 700; }
 .test-entry-helper { color: var(--muted-foreground); font-size: 14px; line-height: 1.5; margin: -2px 0 10px; }
 .test-entry-error { color: var(--destructive); font-size: 14px; margin-top: 8px; }
 .test-entry-footer { border-top: 1px solid var(--border); background: var(--surface); padding: 22px 36px; }
@@ -56,10 +59,11 @@
 .test-entry-benefits svg { color: var(--test-blue); width: 18px; height: 18px; flex-shrink: 0; }
 .test-entry-benefits p { font-size: 14px; color: var(--test-secondary); line-height: 1.6; margin-top: 20px; }
 .test-entry-question-section { border-top: 1px solid var(--border); padding: 28px 36px 0; }
-.test-entry-question-section h4 { font-size: 19px; font-weight: 600; }
+.test-entry-question-section h4 { font-size: 18px; font-weight: 600; }
 .test-entry-question-section > p { color: var(--muted-foreground); font-size: 15px; margin: 8px 0 24px; }
 .test-entry-question-section .test-entry-fields { padding-inline: 0; }
-.test-entry-question-category { display: block; color: var(--primary); font-size: 14px; margin-bottom: 8px; }
+.test-entry-category-question { border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; min-width: 0; }
+.test-entry-question-category { display: block; color: var(--primary); font-size: 14px; font-weight: 600; margin-bottom: 8px; }
 .test-entry-radio { margin-bottom: 20px; }
 .test-entry-radio legend { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
 .test-entry-radio label { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px; cursor: pointer; }
@@ -76,10 +80,16 @@
 .test-entry-assessment { padding: 24px 36px; border-top: 1px solid var(--border); background: var(--surface); color: var(--muted-foreground); font-size: 14px; line-height: 1.7; }
 .test-entry-welcome { display: flex; align-items: center; gap: 8px; padding: 14px 36px; color: var(--primary); background: var(--test-selected); font-size: 14px; }
 .test-entry-welcome svg { width: 16px; height: 16px; }
-.test-entry-confirmation { padding: 48px 36px; text-align: center; }
+.test-entry-confirmation { padding: 40px; text-align: center; }
 .test-entry-confirmation p { font-size: 16px; line-height: 1.7; margin-top: 18px; overflow-wrap: anywhere; }
 .test-entry-confirmation .test-entry-test-note { color: var(--test-secondary); font-size: 14px; margin-bottom: 28px; }
 .test-entry-success { display: flex; width: 60px; height: 60px; align-items: center; justify-content: center; margin: 0 auto 24px; border-radius: 50%; background: var(--test-selected); color: var(--test-blue); }
+.test-entry-next { text-align: left; }
+.test-entry-next h4 { font-size: 18px; font-weight: 600; }
+.test-entry-next ol { list-style: decimal; padding-left: 24px; margin-top: 16px; color: var(--muted-foreground); font-size: 15px; line-height: 1.7; overflow-wrap: anywhere; }
+.test-entry-next li + li { margin-top: 12px; }
+.test-entry-confirmation-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px 20px; border-top: 1px solid var(--border); padding-top: 24px; margin-top: 28px; }
+.test-entry-restart { min-height: 44px; margin-top: 16px; white-space: normal; color: var(--test-secondary); font-size: 13px; }
 @media (min-width: 1024px) {
   .test-entry-intro p { width: max-content; max-width: calc(100vw - 32px); margin-left: 50%; transform: translateX(-50%); }
 }
@@ -88,6 +98,7 @@
   .test-entry-intro h2 { font-size: 30px; }
   .test-entry-header { padding: 26px 20px 24px; }
   .test-entry-heading { font-size: 24px; }
+  .test-entry-confirmation { padding: 32px 20px; }
   .test-entry-fields { padding: 0 20px 26px; }
   .test-entry-details { grid-template-columns: minmax(0, 1fr); }
   .test-entry-footer { padding: 20px; }
